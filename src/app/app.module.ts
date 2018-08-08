@@ -15,12 +15,18 @@ import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 //Ngb bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DummyListComponent } from './dummy-list/dummy-list.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { LoggedinDashboardComponent } from './loggedin-dashboard/loggedin-dashboard.component';
+import { LandingPageHeaderComponent } from './landing-page-header/landing-page-header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppNavbarComponent,
-    DummyListComponent
+    DummyListComponent,
+    LandingPageComponent,
+    LoggedinDashboardComponent,
+    LandingPageHeaderComponent
   ],
   imports: [
     BrowserModule,

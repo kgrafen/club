@@ -3,6 +3,10 @@
 
 body {
     padding-top: 80px; 
+    background-image: url("./assets/images/intro.png");
+    background-size:     cover;                 
+    background-repeat:   no-repeat;
+    background-position: center center;
  }
  .starter-template {
      padding: 3rem 1.5rem;
