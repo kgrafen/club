@@ -1,0 +1,13 @@
+h3 {
+    font-size: 1rem !important;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+img {
+    width: 60%;
+}
+
+.column {
+    display: table;
+}

@@ -18,6 +18,13 @@ import { DummyListComponent } from './dummy-list/dummy-list.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LoggedinDashboardComponent } from './loggedin-dashboard/loggedin-dashboard.component';
 import { LandingPageHeaderComponent } from './landing-page-header/landing-page-header.component';
+import { CreateAccountFormComponent } from './create-account-form/create-account-form.component';
+import { FooterComponent } from './footer/footer.component';
+
+// Routing
+import { RouterModule, Routes } from '@angular/router';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { RoutingModule } from './/routing.module';
 
 @NgModule({
   declarations: [
@@ -26,16 +33,23 @@ import { LandingPageHeaderComponent } from './landing-page-header/landing-page-h
     DummyListComponent,
     LandingPageComponent,
     LoggedinDashboardComponent,
-    LandingPageHeaderComponent
+    LandingPageHeaderComponent,
+    CreateAccountFormComponent,
+    PageNotFoundComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    RoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
+
+
 export class AppModule { }

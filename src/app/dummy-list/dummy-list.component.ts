@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'dummy-list',
   templateUrl: './dummy-list.component.html',
-  styleUrls: []
+  styleUrls: ['./dummy-list.component.css']
 })
 export class DummyListComponent implements OnInit {
   coursesObservable: Observable<any[]>;

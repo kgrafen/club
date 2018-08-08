@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-loggedin-dashboard',
+  selector: 'loggedin-dashboard',
   templateUrl: './loggedin-dashboard.component.html',
   styleUrls: ['./loggedin-dashboard.component.css']
 })

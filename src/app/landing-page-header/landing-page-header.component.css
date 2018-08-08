@@ -5,16 +5,17 @@ img {
     display:block;
 }
 
-div > input {
-    width:40%;
-}
-
 div > form {
     margin-top:12.5%;
+    display: inline-block;
 }
 
 button {
     background-color: transparent;
     border-color: snow;
     color: snow;
+}
+
+div {
+    text-align:center;
 }
