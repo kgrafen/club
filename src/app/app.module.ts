@@ -25,6 +25,11 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RoutingModule } from './/routing.module';
+import { EventListComponent } from './event-list/event-list.component';
+import { EventFilterComponent } from './event-filter/event-filter.component';
+
+// Forms
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,7 +41,9 @@ import { RoutingModule } from './/routing.module';
     LandingPageHeaderComponent,
     CreateAccountFormComponent,
     PageNotFoundComponent,
-    FooterComponent
+    FooterComponent,
+    EventListComponent,
+    EventFilterComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +51,8 @@ import { RoutingModule } from './/routing.module';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule.forRoot(),
-    RoutingModule
+    RoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

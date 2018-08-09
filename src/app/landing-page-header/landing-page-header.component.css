@@ -10,7 +10,7 @@ div > form {
     display: inline-block;
 }
 
-button {
+a {
     background-color: transparent;
     border-color: snow;
     color: snow;
