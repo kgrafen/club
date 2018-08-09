@@ -10,6 +10,8 @@ Artifaktet kan findes her på link: [product backlog](https://github.com/FenrirG
 
 ## Git
 Projektet bliver trinvist oploadet til Git og udviklingsprocessen kan derfor følges her. Der er mulighed for at pull projektet ned på andre computere, hvorefter Angular projektet kan bygges og observeres i egne browsers.
+Projektet kan findes på dette link: [SingleNetværket](https://github.com/FenrirGameStudio/SingleNetwork)
+Alternativt klones fra denne url: https://github.com/FenrirGameStudio/SingleNetwork.git
 ### Bemærk
 Projektet udvikles umiddelbart med de mobile platformer i tankerne og testes derfor både der og i Google Chrome. Der kan forekomme forskelle på kryds af devices og browsers. Hvis disse er et problem må vi finde en løsning.
 
