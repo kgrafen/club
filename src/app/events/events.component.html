@@ -1,9 +1,23 @@
 <app-navbar></app-navbar>
-<div class="row">
-    <div class="col-4">
-        <event-filter></event-filter>
-    </div>
-    <div class="col-8">
-        <event-list></event-list>
-    </div>
-</div>
+
+        <div *ngIf="!isMobile" class="row desktop">
+                <div class="col-4">
+                    <event-filter></event-filter>
+                </div>
+                <div class="col-8">
+                    <event-list></event-list>
+                </div>
+        </div>
+            
+        <div *ngIf="isMobile" class="row mobile">
+                <div class="container">
+                    <div class="row">
+                            <event-filter></event-filter>
+                    </div>
+            
+                    <div class="row">
+                            <event-list></event-list>
+                    </div>
+                </div>
+        </div>
+

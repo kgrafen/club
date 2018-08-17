@@ -1,0 +1,27 @@
+tr:nth-child(even)  {
+    background-color: snow;
+}
+
+tr:nth-child(odd)  {
+    background-color: #F0EDE5
+}
+
+table, th, tr {
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.mobile {
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .mobile {
+        display: block;
+        width: 100%;
+    }
+
+    .desktop {
+        display:none;
+    }
+}

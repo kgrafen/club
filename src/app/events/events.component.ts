@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsComponent implements OnInit {
 
+  public isMobile: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
+    if (window.screen.width <= 600) {
+      this.isMobile = true;
+    } 
   }
 
 }

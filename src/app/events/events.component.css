@@ -1,4 +1,28 @@
-.row {
+.mobile {
+    display:none;
+}
+
+.desktop {
     padding-top: 100px;
     padding-bottom: 50px;
+}
+
+event-filter {
+    width: 100%;
+}
+
+@media only screen and (max-width: 900px) {
+    .mobile {
+        padding-top: 55px;
+        display: block;
+        border: 1px solid black;
+    }
+
+    .desktop {
+        display:none;
+    }
+}
+
+.row {
+    overflow: hidden;
 }

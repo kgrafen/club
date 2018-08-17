@@ -1,184 +1,182 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <h1>Min Profil</h1>
-  <div class="row">
-      <mat-tab-group class="mat-tab-profile">
-          <mat-tab label="Person Data">
-              <div class="row">
-                  <!--
-                    <div class="col-md-3 ">
-                       <div class="list-group ">
-                            <a href="#" class="list-group-item list-group-item-action active">Kategorier</a>
-                            <a href="#" class="list-group-item list-group-item-action">Person data</a>
-                            <a href="#" class="list-group-item list-group-item-action">Kontakt oplysninger</a>
-                            <a href="#" class="list-group-item list-group-item-action">Familie</a>
-                            <a href="#" class="list-group-item list-group-item-action">Billeder</a>
-                            <a href="#" class="list-group-item list-group-item-action">Konto oplysninger</a>
-                            <a href="#" class="list-group-item list-group-item-action">Rating</a>
-                            <a href="#" class="list-group-item list-group-item-action">Nyhedsbreve</a>
-                            <a href="#" class="list-group-item list-group-item-action">Filtre</a>
-                          </div> 
-                  </div>
-                  -->
-                  <div class="col-md-9">
-                      <div class="card">
-                          <div class="card-body">
-                              <div class="row">
-                                  <div class="col-md-12">
-                                      <form>
-                                            <div class="form-group row">
-                                              <label for="username" class="col-4 col-form-label">Brugernavn*</label> 
-                                              <div class="col-8">
-                                                <input id="username" name="username" placeholder="Brugernavn" class="form-control here" required="required" type="text">
-                                              </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="email" class="col-4 col-form-label">Email</label> 
-                                                <div class="col-8">
-                                                    <input class="form-control" type="text" placeholder="minemail@domain.com" readonly>
-                                                </div>
-                                              </div>
-                                            <div class="form-group row">
-                                              <label for="name" class="col-4 col-form-label">Fornavn</label> 
-                                              <div class="col-8">
-                                                <input id="name" name="name" placeholder="Fornavn" class="form-control here" type="text">
-                                              </div>
-                                            </div>
-                                            <div class="form-group row">
-                                              <label for="lastname" class="col-4 col-form-label">Efternavn</label> 
-                                              <div class="col-8">
-                                                <input id="lastname" name="lastname" placeholder="Efternavn" class="form-control here" type="text">
-                                              </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="birthday" class="col-4 col-form-label">Fødselsdag</label> 
-                                                <div class="col-8">
-                                                  <input id="birthday" name="birthday" class="form-control here" type="date">
-                                                </div>
-                                              </div>
-                                            <div class="form-group row">
-                                              <label for="select" class="col-4 col-form-label">Køn</label> 
-                                              <div class="col-8">
-                                                <select id="select" name="select" class="custom-select">
-                                                  <option value="admin">Mand</option>
-                                                  <option value="admin">Kvinde</option>
-                                                  <option value="admin">Ønsker ikke oplyse</option>
-                                                </select>
-                                              </div>
-                                            </div>
-                                            <div class="form-group row">
-                                              <div class="offset-4 col-8">
-                                                <button name="submit" type="submit" class="btn btn-primary">Opdater min profil</button>
-                                              </div>
-                                            </div>
-                                          </form>
-                                  </div>
-                              </div>
-                              
-                          </div>
-                      </div>
-                  </div>
-                  </div>
-          </mat-tab>
-          <mat-tab label="Kontakt">
-
-              <div class="col-md-9">
-                  <div class="card">
-                      <div class="card-body">
-                          <div class="row">
-                              <div class="col-md-12">
-                                  <form>
+    <h1>Min Profil</h1>
+    <div *ngIf="!isMobile" class="row">
+        <mat-tab-group class="mat-tab-profile">
+            <mat-tab label="Person Data">
+                <!--
+                  <div class="col-md-3 ">
+                     <div class="list-group ">
+                          <a href="#" class="list-group-item list-group-item-action active">Kategorier</a>
+                          <a href="#" class="list-group-item list-group-item-action">Person data</a>
+                          <a href="#" class="list-group-item list-group-item-action">Kontakt oplysninger</a>
+                          <a href="#" class="list-group-item list-group-item-action">Familie</a>
+                          <a href="#" class="list-group-item list-group-item-action">Billeder</a>
+                          <a href="#" class="list-group-item list-group-item-action">Konto oplysninger</a>
+                          <a href="#" class="list-group-item list-group-item-action">Rating</a>
+                          <a href="#" class="list-group-item list-group-item-action">Nyhedsbreve</a>
+                          <a href="#" class="list-group-item list-group-item-action">Filtre</a>
+                        </div> 
+                </div>
+                -->
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form>
                                         <div class="form-group row">
-                                          <label for="phone" class="col-4 col-form-label">Telefon/mobil*</label> 
-                                          <div class="col-8">
-                                              <input type="tel" class="form-control" name="telphone" placeholder="Telefon/mobil" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="8"  title="8 cifre"/>
-                                          </div>
+                                            <label for="username" class="col-4 col-form-label">Brugernavn*</label> 
+                                            <div class="col-8">
+                                                <input id="username" name="username" placeholder="Brugernavn" class="form-control here" required="required" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="email" class="col-4 col-form-label">Email</label> 
+                                            <div class="col-8">
+                                                <input class="form-control" type="text" placeholder="minemail@domain.com" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="name" class="col-4 col-form-label">Fornavn</label> 
+                                            <div class="col-8">
+                                                <input id="name" name="name" placeholder="Fornavn" class="form-control here" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="lastname" class="col-4 col-form-label">Efternavn</label> 
+                                            <div class="col-8">
+                                                <input id="lastname" name="lastname" placeholder="Efternavn" class="form-control here" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="birthday" class="col-4 col-form-label">Fødselsdag</label> 
+                                            <div class="col-8">
+                                                <input id="birthday" name="birthday" class="form-control here" type="date">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="select" class="col-4 col-form-label">Køn</label> 
+                                            <div class="col-8">
+                                                <select id="select" name="select" class="custom-select">
+                                                    <option value="admin">Mand</option>
+                                                    <option value="admin">Kvinde</option>
+                                                    <option value="admin">Ønsker ikke oplyse</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="offset-4 col-8">
+                                                <button name="submit" type="submit" class="btn btn-outline-primary mb-2 mr-2">Opdater min profil</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="Kontakt">
+
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form>
+                                        <div class="form-group row">
+                                            <label for="phone" class="col-4 col-form-label">Telefon/mobil*</label> 
+                                            <div class="col-8">
+                                                <input type="tel" class="form-control" name="telphone" placeholder="Telefon/mobil" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="8"  title="8 cifre"/>
+                                            </div>
                                         </div>
 
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                              <label for="inputAddress">Adresse</label>
-                                              <input type="text" class="form-control" id="inputAddress">
+                                                <label for="inputAddress">Adresse</label>
+                                                <input type="text" class="form-control" id="inputAddress" placeholder="Adresse">
                                             </div>
                                             <div class="form-group col-md-4">
-                                              <label for="inputBy">By</label>
-                                              <input type="text" class="form-control" id="inputBy">
+                                                <label for="inputBy">By</label>
+                                                <input type="text" class="form-control" id="inputBy" placeholder="By">
                                             </div>
                                             <div class="form-group col-md-2">
-                                              <label for="inputZip">Postnummer</label>
-                                              <input type="text" class="form-control" id="inputZip">
+                                                <label for="inputZip">Postnummer</label>
+                                                <input type="text" class="form-control" id="inputZip" placeholder="Post">
                                             </div>
-                                          </div>
-                                        
+                                        </div>
+
                                         <div class="form-group row">
-                                          <div class="offset-4 col-8">
-                                            <button name="submit" type="submit" class="btn btn-primary">Opdater min profil</button>
-                                          </div>
+                                            <div class="offset-4 col-8">
+                                                <button name="submit" type="submit" class="btn btn-outline-primary mb-2 mr-2">Opdater min profil</button>
+                                            </div>
                                         </div>
                                     </form>
-                              </div>
-                          </div>
-                          
-                      </div>
-                  </div>
-              </div>
+                                </div>
+                            </div>
 
-          </mat-tab>
-          <mat-tab label="Familie">
+                        </div>
+                    </div>
+                </div>
 
-              <div class="col-md-9">
-                  <div class="card">
-                      <div class="card-body">
-                          <div class="row">
-                              <div class="col-md-12">
-                                  <form>
+            </mat-tab>
+            <mat-tab label="Familie">
+
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form>
                                         <div class="form-group row">
-                                          <label for="kids" class="col-4 col-form-label">Antal børn</label> 
-                                          <div class="col-8">
-                                              <input type="number" class="form-control" min="0" max="3" name="kids" placeholder="Antal" maxlength="1"/>
-                                          </div>
+                                            <label for="kids" class="col-4 col-form-label">Antal børn</label> 
+                                            <div class="col-8">
+                                                <input type="number" class="form-control" min="0" max="3" name="kids" placeholder="Antal" maxlength="1"/>
+                                            </div>
                                         </div>
 
                                         <div class="form-row">
                                             <label for="kidBirthday1" class="col-4 col-form-label">Fødselsdag for det første barn</label> 
-                                                <div class="col-8">
-                                                  <input id="kidBirthday1" name="birthday" class="form-control here" type="date">
-                                                </div>
+                                            <div class="col-8">
+                                                <input id="kidBirthday1" name="birthday" class="form-control here" type="date">
+                                            </div>
                                         </div>
                                         <div class="form-row">
                                             <label for="kidBirthday2" class="col-4 col-form-label">Fødselsdag for det andet barn</label> 
-                                                <div class="col-8">
-                                                  <input id="kidBirthday2" name="birthday" class="form-control here" type="date">
-                                                </div>
+                                            <div class="col-8">
+                                                <input id="kidBirthday2" name="birthday" class="form-control here" type="date">
+                                            </div>
                                         </div>
                                         <div class="form-row">
                                             <label for="kidBirthday3" class="col-4 col-form-label">Fødselsdag for det tredje barn</label> 
-                                                <div class="col-8">
-                                                  <input id="kidBirthday3" name="birthday" class="form-control here" type="date">
-                                                </div>
+                                            <div class="col-8">
+                                                <input id="kidBirthday3" name="birthday" class="form-control here" type="date">
+                                            </div>
                                         </div>
-                                        
+
                                         <div class="form-group row">
-                                          <div class="offset-4 col-8">
-                                            <button name="submit" type="submit" class="btn btn-primary">Opdater min profil</button>
-                                          </div>
+                                            <div class="offset-4 col-8">
+                                                <button name="submit" type="submit" class="btn btn-outline-primary mb-2 mr-2">Opdater min profil</button>
+                                            </div>
                                         </div>
                                     </form>
-                              </div>
-                          </div>
-                          
-                      </div>
-                  </div>
-              </div>
+                                </div>
+                            </div>
 
-          </mat-tab>
-          <mat-tab label="Billeder">
-              <div ng-show="myValue" class="ng-hide">
-                  <div class="alert alert-warning" role="alert">
-                      <div ng-show="myValue" class="ng-hide"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </mat-tab>
+            <mat-tab label="Billeder">
+                <div ng-show="myValue" class="ng-hide">
+                    <div class="alert alert-warning" role="alert">
+                        <div ng-show="myValue" class="ng-hide"></div>
                         <strong>Hov!</strong> Der er ingen billeder oploadet.
-                      </div>
-              </div>
+                    </div>
+                </div>
 
                 <div class="col-md-9">
                     <div class="card">
@@ -188,44 +186,44 @@
                                     <user-image-gallery></user-image-gallery>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
 
-              <div class="col-md-9">
-                  <div class="card">
-                      <div class="card-body">
-                          <div class="row">
-                              <div class="col-md-12">
-                                  <image-upload></image-upload>
-                              </div>
-                          </div>
-                          
-                      </div>
-                  </div>
-              </div>
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <image-upload></image-upload>
+                                </div>
+                            </div>
 
-          </mat-tab>
-          <mat-tab label="Indstillinger">
+                        </div>
+                    </div>
+                </div>
 
-              <div class="col-md-9">
-                  <div class="card">
-                      <div class="card-body">
-                          <div class="row">
-                              <div class="col-md-12">
-                                  <h4>Mailopsætning</h4>
-                                  <form>
+            </mat-tab>
+            <mat-tab label="Indstillinger">
+
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Mailopsætning</h4>
+                                    <form>
                                         <div class="form-row">
                                             <div class="form-group col-sm">
-                                              <div class="onoffswitch">
-                                                  <label>Nye Arrangementer</label> <br>
-                                                  <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                                  <label class="onoffswitch-label" for="myonoffswitch">
-                                                      <span class="onoffswitch-inner"></span>
-                                                      <span class="onoffswitch-switch"></span>
-                                                  </label>
-                                              </div>
+                                                <div class="onoffswitch">
+                                                    <label>Nye Arrangementer</label> <br>
+                                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                                                    <label class="onoffswitch-label" for="myonoffswitch">
+                                                        <span class="onoffswitch-inner"></span>
+                                                        <span class="onoffswitch-switch"></span>
+                                                    </label>
+                                                </div>
                                             </div>
                                             <div class="form-group col-sm">
                                                 <div class="onoffswitch">
@@ -236,80 +234,153 @@
                                                         <span class="onoffswitch-switch"></span>
                                                     </label>
                                                 </div>
-                                              </div>
-                                              <div class="form-group col-sm">
-                                                  <div class="onoffswitch">
-                                                      <label>Ugentlig oversigt</label> <br>
-                                                      <input type="checkbox" name="onoffswitch3" class="onoffswitch-checkbox" id="myonoffswitch3" checked>
-                                                      <label class="onoffswitch-label" for="myonoffswitch3">
-                                                          <span class="onoffswitch-inner"></span>
-                                                          <span class="onoffswitch-switch"></span>
-                                                      </label>
-                                                  </div>
-                                              </div>
-                                          </div>
-
-                                          <div class="form-group row">
-                                              <label for="email" class="col-4 col-form-label">Sendes til</label> 
-                                              <div class="col-8">
-                                                  <input class="form-control" type="text" placeholder="minemail@domain.com" readonly>
-                                              </div>
                                             </div>
-                                        
+                                            <div class="form-group col-sm">
+                                                <div class="onoffswitch">
+                                                    <label>Ugentlig oversigt</label> <br>
+                                                    <input type="checkbox" name="onoffswitch3" class="onoffswitch-checkbox" id="myonoffswitch3" checked>
+                                                    <label class="onoffswitch-label" for="myonoffswitch3">
+                                                        <span class="onoffswitch-inner"></span>
+                                                        <span class="onoffswitch-switch"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="form-group row">
-                                          <div class="offset-4 col-8">
-                                            <button name="submit" type="submit" class="btn btn-primary">Opdater min profil</button>
-                                          </div>
+                                            <label for="email" class="col-4 col-form-label">Sendes til</label> 
+                                            <div class="col-8">
+                                                <input class="form-control" type="text" placeholder="minemail@domain.com" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="offset-4 col-8">
+                                                <button name="submit" type="submit" class="btn btn-outline-primary mb-2 mr-2">Opdater min profil</button>
+                                            </div>
                                         </div>
                                     </form>
-                              </div>
-                          </div>
-                          
-                      </div>
-                  </div>
-              </div>
-
-          </mat-tab>
-
-          <mat-tab label="Rating">
-
-          <div class="col-md-9">
-              <div class="card">
-                  <div class="card-body">
-                      <div class="row">
-                          <div class="col-md-12">
-
-                              <div class="form-group row">
-                                  <label for="userRating" class="col-4 col-form-label">Rating</label>
-                                  <img class="ratingImg" src="./assets/images/Shield_Silver.png">
-                              </div>
-
-                            <form>
-                                <div class="form-group row">
-                                  <label for="numberOfEventsHosted" class="col-4 col-form-label">Antal events du har afholdt</label>
-                                  <div class="col-8">
-                                      <input class="form-control" type="text" placeholder="0" readonly>
-                                  </div>
                                 </div>
+                            </div>
 
-                                <div class="form-group row">
-                                  <label for="numberOfEventsAttended" class="col-4 col-form-label">Antal events du har deltaget i</label>
-                                  <div class="col-8">
-                                      <input class="form-control" type="text" placeholder="7" readonly>
-                                  </div>
-                                </div>
-
-                            </form>
-
-                          </div>
                         </div>
-                  </div>
-              </div>
-          </div>
+                    </div>
+                </div>
 
-      </mat-tab>
-      
-              
+            </mat-tab>
+
+            <mat-tab label="Rating">
+
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="form-group row">
+                                        <label for="userRating" class="col-4 col-form-label">Rating</label>
+                                        <img class="ratingImg" src="./assets/images/Shield_Silver.png">
+                                    </div>
+
+                                    <form>
+                                        <div class="form-group row">
+                                            <label for="numberOfEventsHosted" class="col-4 col-form-label">Antal events du har afholdt</label>
+                                            <div class="col-8">
+                                                <input class="form-control" type="text" placeholder="0" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="numberOfEventsAttended" class="col-4 col-form-label">Antal events du har deltaget i</label>
+                                            <div class="col-8">
+                                                <input class="form-control" type="text" placeholder="7" readonly>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </mat-tab>
+
+
         </mat-tab-group>
-  </div>
+    </div>
+
+    <div *ngIf="isMobile" class="row">
+            <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form>
+
+                                        <div class="form-group row">
+                                            <label for="username" class="list-group-item list-group-item-action active">Person data</label> 
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="username" class="col-4 col-form-label">Brugernavn</label> 
+                                            <div class="col-8">
+                                                <input id="username" name="username" placeholder="Brugernavn" class="form-control here" required="required" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="username" class="col-4 col-form-label">Brugernavn</label> 
+                                            <div class="col-8">
+                                                <input id="username" name="username" placeholder="Brugernavn" class="form-control here" required="required" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="email" class="col-4 col-form-label">Email</label> 
+                                            <div class="col-8">
+                                                <input class="form-control" type="text" placeholder="minemail@domain.com" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="name" class="col-4 col-form-label">Fornavn</label> 
+                                            <div class="col-8">
+                                                <input id="name" name="name" placeholder="Fornavn" class="form-control here" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="lastname" class="col-4 col-form-label">Efternavn</label> 
+                                            <div class="col-8">
+                                                <input id="lastname" name="lastname" placeholder="Efternavn" class="form-control here" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="birthday" class="col-4 col-form-label">Fødselsdag</label> 
+                                            <div class="col-8">
+                                                <input id="birthday" name="birthday" class="form-control here" type="date">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="select" class="col-4 col-form-label">Køn</label> 
+                                            <div class="col-8">
+                                                <select id="select" name="select" class="custom-select">
+                                                    <option value="admin">Mand</option>
+                                                    <option value="admin">Kvinde</option>
+                                                    <option value="admin">Ønsker ikke oplyse</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="offset-4 col-8">
+                                                <button name="submit" type="submit" class="btn btn-outline-primary mb-2 mr-2">Opdater min profil</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+    </div>
+
 </div>
