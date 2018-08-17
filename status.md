@@ -1,5 +1,18 @@
 # Single Netværket status
 
+## Opdatering 2
+### Login
+Vi har arbejdet på at lave brugerlogin der bruger email og password, som er givet til systemet efter oprettelse af en ny bruger.
+
+### Oprettelse
+Det er nu muligt for nye brugere at registrere sig
+
+### Dashboard
+Der er lavet et dashboard, som brugere umiddelbart ser efter login. Denne kan føre videre til min profil, arrangementer m.fl. Disse er selvfølgelig også tilgængelige i navigationsbaren
+
+### Min profil
+En bruger kan nu gå til sin profil side og se sine detaljer.  
+
 Dette Git dokument indeholder detaljer omkring udviklingen af web app (projekt: Single Netværket). Både detaljer omkring fremgangen, evt. spørgsmål og en liste over de features som der skal laves.
 
 ## Product backlog
@@ -7,13 +20,6 @@ Som aftalt har vi arbejdet på at oversætte kravspecifikationen til en product 
 Mangler der features på listen, kan disse nemt tilføjes og vi vil sørge for at få dem med i processen.
 
 Artifaktet kan findes her på link: [product backlog](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/files/Product%20backlog.pdf)
-
-## Git
-Projektet bliver trinvist oploadet til Git og udviklingsprocessen kan derfor følges her. Der er mulighed for at pull projektet ned på andre computere, hvorefter Angular projektet kan bygges og observeres i egne browsers.
-
-Projektet kan findes på dette link: [SingleNetværket](https://github.com/FenrirGameStudio/SingleNetwork)
-
-Alternativt klones fra denne url: https://github.com/FenrirGameStudio/SingleNetwork.git
 
 ### Bemærk
 Projektet udvikles umiddelbart med de mobile platformer i tankerne og testes derfor både der og i Google Chrome. Der kan forekomme forskelle på kryds af devices og browsers. Hvis disse er et problem må vi finde en løsning.
