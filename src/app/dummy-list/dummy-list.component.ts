@@ -13,7 +13,7 @@ export class DummyListComponent implements OnInit {
   constructor(private db: AngularFireDatabase) { }
 
   ngOnInit() {
-    this.coursesObservable = this.getDummy('/courses');
+    this.coursesObservable = this.getDummy('/events');
   }
 
   getDummy(listPath): Observable<any[]> {

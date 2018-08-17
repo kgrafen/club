@@ -1,0 +1,20 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Modal title</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group row">
+            <label for="username" class="col-4 col-form-label">Vælg fil*</label> 
+            <div class="col-8">
+              <input id="uploadImage" name="uploadImage" class="form-control here" required="required" type="file">
+            </div>
+          </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="c('Close click')">Luk</button>
+    </div>
+  </ng-template>
+  <button class="btn btn-outline-primary mb-2 mr-2" (click)="openVerticallyCentered(content)">Opload nyt billede</button>

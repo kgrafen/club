@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { FormGroup, FormControl } from '@angular/forms';
+import { $ } from 'protractor';
 
 @Component({
   selector: 'create-account-form',
@@ -7,9 +10,60 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateAccountFormComponent implements OnInit {
 
-  constructor() { }
+  public errorMessage : string;
+  public successMessage : string;
+
+  public registerForm = new FormGroup({
+      email: new FormControl(''),
+      password: new FormControl('')
+  });
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+  }
+
+  tryRegister(value){
+    this.authService.doRegister(value)
+    .then(res => {
+      console.log(res);
+      this.errorMessage = "";
+      this.successMessage = "Din nye profil er blevet oprettet!";
+    }, err => {
+      console.log(err);
+      this.errorMessage = this.translateErrorMsg(err);
+      this.successMessage = "";
+    })
+  }
+
+/*
+  tryLogin(value) {
+    this.authService.doLogin(value)
+    .then(res => {
+      console.log(res);
+      this.errorMessage = "";
+      this.successMessage = "Du er nu logget ind";
+    }, err => {
+      console.log(err);
+      this.errorMessage = err;
+      this.successMessage = "";
+    })
+  }
+*/
+
+  translateErrorMsg(err) : string {
+    console.log(err.code);
+    switch(err.code) {
+      case "auth/invalid-email":
+        return "Ugyldige tegn i email feltet eller tjek om feltet er tomt.";
+      case "auth/email-already-in-use":
+        return "Email adressen er allerede taget. Prøv en anden mail";
+      case "auth/weak-password":
+        return "Kodeordet skal mindst være 6 tegn.";
+      default:
+        return "Der skete en ukendt fejl prøv igen senere";
+    }
+    
   }
 
 }

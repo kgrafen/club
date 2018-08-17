@@ -1,10 +1,6 @@
-h1, h2, h3, h4, h5, p, label {
+h1, h2, h3, h4, h5, p, #nameLabel, #emailLabel, #passwordLabel {
     color:snow;
     text-align: center;
-}
-
-h1, h2, h3, h4, h5 {
-    padding: 25px;    
 }
 
 #emailHelp {
@@ -15,4 +11,42 @@ button {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10px;
 }
+
+.error, .success {
+    text-align: center;
+    padding: 15px;
+}
+
+.error {
+    color: #BD3D3A;
+}
+
+.success {
+    color: #02bd7e;
+}
+
+#firebaseui-auth-container {
+    display:none;
+}
+
+/*
+.error, .success {
+    margin: 15px;
+    padding: 5px;
+    text-align: center;
+}
+
+.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+*/

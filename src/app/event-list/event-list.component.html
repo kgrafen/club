@@ -1,3 +1,39 @@
-<p>
-  event-list works!
-</p>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Navnet på event</th>
+        <th scope="col">By</th>
+        <th scope="col">Antal</th>
+        <th scope="col">Kønsfordeling</th>
+        <th scope="col">Børn</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let course of coursesObservable | async">
+        <td>{{course.title}}</td>
+        <td>{{course.by}}</td>
+        <td>{{course.participants}} / {{course.maxParticipants}}</td>
+        <td>{{course.genderDistribution}}</td>
+        <td>{{course.kidsAllowed}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+<!--
+
+<ul>
+  <div *ngFor="let course of coursesObservable | async">
+      <ngb-alert type="info" [dismissible]="false">
+          <div class="row">
+                <div class="column">
+                    <img src="./assets/images/64x64cover.png">
+                </div>
+                <div class="column">
+                    <h3><a href="#">{{course.title}}</a> </h3>
+                </div>
+          </div>
+      </ngb-alert> 
+  </div>
+</ul>
+
+-->

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { FormGroup, FormControl } from '@angular/forms';
+import { $ } from 'protractor';
+
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppNavbarComponent implements OnInit {
 
-  constructor() { }
+  public loginForm = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl('')
+});
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+  }
+
+  signout() {
+    this.authService.doSignout();
   }
 
 }

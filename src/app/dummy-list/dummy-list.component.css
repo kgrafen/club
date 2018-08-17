@@ -1,11 +1,11 @@
 h3 {
-    font-size: 1rem !important;
+    font-size: 0.8rem !important;
     display: table-cell;
     vertical-align: middle;
 }
 
 img {
-    width: 60%;
+    width: 50%;
 }
 
 .column {

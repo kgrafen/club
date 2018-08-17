@@ -1,9 +1,10 @@
+
 img {
     width:50%;
     margin-left: auto;
     margin-right: auto;
     display:block;
-}
+} 
 
 div > form {
     margin-top:12.5%;
@@ -16,6 +17,22 @@ a {
     color: snow;
 }
 
-div {
-    text-align:center;
+.col {
+    padding: 10px;
+    color: snow;
+}
+
+.mobile {
+    display:none;
+}
+
+@media only screen and (max-width: 600px) {
+
+    div .left {
+        display:none;
+    }
+
+    .mobile {
+        display: block;
+    }
 }

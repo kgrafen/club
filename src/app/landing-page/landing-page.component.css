@@ -1,28 +1,45 @@
 h1, h2, h3, h4, h5 {
     color:snow;
     text-align: center;
-    padding: 25px;
 }
 
 .news-graphic {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
+    width:80%;
 }
 
 .display-none {
     visibility: hidden;
 }
 
-button {
+button, .pr-image {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-div {
-    margin-bottom: 30px;
+.container {
+    margin-bottom: 10px;
     background: #333333;
     border-radius: 30px 30px 30px 30px;
+}
+
+.pr-image {
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.pr-container {
+    background-color: snow;
+    border-radius: 10px 10px 10px 10px;
+}
+
+@media only screen and (max-width: 500px) {
+    .desktop {
+        display: none;
+    }
 }

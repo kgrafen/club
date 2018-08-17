@@ -1,17 +1,19 @@
 <h2>Opret profil</h2>
-        <form>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Email</label>
-              <input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="Indtast her">
-              <small id="emailHelp" class="form-text text-muted">Vi deler aldrig din email.</small>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" id="inputPassword1" placeholder="Indtast her">
-            </div>
-            <div class="form-group">
-                <label for="inputName1">Profil navn</label>
-                <input type="text" class="form-control" id="inputName1" aria-describedby="emailHelp" placeholder="Indtast her">
-            </div>
-            <button type="submit" class="btn btn-primary">Opret</button>
-          </form>
+<form [formGroup]="registerForm">
+    <div class="form-group">
+      <label id="emailLabel" for="exampleInputEmail1">Email</label>
+      <input type="email" class="form-control" formControlName="email" id="inputEmail1" aria-describedby="emailHelp" placeholder="Indtast her">
+    </div>
+    <div class="form-group">
+      <label id="passwordLabel" for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" formControlName="password" id="inputPassword1" placeholder="Indtast her">
+    </div>
+    <div class="form-group">
+        <label id="nameLabel" for="inputName1">Profil navn</label>
+        <input type="text" class="form-control" id="inputName1" aria-describedby="emailHelp" placeholder="Indtast her">
+        <label class="error">{{errorMessage}}</label>
+        <label class="success">{{successMessage}}</label>
+      </div>
+    <button type="submit" (click)="tryRegister(registerForm.value)" class="btn btn-primary">Opret</button>
+    
+  </form>
