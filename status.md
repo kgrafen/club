@@ -4,6 +4,7 @@ Dette Git dokument indeholder detaljer omkring udviklingen af web app (projekt: 
 
 
 ## Opdatering 2 17/08-2018
+
 ### Login
 Vi har arbejdet på at lave brugerlogin der bruger email og password, som er givet til systemet efter oprettelse af en ny bruger.
 
@@ -38,6 +39,9 @@ En bruger kan nu gå til sin profil side og se sine detaljer.
 #### Mobile My profile
 ![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/tree/master/src/assets/images/screenshot_mobile_myprofile.png "Landing Page")
 
+### Opdatering 1 - 10/08-2018  
+
+Dette Git dokument indeholder detaljer omkring udviklingen af web app (projekt: Single Netværket). Både detaljer omkring fremgangen, evt. spørgsmål og en liste over de features som der skal laves.
 
 ## Product backlog
 Som aftalt har vi arbejdet på at oversætte kravspecifikationen til en product backlog med tilhørende user stories. Ideen er at kort og præcist formulerer en feature. Artifaktet indeholder alle disse features og er derfor listen over alt der skal med.
