@@ -21,23 +21,24 @@ En bruger kan nu gå til sin profil side og se sine detaljer.
 ## Screenshots
 ### Desktop
 ####Landing page
-![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_events.png"Landing Page")
+![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_landingpage.PNG "Landing Page")
+
 
 #### Events
-![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_landingpage.png "Events Page")
+![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_events.PNG "Events Page")
 
 #### My profile
-![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_minprofil.png "My profile Page")
+![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_minprofil.PNG "My profile Page")
 
 ### Mobile
 #### Events
-![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_mobile_events.png "Mobile event Page")
+![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_mobile_events.PNG "Mobile event Page")
 
 #### Dashboard
-![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_mobile_dashboard.png "Mobile Dashboard Page")
+![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_mobile_dashboard.PNG "Mobile Dashboard Page")
 
 #### Mobile My profile
-![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_mobile_myprofile.png "Landing Page")
+![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_mobile_myprofile.PNG "Mobile Dashboard Page")
 
 ### Opdatering 1 - 10/08-2018  
 
