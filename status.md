@@ -1,6 +1,6 @@
 # Single Netværket status
 
-## Opdatering 2
+## Opdatering 2 17/08-2018
 ### Login
 Vi har arbejdet på at lave brugerlogin der bruger email og password, som er givet til systemet efter oprettelse af en ny bruger.
 
