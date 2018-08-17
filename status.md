@@ -1,6 +1,6 @@
 # Single Netværket status
 
-## Opdatering 2 17/08-2018
+## -> Opdatering 2 - 17/08-2018 <-
 ### Login
 Vi har arbejdet på at lave brugerlogin der bruger email og password, som er givet til systemet efter oprettelse af en ny bruger.
 
@@ -12,6 +12,8 @@ Der er lavet et dashboard, som brugere umiddelbart ser efter login. Denne kan f�
 
 ### Min profil
 En bruger kan nu gå til sin profil side og se sine detaljer.  
+
+### -> Opdatering 1 - 10/08-2018 <- 
 
 Dette Git dokument indeholder detaljer omkring udviklingen af web app (projekt: Single Netværket). Både detaljer omkring fremgangen, evt. spørgsmål og en liste over de features som der skal laves.
 
