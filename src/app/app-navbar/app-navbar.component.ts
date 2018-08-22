@@ -11,6 +11,9 @@ import { $ } from 'protractor';
 })
 export class AppNavbarComponent implements OnInit {
 
+  public navbarCollapsed = true;
+  public isMobile: boolean = false;
+
   public loginForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')
@@ -19,6 +22,9 @@ export class AppNavbarComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    if (window.screen.width <= 600) {
+        this.isMobile = true;
+    }
   }
 
   signout() {

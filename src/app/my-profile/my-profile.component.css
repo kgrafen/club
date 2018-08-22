@@ -13,6 +13,13 @@ h1 {
     background-color:#fff;
 }
 
+@media screen and (max-width: 600px) {
+    .col-md-9 {
+        margin-bottom: 40px;
+    }
+  }
+
+
 /* First toggle */
 
 .onoffswitch {

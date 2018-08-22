@@ -50,7 +50,14 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
 // Modal gallery
 import 'mousetrap'; // <------ mandatory dependency for angular-modal-gallery
 import { ModalGalleryModule } from 'angular-modal-gallery';
-import { UserImageGalleryComponent } from './user-image-gallery/user-image-gallery.component'; // 
+import { UserImageGalleryComponent } from './user-image-gallery/user-image-gallery.component';
+import { EventControlMenuComponent } from './event-control-menu/event-control-menu.component'; 
+
+// Font Awesome
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { FeedbackComponent } from './feedback/feedback.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +76,14 @@ import { UserImageGalleryComponent } from './user-image-gallery/user-image-galle
     EventsComponent,
     MyProfileComponent,
     ImageUploadComponent,
-    UserImageGalleryComponent
+    UserImageGalleryComponent,
+    EventControlMenuComponent,
+    FeedbackComponent,
+    AboutComponent,
+    ContactComponent,
+    AboutComponent,
+    ContactComponent,
+    FeedbackComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +98,8 @@ import { UserImageGalleryComponent } from './user-image-gallery/user-image-galle
     MatButtonModule,
     MatCheckboxModule,
     MatTabsModule,
-    ModalGalleryModule.forRoot()
+    ModalGalleryModule.forRoot(),
+    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

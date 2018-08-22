@@ -1,0 +1,29 @@
+.container {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: #333333;
+    color: snow;
+    border-radius: 15px;
+    padding: 50px;
+}
+
+.content-header {
+    margin-top: 100px;
+}
+
+h1, h2 {
+    color: snow;
+    text-align: center;
+}
+
+fa {
+    font-size:60px;
+}
+
+.center {
+    margin-right: auto;
+    margin-left: auto;
+    width:50%;
+    display:block;
+    text-align: center;
+}

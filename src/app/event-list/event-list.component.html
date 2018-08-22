@@ -10,12 +10,12 @@
     </thead>
     <tbody>
       <tr  *ngFor="let course of coursesObservable | async">
-        <td>{{course.title}}</td>
-        <td>{{course.by}}</td>
-        <td>{{course.genderDistribution}}</td>
-        <td>{{course.kidsAllowed}}</td>
-        <td *ngIf="course.participants < course.maxParticipants">Ledig</td>
-        <td *ngIf="course.participants >= course.maxParticipants">Venteliste</td>
+        <td>{{course.name}}</td>
+        <td>{{course.address}}</td>
+        <td>{{course.genderRatio}}</td>
+        <td>{{course.targetGroup}}</td>
+        <td *ngIf="course.participantCount < course.maxGuests">Ledig</td>
+        <td *ngIf="course.participantCount >= course.maxGuests">Venteliste</td>
       </tr>
     </tbody>
   </table>

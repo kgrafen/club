@@ -1,3 +1,226 @@
-<p>
-  create-new-event works!
-</p>
+<app-navbar></app-navbar>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-4 well well-sm">
+                <legend><fa name="calendar"></fa> Nyt Event</legend>
+                <form [formGroup]="eventForm" action="#" method="post" class="form" role="form">
+
+                <input formControlName="eventName" class="form-control" name="eventName" placeholder="Navnet på eventet" type="text" />
+                
+                <textarea formControlName="eventDescription" name="message" id="message" class="form-control" rows="9" cols="25" required="required" placeholder="Beskrivelse"></textarea>
+                
+                <label for="eventDate">
+                Dato start</label>
+                <input formControlName="eventDate" class="form-control" name="eventDate" type="date"/>
+                
+                <label for="eventStartTime">
+                  Tidspunkt
+                </label>
+                <div class="row">
+                    <div class="col-xs-4 col-md-6">
+                        <input formControlName="eventStartTime" type="time" class="form-control" name="eventStartTime"/>
+                    </div>
+
+                    <div class="col-xs-4 col-md-6">
+                        <input formControlName="eventEndTime" type="time" class="form-control" name="eventEndTime"/>
+                    </div>
+                </div>
+                
+                <label>Kategori</label>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <select formControlName="eventCategory" class="form-control">
+                            <option value="Kategori">Vælg</option>
+                            <option value="Kategori">Hjemmehygge</option>
+                            <option value="Kategori">Fest i privathjem</option>
+                            <option value="Kategori">Fest uden for privaten</option>
+                            <option value="Kategori">For børn</option>
+                            <option value="Kategori">Spis sammen på restaurant</option>
+                            <option value="Kategori">Biograf</option>
+                            <option value="Kategori">Naturoplevelse</option>
+                            <option value="Kategori">Ferie</option>
+                            <option value="Kategori">Koncert</option>
+                            <option value="Kategori">Kultur</option>
+                            <option value="Kategori">Sport</option>
+                        </select>
+                    </div>    
+                </div>
+                
+                <label>Målgruppe</label>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                      <div class="form-check form-check-inline">
+                          <input formControlName="eventTargetGroup" class="form-check-input" type="radio" id="childrenRadio1" name="eventTargetGroup" value="Kun med børn" checked>
+                          <label class="form-check-label" for="childrenRadio1">Kun med børn</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input formControlName="eventTargetGroup" class="form-check-input" type="radio" id="childrenRadio2" name="eventTargetGroup" value="Kun uden børn">
+                          <label class="form-check-label" for="childrenRadio2">Kun uden børn</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input formControlName="eventTargetGroup" class="form-check-input" type="radio" id="childrenRadio3" name="eventTargetGroup" value="Børn velkomne">
+                          <label class="form-check-label" for="childrenRadio3">Børn velkomne</label>
+                      </div>
+                    </div>    
+                </div>
+                
+                <label>Aldersgruppe</label>
+                <div class="form-row">
+                      <div class="form-group col-md-2">
+                          
+                      </div>
+                      <div class="form-group col-md-4">
+                          <label class="form-check-label" for="minAge">Fra</label>
+                          <input formControlName="eventMinAge" type="number" id="minAge" name="minage" placeholder="18"/>
+                      </div>
+                      <div class="form-group col-md-4">
+                          <label class="form-check-label" for="maxAge">Til</label>
+                          <input formControlName="eventMaxAge" type="number" id="maxAge" name="maxage" placeholder="99"/>
+                      </div>
+                      <div class="form-group col-md-1">
+                          
+                      </div>
+                </div>
+
+                <label for="eventFile">
+                    Billede</label>
+                <div>
+                    <input formControlName="eventFile" type="file" id="eventFile" name="myfile"/>
+                </div>
+
+                <label for="eventDate">Rating</label>
+                <input formControlName="eventHostRating" class="form-control" name="eventDate" type="text" placeholder="2.3" readonly/>
+
+                <label>Antal gæster</label>
+                <div class="form-row">
+                      <div class="form-group col-md-2">
+                          
+                      </div>
+                      <div class="form-group col-md-4">
+                          <label class="form-check-label" for="minGuests">Min</label>
+                          <input formControlName="eventMinGuests" type="number" id="minGuests" name="minguests" placeholder="2"/>
+                      </div>
+                      <div class="form-group col-md-4">
+                          <label class="form-check-label" for="maxGuests">Max</label>
+                          <input formControlName="eventMaxGuests" type="number" id="maxGuests" name="maxguests" placeholder="499"/>
+                      </div>
+                      <div class="form-group col-md-1">
+                          
+                      </div>
+                </div>
+
+                <label>Deltagerfordeling</label>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                      <div class="form-check form-check-inline">
+                          <input formControlName="eventGender" class="form-check-input" type="radio" id="genderRadio1" name="eventGender" value="50/50" checked>
+                          <label class="form-check-label" for="genderRadio1">50/50</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input formControlName="eventGender" class="form-check-input" type="radio" id="genderRadio2" name="eventGender" value="Kun for mænd">
+                          <label class="form-check-label" for="genderRadio2">Kun for mænd</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input formControlName="eventGender" class="form-check-input" type="radio" id="genderRadio3" name="eventGender" value="Kun for kvinder">
+                          <label class="form-check-label" for="genderRadio3">Kun for kvinder</label>
+                      </div>
+                    </div>    
+                </div>
+
+                <label>Tving på venteliste</label>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                      <div class="form-check form-check-inline">
+                          <input formControlName="eventQueue" class="form-check-input" type="radio" id="queueYes" name="eventQueue" value="ja">
+                          <label class="form-check-label" for="queueYes">Ja</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          <input formControlName="eventQueue" class="form-check-input" type="radio" id="queueNo" name="eventQueue" value="nej" checked>
+                          <label class="form-check-label" for="queueNo">Nej</label>
+                      </div>
+                    </div>    
+                </div>
+                
+
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                      <label for="addressRoad">Vej</label>
+                      <input formControlName="eventLocationStreet" type="text" class="form-control" id="addressRoad" placeholder="Vej" required>
+                      <div class="invalid-feedback">
+                        Please provide a valid city.
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <label for="addressCity">By</label>
+                      <input formControlName="eventLocationCity" type="text" class="form-control" id="addressCity" placeholder="By" readonly>
+                      <div class="invalid-feedback">
+                        Please provide a valid state.
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <label for="addressZip">Post</label>
+                      <input formControlName="eventLocationZip" type="text" class="form-control" id="addressZip" placeholder="Post" required>
+                      <div class="invalid-feedback">
+                        Please provide a valid zip.
+                      </div>
+                    </div>
+                  </div>
+
+                  <label>Tilmeldingsfrist</label>
+                  <div class="form-row">
+                        <div class="form-group col-md-2">
+                            
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="form-check-label" for="deadlineDate">Dato</label>
+                            <input formControlName="eventDeadlineDate" type="date" id="deadlineDate" name="deadlinedate"/>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="form-check-label" for="deadlineTime">Tid</label>
+                            <input formControlName="eventDeadlineTime" type="time" id="deadlineTime" name="deadlinetime"/>
+                        </div>
+                        <div class="form-group col-md-1">
+                            
+                        </div>
+                  </div>
+
+
+                <label for="eventDate">
+                    Pris per person i DKK</label>
+                <input formControlName="eventPrice" class="form-control" name="eventDate" type="number" placeholder="0"/>
+
+                <label>Betalingsform</label>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <select formControlName="eventPaymentOption" class="form-control">
+                                <option value="Kategori">Ingen</option>
+                                <option value="Kategori">Kontant</option>
+                                <option value="Kategori">Mobilepay</option>
+                                <option value="Kategori">Bankoverførelse</option>
+                            </select>
+                        </div>    
+                    </div>
+
+                    <label>Betalingsfrist</label>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <select formControlName="eventPaymentDue" class="form-control">
+                                <option value="Kategori">Ingen</option>
+                                <option value="Kategori">Betaling ved tilmelding</option>
+                                <option value="Kategori">Kontant ved ankomst</option>
+                                <option value="Kategori">Dato</option>
+                            </select>
+                        </div>    
+                    </div>
+
+                <label for="eventPaymentDate">
+                    Betalingsfrist</label>
+                <input formControlName="eventPaymentDate" class="form-control" name="eventDate" type="date"/>
+
+                <button (click)="onSubmitEvent(eventForm.value)" class="btn btn-lg btn-primary btn-block" type="submit">
+                    Opret event</button>
+                </form>
+            </div>
+        </div>
+

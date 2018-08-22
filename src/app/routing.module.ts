@@ -6,6 +6,10 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import { LoggedinDashboardComponent } from './loggedin-dashboard/loggedin-dashboard.component';
 import { EventsComponent } from './events/events.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
+import { CreateNewEventComponent } from './create-new-event/create-new-event.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 
 const routes: Routes = [
@@ -13,6 +17,10 @@ const routes: Routes = [
   { path: 'loggedin-dashboard', component: LoggedinDashboardComponent },
   { path: 'events', component: EventsComponent },
   { path: 'my-profile', component: MyProfileComponent },
+  { path: 'create-new-event', component: CreateNewEventComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'feedback', component: FeedbackComponent },
+  { path: 'contact', component: ContactComponent },
   {
     path: 'dummy-list',
     component: DummyListComponent,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from '../../../node_modules/rxjs';
 import { AngularFireDatabase } from '../../../node_modules/angularfire2/database';
+import { EventFirebaseService } from '../event-firebase.service';
 
 @Component({
   selector: 'event-list',
@@ -10,14 +11,11 @@ import { AngularFireDatabase } from '../../../node_modules/angularfire2/database
 export class EventListComponent implements OnInit {
 
   coursesObservable: Observable<any[]>;
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase, private efbs: EventFirebaseService) { }
 
   ngOnInit() {
-    this.coursesObservable = this.getDummy('/events');
-  }
-
-  getDummy(listPath): Observable<any[]> {
-    return this.db.list(listPath).valueChanges();
+    this.efbs.getEvents();
+    this.coursesObservable = this.efbs.eventsObservable;
   }
 
 }
