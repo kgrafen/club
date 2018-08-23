@@ -6,30 +6,30 @@
         <h5>Hurtige links</h5>
         <ul class="list-unstyled quick-links">
           <li><a href="#"><i class="fa fa-angle-double-right"></i>Home</a></li>
-          <li><a href="/about"><i class="fa fa-angle-double-right"></i>Om</a></li>
-          <li><a href="/contact"><i class="fa fa-angle-double-right"></i>Kontakt</a></li>
-          <li><a href="#"><i class="fa fa-angle-double-right"></i>Vision</a></li>
+          <li><a [routerLink]="['/about']"><i class="fa fa-angle-double-right"></i>Om</a></li>
+          <li><a [routerLink]="['/contact']"><i class="fa fa-angle-double-right"></i>Kontakt</a></li>
+          <li><a [routerLink]="['/about']"><i class="fa fa-angle-double-right"></i>Vision</a></li>
         </ul>
       </div>
       <div class="col-xs-12 col-sm-4 col-md-4">
         <h5>Feedback</h5>
         <ul class="list-unstyled quick-links">
-          <li><a href="/feedback"><i class="fa fa-angle-double-right"></i>Del din historie</a></li>
-          <li><a href="/feedback"><i class="fa fa-angle-double-right"></i>Lad os høre din mening</a></li>
+          <li><a [routerLink]="['/feedback']"><i class="fa fa-angle-double-right"></i>Del din historie</a></li>
+          <li><a [routerLink]="['/feedback']"><i class="fa fa-angle-double-right"></i>Lad os høre din mening</a></li>
         </ul>
       </div>
       <div class="col-xs-12 col-sm-4 col-md-4">
         <h5>Privat og vilkår</h5>
         <ul class="list-unstyled quick-links">
-          <li><a href="#"><i class="fa fa-angle-double-right"></i>Privatlivs politik</a></li>
-          <li><a href="#"><i class="fa fa-angle-double-right"></i>Brugsvilkår</a></li>
-          <li><a href="#"><i class="fa fa-angle-double-right"></i>Cookies</a></li>
+          <li><a [routerLink]="['/privacy-policy']"><i class="fa fa-angle-double-right"></i>Privatlivs politik</a></li>
+          <li><a [routerLink]="['/terms-of-service']"><i class="fa fa-angle-double-right"></i>Brugsvilkår</a></li>
+          <li><a href="https://cookiesandyou.com/"><i class="fa fa-angle-double-right"></i>Cookies</a></li>
         </ul>
       </div>
     </div>	
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-        <p class="h6">© 2018.<a class="text-green ml-2" href="https://www.singlen.dk" target="_blank">Single Netværket</a> </p>
+        <p class="h6">© 2018.<a class="text-green ml-2" [routerLink]="['/']" target="_blank">Single Netværket</a> </p>
       </div>
     </div>	
   </div>

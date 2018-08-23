@@ -1,12 +1,12 @@
 <ul>
-  <div *ngFor="let course of coursesObservable | async">
+  <div *ngFor="let course of coursesObservable | async | slice:0:6">
       <ngb-alert type="info" [dismissible]="false">
           <div class="row">
                 <div class="column">
-                    <img src="./assets/images/64x64cover.png">
+                    <img src="{{course.file}}">
                 </div>
                 <div class="column">
-                    <h3><a href="#">{{course.title}}</a> </h3>
+                    <h3><a href="#">{{course.name}}</a> </h3>
                 </div>
           </div>
       </ngb-alert> 

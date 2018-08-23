@@ -1,4 +1,4 @@
-h1, h2, h3, h4, h5, p, #nameLabel, #emailLabel, #passwordLabel {
+h1, h2, h3, h4, h5, p, #nameLabel, #emailLabel, #passwordLabel, #consentLabel {
     color:snow;
     text-align: center;
 }

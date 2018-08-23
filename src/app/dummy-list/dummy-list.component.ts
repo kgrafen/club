@@ -10,6 +10,8 @@ import { Observable } from 'rxjs/Observable';
 })
 export class DummyListComponent implements OnInit {
   coursesObservable: Observable<any[]>;
+  events: any[];
+
   constructor(private db: AngularFireDatabase) { }
 
   ngOnInit() {

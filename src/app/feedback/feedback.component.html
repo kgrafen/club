@@ -1,41 +1,67 @@
-<app-navbar></app-navbar>
+<landing-page-header></landing-page-header>
 <div class="container">
     <div class="row">
         <div class="col">
             <div class="card">
-                <div class="card-header bg-primary text-white"><i class="fa fa-envelope"></i> Contact us.
+                <div class="card-header bg-primary text-white"><i class="fa fa-envelope"></i> Del din historie.
                 </div>
                 <div class="card-body">
                     <form>
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter name" required>
+                            <label for="name">Navn</label>
+                            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Navn" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            <label for="email">Email addresse</label>
+                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" required>
+                            <small id="emailHelp" class="form-text text-muted">Vi deler aldrig din email.</small>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea class="form-control" id="message" rows="6" required></textarea>
+                            <label for="message">Historie</label>
+                            <textarea class="form-control" id="message" rows="8" required
+                            placeholder="Eksempel: Jeg havde mine reserverationer efter enden på en langt forhold. Jeg havde ikke rigtigt modet til at springe ud i et nyt eventyr. Single Netværket var det skub jeg havde brug for. Jeg havde muligheden for at møde andre i min situation. Til at starte med ganske uforpligtende, men med tiden lykkedes det mig at opbygge mit sociale netværk igen! Jeg er meget taknemmelig for de mennesker jeg har mødt igennem dette site."></textarea>
                         </div>
                         <div class="mx-auto">
-                        <button type="submit" class="btn btn-primary text-right">Submit</button></div>
+                        <button type="submit" class="btn btn-outline-primary mb-2 mr-2">Del</button></div>
                     </form>
                 </div>
             </div>
         </div>
         <div class="col-12 col-sm-4">
             <div class="card bg-light mb-3">
-                <div class="card-header bg-success text-white text-uppercase"><i class="fa fa-home"></i> Address</div>
+                <div class="card-header bg-success text-white text-uppercase"><i class="fa fa-home"></i> Forslag</div>
                 <div class="card-body">
-                    <p>3 rue des Champs Elysées</p>
-                    <p>75008 PARIS</p>
-                    <p>France</p>
-                    <p>Email : email@example.com</p>
-                    <p>Tel. +33 12 56 11 51 84</p>
-
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Navn</label>
+                            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Navn" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email adresse</label>
+                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" required>
+                            <small id="emailHelp" class="form-text text-muted">Vi deler ikke din email adresse.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Emne</label>
+                            <select class="form-control">
+                                <option value="Kategori">Vælg</option>
+                                <option value="Kategori">Design</option>
+                                <option value="Kategori">Brugeroplevelse</option>
+                                <option value="Kategori">Ny feature</option>
+                                <option value="Kategori">Kontrol</option>
+                                <option value="Kategori">Pris</option>
+                                <option value="Kategori">Belønninger</option>
+                                <option value="Kategori">Straf</option>
+                                <option value="Kategori">Andet</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Detaljer</label>
+                            <textarea class="form-control" id="message" rows="6" required placeholder="Besked"></textarea>
+                        </div>
+                        <div class="mx-auto">
+                        <button type="submit" class="btn btn-outline-success mb-2 mr-2 text-right">Forslå</button></div>
+                    </form>
                 </div>
 
             </div>

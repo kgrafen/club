@@ -10,7 +10,9 @@ import { CreateNewEventComponent } from './create-new-event/create-new-event.com
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { FeedbackComponent } from './feedback/feedback.component';
-
+import { TermsOfServiceComponent} from './terms-of-service/terms-of-service.component';
+import { CookiesConsentComponent } from './cookies-consent/cookies-consent.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
@@ -21,6 +23,9 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'feedback', component: FeedbackComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'terms-of-service', component: TermsOfServiceComponent },
+  { path: 'cookies-consent', component: CookiesConsentComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
   {
     path: 'dummy-list',
     component: DummyListComponent,

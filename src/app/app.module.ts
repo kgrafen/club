@@ -58,6 +58,12 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { TermsOfServiceComponent } from './terms-of-service/terms-of-service.component';
+import { CookiesConsentComponent } from './cookies-consent/cookies-consent.component';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+
+// Cookies
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 @NgModule({
   declarations: [
@@ -83,7 +89,10 @@ import { ContactComponent } from './contact/contact.component';
     ContactComponent,
     AboutComponent,
     ContactComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    TermsOfServiceComponent,
+    CookiesConsentComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,
@@ -101,7 +110,7 @@ import { ContactComponent } from './contact/contact.component';
     ModalGalleryModule.forRoot(),
     AngularFontAwesomeModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 

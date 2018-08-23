@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
@@ -12,6 +12,8 @@ export class LandingPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
+
 
 }
