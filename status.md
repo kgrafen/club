@@ -2,6 +2,23 @@
 
 Dette Git dokument indeholder detaljer omkring udviklingen af web app (projekt: Single Netværket). Både detaljer omkring fremgangen, evt. spørgsmål og en liste over de features som der skal laves.
 
+## Opdatering 3 23/08-2018
+
+### Om os, privatlivs politik, brugsvilkår, feedback og del din personlige historie
+Vi har lavet undersiderne tilsvarende de ovenstående overskrifter. De er fyldt ud med auto generede tekst (eks: Terms of Service og privacy. Derfor på Engelsk).
+
+### Layout
+Opdateringer til layout så det er responsivt til flere devices og platforme.
+
+### Cookies
+Vi har implementeret så brugerne er informeret om cookie per EU lovgivning og lagrer derefter en cookie der fortæller web appen at dette er godkendt. (Så generer vi ikke brugeren med den samme påmindelse hele tiden)
+
+### Database
+Vi har lagt en masse test data ind i databasen og fører efterfølgende dette ind i tabellen for alle events og de første 6 på forsiden.
+
+### Diverse formularer
+Det er nu mulgit at give feedback, komme med forslag, kontakte support og oprette nye events. (Front end delen er lavet)
+
 
 ## Opdatering 2 17/08-2018
 
@@ -17,28 +34,6 @@ Der er lavet et dashboard, som brugere umiddelbart ser efter login. Denne kan f�
 ### Min profil
 En bruger kan nu gå til sin profil side og se sine detaljer.  
 
-
-## Screenshots
-### Desktop
-####Landing page
-![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_landingpage.PNG "Landing Page")
-
-
-#### Events
-![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_events.PNG "Events Page")
-
-#### My profile
-![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_minprofil.PNG "My profile Page")
-
-### Mobile
-#### Events
-![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_mobile_events.PNG "Mobile event Page")
-
-#### Dashboard
-![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_mobile_dashboard.PNG "Mobile Dashboard Page")
-
-#### Mobile My profile
-![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_mobile_myprofile.PNG "Mobile Dashboard Page")
 
 ### Opdatering 1 - 10/08-2018  
 
@@ -62,8 +57,66 @@ Indtil andet oplyses er dette listen over de teknologier som vi anvender til at 
 ### Bemærk
 At der vil blive tilføjet til listen som vi kommer længere i processen. Eksempelvis for sikkerhed, privatlivs indstillinger m.v.
 
+## Milestones
+Vi har lagt plan for 3 milestones:
+* Milestone 1
+* Milestone 2
+* Milestone 3
+
+### Milestone 1
+Alle opgaver er løst.
+
+### Milestone 2
+Undervejs.
+
+### Milestone 3
+Undervejs.
+
+## Screenshots
+### Desktop
+
+#### Privacy
+![Privacy-policy](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_privacypolicy.PNG "Landing Page")
+#### About
+![About](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_about.PNG "Landing Page")
+
+#### Feedback
+![Feedback](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_feedback.PNG "Landing Page")
+
+#### Contact
+![Contact](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_contact.PNG "Landing Page")
+
+####Landing page
+![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_landingpage.PNG "Landing Page")
+
+#### Events
+![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_events.PNG "Events Page")
+
+#### My profile
+![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_minprofil.PNG "My profile Page")
+
+### Mobile
+#### Events
+![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_mobile_events.PNG "Mobile event Page")
+
+#### Dashboard
+![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_mobile_dashboard.PNG "Mobile Dashboard Page")
+
+#### Mobile My profile
+![Landing Page](https://github.com/FenrirGameStudio/SingleNetwork/blob/master/src/assets/images/screenshot_mobile_myprofile.PNG "Mobile Dashboard Page")
+
+
+
 ## Spørgsmål
 Dette er de spørgsmål vi umiddelbart sidder inde med, eller ting som vi undrer os over. Det kan give mening at vi drøfter disse til et møde eller over mail korrespondance.
+
+### Fyldtekst
+Vi skal bruge fyldtekst til de følgende sider:
+* Privatlivs politik
+* Brugsvilkår
+* Om ejerne
+* Om virksomheden
+* Om konceptet
 
 ### Fødselsdage
 Det er meget bøvlet at vi skal bruge børnenes fødselsdage i vores datastrategi og vi undrer os derfor over hvordan denne information er relevant for oplevelsen på
