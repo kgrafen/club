@@ -1,4 +1,9 @@
 {
+  "users": [{
+    "_username": "Hr. Test",
+    "email": "test@testmail.dk"
+  }],
+
   "events": [
     {
       "_key": "5b7d690aef1d312cafa1083f",

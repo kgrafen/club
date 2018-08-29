@@ -1,4 +1,4 @@
-import { eventAddress } from '../helper/eventAddress';
+import { EventAddress } from '../helper/EventAddress';
 
 export class Event {
     $key: string;
@@ -17,7 +17,7 @@ export class Event {
     maxGuests: number;
     genderRatio: string;
     queue: boolean;
-    address: eventAddress;
+    address: EventAddress;
     deadlineDate: Date;
     deadlineTime: number;
     price: number;

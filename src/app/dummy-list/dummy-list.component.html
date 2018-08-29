@@ -1,5 +1,5 @@
 <ul>
-  <div *ngFor="let course of coursesObservable | async | slice:0:6">
+  <div *ngFor="let course of coursesObservable | async | slice:-6">
       <ngb-alert type="info" [dismissible]="false">
           <div class="row">
                 <div class="column">

@@ -9,13 +9,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { RoutingModule } from './routing.module';
 import { EventListComponent } from './event-list/event-list.component';
 import { EventFilterComponent } from './event-filter/event-filter.component';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  user = {};
+  user: firebase.User;
 
   constructor(public afAuth: AngularFireAuth, private router: Router) {
 
@@ -34,7 +35,7 @@ export class AuthService {
     return this.afAuth.auth
       .signInWithEmailAndPassword(formData.email, formData.password)
       .then(credential => {
-        console.log("Welcome back");
+        this.user = this.afAuth.auth.currentUser;
         this.loginRedirect();
         return credential.user;
       })
@@ -44,6 +45,7 @@ export class AuthService {
   doSignout() {
     console.log("Signing out");
     this.afAuth.auth.signOut().then(() => {
+      this.user = null;
       this.signoutRedirect();
     });
   }

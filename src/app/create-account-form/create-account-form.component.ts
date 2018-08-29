@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { $ } from 'protractor';
+import { UserFirebaseService } from '../user-firebase.service';
+import { User } from '../entity/user/user';
 
 @Component({
   selector: 'create-account-form',
@@ -15,10 +17,11 @@ export class CreateAccountFormComponent implements OnInit {
 
   public registerForm = new FormGroup({
       email: new FormControl(''),
-      password: new FormControl('')
+      password: new FormControl(''),
+      username: new FormControl('')
   });
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private ufbs: UserFirebaseService) { }
 
   ngOnInit() {
   }
@@ -27,6 +30,7 @@ export class CreateAccountFormComponent implements OnInit {
     this.authService.doRegister(value)
     .then(res => {
       console.log(res);
+      this.ufbs.insertUser(new User(value.username, value.email));
       this.errorMessage = "";
       this.successMessage = "Din nye profil er blevet oprettet!";
     }, err => {
