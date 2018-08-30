@@ -14,19 +14,22 @@ import { User } from './entity/user/user';
 // Helper classes
 import { JsonConverter } from './entity/helper/json-converter';
 
+// Session storage
+import { SessionStorage, SessionStorageService } from 'angular-web-storage';
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserFirebaseService {
 
   dbPath: string = '/users';
-  user: User;
 
   usersObservable: Observable<any[]>;
 
   jsonConverter: JsonConverter = new JsonConverter();
 
-  constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase) { }
+  constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase, 
+    public session: SessionStorageService) { }
 
   // CRUD
 
@@ -41,14 +44,16 @@ export class UserFirebaseService {
   getUserByEmail(email: string) {
     let path = this.dbPath+"/"+this.convertEmailToKey(email);
     this.db.object(path).valueChanges().subscribe(data => {
-      this.user = this.jsonToObj(JSON.stringify(data));
+      let user = this.jsonToObj(JSON.stringify(data));
+      this.setStorage(user);
     });
   }
 
   getUserByIndex(idx: number) {
     let path = this.dbPath+"/"+idx;
     this.db.object(path).valueChanges().subscribe(data => {
-      this.user = this.jsonToObj(JSON.stringify(data));
+      let user = this.jsonToObj(JSON.stringify(data));
+      this.setStorage(user);
     });
   }
 
@@ -67,6 +72,17 @@ export class UserFirebaseService {
    deleteuser(key: string) {
      const usersRef = this.db.list(this.dbPath);
      usersRef.remove(key);
+   }
+
+   // Session storage
+   setStorage(user: User, expired: number = 0) {
+    this.session.set("user", user, expired, 's');
+   }
+
+   getStorage(): User {
+     let user =  this.session.get("user");
+     console.log(user);
+     return user;
    }
 
    objToJSON(userObject : User): string {

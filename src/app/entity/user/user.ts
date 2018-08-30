@@ -1,6 +1,6 @@
 import { EventAddress } from '../helper/EventAddress';
 import { Child } from '../helper/child';
-import { Setting } from '../helper/setting';
+import { NewsletterSetting } from '../helper/newsletterSetting';
 
 export class User {
     // Person data
@@ -22,7 +22,7 @@ export class User {
     //Images * Might need new library
 
     //Settings
-    settings: Setting[];
+    newsletterSetting: NewsletterSetting;
 
     //Rating
     rating: number;
@@ -31,6 +31,10 @@ export class User {
 
     //Friendlist
     friendlist: string[];
+
+    //Account status
+    isActivated: boolean;
+    subscribed_until: Date;
 
     constructor(username: string, email: string) {
         this._username = username;

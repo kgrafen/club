@@ -11,6 +11,10 @@ import { EventListComponent } from './event-list/event-list.component';
 import { EventFilterComponent } from './event-filter/event-filter.component';
 import { Observable } from 'rxjs';
 
+// Session storage
+import { SessionStorage, SessionStorageService } from 'angular-web-storage'
+import { UserFirebaseService } from './user-firebase.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +22,8 @@ export class AuthService {
 
   user: firebase.User;
 
-  constructor(public afAuth: AngularFireAuth, private router: Router) {
+  constructor(public afAuth: AngularFireAuth, private router: Router, 
+    private session: SessionStorageService, private ufbs: UserFirebaseService ) {
 
    }
 
@@ -27,6 +32,7 @@ export class AuthService {
       firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password)
       .then(res => {
         resolve(res);
+        this.doLogin({email: formData.email, password: formData.password});
       }, err => reject(err))
     })
   }
@@ -36,6 +42,7 @@ export class AuthService {
       .signInWithEmailAndPassword(formData.email, formData.password)
       .then(credential => {
         this.user = this.afAuth.auth.currentUser;
+        this.ufbs.getUserByEmail(this.user.email);
         this.loginRedirect();
         return credential.user;
       })
@@ -47,6 +54,7 @@ export class AuthService {
     this.afAuth.auth.signOut().then(() => {
       this.user = null;
       this.signoutRedirect();
+      this.session.remove("user");
     });
   }
 

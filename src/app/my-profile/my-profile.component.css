@@ -13,11 +13,27 @@ h1 {
     background-color:#fff;
 }
 
+mat-tab-group {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 100%;
+}
+
 @media screen and (max-width: 600px) {
     .col-md-9 {
         margin-bottom: 40px;
     }
   }
+
+/* Progress bar */
+mat-progress-bar {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
+    height:40px;
+}
 
 
 /* First toggle */

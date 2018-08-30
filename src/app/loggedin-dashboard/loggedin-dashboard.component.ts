@@ -12,7 +12,7 @@ export class LoggedinDashboardComponent implements OnInit {
   constructor(private ufbs: UserFirebaseService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.ufbs.getUserByIndex(0);
+    
   }
 
 }

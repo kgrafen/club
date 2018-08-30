@@ -1,7 +1,6 @@
 import { User } from '../user/user';
 import { Payment } from '../payment/payment.model';
 import { Event } from '../event/event.model';
-import { Setting } from './setting';
 
 export class JsonConverter {
     public convertJsonToUserObj(json: string) : User {
@@ -14,16 +13,12 @@ export class JsonConverter {
         user.firstName = obj.firstName;
         user.gender = obj.gender;
         user.lastName = obj.lastName;
-        /*Object.keys(obj.settings.newsletter).forEach(function(element) {
-            user.settings.push(new Setting(element, obj.settings.newsletter[element]));
-        });*/
-        user.settings = obj.settings;
+        user.newsletterSetting = obj.newsletterSetting;
         user.numberOfChildren = obj.numberOfChildren;
         user.numberOfEventsAttended = obj.numberOfEventsAttended;
         user.numberOfEventsHosted = obj.numberOfEventsHosted;
         user.phone = obj.phone;
         user.rating = obj.rating;
-        user.children = obj.children;
         return user;
     }
 
