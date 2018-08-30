@@ -45,6 +45,13 @@ export class UserFirebaseService {
     });
   }
 
+  getUserByIndex(idx: number) {
+    let path = this.dbPath+"/"+idx;
+    this.db.object(path).valueChanges().subscribe(data => {
+      this.user = this.jsonToObj(JSON.stringify(data));
+    });
+  }
+
   insertUser(user: User) {
     let entry = this.objToJSON(user);
     const usersRef = this.db.list(this.dbPath);

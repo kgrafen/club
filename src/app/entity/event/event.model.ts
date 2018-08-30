@@ -24,4 +24,5 @@ export class Event {
     paymentOption: string;
     paymentDue: string;
     paymentDate: Date;
+    participants: string[];
 }

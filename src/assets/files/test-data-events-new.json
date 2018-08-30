@@ -1,7 +1,14 @@
 {
   "users": [{
     "_username": "Hr. Test",
-    "email": "test@testmail.dk"
+    "email": "test@testmail.dk",
+    "settings": {
+      "newsletter": {
+        "newEvents": false,
+        "dailyNews": false,
+        "weeklyNews": false
+      }
+    }
   }],
 
   "events": [

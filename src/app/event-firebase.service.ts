@@ -36,7 +36,6 @@ export class EventFirebaseService {
 
   insertEvent(event: Event) {
     const entry = this.objToJSON(event);
-    const usersRef = this.db.list(this.dbPath);
     this.db.object(this.dbPath+"/"+this.generateNewHashKey("", "")).update(entry);
   }
 
@@ -48,6 +47,15 @@ export class EventFirebaseService {
   deleteEvent(key: string) {
     const itemsRef = this.db.list(this.dbPath);
     itemsRef.remove(key);
+  }
+
+  joinEvent(key: string, username: string) {
+    this.db.object(this.dbPath+"/"+key+"/participants").update('username');
+  }
+
+  leaveEvent(key: string, username: string) {
+    const itemRef = this.db.object(this.dbPath+"/"+key+"participants/"+username);
+    itemRef.remove();
   }
 
   generateNewHashKey(username: string,  title: string): string {

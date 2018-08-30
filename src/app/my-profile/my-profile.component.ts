@@ -12,11 +12,7 @@ export class MyProfileComponent implements OnInit {
 
   public isMobile: boolean = false;
 
-  constructor(private ufbs: UserFirebaseService, private authService: AuthService) { 
-
-    this.ufbs.getUserByEmail(this.authService.user.email);
-
-  }
+  constructor(private ufbs: UserFirebaseService, private authService: AuthService) { }
 
   username: string = "Indlæser...";
   email: string = "Indlæser...";
@@ -33,7 +29,6 @@ export class MyProfileComponent implements OnInit {
       this.isMobile = true;
     }
 
-    this.ufbs.getUserByEmail(this.authService.user.email);
     this.username = this.ufbs.user._username;
     this.email = this.ufbs.user.email;
     console.log(this.username + ", " + this.email);
