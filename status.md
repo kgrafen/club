@@ -2,6 +2,27 @@
 
 Dette Git dokument indeholder detaljer omkring udviklingen af web app (projekt: Single Netværket). Både detaljer omkring fremgangen, evt. spørgsmål og en liste over de features som der skal laves.
 
+## Opdatering 4 30/08-2018
+
+### Min profil
+Brugeren bliver informeret om at hans konto ikke er aktiv før han udfylder alle obligatoriske felter. Disse påmindelse (aktivering + ingen billeder i galleri) vises kun så længe det er tilfældet.
+
+### Services
+Opdateringer til vores vi gemmer brugeren og hans data i sessionen. Dette er praktisk ift. front end og vise/redigerer sine oplysninger.
+
+### Lidt "Juice"
+Progress bar til min profil, så man se hvor langt man er nået med udfyldelse. Det er vist visuelt med en bar der tikker op, som man gennemføre opgaver. 
+
+### UML diagram
+Der er lavet et udkast til UML for databasen. Denne skal opdateres når den endelig struktur/strategi tager form.
+
+### Firebase CRUD
+Indenfor database snakker man om akronymet CRUD. Create, read, update og delete. Alle disse operationer er nu mulige for:
+* Opret ny bruger
+* Opdater mine profil oplysninger
+* Oprette et nyt arrangement/event
+* Opdaterer et arrangement/event
+
 ## Opdatering 3 23/08-2018
 
 ### Om os, privatlivs politik, brugsvilkår, feedback og del din personlige historie
@@ -67,7 +88,7 @@ Vi har lagt plan for 3 milestones:
 Alle opgaver er løst.
 
 ### Milestone 2
-Undervejs.
+Alle opgaver er løst.
 
 ### Milestone 3
 Undervejs.
@@ -109,6 +130,9 @@ Undervejs.
 
 ## Spørgsmål
 Dette er de spørgsmål vi umiddelbart sidder inde med, eller ting som vi undrer os over. Det kan give mening at vi drøfter disse til et møde eller over mail korrespondance.
+
+### Design/layout
+Skal vi have os på some grafiske designere og stylister på site? Dette er en mellemstor men vigtig opgave. Der skal overvejes om vi skal sættes på den opgave eller om vi skal have konsulenter/designer på eksternt.
 
 ### Fyldtekst
 Vi skal bruge fyldtekst til de følgende sider:
