@@ -41,7 +41,7 @@ import { EventsComponent } from './events/events.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 
 // Material and animation
-import {MatButtonModule, MatCheckboxModule, MatProgressBarModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatProgressBarModule, MatCard, MatCardModule, MatListModule, MatIconModule, MatExpansionModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -67,6 +67,7 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 // Web storage
 import { AngularWebStorageModule } from 'angular-web-storage';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -113,7 +114,12 @@ import { AngularWebStorageModule } from 'angular-web-storage';
     ModalGalleryModule.forRoot(),
     AngularFontAwesomeModule,
     AngularWebStorageModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    HttpClientModule,
+    MatCardModule,
+    MatListModule,
+    MatIconModule,
+    MatExpansionModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

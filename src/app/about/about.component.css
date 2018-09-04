@@ -11,13 +11,12 @@
     margin-top: 100px;
 }
 
-h1, h2 {
-    color: snow;
-    text-align: center;
+h1, h2, h3, h4, h5 {
+    color: snow !important;
 }
 
-fa {
-    font-size:60px;
+h1, h2, h3 {
+    text-align: center;
 }
 
 .center {
@@ -26,4 +25,8 @@ fa {
     width:50%;
     display:block;
     text-align: center;
+}
+
+button {
+    color: #3F69AA;
 }
