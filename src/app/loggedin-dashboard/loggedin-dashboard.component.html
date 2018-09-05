@@ -2,18 +2,20 @@
 <div class="container">
     <h1>Mit Dashboard</h1>
 
+    <mat-card>
+        <mat-grid-list cols="4" rowHeight="100px">
+            <mat-grid-tile
+                *ngFor="let tile of tiles"
+                [colspan]="tile.cols"
+                [rowspan]="tile.rows"
+                [style.background]="tile.color">
+              <button routerLink='{{tile.link}}' mat-button [disabled]="!tile.enabled">{{tile.text}}</button>
+            </mat-grid-tile>
+          </mat-grid-list>
+    </mat-card>
+
     <div class="container">
-            <div class="row">
-              <div class="col-sm">
-                    <a [routerLink]="['/events']"><img class="responsive" src="./assets/images/400x200events.png"></a>
-              </div>
-              <div class="col-sm">
-                    <a [routerLink]="['/my-profile']"><img class="responsive" src="./assets/images/400x200profil.png"></a>
-              </div>
-              <div class="col-sm">
-                <a [routerLink]="['/my-profile']"><img class="responsive" src="./assets/images/400x200profil.png"></a>
-              </div>
-            </div>
-          </div>
+            
+    </div>
 
 </div>
