@@ -10,6 +10,8 @@ import { $ } from 'protractor';
 })
 export class LandingPageHeaderComponent implements OnInit {
 
+  hide: true;
+
   public loginForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')

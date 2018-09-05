@@ -41,7 +41,7 @@ import { EventsComponent } from './events/events.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 
 // Material and animation
-import {MatButtonModule, MatCheckboxModule, MatProgressBarModule, MatCard, MatCardModule, MatListModule, MatIconModule, MatExpansionModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatProgressBarModule, MatCard, MatCardModule, MatListModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInput, MatInputModule, MatChipsModule, MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -120,11 +120,16 @@ import { TestBed, inject, async } from '@angular/core/testing';
     AngularWebStorageModule,
     MatProgressBarModule,
     HttpClientModule,
+    MatFormFieldModule,
     MatCardModule,
     MatListModule,
     MatIconModule,
     MatExpansionModule,
-    RouterTestingModule 
+    MatInputModule,
+    MatButtonModule,
+    MatChipsModule,
+    MatSelectModule,
+    RouterTestingModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

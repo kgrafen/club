@@ -1,5 +1,4 @@
 h1, h2, h3, h4, h5 {
-    color:snow;
     text-align: center;
 }
 
@@ -21,10 +20,13 @@ button, .pr-image {
     margin-right: auto;
 }
 
+
 .container {
-    margin-bottom: 10px;
-    background: #333333;
-    border-radius: 30px 30px 30px 30px;
+    margin-bottom: 30px;
+}
+
+mat-card {
+    border-radius: 20px 20px 20px 20px;
 }
 
 .pr-image {
@@ -34,7 +36,6 @@ button, .pr-image {
 }
 
 .pr-container {
-    background-color: snow;
     border-radius: 10px 10px 10px 10px;
 }
 

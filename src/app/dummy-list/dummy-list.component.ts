@@ -9,13 +9,13 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./dummy-list.component.css']
 })
 export class DummyListComponent implements OnInit {
-  coursesObservable: Observable<any[]>;
+  eventsObservable: Observable<any[]>;
   events: any[];
 
   constructor(private db: AngularFireDatabase) { }
 
   ngOnInit() {
-    this.coursesObservable = this.getDummy('/events');
+    this.eventsObservable = this.getDummy('/events');
   }
 
   getDummy(listPath): Observable<any[]> {

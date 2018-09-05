@@ -12,6 +12,9 @@ import { User } from '../entity/user/user';
 })
 export class CreateAccountFormComponent implements OnInit {
 
+  hide = true;
+  displayMessage = false;
+
   public errorMessage : string;
   public successMessage : string;
 
@@ -32,10 +35,12 @@ export class CreateAccountFormComponent implements OnInit {
       this.ufbs.insertUser(new User(value.username, value.email));
       this.errorMessage = "";
       this.successMessage = "Din nye profil er blevet oprettet!";
+      this.displayMessage = true;
     }, err => {
       console.log(err);
       this.errorMessage = this.translateErrorMsg(err);
       this.successMessage = "";
+      this.displayMessage = true;
     })
   }
 

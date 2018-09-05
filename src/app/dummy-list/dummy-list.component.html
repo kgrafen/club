@@ -1,6 +1,7 @@
+<!--
 <ul>
   <div *ngFor="let course of coursesObservable | async | slice:-6">
-      <ngb-alert type="info" [dismissible]="false">
+      <ngb-alert type="primary" [dismissible]="false">
           <div class="row">
                 <div class="column">
                     <img src="{{course.file}}">
@@ -12,3 +13,7 @@
       </ngb-alert> 
   </div>
 </ul>
+-->
+<mat-card *ngFor="let event of eventsObservable | async | slice:-6">
+    <button mat-button color="primary">{{event.name}}</button>
+</mat-card>
