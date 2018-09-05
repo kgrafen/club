@@ -15,6 +15,8 @@ import { NewsletterSetting } from '../entity/helper/newsletterSetting';
 
 export class MyProfileComponent implements OnInit {
 
+  activationError = "Profilen er ikke aktiv. Udfyld alle obligatoriske felter for at aktivere.";
+
   //Progress Bar Material
   color = 'primary';
   mode = 'determinate';
@@ -73,30 +75,59 @@ public settingsForm = new FormGroup({
     let user = this.ufbs.getStorage();
     this.username = user._username;
     this.email = user.email;
-    if (this.accountIsCompleted()) {
+    if (user.firstName != undefined) {
       this.personDataForm.get('firstName').setValue(user.firstName);
+    }
+    if (user.lastName != undefined) {
       this.personDataForm.get('lastName').setValue(user.lastName);
+    }
+    if (user.birthday != undefined) {
       this.personDataForm.get('birthday').setValue(user.birthday);
+    }
+    if(user.gender != undefined) {
       this.personDataForm.get('gender').setValue(user.gender);
+    }
+    if(user.phone != undefined) {
       this.contactForm.get('phone').setValue(user.phone);
+    }
+    if(user.address != undefined && user.address.street) {
       this.contactForm.get('addressStreet').setValue(user.address.street);
+    }
+    if(user.address != undefined && user.address.city) {
       this.contactForm.get('addressCity').setValue(user.address.city);
+    }
+    if(user.address != undefined && user.address.zip) {
       this.contactForm.get('addressZip').setValue(user.address.zip);
+    }
+    if(user.newsletterSetting != undefined && user.newsletterSetting.newEvents) {
       this.settingsForm.get('newsletterEvent').setValue(user.newsletterSetting.newEvents);
+    }
+    if(user.newsletterSetting != undefined && user.newsletterSetting.dailyNews) {
       this.settingsForm.get('newsletterDaily').setValue(user.newsletterSetting.dailyNews);
+    }
+    if(user.newsletterSetting != undefined && user.newsletterSetting.weeklyNews) {
       this.settingsForm.get('newsletterWeekly').setValue(user.newsletterSetting.weeklyNews);
+    }
+    if (user.numberOfChildren != undefined) {
       this.childrenForm.get('numberOfChildren').setValue(user.numberOfChildren);
-      this.childrenForm.get('birthdayChild1').setValue(user.children[0].birthday);
-      this.childrenForm.get('birthdayChild2').setValue(user.children[1].birthday);
-      this.childrenForm.get('birthdayChild3').setValue(user.children[2].birthday);
+    }
+    if (user.children != undefined) {
+      if (user.children.length > 0) {
+        this.childrenForm.get('birthdayChild1').setValue(user.children[0].birthday);
+      }
+      if (user.children.length > 1) {
+        this.childrenForm.get('birthdayChild2').setValue(user.children[1].birthday);
+      }
+      if (user.children.length > 2) {
+        this.childrenForm.get('birthdayChild3').setValue(user.children[2].birthday);
+      }
     }
     this.value = this.accountProgress();
   }
 
   updateProfile(user: User) {
     this.ufbs.setStorage(user);
-    this.ufbs.updateUser(user._username, user);
-    console.log(this.ufbs.getStorage());
+    this.ufbs.updateUser(user);
     this.value = this.accountProgress();
   }
 
@@ -142,7 +173,6 @@ public settingsForm = new FormGroup({
   }
 
   updateSettings(formData) {
-    console.log(formData.newsletterDaily + formData.newsletterWeekly + formData.newsletterEvent);
     let user = this.ufbs.getStorage();
     const newUser = new User(user._username, user.email);
     

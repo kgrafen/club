@@ -10,12 +10,12 @@ import { EventFirebaseService } from '../event-firebase.service';
 })
 export class EventListComponent implements OnInit {
 
-  coursesObservable: Observable<any[]>;
+  eventsObservable: Observable<any[]>;
   constructor(private db: AngularFireDatabase, private efbs: EventFirebaseService) { }
 
   ngOnInit() {
     this.efbs.getEvents();
-    this.coursesObservable = this.efbs.eventsObservable;
+    this.eventsObservable = this.efbs.eventsObservable;
   }
 
 }

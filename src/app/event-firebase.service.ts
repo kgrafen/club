@@ -9,6 +9,7 @@ import { timestamp } from 'rxjs/internal/operators/timestamp';
 
 // Entity
 import { Event } from './entity/event/event.model';
+import { JsonConverter } from './entity/helper/json-converter';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,10 @@ export class EventFirebaseService {
   item: Observable<any>  = null; //   single object
 
   eventsObservable: Observable<any[]>;
+  event: Event;
 
-  constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase) { }
+  constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase, 
+  private jsonConverter: JsonConverter) { }
 
   getEvents() {
     this.eventsObservable = this.getList(this.dbPath);
@@ -31,12 +34,15 @@ export class EventFirebaseService {
   }
 
   getEventByKey(key: string) {
-    
+    let path = this.dbPath + key
+    this.db.object(path).valueChanges().subscribe(data => {
+      this.event = this.jsonToObj(JSON.stringify(data));
+    });
   }
 
   insertEvent(event: Event) {
     const entry = this.objToJSON(event);
-    this.db.object(this.dbPath+"/"+this.generateNewHashKey("", "")).update(entry);
+    this.db.object(this.dbPath+"/"+event.$key).update(entry);
   }
 
   updateEvent(key: string, event: Event) {
@@ -60,7 +66,7 @@ export class EventFirebaseService {
 
   generateNewHashKey(username: string,  title: string): string {
     const date: Date = new Date();
-    const stringify = username + date.getHours() + ":" + this.addZeroesToTime(date.getMinutes()) + title;
+    const stringify = username + "_" + date.getHours() + ":" + this.addZeroesToTime(date.getMinutes()) + "_" + title;
     return stringify;
   }
 
@@ -68,8 +74,12 @@ export class EventFirebaseService {
     return input < 10 ? "0" + input : input;
   }
 
-  objToJSON(userObject : Event): string {
-    return JSON.parse(JSON.stringify(userObject));
+  objToJSON(eventObject : Event): string {
+    return JSON.parse(JSON.stringify(eventObject));
+  }
+
+  jsonToObj(json: string): Event {
+    return this.jsonConverter.convertJsonToEventObj(json);
   }
 
 }

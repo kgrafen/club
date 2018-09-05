@@ -69,6 +69,10 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { AngularWebStorageModule } from 'angular-web-storage';
 import { HttpClientModule } from '@angular/common/http';
 
+// Test suite
+import { RouterTestingModule } from '@angular/router/testing';
+import { TestBed, inject, async } from '@angular/core/testing';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -119,7 +123,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatListModule,
     MatIconModule,
-    MatExpansionModule
+    MatExpansionModule,
+    RouterTestingModule 
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

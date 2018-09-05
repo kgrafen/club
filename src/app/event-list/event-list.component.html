@@ -1,36 +1,36 @@
 <table class="table desktop">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Event</th>
+      <th scope="col">By</th>
+      <th scope="col">Kønsfordeling</th>
+      <th scope="col">Børn</th>
+      <th scope="col">Pladser</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr  *ngFor="let event of eventsObservable | async">
+      <td>{{event.name}}</td>
+      <td>{{event.address}}</td>
+      <td>{{event.genderRatio}}</td>
+      <td>{{event.targetGroup}}</td>
+      <td *ngIf="event.participantCount < event.maxGuests">Ledig</td>
+      <td *ngIf="event.participantCount >= event.maxGuests">Venteliste</td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table mobile">
     <thead class="thead-dark">
       <tr>
         <th scope="col">Event</th>
         <th scope="col">By</th>
-        <th scope="col">Kønsfordeling</th>
-        <th scope="col">Børn</th>
-        <th scope="col">Pladser</th>
       </tr>
     </thead>
     <tbody>
-      <tr  *ngFor="let course of coursesObservable | async">
-        <td>{{course.name}}</td>
-        <td>{{course.address}}</td>
-        <td>{{course.genderRatio}}</td>
-        <td>{{course.targetGroup}}</td>
-        <td *ngIf="course.participantCount < course.maxGuests">Ledig</td>
-        <td *ngIf="course.participantCount >= course.maxGuests">Venteliste</td>
+      <tr  *ngFor="let event of eventsObservable | async">
+        <td>{{event.title}}</td>
+        <td>{{event.by}}</td>
       </tr>
     </tbody>
   </table>
-
-  <table class="table mobile">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Event</th>
-          <th scope="col">By</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr  *ngFor="let course of coursesObservable | async">
-          <td>{{course.title}}</td>
-          <td>{{course.by}}</td>
-        </tr>
-      </tbody>
-    </table>

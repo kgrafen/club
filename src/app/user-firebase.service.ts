@@ -22,7 +22,7 @@ import { SessionStorage, SessionStorageService } from 'angular-web-storage';
 })
 export class UserFirebaseService {
 
-  dbPath: string = '/users';
+  dbPath: string = '/users/';
 
   usersObservable: Observable<any[]>;
 
@@ -33,16 +33,19 @@ export class UserFirebaseService {
 
   // CRUD
 
+  // Test passed
   getUsers() {
     this.usersObservable = this.getList(this.dbPath);
   }
 
-  getList(listPath): Observable<any[]> {
+  // Test passed
+  private getList(listPath): Observable<any[]> {
     return this.db.list(listPath).valueChanges();
   }
 
+  // Test passed
   getUserByEmail(email: string) {
-    let path = this.dbPath+"/"+this.convertEmailToKey(email);
+    let path = this.dbPath + this.convertEmailToKey(email);
     this.db.object(path).valueChanges().subscribe(data => {
       let user = this.jsonToObj(JSON.stringify(data));
       this.setStorage(user);
@@ -57,19 +60,20 @@ export class UserFirebaseService {
     });
   }
 
+  //Test passed
   insertUser(user: User) {
     let entry = this.objToJSON(user);
     const usersRef = this.db.list(this.dbPath);
-    this.db.object(this.dbPath+"/"+this.convertEmailToKey(user.email)).update(entry);
+    this.db.object(this.dbPath + this.convertEmailToKey(user.email)).update(entry);
    }
  
-   updateUser(key: string, user: User) {
+   updateUser(user: User) {
     let entry = this.objToJSON(user);
     const usersRef = this.db.list(this.dbPath);
-    usersRef.set('key', entry);
+    usersRef.set(this.convertEmailToKey(user.email), entry);
    }
  
-   deleteuser(key: string) {
+   deleteUser(key: string) {
      const usersRef = this.db.list(this.dbPath);
      usersRef.remove(key);
    }
@@ -81,25 +85,24 @@ export class UserFirebaseService {
 
    getStorage(): User {
      let user =  this.session.get("user");
-     console.log(user);
      return user;
    }
 
-   objToJSON(userObject : User): string {
+   private objToJSON(userObject : User): string {
      return JSON.parse(JSON.stringify(userObject));
    }
 
-   jsonToObj(json: string) : User {
+   private jsonToObj(json: string) : User {
      let obj : User = this.jsonConverter.convertJsonToUserObj(json);
      return obj;
    }
 
    convertEmailToKey(email: string) : string {
-    return email.replace('.', '¤');
+    return email.replace('.', '¤').replace('@', '%');
    }
 
    convertKeyToEmail(key: string) {
-    return key.replace('¤','.');
+    return key.replace('¤','.').replace('%', '@');
    }
 
 }

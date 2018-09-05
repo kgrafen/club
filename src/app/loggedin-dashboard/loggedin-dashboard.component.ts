@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserFirebaseService } from '../user-firebase.service';
 import { AuthService } from '../auth.service';
+import { User } from '../entity/user/user';
 
 @Component({
   selector: 'loggedin-dashboard',

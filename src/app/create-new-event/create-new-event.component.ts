@@ -5,6 +5,7 @@ import { Event } from '../entity/event/event.model';
 import { EventAddress } from '../entity/helper/EventAddress';
 import { EventFirebaseService } from '../event-firebase.service';
 import { AuthService } from '../auth.service';
+import { UserFirebaseService } from '../user-firebase.service';
 
 @Component({
   selector: 'create-new-event',
@@ -41,15 +42,16 @@ export class CreateNewEventComponent implements OnInit {
 
 });
 
-  constructor(private efbs: EventFirebaseService, private authService: AuthService) { }
+  constructor(private efbs: EventFirebaseService, private authService: AuthService, 
+  private ufbs: UserFirebaseService) { }
 
   ngOnInit() {
-    console.log(this.authService.user);
+    
   }
 
   onSubmitEvent(value) {
-    console.log(value);
-    
+    let e: Event = this.formDataToModel(value);
+    this.efbs.insertEvent(e);
   } 
 
   formDataToModel(formData): Event {
@@ -68,7 +70,7 @@ export class CreateNewEventComponent implements OnInit {
     event.minAge = formData.eventMinAge;
     event.maxGuests = formData.maxGuests;
     event.minGuests = formData.minGuests;
-    event.name = formData.name;
+    event.name = formData.eventName;
     event.paymentDate = formData.eventPaymentDate;
     event.paymentDue = formData.eventPaymentDue;
     event.paymentOption = formData.paymentOption;
@@ -77,7 +79,7 @@ export class CreateNewEventComponent implements OnInit {
     event.targetGroup = formData.targetGroup;
     event.timeEnd = formData.eventEndTime;
     event.timeStart = formData.eventStartTime;
-    //event.$key = this.efbs.generateNewHashKey(this.authService.user, event.name);
+    event.$key = this.efbs.generateNewHashKey(this.ufbs.convertEmailToKey(this.authService.user.email), event.name);
     return event;
   }
 

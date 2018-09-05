@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AboutComponent } from './about.component';
+import { LandingPageHeaderComponent } from '../landing-page-header/landing-page-header.component';
+import { MatExpansionModule, MatCardModule } from '@angular/material';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 describe('AboutComponent', () => {
   let component: AboutComponent;
@@ -8,7 +14,8 @@ describe('AboutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AboutComponent ]
+      declarations: [ AboutComponent, LandingPageHeaderComponent ],
+      imports: [MatExpansionModule, AngularFontAwesomeModule, MatCardModule, RouterTestingModule, ReactiveFormsModule, AngularFireDatabaseModule ]
     })
     .compileComponents();
   }));

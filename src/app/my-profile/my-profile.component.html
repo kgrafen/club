@@ -16,7 +16,7 @@
                     <div *ngIf="!activation" class="ng-hide">
                             <div class="alert alert-danger" role="alert">
                                 <div *ngIf="!activation" class="ng-hide"></div>
-                                <strong>Hov!</strong> Profilen er ikke aktiv. Udfyld alle obligatoriske felter for at aktivere.
+                                <strong>Hov!</strong> {{activationError}}
                             </div>
                     </div>
                 <!--
@@ -97,7 +97,7 @@
                     <div *ngIf="!activation" class="ng-hide">
                             <div class="alert alert-danger" role="alert">
                                 <div *ngIf="!activation" class="ng-hide"></div>
-                                <strong>Hov!</strong> Profilen er ikke aktiv. Udfyld alle obligatoriske felter for at aktivere.
+                                <strong>Hov!</strong> {{activationError}}
                             </div>
                     </div>
                 <div class="col-md-9">
@@ -146,7 +146,7 @@
                     <div *ngIf="!activation" class="ng-hide">
                             <div class="alert alert-danger" role="alert">
                                 <div *ngIf="!activation" class="ng-hide"></div>
-                                <strong>Hov!</strong> Profilen er ikke aktiv. Udfyld alle obligatoriske felter for at aktivere.
+                                <strong>Hov!</strong> {{activationError}}
                             </div>
                     </div>
                 <div class="col-md-9">
@@ -199,7 +199,7 @@
                     <div *ngIf="!activation" class="ng-hide">
                             <div class="alert alert-danger" role="alert">
                                 <div *ngIf="!activation" class="ng-hide"></div>
-                                <strong>Hov!</strong> Profilen er ikke aktiv. Udfyld alle obligatoriske felter for at aktivere.
+                                <strong>Hov!</strong> {{activationError}}
                             </div>
                     </div>
                 <div *ngIf="!hasImages" class="ng-hide">
@@ -240,7 +240,7 @@
                     <div *ngIf="!activation" class="ng-hide">
                             <div class="alert alert-danger" role="alert">
                                 <div *ngIf="!activation" class="ng-hide"></div>
-                                <strong>Hov!</strong> Profilen er ikke aktiv. Udfyld alle obligatoriske felter for at aktivere.
+                                <strong>Hov!</strong> {{activationError}}
                             </div>
                     </div>
                 <div class="col-md-9">
@@ -309,7 +309,7 @@
                     <div *ngIf="!activation" class="ng-hide">
                             <div class="alert alert-danger" role="alert">
                                 <div *ngIf="!activation" class="ng-hide"></div>
-                                <strong>Hov!</strong> Profilen er ikke aktiv. Udfyld alle obligatoriske felter for at aktivere.
+                                <strong>Hov!</strong> {{activationError}}
                             </div>
                     </div>
                 <div class="col-md-9">
@@ -354,6 +354,12 @@
 
     <!-- Mobile -->
 <div *ngIf="isMobile">
+    <div *ngIf="!activation" class="ng-hide">
+                            <div class="alert alert-danger" role="alert">
+                                <div *ngIf="!activation" class="ng-hide"></div>
+                                <strong>Hov!</strong> {{activationError}}
+                            </div>
+                    </div>
     <div class="col-md-9">
             <div class="card">
                 <div class="card-body">

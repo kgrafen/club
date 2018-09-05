@@ -29,7 +29,6 @@ export class CreateAccountFormComponent implements OnInit {
   tryRegister(value){
     this.authService.doRegister(value)
     .then(res => {
-      console.log(res);
       this.ufbs.insertUser(new User(value.username, value.email));
       this.errorMessage = "";
       this.successMessage = "Din nye profil er blevet oprettet!";
@@ -56,7 +55,6 @@ export class CreateAccountFormComponent implements OnInit {
 */
 
   translateErrorMsg(err) : string {
-    console.log(err.code);
     switch(err.code) {
       case "auth/invalid-email":
         return "Ugyldige tegn i email feltet eller tjek om feltet er tomt.";
