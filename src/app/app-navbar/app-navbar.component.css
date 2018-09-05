@@ -13,3 +13,7 @@ img {
     text-align: center;
     position: fixed;
 }
+
+button {
+    margin: 10px;
+}

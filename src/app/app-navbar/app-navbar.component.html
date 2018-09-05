@@ -1,3 +1,4 @@
+<!--
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
   <img src="./assets/images/Logo.png">
   <a routerLink="/loggedin-dashboard"><button *ngIf="isMobile" class="btn btn-light">Tilbage</button></a>
@@ -5,7 +6,10 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" [ngbCollapse]="navbarCollapsed" id="navbarsExampleDefault">
+
+    
     <ul class="navbar-nav ml-auto">
+      
       <li class="nav-item active">
         <a class="nav-link" routerLink="/loggedin-dashboard">Dashboard<span class="sr-only">(current)</span></a>
       </li>
@@ -20,10 +24,23 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <button type="submit" (click)="signout()" class="btn btn-outline-danger my-2 my-sm-0">Log ud</button>
+      <button (click)="signout()" mat-raised-button color="warn">Log ud</button>
     </form>
   </div>
 </nav>
+-->
+
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+    <img src="./assets/images/Logo.png">
+    <a routerLink="/loggedin-dashboard"><button *ngIf="isMobile" class="btn btn-light">Tilbage</button></a>
+    
+    <div class="navbar-nav ml-auto">
+      <button *ngFor="let field of menuFields" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>
+    </div>
+      
+    <button (click)="signout()" mat-raised-button color="warn">Log ud</button>
+      
+  </nav>
 
 
    

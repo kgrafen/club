@@ -17,13 +17,12 @@ import { JsonConverter } from './entity/helper/json-converter';
 export class EventFirebaseService {
 
   dbPath: string = '/events';
-  item: Observable<any>  = null; //   single object
+  jsonConverter: JsonConverter = new JsonConverter();
 
   eventsObservable: Observable<any[]>;
   event: Event;
 
-  constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase, 
-  private jsonConverter: JsonConverter) { }
+  constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase) { }
 
   getEvents() {
     this.eventsObservable = this.getList(this.dbPath);
@@ -78,8 +77,9 @@ export class EventFirebaseService {
     return JSON.parse(JSON.stringify(eventObject));
   }
 
+  
   jsonToObj(json: string): Event {
     return this.jsonConverter.convertJsonToEventObj(json);
-  }
+  } 
 
 }

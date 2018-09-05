@@ -11,6 +11,11 @@ import { $ } from 'protractor';
 })
 export class AppNavbarComponent implements OnInit {
 
+  menuFields = [{'displayName' : "dashboard", 'link' : "/loggedin-dashboard"},
+                {'displayName' : "events", 'link' : "/events"},
+                {'displayName' : "min profil", 'link' : "/my-profile"},
+                {'displayName' : "betaling", 'link' : "/payment"}];
+
   public navbarCollapsed = true;
   public isMobile: boolean = false;
 

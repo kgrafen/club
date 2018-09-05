@@ -11,6 +11,7 @@ import { EventFirebaseService } from '../event-firebase.service';
 export class EventListComponent implements OnInit {
 
   eventsObservable: Observable<any[]>;
+  
   constructor(private db: AngularFireDatabase, private efbs: EventFirebaseService) { }
 
   ngOnInit() {
