@@ -1,15 +1,20 @@
-tr:nth-child(even)  {
-    background-color: snow;
-}
-
-tr:nth-child(odd)  {
-    background-color: #F0EDE5
-}
-
-table, th, tr {
-    margin-bottom: 0;
+mat-form-field {
     width: 100%;
 }
+
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }
+  
 
 .mobile {
     display: none;

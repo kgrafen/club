@@ -41,7 +41,7 @@ import { EventsComponent } from './events/events.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 
 // Material and animation
-import {MatButtonModule, MatCheckboxModule, MatProgressBarModule, MatCard, MatCardModule, MatListModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInput, MatInputModule, MatChipsModule, MatSelectModule, MatGridListModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatProgressBarModule, MatCard, MatCardModule, MatListModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInput, MatInputModule, MatChipsModule, MatSelectModule, MatGridListModule, MatSliderModule, MatSlideToggleModule, MatSortModule, MatTableModule, MatPaginatorModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -73,6 +73,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TestBed, inject, async } from '@angular/core/testing';
 
+// Pipes
+import { ActiveBlockedPipe } from './pipes/active-blocked.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,7 +103,8 @@ import { TestBed, inject, async } from '@angular/core/testing';
     FeedbackComponent,
     TermsOfServiceComponent,
     CookiesConsentComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    ActiveBlockedPipe
   ],
   imports: [
     BrowserModule,
@@ -130,6 +134,11 @@ import { TestBed, inject, async } from '@angular/core/testing';
     MatChipsModule,
     MatSelectModule,
     MatGridListModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
     RouterTestingModule
   ],
   providers: [CookieService],
