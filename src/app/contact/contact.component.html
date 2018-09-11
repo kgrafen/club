@@ -1,67 +1,59 @@
 <landing-page-header></landing-page-header>
-<div class="content-header">
-    <h1>Kontakt</h1>
-</div>
-<div class="container">
-  <hr>
-    <div class="box">
-      <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
-      <div class='details'><h3>Naverland 2, Glostrup</h3></div>
-    </div>
-    
-    <div class="box">
-      <div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
-      <div class='details'><h3>+91 9033446195</h3></div>
-    </div>
-    
-    <div class="box">
-      <div class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
-      <div class='details'><h3>kontakt@singlen.dk</h3></div>
-    </div>
-</div>
 
-<div class="container">
+<mat-card>
 
-  <div class="formBox">
+    <mat-grid-list cols="2" rowHeight="600px">
 
-      <form>
+        <mat-grid-tile>
+            <mat-card>
+                    <form [formGroup]="registerForm">
+                            <h2><fa name="wpforms"></fa> Kontakt </h2>
+                                <mat-form-field>
+                                    <mat-label><fa name="address-card"></fa> Navn</mat-label>
+                                    <input formControlName="name" matInput placeholder="navn" autofocus required>
+                                </mat-form-field>
+                            
+                                <mat-form-field>
+                                    <mat-label><fa name="envelope"></fa> Email</mat-label>
+                                    <input formControlName="email" matInput placeholder="email" required>
+                                </mat-form-field>
+                            
+                                <mat-form-field>
+                                    <mat-label><fa name="tag"></fa> Emne</mat-label>
+                                    <mat-select placeholder="Vælg emne" required>
+                                        <mat-option value="option">Andet</mat-option>
+                                        <mat-option value="option">Teknisk problem</mat-option>
+                                        <mat-option value="option">Anmeld snyd</mat-option>
+                                        <mat-option value="option">Klage</mat-option>
+                                        <mat-option value="option">Konto</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                
+                                <mat-form-field>
+                                    <textarea matInput placeholder="Besked..." rows="6"
+                                    matTooltip="Du kan trække nede i højre hjørne for at forstørre tekstfeltet"
+                                    aria-label="Button that displays a tooltip when focused or hovered over" required></textarea>
+                                </mat-form-field>
+                            
+                            
+                                <button (click)="tryRegister(registerForm.value)" mat-raised-button color="primary">Send</button>
+                            </form>
+            </mat-card>
+        </mat-grid-tile>
 
-          <p class="h4 mb-4"><fa name="wpforms"></fa> Kontakt form</p>
-      
-          <!-- Name -->
-          <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Navn">
-      
-          <!-- Email -->
-          <input type="email" id="defaultContactFormEmail" class="form-control mb-4" placeholder="E-mail">
-      
-          <!-- Subject -->
-          <label><fa name="tag"></fa> Emne</label>
-          <select class="browser-default custom-select mb-4">
-              <option value="" disabled>Vælg</option>
-              <option value="1" selected>Andet</option>
-              <option value="2">Konto</option>
-              <option value="3">Tekniske problemer</option>
-              <option value="4">Klage</option>
-              <option value="4">Anmeld snyd</option>
-          </select>
-      
-          <!-- Message -->
-          <div class="form-group">
-              <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="6" placeholder="Besked..."></textarea>
-          </div>
-      
-          <!-- Copy 
-          <div class="custom-control custom-checkbox mb-4">
-              <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
-              <label class="custom-control-label" for="defaultContactFormCopy">Send me a copy of this message</label>
-          </div> -->
-      
-          <!-- Send button -->
-          <button class="btn btn-info btn-block" type="submit">Send</button>
-      
-      </form>
-      <!-- Default form contact -->
+        <mat-grid-tile>
+            <mat-card>
+                <h2>Virksomhedsinformationer</h2>
+                <p>SingleNetværket IVS<br>
+                    Valbygårdsvej 44, sttv<br>
+                    2500 Valby<br>
+                    <a href="tel:+4560560018">TLF: +45 6056 0018</a><br>
+                    CVR: 39557150
+                </p>
+            </mat-card>
+            
+        </mat-grid-tile>
 
-  </div>
-  
-</div>
+    </mat-grid-list>
+
+</mat-card>

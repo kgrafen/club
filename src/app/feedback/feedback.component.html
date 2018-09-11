@@ -1,70 +1,69 @@
 <landing-page-header></landing-page-header>
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="card">
-                <div class="card-header bg-primary text-white"><i class="fa fa-envelope"></i> Del din historie.
-                </div>
-                <div class="card-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Navn</label>
-                            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Navn" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email addresse</label>
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" required>
-                            <small id="emailHelp" class="form-text text-muted">Vi deler aldrig din email.</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Historie</label>
-                            <textarea class="form-control" id="message" rows="8" required
-                            placeholder="Eksempel: Jeg havde mine reserverationer efter enden på en langt forhold. Jeg havde ikke rigtigt modet til at springe ud i et nyt eventyr. Single Netværket var det skub jeg havde brug for. Jeg havde muligheden for at møde andre i min situation. Til at starte med ganske uforpligtende, men med tiden lykkedes det mig at opbygge mit sociale netværk igen! Jeg er meget taknemmelig for de mennesker jeg har mødt igennem dette site."></textarea>
-                        </div>
-                        <div class="mx-auto">
-                        <button type="submit" class="btn btn-outline-primary mb-2 mr-2">Del</button></div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-4">
-            <div class="card bg-light mb-3">
-                <div class="card-header bg-success text-white text-uppercase"><i class="fa fa-home"></i> Forslag</div>
-                <div class="card-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Navn</label>
-                            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Navn" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email adresse</label>
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" required>
-                            <small id="emailHelp" class="form-text text-muted">Vi deler ikke din email adresse.</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Emne</label>
-                            <select class="form-control">
-                                <option value="Kategori">Vælg</option>
-                                <option value="Kategori">Design</option>
-                                <option value="Kategori">Brugeroplevelse</option>
-                                <option value="Kategori">Ny feature</option>
-                                <option value="Kategori">Kontrol</option>
-                                <option value="Kategori">Pris</option>
-                                <option value="Kategori">Belønninger</option>
-                                <option value="Kategori">Straf</option>
-                                <option value="Kategori">Andet</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Detaljer</label>
-                            <textarea class="form-control" id="message" rows="6" required placeholder="Besked"></textarea>
-                        </div>
-                        <div class="mx-auto">
-                        <button type="submit" class="btn btn-outline-success mb-2 mr-2 text-right">Forslå</button></div>
-                    </form>
-                </div>
 
-            </div>
-        </div>
-    </div>
-</div>
+<mat-card>
+    <mat-grid-list cols="2" rowHeight="1:1">    
+            <mat-grid-tile>
+                    <mat-card> 
+                        <button id="headerBoxLeft" class="headerBox" mat-flat-button color="accent" disabled>Del din historie</button>
+                        <form id="formLeft" [formGroup]="storyForm">
+                            <mat-form-field>
+                                <mat-label for="name">Navn</mat-label>
+                                    <input matInput formControlName="name" placeholder="Navn" required>
+                            </mat-form-field>
+                                        
+                            <mat-form-field>
+                                <mat-label for="email">Email</mat-label>
+                                    <input formControlName="email" matInput placeholder="Email" required>
+                            </mat-form-field>
+                                        
+                            <mat-form-field>
+                                <mat-label for="message">Historie</mat-label>
+                                    <textarea matInput formControlName="story" rows="8" required
+                                    placeholder="Besked..."></textarea>
+                            </mat-form-field>             
+                            <button type="submit" mat-raised-button color="accent">Del</button>
+
+                        </form>
+                    </mat-card>
+                </mat-grid-tile>
+                        
+                <mat-grid-tile>
+                    <mat-card>
+                        <button id="headerBoxRight" class="headerBox" mat-flat-button color="primary" disabled>Forslag</button>
+                        <form id="formRight" [formGroup]="proposalForm">
+                            <mat-form-field>
+                                <mat-label for="name">Navn</mat-label>
+                                    <input matInput formControlName="name" placeholder="Navn" required>
+                            </mat-form-field>
+                                        
+                            <mat-form-field>
+                                <mat-label for="email">Email</mat-label>
+                                    <input formControlName="email" matInput placeholder="Email" required>
+                                </mat-form-field>
+        
+                            <mat-form-field>
+                                <mat-label>Emne</mat-label>
+                                    <mat-select placeholder="Vælg emne" required>
+                                        <mat-option value="option">Andet</mat-option>
+                                        <mat-option value="option">Design</mat-option>
+                                        <mat-option value="option">Brugeroplevelse</mat-option>
+                                        <mat-option value="option">Ny feature</mat-option>
+                                        <mat-option value="option">Kontrol</mat-option>
+                                        <mat-option value="option">Pris</mat-option>
+                                        <mat-option value="option">Belønninger</mat-option>
+                                        <mat-option value="option">Straf</mat-option>
+                                    </mat-select>
+                            </mat-form-field>
+                                        
+                            <mat-form-field>
+                                <mat-label for="message">Historie</mat-label>
+                                    <textarea matInput formControlName="details" rows="8" required
+                                    placeholder="Besked..."></textarea>
+                            </mat-form-field>
+                            <button type="submit" mat-raised-button color="primary">Foreslå</button>
+
+                        </form>
+                    </mat-card>
+                </mat-grid-tile>
+    </mat-grid-list>
+</mat-card>

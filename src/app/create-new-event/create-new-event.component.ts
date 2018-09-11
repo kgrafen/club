@@ -1,11 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { $ } from 'protractor';
 import { Event } from '../entity/event/event.model';
 import { EventAddress } from '../entity/helper/EventAddress';
 import { EventFirebaseService } from '../event-firebase.service';
 import { AuthService } from '../auth.service';
 import { UserFirebaseService } from '../user-firebase.service';
+//import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 
 @Component({
   selector: 'create-new-event',
@@ -13,6 +19,14 @@ import { UserFirebaseService } from '../user-firebase.service';
   styleUrls: ['./create-new-event.component.css']
 })
 export class CreateNewEventComponent implements OnInit {
+
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+  fourthFormGroup: FormGroup;
+  fifthFormGroup: FormGroup;
+  isPaymentDeadlineDate = false;
 
   public eventForm = new FormGroup({
     eventName: new FormControl(''),
@@ -43,10 +57,53 @@ export class CreateNewEventComponent implements OnInit {
 });
 
   constructor(private efbs: EventFirebaseService, private authService: AuthService, 
-  private ufbs: UserFirebaseService) { }
+              private ufbs: UserFirebaseService, 
+              //public dialogRef: MatDialogRef<CreateNewEventComponent>,
+              //@Inject(MAT_DIALOG_DATA) public data: DialogData,
+              private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    
+    this.firstFormGroup = this._formBuilder.group({
+      eventName: ['', Validators.required],
+      eventDescription: ['', Validators.required],
+      eventLocationStreet: ['', Validators.required],
+      eventLocationCity: ['', Validators.required],
+      eventLocationZip: ['', Validators.required],
+      eventCategory: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      eventTargetGroup: ['', Validators.required],
+      eventMinAge: ['', Validators.required],
+      eventMaxAge: ['', Validators.required],
+      eventMinGuests: ['', Validators.required],
+      eventMaxGuests: ['', Validators.required],
+      eventGender: ['', Validators.required],
+      eventQueue: ['', Validators.required]
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      eventDate: ['', Validators.required],
+      eventStartTime: ['', Validators.required],
+      eventEndTime: ['', Validators.required],
+      eventDeadlineDate: ['', Validators.required],
+      eventDeadlineTime: ['', Validators.required]
+    });
+    this.fourthFormGroup = this._formBuilder.group({
+      eventPrice: ['', Validators.required],
+      eventPaymentOption: ['', Validators.required],
+      eventPaymentDue: ['', Validators.required],
+      eventPaymentDate: ['', Validators.required]
+    });
+    this.fifthFormGroup = this._formBuilder.group({
+      eventFile: ['', Validators.required],
+    });
+  }
+
+  onItemChange(value) {
+    if(value === "Dato") {
+      this.isPaymentDeadlineDate = true;
+    } else {
+      this.isPaymentDeadlineDate = false;
+    }
   }
 
   onSubmitEvent(value) {
@@ -81,6 +138,10 @@ export class CreateNewEventComponent implements OnInit {
     event.timeStart = formData.eventStartTime;
     event.$key = this.efbs.generateNewHashKey(this.ufbs.convertEmailToKey(this.authService.user.email), event.name);
     return event;
+  }
+
+  onNoClick(): void {
+    //this.dialogRef.close();
   }
 
 }

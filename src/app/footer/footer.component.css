@@ -1,9 +1,15 @@
-
 mat-card {
     background-color: #1a1a1a;
-    bottom: 0;
+	bottom: 0;
+	left: 0;
     color: snow;
     text-align: center;
+}
+
+img {
+	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+	filter: grayscale(100%);
+	transform: scale(0.75);
 }
 
 .empty {

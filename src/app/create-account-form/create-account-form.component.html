@@ -27,17 +27,17 @@
 <form [formGroup]="registerForm">
     <mat-form-field>
         <mat-label>Email</mat-label>
-        <input formControlName="email" matInput placeholder="email">
+        <input formControlName="email" matInput placeholder="email" autofocus required>
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Password</mat-label>
-        <input formControlName="password" matInput placeholder="password" [type]="hide ? 'password' : 'text'">
+        <input formControlName="password" matInput placeholder="password" [type]="hide ? 'password' : 'text'" required>
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Brugernavn</mat-label>
-        <input formControlName="username" matInput placeholder="brugernavn">
+        <input formControlName="username" matInput placeholder="brugernavn" required>
     </mat-form-field>
 
     <mat-card class="display-message" *ngIf="displayMessage">
@@ -45,7 +45,7 @@
         <mat-label class="success">{{successMessage}}</mat-label>
     </mat-card>
 
-    <button (click)="tryRegister(registerForm.value)" mat-raised-button color="primary">Primary</button>
+    <button (click)="tryRegister(registerForm.value)" mat-raised-button color="primary">Opret bruger</button>
 </form>
 
 

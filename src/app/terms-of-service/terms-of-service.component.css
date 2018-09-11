@@ -1,7 +1,3 @@
-.container {
-    background-color: #333333;
-    color: snow;
-    padding: 50px;
-    margin: 50px;
+mat-card {
+    margin: 20px;
 }
-

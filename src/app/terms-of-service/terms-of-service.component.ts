@@ -25,10 +25,10 @@ export class TermsOfServiceComponent implements OnInit {
   }
 
   inputTextToHTML(inputDoc: string): string {
-    let outputHTML: string = "<h1>";
+    let outputHTML: string = "<h2>";
 
 		let temp: string = inputDoc.substring (0, inputDoc.indexOf ("\n"));
-		outputHTML += temp + "</h1>" + "<br>";
+		outputHTML += temp + "</h2>" + "<br>";
     inputDoc = inputDoc.replace(inputDoc.substring(0, temp.length + "\n".length), "");
 
 
@@ -38,7 +38,7 @@ export class TermsOfServiceComponent implements OnInit {
 			temp = inputDoc.substring (0, inputDoc.indexOf ("\n"));
 
 			if (temp.length <= "\n".length) {
-				outputHTML += "<p></p>" + "<br>";
+				outputHTML += "<p></p>";
 
 				if (temp.length == 0) {
 					if (inputDoc.length > 0) {
@@ -56,9 +56,9 @@ export class TermsOfServiceComponent implements OnInit {
 			} else {
 				//Search instead of contains
 				if (temp.includes ("§")) {
-					outputHTML += "<h2>" + temp + "</h2>" + "<br>";
+					outputHTML += "<h3>" + temp + "</h3>" + "<br>";
 				} else {
-					outputHTML += "<p>" + temp + "</p>" + "<br>";
+					outputHTML += "<p>" + temp + "</p>";
 				}
 
 				if (inputDoc.length > 0) {
