@@ -6,9 +6,10 @@ event-control-menu {
     display:none;
 }
 
-.desktop {
-    margin-top: 100px;
-    margin-bottom: 15px;
+
+h1 {
+    color: snow;
+    text-align: center;
 }
 
 event-filter {
@@ -17,9 +18,7 @@ event-filter {
 
 @media only screen and (max-width: 900px) {
     .mobile {
-        padding-top: 55px;
         display: block;
-        border: 1px solid black;
     }
 
     .desktop {
@@ -29,4 +28,8 @@ event-filter {
 
 .row {
     overflow: hidden;
+}
+
+.btnLabel {
+    width: 100%;
 }

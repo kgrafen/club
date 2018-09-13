@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="!isMobile" class="container">
 
     <a [routerLink]="['/']"><img class="mobile" src="./assets/images/Logo_white.png"></a>
 
@@ -6,9 +6,8 @@
       <div class="col left">
         <a [routerLink]="['/']"><img src="./assets/images/Logo_white.png"></a>
       </div>
-      <div class="col right">
+      <div *ngIf="!isMobile" class="col right">
         <mat-card>
-
             <form [formGroup]="loginForm">
                 <mat-form-field>
                     <mat-label>Email</mat-label>
@@ -19,11 +18,18 @@
                     <mat-label>Password</mat-label>
                     <input formControlName="password" matInput placeholder="password" type="password">
                 </mat-form-field>
-
+    
                 <button (click)="tryLogin(loginForm.value)" mat-raised-button>Login</button>
             </form>
-
         </mat-card>
       </div>
     </div>
+</div>
+
+<div *ngIf="isMobile">
+
+  <a [routerLink]="['/']"><img class="mobile" src="./assets/images/Logo_white.png"></a>
+  
+  <!--<button mat-raised-button color="accent" (click)="openDialog()">Login</button>-->
+      
 </div>

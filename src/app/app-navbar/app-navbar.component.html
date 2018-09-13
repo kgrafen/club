@@ -31,4 +31,39 @@
       
   </nav>
 
+  <!-- Pusher -->
+  <!-- DO NOT EDIT HERE -->
+  <nav style="visibility: hidden;" class="navbar navbar-expand-md navbar-light bg-light pusher">
+
+      <img src="./assets/images/Logo.png" routerLink='/loggedin-dashboard'>
+      <a routerLink="/loggedin-dashboard"><button *ngIf="isMobile" class="btn btn-light">Tilbage</button></a>
+      
+      
+      <div *ngIf="!isMobile" class="navbar-nav ml-auto">
+        <button *ngFor="let field of menuFields" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>
+      </div>
+      
+      <button *ngIf="isMobile" mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>menu</mat-icon>
+      </button>
+  
+        <mat-menu #menu="matMenu" [overlapTrigger]="false" yPosition="below">
+          <button mat-menu-item>
+            <mat-icon>dialpad</mat-icon>
+            <span>Redial</span>
+          </button>
+          <button mat-menu-item disabled>
+            <mat-icon>voicemail</mat-icon>
+            <span>Check voicemail</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>Disable alerts</span>
+          </button>
+        </mat-menu>
+        
+      <button (click)="signout()" mat-raised-button color="warn">Log ud</button>
+        
+    </nav>
+
   

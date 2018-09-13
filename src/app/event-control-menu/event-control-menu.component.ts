@@ -25,7 +25,7 @@ export class EventControlMenuComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateNewEventComponent, {
       width: '1000px',
-      height: '400px',
+      height: '600px',
       data: {name: this.name, animal: this.animal}
     });
 

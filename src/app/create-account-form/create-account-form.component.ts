@@ -4,6 +4,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { $ } from 'protractor';
 import { UserFirebaseService } from '../user-firebase.service';
 import { User } from '../entity/user/user';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MobileLoginHeaderComponent } from '../mobile-login-header/mobile-login-header.component';
 
 @Component({
   selector: 'create-account-form',
@@ -12,6 +14,7 @@ import { User } from '../entity/user/user';
 })
 export class CreateAccountFormComponent implements OnInit {
 
+  isMobile = false;
   hide = true;
   displayMessage = false;
 
@@ -24,9 +27,13 @@ export class CreateAccountFormComponent implements OnInit {
       username: new FormControl('')
   });
 
-  constructor(private authService: AuthService, private ufbs: UserFirebaseService) { }
+  constructor(private authService: AuthService, private ufbs: UserFirebaseService, 
+    public dialog: MatDialog) { }
 
   ngOnInit() {
+    if (window.screen.width <= 600) {
+      this.isMobile = true;
+    }
   }
 
   tryRegister(value){
@@ -44,21 +51,6 @@ export class CreateAccountFormComponent implements OnInit {
     })
   }
 
-/*
-  tryLogin(value) {
-    this.authService.doLogin(value)
-    .then(res => {
-      console.log(res);
-      this.errorMessage = "";
-      this.successMessage = "Du er nu logget ind";
-    }, err => {
-      console.log(err);
-      this.errorMessage = err;
-      this.successMessage = "";
-    })
-  }
-*/
-
   translateErrorMsg(err) : string {
     switch(err.code) {
       case "auth/invalid-email":
@@ -71,6 +63,16 @@ export class CreateAccountFormComponent implements OnInit {
         return "Der skete en ukendt fejl prøv igen senere";
     }
     
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(MobileLoginHeaderComponent, {
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed: ' + result);
+    });
   }
 
 }

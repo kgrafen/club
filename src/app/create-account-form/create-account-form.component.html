@@ -46,6 +46,7 @@
     </mat-card>
 
     <button (click)="tryRegister(registerForm.value)" mat-raised-button color="primary">Opret bruger</button>
+    <button (click)="openDialog()" *ngIf="isMobile" mat-raised-button>Login</button>
 </form>
 
 

@@ -14,6 +14,6 @@
   </div>
 </ul>
 -->
-<mat-card *ngFor="let event of eventsObservable | async | slice:-6">
+<mat-card *ngFor="let event of eventsObservable | async | slice:-4">
     <button mat-button color="primary">{{event.name}}</button>
 </mat-card>

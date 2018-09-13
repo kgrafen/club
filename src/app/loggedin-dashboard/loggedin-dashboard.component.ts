@@ -4,12 +4,19 @@ import { AuthService } from '../auth.service';
 import { User } from '../entity/user/user';
 
 export interface Tile {
-  color: string;
-  cols: number;
-  rows: number;
   text: string;
   link: string;
   enabled: boolean;
+}
+
+export interface RecTile {
+  eventName: string; 
+  participants: number;
+}
+
+export interface FeedbackTile {
+  eventName: string;
+  score: number;
 }
 
 @Component({
@@ -19,17 +26,54 @@ export interface Tile {
 })
 export class LoggedinDashboardComponent implements OnInit {
 
+  isMobile = false;
+
   tiles: Tile[] = [
-    {text: 'Events', cols: 3, rows: 1, color: '#333333', link: '/events', enabled: true},
-    {text: 'Min Profil', cols: 1, rows: 2, color: '#1a1a1a', link: '/my-profile', enabled: true},
-    {text: 'Dashboard', cols: 1, rows: 1, color: '#484848', link: '/loggedin-dashboard', enabled: true},
-    {text: 'Betaling', cols: 2, rows: 1, color: '#606060', link: '/payment', enabled: false},
+    {text: 'Events', link: '/events', enabled: true},
+    {text: 'Min Profil', link: '/my-profile', enabled: true},
+    {text: 'Dashboard', link: '/loggedin-dashboard', enabled: true},
+    {text: 'Betaling', link: '/payment', enabled: false},
+    {text: 'Beskeder', link: '/privmsg', enabled: false},
+  ];
+
+  recommendationTiles: RecTile[] = [
+    {eventName: this.makeid(16), participants: Math.floor(Math.random()*100)+1},
+    {eventName: this.makeid(12), participants: Math.floor(Math.random()*100)+1},
+    {eventName: this.makeid(10), participants: Math.floor(Math.random()*100)+1},
+    {eventName: this.makeid(13), participants: Math.floor(Math.random()*100)+1},
+    {eventName: this.makeid(10), participants: Math.floor(Math.random()*100)+1},
+    {eventName: this.makeid(8), participants: Math.floor(Math.random()*100)+1},
+  ];
+
+  feedbackTiles: FeedbackTile[] = [
+    {eventName: "Min Fede Fest", score: Math.floor(Math.random()*5)+1 },
+    {eventName: "Min Fede Fest", score: Math.floor(Math.random()*5)+1 },
+    {eventName: "Min Fede Fest", score: Math.floor(Math.random()*5)+1 },
+    {eventName: "Min Fede Fest", score: Math.floor(Math.random()*5)+1 },
+    {eventName: "Min Fede Fest", score: Math.floor(Math.random()*5)+1 },
+    {eventName: "Min Fede Fest", score: Math.floor(Math.random()*5)+1 }
   ];
 
   constructor(private ufbs: UserFirebaseService, private authService: AuthService) { }
 
+  unreadMessages = 0;
+
   ngOnInit() {
-    
+    this.unreadMessages = Math.floor(Math.random()*20) + 1;
+    if (window.screen.width <= 600) {
+      this.isMobile = true;
+    }
+  }
+
+
+  makeid(count: number): string {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  
+    for (var i = 0; i < count; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+  
+    return text;
   }
 
 }

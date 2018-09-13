@@ -2,18 +2,39 @@ mat-form-field {
     width: 100%;
 }
 
+mat-paginator {
+    margin-bottom: 20px;
+}
+
+#search {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
 table {
     width: 100%;
   }
   
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
   
-  td, th {
+td, th {
     width: 25%;
-  }
+}
+
+.hide {
+    visibility: hidden;
+}
+
+h2 {
+    color:snow;
+    text-align: center;
+}
+
+.btnLabel {
+    width:100%;
+    height: 60px;
+    font-size: 1.5rem;
+}
   
 
 .mobile {
@@ -28,5 +49,15 @@ table {
 
     .desktop {
         display:none;
+    }
+
+    #search {
+        background-color: #fff;
+        padding: 20px;
+        margin-bottom: 0px;
+    }
+
+    mat-paginator {
+        margin-bottom: 0px;
     }
 }

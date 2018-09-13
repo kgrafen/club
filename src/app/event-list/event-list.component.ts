@@ -14,6 +14,12 @@ export interface EventData {
   available: number;
 }
 
+export interface EventDataMobile {
+  name: string;
+  address: string;
+  available: number;
+}
+
 @Component({
   selector: 'event-list',
   templateUrl: './event-list.component.html',
@@ -21,8 +27,12 @@ export interface EventData {
 })
 export class EventListComponent implements OnInit {
 
+  isMobile = false;
+
   dataSource = new MatTableDataSource<EventData>();
   displayedColumns = ['name', 'address', 'distance', 'genderRatio', 'targetGroup', 'available'];
+  dataSourceMobile = new MatTableDataSource<EventDataMobile>();
+  displayedColumnsMobile = ['name', 'address', 'available'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -35,20 +45,28 @@ export class EventListComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.events);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+
+      this.dataSourceMobile = new MatTableDataSource(this.events);
+      this.dataSourceMobile.paginator = this.paginator;
+      this.dataSourceMobile.sort = this.sort;
     },
     (error) => {console.log("Something went wrong :(")
   });
   }
 
   ngOnInit() {
-
+    if (window.screen.width <= 600) {
+      this.isMobile = true;
+    } 
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSourceMobile.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
+      this.dataSourceMobile.paginator.firstPage();
     }
   }
 

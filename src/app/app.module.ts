@@ -41,7 +41,7 @@ import { EventsComponent } from './events/events.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 
 // Material and animation
-import {MatButtonModule, MatNativeDateModule, MatCheckboxModule, MatProgressBarModule, MatCard, MatCardModule, MatListModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatChipsModule, MatSelectModule, MatGridListModule, MatSliderModule, MatSlideToggleModule, MatSortModule, MatTableModule, MatPaginatorModule, MatMenuModule, MatToolbarModule, MatTooltipModule, MatDialogModule, MatRadioModule, MatStepperModule} from '@angular/material';
+import {MatButtonModule, MatNativeDateModule, MatCheckboxModule, MatProgressBarModule, MatCard, MatCardModule, MatListModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatChipsModule, MatSelectModule, MatGridListModule, MatSliderModule, MatSlideToggleModule, MatSortModule, MatTableModule, MatPaginatorModule, MatMenuModule, MatToolbarModule, MatTooltipModule, MatDialogModule, MatRadioModule, MatStepperModule, MatBadgeModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -76,6 +76,7 @@ import { TestBed, inject, async } from '@angular/core/testing';
 
 // Pipes
 import { ActiveBlockedPipe } from './pipes/active-blocked.pipe';
+import { MobileLoginHeaderComponent } from './mobile-login-header/mobile-login-header.component';
 
 @NgModule({
   declarations: [
@@ -105,8 +106,10 @@ import { ActiveBlockedPipe } from './pipes/active-blocked.pipe';
     TermsOfServiceComponent,
     CookiesConsentComponent,
     PrivacyPolicyComponent,
-    ActiveBlockedPipe
+    ActiveBlockedPipe,
+    MobileLoginHeaderComponent
   ],
+  entryComponents: [MobileLoginHeaderComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -148,6 +151,7 @@ import { ActiveBlockedPipe } from './pipes/active-blocked.pipe';
     MatStepperModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatBadgeModule,
     RouterTestingModule
   ],
   providers: [CookieService],

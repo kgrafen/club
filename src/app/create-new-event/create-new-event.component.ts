@@ -6,7 +6,7 @@ import { EventAddress } from '../entity/helper/EventAddress';
 import { EventFirebaseService } from '../event-firebase.service';
 import { AuthService } from '../auth.service';
 import { UserFirebaseService } from '../user-firebase.service';
-//import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 export interface DialogData {
   animal: string;
@@ -58,8 +58,8 @@ export class CreateNewEventComponent implements OnInit {
 
   constructor(private efbs: EventFirebaseService, private authService: AuthService, 
               private ufbs: UserFirebaseService, 
-              //public dialogRef: MatDialogRef<CreateNewEventComponent>,
-              //@Inject(MAT_DIALOG_DATA) public data: DialogData,
+              public dialogRef: MatDialogRef<CreateNewEventComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: DialogData,
               private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -141,7 +141,7 @@ export class CreateNewEventComponent implements OnInit {
   }
 
   onNoClick(): void {
-    //this.dialogRef.close();
+    this.dialogRef.close();
   }
 
 }

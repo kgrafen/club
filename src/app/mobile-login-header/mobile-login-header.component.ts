@@ -1,19 +1,15 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { $ } from 'protractor';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { MobileLoginHeaderComponent } from '../mobile-login-header/mobile-login-header.component';
 
 @Component({
-  selector: 'landing-page-header',
-  templateUrl: './landing-page-header.component.html',
-  styleUrls: ['./landing-page-header.component.css']
+  selector: 'mobile-login-header',
+  templateUrl: './mobile-login-header.component.html',
+  styleUrls: ['./mobile-login-header.component.css']
 })
-export class LandingPageHeaderComponent implements OnInit {
-
-  isMobile = false;
-  hide: true;
+export class MobileLoginHeaderComponent implements OnInit {
 
   public loginForm = new FormGroup({
     email: new FormControl(''),
@@ -23,9 +19,6 @@ export class LandingPageHeaderComponent implements OnInit {
   constructor(private authService: AuthService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    if (window.screen.width <= 600) {
-      this.isMobile = true;
-    }
   }
 
   tryLogin(formData) {
@@ -43,4 +36,3 @@ export class LandingPageHeaderComponent implements OnInit {
   }
 
 }
-

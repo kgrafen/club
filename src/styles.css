@@ -5,7 +5,7 @@
 
 body {
     padding-top: 0px; 
-    background-image: url("./assets/images/intro.png");
+    background-image: url("./assets/images/SolidVault.jpg");
     background-size:     cover;                 
     background-repeat:   no-repeat;
     background-position: center center;
@@ -25,4 +25,8 @@ body {
     overflow: hidden;
     border-style: inset;
     border-width: 1px;
+}
+
+app-root {
+    margin-top: 100px;
 }
