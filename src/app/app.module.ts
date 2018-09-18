@@ -78,6 +78,12 @@ import { TestBed, inject, async } from '@angular/core/testing';
 import { ActiveBlockedPipe } from './pipes/active-blocked.pipe';
 import { MobileLoginHeaderComponent } from './mobile-login-header/mobile-login-header.component';
 
+// Spinner
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { MyEventsComponent } from './my-events/my-events.component';
+import { PaymentComponent } from './payment/payment.component';
+import { PricesComponent } from './prices/prices.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -107,7 +113,10 @@ import { MobileLoginHeaderComponent } from './mobile-login-header/mobile-login-h
     CookiesConsentComponent,
     PrivacyPolicyComponent,
     ActiveBlockedPipe,
-    MobileLoginHeaderComponent
+    MobileLoginHeaderComponent,
+    MyEventsComponent,
+    PaymentComponent,
+    PricesComponent
   ],
   entryComponents: [MobileLoginHeaderComponent],
   imports: [
@@ -152,7 +161,8 @@ import { MobileLoginHeaderComponent } from './mobile-login-header/mobile-login-h
     MatDatepickerModule,
     MatNativeDateModule,
     MatBadgeModule,
-    RouterTestingModule
+    RouterTestingModule,
+    NgxSpinnerModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

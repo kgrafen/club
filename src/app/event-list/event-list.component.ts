@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from '../../../node_modules/rxjs';
-import { AngularFireDatabase } from '../../../node_modules/angularfire2/database';
 import { EventFirebaseService } from '../event-firebase.service';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { DataSource } from '@angular/cdk/table';
+import { MobileDetectorService } from '../mobile-detector.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 export interface EventData {
   name: string;
@@ -39,7 +40,8 @@ export class EventListComponent implements OnInit {
 
   events = [];
   
-  constructor(private db: AngularFireDatabase, private efbs: EventFirebaseService) {
+  constructor(private efbs: EventFirebaseService, 
+    private mds: MobileDetectorService, private spinner: NgxSpinnerService) {
     this.efbs.getList(this.efbs.dbPath).subscribe(res => {
       this.events = res;
       this.dataSource = new MatTableDataSource(this.events);
@@ -49,15 +51,15 @@ export class EventListComponent implements OnInit {
       this.dataSourceMobile = new MatTableDataSource(this.events);
       this.dataSourceMobile.paginator = this.paginator;
       this.dataSourceMobile.sort = this.sort;
+      this.spinner.hide();
     },
     (error) => {console.log("Something went wrong :(")
   });
   }
 
   ngOnInit() {
-    if (window.screen.width <= 600) {
-      this.isMobile = true;
-    } 
+    this.spinner.show();
+    this.isMobile = this.mds.check();
   }
 
   applyFilter(filterValue: string) {

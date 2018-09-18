@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MobileDetectorService } from '../mobile-detector.service';
 
 
 @Component({
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  isMobile = false;
+
+  constructor(private mds: MobileDetectorService) { }
 
   ngOnInit() {
+    this.isMobile = this.mds.check();
   }
 
 }

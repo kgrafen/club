@@ -1,12 +1,12 @@
 <landing-page-header></landing-page-header>
 
-<mat-card>
+<mat-card *ngIf="!isMobile">
 
     <mat-grid-list cols="2" rowHeight="600px">
 
         <mat-grid-tile>
             <mat-card>
-                    <form [formGroup]="registerForm">
+                    <form [formGroup]="contactForm">
                             <h2><fa name="wpforms"></fa> Kontakt </h2>
                                 <mat-form-field>
                                     <mat-label><fa name="address-card"></fa> Navn</mat-label>
@@ -20,23 +20,23 @@
                             
                                 <mat-form-field>
                                     <mat-label><fa name="tag"></fa> Emne</mat-label>
-                                    <mat-select placeholder="Vælg emne" required>
-                                        <mat-option value="option">Andet</mat-option>
-                                        <mat-option value="option">Teknisk problem</mat-option>
-                                        <mat-option value="option">Anmeld snyd</mat-option>
-                                        <mat-option value="option">Klage</mat-option>
-                                        <mat-option value="option">Konto</mat-option>
+                                    <mat-select formControlName="subject" placeholder="Vælg emne" required>
+                                        <mat-option value="Andet">Andet</mat-option>
+                                        <mat-option value="Teknisk problem">Teknisk problem</mat-option>
+                                        <mat-option value="Anmeld snyd">Anmeld snyd</mat-option>
+                                        <mat-option value="Klage">Klage</mat-option>
+                                        <mat-option value="Konto">Konto</mat-option>
                                     </mat-select>
                                 </mat-form-field>
                 
                                 <mat-form-field>
-                                    <textarea matInput placeholder="Besked..." rows="6"
+                                    <textarea formControlName="message" matInput placeholder="Besked..." rows="6"
                                     matTooltip="Du kan trække nede i højre hjørne for at forstørre tekstfeltet"
                                     aria-label="Button that displays a tooltip when focused or hovered over" required></textarea>
                                 </mat-form-field>
                             
                             
-                                <button (click)="tryRegister(registerForm.value)" mat-raised-button color="primary">Send</button>
+                                <button (click)="sendMail(contactForm.value)" mat-raised-button color="primary">Send</button>
                             </form>
             </mat-card>
         </mat-grid-tile>
@@ -56,4 +56,49 @@
 
     </mat-grid-list>
 
+</mat-card>
+
+<mat-card *ngIf="isMobile">
+        <form [formGroup]="contactForm">
+                <h2><fa name="wpforms"></fa> Kontakt </h2>
+                    <mat-form-field>
+                        <mat-label><fa name="address-card"></fa> Navn</mat-label>
+                        <input formControlName="name" matInput placeholder="navn" autofocus required>
+                    </mat-form-field>
+                
+                    <mat-form-field>
+                        <mat-label><fa name="envelope"></fa> Email</mat-label>
+                        <input formControlName="email" matInput placeholder="email" required>
+                    </mat-form-field>
+                
+                    <mat-form-field>
+                        <mat-label><fa name="tag"></fa> Emne</mat-label>
+                        <mat-select formControlName="subject" placeholder="Vælg emne" required>
+                            <mat-option value="option">Andet</mat-option>
+                            <mat-option value="option">Teknisk problem</mat-option>
+                            <mat-option value="option">Anmeld snyd</mat-option>
+                            <mat-option value="option">Klage</mat-option>
+                            <mat-option value="option">Konto</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+    
+                    <mat-form-field>
+                        <textarea formControlName="message" matInput placeholder="Besked..." rows="6"
+                        matTooltip="Du kan trække nede i højre hjørne for at forstørre tekstfeltet"
+                        aria-label="Button that displays a tooltip when focused or hovered over" required></textarea>
+                    </mat-form-field>
+                
+                
+                    <button (click)="tryRegister(registerForm.value)" mat-raised-button color="primary">Send</button>
+                </form>
+</mat-card>
+
+<mat-card *ngIf="isMobile">
+        <h2>Virksomhedsinformationer</h2>
+        <p>SingleNetværket IVS<br>
+            Valbygårdsvej 44, sttv<br>
+            2500 Valby<br>
+            <a href="tel:+4560560018">TLF: +45 6056 0018</a><br>
+            CVR: 39557150
+        </p>
 </mat-card>

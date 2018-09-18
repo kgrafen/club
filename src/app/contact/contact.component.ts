@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { MobileDetectorService } from '../mobile-detector.service';
+import { TransactionalEmailService } from '../transactional-email.service';
 
 @Component({
   selector: 'contact',
@@ -8,15 +10,23 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class ContactComponent implements OnInit {
 
-  public registerForm = new FormGroup({
+  isMobile = false;
+
+  public contactForm = new FormGroup({
+    name: new FormControl(''),
     email: new FormControl(''),
-    password: new FormControl(''),
-    username: new FormControl('')
+    subject: new FormControl(''),
+    message: new FormControl('')
 });
 
-  constructor() { }
+  constructor(private mds: MobileDetectorService, private tes: TransactionalEmailService) { }
 
   ngOnInit() {
+    this.isMobile = this.mds.check();
+  }
+
+  sendMail(formData) {
+    this.tes.sendContactMail(formData);
   }
 
 }

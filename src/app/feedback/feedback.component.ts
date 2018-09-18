@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { MobileDetectorService } from '../mobile-detector.service';
 
 @Component({
   selector: 'app-feedback',
@@ -7,6 +8,8 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./feedback.component.css']
 })
 export class FeedbackComponent implements OnInit {
+
+  isMobile = false;
 
   public storyForm = new FormGroup({
     name: new FormControl(''),
@@ -21,9 +24,10 @@ public proposalForm = new FormGroup({
     details: new FormControl('')
 });
 
-  constructor() { }
+  constructor(private mds: MobileDetectorService) { }
 
   ngOnInit() {
+    this.isMobile = this.mds.check();
   }
 
 }

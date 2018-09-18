@@ -6,6 +6,7 @@ import { User } from '../entity/user/user';
 import { ProfileAddress } from '../entity/helper/profileAddress';
 import { Child } from '../entity/helper/child';
 import { NewsletterSetting } from '../entity/helper/newsletterSetting';
+import { MobileDetectorService } from '../mobile-detector.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -25,7 +26,8 @@ export class MyProfileComponent implements OnInit {
 
   public isMobile: boolean = false;
 
-  constructor(private ufbs: UserFirebaseService, private authService: AuthService) { }
+  constructor(private ufbs: UserFirebaseService, private authService: AuthService, 
+    private mds: MobileDetectorService) { }
 
   username: string = "Indlæser...";
   email: string = "Indlæser...";
@@ -61,9 +63,7 @@ public settingsForm = new FormGroup({
 
   ngOnInit() {
 
-    if (window.screen.width <= 600) {
-      this.isMobile = true;
-    }
+    this.isMobile = this.mds.check();
 
     this.getDisplayData();
     this.activation = this.accountIsCompleted();

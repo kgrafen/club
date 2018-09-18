@@ -1,6 +1,6 @@
 <landing-page-header></landing-page-header>
 
-<mat-card>
+<mat-card *ngIf="!isMobile">
     <mat-grid-list cols="2" rowHeight="1:1">    
             <mat-grid-tile>
                     <mat-card> 
@@ -66,4 +66,71 @@
                     </mat-card>
                 </mat-grid-tile>
     </mat-grid-list>
+</mat-card>
+
+<mat-card *ngIf="isMobile">
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Del din historie
+            </ng-template>
+                        <form [formGroup]="storyForm">
+                            <mat-form-field>
+                                <mat-label for="name">Navn</mat-label>
+                                    <input matInput formControlName="name" placeholder="Navn" required>
+                            </mat-form-field>
+                                        
+                            <mat-form-field>
+                                <mat-label for="email">Email</mat-label>
+                                    <input formControlName="email" matInput placeholder="Email" required>
+                            </mat-form-field>
+                                        
+                            <mat-form-field>
+                                <mat-label for="message">Historie</mat-label>
+                                    <textarea matInput formControlName="story" rows="8" required
+                                    placeholder="Besked..."></textarea>
+                            </mat-form-field>             
+                            <button type="submit" mat-raised-button color="accent">Del</button>
+
+                        </form>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Forslag
+            </ng-template>
+                        <form [formGroup]="proposalForm">
+                            <mat-form-field>
+                                <mat-label for="name">Navn</mat-label>
+                                    <input matInput formControlName="name" placeholder="Navn" required>
+                            </mat-form-field>
+                                        
+                            <mat-form-field>
+                                <mat-label for="email">Email</mat-label>
+                                    <input formControlName="email" matInput placeholder="Email" required>
+                                </mat-form-field>
+        
+                            <mat-form-field>
+                                <mat-label>Emne</mat-label>
+                                    <mat-select placeholder="Vælg emne" required>
+                                        <mat-option value="option">Andet</mat-option>
+                                        <mat-option value="option">Design</mat-option>
+                                        <mat-option value="option">Brugeroplevelse</mat-option>
+                                        <mat-option value="option">Ny feature</mat-option>
+                                        <mat-option value="option">Kontrol</mat-option>
+                                        <mat-option value="option">Pris</mat-option>
+                                        <mat-option value="option">Belønninger</mat-option>
+                                        <mat-option value="option">Straf</mat-option>
+                                    </mat-select>
+                            </mat-form-field>
+                                        
+                            <mat-form-field>
+                                <mat-label for="message">Historie</mat-label>
+                                    <textarea matInput formControlName="details" rows="8" required
+                                    placeholder="Besked..."></textarea>
+                            </mat-form-field>
+                            <button type="submit" mat-raised-button color="primary">Foreslå</button>
+
+                        </form>
+        </mat-tab>
+    </mat-tab-group>
 </mat-card>

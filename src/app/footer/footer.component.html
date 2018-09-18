@@ -1,52 +1,14 @@
-<!-- #### OLD ####
-<section id="footer">
-  <div class="container">
-    <div class="row text-center text-xs-center text-sm-left text-md-left">
-      <div class="col-xs-12 col-sm-4 col-md-4">
-        <h4>Hurtige links</h4>
-        <ul class="list-unstyled quick-links">
-          <li><a href="#"><i class="fa fa-link"></i>Home</a></li>
-          <li><a [routerLink]="['/about']"><i class="fa fa-link"></i>Om</a></li>
-          <li><a [routerLink]="['/contact']"><i class="fa fa-link"></i>Kontakt</a></li>
-          <li><a [routerLink]="['/about']"><i class="fa fa-link"></i>Vision</a></li>
-        </ul>
-      </div>
-      <div class="col-xs-12 col-sm-4 col-md-4">
-        <h4>Feedback</h4>
-        <ul class="list-unstyled quick-links">
-          <li><a [routerLink]="['/feedback']"><i class="fa fa-link"></i>Del din historie</a></li>
-          <li><a [routerLink]="['/feedback']"><i class="fa fa-link"></i>Lad os høre din mening</a></li>
-        </ul>
-      </div>
-      <div class="col-xs-12 col-sm-4 col-md-4">
-        <h4>Privat og vilkår</h4>
-        <ul class="list-unstyled quick-links">
-          <li><a [routerLink]="['/privacy-policy']"><i class="fa fa-link"></i>Privatlivs politik</a></li>
-          <li><a [routerLink]="['/terms-of-service']"><i class="fa fa-link"></i>Brugsvilkår</a></li>
-          <li><a href="https://cookiesandyou.com/"><i class="fa fa-link"></i>Cookies</a></li>
-        </ul>
-      </div>
-    </div>	
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-        <p class="h6">© 2018.<a class="text-green ml-2" [routerLink]="['/']" target="_blank">Single Netværket</a> </p>
-      </div>
-    </div>	
-  </div>
-</section>
- ./Footer -->
-
- <!-- ### NEW ###-->
+<!-- ### NEW ###-->
   <mat-card>
-    <mat-grid-list cols="3" rowHeight="200px">
+    <mat-grid-list *ngIf="!isMobile" cols="3" rowHeight="200px">
         <mat-grid-tile>
             <mat-toolbar-row>
                 <h4>Hurtige links</h4>
                 <ul class="cl-effect-1 list-unstyled quick-links">
                   <li><a [routerLink]="['/']"> Forside </a></li>
                   <li><a [routerLink]="['/about']"> Om </a></li>
-                  <li><a [routerLink]="['/contact']"> Kontakt </a></li>
-                  <li><a [routerLink]="['/about']"> Vision </a></li>
+                  <li class="empty">empty</li>
+                  <li class="empty">empty</li>
                 </ul>
               </mat-toolbar-row>
         </mat-grid-tile>
@@ -54,8 +16,8 @@
             <mat-toolbar-row>
                 <h4>Feedback</h4>
                 <ul class="cl-effect-1 list-unstyled quick-links">
-                  <li><a [routerLink]="['/feedback']"> Del din historie </a></li>
-                  <li><a [routerLink]="['/feedback']"> Lad os høre din mening </a></li>
+                  <li><a [routerLink]="['/feedback']"> Del din historie / Lad os høre din mening </a></li>
+                  <li><a [routerLink]="['/contact']"> Kontakt </a></li>
                   <li class="empty">empty</li>
                   <li class="empty">empty</li>
                 </ul>
@@ -67,35 +29,26 @@
                 <ul class="cl-effect-1 list-unstyled quick-links">
                   <li><a [routerLink]="['/privacy-policy']"> Handelsbetingelser og Privatlivspolitik </a></li>
                   <li><a [routerLink]="['/terms-of-service']"> Brugsvilkår </a></li>
-                  <li><a href="https://cookiesandyou.com/"> Cookies </a></li>
                   <li><a [routerLink]="['/prices']"> Priser </a></li>
+                  <li class="empty">empty</li>
                 </ul>
               </mat-toolbar-row>
         </mat-grid-tile>
       </mat-grid-list>
+
+      <mat-list *ngIf="isMobile">
+        <mat-icon [routerLink]="['/']">home</mat-icon>
+        <mat-icon [routerLink]="['/about']">info</mat-icon>
+        <mat-icon [routerLink]="['/contact']">email</mat-icon>
+        <mat-icon [routerLink]="['/feedback']">border_color</mat-icon>
+        <mat-icon [routerLink]="['/privacy-policy']">verified_user</mat-icon>
+        <mat-icon [routerLink]="['/terms-of-service']">gavel</mat-icon>
+        <mat-icon>language</mat-icon>
+        <mat-icon [routerLink]="['/prices']">credit_card</mat-icon>
+      </mat-list>
+
       <mat-toolbar-row>
-          <p class="cl-effect-1 list-unstyled quick-links signature"><a class="text-green ml-2" [routerLink]="['/']" target="_blank">© 2018.  Single Netværket</a> </p>
+          <p class="cl-effect-1 list-unstyled quick-links signature"><a class="text-green ml-2" [routerLink]="['/']" target="_blank">© 2018  SingleNetværket</a> </p>
       </mat-toolbar-row>
-      
-      <!--
-      <mat-grid-list cols="3" rowHeight="130px">
-        <mat-grid-tile>
-          <p>SingleNetværket IVS<br>
-              Valbygårdsvej 44, sttv<br>
-              2500 Valby<br>
-              <a href="tel:+4560560018">TLF: +45 6056 0018</a><br>
-              CVR: 39557150
-              </p>
-        </mat-grid-tile>
-
-        <mat-grid-tile>
-            <div class="fb-like" data-href="https://www.facebook.com/Singlenetv&#xe6;rket-1830244423721360/" data-width="100px" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
-        </mat-grid-tile>
-
-        <mat-grid-tile>
-            <img src="../../assets/images/cards.png">
-        </mat-grid-tile>
-      </mat-grid-list>
-    -->
 
   </mat-card>

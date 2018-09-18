@@ -5,3 +5,14 @@ button {
 mat-card {
     margin-bottom: 10px;
 }
+
+@media only screen and (max-width: 500px) {
+    .desktop {
+        display: none;
+    }
+
+    mat-card {
+        width: 100%;
+        margin: 0;
+    }
+}

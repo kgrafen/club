@@ -13,6 +13,9 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { TermsOfServiceComponent} from './terms-of-service/terms-of-service.component';
 import { CookiesConsentComponent } from './cookies-consent/cookies-consent.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { MyEventsComponent } from './my-events/my-events.component';
+import { PricesComponent } from './prices/prices.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
@@ -26,6 +29,9 @@ const routes: Routes = [
   { path: 'terms-of-service', component: TermsOfServiceComponent },
   { path: 'cookies-consent', component: CookiesConsentComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'my-events', component: MyEventsComponent },
+  { path: 'prices', component: PricesComponent },
+  { path: 'payment', component: PaymentComponent },
   {
     path: 'dummy-list',
     component: DummyListComponent,

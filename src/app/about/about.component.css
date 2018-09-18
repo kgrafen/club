@@ -1,18 +1,12 @@
 .container {
     margin-top: 15px;
     margin-bottom: 15px;
-    background-color: #333333;
-    color: snow;
-    border-radius: 15px;
+    background-color: #fff;
     padding: 50px;
 }
 
 .content-header {
     margin-top: 100px;
-}
-
-h1, h2, h3, h4, h5 {
-    color: snow !important;
 }
 
 h1, h2, h3 {

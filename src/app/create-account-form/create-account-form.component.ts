@@ -6,6 +6,7 @@ import { UserFirebaseService } from '../user-firebase.service';
 import { User } from '../entity/user/user';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { MobileLoginHeaderComponent } from '../mobile-login-header/mobile-login-header.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'create-account-form',
@@ -28,7 +29,7 @@ export class CreateAccountFormComponent implements OnInit {
   });
 
   constructor(private authService: AuthService, private ufbs: UserFirebaseService, 
-    public dialog: MatDialog) { }
+    public dialog: MatDialog, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     if (window.screen.width <= 600) {
@@ -37,15 +38,18 @@ export class CreateAccountFormComponent implements OnInit {
   }
 
   tryRegister(value){
+    this.spinner.show();
     this.authService.doRegister(value)
     .then(res => {
       this.ufbs.insertUser(new User(value.username, value.email));
-      this.errorMessage = "";
-      this.successMessage = "Din nye profil er blevet oprettet!";
-      this.displayMessage = true;
+      this.spinner.hide();
+      //this.errorMessage = "";
+      //this.successMessage = "Din nye profil er blevet oprettet!";
+      //this.displayMessage = true;
+      this.spinner.hide();
     }, err => {
-      console.log(err);
       this.errorMessage = this.translateErrorMsg(err);
+      this.spinner.hide();
       this.successMessage = "";
       this.displayMessage = true;
     })

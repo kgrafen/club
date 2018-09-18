@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 // Session storage
 import { SessionStorage, SessionStorageService } from 'angular-web-storage'
 import { UserFirebaseService } from './user-firebase.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class AuthService {
   user: firebase.User;
 
   constructor(public afAuth: AngularFireAuth, private router: Router, 
-    private session: SessionStorageService, private ufbs: UserFirebaseService ) {
+    private session: SessionStorageService, private ufbs: UserFirebaseService, 
+    private spinner: NgxSpinnerService) {
 
    }
 

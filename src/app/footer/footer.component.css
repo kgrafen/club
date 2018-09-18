@@ -3,7 +3,12 @@ mat-card {
 	bottom: 0;
 	left: 0;
     color: snow;
-    text-align: center;
+	text-align: center;
+	margin-top: 20px;
+}
+
+mat-icon {
+	margin: 10px;
 }
 
 img {

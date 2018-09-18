@@ -12,14 +12,18 @@
             
         <div *ngIf="isMobile" class="row mobile">
                 <div class="container">
-                    <div class="row">
-                            <event-filter></event-filter>
-                    </div>
 
-                    <mat-divider></mat-divider>
+                        <div class="row">
+                                <event-control-menu></event-control-menu>
+                        </div>
+
+                        <div class="row">
+                                <event-filter></event-filter>
+                        </div>
+
             
-                    <div class="row">
+                        <div class="row">
                             <event-list></event-list>
-                    </div>
+                        </div>
                 </div>
         </div>

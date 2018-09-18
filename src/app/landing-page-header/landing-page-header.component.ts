@@ -4,6 +4,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { $ } from 'protractor';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { MobileLoginHeaderComponent } from '../mobile-login-header/mobile-login-header.component';
+import { MobileDetectorService } from '../mobile-detector.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'landing-page-header',
@@ -20,16 +22,20 @@ export class LandingPageHeaderComponent implements OnInit {
     password: new FormControl('')
 });
 
-  constructor(private authService: AuthService, public dialog: MatDialog) { }
+  constructor(private authService: AuthService, public dialog: MatDialog, 
+    private mds: MobileDetectorService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    if (window.screen.width <= 600) {
-      this.isMobile = true;
-    }
+    this.isMobile = this.mds.check();
   }
 
   tryLogin(formData) {
+    this.spinner.show();
     this.authService.doLogin(formData);
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+  }, 2000);
   }
 
   openDialog(): void {

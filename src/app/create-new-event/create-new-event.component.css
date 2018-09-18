@@ -1,5 +1,5 @@
 mat-card {
-    margin: 5px;
+    
 }
 
 mat-form-field, mat-label {
@@ -7,7 +7,7 @@ mat-form-field, mat-label {
 }
 
 label, mat-label {
-    margin: 5px;
+    
 }
 
 mat-radio-button {
@@ -15,6 +15,7 @@ mat-radio-button {
 }
 
 form {
+    top: 0;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
