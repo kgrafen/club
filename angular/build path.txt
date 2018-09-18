@@ -1,0 +1,6 @@
+ng build --base-href=/singlenetwork/
+
+or 
+
+POSSIBLY NEW
+ng build --base-href=/singlenetwork/angular/
