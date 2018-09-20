@@ -5,25 +5,41 @@
     <h2>Filtre</h2>
     <div>
     <label>Afstand</label>
-    <mat-slider color="primary" min="10" max="100" step="10" [(ngModel)]="slider1Val"></mat-slider>
+    <mat-slider (change)="onDistanceChange()" color="primary" min="10" max="100" step="10" [(ngModel)]="slider1Val"></mat-slider>
     <label id="distKM">{{ slider1Val }} KM</label>
     </div>
 
     <div>
     <label>Børn</label> 
-    <mat-slide-toggle color="primary" [(ngModel)]="kidsAllowed">{{kidsAllowed | activeBlocked}}</mat-slide-toggle>
+    <mat-slide-toggle (change)="onChildrenChange()" color="primary" [(ngModel)]="kidsAllowed">{{kidsAllowed | activeBlocked}}</mat-slide-toggle>
     </div>
 
     <div>
     <label>Deltager køn</label>
     <mat-form-field>
-            <mat-select placeholder="Fordeling">
+            <mat-select (selectionChange)="onOptionChange($event.value)" placeholder="Fordeling">
+              <mat-option>Ingen</mat-option>
               <mat-option *ngFor="let option of options" [value]="option.value">
                 {{option.displayValue}}
               </mat-option>
             </mat-select>
     </mat-form-field>
     </div>
+    <div>
+    <label>Kategori</label>
+    <mat-form-field>
+            <mat-select (selectionChange)="onCategoryChange($event.value)" placeholder="Kategori">
+              <mat-option>Ingen</mat-option>
+              <mat-option *ngFor="let category of categories" [value]="category.value">
+                {{category.displayValue}}
+              </mat-option>
+            </mat-select>
+    </mat-form-field>
+    </div>
+
+    <mat-card-actions>
+      <button (click)="clear()" routerLink="/events" mat-button color="warn">Fjern filtre</button>
+    </mat-card-actions>
 
 </mat-card>
 

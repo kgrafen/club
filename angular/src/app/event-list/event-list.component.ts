@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable } from '../../../node_modules/rxjs';
+import { Observable, Subscription  } from '../../../node_modules/rxjs';
 import { EventFirebaseService } from '../event-firebase.service';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { DataSource } from '@angular/cdk/table';
 import { MobileDetectorService } from '../mobile-detector.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { TableFilterService } from '../table-filter.service';
 
 export interface EventData {
   name: string;
@@ -39,9 +40,13 @@ export class EventListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   events = [];
+
+  subscription: Subscription;
+  filterValue: any;
   
   constructor(private efbs: EventFirebaseService, 
-    private mds: MobileDetectorService, private spinner: NgxSpinnerService) {
+    private mds: MobileDetectorService, private spinner: NgxSpinnerService, 
+    private tfs: TableFilterService) {
     this.efbs.getList(this.efbs.dbPath).subscribe(res => {
       this.events = res;
       this.dataSource = new MatTableDataSource(this.events);
@@ -55,6 +60,7 @@ export class EventListComponent implements OnInit {
     },
     (error) => {console.log("Something went wrong :(")
   });
+    this.subscription = this.tfs.getEvent().subscribe(filter => { this.applyFilter(filter) });
   }
 
   ngOnInit() {
