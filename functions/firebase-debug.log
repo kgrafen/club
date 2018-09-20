@@ -1,0 +1,38 @@
+[debug] [2018-09-18T15:44:12.334Z] ----------------------------------------------------------------------
+[debug] [2018-09-18T15:44:12.334Z] Command:       D:\node.exe C:\Users\xboxm\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy --only functions
+[debug] [2018-09-18T15:44:12.334Z] CLI Version:   4.2.1
+[debug] [2018-09-18T15:44:12.334Z] Platform:      win32
+[debug] [2018-09-18T15:44:12.334Z] Node Version:  v8.11.2
+[debug] [2018-09-18T15:44:12.334Z] Time:          Tue Sep 18 2018 17:44:12 GMT+0200 (Romance Summer Time)
+[debug] [2018-09-18T15:44:12.334Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-09-18T15:44:12.350Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-09-18T15:44:12.350Z] > authorizing via signed-in user
+[debug] [2018-09-18T15:44:12.350Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/single-network  
+ 
+[debug] [2018-09-18T15:44:12.978Z] <<< HTTP RESPONSE 200
+[debug] [2018-09-18T15:44:20.125Z] ----------------------------------------------------------------------
+[debug] [2018-09-18T15:44:20.125Z] Command:       D:\node.exe C:\Users\xboxm\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase experimental:functions:shell
+[debug] [2018-09-18T15:44:20.125Z] CLI Version:   4.2.1
+[debug] [2018-09-18T15:44:20.125Z] Platform:      win32
+[debug] [2018-09-18T15:44:20.125Z] Node Version:  v8.11.2
+[debug] [2018-09-18T15:44:20.125Z] Time:          Tue Sep 18 2018 17:44:20 GMT+0200 (Romance Summer Time)
+[debug] [2018-09-18T15:44:20.125Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-09-18T15:44:20.141Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-09-18T15:44:20.141Z] > authorizing via signed-in user
+[debug] [2018-09-18T15:44:20.141Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/single-network  
+ 
+[debug] [2018-09-18T15:44:20.755Z] <<< HTTP RESPONSE 200
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-09-18T15:44:21.490Z] Fetching environment
+[debug] [2018-09-18T15:44:21.506Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/single-network  
+ 
+[debug] [2018-09-18T15:44:22.313Z] <<< HTTP RESPONSE 200
+[debug] [2018-09-18T15:44:22.313Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/822295237709:getServerAppConfig  
+ 
+[debug] [2018-09-18T15:44:22.531Z] <<< HTTP RESPONSE 200
+[debug] [2018-09-18T15:44:22.531Z] Starting @google-cloud/functions-emulator
+[debug] [2018-09-18T15:44:24.625Z] Parsing function triggers
+[info] +  functions: helloWorld
+[info] +  functions: sendContactMail
