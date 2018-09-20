@@ -7,11 +7,11 @@
 
 # 
 
-dependencies
+# Dependencies
  
 
-functions\functions\node_modules 
-angular\node_modules 
+/functions\functions\node_modules 
+/angular\node_modules 
 
 #IDEs and editors
 /.idea
