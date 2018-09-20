@@ -6,9 +6,7 @@
 /out-tsc
 
 # dependencies
-/node_modules
-
-# IDEs and editors
+ functions\functions\node_modules angular\node_modules #IDEs and editors
 /.idea
 .project
 .classpath
@@ -39,5 +37,3 @@ testem.log
 Thumbs.db
 
 
-functions\functions\node_modules
-angular\node_modules
