@@ -1,136 +1,49 @@
 <landing-page-header></landing-page-header>
 
-<mat-card *ngIf="!isMobile">
-    <mat-grid-list cols="2" rowHeight="1:1">    
-            <mat-grid-tile>
-                    <mat-card> 
-                        <button id="headerBoxLeft" class="headerBox" mat-flat-button color="accent" disabled>Del din historie</button>
-                        <form id="formLeft" [formGroup]="storyForm">
-                            <mat-form-field>
-                                <mat-label for="name">Navn</mat-label>
-                                    <input matInput formControlName="name" placeholder="Navn" required>
-                            </mat-form-field>
-                                        
-                            <mat-form-field>
-                                <mat-label for="email">Email</mat-label>
-                                    <input formControlName="email" matInput placeholder="Email" required>
-                            </mat-form-field>
-                                        
-                            <mat-form-field>
-                                <mat-label for="message">Historie</mat-label>
-                                    <textarea matInput formControlName="story" rows="8" required
-                                    placeholder="Besked..."></textarea>
-                            </mat-form-field>             
-                            <button type="submit" mat-raised-button color="accent">Del</button>
-
-                        </form>
-                    </mat-card>
-                </mat-grid-tile>
+<mat-card>
+    <h1>Del din historie eller kom med et forslag</h1>
+    <mat-card>
+        <form id="formRight" [formGroup]="feedbackForm">
+            <mat-form-field>
+                <mat-label for="name">Navn</mat-label>
+                    <input matInput formControlName="name" placeholder="Navn" required>
+            </mat-form-field>
                         
-                <mat-grid-tile>
-                    <mat-card>
-                        <button id="headerBoxRight" class="headerBox" mat-flat-button color="primary" disabled>Forslag</button>
-                        <form id="formRight" [formGroup]="proposalForm">
-                            <mat-form-field>
-                                <mat-label for="name">Navn</mat-label>
-                                    <input matInput formControlName="name" placeholder="Navn" required>
-                            </mat-form-field>
-                                        
-                            <mat-form-field>
-                                <mat-label for="email">Email</mat-label>
-                                    <input formControlName="email" matInput placeholder="Email" required>
-                                </mat-form-field>
-        
-                            <mat-form-field>
-                                <mat-label>Emne</mat-label>
-                                    <mat-select placeholder="Vælg emne" required>
-                                        <mat-option value="option">Andet</mat-option>
-                                        <mat-option value="option">Design</mat-option>
-                                        <mat-option value="option">Brugeroplevelse</mat-option>
-                                        <mat-option value="option">Ny feature</mat-option>
-                                        <mat-option value="option">Kontrol</mat-option>
-                                        <mat-option value="option">Pris</mat-option>
-                                        <mat-option value="option">Belønninger</mat-option>
-                                        <mat-option value="option">Straf</mat-option>
-                                    </mat-select>
-                            </mat-form-field>
-                                        
-                            <mat-form-field>
-                                <mat-label for="message">Historie</mat-label>
-                                    <textarea matInput formControlName="details" rows="8" required
-                                    placeholder="Besked..."></textarea>
-                            </mat-form-field>
-                            <button type="submit" mat-raised-button color="primary">Foreslå</button>
+            <mat-form-field>
+                <mat-label for="email">Email</mat-label>
+                    <input formControlName="email" matInput placeholder="Email" required>
+                </mat-form-field>
 
-                        </form>
-                    </mat-card>
-                </mat-grid-tile>
-    </mat-grid-list>
-</mat-card>
+                <mat-form-field>
+                    <mat-label>Beskedstype</mat-label>
+                        <mat-select (selectionChange)="onItemChange($event.value)" formControlName="type" placeholder="Vælg beskedstype" required>
+                            <mat-option value="Forslag">Forslag</mat-option>
+                            <mat-option value="Del din historie">Del din historie</mat-option>
+                        </mat-select>
+                </mat-form-field>
 
-<mat-card *ngIf="isMobile">
-    <mat-tab-group>
-        <mat-tab>
-            <ng-template mat-tab-label>
-                Del din historie
-            </ng-template>
-                        <form [formGroup]="storyForm">
-                            <mat-form-field>
-                                <mat-label for="name">Navn</mat-label>
-                                    <input matInput formControlName="name" placeholder="Navn" required>
-                            </mat-form-field>
-                                        
-                            <mat-form-field>
-                                <mat-label for="email">Email</mat-label>
-                                    <input formControlName="email" matInput placeholder="Email" required>
-                            </mat-form-field>
-                                        
-                            <mat-form-field>
-                                <mat-label for="message">Historie</mat-label>
-                                    <textarea matInput formControlName="story" rows="8" required
-                                    placeholder="Besked..."></textarea>
-                            </mat-form-field>             
-                            <button type="submit" mat-raised-button color="accent">Del</button>
+            <mat-form-field *ngIf="isProposal">
+                <mat-label>Emne</mat-label>
+                    <mat-select formControlName="subject" placeholder="Vælg emne">
+                        <mat-option value="option">Andet</mat-option>
+                        <mat-option value="option">Design</mat-option>
+                        <mat-option value="option">Brugeroplevelse</mat-option>
+                        <mat-option value="option">Ny feature</mat-option>
+                        <mat-option value="option">Kontrol</mat-option>
+                        <mat-option value="option">Pris</mat-option>
+                        <mat-option value="option">Belønninger</mat-option>
+                        <mat-option value="option">Straf</mat-option>
+                    </mat-select>
+            </mat-form-field>
+                        
+            <mat-form-field>
+                <mat-label for="message">{{btnText}}</mat-label>
+                    <textarea matInput formControlName="details" rows="8" required
+                    placeholder="Besked..."></textarea>
+            </mat-form-field>
+            <button type="submit" mat-raised-button color="primary">{{btnText}}</button>
 
-                        </form>
-        </mat-tab>
-        <mat-tab>
-            <ng-template mat-tab-label>
-                Forslag
-            </ng-template>
-                        <form [formGroup]="proposalForm">
-                            <mat-form-field>
-                                <mat-label for="name">Navn</mat-label>
-                                    <input matInput formControlName="name" placeholder="Navn" required>
-                            </mat-form-field>
-                                        
-                            <mat-form-field>
-                                <mat-label for="email">Email</mat-label>
-                                    <input formControlName="email" matInput placeholder="Email" required>
-                                </mat-form-field>
-        
-                            <mat-form-field>
-                                <mat-label>Emne</mat-label>
-                                    <mat-select placeholder="Vælg emne" required>
-                                        <mat-option value="option">Andet</mat-option>
-                                        <mat-option value="option">Design</mat-option>
-                                        <mat-option value="option">Brugeroplevelse</mat-option>
-                                        <mat-option value="option">Ny feature</mat-option>
-                                        <mat-option value="option">Kontrol</mat-option>
-                                        <mat-option value="option">Pris</mat-option>
-                                        <mat-option value="option">Belønninger</mat-option>
-                                        <mat-option value="option">Straf</mat-option>
-                                    </mat-select>
-                            </mat-form-field>
-                                        
-                            <mat-form-field>
-                                <mat-label for="message">Historie</mat-label>
-                                    <textarea matInput formControlName="details" rows="8" required
-                                    placeholder="Besked..."></textarea>
-                            </mat-form-field>
-                            <button type="submit" mat-raised-button color="primary">Foreslå</button>
+        </form>
+    </mat-card>
 
-                        </form>
-        </mat-tab>
-    </mat-tab-group>
 </mat-card>

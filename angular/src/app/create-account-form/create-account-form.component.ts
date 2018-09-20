@@ -41,8 +41,11 @@ export class CreateAccountFormComponent implements OnInit {
     this.spinner.show();
     this.authService.doRegister(value)
     .then(res => {
-      this.ufbs.insertUser(new User(value.username, value.email));
-      this.spinner.hide();
+      const user = new User(value.username, value.email);
+      const date = new Date();
+      date.setUTCFullYear(2019, 0, 1);
+      user.subscribed_until = date;
+      this.ufbs.insertUser(user);
       //this.errorMessage = "";
       //this.successMessage = "Din nye profil er blevet oprettet!";
       //this.displayMessage = true;

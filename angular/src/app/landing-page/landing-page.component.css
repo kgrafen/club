@@ -2,22 +2,19 @@ h1, h2, h3, h4, h5 {
     text-align: center;
 }
 
-.news-graphic {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 10px;
-    width:80%;
+.promotionText {
+    font-size: 14px;
 }
 
 .display-none {
     visibility: hidden;
 }
 
-button, .pr-image {
+button {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 20px;
 }
 
 

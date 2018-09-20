@@ -19,7 +19,7 @@ export class EventControlMenuComponent implements OnInit {
   name: string;
 
   dialogWidth = "1100px";
-  dialogHeight = "700px";
+  dialogHeight = "800px";
 
   constructor(public dialog: MatDialog, private mds: MobileDetectorService) { }
 

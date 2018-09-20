@@ -16,8 +16,8 @@
                     </mat-form-field>
                     <mat-form-field>
                             <mat-label><fa name="tag"></fa> Kategori</mat-label>
-                            <mat-select formControlname="eventCategory" placeholder="Vælg emne" required>
-                                <mat-option value="Kategori">Vælg</mat-option>
+                            <mat-select formControlName="eventCategory" name="eventCategory" placeholder="Vælg emne" required>
+                                <mat-option value="Andet">Andet</mat-option>
                                 <mat-option value="Hjemmehygge">Hjemmehygge</mat-option>
                                 <mat-option value="Fest i privathjem">Fest i privathjem</mat-option>
                                 <mat-option value="Fest uden for privaten">Fest uden for privaten</mat-option>
@@ -113,6 +113,12 @@
                                 </mat-grid-tile>
                         </mat-grid-list>
 
+                        <mat-label>Tving på venteliste?</mat-label> <br>
+                        <mat-radio-group formControlName="eventQueue">
+                            <mat-radio-button name="eventQueue" value="Ja">Ja</mat-radio-button>
+                            <mat-radio-button name="eventQueue" value="Nej">Nej</mat-radio-button>
+                        </mat-radio-group>
+
                     <div>
                       <button mat-button matStepperPrevious>Tilbage</button>
                       <button mat-raised-button color="primary" matStepperNext>Næste</button>
@@ -176,7 +182,7 @@
 
                           <mat-form-field>
                                 <mat-label><fa name="tag"></fa> Betalingsform</mat-label>
-                                <mat-select formControlName="eventPaymentOption" placeholder="Vælg emne" required>
+                                <mat-select formControlName="eventPaymentOption" name="eventPaymentOption" placeholder="Vælg emne" required>
                                     <mat-option value="Ingen">Ingen</mat-option>
                                     <mat-option value="Kontant">Kontant</mat-option>
                                     <mat-option value="Mobilepay">Mobilepay</mat-option>
@@ -230,7 +236,7 @@
                   <div>
                     <button mat-button matStepperPrevious>Tilbage</button>
                     <button mat-button color="warn" (click)="stepper.reset()">Start forfra</button>
-                    <button mat-raised-button color="primary">Opret event</button>
+                    <button (click)="onSubmitEvent()" mat-raised-button color="primary">Opret event</button>
                   </div>
                 </mat-step>
               </mat-horizontal-stepper>

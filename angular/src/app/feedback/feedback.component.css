@@ -2,32 +2,8 @@ mat-card {
     margin: 20px;
 }
 
-.headerBox {
-    width: 100%;
-    border: none;
-    color: snow !important;
-}
-
-#headerBoxLeft {
-    background-color: #ff4081 !important;
-}
-
-#headerBoxRight {
-    background-color: #3f51b5 !important;
-}
-
-#formLeft {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    width: 75%;
-}
-
-#formRight {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    width: 75%;
+h1 {
+    text-align: center;
 }
 
 button {

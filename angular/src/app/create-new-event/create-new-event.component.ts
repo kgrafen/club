@@ -28,34 +28,6 @@ export class CreateNewEventComponent implements OnInit {
   fifthFormGroup: FormGroup;
   isPaymentDeadlineDate = false;
 
-  public eventForm = new FormGroup({
-    eventName: new FormControl(''),
-    eventDescription: new FormControl(''),
-    eventDate: new FormControl(''),
-    eventStartTime: new FormControl(''),
-    eventEndTime: new FormControl(''),
-    eventCategory: new FormControl(''),
-    eventTargetGroup: new FormControl(''),
-    eventMinAge: new FormControl(''),
-    eventMaxAge: new FormControl(''),
-    eventFile: new FormControl(''),
-    eventHostRating: new FormControl(''),
-    eventMinGuests: new FormControl(''),
-    eventMaxGuests: new FormControl(''),
-    eventGender: new FormControl(''),
-    eventQueue: new FormControl(''),
-    eventLocationStreet: new FormControl(''),
-    eventLocationCity: new FormControl(''),
-    eventLocationZip: new FormControl(''),
-    eventDeadlineDate: new FormControl(''),
-    eventDeadlineTime: new FormControl(''),
-    eventPrice: new FormControl(''),
-    eventPaymentOption: new FormControl(''),
-    eventPaymentDue: new FormControl(''),
-    eventPaymentDate: new FormControl(''),
-
-});
-
   constructor(private efbs: EventFirebaseService, private authService: AuthService, 
               private ufbs: UserFirebaseService, 
               public dialogRef: MatDialogRef<CreateNewEventComponent>,
@@ -106,37 +78,47 @@ export class CreateNewEventComponent implements OnInit {
     }
   }
 
-  onSubmitEvent(value) {
-    let e: Event = this.formDataToModel(value);
+  onSubmitEvent() {
+    let e: Event = this.formDataToModel();
     this.efbs.insertEvent(e);
   } 
 
-  formDataToModel(formData): Event {
+  formDataToModel(): Event {
     const event = new Event();
-    event.address = new EventAddress(formData.eventLocationStreet, 
-      formData.eventLocationCity, formData.eventLocationZip);
-    event.category = formData.eventCategory;
-    event.dateStart = formData.eventDate;
-    event.deadlineDate = formData.eventDeadlineDate;
-    event.deadlineTime = formData.eventDeadlineTime;
-    event.description = formData.description;
-    event.file = formData.file;
-    event.genderRatio = formData.genderRatio;
-    event.hostRating = formData.hostRating;
-    event.maxAge = formData.eventMaxAge;
-    event.minAge = formData.eventMinAge;
-    event.maxGuests = formData.maxGuests;
-    event.minGuests = formData.minGuests;
-    event.name = formData.eventName;
-    event.paymentDate = formData.eventPaymentDate;
-    event.paymentDue = formData.eventPaymentDue;
-    event.paymentOption = formData.paymentOption;
-    event.price = formData.price;
-    event.queue = formData.eventQueue;
-    event.targetGroup = formData.targetGroup;
-    event.timeEnd = formData.eventEndTime;
-    event.timeStart = formData.eventStartTime;
-    event.$key = this.efbs.generateNewHashKey(this.ufbs.convertEmailToKey(this.authService.user.email), event.name);
+
+    event.name = this.firstFormGroup.value.eventName;
+    event.address = new EventAddress(this.firstFormGroup.value.eventLocationStreet, 
+      this.firstFormGroup.value.eventLocationCity, this.firstFormGroup.value.eventLocationZip);
+    event.category = this.firstFormGroup.value.eventCategory;
+    event.description = this.firstFormGroup.value.eventDescription;
+
+    event.dateStart = this.thirdFormGroup.value.eventDate;
+    event.deadlineDate = this.thirdFormGroup.value.eventDeadlineDate;
+    event.deadlineTime = this.thirdFormGroup.value.eventDeadlineTime;
+    event.timeEnd = this.thirdFormGroup.value.eventEndTime;
+    event.timeStart = this.thirdFormGroup.value.eventStartTime;
+
+    event.paymentDate = this.fourthFormGroup.value.eventPaymentDate;
+    event.paymentDue = this.fourthFormGroup.value.eventPaymentDue;
+    event.paymentOption = this.fourthFormGroup.value.eventPaymentOption;
+    event.price = this.fourthFormGroup.value.eventPrice;
+
+    event.file = this.fifthFormGroup.value.eventFile;
+
+    event.genderRatio = this.secondFormGroup.value.eventGender;
+    event.hostRating = this.ufbs.getStorage().rating;
+    event.maxAge = this.secondFormGroup.value.eventMaxAge;
+    event.minAge = this.secondFormGroup.value.eventMinAge;
+    event.maxGuests = this.secondFormGroup.value.eventMinGuests;
+    event.minGuests = this.secondFormGroup.value.eventMinGuests;
+    event.queue = this.secondFormGroup.value.eventQueue;
+    event.targetGroup = this.secondFormGroup.value.eventTargetGroup;
+
+    if (event.hostRating === undefined) {
+      event.hostRating = 0;
+    }
+    this.onNoClick();
+    //event.$key = this.efbs.generateNewHashKey(this.ufbs.convertEmailToKey(this.authService.user.email), event.name);
     return event;
   }
 

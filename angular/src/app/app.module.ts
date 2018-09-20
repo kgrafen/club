@@ -83,6 +83,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { MyEventsComponent } from './my-events/my-events.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PricesComponent } from './prices/prices.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -162,7 +163,8 @@ import { PricesComponent } from './prices/prices.component';
     MatNativeDateModule,
     MatBadgeModule,
     RouterTestingModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    HttpModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

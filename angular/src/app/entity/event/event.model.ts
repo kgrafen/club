@@ -1,7 +1,7 @@
 import { EventAddress } from '../helper/EventAddress';
 
 export class Event {
-    $key: string;
+    //$key: string;
     name: string;
     description: string;
     dateStart: Date;

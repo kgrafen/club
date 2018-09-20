@@ -19,6 +19,7 @@ export class JsonConverter {
         user.numberOfEventsHosted = obj.numberOfEventsHosted;
         user.phone = obj.phone;
         user.rating = obj.rating;
+        user.subscribed_until = obj.subscribed_until;
         return user;
     }
 
@@ -32,7 +33,7 @@ export class JsonConverter {
     public convertJsonToEventObj(json: string): Event {
         let obj = JSON.parse(json);
         let event = new Event();
-        event.$key = obj.$key;
+        //event.$key = obj.$key;
         event.address = obj.address;
         event.category = obj.category;
         event.dateStart = obj.dateStart;

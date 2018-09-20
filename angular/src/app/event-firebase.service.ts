@@ -16,7 +16,7 @@ import { JsonConverter } from './entity/helper/json-converter';
 })
 export class EventFirebaseService {
 
-  dbPath: string = '/events';
+  dbPath: string = '/events/';
   jsonConverter: JsonConverter = new JsonConverter();
 
   eventsObservable: Observable<any[]>;
@@ -48,7 +48,7 @@ export class EventFirebaseService {
 
   insertEvent(event: Event) {
     const entry = this.objToJSON(event);
-    this.db.object(this.dbPath+"/"+event.$key).update(entry);
+    this.db.list(this.dbPath).push(event);
   }
 
   updateEvent(key: string, event: Event) {

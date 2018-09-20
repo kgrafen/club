@@ -25,7 +25,7 @@ export class CookiesConsentComponent implements OnInit {
     this._cookieService.put('acceptCookie', "accept");
   }
 
-  getCookie(key: string) {
+  getCookie(key: string): string {
     return this._cookieService.get(key);
   }
 

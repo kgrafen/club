@@ -5,7 +5,7 @@
     
     
     <div *ngIf="!isMobile" class="navbar-nav ml-auto">
-      <button *ngFor="let field of menuFields" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>
+      <button matTooltip="{{field.description}}" *ngFor="let field of menuFields" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>
     </div>
     
     <button *ngIf="isMobile" mat-icon-button [matMenuTriggerFor]="menu">

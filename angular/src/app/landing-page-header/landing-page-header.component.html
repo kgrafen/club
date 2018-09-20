@@ -11,12 +11,12 @@
             <form [formGroup]="loginForm">
                 <mat-form-field>
                     <mat-label>Email</mat-label>
-                    <input formControlName="email" matInput placeholder="email" autofocus>
+                    <input formControlName="email" name="email" matInput placeholder="email" autofocus>
                 </mat-form-field>
                 
                 <mat-form-field>
                     <mat-label>Password</mat-label>
-                    <input formControlName="password" matInput placeholder="password" type="password">
+                    <input formControlName="password" name="password" matInput placeholder="password" type="password">
                 </mat-form-field>
     
                 <button (click)="tryLogin(loginForm.value)" mat-raised-button>Login</button>
@@ -30,7 +30,7 @@
 
   <a [routerLink]="['/']"><img class="mobile" src="./assets/images/Logo_white.png"></a>
   
-  <!--<button mat-raised-button color="accent" (click)="openDialog()">Login</button>-->
+  <button class="mobileBtn" mat-raised-button (click)="openDialog()">Login</button>
       
 </div>
 

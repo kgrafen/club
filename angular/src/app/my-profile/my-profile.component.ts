@@ -16,7 +16,9 @@ import { MobileDetectorService } from '../mobile-detector.service';
 
 export class MyProfileComponent implements OnInit {
 
-  activationError = "Profilen er ikke aktiv. Udfyld alle obligatoriske felter for at aktivere.";
+  user: User;
+
+  activationError = "Profilen er ikke aktiv. Udfyld alle obligatoriske felter og/eller tryk aktiver i den sidste tab";
 
   //Progress Bar Material
   color = 'primary';
@@ -25,6 +27,16 @@ export class MyProfileComponent implements OnInit {
   //bufferValue= 75;
 
   public isMobile: boolean = false;
+
+  // Activation
+  warningCount = 0;
+  confirmText = "";
+  btnDisabled = true;
+  btnText = "Låst";
+  accountDeletionConfirmationText = "";
+
+  // Subscription
+  paidUntil = "Ikke betalt";
 
   constructor(private ufbs: UserFirebaseService, private authService: AuthService, 
     private mds: MobileDetectorService) { }
@@ -61,6 +73,10 @@ public settingsForm = new FormGroup({
     newsletterWeekly: new FormControl('')
 });
 
+public accountDeletionForm = new FormGroup ({
+  confirmationText: new FormControl('')
+})
+
   ngOnInit() {
 
     this.isMobile = this.mds.check();
@@ -68,6 +84,17 @@ public settingsForm = new FormGroup({
     this.getDisplayData();
     this.activation = this.accountIsCompleted();
     this.hasImages = false;
+    this.user = this.ufbs.getStorage();
+
+    if (this.ufbs.getStorage().isActivated) {
+      this.btnText = "Deaktiver";
+      this.btnDisabled = false;
+    } else {
+      if (this.activation) {
+        this.btnText = "Activate";
+        this.btnDisabled = false;
+      }
+    }
 
   }
 
@@ -75,6 +102,10 @@ public settingsForm = new FormGroup({
     let user = this.ufbs.getStorage();
     this.username = user._username;
     this.email = user.email;
+    this.paidUntil = user.subscribed_until.getDate().toString() + "-" + user.subscribed_until.getMonth().toString() + "-" +
+    user.subscribed_until.getUTCFullYear().toString();
+    console.log(this.paidUntil);
+
     if (user.firstName != undefined) {
       this.personDataForm.get('firstName').setValue(user.firstName);
     }
@@ -226,5 +257,24 @@ public settingsForm = new FormGroup({
     && user.numberOfChildren >= 0 && user.children != undefined 
     && user.newsletterSetting != undefined)
 }
+
+  deactivateAccount() {
+    this.warningCount++;
+    this.confirmText = "Tryk " + (3 - this.warningCount) + " gange for at bekræfte";
+    if (this.warningCount >= 3 && this.accountIsCompleted()) {
+      this.btnDisabled = true;
+      const user: User = this.ufbs.getStorage();
+      user.isActivated ? user.isActivated = false : user.isActivated = true;
+      this.ufbs.setStorage(user);
+      let str = user.isActivated ? "aktiveret." : "deaktiveret.";
+      this.confirmText = "Profilen er nu " + str;
+    } else {
+      this.btnDisabled = true;
+    }
+  }
+
+  deleteAccount() {
+    this.ufbs.deleteUser(this.ufbs.getStorage().email);
+  }
 
 }

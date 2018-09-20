@@ -286,9 +286,16 @@
                                         <div class="form-group row">
                                             <label for="email" class="col-4 col-form-label">Sendes til</label> 
                                             <div class="col-8">
-                                                <input class="form-control" type="text" placeholder="minemail@domain.com" readonly>
+                                                <input class="form-control" type="text" placeholder="{{email}}" readonly>
                                             </div>
                                         </div>
+
+                                        <div class="form-group row">
+                                                <label for="email" class="col-4 col-form-label">Betalt indtil</label> 
+                                                <div class="col-8">
+                                                    <input class="form-control" type="text" placeholder="{{paidUntil}}" readonly>
+                                                </div>
+                                            </div>
 
                                         <div class="form-group row">
                                             <div class="offset-4 col-8">
@@ -345,6 +352,51 @@
                         </div>
                     </div>
                 </div>
+            </mat-tab>
+
+                <mat-tab label="Deaktivering">
+                    <div *ngIf="!activation" class="ng-hide">
+                            <div class="alert alert-danger" role="alert">
+                                <div *ngIf="!activation" class="ng-hide"></div>
+                                <strong>Hov!</strong> {{activationError}}
+                            </div>
+                    </div>
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="form-group row">
+                                        <label matTooltip="Udfyld alle obligatoriske felter" for="deactivate-activate" class="col-4 col-form-label">Deaktiver/aktiver profil</label> <br>
+                                        <label>{{confirmText}}</label> <br>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for ="activationBtn" class="col-4 col-form-label"></label>
+                                        <button [disabled]="btnDisabled" (click)="deactivateAccount()" matInput mat-raised-button color="warn">{{btnText}}</button>
+                                    </div>
+
+                                    <div class="form-group row">
+                                            <label for="delete-account" class="col-4 col-form-label">Slet profil</label> <br>
+                                            <label>Denne handling er <strong>permanent</strong></label> <br>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for ="activationBtn" class="col-4 col-form-label"></label>
+                                            <form [formGroup]="accountDeletionForm"> 
+                                                <mat-form-field>
+                                                    <input matTooltip="Du kan slette når feltet udfyldes. Husk store og små bogstaver" matInput [(ngModel)]="accountDeletionConfirmationText" formControlName="confirmationText" mat-raised-button color="warn" placeholder="Brugernavn">
+                                                </mat-form-field>
+                                            </form>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for ="activationBtn" class="col-4 col-form-label"></label>
+                                            <button routerLink="/" *ngIf="accountDeletionConfirmationText === user._username" (click)="deleteAccount()" matInput mat-raised-button color="warn">Slet profil</button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </mat-tab>
 
@@ -352,7 +404,12 @@
         </mat-tab-group>
     </div>
 
-    <!-- Mobile -->
+    <div *ngIf="isMobile">
+        <mat-card>Det er ikke muligt at ændre på din profil fra telefon. 
+            *Under udvikling*
+        </mat-card>
+    </div>
+    <!-- Mobile
 <div *ngIf="isMobile">
     <div *ngIf="!activation" class="ng-hide">
                             <div class="alert alert-danger" role="alert">
@@ -676,5 +733,6 @@
             </div>
         </div>
     </div>
+    -->
 
 </div>

@@ -28,7 +28,7 @@ mat-tab-group {
 
 /* Progress bar */
 mat-progress-bar {
-    width: 95%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     display:block;

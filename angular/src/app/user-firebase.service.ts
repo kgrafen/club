@@ -63,7 +63,6 @@ export class UserFirebaseService {
   //Test passed
   insertUser(user: User) {
     let entry = this.objToJSON(user);
-    const usersRef = this.db.list(this.dbPath);
     this.db.object(this.dbPath + this.convertEmailToKey(user.email)).update(entry);
    }
  
@@ -75,7 +74,8 @@ export class UserFirebaseService {
  
    deleteUser(key: string) {
      const usersRef = this.db.list(this.dbPath);
-     usersRef.remove(key);
+     usersRef.remove(this.convertEmailToKey(key));
+     this.afAuth.auth.currentUser.delete();
    }
 
    // Session storage
@@ -103,6 +103,10 @@ export class UserFirebaseService {
 
    convertKeyToEmail(key: string) {
     return key.replace('¤','.').replace('%', '@');
+   }
+
+   clearSession() {
+    this.session.remove("user");
    }
 
 }

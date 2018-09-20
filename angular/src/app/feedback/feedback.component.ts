@@ -10,16 +10,13 @@ import { MobileDetectorService } from '../mobile-detector.service';
 export class FeedbackComponent implements OnInit {
 
   isMobile = false;
+  isProposal = false;
+  btnText = "Del min historie";
 
-  public storyForm = new FormGroup({
+public feedbackForm = new FormGroup({
     name: new FormControl(''),
     email: new FormControl(''),
-    story: new FormControl('')
-});
-
-public proposalForm = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
+    type: new FormControl(''),
     subject: new FormControl(''),
     details: new FormControl('')
 });
@@ -28,6 +25,17 @@ public proposalForm = new FormGroup({
 
   ngOnInit() {
     this.isMobile = this.mds.check();
+  }
+
+  onItemChange(value) {
+    console.log(value);
+    if(value === "Forslag") {
+      this.btnText = "Foreslå";
+      this.isProposal = true;
+    } else {
+      this.btnText = "Den min historie";
+      this.isProposal = false;
+    }
   }
 
 }
