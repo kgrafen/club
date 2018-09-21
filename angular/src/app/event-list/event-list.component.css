@@ -6,6 +6,10 @@ mat-paginator {
     margin-bottom: 20px;
 }
 
+td {
+    font-size: 12px;
+}
+
 #search {
     background-color: #fff;
     padding: 20px;

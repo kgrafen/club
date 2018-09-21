@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable, Subscription  } from '../../../node_modules/rxjs';
 import { EventFirebaseService } from '../event-firebase.service';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { DataSource } from '@angular/cdk/table';
 import { MobileDetectorService } from '../mobile-detector.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -14,6 +14,7 @@ export interface EventData {
   genderRatio: string;
   targetGroup: boolean;
   available: number;
+  category: string;
 }
 
 export interface EventDataMobile {
@@ -32,7 +33,7 @@ export class EventListComponent implements OnInit {
   isMobile = false;
 
   dataSource = new MatTableDataSource<EventData>();
-  displayedColumns = ['name', 'address', 'distance', 'genderRatio', 'targetGroup', 'available'];
+  displayedColumns = ['name', 'address', 'category', 'distance', 'genderRatio', 'targetGroup', 'available'];
   dataSourceMobile = new MatTableDataSource<EventDataMobile>();
   displayedColumnsMobile = ['name', 'address', 'available'];
 
