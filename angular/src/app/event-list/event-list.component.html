@@ -19,7 +19,7 @@
         <!-- City Column -->
         <ng-container matColumnDef="address">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> By </th>
-          <td mat-cell *matCellDef="let element">{{element.address}}</td>
+          <td mat-cell *matCellDef="let element">{{element.address.street}}, {{element.address.city}}, {{element.address.zip}}</td>
         </ng-container>
 
         <!-- Category Column -->
