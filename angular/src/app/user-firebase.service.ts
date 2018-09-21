@@ -49,6 +49,7 @@ export class UserFirebaseService {
     this.db.object(path).valueChanges().subscribe(data => {
       let user = this.jsonToObj(JSON.stringify(data));
       this.setStorage(user);
+      //console.log(user);
     });
   }
 

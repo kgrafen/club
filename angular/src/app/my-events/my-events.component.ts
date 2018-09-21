@@ -45,14 +45,13 @@ export class MyEventsComponent implements OnInit {
 
   constructor(private efbs: EventFirebaseService, private mds: MobileDetectorService, 
     private spinner: NgxSpinnerService, private ufbs: UserFirebaseService) {
-      console.log("Før res");
       this.efbs.getEventsByHost(this.ufbs.getStorage().email).subscribe(res => {
-        console.log("Res er hvad? " + res);
+
       });
     }
 
   ngOnInit() {
-    console.log("Hallo?");
+    
   }
 
 }

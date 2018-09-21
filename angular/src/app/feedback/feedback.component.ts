@@ -28,7 +28,6 @@ public feedbackForm = new FormGroup({
   }
 
   onItemChange(value) {
-    console.log(value);
     if(value === "Forslag") {
       this.btnText = "Foreslå";
       this.isProposal = true;

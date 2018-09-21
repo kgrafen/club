@@ -20,6 +20,8 @@
                 </mat-form-field>
     
                 <button (click)="tryLogin(loginForm.value)" mat-raised-button>Login</button>
+                <button (click)="tryFacebookLogin()" mat-raised-button color="primary">Login med Facebook</button>
+                <button (click)="tryGoogleLogin()" mat-raised-button color="accent">Login med Google</button>
             </form>
         </mat-card>
       </div>
@@ -31,6 +33,8 @@
   <a [routerLink]="['/']"><img class="mobile" src="./assets/images/Logo_white.png"></a>
   
   <button class="mobileBtn" mat-raised-button (click)="openDialog()">Login</button>
+  <button class="mobileBtn" (click)="tryFacebookLogin()" mat-raised-button color="primary">Login med Facebook</button>
+  <button class="mobileBtn" (click)="tryGoogleLogin()" mat-raised-button color="accent">Login med Google</button>
       
 </div>
 

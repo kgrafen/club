@@ -36,7 +36,6 @@ export class TableFilterService {
   }
 
   sendEvent(value) {
-    console.log(value);
     this.subject.next(value);
   }
 

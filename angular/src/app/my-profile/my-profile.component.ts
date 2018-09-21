@@ -102,9 +102,8 @@ public accountDeletionForm = new FormGroup ({
     let user = this.ufbs.getStorage();
     this.username = user._username;
     this.email = user.email;
-    this.paidUntil = user.subscribed_until.getDate().toString() + "-" + user.subscribed_until.getMonth().toString() + "-" +
-    user.subscribed_until.getUTCFullYear().toString();
-    console.log(this.paidUntil);
+    let d = new Date(user.subscribed_until);
+    this.paidUntil = d.getDate().toString() + "-" + (d.getMonth() + 1).toString() + "-" + d.getUTCFullYear().toString();
 
     if (user.firstName != undefined) {
       this.personDataForm.get('firstName').setValue(user.firstName);

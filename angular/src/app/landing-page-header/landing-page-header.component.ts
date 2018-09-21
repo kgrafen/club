@@ -6,6 +6,9 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { MobileLoginHeaderComponent } from '../mobile-login-header/mobile-login-header.component';
 import { MobileDetectorService } from '../mobile-detector.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { TwitterAuthProvider_Instance } from '@firebase/auth-types';
+import { UserFirebaseService } from '../user-firebase.service';
+import { User } from '../entity/user/user';
 
 @Component({
   selector: 'landing-page-header',
@@ -23,10 +26,24 @@ export class LandingPageHeaderComponent implements OnInit {
 });
 
   constructor(private authService: AuthService, public dialog: MatDialog, 
-    private mds: MobileDetectorService, private spinner: NgxSpinnerService) { }
+    private mds: MobileDetectorService, private spinner: NgxSpinnerService, 
+    private ufbs: UserFirebaseService) { }
 
   ngOnInit() {
     this.isMobile = this.mds.check();
+
+    //Login validation
+    this.authService.afAuth.auth.onAuthStateChanged(user => {
+      if (user) {
+        //First sign in AKA account creation
+        if (this.ufbs.getUserByEmail(user.email) === undefined) {
+          this.authService.doSocialLoginRegister(user);
+        }
+        //Nth signin, not first time.
+        this.ufbs.getUserByEmail(user.email);
+        this.authService.loginRedirect();
+      }
+    });
   }
 
   tryLogin(formData) {
@@ -38,13 +55,21 @@ export class LandingPageHeaderComponent implements OnInit {
   }, 2000);
   }
 
+  tryFacebookLogin() {
+    this.authService.doFacebookLogin();
+  }
+
+  tryGoogleLogin() {
+    this.authService.doGoogleLogin();
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(MobileLoginHeaderComponent, {
       width: '250px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed: ' + result);
+      
     });
   }
 

@@ -79,7 +79,7 @@ export class EventListComponent implements OnInit {
   }
 
   onRowClick(row) {
-    console.log("You clicked a row brudda: " + row);
+    
   }
 
 }

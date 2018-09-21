@@ -42,7 +42,7 @@ export class EventFilterComponent implements OnInit {
 
   onDistanceChange() {
     if (this.slider1Val != 0) {
-    this.tbs.onDistanceChange(this.slider1Val);
+      this.tbs.onDistanceChange(this.slider1Val);
     }
   }
 

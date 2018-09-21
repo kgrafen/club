@@ -38,7 +38,6 @@ export class LandingPageComponent implements OnInit {
 
       if (thenMillis + 86400 <= millis) {
         this.cs.put('last_visit', millis + "");
-        console.log("Clearing cache");
         location.reload(true);
       }
       
