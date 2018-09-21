@@ -1,46 +1,38 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { $ } from 'protractor';
+import { Component, OnInit } from '@angular/core';
 import { Event } from '../entity/event/event.model';
-import { EventAddress } from '../entity/helper/EventAddress';
 import { EventFirebaseService } from '../event-firebase.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { UserFirebaseService } from '../user-firebase.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { GeoCodingApiService } from '../geo-coding-api.service';
-import { Observable } from 'rxjs';
-
-export interface DialogData {
-  animal: string;
-  name: string;
-}
+import { EventAddress } from '../entity/helper/EventAddress';
 
 @Component({
-  selector: 'create-new-event',
-  templateUrl: './create-new-event.component.html',
-  styleUrls: ['./create-new-event.component.css']
+  selector: 'my-event',
+  templateUrl: './my-event.component.html',
+  styleUrls: ['./my-event.component.css']
 })
-export class CreateNewEventComponent implements OnInit {
+export class MyEventComponent implements OnInit {
 
-  isLinear = false;
+  constructor(private efbs: EventFirebaseService, private authService: AuthService, 
+    private ufbs: UserFirebaseService, 
+    private _formBuilder: FormBuilder, private geoAPI: GeoCodingApiService) { }
+
+  myEvent: Event;
+
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
   fifthFormGroup: FormGroup;
-  isPaymentDeadlineDate = false;
 
   apiZipValue = "By";
   lookupCity;
-  
-
-  constructor(private efbs: EventFirebaseService, private authService: AuthService, 
-              private ufbs: UserFirebaseService, 
-              public dialogRef: MatDialogRef<CreateNewEventComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: DialogData,
-              private _formBuilder: FormBuilder, private geoAPI: GeoCodingApiService) { }
+  isPaymentDeadlineDate = false;
 
   ngOnInit() {
+    this.myEvent = this.efbs.myEventSelection;
+    console.log(this.myEvent);
     this.firstFormGroup = this._formBuilder.group({
       eventName: ['', Validators.required],
       eventDescription: ['', Validators.required],
@@ -84,7 +76,7 @@ export class CreateNewEventComponent implements OnInit {
     }
   }
 
-  onSubmitEvent() {
+  onUpdateEvent() {
     let e: Event = this.formDataToModel();
     this.efbs.insertEvent(e);
   } 
@@ -125,13 +117,9 @@ export class CreateNewEventComponent implements OnInit {
     if (event.hostRating === undefined) {
       event.hostRating = 0;
     }
-    this.onNoClick();
+    
     //event.$key = this.efbs.generateNewHashKey(this.ufbs.convertEmailToKey(this.authService.user.email), event.name);
     return event;
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
   }
 
   lookUpZip(event) {

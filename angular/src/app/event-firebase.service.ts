@@ -20,9 +20,7 @@ export class EventFirebaseService {
   jsonConverter: JsonConverter = new JsonConverter();
 
   eventsObservable: Observable<any[]>;
-  event: Event;
-
-  testMail = "ramonariley@equitax.com";
+  myEventSelection: Event;
 
   constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase) { }
 
@@ -35,15 +33,13 @@ export class EventFirebaseService {
   }
 
   getEventByKey(key: string) {
-    let path = this.dbPath + key
-    this.db.object(path).valueChanges().subscribe(data => {
-      this.event = this.jsonToObj(JSON.stringify(data));
-    });
+    
   }
 
   getEventsByHost(hostMail: string): Observable<any[]> {
+    console.log(hostMail);
     let path = this.dbPath;
-    return this.db.list(path, ref => ref.orderByChild('host').equalTo(this.testMail)).valueChanges();
+    return this.db.list(path, ref => ref.orderByChild('host').equalTo(hostMail)).valueChanges();
   }
 
   insertEvent(event: Event) {

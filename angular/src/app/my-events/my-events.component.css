@@ -1,0 +1,12 @@
+table {
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    color: snow;
+}
+
+mat-form-field {
+    width: 100%;
+}

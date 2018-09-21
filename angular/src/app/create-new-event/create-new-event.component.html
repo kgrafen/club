@@ -43,7 +43,7 @@
                         </mat-grid-tile>
                         <mat-grid-tile>
                                 <mat-form-field>
-                                    <mat-label>By</mat-label>
+                                    <mat-label>{{apiZipValue}}</mat-label>
                                     <input matInput formControlName="eventLocationCity" placeholder="By" readonly
                                     matTooltip="Dette felt udfyldes automatisk">
                                 </mat-form-field>
@@ -51,9 +51,9 @@
                             <mat-grid-tile>
                                     <mat-form-field>
                                         <mat-label>Post Nr.</mat-label>
-                                        <input matInput formControlName="eventLocationZip" placeholder="#" required>
+                                        <input (keyup)="lookUpZip($event)" matInput formControlName="eventLocationZip" placeholder="#" required> <br>
                                     </mat-form-field>
-                                </mat-grid-tile>
+                            </mat-grid-tile>
                     </mat-grid-list>
 
                     <div>

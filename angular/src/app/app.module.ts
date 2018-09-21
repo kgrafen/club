@@ -84,6 +84,7 @@ import { MyEventsComponent } from './my-events/my-events.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PricesComponent } from './prices/prices.component';
 import { HttpModule } from '@angular/http';
+import { MyEventComponent } from './my-event/my-event.component';
 
 @NgModule({
   declarations: [
@@ -117,7 +118,8 @@ import { HttpModule } from '@angular/http';
     MobileLoginHeaderComponent,
     MyEventsComponent,
     PaymentComponent,
-    PricesComponent
+    PricesComponent,
+    MyEventComponent
   ],
   entryComponents: [MobileLoginHeaderComponent],
   imports: [

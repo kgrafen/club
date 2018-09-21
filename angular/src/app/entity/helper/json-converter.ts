@@ -57,6 +57,7 @@ export class JsonConverter {
         event.timeEnd = obj.timeEnd;
         event.timeStart = obj.timeStart;
         event.participants = obj.participants;
+        event.host = obj.host;
         return event;
     }
 }

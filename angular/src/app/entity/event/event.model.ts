@@ -25,4 +25,5 @@ export class Event {
     paymentDue: string;
     paymentDate: Date;
     participants: string[];
+    host: string;
 }

@@ -16,6 +16,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { MyEventsComponent } from './my-events/my-events.component';
 import { PricesComponent } from './prices/prices.component';
 import { PaymentComponent } from './payment/payment.component';
+import { MyEventComponent } from './my-event/my-event.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'my-events', component: MyEventsComponent },
   { path: 'prices', component: PricesComponent },
   { path: 'payment', component: PaymentComponent },
+  { path: 'my-event', component: MyEventComponent },
   {
     path: 'dummy-list',
     component: DummyListComponent,

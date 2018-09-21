@@ -1,0 +1,268 @@
+<app-navbar></app-navbar>
+<h1>Mit Event</h1>
+<mat-card>
+
+    <mat-card>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Hvad & Hvor
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Ændre detaljer ved at klikke på kassen
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                  
+                <form [formGroup]="firstFormGroup">
+                        <mat-form-field>
+                            <input matInput placeholder="Titel" formControlName="eventName" required> <br>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <textarea formControlName="eventDescription" matInput placeholder="Beskrivelse" rows="3"
+                            matTooltip="Du kan trække nede i højre hjørne for at forstørre tekstfeltet"
+                            aria-label="Button that displays a tooltip when focused or hovered over" required></textarea> <br>
+                        </mat-form-field>
+                        <mat-form-field>
+                                <mat-label><fa name="tag"></fa> Kategori</mat-label>
+                                <mat-select formControlName="eventCategory" name="eventCategory" placeholder="Vælg emne" required>
+                                    <mat-option value="Andet">Andet</mat-option>
+                                    <mat-option value="Hjemmehygge">Hjemmehygge</mat-option>
+                                    <mat-option value="Fest i privathjem">Fest i privathjem</mat-option>
+                                    <mat-option value="Fest uden for privaten">Fest uden for privaten</mat-option>
+                                    <mat-option value="For børn">For børn</mat-option>
+                                    <mat-option value="Spis sammen på restaurant">Spis sammen på restaurant</mat-option>
+                                    <mat-option value="Biograf">Biograf</mat-option>
+                                    <mat-option value="KateNaturoplevelsegori">Naturoplevelse</mat-option>
+                                    <mat-option value="Ferie">Ferie</mat-option>
+                                    <mat-option value="Koncert">Koncert</mat-option>
+                                    <mat-option value="Kultur">Kultur</mat-option>
+                                    <mat-option value="Sport">Sport</mat-option>
+                                </mat-select>  <br>
+                        </mat-form-field>
+    
+                        <mat-label><fa name="home"></fa> Adresse</mat-label>
+    
+                        <mat-grid-list cols="3" rowHeight="70px">
+                            <mat-grid-tile>
+                                <mat-form-field>
+                                    <mat-label>Vej</mat-label>
+                                    <input matInput formControlName="eventLocationStreet" placeholder="Vej" required> <br>
+                                </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                    <mat-form-field>
+                                        <mat-label>{{apiZipValue}}</mat-label>
+                                        <input matInput formControlName="eventLocationCity" placeholder="By" readonly
+                                        matTooltip="Dette felt udfyldes automatisk"> <br>
+                                    </mat-form-field>
+                                </mat-grid-tile>
+                                <mat-grid-tile>
+                                        <mat-form-field>
+                                            <mat-label>Post Nr.</mat-label>
+                                            <input (keyup)="lookUpZip($event)" matInput formControlName="eventLocationZip" placeholder="#" required> <br>
+                                        </mat-form-field>
+                                </mat-grid-tile>
+                        </mat-grid-list>
+                    </form>
+                  
+            </mat-expansion-panel>
+
+            <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Hvem
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Ændre detaljer ved at klikke på kassen
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                      
+                    <form [formGroup]="secondFormGroup">
+                            <ng-template matStepLabel>Målgruppe</ng-template>
+                                <mat-label>Kønsfordeling</mat-label> <br>
+                                <mat-radio-group formControlName="eventGender">
+                                    <mat-radio-button name="eventGender" value="Kun for mænd">Kun for mænd</mat-radio-button>
+                                    <mat-radio-button name="eventGender" value="Kun for kvinder">Kun for kvinder</mat-radio-button>
+                                    <mat-radio-button name="eventGender" value="50/50">50/50</mat-radio-button>
+                                </mat-radio-group>
+        
+                                <br> <mat-label>Børn</mat-label> <br>
+                                <mat-radio-group formControlName="eventTargetGroup">
+                                    <mat-radio-button name="eventTargetGroup" value="Kun med børn">Kun med børn</mat-radio-button>
+                                    <mat-radio-button name="eventTargetGroup" value="Kun uden børn">Kun uden børn</mat-radio-button>
+                                    <mat-radio-button name="eventTargetGroup" value="Børn velkomne">Børn velkomne</mat-radio-button>
+                                </mat-radio-group>
+        
+        
+                                <br> <label>Aldersgruppe</label>
+        
+                                <mat-grid-list cols="2" rowHeight=70px>
+                                    <mat-grid-tile>
+                                        <mat-form-field>
+                                            <mat-label>Fra</mat-label>
+                                            <input matInput type="number" min="18" max="98" formControlName="eventMinAge" placeholder="18" required>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field>
+                                            <mat-label>Til</mat-label>
+                                            <input matInput type="number" min="18" max="99" formControlName="eventMaxAge" placeholder="18" required>
+                                        </mat-form-field>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+        
+                                <label>Antal Gæster</label>
+        
+                                <mat-grid-list cols="2" rowHeight=70px>
+                                    <mat-grid-tile>
+                                        <mat-form-field>
+                                            <mat-label>Min</mat-label>
+                                            <input matInput type="number" min="2" max="499" formControlName="eventMinGuests" placeholder="2" required>
+                                        </mat-form-field>
+                                        </mat-grid-tile>
+                                    <mat-grid-tile>
+                                        <mat-form-field>
+                                            <mat-label>Max</mat-label>
+                                            <input matInput type="number" min="2" max="499" formControlName="eventMaxGuests" placeholder="499" required>
+                                        </mat-form-field>
+                                        </mat-grid-tile>
+                                </mat-grid-list>
+        
+                                <mat-label>Tving på venteliste?</mat-label> <br>
+                                <mat-radio-group formControlName="eventQueue">
+                                    <mat-radio-button name="eventQueue" value="Ja">Ja</mat-radio-button>
+                                    <mat-radio-button name="eventQueue" value="Nej">Nej</mat-radio-button>
+                                </mat-radio-group>
+                          </form>
+                      
+                </mat-expansion-panel>
+
+                <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Hvornår
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                Ændre detaljer ved at klikke på kassen
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                          
+                        <form [formGroup]="thirdFormGroup">
+                                <ng-template matStepLabel>Tidspunkt</ng-template>
+                                <label>Dato for eventet</label> <br>
+                                <mat-form-field>
+                                      <input matInput [matDatepicker]="picker" formControlName="eventDate" placeholder="Vælg en dato">
+                                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                      <mat-datepicker #picker></mat-datepicker>
+                                  </mat-form-field>
+      
+                              <br> <label>Tidspunkt for eventet</label> <br>
+                              <mat-grid-list cols="2" rowHeight=70px>
+                                  <mat-grid-tile>
+                                      <mat-form-field>
+                                          <mat-label>Start</mat-label>
+                                          <input matInput type="time" formControlName="eventStartTime" required>
+                                      </mat-form-field>
+                                  </mat-grid-tile>
+                                  <mat-grid-tile>
+                                      <mat-form-field>
+                                          <mat-label>Slut</mat-label>
+                                          <input matInput type="time" formControlName="eventEndTime" required>
+                                      </mat-form-field>
+                                  </mat-grid-tile>
+                              </mat-grid-list>
+      
+                              <label>Tilmeldingsfrist</label> <br>
+                                <mat-form-field>
+                                      <mat-label>Dato</mat-label>
+                                      <input matInput [matDatepicker]="picker2" formControlName="eventDeadlineDate" placeholder="Vælg en deadline">
+                                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                      <mat-datepicker #picker2></mat-datepicker>
+                                  </mat-form-field>
+      
+                                  <br> <label>Tilmeldingsfrist</label> <br>
+                                  <mat-form-field>
+                                      <mat-label>Tid</mat-label>
+                                      <input matInput type="time" formControlName="eventDeadlineTime" required> 
+                                  </mat-form-field>
+ 
+                              </form>
+                          
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Priser
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    Ændre detaljer ved at klikke på kassen
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                              
+                            <form [formGroup]="fourthFormGroup">
+                                    <ng-template matStepLabel>Pris & Betaling</ng-template>
+                                    <mat-form-field>
+                                      <mat-label>Pris</mat-label>
+                                      <input type="number" matInput placeholder="DKK,-" formControlName="eventPrice" required>
+                                    </mat-form-field>
+          
+                                    <mat-form-field>
+                                          <mat-label><fa name="tag"></fa> Betalingsform</mat-label>
+                                          <mat-select formControlName="eventPaymentOption" name="eventPaymentOption" placeholder="Vælg emne" required>
+                                              <mat-option value="Ingen">Ingen</mat-option>
+                                              <mat-option value="Kontant">Kontant</mat-option>
+                                              <mat-option value="Mobilepay">Mobilepay</mat-option>
+                                              <mat-option value="Bankoverførelse">Bankoverførelse</mat-option>
+                                          </mat-select> 
+                                  </mat-form-field>
+          
+                                  <mat-form-field>
+                                          <mat-label><fa name="tag"></fa> Hvornår betales der</mat-label>
+                                          <mat-select (selectionChange)="onItemChange($event.value)" name="eventPaymentDue" formControlName="eventPaymentDue" placeholder="Vælg emne" required>
+                                              <mat-option value="Aldrig">Aldrig</mat-option>
+                                              <mat-option value="Efter en gæst tilmelder sig">Efter en gæst tilmelder sig</mat-option>
+                                              <mat-option value="Kontant ved ankomst på dagen">Kontant ved ankomst på dagen</mat-option>
+                                              <mat-option value="Dato">Dato</mat-option>
+                                          </mat-select> 
+                                  </mat-form-field>
+          
+                                  <label *ngIf="isPaymentDeadlineDate">Dato for betaling</label> <br>
+                                    <mat-form-field *ngIf="isPaymentDeadlineDate">
+                                          <input matInput [matDatepicker]="picker" formControlName="eventDate" placeholder="Vælg en dato">
+                                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                          <mat-datepicker #picker></mat-datepicker>
+                                  </mat-form-field>
+    
+                                  </form>
+                              
+                        </mat-expansion-panel>
+
+                        <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Billede
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                        Ændre detaljer ved at klikke på kassen
+                                    </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                  
+                                <form [formGroup]="fifthFormGroup">
+                                        <ng-template matStepLabel>Billede</ng-template>
+                                        <mat-card>
+                                              <label>Fil</label>
+                                              <input type="file" formControlName="eventFile"
+                                              matTooltip="Dette felt er valgfrit">
+                                        </mat-card>
+                                      </form>
+                                  
+                            </mat-expansion-panel>
+                            <button (click)="onUpdateEvent()" mat-raised-button color="primary">Opdater event</button>
+    </mat-card>
+
+    <mat-card>
+        <p class="center">-- Event wall with messages from users will be here. --</p>
+    </mat-card>
+
+</mat-card>
