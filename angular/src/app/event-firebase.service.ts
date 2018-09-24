@@ -24,12 +24,10 @@ export class EventFirebaseService {
 
   constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase) { }
 
-  getEvents() {
-    this.eventsObservable = this.getList(this.dbPath);
-  }
-
-  getList(listPath): Observable<any[]> {
-    return this.db.list(listPath).valueChanges();
+  getList(listPath): Observable<any> {
+    return this.db.list(this.dbPath).snapshotChanges().map(events => {
+      return events.map(c => ({key: c.payload.key, ...c.payload.val()}))
+    });
   }
 
   getEventByKey(key: string) {
@@ -39,7 +37,9 @@ export class EventFirebaseService {
   getEventsByHost(hostMail: string): Observable<any[]> {
     console.log(hostMail);
     let path = this.dbPath;
-    return this.db.list(path, ref => ref.orderByChild('host').equalTo(hostMail)).valueChanges();
+    return this.db.list(path, ref => ref.orderByChild('host').equalTo(hostMail)).snapshotChanges().map(events => {
+      return events.map(c => ({key: c.payload.key, ...c.payload.val()}));
+    });
   }
 
   insertEvent(event: Event) {
@@ -47,9 +47,9 @@ export class EventFirebaseService {
     this.db.list(this.dbPath).push(event);
   }
 
-  updateEvent(key: string, event: Event) {
+  updateEvent(key: string, e: Event) {
     const eventsRef = this.db.list(this.dbPath);
-    eventsRef.set('key', event);
+    eventsRef.set(key, e);
   }
 
   deleteEvent(key: string) {

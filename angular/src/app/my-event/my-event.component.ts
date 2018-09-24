@@ -32,7 +32,7 @@ export class MyEventComponent implements OnInit {
 
   ngOnInit() {
     this.myEvent = this.efbs.myEventSelection;
-    console.log(this.myEvent);
+    console.log(this.myEvent.key);
     this.firstFormGroup = this._formBuilder.group({
       eventName: ['', Validators.required],
       eventDescription: ['', Validators.required],
@@ -78,12 +78,14 @@ export class MyEventComponent implements OnInit {
 
   onUpdateEvent() {
     let e: Event = this.formDataToModel();
-    this.efbs.insertEvent(e);
+    this.efbs.updateEvent(e.key, e);
+    console.log("Updating");
   } 
 
   formDataToModel(): Event {
     const event = new Event();
-
+    
+    event.key = this.myEvent.key;
     event.name = this.firstFormGroup.value.eventName;
     event.address = new EventAddress(this.firstFormGroup.value.eventLocationStreet, 
       this.apiZipValue, this.firstFormGroup.value.eventLocationZip);
@@ -124,7 +126,6 @@ export class MyEventComponent implements OnInit {
 
   lookUpZip(event) {
     if ( (event.target.value as string).length > 3 ) {
-      console.log("attempting");
       this.geoAPI.getZipFromCity(event.target.value).map(response => response.json()).subscribe(result => this.apiZipValue = result.navn);
     }
   }

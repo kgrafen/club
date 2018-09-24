@@ -48,7 +48,7 @@ export class EventListComponent implements OnInit {
   constructor(private efbs: EventFirebaseService, 
     private mds: MobileDetectorService, private spinner: NgxSpinnerService, 
     private tfs: TableFilterService) {
-    this.efbs.getList(this.efbs.dbPath).subscribe(res => {
+    this.efbs.getList('events').subscribe(res => {
       this.events = res;
       this.dataSource = new MatTableDataSource(this.events);
       this.dataSource.paginator = this.paginator;
