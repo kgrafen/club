@@ -85,6 +85,9 @@ import { PaymentComponent } from './payment/payment.component';
 import { PricesComponent } from './prices/prices.component';
 import { HttpModule } from '@angular/http';
 import { MyEventComponent } from './my-event/my-event.component';
+import { PatchNotesComponent } from './patch-notes/patch-notes.component';
+import { ViewEventComponent } from './view-event/view-event.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -119,9 +122,12 @@ import { MyEventComponent } from './my-event/my-event.component';
     MyEventsComponent,
     PaymentComponent,
     PricesComponent,
-    MyEventComponent
+    MyEventComponent,
+    PatchNotesComponent,
+    ViewEventComponent,
+    ConfirmationDialogComponent
   ],
-  entryComponents: [MobileLoginHeaderComponent],
+  entryComponents: [MobileLoginHeaderComponent, ConfirmationDialogComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),

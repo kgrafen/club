@@ -10,6 +10,7 @@ import { MobileDetectorService } from '../mobile-detector.service';
 export class FooterComponent implements OnInit {
 
   isMobile = false;
+  isDevelopmentBuild = true;
 
   constructor(private mds: MobileDetectorService) { }
 

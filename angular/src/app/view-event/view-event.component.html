@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+<div>
+
+  <mat-grid-list cols="2" rowHeight="1:2">
+    <mat-grid-tile>
+        <mat-card class="innerContainer">
+            <mat-card-title>{{selectedEvent.name}}</mat-card-title>
+            <mat-card-subtitle><fa name="tag"></fa> {{  selectedEvent.category }} <br><br>
+              {{selectedEvent.description}}
+            </mat-card-subtitle>
+            <img src="../../assets/images/event_placeholder.jpg" mat-card-image>
+            <mat-card-content>
+
+              <p><strong>Adresse:</strong><br> {{selectedEvent.address.street}} , {{selectedEvent.address.city}} , {{selectedEvent.address.zip}}</p>
+              <p><strong>Dato</strong><br> Under udvikling</p>
+              <p><strong>Kønsfordeling</strong><br> {{selectedEvent.genderRatio}}</p>
+              <p><strong>Børn</strong><br> {{selectedEvent.targetGroup}}</p>
+              <p><strong>Fra</strong><br> {{selectedEvent.minAge}} til {{selectedEvent.maxAge}}</p>
+              <p><strong>Pladser</strong><br> {{selectedEvent.maxGuests}}</p>
+              <p><strong>Pris</strong><br> {{selectedEvent.price}} DKK</p>
+              <p><strong>Hvordan betales der: </strong><br> {{selectedEvent.paymentOption}}</p>
+              <p><strong>Hvornår betales der:</strong><br> {{selectedEvent.paymentDue}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button *ngIf="!isParticipating" (click)="participationSimulation()" mat-button color="primary">Tilmeld</button>
+              <button *ngIf="isParticipating" (click)="participationSimulation()" mat-button color="warn">Frameld</button>
+            </mat-card-actions>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-card>
+          <mat-tab-group>
+              <mat-tab label="Deltagere">
+                <mat-list>
+                    <mat-list-item *ngFor="let participant of participants">
+                      <button color="primary" mat-button><mat-icon>person</mat-icon>{{ participant}}</button>
+                    </mat-list-item>
+                </mat-list>
+              </mat-tab>
+              <mat-tab label="Venteliste">
+                <mat-list>
+                  <p *ngIf="inQueue.length < 1">Der er ingen på ventelisten.</p>
+                   </mat-list>
+              </mat-tab>
+            </mat-tab-group>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</div>

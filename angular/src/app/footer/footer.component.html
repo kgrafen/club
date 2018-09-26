@@ -7,7 +7,7 @@
                 <ul class="cl-effect-1 list-unstyled quick-links">
                   <li><a [routerLink]="['/']"> Forside </a></li>
                   <li><a [routerLink]="['/about']"> Om </a></li>
-                  <li class="empty">empty</li>
+                  <li *ngIf="isDevelopmentBuild"><a [routerLink]="['/patch-notes']">Patch Notes</a></li>
                   <li class="empty">empty</li>
                 </ul>
               </mat-toolbar-row>

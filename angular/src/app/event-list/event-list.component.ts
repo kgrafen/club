@@ -6,6 +6,8 @@ import { DataSource } from '@angular/cdk/table';
 import { MobileDetectorService } from '../mobile-detector.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TableFilterService } from '../table-filter.service';
+import { Event } from '../entity/event/event.model';
+import { Router, NavigationExtras } from '@angular/router';
 
 export interface EventData {
   name: string;
@@ -15,6 +17,7 @@ export interface EventData {
   targetGroup: boolean;
   available: number;
   category: string;
+  actions: string;
 }
 
 export interface EventDataMobile {
@@ -33,9 +36,9 @@ export class EventListComponent implements OnInit {
   isMobile = false;
 
   dataSource = new MatTableDataSource<EventData>();
-  displayedColumns = ['name', 'address', 'category', 'distance', 'genderRatio', 'targetGroup', 'available'];
+  displayedColumns = ['name', 'address', 'category', 'distance', 'genderRatio', 'targetGroup', 'available', 'actions'];
   dataSourceMobile = new MatTableDataSource<EventDataMobile>();
-  displayedColumnsMobile = ['name', 'address', 'available'];
+  displayedColumnsMobile = ['name', 'address', 'available', 'actions'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -47,7 +50,7 @@ export class EventListComponent implements OnInit {
   
   constructor(private efbs: EventFirebaseService, 
     private mds: MobileDetectorService, private spinner: NgxSpinnerService, 
-    private tfs: TableFilterService) {
+    private tfs: TableFilterService, private router: Router) {
     this.efbs.getList('events').subscribe(res => {
       this.events = res;
       this.dataSource = new MatTableDataSource(this.events);
@@ -79,8 +82,14 @@ export class EventListComponent implements OnInit {
     }
   }
 
-  onRowClick(row) {
-    
+  onViewClick(element) {
+    let e: Event = element;
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "key": e.key
+      }
+    }
+    this.router.navigate(['/view-event'], navigationExtras);
   }
 
 }

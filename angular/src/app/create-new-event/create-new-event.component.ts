@@ -120,7 +120,11 @@ export class CreateNewEventComponent implements OnInit {
     event.queue = this.secondFormGroup.value.eventQueue;
     event.targetGroup = this.secondFormGroup.value.eventTargetGroup;
 
+    event.participants = [{username: this.ufbs.getStorage()._username}];
+
     event.host = this.ufbs.getStorage().email;
+
+    console.log(event.queue);
 
     if (event.hostRating === undefined) {
       event.hostRating = 0;

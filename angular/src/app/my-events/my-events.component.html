@@ -59,7 +59,7 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
             <td mat-cell *matCellDef="let element">
                 <button (click)="onEditClick(element)" routerLink="/my-event" mat-button color="primary">Rediger</button>
-                <button (click)="onDeleteClick(element)" mat-button color="warn">Slet</button>
+                <button (click)="openDialog(element)" mat-button color="warn">Slet</button>
             </td>
           </ng-container>
         

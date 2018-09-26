@@ -3,6 +3,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CookieService } from 'angular2-cookie';
+import { AuthService } from '../auth.service';
+import { UserFirebaseService } from '../user-firebase.service';
 
 @Component({
   selector: 'landing-page',
@@ -11,7 +13,8 @@ import { CookieService } from 'angular2-cookie';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor(private spinner: NgxSpinnerService, private cs: CookieService) { }
+  constructor(private spinner: NgxSpinnerService, private cs: CookieService, 
+    private authService: AuthService, private ufbs: UserFirebaseService) { }
 
   ngOnChanges() {
   
@@ -19,6 +22,7 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit() {
     this.clearCache();
+    //Login validation
   }
 
   onLoading() {

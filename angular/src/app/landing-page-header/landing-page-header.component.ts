@@ -19,6 +19,8 @@ export class LandingPageHeaderComponent implements OnInit {
 
   isMobile = false;
   hide: true;
+  isLoggedOn = false;
+  username: string;
 
   public loginForm = new FormGroup({
     email: new FormControl(''),
@@ -31,17 +33,17 @@ export class LandingPageHeaderComponent implements OnInit {
 
   ngOnInit() {
     this.isMobile = this.mds.check();
-
-    //Login validation
     this.authService.afAuth.auth.onAuthStateChanged(user => {
       if (user) {
+        this.isLoggedOn = true;
+        this.username = user.displayName;
         //First sign in AKA account creation
         if (this.ufbs.getUserByEmail(user.email) === undefined) {
           this.authService.doSocialLoginRegister(user);
         }
         //Nth signin, not first time.
         this.ufbs.getUserByEmail(user.email);
-        this.authService.loginRedirect();
+       // this.authService.loginRedirect();
       }
     });
   }

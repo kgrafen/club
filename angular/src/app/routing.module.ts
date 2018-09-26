@@ -17,6 +17,8 @@ import { MyEventsComponent } from './my-events/my-events.component';
 import { PricesComponent } from './prices/prices.component';
 import { PaymentComponent } from './payment/payment.component';
 import { MyEventComponent } from './my-event/my-event.component';
+import { PatchNotesComponent } from './patch-notes/patch-notes.component';
+import { ViewEventComponent } from './view-event/view-event.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
@@ -34,6 +36,8 @@ const routes: Routes = [
   { path: 'prices', component: PricesComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'my-event', component: MyEventComponent },
+  { path: 'patch-notes', component: PatchNotesComponent },
+  { path: 'view-event', component: ViewEventComponent },
   {
     path: 'dummy-list',
     component: DummyListComponent,

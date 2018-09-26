@@ -16,6 +16,19 @@ button {
     margin: 5px;
 }
 
+.singleton-container {
+    width: 50%;
+}
+
+.singleton {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    top: 75%;
+    transform: translateY(-75%);
+    width: 25%;
+}
+
 .mobileBtn {
     margin-left: auto;
     margin-right: auto;

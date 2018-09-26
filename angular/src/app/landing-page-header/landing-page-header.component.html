@@ -6,7 +6,7 @@
       <div class="col left">
         <a [routerLink]="['/']"><img src="./assets/images/Logo_white.png"></a>
       </div>
-      <div *ngIf="!isMobile" class="col right">
+      <div *ngIf="!isMobile && !isLoggedOn" class="col right">
         <mat-card>
             <form [formGroup]="loginForm">
                 <mat-form-field>
@@ -25,6 +25,11 @@
             </form>
         </mat-card>
       </div>
+
+      <div *ngIf="!isMobile && isLoggedOn" class="col right">
+        <button matTooltip="Logget på som {{username}}" class="singleton" routerLink="/loggedin-dashboard" mat-raised-button>Til Dashboard</button>
+      </div>
+
     </div>
 </div>
 

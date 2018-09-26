@@ -5,11 +5,6 @@ import * as firebase from 'firebase/app';
 
 // Routing
 import { Router} from '@angular/router';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { RoutingModule } from './routing.module';
-import { EventListComponent } from './event-list/event-list.component';
-import { EventFilterComponent } from './event-filter/event-filter.component';
-import { Observable } from 'rxjs';
 
 // Session storage
 import { SessionStorage, SessionStorageService } from 'angular-web-storage'

@@ -3,7 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 import { Observable } from '../../node_modules/rxjs';
-import { AngularFireDatabase, AngularFireList  } from '../../node_modules/angularfire2/database';
+import { AngularFireDatabase, AngularFireList, AngularFireObject  } from '../../node_modules/angularfire2/database';
 import { Time } from '@angular/common';
 import { timestamp } from 'rxjs/internal/operators/timestamp';
 
@@ -30,8 +30,9 @@ export class EventFirebaseService {
     });
   }
 
-  getEventByKey(key: string) {
-    
+  getEventByKey(key: string): AngularFireObject<Event>{
+    const itemPath = this.dbPath + key;
+    return this.db.object(itemPath);
   }
 
   getEventsByHost(hostMail: string): Observable<any[]> {
@@ -58,11 +59,12 @@ export class EventFirebaseService {
   }
 
   joinEvent(key: string, username: string) {
-    this.db.object(this.dbPath+"/"+key+"/participants").update('username');
+    const itemRef = this.db.list(this.dbPath + key + '/participants/');
+    itemRef.push({username: username});
   }
 
   leaveEvent(key: string, username: string) {
-    const itemRef = this.db.object(this.dbPath+"/"+key+"participants/"+username);
+    const itemRef = this.db.object(this.dbPath+"/"+key+"/participants/"+username);
     itemRef.remove();
   }
 

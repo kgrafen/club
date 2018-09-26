@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
 import { Observable } from '../../../node_modules/rxjs';
-import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { DataSource } from '@angular/cdk/table';
 import { EventFirebaseService } from '../event-firebase.service';
 import { MobileDetectorService } from '../mobile-detector.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { UserFirebaseService } from '../user-firebase.service';
 import { Event } from '../entity/event/event.model';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 export interface EventData {
   name: string;
@@ -24,8 +25,6 @@ export interface EventDataMobile {
   available: number;
   actions: string;
 }
-
-
 
 @Component({
   selector: 'my-events',
@@ -47,7 +46,8 @@ export class MyEventsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private efbs: EventFirebaseService, private mds: MobileDetectorService, 
-    private spinner: NgxSpinnerService, private ufbs: UserFirebaseService) {
+    private spinner: NgxSpinnerService, private ufbs: UserFirebaseService, 
+    public dialog: MatDialog) {
       this.efbs.getEventsByHost(this.ufbs.getStorage().email).subscribe(res => {
         this.events = res;
         this.dataSource = new MatTableDataSource(this.events);
@@ -72,7 +72,18 @@ export class MyEventsComponent implements OnInit {
   }
 
   onDeleteClick(element) {
-    console.log("Under development");
+    this.efbs.deleteEvent(element.key);
+  }
+
+  openDialog(element): void {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '400px',
+      data: {key: element.key, buttonNo: "For Guds skyld nej!", buttonYes: "Ja", dialogText: "Er du sikker på at du vil slette dette event?"}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }
