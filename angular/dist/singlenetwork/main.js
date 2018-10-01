@@ -247,64 +247,70 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var angularfire2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! angularfire2 */ "./node_modules/angularfire2/index.js");
-/* harmony import */ var angularfire2_database__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! angularfire2/database */ "./node_modules/angularfire2/database/index.js");
-/* harmony import */ var angularfire2_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! angularfire2/auth */ "./node_modules/angularfire2/auth/index.js");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
-/* harmony import */ var _app_navbar_app_navbar_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app-navbar/app-navbar.component */ "./src/app/app-navbar/app-navbar.component.ts");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
-/* harmony import */ var _dummy_list_dummy_list_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./dummy-list/dummy-list.component */ "./src/app/dummy-list/dummy-list.component.ts");
-/* harmony import */ var _landing_page_landing_page_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./landing-page/landing-page.component */ "./src/app/landing-page/landing-page.component.ts");
-/* harmony import */ var _loggedin_dashboard_loggedin_dashboard_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./loggedin-dashboard/loggedin-dashboard.component */ "./src/app/loggedin-dashboard/loggedin-dashboard.component.ts");
-/* harmony import */ var _footer_footer_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./footer/footer.component */ "./src/app/footer/footer.component.ts");
-/* harmony import */ var _landing_page_header_landing_page_header_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./landing-page-header/landing-page-header.component */ "./src/app/landing-page-header/landing-page-header.component.ts");
-/* harmony import */ var _create_account_form_create_account_form_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./create-account-form/create-account-form.component */ "./src/app/create-account-form/create-account-form.component.ts");
-/* harmony import */ var _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./page-not-found/page-not-found.component */ "./src/app/page-not-found/page-not-found.component.ts");
-/* harmony import */ var _routing_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./routing.module */ "./src/app/routing.module.ts");
-/* harmony import */ var _event_list_event_list_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./event-list/event-list.component */ "./src/app/event-list/event-list.component.ts");
-/* harmony import */ var _event_filter_event_filter_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./event-filter/event-filter.component */ "./src/app/event-filter/event-filter.component.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _create_new_event_create_new_event_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./create-new-event/create-new-event.component */ "./src/app/create-new-event/create-new-event.component.ts");
-/* harmony import */ var _events_events_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./events/events.component */ "./src/app/events/events.component.ts");
-/* harmony import */ var _my_profile_my_profile_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./my-profile/my-profile.component */ "./src/app/my-profile/my-profile.component.ts");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! hammerjs */ "./node_modules/hammerjs/hammer.js");
-/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_25___default = /*#__PURE__*/__webpack_require__.n(hammerjs__WEBPACK_IMPORTED_MODULE_25__);
-/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
-/* harmony import */ var _image_upload_image_upload_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./image-upload/image-upload.component */ "./src/app/image-upload/image-upload.component.ts");
-/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/material/datepicker */ "./node_modules/@angular/material/esm5/datepicker.es5.js");
-/* harmony import */ var mousetrap__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! mousetrap */ "./node_modules/mousetrap/mousetrap.js");
-/* harmony import */ var mousetrap__WEBPACK_IMPORTED_MODULE_29___default = /*#__PURE__*/__webpack_require__.n(mousetrap__WEBPACK_IMPORTED_MODULE_29__);
-/* harmony import */ var angular_modal_gallery__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! angular-modal-gallery */ "./node_modules/angular-modal-gallery/angular-modal-gallery.es5.js");
-/* harmony import */ var _user_image_gallery_user_image_gallery_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./user-image-gallery/user-image-gallery.component */ "./src/app/user-image-gallery/user-image-gallery.component.ts");
-/* harmony import */ var _event_control_menu_event_control_menu_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./event-control-menu/event-control-menu.component */ "./src/app/event-control-menu/event-control-menu.component.ts");
-/* harmony import */ var angular_font_awesome__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! angular-font-awesome */ "./node_modules/angular-font-awesome/dist/angular-font-awesome.es5.js");
-/* harmony import */ var _feedback_feedback_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./feedback/feedback.component */ "./src/app/feedback/feedback.component.ts");
-/* harmony import */ var _about_about_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./about/about.component */ "./src/app/about/about.component.ts");
-/* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./contact/contact.component */ "./src/app/contact/contact.component.ts");
-/* harmony import */ var _terms_of_service_terms_of_service_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./terms-of-service/terms-of-service.component */ "./src/app/terms-of-service/terms-of-service.component.ts");
-/* harmony import */ var _cookies_consent_cookies_consent_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./cookies-consent/cookies-consent.component */ "./src/app/cookies-consent/cookies-consent.component.ts");
-/* harmony import */ var _privacy_policy_privacy_policy_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./privacy-policy/privacy-policy.component */ "./src/app/privacy-policy/privacy-policy.component.ts");
-/* harmony import */ var angular2_cookie_services_cookies_service__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! angular2-cookie/services/cookies.service */ "./node_modules/angular2-cookie/services/cookies.service.js");
-/* harmony import */ var angular2_cookie_services_cookies_service__WEBPACK_IMPORTED_MODULE_40___default = /*#__PURE__*/__webpack_require__.n(angular2_cookie_services_cookies_service__WEBPACK_IMPORTED_MODULE_40__);
-/* harmony import */ var angular_web_storage__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! angular-web-storage */ "./node_modules/angular-web-storage/esm5/web-storage.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_router_testing__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! @angular/router/testing */ "./node_modules/@angular/router/fesm5/testing.js");
-/* harmony import */ var _pipes_active_blocked_pipe__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./pipes/active-blocked.pipe */ "./src/app/pipes/active-blocked.pipe.ts");
-/* harmony import */ var _mobile_login_header_mobile_login_header_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./mobile-login-header/mobile-login-header.component */ "./src/app/mobile-login-header/mobile-login-header.component.ts");
-/* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
-/* harmony import */ var _my_events_my_events_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./my-events/my-events.component */ "./src/app/my-events/my-events.component.ts");
-/* harmony import */ var _payment_payment_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./payment/payment.component */ "./src/app/payment/payment.component.ts");
-/* harmony import */ var _prices_prices_component__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./prices/prices.component */ "./src/app/prices/prices.component.ts");
-/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
-/* harmony import */ var _my_event_my_event_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ./my-event/my-event.component */ "./src/app/my-event/my-event.component.ts");
+/* harmony import */ var _angular_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/http */ "./node_modules/@angular/http/fesm5/http.js");
+/* harmony import */ var angularfire2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! angularfire2 */ "./node_modules/angularfire2/index.js");
+/* harmony import */ var angularfire2_database__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! angularfire2/database */ "./node_modules/angularfire2/database/index.js");
+/* harmony import */ var angularfire2_auth__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! angularfire2/auth */ "./node_modules/angularfire2/auth/index.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _app_navbar_app_navbar_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app-navbar/app-navbar.component */ "./src/app/app-navbar/app-navbar.component.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var _dummy_list_dummy_list_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./dummy-list/dummy-list.component */ "./src/app/dummy-list/dummy-list.component.ts");
+/* harmony import */ var _landing_page_landing_page_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./landing-page/landing-page.component */ "./src/app/landing-page/landing-page.component.ts");
+/* harmony import */ var _loggedin_dashboard_loggedin_dashboard_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./loggedin-dashboard/loggedin-dashboard.component */ "./src/app/loggedin-dashboard/loggedin-dashboard.component.ts");
+/* harmony import */ var _footer_footer_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./footer/footer.component */ "./src/app/footer/footer.component.ts");
+/* harmony import */ var _landing_page_header_landing_page_header_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./landing-page-header/landing-page-header.component */ "./src/app/landing-page-header/landing-page-header.component.ts");
+/* harmony import */ var _create_account_form_create_account_form_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./create-account-form/create-account-form.component */ "./src/app/create-account-form/create-account-form.component.ts");
+/* harmony import */ var _my_event_my_event_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./my-event/my-event.component */ "./src/app/my-event/my-event.component.ts");
+/* harmony import */ var _patch_notes_patch_notes_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./patch-notes/patch-notes.component */ "./src/app/patch-notes/patch-notes.component.ts");
+/* harmony import */ var _view_event_view_event_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./view-event/view-event.component */ "./src/app/view-event/view-event.component.ts");
+/* harmony import */ var _confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./confirmation-dialog/confirmation-dialog.component */ "./src/app/confirmation-dialog/confirmation-dialog.component.ts");
+/* harmony import */ var _rate_event_rate_event_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./rate-event/rate-event.component */ "./src/app/rate-event/rate-event.component.ts");
+/* harmony import */ var _my_events_my_events_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./my-events/my-events.component */ "./src/app/my-events/my-events.component.ts");
+/* harmony import */ var _payment_payment_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./payment/payment.component */ "./src/app/payment/payment.component.ts");
+/* harmony import */ var _prices_prices_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./prices/prices.component */ "./src/app/prices/prices.component.ts");
+/* harmony import */ var _event_list_event_list_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./event-list/event-list.component */ "./src/app/event-list/event-list.component.ts");
+/* harmony import */ var _event_filter_event_filter_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./event-filter/event-filter.component */ "./src/app/event-filter/event-filter.component.ts");
+/* harmony import */ var _create_new_event_create_new_event_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./create-new-event/create-new-event.component */ "./src/app/create-new-event/create-new-event.component.ts");
+/* harmony import */ var _events_events_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./events/events.component */ "./src/app/events/events.component.ts");
+/* harmony import */ var _my_profile_my_profile_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./my-profile/my-profile.component */ "./src/app/my-profile/my-profile.component.ts");
+/* harmony import */ var _image_upload_image_upload_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./image-upload/image-upload.component */ "./src/app/image-upload/image-upload.component.ts");
+/* harmony import */ var _user_image_gallery_user_image_gallery_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./user-image-gallery/user-image-gallery.component */ "./src/app/user-image-gallery/user-image-gallery.component.ts");
+/* harmony import */ var _event_control_menu_event_control_menu_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./event-control-menu/event-control-menu.component */ "./src/app/event-control-menu/event-control-menu.component.ts");
+/* harmony import */ var _feedback_feedback_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./feedback/feedback.component */ "./src/app/feedback/feedback.component.ts");
+/* harmony import */ var _about_about_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./about/about.component */ "./src/app/about/about.component.ts");
+/* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./contact/contact.component */ "./src/app/contact/contact.component.ts");
+/* harmony import */ var _terms_of_service_terms_of_service_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./terms-of-service/terms-of-service.component */ "./src/app/terms-of-service/terms-of-service.component.ts");
+/* harmony import */ var _cookies_consent_cookies_consent_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./cookies-consent/cookies-consent.component */ "./src/app/cookies-consent/cookies-consent.component.ts");
+/* harmony import */ var _privacy_policy_privacy_policy_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./privacy-policy/privacy-policy.component */ "./src/app/privacy-policy/privacy-policy.component.ts");
+/* harmony import */ var _mobile_login_header_mobile_login_header_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./mobile-login-header/mobile-login-header.component */ "./src/app/mobile-login-header/mobile-login-header.component.ts");
+/* harmony import */ var _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./page-not-found/page-not-found.component */ "./src/app/page-not-found/page-not-found.component.ts");
+/* harmony import */ var _routing_module__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./routing.module */ "./src/app/routing.module.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! hammerjs */ "./node_modules/hammerjs/hammer.js");
+/* harmony import */ var hammerjs__WEBPACK_IMPORTED_MODULE_44___default = /*#__PURE__*/__webpack_require__.n(hammerjs__WEBPACK_IMPORTED_MODULE_44__);
+/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm5/tabs.es5.js");
+/* harmony import */ var _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! @angular/material/datepicker */ "./node_modules/@angular/material/esm5/datepicker.es5.js");
+/* harmony import */ var mousetrap__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! mousetrap */ "./node_modules/mousetrap/mousetrap.js");
+/* harmony import */ var mousetrap__WEBPACK_IMPORTED_MODULE_47___default = /*#__PURE__*/__webpack_require__.n(mousetrap__WEBPACK_IMPORTED_MODULE_47__);
+/* harmony import */ var angular_modal_gallery__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! angular-modal-gallery */ "./node_modules/angular-modal-gallery/angular-modal-gallery.es5.js");
+/* harmony import */ var angular_font_awesome__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! angular-font-awesome */ "./node_modules/angular-font-awesome/dist/angular-font-awesome.es5.js");
+/* harmony import */ var angular2_cookie_services_cookies_service__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! angular2-cookie/services/cookies.service */ "./node_modules/angular2-cookie/services/cookies.service.js");
+/* harmony import */ var angular2_cookie_services_cookies_service__WEBPACK_IMPORTED_MODULE_50___default = /*#__PURE__*/__webpack_require__.n(angular2_cookie_services_cookies_service__WEBPACK_IMPORTED_MODULE_50__);
+/* harmony import */ var angular_web_storage__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! angular-web-storage */ "./node_modules/angular-web-storage/esm5/web-storage.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_router_testing__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! @angular/router/testing */ "./node_modules/@angular/router/fesm5/testing.js");
+/* harmony import */ var _pipes_active_blocked_pipe__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./pipes/active-blocked.pipe */ "./src/app/pipes/active-blocked.pipe.ts");
+/* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
+/* harmony import */ var angular_star_rating__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! angular-star-rating */ "./node_modules/angular-star-rating/esm5/angular-star-rating.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -328,13 +334,30 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Forms
 
-
-
-
 // Material and animation
-
 
 
 
@@ -343,15 +366,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 // Modal gallery
  // <------ mandatory dependency for angular-modal-gallery
 
-
-
 // Font Awesome
-
-
-
-
-
-
 
 // Cookies
 
@@ -362,13 +377,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 // Pipes
 
-
 // Spinner
 
-
-
-
-
+//Star Rating
 
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -377,86 +388,91 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"],
-                _app_navbar_app_navbar_component__WEBPACK_IMPORTED_MODULE_7__["AppNavbarComponent"],
-                _dummy_list_dummy_list_component__WEBPACK_IMPORTED_MODULE_9__["DummyListComponent"],
-                _landing_page_landing_page_component__WEBPACK_IMPORTED_MODULE_10__["LandingPageComponent"],
-                _loggedin_dashboard_loggedin_dashboard_component__WEBPACK_IMPORTED_MODULE_11__["LoggedinDashboardComponent"],
-                _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_15__["PageNotFoundComponent"],
-                _footer_footer_component__WEBPACK_IMPORTED_MODULE_12__["FooterComponent"],
-                _event_list_event_list_component__WEBPACK_IMPORTED_MODULE_17__["EventListComponent"],
-                _event_filter_event_filter_component__WEBPACK_IMPORTED_MODULE_18__["EventFilterComponent"],
-                _landing_page_header_landing_page_header_component__WEBPACK_IMPORTED_MODULE_13__["LandingPageHeaderComponent"],
-                _create_account_form_create_account_form_component__WEBPACK_IMPORTED_MODULE_14__["CreateAccountFormComponent"],
-                _create_new_event_create_new_event_component__WEBPACK_IMPORTED_MODULE_20__["CreateNewEventComponent"],
-                _events_events_component__WEBPACK_IMPORTED_MODULE_21__["EventsComponent"],
-                _my_profile_my_profile_component__WEBPACK_IMPORTED_MODULE_22__["MyProfileComponent"],
-                _image_upload_image_upload_component__WEBPACK_IMPORTED_MODULE_27__["ImageUploadComponent"],
-                _user_image_gallery_user_image_gallery_component__WEBPACK_IMPORTED_MODULE_31__["UserImageGalleryComponent"],
-                _event_control_menu_event_control_menu_component__WEBPACK_IMPORTED_MODULE_32__["EventControlMenuComponent"],
-                _feedback_feedback_component__WEBPACK_IMPORTED_MODULE_34__["FeedbackComponent"],
-                _about_about_component__WEBPACK_IMPORTED_MODULE_35__["AboutComponent"],
-                _contact_contact_component__WEBPACK_IMPORTED_MODULE_36__["ContactComponent"],
-                _about_about_component__WEBPACK_IMPORTED_MODULE_35__["AboutComponent"],
-                _contact_contact_component__WEBPACK_IMPORTED_MODULE_36__["ContactComponent"],
-                _feedback_feedback_component__WEBPACK_IMPORTED_MODULE_34__["FeedbackComponent"],
-                _terms_of_service_terms_of_service_component__WEBPACK_IMPORTED_MODULE_37__["TermsOfServiceComponent"],
-                _cookies_consent_cookies_consent_component__WEBPACK_IMPORTED_MODULE_38__["CookiesConsentComponent"],
-                _privacy_policy_privacy_policy_component__WEBPACK_IMPORTED_MODULE_39__["PrivacyPolicyComponent"],
-                _pipes_active_blocked_pipe__WEBPACK_IMPORTED_MODULE_44__["ActiveBlockedPipe"],
-                _mobile_login_header_mobile_login_header_component__WEBPACK_IMPORTED_MODULE_45__["MobileLoginHeaderComponent"],
-                _my_events_my_events_component__WEBPACK_IMPORTED_MODULE_47__["MyEventsComponent"],
-                _payment_payment_component__WEBPACK_IMPORTED_MODULE_48__["PaymentComponent"],
-                _prices_prices_component__WEBPACK_IMPORTED_MODULE_49__["PricesComponent"],
-                _my_event_my_event_component__WEBPACK_IMPORTED_MODULE_51__["MyEventComponent"]
+                _app_navbar_app_navbar_component__WEBPACK_IMPORTED_MODULE_8__["AppNavbarComponent"],
+                _dummy_list_dummy_list_component__WEBPACK_IMPORTED_MODULE_10__["DummyListComponent"],
+                _landing_page_landing_page_component__WEBPACK_IMPORTED_MODULE_11__["LandingPageComponent"],
+                _loggedin_dashboard_loggedin_dashboard_component__WEBPACK_IMPORTED_MODULE_12__["LoggedinDashboardComponent"],
+                _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_39__["PageNotFoundComponent"],
+                _footer_footer_component__WEBPACK_IMPORTED_MODULE_13__["FooterComponent"],
+                _event_list_event_list_component__WEBPACK_IMPORTED_MODULE_24__["EventListComponent"],
+                _event_filter_event_filter_component__WEBPACK_IMPORTED_MODULE_25__["EventFilterComponent"],
+                _landing_page_header_landing_page_header_component__WEBPACK_IMPORTED_MODULE_14__["LandingPageHeaderComponent"],
+                _create_account_form_create_account_form_component__WEBPACK_IMPORTED_MODULE_15__["CreateAccountFormComponent"],
+                _create_new_event_create_new_event_component__WEBPACK_IMPORTED_MODULE_26__["CreateNewEventComponent"],
+                _events_events_component__WEBPACK_IMPORTED_MODULE_27__["EventsComponent"],
+                _my_profile_my_profile_component__WEBPACK_IMPORTED_MODULE_28__["MyProfileComponent"],
+                _image_upload_image_upload_component__WEBPACK_IMPORTED_MODULE_29__["ImageUploadComponent"],
+                _user_image_gallery_user_image_gallery_component__WEBPACK_IMPORTED_MODULE_30__["UserImageGalleryComponent"],
+                _event_control_menu_event_control_menu_component__WEBPACK_IMPORTED_MODULE_31__["EventControlMenuComponent"],
+                _feedback_feedback_component__WEBPACK_IMPORTED_MODULE_32__["FeedbackComponent"],
+                _about_about_component__WEBPACK_IMPORTED_MODULE_33__["AboutComponent"],
+                _contact_contact_component__WEBPACK_IMPORTED_MODULE_34__["ContactComponent"],
+                _about_about_component__WEBPACK_IMPORTED_MODULE_33__["AboutComponent"],
+                _contact_contact_component__WEBPACK_IMPORTED_MODULE_34__["ContactComponent"],
+                _feedback_feedback_component__WEBPACK_IMPORTED_MODULE_32__["FeedbackComponent"],
+                _terms_of_service_terms_of_service_component__WEBPACK_IMPORTED_MODULE_35__["TermsOfServiceComponent"],
+                _cookies_consent_cookies_consent_component__WEBPACK_IMPORTED_MODULE_36__["CookiesConsentComponent"],
+                _privacy_policy_privacy_policy_component__WEBPACK_IMPORTED_MODULE_37__["PrivacyPolicyComponent"],
+                _pipes_active_blocked_pipe__WEBPACK_IMPORTED_MODULE_54__["ActiveBlockedPipe"],
+                _mobile_login_header_mobile_login_header_component__WEBPACK_IMPORTED_MODULE_38__["MobileLoginHeaderComponent"],
+                _my_events_my_events_component__WEBPACK_IMPORTED_MODULE_21__["MyEventsComponent"],
+                _payment_payment_component__WEBPACK_IMPORTED_MODULE_22__["PaymentComponent"],
+                _prices_prices_component__WEBPACK_IMPORTED_MODULE_23__["PricesComponent"],
+                _my_event_my_event_component__WEBPACK_IMPORTED_MODULE_16__["MyEventComponent"],
+                _patch_notes_patch_notes_component__WEBPACK_IMPORTED_MODULE_17__["PatchNotesComponent"],
+                _view_event_view_event_component__WEBPACK_IMPORTED_MODULE_18__["ViewEventComponent"],
+                _confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_19__["ConfirmationDialogComponent"],
+                _rate_event_rate_event_component__WEBPACK_IMPORTED_MODULE_20__["RateEventComponent"]
             ],
-            entryComponents: [_mobile_login_header_mobile_login_header_component__WEBPACK_IMPORTED_MODULE_45__["MobileLoginHeaderComponent"]],
+            entryComponents: [_mobile_login_header_mobile_login_header_component__WEBPACK_IMPORTED_MODULE_38__["MobileLoginHeaderComponent"], _confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_19__["ConfirmationDialogComponent"]],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                angularfire2__WEBPACK_IMPORTED_MODULE_3__["AngularFireModule"].initializeApp(_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].firebase),
-                angularfire2_database__WEBPACK_IMPORTED_MODULE_4__["AngularFireDatabaseModule"],
-                angularfire2_auth__WEBPACK_IMPORTED_MODULE_5__["AngularFireAuthModule"],
-                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_8__["NgbModule"].forRoot(),
-                _routing_module__WEBPACK_IMPORTED_MODULE_16__["RoutingModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_19__["FormsModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_19__["ReactiveFormsModule"],
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_24__["BrowserAnimationsModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatButtonModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatCheckboxModule"],
-                _angular_material_tabs__WEBPACK_IMPORTED_MODULE_26__["MatTabsModule"],
-                angular_modal_gallery__WEBPACK_IMPORTED_MODULE_30__["ModalGalleryModule"].forRoot(),
-                angular_font_awesome__WEBPACK_IMPORTED_MODULE_33__["AngularFontAwesomeModule"],
-                angular_web_storage__WEBPACK_IMPORTED_MODULE_41__["AngularWebStorageModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatProgressBarModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_42__["HttpClientModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatFormFieldModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatCardModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatListModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatIconModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatExpansionModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatInputModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatButtonModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatChipsModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatSelectModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatGridListModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatSliderModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatSlideToggleModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatTableModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatSortModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatPaginatorModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatMenuModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatToolbarModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatTooltipModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatDialogModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatRadioModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatStepperModule"],
-                _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_28__["MatDatepickerModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatNativeDateModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_23__["MatBadgeModule"],
-                _angular_router_testing__WEBPACK_IMPORTED_MODULE_43__["RouterTestingModule"],
-                ngx_spinner__WEBPACK_IMPORTED_MODULE_46__["NgxSpinnerModule"],
-                _angular_http__WEBPACK_IMPORTED_MODULE_50__["HttpModule"]
+                angularfire2__WEBPACK_IMPORTED_MODULE_4__["AngularFireModule"].initializeApp(_environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].firebase),
+                angularfire2_database__WEBPACK_IMPORTED_MODULE_5__["AngularFireDatabaseModule"],
+                angularfire2_auth__WEBPACK_IMPORTED_MODULE_6__["AngularFireAuthModule"],
+                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_9__["NgbModule"].forRoot(),
+                _routing_module__WEBPACK_IMPORTED_MODULE_40__["RoutingModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_41__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_41__["ReactiveFormsModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_43__["BrowserAnimationsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatCheckboxModule"],
+                _angular_material_tabs__WEBPACK_IMPORTED_MODULE_45__["MatTabsModule"],
+                angular_modal_gallery__WEBPACK_IMPORTED_MODULE_48__["ModalGalleryModule"].forRoot(),
+                angular_font_awesome__WEBPACK_IMPORTED_MODULE_49__["AngularFontAwesomeModule"],
+                angular_web_storage__WEBPACK_IMPORTED_MODULE_51__["AngularWebStorageModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatProgressBarModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_52__["HttpClientModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatFormFieldModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatCardModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatListModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatIconModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatExpansionModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatInputModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatChipsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatSelectModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatGridListModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatSliderModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatSlideToggleModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatTableModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatSortModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatPaginatorModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatMenuModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatToolbarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatTooltipModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatDialogModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatRadioModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatStepperModule"],
+                _angular_material_datepicker__WEBPACK_IMPORTED_MODULE_46__["MatDatepickerModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatNativeDateModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatBadgeModule"],
+                _angular_router_testing__WEBPACK_IMPORTED_MODULE_53__["RouterTestingModule"],
+                ngx_spinner__WEBPACK_IMPORTED_MODULE_55__["NgxSpinnerModule"],
+                _angular_http__WEBPACK_IMPORTED_MODULE_3__["HttpModule"],
+                angular_star_rating__WEBPACK_IMPORTED_MODULE_56__["StarRatingModule"]
             ],
-            providers: [angular2_cookie_services_cookies_service__WEBPACK_IMPORTED_MODULE_40__["CookieService"]],
+            providers: [angular2_cookie_services_cookies_service__WEBPACK_IMPORTED_MODULE_50__["CookieService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
         })
     ], AppModule);
@@ -612,6 +628,93 @@ var AuthService = /** @class */ (function () {
             ngx_spinner__WEBPACK_IMPORTED_MODULE_6__["NgxSpinnerService"]])
     ], AuthService);
     return AuthService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/confirmation-dialog/confirmation-dialog.component.css":
+/*!***********************************************************************!*\
+  !*** ./src/app/confirmation-dialog/confirmation-dialog.component.css ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/confirmation-dialog/confirmation-dialog.component.html":
+/*!************************************************************************!*\
+  !*** ./src/app/confirmation-dialog/confirmation-dialog.component.html ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h1 mat-dialog-title>Bekræft</h1>\n<div mat-dialog-content>\n  <p>{{dialogText}}</p>\n</div>\n<div mat-dialog-actions>\n  <button mat-button color=\"primary\" (click)=\"onNoClick()\">{{buttonNo}}</button>\n  <button mat-raised-button color=\"warn\" (click)=\"onYesClick()\" cdkFocusInitial>{{buttonYes}}</button>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/confirmation-dialog/confirmation-dialog.component.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/confirmation-dialog/confirmation-dialog.component.ts ***!
+  \**********************************************************************/
+/*! exports provided: ConfirmationDialogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmationDialogComponent", function() { return ConfirmationDialogComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _event_firebase_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../event-firebase.service */ "./src/app/event-firebase.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+var ConfirmationDialogComponent = /** @class */ (function () {
+    function ConfirmationDialogComponent(dialogRef, data, efbs) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.efbs = efbs;
+        this.key = "";
+        this.buttonNo = this.data.buttonNo;
+        this.buttonYes = this.data.buttonYes;
+        this.dialogText = this.data.dialogText;
+    }
+    ConfirmationDialogComponent.prototype.onNoClick = function () {
+        this.dialogRef.close();
+    };
+    ConfirmationDialogComponent.prototype.onYesClick = function () {
+        if (this.data.key.length > 6) {
+            this.efbs.deleteEvent(this.data.key);
+        }
+        this.onNoClick();
+    };
+    ConfirmationDialogComponent.prototype.ngOnInit = function () {
+    };
+    ConfirmationDialogComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-confirmation-dialog',
+            template: __webpack_require__(/*! ./confirmation-dialog.component.html */ "./src/app/confirmation-dialog/confirmation-dialog.component.html"),
+            styles: [__webpack_require__(/*! ./confirmation-dialog.component.css */ "./src/app/confirmation-dialog/confirmation-dialog.component.css")]
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"], Object, _event_firebase_service__WEBPACK_IMPORTED_MODULE_2__["EventFirebaseService"]])
+    ], ConfirmationDialogComponent);
+    return ConfirmationDialogComponent;
 }());
 
 
@@ -925,7 +1028,7 @@ module.exports = "mat-card {\r\n    \r\n}\r\n\r\nmat-form-field, mat-label {\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n\n<mat-card>\n\n        <mat-horizontal-stepper [linear]=\"isLinear\" #stepper>\n                <mat-step [stepControl]=\"firstFormGroup\">\n                  <form [formGroup]=\"firstFormGroup\">\n                    <ng-template matStepLabel>Hvad & Hvor</ng-template>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Titel\" formControlName=\"eventName\" required>\n                    </mat-form-field>\n                    <mat-form-field>\n                        <textarea formControlName=\"eventDescription\" matInput placeholder=\"Beskrivelse\" rows=\"3\"\n                        matTooltip=\"Du kan trække nede i højre hjørne for at forstørre tekstfeltet\"\n                        aria-label=\"Button that displays a tooltip when focused or hovered over\" required></textarea>\n                    </mat-form-field>\n                    <mat-form-field>\n                            <mat-label><fa name=\"tag\"></fa> Kategori</mat-label>\n                            <mat-select formControlName=\"eventCategory\" name=\"eventCategory\" placeholder=\"Vælg emne\" required>\n                                <mat-option value=\"Andet\">Andet</mat-option>\n                                <mat-option value=\"Hjemmehygge\">Hjemmehygge</mat-option>\n                                <mat-option value=\"Fest i privathjem\">Fest i privathjem</mat-option>\n                                <mat-option value=\"Fest uden for privaten\">Fest uden for privaten</mat-option>\n                                <mat-option value=\"For børn\">For børn</mat-option>\n                                <mat-option value=\"Spis sammen på restaurant\">Spis sammen på restaurant</mat-option>\n                                <mat-option value=\"Biograf\">Biograf</mat-option>\n                                <mat-option value=\"KateNaturoplevelsegori\">Naturoplevelse</mat-option>\n                                <mat-option value=\"Ferie\">Ferie</mat-option>\n                                <mat-option value=\"Koncert\">Koncert</mat-option>\n                                <mat-option value=\"Kultur\">Kultur</mat-option>\n                                <mat-option value=\"Sport\">Sport</mat-option>\n                            </mat-select> \n                    </mat-form-field>\n\n                    <mat-label><fa name=\"home\"></fa> Adresse</mat-label>\n\n                    <mat-grid-list cols=\"3\" rowHeight=\"70px\">\n                        <mat-grid-tile>\n                            <mat-form-field>\n                                <mat-label>Vej</mat-label>\n                                <input matInput formControlName=\"eventLocationStreet\" placeholder=\"Vej\" required>\n                            </mat-form-field>\n                        </mat-grid-tile>\n                        <mat-grid-tile>\n                                <mat-form-field>\n                                    <mat-label>{{apiZipValue}}</mat-label>\n                                    <input matInput formControlName=\"eventLocationCity\" placeholder=\"By\" readonly\n                                    matTooltip=\"Dette felt udfyldes automatisk\">\n                                </mat-form-field>\n                            </mat-grid-tile>\n                            <mat-grid-tile>\n                                    <mat-form-field>\n                                        <mat-label>Post Nr.</mat-label>\n                                        <input (keyup)=\"lookUpZip($event)\" matInput formControlName=\"eventLocationZip\" placeholder=\"#\" required> <br>\n                                    </mat-form-field>\n                            </mat-grid-tile>\n                    </mat-grid-list>\n\n                    <div>\n                      <button mat-raised-button color=\"primary\" matStepperNext>Næste</button>\n                    </div>\n                  </form>\n                </mat-step>\n                <mat-step [stepControl]=\"secondFormGroup\">\n                  <form [formGroup]=\"secondFormGroup\">\n                    <ng-template matStepLabel>Målgruppe</ng-template>\n                        <mat-label>Kønsfordeling</mat-label> <br>\n                        <mat-radio-group formControlName=\"eventGender\">\n                            <mat-radio-button name=\"eventGender\" value=\"Kun for mænd\">Kun for mænd</mat-radio-button>\n                            <mat-radio-button name=\"eventGender\" value=\"Kun for kvinder\">Kun for kvinder</mat-radio-button>\n                            <mat-radio-button name=\"eventGender\" value=\"50/50\">50/50</mat-radio-button>\n                        </mat-radio-group>\n\n                        <br> <mat-label>Børn</mat-label> <br>\n                        <mat-radio-group formControlName=\"eventTargetGroup\">\n                            <mat-radio-button name=\"eventTargetGroup\" value=\"Kun med børn\">Kun med børn</mat-radio-button>\n                            <mat-radio-button name=\"eventTargetGroup\" value=\"Kun uden børn\">Kun uden børn</mat-radio-button>\n                            <mat-radio-button name=\"eventTargetGroup\" value=\"Børn velkomne\">Børn velkomne</mat-radio-button>\n                        </mat-radio-group>\n\n\n                        <br> <label>Aldersgruppe</label>\n\n                        <mat-grid-list cols=\"2\" rowHeight=70px>\n                            <mat-grid-tile>\n                                <mat-form-field>\n                                    <mat-label>Fra</mat-label>\n                                    <input matInput type=\"number\" min=\"18\" max=\"98\" formControlName=\"eventMinAge\" placeholder=\"18\" required>\n                                </mat-form-field>\n                            </mat-grid-tile>\n                            <mat-grid-tile>\n                                <mat-form-field>\n                                    <mat-label>Til</mat-label>\n                                    <input matInput type=\"number\" min=\"18\" max=\"99\" formControlName=\"eventMaxAge\" placeholder=\"18\" required>\n                                </mat-form-field>\n                            </mat-grid-tile>\n                        </mat-grid-list>\n\n                        <label>Antal Gæster</label>\n\n                        <mat-grid-list cols=\"2\" rowHeight=70px>\n                            <mat-grid-tile>\n                                <mat-form-field>\n                                    <mat-label>Min</mat-label>\n                                    <input matInput type=\"number\" min=\"2\" max=\"499\" formControlName=\"eventMinGuests\" placeholder=\"2\" required>\n                                </mat-form-field>\n                                </mat-grid-tile>\n                            <mat-grid-tile>\n                                <mat-form-field>\n                                    <mat-label>Max</mat-label>\n                                    <input matInput type=\"number\" min=\"2\" max=\"499\" formControlName=\"eventMaxGuests\" placeholder=\"499\" required>\n                                </mat-form-field>\n                                </mat-grid-tile>\n                        </mat-grid-list>\n\n                        <mat-label>Tving på venteliste?</mat-label> <br>\n                        <mat-radio-group formControlName=\"eventQueue\">\n                            <mat-radio-button name=\"eventQueue\" value=\"Ja\">Ja</mat-radio-button>\n                            <mat-radio-button name=\"eventQueue\" value=\"Nej\">Nej</mat-radio-button>\n                        </mat-radio-group>\n\n                    <div>\n                      <button mat-button matStepperPrevious>Tilbage</button>\n                      <button mat-raised-button color=\"primary\" matStepperNext>Næste</button>\n                    </div>\n                  </form>\n                </mat-step>\n                <mat-step [stepControl]=\"thirdFormGroup\">\n                        <form [formGroup]=\"thirdFormGroup\">\n                          <ng-template matStepLabel>Tidspunkt</ng-template>\n                          <label>Dato for eventet</label> <br>\n                          <mat-form-field>\n                                <input matInput [matDatepicker]=\"picker\" formControlName=\"eventDate\" placeholder=\"Vælg en dato\">\n                                <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n                                <mat-datepicker #picker></mat-datepicker>\n                            </mat-form-field>\n\n                        <br> <label>Tidspunkt for eventet</label> <br>\n                        <mat-grid-list cols=\"2\" rowHeight=70px>\n                            <mat-grid-tile>\n                                <mat-form-field>\n                                    <mat-label>Start</mat-label>\n                                    <input matInput type=\"time\" formControlName=\"eventStartTime\" required>\n                                </mat-form-field>\n                            </mat-grid-tile>\n                            <mat-grid-tile>\n                                <mat-form-field>\n                                    <mat-label>Slut</mat-label>\n                                    <input matInput type=\"time\" formControlName=\"eventEndTime\" required>\n                                </mat-form-field>\n                            </mat-grid-tile>\n                        </mat-grid-list>\n\n                        <label>Tilmeldingsfrist</label> <br>\n                          <mat-form-field>\n                                <mat-label>Dato</mat-label>\n                                <input matInput [matDatepicker]=\"picker2\" formControlName=\"eventDeadlineDate\" placeholder=\"Vælg en deadline\">\n                                <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\n                                <mat-datepicker #picker2></mat-datepicker>\n                            </mat-form-field>\n\n                            <br> <label>Tilmeldingsfrist</label> <br>\n                            <mat-form-field>\n                                <mat-label>Tid</mat-label>\n                                <input matInput type=\"time\" formControlName=\"eventDeadlineTime\" required> \n                            </mat-form-field>\n                                    \n\n                          <div>\n                            <button mat-button matStepperPrevious>Tilbage</button>\n                            <button mat-raised-button color=\"primary\" matStepperNext>Næste</button>\n                          </div>\n                        </form>\n                </mat-step>\n                <mat-step [stepControl]=\"fourthFormGroup\">\n                        <form [formGroup]=\"fourthFormGroup\">\n                          <ng-template matStepLabel>Pris & Betaling</ng-template>\n                          <mat-form-field>\n                            <mat-label>Pris</mat-label>\n                            <input type=\"number\" matInput placeholder=\"DKK,-\" formControlName=\"eventPrice\" required>\n                          </mat-form-field>\n\n                          <mat-form-field>\n                                <mat-label><fa name=\"tag\"></fa> Betalingsform</mat-label>\n                                <mat-select formControlName=\"eventPaymentOption\" name=\"eventPaymentOption\" placeholder=\"Vælg emne\" required>\n                                    <mat-option value=\"Ingen\">Ingen</mat-option>\n                                    <mat-option value=\"Kontant\">Kontant</mat-option>\n                                    <mat-option value=\"Mobilepay\">Mobilepay</mat-option>\n                                    <mat-option value=\"Bankoverførelse\">Bankoverførelse</mat-option>\n                                </mat-select> \n                        </mat-form-field>\n\n                        <mat-form-field>\n                                <mat-label><fa name=\"tag\"></fa> Hvornår betales der</mat-label>\n                                <mat-select (selectionChange)=\"onItemChange($event.value)\" name=\"eventPaymentDue\" formControlName=\"eventPaymentDue\" placeholder=\"Vælg emne\" required>\n                                    <mat-option value=\"Aldrig\">Aldrig</mat-option>\n                                    <mat-option value=\"Efter en gæst tilmelder sig\">Efter en gæst tilmelder sig</mat-option>\n                                    <mat-option value=\"Kontant ved ankomst på dagen\">Kontant ved ankomst på dagen</mat-option>\n                                    <mat-option value=\"Dato\">Dato</mat-option>\n                                </mat-select> \n                        </mat-form-field>\n\n                        <label *ngIf=\"isPaymentDeadlineDate\">Dato for betaling</label> <br>\n                          <mat-form-field *ngIf=\"isPaymentDeadlineDate\">\n                                <input matInput [matDatepicker]=\"picker\" formControlName=\"eventDate\" placeholder=\"Vælg en dato\">\n                                <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n                                <mat-datepicker #picker></mat-datepicker>\n                        </mat-form-field>\n\n                          <div>\n                            <button mat-button matStepperPrevious>Tilbage</button>\n                            <button mat-raised-button color=\"primary\" matStepperNext>Næste</button>\n                          </div>\n                        </form>\n                </mat-step>\n\n                <mat-step [stepControl]=\"fifthFormGroup\">\n                        <form [formGroup]=\"fifthFormGroup\">\n                          <ng-template matStepLabel>Billede</ng-template>\n                          <mat-card>\n                                <label>Fil</label>\n                                <input type=\"file\" formControlName=\"eventFile\"\n                                matTooltip=\"Dette felt er valgfrit\">\n                          </mat-card>\n                        </form>\n\n                        <div>\n                            <button mat-button matStepperPrevious>Tilbage</button>\n                            <button mat-raised-button color=\"primary\" matStepperNext>Næste</button>\n                        </div>\n                </mat-step>\n\n                <mat-step>\n                  <ng-template matStepLabel>Godkend</ng-template>\n                  Du er nu færdig.\n                  <div>\n                    <button mat-button matStepperPrevious>Tilbage</button>\n                    <button mat-button color=\"warn\" (click)=\"stepper.reset()\">Start forfra</button>\n                    <button (click)=\"onSubmitEvent()\" mat-raised-button color=\"primary\">Opret event</button>\n                  </div>\n                </mat-step>\n              </mat-horizontal-stepper>\n\n    \n</mat-card>\n\n\n<!--\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-xs-12 col-sm-12 col-md-4 well well-sm\">\n                <legend><fa name=\"calendar\"></fa> Nyt Event</legend>\n                <form [formGroup]=\"eventForm\" action=\"#\" method=\"post\" class=\"form\" role=\"form\">\n\n                <input formControlName=\"eventName\" class=\"form-control\" name=\"eventName\" placeholder=\"Navnet på eventet\" type=\"text\" />\n                \n                <textarea formControlName=\"eventDescription\" name=\"message\" id=\"message\" class=\"form-control\" rows=\"9\" cols=\"25\" required=\"required\" placeholder=\"Beskrivelse\"></textarea>\n                \n                <label for=\"eventDate\">\n                Dato start</label>\n                <input formControlName=\"eventDate\" class=\"form-control\" name=\"eventDate\" type=\"date\"/>\n                \n                <label for=\"eventStartTime\">\n                  Tidspunkt\n                </label>\n                <div class=\"row\">\n                    <div class=\"col-xs-4 col-md-6\">\n                        <input formControlName=\"eventStartTime\" type=\"time\" class=\"form-control\" name=\"eventStartTime\"/>\n                    </div>\n\n                    <div class=\"col-xs-4 col-md-6\">\n                        <input formControlName=\"eventEndTime\" type=\"time\" class=\"form-control\" name=\"eventEndTime\"/>\n                    </div>\n                </div>\n                \n                <label>Kategori</label>\n                <div class=\"row\">\n                    <div class=\"col-xs-12 col-md-12\">\n                        <select formControlName=\"eventCategory\" class=\"form-control\">\n                            <option value=\"Kategori\">Vælg</option>\n                            <option value=\"Kategori\">Hjemmehygge</option>\n                            <option value=\"Kategori\">Fest i privathjem</option>\n                            <option value=\"Kategori\">Fest uden for privaten</option>\n                            <option value=\"Kategori\">For børn</option>\n                            <option value=\"Kategori\">Spis sammen på restaurant</option>\n                            <option value=\"Kategori\">Biograf</option>\n                            <option value=\"Kategori\">Naturoplevelse</option>\n                            <option value=\"Kategori\">Ferie</option>\n                            <option value=\"Kategori\">Koncert</option>\n                            <option value=\"Kategori\">Kultur</option>\n                            <option value=\"Kategori\">Sport</option>\n                        </select>\n                    </div>    \n                </div>\n                \n                <label>Målgruppe</label>\n                <div class=\"row\">\n                    <div class=\"col-xs-12 col-md-12\">\n                      <div class=\"form-check form-check-inline\">\n                          <input formControlName=\"eventTargetGroup\" class=\"form-check-input\" type=\"radio\" id=\"childrenRadio1\" name=\"eventTargetGroup\" value=\"Kun med børn\" checked>\n                          <label class=\"form-check-label\" for=\"childrenRadio1\">Kun med børn</label>\n                      </div>\n                      <div class=\"form-check form-check-inline\">\n                          <input formControlName=\"eventTargetGroup\" class=\"form-check-input\" type=\"radio\" id=\"childrenRadio2\" name=\"eventTargetGroup\" value=\"Kun uden børn\">\n                          <label class=\"form-check-label\" for=\"childrenRadio2\">Kun uden børn</label>\n                      </div>\n                      <div class=\"form-check form-check-inline\">\n                          <input formControlName=\"eventTargetGroup\" class=\"form-check-input\" type=\"radio\" id=\"childrenRadio3\" name=\"eventTargetGroup\" value=\"Børn velkomne\">\n                          <label class=\"form-check-label\" for=\"childrenRadio3\">Børn velkomne</label>\n                      </div>\n                    </div>    \n                </div>\n                \n                <label>Aldersgruppe</label>\n                <div class=\"form-row\">\n                      <div class=\"form-group col-md-2\">\n                          \n                      </div>\n                      <div class=\"form-group col-md-4\">\n                          <label class=\"form-check-label\" for=\"minAge\">Fra</label>\n                          <input formControlName=\"eventMinAge\" type=\"number\" id=\"minAge\" name=\"minage\" placeholder=\"18\"/>\n                      </div>\n                      <div class=\"form-group col-md-4\">\n                          <label class=\"form-check-label\" for=\"maxAge\">Til</label>\n                          <input formControlName=\"eventMaxAge\" type=\"number\" id=\"maxAge\" name=\"maxage\" placeholder=\"99\"/>\n                      </div>\n                      <div class=\"form-group col-md-1\">\n                          \n                      </div>\n                </div>\n\n                <label for=\"eventFile\">\n                    Billede</label>\n                <div>\n                    <input formControlName=\"eventFile\" type=\"file\" id=\"eventFile\" name=\"myfile\"/>\n                </div>\n\n                <label for=\"eventDate\">Rating</label>\n                <input formControlName=\"eventHostRating\" class=\"form-control\" name=\"eventDate\" type=\"text\" placeholder=\"2.3\" readonly/>\n\n                <label>Antal gæster</label>\n                <div class=\"form-row\">\n                      <div class=\"form-group col-md-2\">\n                          \n                      </div>\n                      <div class=\"form-group col-md-4\">\n                          <label class=\"form-check-label\" for=\"minGuests\">Min</label>\n                          <input formControlName=\"eventMinGuests\" type=\"number\" id=\"minGuests\" name=\"minguests\" placeholder=\"2\"/>\n                      </div>\n                      <div class=\"form-group col-md-4\">\n                          <label class=\"form-check-label\" for=\"maxGuests\">Max</label>\n                          <input formControlName=\"eventMaxGuests\" type=\"number\" id=\"maxGuests\" name=\"maxguests\" placeholder=\"499\"/>\n                      </div>\n                      <div class=\"form-group col-md-1\">\n                          \n                      </div>\n                </div>\n\n                <label>Deltagerfordeling</label>\n                <div class=\"row\">\n                    <div class=\"col-xs-12 col-md-12\">\n                      <div class=\"form-check form-check-inline\">\n                          <input formControlName=\"eventGender\" class=\"form-check-input\" type=\"radio\" id=\"genderRadio1\" name=\"eventGender\" value=\"50/50\" checked>\n                          <label class=\"form-check-label\" for=\"genderRadio1\">50/50</label>\n                      </div>\n                      <div class=\"form-check form-check-inline\">\n                          <input formControlName=\"eventGender\" class=\"form-check-input\" type=\"radio\" id=\"genderRadio2\" name=\"eventGender\" value=\"Kun for mænd\">\n                          <label class=\"form-check-label\" for=\"genderRadio2\">Kun for mænd</label>\n                      </div>\n                      <div class=\"form-check form-check-inline\">\n                          <input formControlName=\"eventGender\" class=\"form-check-input\" type=\"radio\" id=\"genderRadio3\" name=\"eventGender\" value=\"Kun for kvinder\">\n                          <label class=\"form-check-label\" for=\"genderRadio3\">Kun for kvinder</label>\n                      </div>\n                    </div>    \n                </div>\n\n                <label>Tving på venteliste</label>\n                <div class=\"row\">\n                    <div class=\"col-xs-12 col-md-12\">\n                      <div class=\"form-check form-check-inline\">\n                          <input formControlName=\"eventQueue\" class=\"form-check-input\" type=\"radio\" id=\"queueYes\" name=\"eventQueue\" value=\"ja\">\n                          <label class=\"form-check-label\" for=\"queueYes\">Ja</label>\n                      </div>\n                      <div class=\"form-check form-check-inline\">\n                          <input formControlName=\"eventQueue\" class=\"form-check-input\" type=\"radio\" id=\"queueNo\" name=\"eventQueue\" value=\"nej\" checked>\n                          <label class=\"form-check-label\" for=\"queueNo\">Nej</label>\n                      </div>\n                    </div>    \n                </div>\n                \n\n                <div class=\"form-row\">\n                    <div class=\"col-md-6 mb-3\">\n                      <label for=\"addressRoad\">Vej</label>\n                      <input formControlName=\"eventLocationStreet\" type=\"text\" class=\"form-control\" id=\"addressRoad\" placeholder=\"Vej\" required>\n                      <div class=\"invalid-feedback\">\n                        Please provide a valid city.\n                      </div>\n                    </div>\n                    <div class=\"col-md-3 mb-3\">\n                      <label for=\"addressCity\">By</label>\n                      <input formControlName=\"eventLocationCity\" type=\"text\" class=\"form-control\" id=\"addressCity\" placeholder=\"By\" readonly>\n                      <div class=\"invalid-feedback\">\n                        Please provide a valid state.\n                      </div>\n                    </div>\n                    <div class=\"col-md-3 mb-3\">\n                      <label for=\"addressZip\">Post</label>\n                      <input formControlName=\"eventLocationZip\" type=\"text\" class=\"form-control\" id=\"addressZip\" placeholder=\"Post\" required>\n                      <div class=\"invalid-feedback\">\n                        Please provide a valid zip.\n                      </div>\n                    </div>\n                  </div>\n\n                  <label>Tilmeldingsfrist</label>\n                  <div class=\"form-row\">\n                        <div class=\"form-group col-md-2\">\n                            \n                        </div>\n                        <div class=\"form-group col-md-4\">\n                            <label class=\"form-check-label\" for=\"deadlineDate\">Dato</label>\n                            <input formControlName=\"eventDeadlineDate\" type=\"date\" id=\"deadlineDate\" name=\"deadlinedate\"/>\n                        </div>\n                        <div class=\"form-group col-md-4\">\n                            <label class=\"form-check-label\" for=\"deadlineTime\">Tid</label>\n                            <input formControlName=\"eventDeadlineTime\" type=\"time\" id=\"deadlineTime\" name=\"deadlinetime\"/>\n                        </div>\n                        <div class=\"form-group col-md-1\">\n                            \n                        </div>\n                  </div>\n\n\n                <label for=\"eventDate\">\n                    Pris per person i DKK</label>\n                <input formControlName=\"eventPrice\" class=\"form-control\" name=\"eventDate\" type=\"number\" placeholder=\"0\"/>\n\n                <label>Betalingsform</label>\n                    <div class=\"row\">\n                        <div class=\"col-xs-12 col-md-12\">\n                            <select formControlName=\"eventPaymentOption\" class=\"form-control\">\n                                <option value=\"Kategori\">Ingen</option>\n                                <option value=\"Kategori\">Kontant</option>\n                                <option value=\"Kategori\">Mobilepay</option>\n                                <option value=\"Kategori\">Bankoverførelse</option>\n                            </select>\n                        </div>    \n                    </div>\n\n                    <label>Betalingsfrist</label>\n                    <div class=\"row\">\n                        <div class=\"col-xs-12 col-md-12\">\n                            <select formControlName=\"eventPaymentDue\" class=\"form-control\">\n                                <option value=\"Kategori\">Ingen</option>\n                                <option value=\"Kategori\">Betaling ved tilmelding</option>\n                                <option value=\"Kategori\">Kontant ved ankomst</option>\n                                <option value=\"Kategori\">Dato</option>\n                            </select>\n                        </div>    \n                    </div>\n\n                <label for=\"eventPaymentDate\">\n                    Betalingsfrist</label>\n                <input formControlName=\"eventPaymentDate\" class=\"form-control\" name=\"eventDate\" type=\"date\"/>\n\n                <button (click)=\"onSubmitEvent(eventForm.value)\" class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">\n                    Opret event</button>\n                </form>\n            </div>\n        </div>\n    -->\n"
+module.exports = "<app-navbar></app-navbar>\n\n<mat-card>\n\n        <mat-horizontal-stepper [linear]=\"isLinear\" #stepper>\n                <mat-step [stepControl]=\"firstFormGroup\">\n                  <form [formGroup]=\"firstFormGroup\">\n                    <ng-template matStepLabel>Hvad & Hvor</ng-template>\n                    <mat-form-field>\n                        <input matInput placeholder=\"Titel\" formControlName=\"eventName\" required>\n                    </mat-form-field>\n                    <mat-form-field>\n                        <textarea formControlName=\"eventDescription\" matInput placeholder=\"Beskrivelse\" rows=\"3\"\n                        matTooltip=\"Du kan trække nede i højre hjørne for at forstørre tekstfeltet\"\n                        aria-label=\"Button that displays a tooltip when focused or hovered over\" required></textarea>\n                    </mat-form-field>\n                    <mat-form-field>\n                            <mat-label><fa name=\"tag\"></fa> Kategori</mat-label>\n                            <mat-select formControlName=\"eventCategory\" name=\"eventCategory\" placeholder=\"Vælg emne\" required>\n                                <mat-option value=\"Andet\">Andet</mat-option>\n                                <mat-option value=\"Hjemmehygge\">Hjemmehygge</mat-option>\n                                <mat-option value=\"Fest i privathjem\">Fest i privathjem</mat-option>\n                                <mat-option value=\"Fest uden for privaten\">Fest uden for privaten</mat-option>\n                                <mat-option value=\"For børn\">For børn</mat-option>\n                                <mat-option value=\"Spis sammen på restaurant\">Spis sammen på restaurant</mat-option>\n                                <mat-option value=\"Biograf\">Biograf</mat-option>\n                                <mat-option value=\"KateNaturoplevelsegori\">Naturoplevelse</mat-option>\n                                <mat-option value=\"Ferie\">Ferie</mat-option>\n                                <mat-option value=\"Koncert\">Koncert</mat-option>\n                                <mat-option value=\"Kultur\">Kultur</mat-option>\n                                <mat-option value=\"Sport\">Sport</mat-option>\n                            </mat-select> \n                    </mat-form-field>\n\n                    <mat-label><fa name=\"home\"></fa> Adresse</mat-label>\n\n                    <mat-grid-list cols=\"3\" rowHeight=\"70px\">\n                        <mat-grid-tile>\n                            <mat-form-field>\n                                <mat-label>Vej</mat-label>\n                                <input matInput formControlName=\"eventLocationStreet\" placeholder=\"Vej\" required>\n                            </mat-form-field>\n                        </mat-grid-tile>\n                        <mat-grid-tile>\n                                <mat-form-field>\n                                    <mat-label>{{apiZipValue}}</mat-label>\n                                    <input matInput formControlName=\"eventLocationCity\" placeholder=\"By\" readonly\n                                    matTooltip=\"Dette felt udfyldes automatisk\">\n                                </mat-form-field>\n                            </mat-grid-tile>\n                            <mat-grid-tile>\n                                    <mat-form-field>\n                                        <mat-label>Post Nr.</mat-label>\n                                        <input (keyup)=\"lookUpZip($event)\" matInput formControlName=\"eventLocationZip\" placeholder=\"#\" required> <br>\n                                    </mat-form-field>\n                            </mat-grid-tile>\n                    </mat-grid-list>\n\n                    <div>\n                      <button mat-raised-button color=\"primary\" matStepperNext>Næste</button>\n                    </div>\n                  </form>\n                </mat-step>\n                <mat-step [stepControl]=\"secondFormGroup\">\n                  <form [formGroup]=\"secondFormGroup\">\n                    <ng-template matStepLabel>Målgruppe</ng-template>\n                        <mat-label>Kønsfordeling</mat-label> <br>\n                        <mat-radio-group formControlName=\"eventGender\">\n                            <mat-radio-button name=\"eventGender\" value=\"Kun for mænd\">Kun for mænd</mat-radio-button>\n                            <mat-radio-button name=\"eventGender\" value=\"Kun for kvinder\">Kun for kvinder</mat-radio-button>\n                            <mat-radio-button name=\"eventGender\" value=\"50/50\">50/50</mat-radio-button>\n                        </mat-radio-group>\n\n                        <br> <mat-label>Børn</mat-label> <br>\n                        <mat-radio-group formControlName=\"eventTargetGroup\">\n                            <mat-radio-button name=\"eventTargetGroup\" value=\"Kun med børn\">Kun med børn</mat-radio-button>\n                            <mat-radio-button name=\"eventTargetGroup\" value=\"Kun uden børn\">Kun uden børn</mat-radio-button>\n                            <mat-radio-button name=\"eventTargetGroup\" value=\"Børn velkomne\">Børn velkomne</mat-radio-button>\n                        </mat-radio-group>\n\n\n                        <br> <label>Aldersgruppe</label>\n\n                        <mat-grid-list cols=\"2\" rowHeight=70px>\n                            <mat-grid-tile>\n                                <mat-form-field>\n                                    <mat-label>Fra</mat-label>\n                                    <input matInput type=\"number\" min=\"18\" max=\"98\" formControlName=\"eventMinAge\" placeholder=\"18\" required>\n                                </mat-form-field>\n                            </mat-grid-tile>\n                            <mat-grid-tile>\n                                <mat-form-field>\n                                    <mat-label>Til</mat-label>\n                                    <input matInput type=\"number\" min=\"18\" max=\"99\" formControlName=\"eventMaxAge\" placeholder=\"18\" required>\n                                </mat-form-field>\n                            </mat-grid-tile>\n                        </mat-grid-list>\n\n                        <label>Antal Gæster</label>\n\n                        <mat-grid-list cols=\"2\" rowHeight=70px>\n                            <mat-grid-tile>\n                                <mat-form-field>\n                                    <mat-label>Min</mat-label>\n                                    <input matInput type=\"number\" min=\"2\" max=\"499\" formControlName=\"eventMinGuests\" placeholder=\"2\" required>\n                                </mat-form-field>\n                                </mat-grid-tile>\n                            <mat-grid-tile>\n                                <mat-form-field>\n                                    <mat-label>Max</mat-label>\n                                    <input matInput type=\"number\" min=\"2\" max=\"499\" formControlName=\"eventMaxGuests\" placeholder=\"499\" required>\n                                </mat-form-field>\n                                </mat-grid-tile>\n                        </mat-grid-list>\n\n                        <mat-label>Tving på venteliste?</mat-label> <br>\n                        <mat-radio-group formControlName=\"eventQueue\">\n                            <mat-radio-button value=\"Ja\">Ja</mat-radio-button>\n                            <mat-radio-button value=\"Nej\">Nej</mat-radio-button>\n                        </mat-radio-group>\n\n                    <div>\n                      <button mat-button matStepperPrevious>Tilbage</button>\n                      <button mat-raised-button color=\"primary\" matStepperNext>Næste</button>\n                    </div>\n                  </form>\n                </mat-step>\n                <mat-step [stepControl]=\"thirdFormGroup\">\n                        <form [formGroup]=\"thirdFormGroup\">\n                          <ng-template matStepLabel>Tidspunkt</ng-template>\n                          <label>Dato for eventet</label> <br>\n                          <mat-form-field>\n                                <input matInput [matDatepicker]=\"picker\" formControlName=\"eventDate\" placeholder=\"Vælg en dato\">\n                                <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n                                <mat-datepicker #picker></mat-datepicker>\n                            </mat-form-field>\n\n                        <br> <label>Tidspunkt for eventet</label> <br>\n                        <mat-grid-list cols=\"2\" rowHeight=70px>\n                            <mat-grid-tile>\n                                <mat-form-field>\n                                    <mat-label>Start</mat-label>\n                                    <input matInput type=\"time\" formControlName=\"eventStartTime\" required>\n                                </mat-form-field>\n                            </mat-grid-tile>\n                            <mat-grid-tile>\n                                <mat-form-field>\n                                    <mat-label>Slut</mat-label>\n                                    <input matInput type=\"time\" formControlName=\"eventEndTime\" required>\n                                </mat-form-field>\n                            </mat-grid-tile>\n                        </mat-grid-list>\n\n                        <label>Tilmeldingsfrist</label> <br>\n                          <mat-form-field>\n                                <mat-label>Dato</mat-label>\n                                <input matInput [matDatepicker]=\"picker2\" formControlName=\"eventDeadlineDate\" placeholder=\"Vælg en deadline\">\n                                <mat-datepicker-toggle matSuffix [for]=\"picker2\"></mat-datepicker-toggle>\n                                <mat-datepicker #picker2></mat-datepicker>\n                            </mat-form-field>\n\n                            <br> <label>Tilmeldingsfrist</label> <br>\n                            <mat-form-field>\n                                <mat-label>Tid</mat-label>\n                                <input matInput type=\"time\" formControlName=\"eventDeadlineTime\" required> \n                            </mat-form-field>\n                                    \n\n                          <div>\n                            <button mat-button matStepperPrevious>Tilbage</button>\n                            <button mat-raised-button color=\"primary\" matStepperNext>Næste</button>\n                          </div>\n                        </form>\n                </mat-step>\n                <mat-step [stepControl]=\"fourthFormGroup\">\n                        <form [formGroup]=\"fourthFormGroup\">\n                          <ng-template matStepLabel>Pris & Betaling</ng-template>\n                          <mat-form-field>\n                            <mat-label>Pris</mat-label>\n                            <input type=\"number\" matInput placeholder=\"DKK,-\" formControlName=\"eventPrice\" required>\n                          </mat-form-field>\n\n                          <mat-form-field>\n                                <mat-label><fa name=\"tag\"></fa> Betalingsform</mat-label>\n                                <mat-select formControlName=\"eventPaymentOption\" name=\"eventPaymentOption\" placeholder=\"Vælg emne\" required>\n                                    <mat-option value=\"Ingen\">Ingen</mat-option>\n                                    <mat-option value=\"Kontant\">Kontant</mat-option>\n                                    <mat-option value=\"Mobilepay\">Mobilepay</mat-option>\n                                    <mat-option value=\"Bankoverførelse\">Bankoverførelse</mat-option>\n                                </mat-select> \n                        </mat-form-field>\n\n                        <mat-form-field>\n                                <mat-label><fa name=\"tag\"></fa> Hvornår betales der</mat-label>\n                                <mat-select (selectionChange)=\"onItemChange($event.value)\" name=\"eventPaymentDue\" formControlName=\"eventPaymentDue\" placeholder=\"Vælg emne\" required>\n                                    <mat-option value=\"Aldrig\">Aldrig</mat-option>\n                                    <mat-option value=\"Efter en gæst tilmelder sig\">Efter en gæst tilmelder sig</mat-option>\n                                    <mat-option value=\"Kontant ved ankomst på dagen\">Kontant ved ankomst på dagen</mat-option>\n                                    <mat-option value=\"Dato\">Dato</mat-option>\n                                </mat-select> \n                        </mat-form-field>\n\n                        <label *ngIf=\"isPaymentDeadlineDate\">Dato for betaling</label> <br>\n                          <mat-form-field *ngIf=\"isPaymentDeadlineDate\">\n                                <input matInput [matDatepicker]=\"picker\" formControlName=\"eventDate\" placeholder=\"Vælg en dato\">\n                                <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n                                <mat-datepicker #picker></mat-datepicker>\n                        </mat-form-field>\n\n                          <div>\n                            <button mat-button matStepperPrevious>Tilbage</button>\n                            <button mat-raised-button color=\"primary\" matStepperNext>Næste</button>\n                          </div>\n                        </form>\n                </mat-step>\n\n                <mat-step [stepControl]=\"fifthFormGroup\">\n                        <form [formGroup]=\"fifthFormGroup\">\n                          <ng-template matStepLabel>Billede</ng-template>\n                          <mat-card>\n                                <label>Fil</label>\n                                <input type=\"file\" formControlName=\"eventFile\"\n                                matTooltip=\"Dette felt er valgfrit\">\n                          </mat-card>\n                        </form>\n\n                        <div>\n                            <button mat-button matStepperPrevious>Tilbage</button>\n                            <button mat-raised-button color=\"primary\" matStepperNext>Næste</button>\n                        </div>\n                </mat-step>\n\n                <mat-step>\n                  <ng-template matStepLabel>Godkend</ng-template>\n                  Du er nu færdig.\n                  <div>\n                    <button mat-button matStepperPrevious>Tilbage</button>\n                    <button mat-button color=\"warn\" (click)=\"stepper.reset()\">Start forfra</button>\n                    <button (click)=\"onSubmitEvent()\" mat-raised-button color=\"primary\">Opret event</button>\n                  </div>\n                </mat-step>\n              </mat-horizontal-stepper>\n\n    \n</mat-card>\n\n\n<!--\n    <div class=\"container\">\n        <div class=\"row\">\n            <div class=\"col-xs-12 col-sm-12 col-md-4 well well-sm\">\n                <legend><fa name=\"calendar\"></fa> Nyt Event</legend>\n                <form [formGroup]=\"eventForm\" action=\"#\" method=\"post\" class=\"form\" role=\"form\">\n\n                <input formControlName=\"eventName\" class=\"form-control\" name=\"eventName\" placeholder=\"Navnet på eventet\" type=\"text\" />\n                \n                <textarea formControlName=\"eventDescription\" name=\"message\" id=\"message\" class=\"form-control\" rows=\"9\" cols=\"25\" required=\"required\" placeholder=\"Beskrivelse\"></textarea>\n                \n                <label for=\"eventDate\">\n                Dato start</label>\n                <input formControlName=\"eventDate\" class=\"form-control\" name=\"eventDate\" type=\"date\"/>\n                \n                <label for=\"eventStartTime\">\n                  Tidspunkt\n                </label>\n                <div class=\"row\">\n                    <div class=\"col-xs-4 col-md-6\">\n                        <input formControlName=\"eventStartTime\" type=\"time\" class=\"form-control\" name=\"eventStartTime\"/>\n                    </div>\n\n                    <div class=\"col-xs-4 col-md-6\">\n                        <input formControlName=\"eventEndTime\" type=\"time\" class=\"form-control\" name=\"eventEndTime\"/>\n                    </div>\n                </div>\n                \n                <label>Kategori</label>\n                <div class=\"row\">\n                    <div class=\"col-xs-12 col-md-12\">\n                        <select formControlName=\"eventCategory\" class=\"form-control\">\n                            <option value=\"Kategori\">Vælg</option>\n                            <option value=\"Kategori\">Hjemmehygge</option>\n                            <option value=\"Kategori\">Fest i privathjem</option>\n                            <option value=\"Kategori\">Fest uden for privaten</option>\n                            <option value=\"Kategori\">For børn</option>\n                            <option value=\"Kategori\">Spis sammen på restaurant</option>\n                            <option value=\"Kategori\">Biograf</option>\n                            <option value=\"Kategori\">Naturoplevelse</option>\n                            <option value=\"Kategori\">Ferie</option>\n                            <option value=\"Kategori\">Koncert</option>\n                            <option value=\"Kategori\">Kultur</option>\n                            <option value=\"Kategori\">Sport</option>\n                        </select>\n                    </div>    \n                </div>\n                \n                <label>Målgruppe</label>\n                <div class=\"row\">\n                    <div class=\"col-xs-12 col-md-12\">\n                      <div class=\"form-check form-check-inline\">\n                          <input formControlName=\"eventTargetGroup\" class=\"form-check-input\" type=\"radio\" id=\"childrenRadio1\" name=\"eventTargetGroup\" value=\"Kun med børn\" checked>\n                          <label class=\"form-check-label\" for=\"childrenRadio1\">Kun med børn</label>\n                      </div>\n                      <div class=\"form-check form-check-inline\">\n                          <input formControlName=\"eventTargetGroup\" class=\"form-check-input\" type=\"radio\" id=\"childrenRadio2\" name=\"eventTargetGroup\" value=\"Kun uden børn\">\n                          <label class=\"form-check-label\" for=\"childrenRadio2\">Kun uden børn</label>\n                      </div>\n                      <div class=\"form-check form-check-inline\">\n                          <input formControlName=\"eventTargetGroup\" class=\"form-check-input\" type=\"radio\" id=\"childrenRadio3\" name=\"eventTargetGroup\" value=\"Børn velkomne\">\n                          <label class=\"form-check-label\" for=\"childrenRadio3\">Børn velkomne</label>\n                      </div>\n                    </div>    \n                </div>\n                \n                <label>Aldersgruppe</label>\n                <div class=\"form-row\">\n                      <div class=\"form-group col-md-2\">\n                          \n                      </div>\n                      <div class=\"form-group col-md-4\">\n                          <label class=\"form-check-label\" for=\"minAge\">Fra</label>\n                          <input formControlName=\"eventMinAge\" type=\"number\" id=\"minAge\" name=\"minage\" placeholder=\"18\"/>\n                      </div>\n                      <div class=\"form-group col-md-4\">\n                          <label class=\"form-check-label\" for=\"maxAge\">Til</label>\n                          <input formControlName=\"eventMaxAge\" type=\"number\" id=\"maxAge\" name=\"maxage\" placeholder=\"99\"/>\n                      </div>\n                      <div class=\"form-group col-md-1\">\n                          \n                      </div>\n                </div>\n\n                <label for=\"eventFile\">\n                    Billede</label>\n                <div>\n                    <input formControlName=\"eventFile\" type=\"file\" id=\"eventFile\" name=\"myfile\"/>\n                </div>\n\n                <label for=\"eventDate\">Rating</label>\n                <input formControlName=\"eventHostRating\" class=\"form-control\" name=\"eventDate\" type=\"text\" placeholder=\"2.3\" readonly/>\n\n                <label>Antal gæster</label>\n                <div class=\"form-row\">\n                      <div class=\"form-group col-md-2\">\n                          \n                      </div>\n                      <div class=\"form-group col-md-4\">\n                          <label class=\"form-check-label\" for=\"minGuests\">Min</label>\n                          <input formControlName=\"eventMinGuests\" type=\"number\" id=\"minGuests\" name=\"minguests\" placeholder=\"2\"/>\n                      </div>\n                      <div class=\"form-group col-md-4\">\n                          <label class=\"form-check-label\" for=\"maxGuests\">Max</label>\n                          <input formControlName=\"eventMaxGuests\" type=\"number\" id=\"maxGuests\" name=\"maxguests\" placeholder=\"499\"/>\n                      </div>\n                      <div class=\"form-group col-md-1\">\n                          \n                      </div>\n                </div>\n\n                <label>Deltagerfordeling</label>\n                <div class=\"row\">\n                    <div class=\"col-xs-12 col-md-12\">\n                      <div class=\"form-check form-check-inline\">\n                          <input formControlName=\"eventGender\" class=\"form-check-input\" type=\"radio\" id=\"genderRadio1\" name=\"eventGender\" value=\"50/50\" checked>\n                          <label class=\"form-check-label\" for=\"genderRadio1\">50/50</label>\n                      </div>\n                      <div class=\"form-check form-check-inline\">\n                          <input formControlName=\"eventGender\" class=\"form-check-input\" type=\"radio\" id=\"genderRadio2\" name=\"eventGender\" value=\"Kun for mænd\">\n                          <label class=\"form-check-label\" for=\"genderRadio2\">Kun for mænd</label>\n                      </div>\n                      <div class=\"form-check form-check-inline\">\n                          <input formControlName=\"eventGender\" class=\"form-check-input\" type=\"radio\" id=\"genderRadio3\" name=\"eventGender\" value=\"Kun for kvinder\">\n                          <label class=\"form-check-label\" for=\"genderRadio3\">Kun for kvinder</label>\n                      </div>\n                    </div>    \n                </div>\n\n                <label>Tving på venteliste</label>\n                <div class=\"row\">\n                    <div class=\"col-xs-12 col-md-12\">\n                      <div class=\"form-check form-check-inline\">\n                          <input formControlName=\"eventQueue\" class=\"form-check-input\" type=\"radio\" id=\"queueYes\" name=\"eventQueue\" value=\"ja\">\n                          <label class=\"form-check-label\" for=\"queueYes\">Ja</label>\n                      </div>\n                      <div class=\"form-check form-check-inline\">\n                          <input formControlName=\"eventQueue\" class=\"form-check-input\" type=\"radio\" id=\"queueNo\" name=\"eventQueue\" value=\"nej\" checked>\n                          <label class=\"form-check-label\" for=\"queueNo\">Nej</label>\n                      </div>\n                    </div>    \n                </div>\n                \n\n                <div class=\"form-row\">\n                    <div class=\"col-md-6 mb-3\">\n                      <label for=\"addressRoad\">Vej</label>\n                      <input formControlName=\"eventLocationStreet\" type=\"text\" class=\"form-control\" id=\"addressRoad\" placeholder=\"Vej\" required>\n                      <div class=\"invalid-feedback\">\n                        Please provide a valid city.\n                      </div>\n                    </div>\n                    <div class=\"col-md-3 mb-3\">\n                      <label for=\"addressCity\">By</label>\n                      <input formControlName=\"eventLocationCity\" type=\"text\" class=\"form-control\" id=\"addressCity\" placeholder=\"By\" readonly>\n                      <div class=\"invalid-feedback\">\n                        Please provide a valid state.\n                      </div>\n                    </div>\n                    <div class=\"col-md-3 mb-3\">\n                      <label for=\"addressZip\">Post</label>\n                      <input formControlName=\"eventLocationZip\" type=\"text\" class=\"form-control\" id=\"addressZip\" placeholder=\"Post\" required>\n                      <div class=\"invalid-feedback\">\n                        Please provide a valid zip.\n                      </div>\n                    </div>\n                  </div>\n\n                  <label>Tilmeldingsfrist</label>\n                  <div class=\"form-row\">\n                        <div class=\"form-group col-md-2\">\n                            \n                        </div>\n                        <div class=\"form-group col-md-4\">\n                            <label class=\"form-check-label\" for=\"deadlineDate\">Dato</label>\n                            <input formControlName=\"eventDeadlineDate\" type=\"date\" id=\"deadlineDate\" name=\"deadlinedate\"/>\n                        </div>\n                        <div class=\"form-group col-md-4\">\n                            <label class=\"form-check-label\" for=\"deadlineTime\">Tid</label>\n                            <input formControlName=\"eventDeadlineTime\" type=\"time\" id=\"deadlineTime\" name=\"deadlinetime\"/>\n                        </div>\n                        <div class=\"form-group col-md-1\">\n                            \n                        </div>\n                  </div>\n\n\n                <label for=\"eventDate\">\n                    Pris per person i DKK</label>\n                <input formControlName=\"eventPrice\" class=\"form-control\" name=\"eventDate\" type=\"number\" placeholder=\"0\"/>\n\n                <label>Betalingsform</label>\n                    <div class=\"row\">\n                        <div class=\"col-xs-12 col-md-12\">\n                            <select formControlName=\"eventPaymentOption\" class=\"form-control\">\n                                <option value=\"Kategori\">Ingen</option>\n                                <option value=\"Kategori\">Kontant</option>\n                                <option value=\"Kategori\">Mobilepay</option>\n                                <option value=\"Kategori\">Bankoverførelse</option>\n                            </select>\n                        </div>    \n                    </div>\n\n                    <label>Betalingsfrist</label>\n                    <div class=\"row\">\n                        <div class=\"col-xs-12 col-md-12\">\n                            <select formControlName=\"eventPaymentDue\" class=\"form-control\">\n                                <option value=\"Kategori\">Ingen</option>\n                                <option value=\"Kategori\">Betaling ved tilmelding</option>\n                                <option value=\"Kategori\">Kontant ved ankomst</option>\n                                <option value=\"Kategori\">Dato</option>\n                            </select>\n                        </div>    \n                    </div>\n\n                <label for=\"eventPaymentDate\">\n                    Betalingsfrist</label>\n                <input formControlName=\"eventPaymentDate\" class=\"form-control\" name=\"eventDate\" type=\"date\"/>\n\n                <button (click)=\"onSubmitEvent(eventForm.value)\" class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">\n                    Opret event</button>\n                </form>\n            </div>\n        </div>\n    -->\n"
 
 /***/ }),
 
@@ -1053,7 +1156,9 @@ var CreateNewEventComponent = /** @class */ (function () {
         event.minGuests = this.secondFormGroup.value.eventMinGuests;
         event.queue = this.secondFormGroup.value.eventQueue;
         event.targetGroup = this.secondFormGroup.value.eventTargetGroup;
+        event.participants = [{ username: this.ufbs.getStorage()._username }];
         event.host = this.ufbs.getStorage().email;
+        console.log(event.queue);
         if (event.hostRating === undefined) {
             event.hostRating = 0;
         }
@@ -1270,7 +1375,7 @@ var JsonConverter = /** @class */ (function () {
     JsonConverter.prototype.convertJsonToEventObj = function (json) {
         var obj = JSON.parse(json);
         var event = new _event_event_model__WEBPACK_IMPORTED_MODULE_2__["Event"]();
-        //event.$key = obj.$key;
+        event.key = obj.key;
         event.address = obj.address;
         event.category = obj.category;
         event.dateStart = obj.dateStart;
@@ -1599,6 +1704,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angularfire2_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! angularfire2/auth */ "./node_modules/angularfire2/auth/index.js");
 /* harmony import */ var _node_modules_angularfire2_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/angularfire2/database */ "./node_modules/angularfire2/database/index.js");
 /* harmony import */ var _entity_helper_json_converter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./entity/helper/json-converter */ "./src/app/entity/helper/json-converter.ts");
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1619,36 +1732,40 @@ var EventFirebaseService = /** @class */ (function () {
         this.dbPath = '/events/';
         this.jsonConverter = new _entity_helper_json_converter__WEBPACK_IMPORTED_MODULE_3__["JsonConverter"]();
     }
-    EventFirebaseService.prototype.getEvents = function () {
-        this.eventsObservable = this.getList(this.dbPath);
-    };
     EventFirebaseService.prototype.getList = function (listPath) {
-        return this.db.list(listPath).valueChanges();
+        return this.db.list(this.dbPath).snapshotChanges().map(function (events) {
+            return events.map(function (c) { return (__assign({ key: c.payload.key }, c.payload.val())); });
+        });
     };
     EventFirebaseService.prototype.getEventByKey = function (key) {
+        var itemPath = this.dbPath + key;
+        return this.db.object(itemPath);
     };
     EventFirebaseService.prototype.getEventsByHost = function (hostMail) {
         console.log(hostMail);
         var path = this.dbPath;
-        return this.db.list(path, function (ref) { return ref.orderByChild('host').equalTo(hostMail); }).valueChanges();
+        return this.db.list(path, function (ref) { return ref.orderByChild('host').equalTo(hostMail); }).snapshotChanges().map(function (events) {
+            return events.map(function (c) { return (__assign({ key: c.payload.key }, c.payload.val())); });
+        });
     };
     EventFirebaseService.prototype.insertEvent = function (event) {
         var entry = this.objToJSON(event);
         this.db.list(this.dbPath).push(event);
     };
-    EventFirebaseService.prototype.updateEvent = function (key, event) {
+    EventFirebaseService.prototype.updateEvent = function (key, e) {
         var eventsRef = this.db.list(this.dbPath);
-        eventsRef.set('key', event);
+        eventsRef.set(key, e);
     };
     EventFirebaseService.prototype.deleteEvent = function (key) {
         var itemsRef = this.db.list(this.dbPath);
         itemsRef.remove(key);
     };
     EventFirebaseService.prototype.joinEvent = function (key, username) {
-        this.db.object(this.dbPath + "/" + key + "/participants").update('username');
+        var itemRef = this.db.list(this.dbPath + key + '/participants/');
+        itemRef.push({ username: username });
     };
-    EventFirebaseService.prototype.leaveEvent = function (key, username) {
-        var itemRef = this.db.object(this.dbPath + "/" + key + "participants/" + username);
+    EventFirebaseService.prototype.leaveEvent = function (key, pKey) {
+        var itemRef = this.db.object(this.dbPath + "/" + key + "/participants/" + pKey);
         itemRef.remove();
     };
     EventFirebaseService.prototype.generateNewHashKey = function (username, title) {
@@ -1696,7 +1813,7 @@ module.exports = "mat-form-field {\r\n    width: 100%;\r\n}\r\n\r\nmat-paginator
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<button *ngIf=\"isMobile\" class=\"btnLabel\" mat-raised-button color=\"primary\">Events</button>\n  <mat-form-field id=\"search\" color=\"primary\">\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Søg\">\n  </mat-form-field>\n\n<div class=\"mat-elevation-z8\">\n\n    <table *ngIf=\"!isMobile\" mat-table [dataSource]=\"dataSource\" matSort class=\"mat-elevation-z8\">\n\n        <!--- Note that these columns can be defined in any order.\n              The actual rendered columns are set as a property on the row definition\" -->\n      \n        <!-- Title Column -->\n        <ng-container matColumnDef=\"name\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Event </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.name}} </td>\n        </ng-container>\n      \n        <!-- City Column -->\n        <ng-container matColumnDef=\"address\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> By </th>\n          <td mat-cell *matCellDef=\"let element\">{{element.address.street}}, {{element.address.city}}, {{element.address.zip}}</td>\n        </ng-container>\n\n        <!-- Category Column -->\n        <ng-container matColumnDef=\"category\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Kategori </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.category}} </td>\n        </ng-container>\n      \n        <!-- Distance Column -->\n        <ng-container matColumnDef=\"distance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Afstand </th>\n          <td mat-cell *matCellDef=\"let element\"> {{10+10}} KM </td>\n        </ng-container>\n      \n        <!-- Gender Column -->\n        <ng-container matColumnDef=\"genderRatio\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Kønsfordeling </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.genderRatio}} </td>\n        </ng-container>\n      \n        <!-- Children Column -->\n        <ng-container matColumnDef=\"targetGroup\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Børn </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.targetGroup}} </td>\n        </ng-container>\n      \n        <!-- Participants Column -->\n        <ng-container matColumnDef=\"available\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Pladser </th>\n          <td mat-cell *matCellDef=\"let element\"> Ledig </td>\n        </ng-container>\n      \n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\" (click)=\"onRowClick(row)\"></tr>\n      </table>\n\n    <table *ngIf=\"isMobile\" mat-table [dataSource]=\"dataSourceMobile\" matSort class=\"mat-elevation-z8\">\n\n          <!--- Note that these columns can be defined in any order.\n                The actual rendered columns are set as a property on the row definition\" -->\n        \n          <!-- Title Column -->\n          <ng-container matColumnDef=\"name\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Event </th>\n            <td mat-cell *matCellDef=\"let element\"> {{element.name}} </td>\n          </ng-container>\n        \n          <!-- City Column -->\n          <ng-container matColumnDef=\"address\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> By </th>\n            <td mat-cell *matCellDef=\"let element\"> {{element.address}} </td>\n          </ng-container>\n        \n          <!-- Participants Column -->\n          <ng-container matColumnDef=\"available\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Pladser </th>\n            <td mat-cell *matCellDef=\"let element\"> Ledig </td>\n          </ng-container>\n        \n          <tr mat-header-row *matHeaderRowDef=\"displayedColumnsMobile\"></tr>\n          <tr mat-row *matRowDef=\"let row; columns: displayedColumnsMobile;\" (click)=\"onRowClick(row)\"></tr>\n      </table>\n\n  <mat-paginator *ngIf=\"!isMobile\" [pageSizeOptions]=\"[10, 15, 20, 50, 100]\"></mat-paginator>\n  <mat-paginator *ngIf=\"isMobile\" [pageSizeOptions]=\"[10, 15, 20, 50, 100]\"></mat-paginator>\n  \n</div>\n\n<ngx-spinner\nbdColor = \"rgba(51, 51, 51, 0.8)\"\nsize = \"large\"\ncolor = \"#fff\"\ntype = \"square-loader\">\n</ngx-spinner>\n\n"
+module.exports = "<button *ngIf=\"isMobile\" class=\"btnLabel\" mat-raised-button color=\"primary\">Events</button>\n  <mat-form-field id=\"search\" color=\"primary\">\n      <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Søg\">\n  </mat-form-field>\n\n<div class=\"mat-elevation-z8\">\n\n    <table *ngIf=\"!isMobile\" mat-table [dataSource]=\"dataSource\" matSort class=\"mat-elevation-z8\">\n\n        <!--- Note that these columns can be defined in any order.\n              The actual rendered columns are set as a property on the row definition\" -->\n      \n        <!-- Title Column -->\n        <ng-container matColumnDef=\"name\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Event </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.name}} </td>\n        </ng-container>\n      \n        <!-- City Column -->\n        <ng-container matColumnDef=\"address\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> By </th>\n          <td mat-cell *matCellDef=\"let element\">{{element.address.street}}, {{element.address.city}}, {{element.address.zip}}</td>\n        </ng-container>\n\n        <!-- Category Column -->\n        <ng-container matColumnDef=\"category\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Kategori </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.category}} </td>\n        </ng-container>\n      \n        <!-- Distance Column -->\n        <ng-container matColumnDef=\"distance\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Afstand </th>\n          <td mat-cell *matCellDef=\"let element\"> {{10+10}} KM </td>\n        </ng-container>\n      \n        <!-- Gender Column -->\n        <ng-container matColumnDef=\"genderRatio\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Kønsfordeling </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.genderRatio}} </td>\n        </ng-container>\n      \n        <!-- Children Column -->\n        <ng-container matColumnDef=\"targetGroup\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Børn </th>\n          <td mat-cell *matCellDef=\"let element\"> {{element.targetGroup}} </td>\n        </ng-container>\n      \n        <!-- Participants Column -->\n        <ng-container matColumnDef=\"available\">\n          <th mat-header-cell *matHeaderCellDef mat-sort-header> Pladser </th>\n          <td mat-cell *matCellDef=\"let element\"> Ledig </td>\n        </ng-container>\n\n        <ng-container matColumnDef=\"actions\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>\n            <td mat-cell *matCellDef=\"let element\">\n                <button (click)=\"onViewClick(element)\" mat-button color=\"primary\">Se</button>\n            </td>\n          </ng-container>\n      \n        <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n        <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\" (click)=\"onRowClick(row)\"></tr>\n      </table>\n\n    <table *ngIf=\"isMobile\" mat-table [dataSource]=\"dataSourceMobile\" matSort class=\"mat-elevation-z8\">\n\n          <!--- Note that these columns can be defined in any order.\n                The actual rendered columns are set as a property on the row definition\" -->\n        \n          <!-- Title Column -->\n          <ng-container matColumnDef=\"name\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Event </th>\n            <td mat-cell *matCellDef=\"let element\"> {{element.name}} </td>\n          </ng-container>\n        \n          <!-- City Column -->\n          <ng-container matColumnDef=\"address\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> By </th>\n            <td mat-cell *matCellDef=\"let element\"> {{element.address}} </td>\n          </ng-container>\n        \n          <!-- Participants Column -->\n          <ng-container matColumnDef=\"available\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Pladser </th>\n            <td mat-cell *matCellDef=\"let element\"> Ledig </td>\n          </ng-container>\n        \n          <tr mat-header-row *matHeaderRowDef=\"displayedColumnsMobile\"></tr>\n          <tr mat-row *matRowDef=\"let row; columns: displayedColumnsMobile;\" (click)=\"onRowClick(row)\"></tr>\n      </table>\n\n  <mat-paginator *ngIf=\"!isMobile\" [pageSizeOptions]=\"[10, 15, 20, 50, 100]\"></mat-paginator>\n  <mat-paginator *ngIf=\"isMobile\" [pageSizeOptions]=\"[10, 15, 20, 50, 100]\"></mat-paginator>\n  \n</div>\n\n<ngx-spinner\nbdColor = \"rgba(51, 51, 51, 0.8)\"\nsize = \"large\"\ncolor = \"#fff\"\ntype = \"square-loader\">\n</ngx-spinner>\n\n"
 
 /***/ }),
 
@@ -1718,6 +1835,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mobile_detector_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mobile-detector.service */ "./src/app/mobile-detector.service.ts");
 /* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
 /* harmony import */ var _table_filter_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../table-filter.service */ "./src/app/table-filter.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -1744,20 +1862,22 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var EventListComponent = /** @class */ (function () {
-    function EventListComponent(efbs, mds, spinner, tfs) {
+    function EventListComponent(efbs, mds, spinner, tfs, router) {
         var _this = this;
         this.efbs = efbs;
         this.mds = mds;
         this.spinner = spinner;
         this.tfs = tfs;
+        this.router = router;
         this.isMobile = false;
         this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]();
-        this.displayedColumns = ['name', 'address', 'category', 'distance', 'genderRatio', 'targetGroup', 'available'];
+        this.displayedColumns = ['name', 'address', 'category', 'distance', 'genderRatio', 'targetGroup', 'available', 'actions'];
         this.dataSourceMobile = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]();
-        this.displayedColumnsMobile = ['name', 'address', 'available'];
+        this.displayedColumnsMobile = ['name', 'address', 'available', 'actions'];
         this.events = [];
-        this.efbs.getList(this.efbs.dbPath).subscribe(function (res) {
+        this.efbs.getList('events').subscribe(function (res) {
             _this.events = res;
             _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](_this.events);
             _this.dataSource.paginator = _this.paginator;
@@ -1783,7 +1903,14 @@ var EventListComponent = /** @class */ (function () {
             this.dataSourceMobile.paginator.firstPage();
         }
     };
-    EventListComponent.prototype.onRowClick = function (row) {
+    EventListComponent.prototype.onViewClick = function (element) {
+        var e = element;
+        var navigationExtras = {
+            queryParams: {
+                "key": e.key
+            }
+        };
+        this.router.navigate(['/view-event'], navigationExtras);
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatPaginator"]),
@@ -1801,7 +1928,7 @@ var EventListComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_event_firebase_service__WEBPACK_IMPORTED_MODULE_1__["EventFirebaseService"],
             _mobile_detector_service__WEBPACK_IMPORTED_MODULE_4__["MobileDetectorService"], ngx_spinner__WEBPACK_IMPORTED_MODULE_5__["NgxSpinnerService"],
-            _table_filter_service__WEBPACK_IMPORTED_MODULE_6__["TableFilterService"]])
+            _table_filter_service__WEBPACK_IMPORTED_MODULE_6__["TableFilterService"], _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"]])
     ], EventListComponent);
     return EventListComponent;
 }());
@@ -1998,7 +2125,7 @@ module.exports = "mat-card {\r\n    background-color: #1a1a1a;\r\n\tbottom: 0;\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ### NEW ###-->\n  <mat-card>\n    <mat-grid-list *ngIf=\"!isMobile\" cols=\"3\" rowHeight=\"200px\">\n        <mat-grid-tile>\n            <mat-toolbar-row>\n                <h4>Hurtige links</h4>\n                <ul class=\"cl-effect-1 list-unstyled quick-links\">\n                  <li><a [routerLink]=\"['/']\"> Forside </a></li>\n                  <li><a [routerLink]=\"['/about']\"> Om </a></li>\n                  <li class=\"empty\">empty</li>\n                  <li class=\"empty\">empty</li>\n                </ul>\n              </mat-toolbar-row>\n        </mat-grid-tile>\n        <mat-grid-tile>\n            <mat-toolbar-row>\n                <h4>Feedback</h4>\n                <ul class=\"cl-effect-1 list-unstyled quick-links\">\n                  <li><a [routerLink]=\"['/feedback']\"> Del din historie / Lad os høre din mening </a></li>\n                  <li><a [routerLink]=\"['/contact']\"> Kontakt </a></li>\n                  <li class=\"empty\">empty</li>\n                  <li class=\"empty\">empty</li>\n                </ul>\n              </mat-toolbar-row>\n        </mat-grid-tile>\n        <mat-grid-tile>\n            <mat-toolbar-row>\n                <h4>Privat og vilkår</h4>\n                <ul class=\"cl-effect-1 list-unstyled quick-links\">\n                  <li><a [routerLink]=\"['/privacy-policy']\"> Handelsbetingelser og Privatlivspolitik </a></li>\n                  <li><a [routerLink]=\"['/terms-of-service']\"> Brugsvilkår </a></li>\n                  <li><a [routerLink]=\"['/prices']\"> Priser </a></li>\n                  <li class=\"empty\">empty</li>\n                </ul>\n              </mat-toolbar-row>\n        </mat-grid-tile>\n      </mat-grid-list>\n\n      <mat-list *ngIf=\"isMobile\">\n        <mat-icon [routerLink]=\"['/']\">home</mat-icon>\n        <mat-icon [routerLink]=\"['/about']\">info</mat-icon>\n        <mat-icon [routerLink]=\"['/contact']\">email</mat-icon>\n        <mat-icon [routerLink]=\"['/feedback']\">border_color</mat-icon>\n        <mat-icon [routerLink]=\"['/privacy-policy']\">verified_user</mat-icon>\n        <mat-icon [routerLink]=\"['/terms-of-service']\">gavel</mat-icon>\n        <mat-icon>language</mat-icon>\n        <mat-icon [routerLink]=\"['/prices']\">credit_card</mat-icon>\n      </mat-list>\n\n      <mat-toolbar-row>\n          <p class=\"cl-effect-1 list-unstyled quick-links signature\"><a class=\"text-green ml-2\" [routerLink]=\"['/']\" target=\"_blank\">© 2018  SingleNetværket</a> </p>\n      </mat-toolbar-row>\n\n  </mat-card>\n"
+module.exports = "<!-- ### NEW ###-->\n  <mat-card>\n    <mat-grid-list *ngIf=\"!isMobile\" cols=\"3\" rowHeight=\"200px\">\n        <mat-grid-tile>\n            <mat-toolbar-row>\n                <h4>Hurtige links</h4>\n                <ul class=\"cl-effect-1 list-unstyled quick-links\">\n                  <li><a [routerLink]=\"['/']\"> Forside </a></li>\n                  <li><a [routerLink]=\"['/about']\"> Om </a></li>\n                  <li *ngIf=\"isDevelopmentBuild\"><a [routerLink]=\"['/patch-notes']\">Patch Notes</a></li>\n                  <li class=\"empty\">empty</li>\n                </ul>\n              </mat-toolbar-row>\n        </mat-grid-tile>\n        <mat-grid-tile>\n            <mat-toolbar-row>\n                <h4>Feedback</h4>\n                <ul class=\"cl-effect-1 list-unstyled quick-links\">\n                  <li><a [routerLink]=\"['/feedback']\"> Del din historie / Lad os høre din mening </a></li>\n                  <li><a [routerLink]=\"['/contact']\"> Kontakt </a></li>\n                  <li class=\"empty\">empty</li>\n                  <li class=\"empty\">empty</li>\n                </ul>\n              </mat-toolbar-row>\n        </mat-grid-tile>\n        <mat-grid-tile>\n            <mat-toolbar-row>\n                <h4>Privat og vilkår</h4>\n                <ul class=\"cl-effect-1 list-unstyled quick-links\">\n                  <li><a [routerLink]=\"['/privacy-policy']\"> Handelsbetingelser og Privatlivspolitik </a></li>\n                  <li><a [routerLink]=\"['/terms-of-service']\"> Brugsvilkår </a></li>\n                  <li><a [routerLink]=\"['/prices']\"> Priser </a></li>\n                  <li class=\"empty\">empty</li>\n                </ul>\n              </mat-toolbar-row>\n        </mat-grid-tile>\n      </mat-grid-list>\n\n      <mat-list *ngIf=\"isMobile\">\n        <mat-icon [routerLink]=\"['/']\">home</mat-icon>\n        <mat-icon [routerLink]=\"['/about']\">info</mat-icon>\n        <mat-icon [routerLink]=\"['/contact']\">email</mat-icon>\n        <mat-icon [routerLink]=\"['/feedback']\">border_color</mat-icon>\n        <mat-icon [routerLink]=\"['/privacy-policy']\">verified_user</mat-icon>\n        <mat-icon [routerLink]=\"['/terms-of-service']\">gavel</mat-icon>\n        <mat-icon>language</mat-icon>\n        <mat-icon [routerLink]=\"['/prices']\">credit_card</mat-icon>\n      </mat-list>\n\n      <mat-toolbar-row>\n          <p class=\"cl-effect-1 list-unstyled quick-links signature\"><a class=\"text-green ml-2\" [routerLink]=\"['/']\" target=\"_blank\">© 2018  SingleNetværket</a> </p>\n      </mat-toolbar-row>\n\n  </mat-card>\n"
 
 /***/ }),
 
@@ -2029,6 +2156,7 @@ var FooterComponent = /** @class */ (function () {
     function FooterComponent(mds) {
         this.mds = mds;
         this.isMobile = false;
+        this.isDevelopmentBuild = true;
     }
     FooterComponent.prototype.ngOnInit = function () {
         this.isMobile = this.mds.check();
@@ -2182,7 +2310,7 @@ var ImageUploadComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "mat-card {\r\n    position: absolute;\r\n    bottom: 0;\r\n    left: 0;\r\n    margin: 30px;\r\n    border-radius: 0px;\r\n    width: 90%;\r\n    height: 60%;\r\n}\r\n\r\nmat-form-field {\r\n    margin: 10px;\r\n}\r\n\r\nbutton {\r\n    margin: 5px;\r\n}\r\n\r\n.mobileBtn {\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display: block;\r\n    width:50%;\r\n    margin-top: 5px;\r\n    margin-bottom: 5px;\r\n}\r\n\r\n.center {\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display: block;\r\n    width: 50%;\r\n    margin-bottom: 20px;\r\n}\r\n\r\nform {\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display: block;\r\n    width: 100%;\r\n}\r\n\r\nimg {\r\n    width:50%;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display:block;\r\n}\r\n\r\ndiv > form {\r\n    margin-top:12.5%;\r\n    display: inline-block;\r\n}\r\n\r\na {\r\n    background-color: transparent;\r\n    border-color: snow;\r\n    color: snow;\r\n}\r\n\r\n.col {\r\n    padding: 10px;\r\n    color: snow;\r\n}\r\n\r\n.mobile {\r\n    display:none;\r\n}\r\n\r\n@media only screen and (max-width: 600px) {\r\n\r\n    div .left {\r\n        display:none;\r\n    }\r\n\r\n    .mobile {\r\n        display: block;\r\n    }\r\n}"
+module.exports = "mat-card {\r\n    position: absolute;\r\n    bottom: 0;\r\n    left: 0;\r\n    margin: 30px;\r\n    border-radius: 0px;\r\n    width: 90%;\r\n    height: 60%;\r\n}\r\n\r\nmat-form-field {\r\n    margin: 10px;\r\n}\r\n\r\nbutton {\r\n    margin: 5px;\r\n}\r\n\r\n.singleton-container {\r\n    width: 50%;\r\n}\r\n\r\n.singleton {\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display: block;\r\n    top: 75%;\r\n    -webkit-transform: translateY(-75%);\r\n            transform: translateY(-75%);\r\n    width: 25%;\r\n}\r\n\r\n.mobileBtn {\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display: block;\r\n    width:50%;\r\n    margin-top: 5px;\r\n    margin-bottom: 5px;\r\n}\r\n\r\n.center {\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display: block;\r\n    width: 50%;\r\n    margin-bottom: 20px;\r\n}\r\n\r\nform {\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display: block;\r\n    width: 100%;\r\n}\r\n\r\nimg {\r\n    width:50%;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display:block;\r\n}\r\n\r\ndiv > form {\r\n    margin-top:12.5%;\r\n    display: inline-block;\r\n}\r\n\r\na {\r\n    background-color: transparent;\r\n    border-color: snow;\r\n    color: snow;\r\n}\r\n\r\n.col {\r\n    padding: 10px;\r\n    color: snow;\r\n}\r\n\r\n.mobile {\r\n    display:none;\r\n}\r\n\r\n@media only screen and (max-width: 600px) {\r\n\r\n    div .left {\r\n        display:none;\r\n    }\r\n\r\n    .mobile {\r\n        display: block;\r\n    }\r\n}"
 
 /***/ }),
 
@@ -2193,7 +2321,7 @@ module.exports = "mat-card {\r\n    position: absolute;\r\n    bottom: 0;\r\n   
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!isMobile\" class=\"container\">\n\n    <a [routerLink]=\"['/']\"><img class=\"mobile\" src=\"./assets/images/Logo_white.png\"></a>\n\n    <div class=\"row\">\n      <div class=\"col left\">\n        <a [routerLink]=\"['/']\"><img src=\"./assets/images/Logo_white.png\"></a>\n      </div>\n      <div *ngIf=\"!isMobile\" class=\"col right\">\n        <mat-card>\n            <form [formGroup]=\"loginForm\">\n                <mat-form-field>\n                    <mat-label>Email</mat-label>\n                    <input formControlName=\"email\" name=\"email\" matInput placeholder=\"email\" autofocus>\n                </mat-form-field>\n                \n                <mat-form-field>\n                    <mat-label>Password</mat-label>\n                    <input formControlName=\"password\" name=\"password\" matInput placeholder=\"password\" type=\"password\">\n                </mat-form-field>\n    \n                <button (click)=\"tryLogin(loginForm.value)\" mat-raised-button>Login</button>\n                <button (click)=\"tryFacebookLogin()\" mat-raised-button color=\"primary\">Login med Facebook</button>\n                <button (click)=\"tryGoogleLogin()\" mat-raised-button color=\"accent\">Login med Google</button>\n            </form>\n        </mat-card>\n      </div>\n    </div>\n</div>\n\n<div *ngIf=\"isMobile\">\n\n  <a [routerLink]=\"['/']\"><img class=\"mobile\" src=\"./assets/images/Logo_white.png\"></a>\n  \n  <button class=\"mobileBtn\" mat-raised-button (click)=\"openDialog()\">Login</button>\n  <button class=\"mobileBtn\" (click)=\"tryFacebookLogin()\" mat-raised-button color=\"primary\">Login med Facebook</button>\n  <button class=\"mobileBtn\" (click)=\"tryGoogleLogin()\" mat-raised-button color=\"accent\">Login med Google</button>\n      \n</div>\n\n<ngx-spinner\nbdColor = \"rgba(51, 51, 51, 0.8)\"\nsize = \"large\"\ncolor = \"#fff\"\ntype = \"square-loader\">\n</ngx-spinner>"
+module.exports = "<div *ngIf=\"!isMobile\" class=\"container\">\n\n    <a [routerLink]=\"['/']\"><img class=\"mobile\" src=\"./assets/images/Logo_white.png\"></a>\n\n    <div class=\"row\">\n      <div class=\"col left\">\n        <a [routerLink]=\"['/']\"><img src=\"./assets/images/Logo_white.png\"></a>\n      </div>\n      <div *ngIf=\"!isMobile && !isLoggedOn\" class=\"col right\">\n        <mat-card>\n            <form [formGroup]=\"loginForm\">\n                <mat-form-field>\n                    <mat-label>Email</mat-label>\n                    <input formControlName=\"email\" name=\"email\" matInput placeholder=\"email\" autofocus>\n                </mat-form-field>\n                \n                <mat-form-field>\n                    <mat-label>Password</mat-label>\n                    <input formControlName=\"password\" name=\"password\" matInput placeholder=\"password\" type=\"password\">\n                </mat-form-field>\n    \n                <button (click)=\"tryLogin(loginForm.value)\" mat-raised-button>Login</button>\n                <button (click)=\"tryFacebookLogin()\" mat-raised-button color=\"primary\">Login med Facebook</button>\n                <button (click)=\"tryGoogleLogin()\" mat-raised-button color=\"accent\">Login med Google</button>\n            </form>\n        </mat-card>\n      </div>\n\n      <div *ngIf=\"!isMobile && isLoggedOn\" class=\"col right\">\n        <button matTooltip=\"Logget på som {{username}}\" class=\"singleton\" routerLink=\"/loggedin-dashboard\" mat-raised-button>Til Dashboard</button>\n      </div>\n\n    </div>\n</div>\n\n<div *ngIf=\"isMobile\">\n\n  <a [routerLink]=\"['/']\"><img class=\"mobile\" src=\"./assets/images/Logo_white.png\"></a>\n  \n  <button class=\"mobileBtn\" mat-raised-button (click)=\"openDialog()\">Login</button>\n  <button class=\"mobileBtn\" (click)=\"tryFacebookLogin()\" mat-raised-button color=\"primary\">Login med Facebook</button>\n  <button class=\"mobileBtn\" (click)=\"tryGoogleLogin()\" mat-raised-button color=\"accent\">Login med Google</button>\n      \n</div>\n\n<ngx-spinner\nbdColor = \"rgba(51, 51, 51, 0.8)\"\nsize = \"large\"\ncolor = \"#fff\"\ntype = \"square-loader\">\n</ngx-spinner>"
 
 /***/ }),
 
@@ -2240,6 +2368,7 @@ var LandingPageHeaderComponent = /** @class */ (function () {
         this.spinner = spinner;
         this.ufbs = ufbs;
         this.isMobile = false;
+        this.isLoggedOn = false;
         this.loginForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
             email: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](''),
             password: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('')
@@ -2248,16 +2377,17 @@ var LandingPageHeaderComponent = /** @class */ (function () {
     LandingPageHeaderComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.isMobile = this.mds.check();
-        //Login validation
         this.authService.afAuth.auth.onAuthStateChanged(function (user) {
             if (user) {
+                _this.isLoggedOn = true;
+                _this.username = user.displayName;
                 //First sign in AKA account creation
                 if (_this.ufbs.getUserByEmail(user.email) === undefined) {
                     _this.authService.doSocialLoginRegister(user);
                 }
                 //Nth signin, not first time.
                 _this.ufbs.getUserByEmail(user.email);
-                _this.authService.loginRedirect();
+                // this.authService.loginRedirect();
             }
         });
     };
@@ -2336,6 +2466,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
 /* harmony import */ var angular2_cookie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! angular2-cookie */ "./node_modules/angular2-cookie/core.js");
 /* harmony import */ var angular2_cookie__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(angular2_cookie__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+/* harmony import */ var _user_firebase_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../user-firebase.service */ "./src/app/user-firebase.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2348,15 +2480,20 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var LandingPageComponent = /** @class */ (function () {
-    function LandingPageComponent(spinner, cs) {
+    function LandingPageComponent(spinner, cs, authService, ufbs) {
         this.spinner = spinner;
         this.cs = cs;
+        this.authService = authService;
+        this.ufbs = ufbs;
     }
     LandingPageComponent.prototype.ngOnChanges = function () {
     };
     LandingPageComponent.prototype.ngOnInit = function () {
         this.clearCache();
+        //Login validation
     };
     LandingPageComponent.prototype.onLoading = function () {
         this.spinner.show();
@@ -2384,7 +2521,7 @@ var LandingPageComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./landing-page.component.html?v=${new Date().getTime()} */ "./src/app/landing-page/landing-page.component.html?v=${new Date().getTime()}"),
             styles: [__webpack_require__(/*! ./landing-page.component.css?v=${new Date().getTime()} */ "./src/app/landing-page/landing-page.component.css?v=${new Date().getTime()}")]
         }),
-        __metadata("design:paramtypes", [ngx_spinner__WEBPACK_IMPORTED_MODULE_1__["NgxSpinnerService"], typeof (_a = typeof angular2_cookie__WEBPACK_IMPORTED_MODULE_2__["CookieService"] !== "undefined" && angular2_cookie__WEBPACK_IMPORTED_MODULE_2__["CookieService"]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [ngx_spinner__WEBPACK_IMPORTED_MODULE_1__["NgxSpinnerService"], typeof (_a = typeof angular2_cookie__WEBPACK_IMPORTED_MODULE_2__["CookieService"] !== "undefined" && angular2_cookie__WEBPACK_IMPORTED_MODULE_2__["CookieService"]) === "function" && _a || Object, _auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"], _user_firebase_service__WEBPACK_IMPORTED_MODULE_4__["UserFirebaseService"]])
     ], LandingPageComponent);
     return LandingPageComponent;
     var _a;
@@ -2696,7 +2833,7 @@ var MyEventComponent = /** @class */ (function () {
     }
     MyEventComponent.prototype.ngOnInit = function () {
         this.myEvent = this.efbs.myEventSelection;
-        console.log(this.myEvent);
+        console.log(this.myEvent.key);
         this.firstFormGroup = this._formBuilder.group({
             eventName: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             eventDescription: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
@@ -2741,10 +2878,12 @@ var MyEventComponent = /** @class */ (function () {
     };
     MyEventComponent.prototype.onUpdateEvent = function () {
         var e = this.formDataToModel();
-        this.efbs.insertEvent(e);
+        this.efbs.updateEvent(e.key, e);
+        console.log("Updating");
     };
     MyEventComponent.prototype.formDataToModel = function () {
         var event = new _entity_event_event_model__WEBPACK_IMPORTED_MODULE_1__["Event"]();
+        event.key = this.myEvent.key;
         event.name = this.firstFormGroup.value.eventName;
         event.address = new _entity_helper_EventAddress__WEBPACK_IMPORTED_MODULE_7__["EventAddress"](this.firstFormGroup.value.eventLocationStreet, this.apiZipValue, this.firstFormGroup.value.eventLocationZip);
         event.category = this.firstFormGroup.value.eventCategory;
@@ -2777,7 +2916,6 @@ var MyEventComponent = /** @class */ (function () {
     MyEventComponent.prototype.lookUpZip = function (event) {
         var _this = this;
         if (event.target.value.length > 3) {
-            console.log("attempting");
             this.geoAPI.getZipFromCity(event.target.value).map(function (response) { return response.json(); }).subscribe(function (result) { return _this.apiZipValue = result.navn; });
         }
     };
@@ -2816,7 +2954,7 @@ module.exports = "table {\r\n    width: 100%;\r\n}\r\n\r\nh1 {\r\n    text-align
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<h1>Mine events</h1>\n<mat-card>\n    <button *ngIf=\"isMobile\" class=\"btnLabel\" mat-raised-button color=\"primary\">Events</button>\n    <mat-form-field id=\"search\" color=\"primary\">\n        <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Søg\">\n    </mat-form-field>\n  \n  <div class=\"mat-elevation-z8\">\n  \n      <table *ngIf=\"!isMobile\" mat-table [dataSource]=\"dataSource\" matSort class=\"mat-elevation-z8\">\n  \n          <!--- Note that these columns can be defined in any order.\n                The actual rendered columns are set as a property on the row definition\" -->\n        \n          <!-- Title Column -->\n          <ng-container matColumnDef=\"name\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Event </th>\n            <td mat-cell *matCellDef=\"let element\"> {{element.name}} </td>\n          </ng-container>\n        \n          <!-- City Column -->\n          <ng-container matColumnDef=\"address\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> By </th>\n            <td mat-cell *matCellDef=\"let element\">{{element.address.street}}, {{element.address.city}}, {{element.address.zip}}</td>\n          </ng-container>\n  \n          <!-- Category Column -->\n          <ng-container matColumnDef=\"category\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Kategori </th>\n            <td mat-cell *matCellDef=\"let element\"> {{element.category}} </td>\n          </ng-container>\n        \n          <!-- Distance Column -->\n          <ng-container matColumnDef=\"distance\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Afstand </th>\n            <td mat-cell *matCellDef=\"let element\"> {{10+10}} KM </td>\n          </ng-container>\n        \n          <!-- Gender Column -->\n          <ng-container matColumnDef=\"genderRatio\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Kønsfordeling </th>\n            <td mat-cell *matCellDef=\"let element\"> {{element.genderRatio}} </td>\n          </ng-container>\n        \n          <!-- Children Column -->\n          <ng-container matColumnDef=\"targetGroup\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Børn </th>\n            <td mat-cell *matCellDef=\"let element\"> {{element.targetGroup}} </td>\n          </ng-container>\n        \n          <!-- Participants Column -->\n          <ng-container matColumnDef=\"available\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Pladser </th>\n            <td mat-cell *matCellDef=\"let element\"> Ledig </td>\n          </ng-container>\n\n          <ng-container matColumnDef=\"actions\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>\n            <td mat-cell *matCellDef=\"let element\">\n                <button (click)=\"onEditClick(element)\" routerLink=\"/my-event\" mat-button color=\"primary\">Rediger</button>\n                <button (click)=\"onDeleteClick(element)\" mat-button color=\"warn\">Slet</button>\n            </td>\n          </ng-container>\n        \n          <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n          <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n        </table>\n  \n      <table *ngIf=\"isMobile\" mat-table [dataSource]=\"dataSourceMobile\" matSort class=\"mat-elevation-z8\">\n  \n            <!--- Note that these columns can be defined in any order.\n                  The actual rendered columns are set as a property on the row definition\" -->\n          \n            <!-- Title Column -->\n            <ng-container matColumnDef=\"name\">\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> Event </th>\n              <td mat-cell *matCellDef=\"let element\"> {{element.name}} </td>\n            </ng-container>\n          \n            <!-- City Column -->\n            <ng-container matColumnDef=\"address\">\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> By </th>\n              <td mat-cell *matCellDef=\"let element\"> {{element.address}} </td>\n            </ng-container>\n          \n            <!-- Participants Column -->\n            <ng-container matColumnDef=\"available\">\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> Pladser </th>\n              <td mat-cell *matCellDef=\"let element\"> Ledig </td>\n            </ng-container>\n          \n            <tr mat-header-row *matHeaderRowDef=\"displayedColumnsMobile\"></tr>\n            <tr mat-row *matRowDef=\"let row; columns: displayedColumnsMobile;\" (click)=\"onRowClick(row)\"></tr>\n        </table>\n  \n    <mat-paginator *ngIf=\"!isMobile\" [pageSizeOptions]=\"[5, 10, 15, 20, 25]\"></mat-paginator>\n    <mat-paginator *ngIf=\"isMobile\" [pageSizeOptions]=\"[5, 10, 15, 20, 25]\"></mat-paginator>\n    \n  </div>\n  \n  <ngx-spinner\n  bdColor = \"rgba(51, 51, 51, 0.8)\"\n  size = \"large\"\n  color = \"#fff\"\n  type = \"square-loader\">\n  </ngx-spinner>\n  \n  \n</mat-card>\n"
+module.exports = "<app-navbar></app-navbar>\n<h1>Mine events</h1>\n<mat-card>\n    <button *ngIf=\"isMobile\" class=\"btnLabel\" mat-raised-button color=\"primary\">Events</button>\n    <mat-form-field id=\"search\" color=\"primary\">\n        <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Søg\">\n    </mat-form-field>\n  \n  <div class=\"mat-elevation-z8\">\n  \n      <table *ngIf=\"!isMobile\" mat-table [dataSource]=\"dataSource\" matSort class=\"mat-elevation-z8\">\n  \n          <!--- Note that these columns can be defined in any order.\n                The actual rendered columns are set as a property on the row definition\" -->\n        \n          <!-- Title Column -->\n          <ng-container matColumnDef=\"name\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Event </th>\n            <td mat-cell *matCellDef=\"let element\"> {{element.name}} </td>\n          </ng-container>\n        \n          <!-- City Column -->\n          <ng-container matColumnDef=\"address\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> By </th>\n            <td mat-cell *matCellDef=\"let element\">{{element.address.street}}, {{element.address.city}}, {{element.address.zip}}</td>\n          </ng-container>\n  \n          <!-- Category Column -->\n          <ng-container matColumnDef=\"category\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Kategori </th>\n            <td mat-cell *matCellDef=\"let element\"> {{element.category}} </td>\n          </ng-container>\n        \n          <!-- Distance Column -->\n          <ng-container matColumnDef=\"distance\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Afstand </th>\n            <td mat-cell *matCellDef=\"let element\"> {{10+10}} KM </td>\n          </ng-container>\n        \n          <!-- Gender Column -->\n          <ng-container matColumnDef=\"genderRatio\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Kønsfordeling </th>\n            <td mat-cell *matCellDef=\"let element\"> {{element.genderRatio}} </td>\n          </ng-container>\n        \n          <!-- Children Column -->\n          <ng-container matColumnDef=\"targetGroup\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Børn </th>\n            <td mat-cell *matCellDef=\"let element\"> {{element.targetGroup}} </td>\n          </ng-container>\n        \n          <!-- Participants Column -->\n          <ng-container matColumnDef=\"available\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header> Pladser </th>\n            <td mat-cell *matCellDef=\"let element\"> Ledig </td>\n          </ng-container>\n\n          <ng-container matColumnDef=\"actions\">\n            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>\n            <td mat-cell *matCellDef=\"let element\">\n                <button (click)=\"onEditClick(element)\" routerLink=\"/my-event\" mat-button color=\"primary\">Rediger</button>\n                <button (click)=\"openDialog(element)\" mat-button color=\"warn\">Slet</button>\n            </td>\n          </ng-container>\n        \n          <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n          <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n        </table>\n  \n      <table *ngIf=\"isMobile\" mat-table [dataSource]=\"dataSourceMobile\" matSort class=\"mat-elevation-z8\">\n  \n            <!--- Note that these columns can be defined in any order.\n                  The actual rendered columns are set as a property on the row definition\" -->\n          \n            <!-- Title Column -->\n            <ng-container matColumnDef=\"name\">\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> Event </th>\n              <td mat-cell *matCellDef=\"let element\"> {{element.name}} </td>\n            </ng-container>\n          \n            <!-- City Column -->\n            <ng-container matColumnDef=\"address\">\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> By </th>\n              <td mat-cell *matCellDef=\"let element\"> {{element.address}} </td>\n            </ng-container>\n          \n            <!-- Participants Column -->\n            <ng-container matColumnDef=\"available\">\n              <th mat-header-cell *matHeaderCellDef mat-sort-header> Pladser </th>\n              <td mat-cell *matCellDef=\"let element\"> Ledig </td>\n            </ng-container>\n          \n            <tr mat-header-row *matHeaderRowDef=\"displayedColumnsMobile\"></tr>\n            <tr mat-row *matRowDef=\"let row; columns: displayedColumnsMobile;\" (click)=\"onRowClick(row)\"></tr>\n        </table>\n  \n    <mat-paginator *ngIf=\"!isMobile\" [pageSizeOptions]=\"[5, 10, 15, 20, 25]\"></mat-paginator>\n    <mat-paginator *ngIf=\"isMobile\" [pageSizeOptions]=\"[5, 10, 15, 20, 25]\"></mat-paginator>\n    \n  </div>\n  \n  <ngx-spinner\n  bdColor = \"rgba(51, 51, 51, 0.8)\"\n  size = \"large\"\n  color = \"#fff\"\n  type = \"square-loader\">\n  </ngx-spinner>\n  \n  \n</mat-card>\n"
 
 /***/ }),
 
@@ -2836,6 +2974,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mobile_detector_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mobile-detector.service */ "./src/app/mobile-detector.service.ts");
 /* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
 /* harmony import */ var _user_firebase_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../user-firebase.service */ "./src/app/user-firebase.service.ts");
+/* harmony import */ var _confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../confirmation-dialog/confirmation-dialog.component */ "./src/app/confirmation-dialog/confirmation-dialog.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2851,13 +2990,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var MyEventsComponent = /** @class */ (function () {
-    function MyEventsComponent(efbs, mds, spinner, ufbs) {
+    function MyEventsComponent(efbs, mds, spinner, ufbs, dialog) {
         var _this = this;
         this.efbs = efbs;
         this.mds = mds;
         this.spinner = spinner;
         this.ufbs = ufbs;
+        this.dialog = dialog;
         this.isMobile = false;
         this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableDataSource"]();
         this.displayedColumns = ['name', 'address', 'distance', 'category', 'genderRatio', 'targetGroup', 'available', 'actions'];
@@ -2884,7 +3025,16 @@ var MyEventsComponent = /** @class */ (function () {
         this.efbs.myEventSelection = e;
     };
     MyEventsComponent.prototype.onDeleteClick = function (element) {
-        console.log("Under development");
+        this.efbs.deleteEvent(element.key);
+    };
+    MyEventsComponent.prototype.openDialog = function (element) {
+        var dialogRef = this.dialog.open(_confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_6__["ConfirmationDialogComponent"], {
+            width: '400px',
+            data: { key: element.key, buttonNo: "For Guds skyld nej!", buttonYes: "Ja", dialogText: "Er du sikker på at du vil slette dette event?" }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log('The dialog was closed');
+        });
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatPaginator"]),
@@ -2901,7 +3051,8 @@ var MyEventsComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./my-events.component.css */ "./src/app/my-events/my-events.component.css")]
         }),
         __metadata("design:paramtypes", [_event_firebase_service__WEBPACK_IMPORTED_MODULE_2__["EventFirebaseService"], _mobile_detector_service__WEBPACK_IMPORTED_MODULE_3__["MobileDetectorService"],
-            ngx_spinner__WEBPACK_IMPORTED_MODULE_4__["NgxSpinnerService"], _user_firebase_service__WEBPACK_IMPORTED_MODULE_5__["UserFirebaseService"]])
+            ngx_spinner__WEBPACK_IMPORTED_MODULE_4__["NgxSpinnerService"], _user_firebase_service__WEBPACK_IMPORTED_MODULE_5__["UserFirebaseService"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"]])
     ], MyEventsComponent);
     return MyEventsComponent;
 }());
@@ -3286,6 +3437,69 @@ var PageNotFoundComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/patch-notes/patch-notes.component.css":
+/*!*******************************************************!*\
+  !*** ./src/app/patch-notes/patch-notes.component.css ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "h1 {\r\n    text-align: center;\r\n    color: snow;\r\n}"
+
+/***/ }),
+
+/***/ "./src/app/patch-notes/patch-notes.component.html":
+/*!********************************************************!*\
+  !*** ./src/app/patch-notes/patch-notes.component.html ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<landing-page-header></landing-page-header>\n<h1>Patch Notes</h1>\n<mat-card>\n    <mat-expansion-panel>\n        <mat-expansion-panel-header>\n          <mat-panel-title>\n            28/09-2018\n          </mat-panel-title>\n          <mat-panel-description>\n            Title\n          </mat-panel-description>\n        </mat-expansion-panel-header>\n\n        <h4>Emne</h4>\n        <p>Indhold</p>\n        <h4>Emne</h4>\n        <p>Indhold</p>\n        <h4>Emne</h4>\n        <p>Indhold</p>\n      \n      </mat-expansion-panel>\n\n      <mat-expansion-panel>\n          <mat-expansion-panel-header>\n            <mat-panel-title>\n              21/09-2018\n            </mat-panel-title>\n            <mat-panel-description>\n              Social login & event redigering \n            </mat-panel-description>\n          </mat-expansion-panel-header>\n\n        <h4>Social Login</h4>\n        <p>Det er nu muligt at logge ind med Google/Facebook (og stadigvæk med oprettet konto email+password)</p>\n        <h4>Mine events</h4>\n        <p>Brugeren kan se en liste over de events, som kan selv er arrangør for.</p>\n        <h4>Mit event</h4>\n        <p>Ved at klikke på et event i listen over sine events, kan brugeren redigere eget event.</p>\n        <h4>Filtre</h4>\n        <p>Filtrene i filtervinduet virker nu på tabellen og der er kommet en ekstra indstilling: kategori</p>\n        <h4>HTML rettelser</h4>\n        <p>Footer opdateret, fyldtekst opdateret, favicon, responsive design problemer rettet</p>\n        \n      </mat-expansion-panel>\n\n        <mat-card-actions>\n          <a href=\"https://www.fenrirgamestudio.dk\" mat-button>FENRIR GAME STUDIO</a>\n        </mat-card-actions>\n          \n</mat-card>\n\n"
+
+/***/ }),
+
+/***/ "./src/app/patch-notes/patch-notes.component.ts":
+/*!******************************************************!*\
+  !*** ./src/app/patch-notes/patch-notes.component.ts ***!
+  \******************************************************/
+/*! exports provided: PatchNotesComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PatchNotesComponent", function() { return PatchNotesComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var PatchNotesComponent = /** @class */ (function () {
+    function PatchNotesComponent() {
+    }
+    PatchNotesComponent.prototype.ngOnInit = function () {
+    };
+    PatchNotesComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-patch-notes',
+            template: __webpack_require__(/*! ./patch-notes.component.html */ "./src/app/patch-notes/patch-notes.component.html"),
+            styles: [__webpack_require__(/*! ./patch-notes.component.css */ "./src/app/patch-notes/patch-notes.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], PatchNotesComponent);
+    return PatchNotesComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/payment/payment.component.css":
 /*!***********************************************!*\
   !*** ./src/app/payment/payment.component.css ***!
@@ -3515,6 +3729,70 @@ var PrivacyPolicyComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/rate-event/rate-event.component.css":
+/*!*****************************************************!*\
+  !*** ./src/app/rate-event/rate-event.component.css ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/rate-event/rate-event.component.html":
+/*!******************************************************!*\
+  !*** ./src/app/rate-event/rate-event.component.html ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-navbar></app-navbar>\n\n<mat-card>\n  <h1>\n    {{title}}\n  </h1>\n    \n  <!-- USE COMPONENT HERE-->\n  <star-rating-comp [starType]=\"'svg'\" [rating]=\"2.63\"></star-rating-comp>\n</mat-card>"
+
+/***/ }),
+
+/***/ "./src/app/rate-event/rate-event.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/rate-event/rate-event.component.ts ***!
+  \****************************************************/
+/*! exports provided: RateEventComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RateEventComponent", function() { return RateEventComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var RateEventComponent = /** @class */ (function () {
+    function RateEventComponent() {
+        this.title = "Rating :D Spændende.";
+    }
+    RateEventComponent.prototype.ngOnInit = function () {
+    };
+    RateEventComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'rate-event',
+            template: __webpack_require__(/*! ./rate-event.component.html */ "./src/app/rate-event/rate-event.component.html"),
+            styles: [__webpack_require__(/*! ./rate-event.component.css */ "./src/app/rate-event/rate-event.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], RateEventComponent);
+    return RateEventComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/routing.module.ts":
 /*!***********************************!*\
   !*** ./src/app/routing.module.ts ***!
@@ -3544,12 +3822,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _prices_prices_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./prices/prices.component */ "./src/app/prices/prices.component.ts");
 /* harmony import */ var _payment_payment_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./payment/payment.component */ "./src/app/payment/payment.component.ts");
 /* harmony import */ var _my_event_my_event_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./my-event/my-event.component */ "./src/app/my-event/my-event.component.ts");
+/* harmony import */ var _patch_notes_patch_notes_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./patch-notes/patch-notes.component */ "./src/app/patch-notes/patch-notes.component.ts");
+/* harmony import */ var _view_event_view_event_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./view-event/view-event.component */ "./src/app/view-event/view-event.component.ts");
+/* harmony import */ var _rate_event_rate_event_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./rate-event/rate-event.component */ "./src/app/rate-event/rate-event.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -3585,6 +3869,9 @@ var routes = [
     { path: 'prices', component: _prices_prices_component__WEBPACK_IMPORTED_MODULE_16__["PricesComponent"] },
     { path: 'payment', component: _payment_payment_component__WEBPACK_IMPORTED_MODULE_17__["PaymentComponent"] },
     { path: 'my-event', component: _my_event_my_event_component__WEBPACK_IMPORTED_MODULE_18__["MyEventComponent"] },
+    { path: 'patch-notes', component: _patch_notes_patch_notes_component__WEBPACK_IMPORTED_MODULE_19__["PatchNotesComponent"] },
+    { path: 'view-event', component: _view_event_view_event_component__WEBPACK_IMPORTED_MODULE_20__["ViewEventComponent"] },
+    { path: 'rate-event', component: _rate_event_rate_event_component__WEBPACK_IMPORTED_MODULE_21__["RateEventComponent"] },
     {
         path: 'dummy-list',
         component: _dummy_list_dummy_list_component__WEBPACK_IMPORTED_MODULE_3__["DummyListComponent"],
@@ -4487,6 +4774,133 @@ var UserImageGalleryComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [angular_modal_gallery__WEBPACK_IMPORTED_MODULE_1__["GalleryService"]])
     ], UserImageGalleryComponent);
     return UserImageGalleryComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/view-event/view-event.component.css":
+/*!*****************************************************!*\
+  !*** ./src/app/view-event/view-event.component.css ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".innerContainer {\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display: block;\r\n    width: 100%;\r\n}"
+
+/***/ }),
+
+/***/ "./src/app/view-event/view-event.component.html":
+/*!******************************************************!*\
+  !*** ./src/app/view-event/view-event.component.html ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<app-navbar></app-navbar>\n<div>\n<\n  <mat-grid-list cols=\"2\" rowHeight=\"1:2.5\">\n    <mat-grid-tile>\n        <mat-card class=\"innerContainer\">\n            <mat-card-title>{{selectedEvent.name}}</mat-card-title>\n            <mat-card-subtitle><fa name=\"tag\"></fa> {{  selectedEvent.category }} <br><br>\n              {{selectedEvent.description}}\n            </mat-card-subtitle>\n            <img src=\"../../assets/images/event_placeholder.jpg\" mat-card-image>\n            <mat-card-content>\n\n              <p><strong>Adresse:</strong><br> {{selectedEvent.address.street}} , {{selectedEvent.address.city}} , {{selectedEvent.address.zip}}</p>\n              <p><strong>Dato</strong><br> Under udvikling</p>\n              <p><strong>Kønsfordeling</strong><br> {{selectedEvent.genderRatio}}</p>\n              <p><strong>Børn</strong><br> {{selectedEvent.targetGroup}}</p>\n              <p><strong>Fra</strong><br> {{selectedEvent.minAge}} til {{selectedEvent.maxAge}}</p>\n              <p><strong>Pladser</strong><br> {{selectedEvent.maxGuests}}</p>\n              <p><strong>Pris</strong><br> {{selectedEvent.price}} DKK</p>\n              <p><strong>Hvordan betales der: </strong><br> {{selectedEvent.paymentOption}}</p>\n              <p><strong>Hvornår betales der:</strong><br> {{selectedEvent.paymentDue}}</p>\n            </mat-card-content>\n            <mat-card-actions>\n              <button *ngIf=\"!isParticipating\" (click)=\"onAttend()\" mat-button color=\"primary\">Tilmeld</button>\n              <button *ngIf=\"isParticipating\" (click)=\"onUnattend()\" mat-button color=\"warn\">Frameld</button>\n            </mat-card-actions>\n        </mat-card>\n    </mat-grid-tile>\n    <mat-grid-tile>\n      <mat-card>\n          <mat-tab-group>\n              <mat-tab label=\"Deltagere\">\n                <mat-list>\n                    <mat-list-item *ngFor=\"let participant of participantsDisplayNames\">\n                      <button color=\"primary\" mat-button><mat-icon>person</mat-icon>{{participant}}</button>\n                    </mat-list-item>\n                </mat-list>\n              </mat-tab>\n              <mat-tab label=\"Venteliste\">\n                <mat-list>\n                  <p *ngIf=\"inQueue.length < 1\">Der er ingen på ventelisten.</p>\n                   </mat-list>\n              </mat-tab>\n            </mat-tab-group>\n      </mat-card>\n    </mat-grid-tile>\n  </mat-grid-list>\n\n  <mat-card>\n    <h4>Rate dette event</h4>\n    <button [routerLink]=\"['/rate-event']\">Bedøm dette event</button>\n  </mat-card>\n\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/view-event/view-event.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/view-event/view-event.component.ts ***!
+  \****************************************************/
+/*! exports provided: ViewEventComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ViewEventComponent", function() { return ViewEventComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _entity_event_event_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../entity/event/event.model */ "./src/app/entity/event/event.model.ts");
+/* harmony import */ var _event_firebase_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../event-firebase.service */ "./src/app/event-firebase.service.ts");
+/* harmony import */ var _user_firebase_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../user-firebase.service */ "./src/app/user-firebase.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var ViewEventComponent = /** @class */ (function () {
+    function ViewEventComponent(route, efbs, ufbs) {
+        var _this = this;
+        this.route = route;
+        this.efbs = efbs;
+        this.ufbs = ufbs;
+        this.pKey = "";
+        this.participantsDisplayNames = [];
+        this.participantsData = [];
+        this.inQueue = [];
+        // Test
+        this.isParticipating = false;
+        this.route.queryParams.subscribe(function (params) {
+            var key = params['key'];
+            _this.key = key;
+            _this.efbs.getEventByKey(key).snapshotChanges().subscribe(function (then) {
+                _this.selectedEvent = Object.assign(new _entity_event_event_model__WEBPACK_IMPORTED_MODULE_2__["Event"](), then.payload.val());
+                console.log(_this.selectedEvent);
+                _this.participantsData = [];
+                _this.participantsDisplayNames = [];
+                for (var property in _this.selectedEvent.participants) {
+                    for (var value in _this.selectedEvent.participants[property]) {
+                        _this.participantsDisplayNames.push(_this.selectedEvent.participants[property][value]);
+                        _this.participantsData.push({ key: property, username: _this.selectedEvent.participants[property][value] });
+                    }
+                }
+                if (_this.getParticipantKey() !== "Not Found") {
+                    _this.isParticipating = true;
+                }
+            });
+        });
+    }
+    ViewEventComponent.prototype.ngOnInit = function () {
+    };
+    ViewEventComponent.prototype.getParticipantKey = function () {
+        var result = "Not Found";
+        for (var i = 0; i < this.participantsData.length; i++) {
+            if (this.participantsData[i].username === this.ufbs.getStorage()._username) {
+                return this.participantsData[i].key;
+            }
+        }
+        return result;
+    };
+    ViewEventComponent.prototype.removeParticipant = function () {
+        for (var i = 0; i < this.participantsData.length; i++) {
+            if (this.participantsData[i].username === this.ufbs.getStorage()._username) {
+                this.participantsData.splice(i, 1);
+                this.participantsDisplayNames.splice(i, 1);
+            }
+        }
+    };
+    ViewEventComponent.prototype.onAttend = function () {
+        this.efbs.joinEvent(this.key, this.ufbs.getStorage()._username);
+        this.isParticipating = true;
+    };
+    ViewEventComponent.prototype.onUnattend = function () {
+        this.efbs.leaveEvent(this.key, this.getParticipantKey());
+        this.removeParticipant();
+        this.isParticipating = false;
+    };
+    ViewEventComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-view-event',
+            template: __webpack_require__(/*! ./view-event.component.html */ "./src/app/view-event/view-event.component.html"),
+            styles: [__webpack_require__(/*! ./view-event.component.css */ "./src/app/view-event/view-event.component.css")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _event_firebase_service__WEBPACK_IMPORTED_MODULE_3__["EventFirebaseService"],
+            _user_firebase_service__WEBPACK_IMPORTED_MODULE_4__["UserFirebaseService"]])
+    ], ViewEventComponent);
+    return ViewEventComponent;
 }());
 
 

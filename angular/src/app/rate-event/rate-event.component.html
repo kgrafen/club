@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+
+<mat-card>
+
+      <form>
+        <mat-label>Rating</mat-label> <br>
+        <mat-form-field>
+            <mat-select placeholder="Vælg en score" [formControl]="ratingForm">
+              <mat-select-trigger>
+                  {{ratingForm.value}}
+              </mat-select-trigger>
+                <mat-option value="1"><mat-icon>star</mat-icon></mat-option>
+                <mat-option value="2"><mat-icon>star</mat-icon><mat-icon>star</mat-icon></mat-option>
+                <mat-option value="3"><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon></mat-option>
+                <mat-option value="4"><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon></mat-option>
+                <mat-option value="5"><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon></mat-option>
+              </mat-select>
+        </mat-form-field>
+      </form>
+
+  <mat-card>
+      <h4>Vejledning</h4>
+      <p><strong>1</strong> gives til eventet hvor mange ting gik galt. Det var nærmest lidt pinligt, du glæder dig 
+        til at lægge oplevelsen bag dig. Karakteren anvendes også hvor der var bemærkelsesværdig dårlige overensstemmelse mellem pris og indhold.         
+      </p> <br>
+
+      <p><strong>2</strong> gives til eventet hvor mange ting gik galt. Det var nærmest lidt pinligt, du glæder dig 
+        til at lægge oplevelsen bag dig. Karakteren anvendes også hvor der var bemærkelsesværdig dårlige overensstemmelse mellem pris og indhold.                 
+      </p> <br>
+
+      <p><strong>3</strong> gives for et fint arrangement, hvor der var god overensstemmelse mellem 
+        beskrivelsen og indholdet. Du har dog svært ved at svinge dig op til at synes, det var fantastisk.                        
+      </p> <br>
+
+      <p><strong>4</strong> giver for et velgennemført og rigtigt fint arrangement. Du er gået glad og beriget hjem 
+        efter eventet, hvor du føler, at du har haft en rigtigt god oplevelse.                
+      </p> <br>
+
+      <p><strong>5</strong> her synger englene, og du tænker, at det netop gennemførte event gerne må 
+        bruges som reference for fremtidige events. Du skal dog ikke tænke 13-tal på den gamle skala, men vi er absolut på 12 på den nye karakterskala :-)                          
+      </p>
+      <mat-card-actions>
+        <button mat-button (click)="updateUserScore()">Debug score</button>
+      </mat-card-actions>
+  </mat-card>
+
+  <button mat-raised-button (click)="rate(ratingForm.value)" color="primary">Indsend bedømmelse</button>
+
+</mat-card>

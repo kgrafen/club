@@ -39,7 +39,7 @@ export class UserFirebaseService {
   }
 
   // Test passed
-  private getList(listPath): Observable<any[]> {
+  getList(listPath): Observable<any[]> {
     return this.db.list(listPath).valueChanges();
   }
 

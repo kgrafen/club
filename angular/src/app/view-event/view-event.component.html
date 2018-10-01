@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <div>
-
-  <mat-grid-list cols="2" rowHeight="1:2">
+<
+  <mat-grid-list cols="2" rowHeight="1:2.5">
     <mat-grid-tile>
         <mat-card class="innerContainer">
             <mat-card-title>{{selectedEvent.name}}</mat-card-title>
@@ -22,8 +22,9 @@
               <p><strong>Hvornår betales der:</strong><br> {{selectedEvent.paymentDue}}</p>
             </mat-card-content>
             <mat-card-actions>
-              <button *ngIf="!isParticipating" (click)="participationSimulation()" mat-button color="primary">Tilmeld</button>
-              <button *ngIf="isParticipating" (click)="participationSimulation()" mat-button color="warn">Frameld</button>
+              <button *ngIf="!isParticipating" (click)="onAttend()" mat-button color="primary">Tilmeld</button>
+              <button *ngIf="isParticipating" (click)="onUnattend()" mat-button color="warn">Frameld</button>
+              <button mat-button (click)="onRateClick()" [routerLink]="['/rate-event']">Bedøm dette event</button>
             </mat-card-actions>
         </mat-card>
     </mat-grid-tile>
@@ -32,8 +33,8 @@
           <mat-tab-group>
               <mat-tab label="Deltagere">
                 <mat-list>
-                    <mat-list-item *ngFor="let participant of participants">
-                      <button color="primary" mat-button><mat-icon>person</mat-icon>{{ participant}}</button>
+                    <mat-list-item *ngFor="let participant of participantsDisplayNames">
+                      <button color="primary" mat-button><mat-icon>person</mat-icon>{{participant}}</button>
                     </mat-list-item>
                 </mat-list>
               </mat-tab>

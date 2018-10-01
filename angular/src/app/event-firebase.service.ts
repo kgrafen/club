@@ -63,8 +63,8 @@ export class EventFirebaseService {
     itemRef.push({username: username});
   }
 
-  leaveEvent(key: string, username: string) {
-    const itemRef = this.db.object(this.dbPath+"/"+key+"/participants/"+username);
+  leaveEvent(key: string, pKey: string) {
+    const itemRef = this.db.object(this.dbPath+"/"+key+"/participants/"+ pKey);
     itemRef.remove();
   }
 

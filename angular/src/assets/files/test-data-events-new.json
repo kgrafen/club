@@ -11,6 +11,12 @@
     }
   }],
 
+  "ratings": [{
+    "score": 0,
+    "fk_event": "5b7d690aef1d312cafa1083f",
+    "fk_host": "ramonariley@equitax.com"
+  }],
+
   "events": [
     {
       "_key": "5b7d690aef1d312cafa1083f",
