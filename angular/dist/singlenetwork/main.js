@@ -303,7 +303,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router_testing__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! @angular/router/testing */ "./node_modules/@angular/router/fesm5/testing.js");
 /* harmony import */ var _pipes_active_blocked_pipe__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./pipes/active-blocked.pipe */ "./src/app/pipes/active-blocked.pipe.ts");
 /* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
-/* harmony import */ var angular_star_rating__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! angular-star-rating */ "./node_modules/angular-star-rating/esm5/angular-star-rating.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -378,8 +377,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 // Pipes
 
 // Spinner
-
-//Star Rating
 
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -469,8 +466,7 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatBadgeModule"],
                 _angular_router_testing__WEBPACK_IMPORTED_MODULE_53__["RouterTestingModule"],
                 ngx_spinner__WEBPACK_IMPORTED_MODULE_55__["NgxSpinnerModule"],
-                _angular_http__WEBPACK_IMPORTED_MODULE_3__["HttpModule"],
-                angular_star_rating__WEBPACK_IMPORTED_MODULE_56__["StarRatingModule"]
+                _angular_http__WEBPACK_IMPORTED_MODULE_3__["HttpModule"]
             ],
             providers: [angular2_cookie_services_cookies_service__WEBPACK_IMPORTED_MODULE_50__["CookieService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
@@ -1342,6 +1338,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user_user__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../user/user */ "./src/app/entity/user/user.ts");
 /* harmony import */ var _payment_payment_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../payment/payment.model */ "./src/app/entity/payment/payment.model.ts");
 /* harmony import */ var _event_event_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../event/event.model */ "./src/app/entity/event/event.model.ts");
+/* harmony import */ var _rating_rating_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../rating/rating.model */ "./src/app/entity/rating/rating.model.ts");
+
 
 
 
@@ -1350,7 +1348,9 @@ var JsonConverter = /** @class */ (function () {
     }
     JsonConverter.prototype.convertJsonToUserObj = function (json) {
         var obj = JSON.parse(json);
-        var user = new _user_user__WEBPACK_IMPORTED_MODULE_0__["User"](obj._username, obj.email);
+        var user = Object.assign(obj, _user_user__WEBPACK_IMPORTED_MODULE_0__["User"]);
+        /*
+        let user = new User(obj._username, obj.email);
         user.address = obj.address;
         user.birthday = obj.birthday;
         user.children = obj.children;
@@ -1364,7 +1364,7 @@ var JsonConverter = /** @class */ (function () {
         user.numberOfEventsHosted = obj.numberOfEventsHosted;
         user.phone = obj.phone;
         user.rating = obj.rating;
-        user.subscribed_until = obj.subscribed_until;
+        user.subscribed_until = obj.subscribed_until; */
         return user;
     };
     JsonConverter.prototype.convertJsonToPaymentObj = function (json) {
@@ -1374,7 +1374,9 @@ var JsonConverter = /** @class */ (function () {
     };
     JsonConverter.prototype.convertJsonToEventObj = function (json) {
         var obj = JSON.parse(json);
-        var event = new _event_event_model__WEBPACK_IMPORTED_MODULE_2__["Event"]();
+        var event = Object.assign(obj, _event_event_model__WEBPACK_IMPORTED_MODULE_2__["Event"]);
+        /*
+        let event = new Event();
         event.key = obj.key;
         event.address = obj.address;
         event.category = obj.category;
@@ -1399,8 +1401,13 @@ var JsonConverter = /** @class */ (function () {
         event.timeEnd = obj.timeEnd;
         event.timeStart = obj.timeStart;
         event.participants = obj.participants;
-        event.host = obj.host;
+        event.host = obj.host;*/
         return event;
+    };
+    JsonConverter.prototype.convertJsonToRatingObj = function (json) {
+        var obj = JSON.parse(json);
+        var rating = Object.assign(obj, _rating_rating_model__WEBPACK_IMPORTED_MODULE_3__["Rating"]);
+        return rating;
     };
     return JsonConverter;
 }());
@@ -1471,6 +1478,26 @@ var Payment = /** @class */ (function () {
         this.subscription_period = subscription_period;
     }
     return Payment;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/entity/rating/rating.model.ts":
+/*!***********************************************!*\
+  !*** ./src/app/entity/rating/rating.model.ts ***!
+  \***********************************************/
+/*! exports provided: Rating */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Rating", function() { return Rating; });
+var Rating = /** @class */ (function () {
+    function Rating() {
+    }
+    return Rating;
 }());
 
 
@@ -3455,7 +3482,7 @@ module.exports = "h1 {\r\n    text-align: center;\r\n    color: snow;\r\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<landing-page-header></landing-page-header>\n<h1>Patch Notes</h1>\n<mat-card>\n    <mat-expansion-panel>\n        <mat-expansion-panel-header>\n          <mat-panel-title>\n            28/09-2018\n          </mat-panel-title>\n          <mat-panel-description>\n            Title\n          </mat-panel-description>\n        </mat-expansion-panel-header>\n\n        <h4>Emne</h4>\n        <p>Indhold</p>\n        <h4>Emne</h4>\n        <p>Indhold</p>\n        <h4>Emne</h4>\n        <p>Indhold</p>\n      \n      </mat-expansion-panel>\n\n      <mat-expansion-panel>\n          <mat-expansion-panel-header>\n            <mat-panel-title>\n              21/09-2018\n            </mat-panel-title>\n            <mat-panel-description>\n              Social login & event redigering \n            </mat-panel-description>\n          </mat-expansion-panel-header>\n\n        <h4>Social Login</h4>\n        <p>Det er nu muligt at logge ind med Google/Facebook (og stadigvæk med oprettet konto email+password)</p>\n        <h4>Mine events</h4>\n        <p>Brugeren kan se en liste over de events, som kan selv er arrangør for.</p>\n        <h4>Mit event</h4>\n        <p>Ved at klikke på et event i listen over sine events, kan brugeren redigere eget event.</p>\n        <h4>Filtre</h4>\n        <p>Filtrene i filtervinduet virker nu på tabellen og der er kommet en ekstra indstilling: kategori</p>\n        <h4>HTML rettelser</h4>\n        <p>Footer opdateret, fyldtekst opdateret, favicon, responsive design problemer rettet</p>\n        \n      </mat-expansion-panel>\n\n        <mat-card-actions>\n          <a href=\"https://www.fenrirgamestudio.dk\" mat-button>FENRIR GAME STUDIO</a>\n        </mat-card-actions>\n          \n</mat-card>\n\n"
+module.exports = "<landing-page-header></landing-page-header>\n<h1>Patch Notes</h1>\n<mat-card>\n    <mat-expansion-panel>\n        <mat-expansion-panel-header>\n          <mat-panel-title>\n            28/09-2018\n          </mat-panel-title>\n          <mat-panel-description>\n            Events genbesøgt\n          </mat-panel-description>\n        </mat-expansion-panel-header>\n\n        <h4>Opret et event</h4>\n        <p>Der kan oprettes events og disse kan findes i tabellen over alle events.</p>\n        <h4>Det enkelte Events</h4>\n        <p>Det er muligt at klikke på de enkelte events og komme ind på siden på dennes side, hvor der kan læses detaljer, se mødelister osv.</p>\n        <h4>Tilmelding/framelding</h4>\n        <p>Brugere kan tilmelde sig events og framelde sig events</p>\n        <h4>Rating</h4>\n        <p>Inde på de enkelte events kan brugere nu bedømme et arrangement. Der gives en score fra 1-5 og værtens totale score beregnes ved hver bedømmelse.</p>\n        <p>*En score gives for det enkelte event. En brugeres score er den totale sum af alle hans/hendes arrangementer / n, hvor n er antallet.</p>\n        <h4>Slette et event</h4>\n        <p>Der er nu muligt at slette sine egne arrangementer.</p>\n\n      </mat-expansion-panel>\n\n      <mat-expansion-panel>\n          <mat-expansion-panel-header>\n            <mat-panel-title>\n              21/09-2018\n            </mat-panel-title>\n            <mat-panel-description>\n              Social login & event redigering \n            </mat-panel-description>\n          </mat-expansion-panel-header>\n\n        <h4>Social Login</h4>\n        <p>Det er nu muligt at logge ind med Google/Facebook (og stadigvæk med oprettet konto email+password)</p>\n        <h4>Mine events</h4>\n        <p>Brugeren kan se en liste over de events, som kan selv er arrangør for.</p>\n        <h4>Mit event</h4>\n        <p>Ved at klikke på et event i listen over sine events, kan brugeren redigere eget event.</p>\n        <h4>Filtre</h4>\n        <p>Filtrene i filtervinduet virker nu på tabellen og der er kommet en ekstra indstilling: kategori</p>\n        <h4>HTML rettelser</h4>\n        <p>Footer opdateret, fyldtekst opdateret, favicon, responsive design problemer rettet</p>\n        \n      </mat-expansion-panel>\n\n        <mat-card-actions>\n          <a href=\"https://www.fenrirgamestudio.dk\" mat-button>FENRIR GAME STUDIO</a>\n        </mat-card-actions>\n          \n</mat-card>\n\n"
 
 /***/ }),
 
@@ -3736,7 +3763,7 @@ var PrivacyPolicyComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "form, button {\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display: block;\r\n    width: 25%;\r\n    margin-top: 10px;\r\n    margin-bottom: 10px;\r\n}\r\n"
 
 /***/ }),
 
@@ -3747,7 +3774,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n\n<mat-card>\n  <h1>\n    {{title}}\n  </h1>\n    \n  <!-- USE COMPONENT HERE-->\n  <star-rating-comp [starType]=\"'svg'\" [rating]=\"2.63\"></star-rating-comp>\n</mat-card>"
+module.exports = "<app-navbar></app-navbar>\n\n<mat-card>\n\n      <form>\n        <mat-label>Rating</mat-label> <br>\n        <mat-form-field>\n            <mat-select placeholder=\"Vælg en score\" [formControl]=\"ratingForm\">\n              <mat-select-trigger>\n                  {{ratingForm.value}}\n              </mat-select-trigger>\n                <mat-option value=\"1\"><mat-icon>star</mat-icon></mat-option>\n                <mat-option value=\"2\"><mat-icon>star</mat-icon><mat-icon>star</mat-icon></mat-option>\n                <mat-option value=\"3\"><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon></mat-option>\n                <mat-option value=\"4\"><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon></mat-option>\n                <mat-option value=\"5\"><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon></mat-option>\n              </mat-select>\n        </mat-form-field>\n      </form>\n\n  <mat-card>\n      <h4>Vejledning</h4>\n      <p><strong>1</strong> gives til eventet hvor mange ting gik galt. Det var nærmest lidt pinligt, du glæder dig \n        til at lægge oplevelsen bag dig. Karakteren anvendes også hvor der var bemærkelsesværdig dårlige overensstemmelse mellem pris og indhold.         \n      </p> <br>\n\n      <p><strong>2</strong> gives til eventet hvor mange ting gik galt. Det var nærmest lidt pinligt, du glæder dig \n        til at lægge oplevelsen bag dig. Karakteren anvendes også hvor der var bemærkelsesværdig dårlige overensstemmelse mellem pris og indhold.                 \n      </p> <br>\n\n      <p><strong>3</strong> gives for et fint arrangement, hvor der var god overensstemmelse mellem \n        beskrivelsen og indholdet. Du har dog svært ved at svinge dig op til at synes, det var fantastisk.                        \n      </p> <br>\n\n      <p><strong>4</strong> giver for et velgennemført og rigtigt fint arrangement. Du er gået glad og beriget hjem \n        efter eventet, hvor du føler, at du har haft en rigtigt god oplevelse.                \n      </p> <br>\n\n      <p><strong>5</strong> her synger englene, og du tænker, at det netop gennemførte event gerne må \n        bruges som reference for fremtidige events. Du skal dog ikke tænke 13-tal på den gamle skala, men vi er absolut på 12 på den nye karakterskala :-)                          \n      </p>\n      <mat-card-actions>\n        <button mat-button (click)=\"updateUserScore()\">Debug score</button>\n      </mat-card-actions>\n  </mat-card>\n\n  <button mat-raised-button (click)=\"rate(ratingForm.value)\" color=\"primary\">Indsend bedømmelse</button>\n\n</mat-card>"
 
 /***/ }),
 
@@ -3762,6 +3789,12 @@ module.exports = "<app-navbar></app-navbar>\n\n<mat-card>\n  <h1>\n    {{title}}
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RateEventComponent", function() { return RateEventComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _user_firebase_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../user-firebase.service */ "./src/app/user-firebase.service.ts");
+/* harmony import */ var _event_firebase_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../event-firebase.service */ "./src/app/event-firebase.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _rating_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../rating.service */ "./src/app/rating.service.ts");
+/* harmony import */ var _entity_rating_rating_model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../entity/rating/rating.model */ "./src/app/entity/rating/rating.model.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3772,11 +3805,39 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
+
+
 var RateEventComponent = /** @class */ (function () {
-    function RateEventComponent() {
-        this.title = "Rating :D Spændende.";
+    function RateEventComponent(ufbs, efbs, route, rs) {
+        var _this = this;
+        this.ufbs = ufbs;
+        this.efbs = efbs;
+        this.route = route;
+        this.rs = rs;
+        this.ratingForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]();
+        this.route.queryParams.subscribe(function (params) {
+            _this.efbs.getEventByKey(params['key']).snapshotChanges().subscribe(function (res) {
+                _this.event = Object.assign(res.payload.val());
+                _this.event.key = res.key;
+            });
+        });
     }
     RateEventComponent.prototype.ngOnInit = function () {
+    };
+    RateEventComponent.prototype.rate = function (scoreValueFromForm) {
+        var r = new _entity_rating_rating_model__WEBPACK_IMPORTED_MODULE_6__["Rating"]();
+        r.score = scoreValueFromForm;
+        r.fk_event = this.event.key;
+        r.fk_host = this.event.host;
+        r.byUser = this.ufbs.getStorage()._username;
+        this.rs.insertRating(r, this.event);
+    };
+    RateEventComponent.prototype.updateUserScore = function () {
+        this.rs.updateUserScore(this.event.host);
     };
     RateEventComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -3784,9 +3845,144 @@ var RateEventComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./rate-event.component.html */ "./src/app/rate-event/rate-event.component.html"),
             styles: [__webpack_require__(/*! ./rate-event.component.css */ "./src/app/rate-event/rate-event.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_user_firebase_service__WEBPACK_IMPORTED_MODULE_2__["UserFirebaseService"], _event_firebase_service__WEBPACK_IMPORTED_MODULE_3__["EventFirebaseService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"], _rating_service__WEBPACK_IMPORTED_MODULE_5__["RatingService"]])
     ], RateEventComponent);
     return RateEventComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/rating.service.ts":
+/*!***********************************!*\
+  !*** ./src/app/rating.service.ts ***!
+  \***********************************/
+/*! exports provided: RatingService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RatingService", function() { return RatingService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var angularfire2_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! angularfire2/auth */ "./node_modules/angularfire2/auth/index.js");
+/* harmony import */ var _node_modules_angularfire2_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/angularfire2/database */ "./node_modules/angularfire2/database/index.js");
+/* harmony import */ var _entity_helper_json_converter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./entity/helper/json-converter */ "./src/app/entity/helper/json-converter.ts");
+/* harmony import */ var _entity_user_user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./entity/user/user */ "./src/app/entity/user/user.ts");
+/* harmony import */ var _user_firebase_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./user-firebase.service */ "./src/app/user-firebase.service.ts");
+/* harmony import */ var _event_firebase_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./event-firebase.service */ "./src/app/event-firebase.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+
+
+var RatingService = /** @class */ (function () {
+    function RatingService(afAuth, db, ufbs, efbs) {
+        this.afAuth = afAuth;
+        this.db = db;
+        this.ufbs = ufbs;
+        this.efbs = efbs;
+        this.dbPath = '/ratings/';
+        this.jsonConverter = new _entity_helper_json_converter__WEBPACK_IMPORTED_MODULE_3__["JsonConverter"]();
+    }
+    RatingService.prototype.getRatingsWithKey = function () {
+        return this.db.list(this.dbPath).snapshotChanges();
+    };
+    RatingService.prototype.getRatingsJustValues = function () {
+        return this.db.list(this.dbPath).valueChanges();
+    };
+    RatingService.prototype.updateUserScore = function (host) {
+        var _this = this;
+        var userScore = 0;
+        var count = 0;
+        this.db.list(this.dbPath).snapshotChanges().subscribe(function (snapshots) {
+            snapshots.forEach(function (snapshot) {
+                if (snapshot.payload.val().fk_host === host) {
+                    userScore += snapshot.payload.val().score;
+                    count++;
+                }
+            });
+            _this.ufbs.getList('/users/').subscribe(function (values) {
+                var email = "";
+                values.forEach(function (value) {
+                    console.log(value.email + "=" + host);
+                    if (value.email === host) {
+                        var user = Object.assign(value, _entity_user_user__WEBPACK_IMPORTED_MODULE_4__["User"]);
+                        user.score = userScore / count;
+                        _this.ufbs.updateUser(user);
+                    }
+                });
+            });
+        });
+    };
+    RatingService.prototype.insertRating = function (rating, event) {
+        return __awaiter(this, void 0, void 0, function () {
+            var entry;
+            return __generator(this, function (_a) {
+                entry = this.objToJSON(rating);
+                this.db.object(this.dbPath + (rating.fk_event + this.ufbs.getStorage()._username)).update(entry);
+                return [2 /*return*/];
+            });
+        });
+    };
+    RatingService.prototype.objToJSON = function (ratingObject) {
+        return JSON.parse(JSON.stringify(ratingObject));
+    };
+    RatingService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [angularfire2_auth__WEBPACK_IMPORTED_MODULE_1__["AngularFireAuth"], _node_modules_angularfire2_database__WEBPACK_IMPORTED_MODULE_2__["AngularFireDatabase"],
+            _user_firebase_service__WEBPACK_IMPORTED_MODULE_5__["UserFirebaseService"], _event_firebase_service__WEBPACK_IMPORTED_MODULE_6__["EventFirebaseService"]])
+    ], RatingService);
+    return RatingService;
 }());
 
 
@@ -4798,7 +4994,7 @@ module.exports = ".innerContainer {\r\n    margin-left: auto;\r\n    margin-righ
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<div>\n<\n  <mat-grid-list cols=\"2\" rowHeight=\"1:2.5\">\n    <mat-grid-tile>\n        <mat-card class=\"innerContainer\">\n            <mat-card-title>{{selectedEvent.name}}</mat-card-title>\n            <mat-card-subtitle><fa name=\"tag\"></fa> {{  selectedEvent.category }} <br><br>\n              {{selectedEvent.description}}\n            </mat-card-subtitle>\n            <img src=\"../../assets/images/event_placeholder.jpg\" mat-card-image>\n            <mat-card-content>\n\n              <p><strong>Adresse:</strong><br> {{selectedEvent.address.street}} , {{selectedEvent.address.city}} , {{selectedEvent.address.zip}}</p>\n              <p><strong>Dato</strong><br> Under udvikling</p>\n              <p><strong>Kønsfordeling</strong><br> {{selectedEvent.genderRatio}}</p>\n              <p><strong>Børn</strong><br> {{selectedEvent.targetGroup}}</p>\n              <p><strong>Fra</strong><br> {{selectedEvent.minAge}} til {{selectedEvent.maxAge}}</p>\n              <p><strong>Pladser</strong><br> {{selectedEvent.maxGuests}}</p>\n              <p><strong>Pris</strong><br> {{selectedEvent.price}} DKK</p>\n              <p><strong>Hvordan betales der: </strong><br> {{selectedEvent.paymentOption}}</p>\n              <p><strong>Hvornår betales der:</strong><br> {{selectedEvent.paymentDue}}</p>\n            </mat-card-content>\n            <mat-card-actions>\n              <button *ngIf=\"!isParticipating\" (click)=\"onAttend()\" mat-button color=\"primary\">Tilmeld</button>\n              <button *ngIf=\"isParticipating\" (click)=\"onUnattend()\" mat-button color=\"warn\">Frameld</button>\n            </mat-card-actions>\n        </mat-card>\n    </mat-grid-tile>\n    <mat-grid-tile>\n      <mat-card>\n          <mat-tab-group>\n              <mat-tab label=\"Deltagere\">\n                <mat-list>\n                    <mat-list-item *ngFor=\"let participant of participantsDisplayNames\">\n                      <button color=\"primary\" mat-button><mat-icon>person</mat-icon>{{participant}}</button>\n                    </mat-list-item>\n                </mat-list>\n              </mat-tab>\n              <mat-tab label=\"Venteliste\">\n                <mat-list>\n                  <p *ngIf=\"inQueue.length < 1\">Der er ingen på ventelisten.</p>\n                   </mat-list>\n              </mat-tab>\n            </mat-tab-group>\n      </mat-card>\n    </mat-grid-tile>\n  </mat-grid-list>\n\n  <mat-card>\n    <h4>Rate dette event</h4>\n    <button [routerLink]=\"['/rate-event']\">Bedøm dette event</button>\n  </mat-card>\n\n</div>"
+module.exports = "<app-navbar></app-navbar>\n<div>\n<\n  <mat-grid-list cols=\"2\" rowHeight=\"1:2.5\">\n    <mat-grid-tile>\n        <mat-card class=\"innerContainer\">\n            <mat-card-title>{{selectedEvent.name}}</mat-card-title>\n            <mat-card-subtitle><fa name=\"tag\"></fa> {{  selectedEvent.category }} <br><br>\n              {{selectedEvent.description}}\n            </mat-card-subtitle>\n            <img src=\"../../assets/images/event_placeholder.jpg\" mat-card-image>\n            <mat-card-content>\n\n              <p><strong>Adresse:</strong><br> {{selectedEvent.address.street}} , {{selectedEvent.address.city}} , {{selectedEvent.address.zip}}</p>\n              <p><strong>Dato</strong><br> Under udvikling</p>\n              <p><strong>Kønsfordeling</strong><br> {{selectedEvent.genderRatio}}</p>\n              <p><strong>Børn</strong><br> {{selectedEvent.targetGroup}}</p>\n              <p><strong>Fra</strong><br> {{selectedEvent.minAge}} til {{selectedEvent.maxAge}}</p>\n              <p><strong>Pladser</strong><br> {{selectedEvent.maxGuests}}</p>\n              <p><strong>Pris</strong><br> {{selectedEvent.price}} DKK</p>\n              <p><strong>Hvordan betales der: </strong><br> {{selectedEvent.paymentOption}}</p>\n              <p><strong>Hvornår betales der:</strong><br> {{selectedEvent.paymentDue}}</p>\n            </mat-card-content>\n            <mat-card-actions>\n              <button *ngIf=\"!isParticipating\" (click)=\"onAttend()\" mat-button color=\"primary\">Tilmeld</button>\n              <button *ngIf=\"isParticipating\" (click)=\"onUnattend()\" mat-button color=\"warn\">Frameld</button>\n              <button mat-button (click)=\"onRateClick()\" [routerLink]=\"['/rate-event']\">Bedøm dette event</button>\n            </mat-card-actions>\n        </mat-card>\n    </mat-grid-tile>\n    <mat-grid-tile>\n      <mat-card>\n          <mat-tab-group>\n              <mat-tab label=\"Deltagere\">\n                <mat-list>\n                    <mat-list-item *ngFor=\"let participant of participantsDisplayNames\">\n                      <button color=\"primary\" mat-button><mat-icon>person</mat-icon>{{participant}}</button>\n                    </mat-list-item>\n                </mat-list>\n              </mat-tab>\n              <mat-tab label=\"Venteliste\">\n                <mat-list>\n                  <p *ngIf=\"inQueue.length < 1\">Der er ingen på ventelisten.</p>\n                   </mat-list>\n              </mat-tab>\n            </mat-tab-group>\n      </mat-card>\n    </mat-grid-tile>\n  </mat-grid-list>\n\n</div>"
 
 /***/ }),
 
@@ -4832,11 +5028,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var ViewEventComponent = /** @class */ (function () {
-    function ViewEventComponent(route, efbs, ufbs) {
+    function ViewEventComponent(route, efbs, ufbs, router) {
         var _this = this;
         this.route = route;
         this.efbs = efbs;
         this.ufbs = ufbs;
+        this.router = router;
         this.pKey = "";
         this.participantsDisplayNames = [];
         this.participantsData = [];
@@ -4891,6 +5088,14 @@ var ViewEventComponent = /** @class */ (function () {
         this.removeParticipant();
         this.isParticipating = false;
     };
+    ViewEventComponent.prototype.onRateClick = function () {
+        var navigationExtras = {
+            queryParams: {
+                "key": this.key
+            }
+        };
+        this.router.navigate(['/rate-event'], navigationExtras);
+    };
     ViewEventComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-view-event',
@@ -4898,7 +5103,7 @@ var ViewEventComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./view-event.component.css */ "./src/app/view-event/view-event.component.css")]
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _event_firebase_service__WEBPACK_IMPORTED_MODULE_3__["EventFirebaseService"],
-            _user_firebase_service__WEBPACK_IMPORTED_MODULE_4__["UserFirebaseService"]])
+            _user_firebase_service__WEBPACK_IMPORTED_MODULE_4__["UserFirebaseService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
     ], ViewEventComponent);
     return ViewEventComponent;
 }());
