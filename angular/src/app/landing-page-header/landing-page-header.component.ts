@@ -36,14 +36,20 @@ export class LandingPageHeaderComponent implements OnInit {
     this.authService.afAuth.auth.onAuthStateChanged(user => {
       if (user) {
         this.isLoggedOn = true;
-        this.username = user.displayName;
         //First sign in AKA account creation
-        if (this.ufbs.getUserByEmail(user.email) === undefined) {
-          this.authService.doSocialLoginRegister(user);
-        }
-        //Nth signin, not first time.
-        this.ufbs.getUserByEmail(user.email);
-       // this.authService.loginRedirect();
+        this.ufbs.getUserByID(user.uid).subscribe(value => {
+          if (value === null) {
+            this.authService.doSocialLoginRegister(user);
+          } else {
+            this.ufbs.getUserByID(user.uid).subscribe(value => {
+              // This error lies.
+              let obj = JSON.parse(JSON.stringify(value));
+              let u: User = Object.assign(obj, User);
+              this.ufbs.setStorage(u);
+              this.username = u._username;
+            })
+          }
+        })
       }
     });
   }

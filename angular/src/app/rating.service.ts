@@ -46,11 +46,10 @@ export class RatingService {
       this.ufbs.getList('/users/').subscribe(values => {
         let email = "";
         values.forEach(value => {
-          console.log(value.email + "=" + host);
           if (value.email === host) {
             let user = Object.assign(value, User);
             user.score = userScore / count;
-            this.ufbs.updateUser(user);
+            this.ufbs.updateUser({score: user.score}, this.afAuth.auth.currentUser.uid);
           }
         })
       })

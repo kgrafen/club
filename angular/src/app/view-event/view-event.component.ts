@@ -32,7 +32,6 @@ export class ViewEventComponent implements OnInit {
       
       this.efbs.getEventByKey(key).snapshotChanges().subscribe(then => {
         this.selectedEvent = Object.assign(new Event(), then.payload.val());
-        console.log(this.selectedEvent);
         this.participantsData = [];
         this.participantsDisplayNames = [];
         for (let property in this.selectedEvent.participants) {

@@ -1,6 +1,6 @@
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
-      <h4 class="modal-title">Modal title</h4>
+      <h4 class="modal-title">Fil opload</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -9,13 +9,15 @@
         <div class="form-group row">
             <label for="username" class="col-4 col-form-label">Vælg fil</label> 
             <div class="col-8">
-              <input id="uploadImage" name="uploadImage" class="" required="required" type="file">
+              <form [formGroup]="fileForm">
+                  <input formControlName="file" id="uploadImage" name="uploadImage" class="" required="required" type="file">
+              </form>
             </div>
           </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-primary mb-2 mr-2" (click)="c('Close click')">Upload</button>
-      <button type="button" class="btn btn-outline-danger mb-2 mr-2" (click)="c('Close click')">Luk</button>
+        <button mat-button color="warn" (click)="c('Close click')">Luk</button>
+        <button mat-button color="primary" (click)="c('Close click')">Upload</button>
     </div>
   </ng-template>
-  <button class="btn btn-outline-primary mb-2 mr-2" (click)="openVerticallyCentered(content)">Opload nyt billede</button>
+  <button mat-raised-button color="primary" class="btn btn-outline-primary mb-2 mr-2" (click)="openVerticallyCentered(content)">Opload nyt billede</button>

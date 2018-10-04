@@ -1,0 +1,8 @@
+h1 {
+    text-align: center;
+    color: snow;
+}
+
+mat-form-field, button {
+    margin: 10px;
+}

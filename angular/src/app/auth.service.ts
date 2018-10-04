@@ -38,7 +38,7 @@ export class AuthService {
         const date = new Date();
         date.setUTCFullYear(2019, 0, 1);
         user.subscribed_until = date;
-        this.ufbs.insertUser(user);
+        this.ufbs.insertUser(user, res.uid);
         this.doLogin({email: formData.email, password: formData.password});
       }, err => reject(err))
     })
@@ -49,8 +49,7 @@ export class AuthService {
       .signInWithEmailAndPassword(formData.email, formData.password)
       .then(credential => {
         this.user = this.afAuth.auth.currentUser;
-        this.ufbs.getUserByEmail(this.user.email);
-        this.loginRedirect();
+        //this.loginRedirect();
         return credential.user;
       })
       .catch(error => console.log(error));
@@ -62,7 +61,7 @@ export class AuthService {
     const date = new Date();
     date.setUTCFullYear(2019, 0, 1);
     userEntity.subscribed_until = date;
-    this.ufbs.insertUser(userEntity);
+    this.ufbs.insertUser(userEntity, firebaseUser.uid);
   }
 
   doGoogleLogin() {
@@ -86,7 +85,6 @@ export class AuthService {
   doFacebookLogin() {
     const provider = new firebase.auth.FacebookAuthProvider();
     this.afAuth.auth.useDeviceLanguage();
-    
     return this.afAuth.auth.signInWithPopup(provider).then(function(result) {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       var token = result.credential.accessToken;
@@ -105,10 +103,7 @@ export class AuthService {
     });
   }
 
-  
-
   doSignout() {
-    console.log("Signing out");
     this.afAuth.auth.signOut().then(() => {
       this.user = null;
       this.signoutRedirect();
@@ -122,6 +117,16 @@ export class AuthService {
 
   signoutRedirect() {
     this.router.navigate(['/']);
+  }
+
+  makeid() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  
+    for (var i = 0; i < 28; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+  
+    return text;
   }
   
 }

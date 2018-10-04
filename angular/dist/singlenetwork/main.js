@@ -104,7 +104,7 @@ module.exports = ".pusher {\r\n    margin-bottom: 20px;\r\n}\r\n\r\nimg {\r\n   
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-light bg-light fixed-top\">\n\n    <img src=\"./assets/images/Logo.png\" routerLink='/loggedin-dashboard'>\n    <a routerLink=\"/loggedin-dashboard\"><button *ngIf=\"isMobile\" class=\"btn btn-light\">Tilbage</button></a>\n    \n    \n    <div *ngIf=\"!isMobile\" class=\"navbar-nav ml-auto\">\n      <button matTooltip=\"{{field.description}}\" *ngFor=\"let field of menuFields\" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>\n    </div>\n    \n    <button *ngIf=\"isMobile\" mat-icon-button [matMenuTriggerFor]=\"menu\">\n        <mat-icon>menu</mat-icon>\n    </button>\n\n      <mat-menu #menu=\"matMenu\" [overlapTrigger]=\"false\" yPosition=\"below\">\n        <button mat-menu-item>\n          <mat-icon>dialpad</mat-icon>\n          <span>Redial</span>\n        </button>\n        <button mat-menu-item disabled>\n          <mat-icon>voicemail</mat-icon>\n          <span>Check voicemail</span>\n        </button>\n        <button mat-menu-item>\n          <mat-icon>notifications_off</mat-icon>\n          <span>Disable alerts</span>\n        </button>\n      </mat-menu>\n      \n    <button (click)=\"signout()\" mat-raised-button color=\"warn\">Log ud</button>\n      \n  </nav>\n\n  <!-- Pusher -->\n  <!-- DO NOT EDIT HERE -->\n  <nav style=\"visibility: hidden;\" class=\"navbar navbar-expand-md navbar-light bg-light pusher\">\n\n      <img src=\"./assets/images/Logo.png\" routerLink='/loggedin-dashboard'>\n      <a routerLink=\"/loggedin-dashboard\"><button *ngIf=\"isMobile\" class=\"btn btn-light\">Tilbage</button></a>\n      \n      \n      <div *ngIf=\"!isMobile\" class=\"navbar-nav ml-auto\">\n        <button *ngFor=\"let field of menuFields\" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>\n      </div>\n      \n      <button *ngIf=\"isMobile\" mat-icon-button [matMenuTriggerFor]=\"menu\">\n          <mat-icon>menu</mat-icon>\n      </button>\n  \n        <mat-menu #menu=\"matMenu\" [overlapTrigger]=\"false\" yPosition=\"below\">\n          <button mat-menu-item>\n            <mat-icon>dialpad</mat-icon>\n            <span>Redial</span>\n          </button>\n          <button mat-menu-item disabled>\n            <mat-icon>voicemail</mat-icon>\n            <span>Check voicemail</span>\n          </button>\n          <button mat-menu-item>\n            <mat-icon>notifications_off</mat-icon>\n            <span>Disable alerts</span>\n          </button>\n        </mat-menu>\n        \n      <button (click)=\"signout()\" mat-raised-button color=\"warn\">Log ud</button>\n        \n    </nav>\n\n  "
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-light bg-light fixed-top\">\n\n    <img src=\"assets/images/Logo.png\" routerLink='/loggedin-dashboard'>\n    <a routerLink=\"/loggedin-dashboard\"><button *ngIf=\"isMobile\" class=\"btn btn-light\">Tilbage</button></a>\n    \n    \n    <div *ngIf=\"!isMobile\" class=\"navbar-nav ml-auto\">\n      <button matTooltip=\"{{field.description}}\" *ngFor=\"let field of menuFields\" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>\n    </div>\n    \n    <button *ngIf=\"isMobile\" mat-icon-button [matMenuTriggerFor]=\"menu\">\n        <mat-icon>menu</mat-icon>\n    </button>\n\n      <mat-menu #menu=\"matMenu\" [overlapTrigger]=\"false\" yPosition=\"below\">\n        <button mat-menu-item>\n          <mat-icon>dialpad</mat-icon>\n          <span>Redial</span>\n        </button>\n        <button mat-menu-item disabled>\n          <mat-icon>voicemail</mat-icon>\n          <span>Check voicemail</span>\n        </button>\n        <button mat-menu-item>\n          <mat-icon>notifications_off</mat-icon>\n          <span>Disable alerts</span>\n        </button>\n      </mat-menu>\n      \n    <button (click)=\"signout()\" mat-raised-button color=\"warn\">Log ud</button>\n      \n  </nav>\n\n  <!-- Pusher -->\n  <!-- DO NOT EDIT HERE -->\n  <nav style=\"visibility: hidden;\" class=\"navbar navbar-expand-md navbar-light bg-light pusher\">\n\n      <img src=\"./assets/images/Logo.png\" routerLink='/loggedin-dashboard'>\n      <a routerLink=\"/loggedin-dashboard\"><button *ngIf=\"isMobile\" class=\"btn btn-light\">Tilbage</button></a>\n      \n      \n      <div *ngIf=\"!isMobile\" class=\"navbar-nav ml-auto\">\n        <button *ngFor=\"let field of menuFields\" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>\n      </div>\n      \n      <button *ngIf=\"isMobile\" mat-icon-button [matMenuTriggerFor]=\"menu\">\n          <mat-icon>menu</mat-icon>\n      </button>\n  \n        <mat-menu #menu=\"matMenu\" [overlapTrigger]=\"false\" yPosition=\"below\">\n          <button mat-menu-item>\n            <mat-icon>dialpad</mat-icon>\n            <span>Redial</span>\n          </button>\n          <button mat-menu-item disabled>\n            <mat-icon>voicemail</mat-icon>\n            <span>Check voicemail</span>\n          </button>\n          <button mat-menu-item>\n            <mat-icon>notifications_off</mat-icon>\n            <span>Disable alerts</span>\n          </button>\n        </mat-menu>\n        \n      <button (click)=\"signout()\" mat-raised-button color=\"warn\">Log ud</button>\n        \n    </nav>\n\n  "
 
 /***/ }),
 
@@ -539,7 +539,7 @@ var AuthService = /** @class */ (function () {
                 var date = new Date();
                 date.setUTCFullYear(2019, 0, 1);
                 user.subscribed_until = date;
-                _this.ufbs.insertUser(user);
+                _this.ufbs.insertUser(user, res.uid);
                 _this.doLogin({ email: formData.email, password: formData.password });
             }, function (err) { return reject(err); });
         });
@@ -550,8 +550,7 @@ var AuthService = /** @class */ (function () {
             .signInWithEmailAndPassword(formData.email, formData.password)
             .then(function (credential) {
             _this.user = _this.afAuth.auth.currentUser;
-            _this.ufbs.getUserByEmail(_this.user.email);
-            _this.loginRedirect();
+            //this.loginRedirect();
             return credential.user;
         })
             .catch(function (error) { return console.log(error); });
@@ -561,7 +560,7 @@ var AuthService = /** @class */ (function () {
         var date = new Date();
         date.setUTCFullYear(2019, 0, 1);
         userEntity.subscribed_until = date;
-        this.ufbs.insertUser(userEntity);
+        this.ufbs.insertUser(userEntity, firebaseUser.uid);
     };
     AuthService.prototype.doGoogleLogin = function () {
         var provider = new firebase_app__WEBPACK_IMPORTED_MODULE_2__["auth"].GoogleAuthProvider();
@@ -602,7 +601,6 @@ var AuthService = /** @class */ (function () {
     };
     AuthService.prototype.doSignout = function () {
         var _this = this;
-        console.log("Signing out");
         this.afAuth.auth.signOut().then(function () {
             _this.user = null;
             _this.signoutRedirect();
@@ -614,6 +612,13 @@ var AuthService = /** @class */ (function () {
     };
     AuthService.prototype.signoutRedirect = function () {
         this.router.navigate(['/']);
+    };
+    AuthService.prototype.makeid = function () {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        for (var i = 0; i < 28; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        return text;
     };
     AuthService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -1154,7 +1159,6 @@ var CreateNewEventComponent = /** @class */ (function () {
         event.targetGroup = this.secondFormGroup.value.eventTargetGroup;
         event.participants = [{ username: this.ufbs.getStorage()._username }];
         event.host = this.ufbs.getStorage().email;
-        console.log(event.queue);
         if (event.hostRating === undefined) {
             event.hostRating = 0;
         }
@@ -1168,7 +1172,6 @@ var CreateNewEventComponent = /** @class */ (function () {
     CreateNewEventComponent.prototype.lookUpZip = function (event) {
         var _this = this;
         if (event.target.value.length > 3) {
-            console.log("attempting");
             this.geoAPI.getZipFromCity(event.target.value).map(function (response) { return response.json(); }).subscribe(function (result) { return _this.apiZipValue = result.navn; });
         }
     };
@@ -1304,27 +1307,6 @@ var EventAddress = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/entity/helper/child.ts":
-/*!****************************************!*\
-  !*** ./src/app/entity/helper/child.ts ***!
-  \****************************************/
-/*! exports provided: Child */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Child", function() { return Child; });
-var Child = /** @class */ (function () {
-    function Child(date) {
-        this.birthday = date;
-    }
-    return Child;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/entity/helper/json-converter.ts":
 /*!*************************************************!*\
   !*** ./src/app/entity/helper/json-converter.ts ***!
@@ -1410,49 +1392,6 @@ var JsonConverter = /** @class */ (function () {
         return rating;
     };
     return JsonConverter;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/entity/helper/newsletterSetting.ts":
-/*!****************************************************!*\
-  !*** ./src/app/entity/helper/newsletterSetting.ts ***!
-  \****************************************************/
-/*! exports provided: NewsletterSetting */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NewsletterSetting", function() { return NewsletterSetting; });
-var NewsletterSetting = /** @class */ (function () {
-    function NewsletterSetting() {
-    }
-    return NewsletterSetting;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/entity/helper/profileAddress.ts":
-/*!*************************************************!*\
-  !*** ./src/app/entity/helper/profileAddress.ts ***!
-  \*************************************************/
-/*! exports provided: ProfileAddress */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileAddress", function() { return ProfileAddress; });
-var ProfileAddress = /** @class */ (function () {
-    function ProfileAddress(street, city, zip) {
-        this.street = street;
-        this.city = city;
-        this.zip = zip;
-    }
-    return ProfileAddress;
 }());
 
 
@@ -1769,7 +1708,6 @@ var EventFirebaseService = /** @class */ (function () {
         return this.db.object(itemPath);
     };
     EventFirebaseService.prototype.getEventsByHost = function (hostMail) {
-        console.log(hostMail);
         var path = this.dbPath;
         return this.db.list(path, function (ref) { return ref.orderByChild('host').equalTo(hostMail); }).snapshotChanges().map(function (events) {
             return events.map(function (c) { return (__assign({ key: c.payload.key }, c.payload.val())); });
@@ -2265,7 +2203,7 @@ module.exports = ".inputfile {\r\n\twidth: 0.1px;\r\n\theight: 0.1px;\r\n\topaci
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ng-template #content let-c=\"close\" let-d=\"dismiss\">\n    <div class=\"modal-header\">\n      <h4 class=\"modal-title\">Modal title</h4>\n      <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('Cross click')\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n    <div class=\"modal-body\">\n        <div class=\"form-group row\">\n            <label for=\"username\" class=\"col-4 col-form-label\">Vælg fil</label> \n            <div class=\"col-8\">\n              <input id=\"uploadImage\" name=\"uploadImage\" class=\"\" required=\"required\" type=\"file\">\n            </div>\n          </div>\n    </div>\n    <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-outline-primary mb-2 mr-2\" (click)=\"c('Close click')\">Upload</button>\n      <button type=\"button\" class=\"btn btn-outline-danger mb-2 mr-2\" (click)=\"c('Close click')\">Luk</button>\n    </div>\n  </ng-template>\n  <button class=\"btn btn-outline-primary mb-2 mr-2\" (click)=\"openVerticallyCentered(content)\">Opload nyt billede</button>"
+module.exports = "<ng-template #content let-c=\"close\" let-d=\"dismiss\">\n    <div class=\"modal-header\">\n      <h4 class=\"modal-title\">Fil opload</h4>\n      <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"d('Cross click')\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n    <div class=\"modal-body\">\n        <div class=\"form-group row\">\n            <label for=\"username\" class=\"col-4 col-form-label\">Vælg fil</label> \n            <div class=\"col-8\">\n              <form [formGroup]=\"fileForm\">\n                  <input formControlName=\"file\" id=\"uploadImage\" name=\"uploadImage\" class=\"\" required=\"required\" type=\"file\">\n              </form>\n            </div>\n          </div>\n    </div>\n    <div class=\"modal-footer\">\n        <button mat-button color=\"warn\" (click)=\"c('Close click')\">Luk</button>\n        <button mat-button color=\"primary\" (click)=\"c('Close click')\">Upload</button>\n    </div>\n  </ng-template>\n  <button mat-raised-button color=\"primary\" class=\"btn btn-outline-primary mb-2 mr-2\" (click)=\"openVerticallyCentered(content)\">Opload nyt billede</button>"
 
 /***/ }),
 
@@ -2281,6 +2219,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ImageUploadComponent", function() { return ImageUploadComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2292,9 +2231,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var ImageUploadComponent = /** @class */ (function () {
     function ImageUploadComponent(modalService) {
         this.modalService = modalService;
+        this.fileForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
+            file: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required)
+        });
     }
     ImageUploadComponent.prototype.openBackDropCustomClass = function (content) {
         this.modalService.open(content, { backdropClass: 'light-blue-backdrop' });
@@ -2370,6 +2313,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mobile_detector_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mobile-detector.service */ "./src/app/mobile-detector.service.ts");
 /* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
 /* harmony import */ var _user_firebase_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../user-firebase.service */ "./src/app/user-firebase.service.ts");
+/* harmony import */ var _entity_user_user__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../entity/user/user */ "./src/app/entity/user/user.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2379,6 +2323,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2407,14 +2352,21 @@ var LandingPageHeaderComponent = /** @class */ (function () {
         this.authService.afAuth.auth.onAuthStateChanged(function (user) {
             if (user) {
                 _this.isLoggedOn = true;
-                _this.username = user.displayName;
                 //First sign in AKA account creation
-                if (_this.ufbs.getUserByEmail(user.email) === undefined) {
-                    _this.authService.doSocialLoginRegister(user);
-                }
-                //Nth signin, not first time.
-                _this.ufbs.getUserByEmail(user.email);
-                // this.authService.loginRedirect();
+                _this.ufbs.getUserByID(user.uid).subscribe(function (value) {
+                    if (value === null) {
+                        _this.authService.doSocialLoginRegister(user);
+                    }
+                    else {
+                        _this.ufbs.getUserByID(user.uid).subscribe(function (value) {
+                            // This error lies.
+                            var obj = JSON.parse(JSON.stringify(value));
+                            var u = Object.assign(obj, _entity_user_user__WEBPACK_IMPORTED_MODULE_8__["User"]);
+                            _this.ufbs.setStorage(u);
+                            _this.username = u._username;
+                        });
+                    }
+                });
             }
         });
     };
@@ -2860,7 +2812,6 @@ var MyEventComponent = /** @class */ (function () {
     }
     MyEventComponent.prototype.ngOnInit = function () {
         this.myEvent = this.efbs.myEventSelection;
-        console.log(this.myEvent.key);
         this.firstFormGroup = this._formBuilder.group({
             eventName: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             eventDescription: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
@@ -2906,7 +2857,6 @@ var MyEventComponent = /** @class */ (function () {
     MyEventComponent.prototype.onUpdateEvent = function () {
         var e = this.formDataToModel();
         this.efbs.updateEvent(e.key, e);
-        console.log("Updating");
     };
     MyEventComponent.prototype.formDataToModel = function () {
         var event = new _entity_event_event_model__WEBPACK_IMPORTED_MODULE_1__["Event"]();
@@ -3060,7 +3010,6 @@ var MyEventsComponent = /** @class */ (function () {
             data: { key: element.key, buttonNo: "For Guds skyld nej!", buttonYes: "Ja", dialogText: "Er du sikker på at du vil slette dette event?" }
         });
         dialogRef.afterClosed().subscribe(function (result) {
-            console.log('The dialog was closed');
         });
     };
     __decorate([
@@ -3095,7 +3044,7 @@ var MyEventsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "h1 {\r\n    color: snow;\r\n    text-align: center;\r\n}\r\n\r\n.container {\r\n    /*margin-top: 100px;\r\n    margin-bottom: 40px;*/\r\n}\r\n\r\n.mat-tab-profile {\r\n    margin: 20px;\r\n    background-color:#fff;\r\n}\r\n\r\nmat-tab-group {\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display: block;\r\n    width: 100%;\r\n}\r\n\r\n@media screen and (max-width: 600px) {\r\n    .col-md-9 {\r\n        margin-bottom: 40px;\r\n    }\r\n  }\r\n\r\n/* Progress bar */\r\n\r\nmat-progress-bar {\r\n    width: 100%;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display:block;\r\n    height:40px;\r\n}\r\n\r\n/* First toggle */\r\n\r\n.onoffswitch {\r\n    position: relative; width: 70px;\r\n    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;\r\n}\r\n\r\n.onoffswitch-checkbox {\r\n    display: none;\r\n}\r\n\r\n.onoffswitch-label {\r\n    -webkit-transform: Scale(0.70);\r\n            transform: Scale(0.70);\r\n    display: block; overflow: hidden; cursor: pointer;\r\n    border: 2px solid #999999; border-radius: 20px;\r\n}\r\n\r\n.onoffswitch-inner {\r\n    display: block; width: 200%; margin-left: -100%;\r\n    transition: margin 0.3s ease-in 0s;\r\n}\r\n\r\n.onoffswitch-inner:before, .onoffswitch-inner:after {\r\n    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;\r\n    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;\r\n    box-sizing: border-box;\r\n}\r\n\r\n.onoffswitch-inner:before {\r\n    content: \"NEJ\";\r\n    padding-left: 10px;\r\n    background-color: #EEEEEE; color: #999999;\r\n}\r\n\r\n.onoffswitch-inner:after {\r\n    content: \"JA\";\r\n    padding-right: 10px;\r\n    background-color: #34A7C1; color: #FFFFFF;\r\n    text-align: right;\r\n}\r\n\r\n.onoffswitch-switch {\r\n    display: none; width: 18px; margin: 6px;\r\n    background: #FFFFFF;\r\n    position: absolute; top: 0; bottom: 0;\r\n    right: 56px;\r\n    border: 2px solid #999999; border-radius: 20px;\r\n    transition: all 0.3s ease-in 0s; \r\n}\r\n\r\n.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {\r\n    margin-left: 0;\r\n}\r\n\r\n.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {\r\n    right: 0px; \r\n}\r\n\r\n.alert {\r\n    text-align: center;\r\n}\r\n\r\n.card {\r\n    border: none;\r\n}\r\n\r\n.ratingImg {\r\n    -webkit-transform: scale(0.75);\r\n            transform: scale(0.75);\r\n}"
+module.exports = "h1 {\r\n    color: snow;\r\n    text-align: center;\r\n}\r\n\r\n.mat-tab-profile {\r\n    margin: 20px;\r\n    background-color:#fff;\r\n}\r\n\r\nmat-form-field {\r\n    margin: 10px;\r\n}\r\n\r\nmat-slide-toggle {\r\n    margin: 10px;\r\n}\r\n\r\n.block-field {\r\n    display:block;\r\n    width: 50%;\r\n}\r\n\r\nmat-tab-group {\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display: block;\r\n    width: 100%;\r\n}\r\n\r\n/* Progress bar */\r\n\r\nmat-progress-bar {\r\n    width: 100%;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display:block;\r\n    height:40px;\r\n}\r\n\r\n.alert {\r\n    text-align: center;\r\n}\r\n\r\n.ratingImg {\r\n    -webkit-transform: scale(0.75);\r\n            transform: scale(0.75);\r\n}"
 
 /***/ }),
 
@@ -3106,7 +3055,7 @@ module.exports = "h1 {\r\n    color: snow;\r\n    text-align: center;\r\n}\r\n\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<div class=\"container\">\n    <h1>Min Profil</h1>\n\n    <mat-progress-bar \n    class=\"example-margin\"\n    [color]=\"color\"\n    [mode]=\"mode\"\n    [value]=\"value\">></mat-progress-bar>\n    \n    <!-- Desktop -->\n    <div *ngIf=\"!isMobile\" class=\"row\">\n        \n        <mat-tab-group class=\"mat-tab-profile\">\n            <mat-tab label=\"Person Data\">\n                    <div *ngIf=\"!activation\" class=\"ng-hide\">\n                            <div class=\"alert alert-danger\" role=\"alert\">\n                                <div *ngIf=\"!activation\" class=\"ng-hide\"></div>\n                                <strong>Hov!</strong> {{activationError}}\n                            </div>\n                    </div>\n                <!--\n                  <div class=\"col-md-3 \">\n                     <div class=\"list-group \">\n                          <a href=\"#\" class=\"list-group-item list-group-item-action active\">Kategorier</a>\n                          <a href=\"#\" class=\"list-group-item list-group-item-action\">Person data</a>\n                          <a href=\"#\" class=\"list-group-item list-group-item-action\">Kontakt oplysninger</a>\n                          <a href=\"#\" class=\"list-group-item list-group-item-action\">Familie</a>\n                          <a href=\"#\" class=\"list-group-item list-group-item-action\">Billeder</a>\n                          <a href=\"#\" class=\"list-group-item list-group-item-action\">Konto oplysninger</a>\n                          <a href=\"#\" class=\"list-group-item list-group-item-action\">Rating</a>\n                          <a href=\"#\" class=\"list-group-item list-group-item-action\">Nyhedsbreve</a>\n                          <a href=\"#\" class=\"list-group-item list-group-item-action\">Filtre</a>\n                        </div> \n                </div>\n                -->\n                <div class=\"col-md-9\">\n                    <div class=\"card\">\n                        <div class=\"card-body\">\n                            <div class=\"row\">\n                                <div class=\"col-md-12\">\n                                    <form [formGroup]=\"personDataForm\">\n                                        <div class=\"form-group row\">\n                                            <label for=\"username\" class=\"col-4 col-form-label\">Brugernavn</label> \n                                            <div class=\"col-8\">\n                                                <input id=\"username\" name=\"username\" placeholder=\"{{username}}\" class=\"form-control here\" type=\"text\" readonly>\n                                            </div>\n                                        </div>\n                                        <div class=\"form-group row\">\n                                            <label for=\"name\" class=\"col-4 col-form-label\">Fornavn</label> \n                                            <div class=\"col-8\">\n                                                <input id=\"name\" formControlName=\"firstName\" name=\"firstName\" placeholder=\"Fornavn\" class=\"form-control here\" type=\"text\" autofocus>\n                                            </div>\n                                        </div>\n                                        <div class=\"form-group row\">\n                                            <label for=\"lastname\" class=\"col-4 col-form-label\">Efternavn</label> \n                                            <div class=\"col-8\">\n                                                <input id=\"lastname\" formControlName=\"lastName\" name=\"lastName\" placeholder=\"Efternavn\" class=\"form-control here\" type=\"text\">\n                                            </div>\n                                        </div>\n                                        <div class=\"form-group row\">\n                                            <label for=\"birthday\" class=\"col-4 col-form-label\">Fødselsdag</label> \n                                            <div class=\"col-8\">\n                                                <input id=\"birthday\" formControlName=\"birthday\" name=\"birthday\" class=\"form-control here\" type=\"date\">\n                                            </div>\n                                        </div>\n                                        <div class=\"form-group row\">\n                                            <label for=\"select\" class=\"col-4 col-form-label\">Køn</label> \n                                            <div class=\"col-8\">\n                                                <select id=\"select\" formControlName=\"gender\" name=\"select\" class=\"custom-select\">\n                                                    <option value=\"Mand\">Mand</option>\n                                                    <option value=\"Kvinde\">Kvinde</option>\n                                                    <option value=\"Andet\">Ønsker ikke oplyse</option>\n                                                </select>\n                                            </div>\n                                        </div>\n                                        <div class=\"form-group row\">\n                                            <div class=\"offset-4 col-8\">\n                                                <button name=\"submit\" (click)=\"updatePersonData(personDataForm.value)\" type=\"submit\" class=\"btn btn-outline-primary mb-2 mr-2\">Opdater min profil</button>\n                                            </div>\n                                        </div>\n                                    </form>\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                </div>\n            </mat-tab>\n            <mat-tab label=\"Kontakt\">\n                    <div *ngIf=\"!activation\" class=\"ng-hide\">\n                            <div class=\"alert alert-danger\" role=\"alert\">\n                                <div *ngIf=\"!activation\" class=\"ng-hide\"></div>\n                                <strong>Hov!</strong> {{activationError}}\n                            </div>\n                    </div>\n                <div class=\"col-md-9\">\n                    <div class=\"card\">\n                        <div class=\"card-body\">\n                            <div class=\"row\">\n                                <div class=\"col-md-12\">\n                                    <form [formGroup]=\"contactForm\">\n                                        <div class=\"form-group row\">\n                                            <label for=\"phone\" class=\"col-4 col-form-label\">Telefon/mobil*</label> \n                                            <div class=\"col-8\">\n                                                <input type=\"tel\" formControlName=\"phone\" class=\"form-control\" name=\"telphone\" placeholder=\"Telefon/mobil\" pattern=\"[0-9]{3} [0-9]{3} [0-9]{4}\" maxlength=\"8\"  title=\"8 cifre\"/>\n                                            </div>\n                                        </div>\n\n                                        <div class=\"form-row\">\n                                            <div class=\"form-group col-md-6\">\n                                                <label for=\"inputAddress\">Adresse</label>\n                                                <input type=\"text\" formControlName=\"addressStreet\" class=\"form-control\" id=\"inputAddress\" placeholder=\"Adresse\">\n                                            </div>\n                                            <div class=\"form-group col-md-4\">\n                                                <label for=\"inputBy\">By</label>\n                                                <input type=\"text\" formControlName=\"addressCity\" class=\"form-control\" id=\"inputBy\" placeholder=\"By\">\n                                            </div>\n                                            <div class=\"form-group col-md-2\">\n                                                <label for=\"inputZip\">Postnummer</label>\n                                                <input type=\"text\" formControlName=\"addressZip\" class=\"form-control\" id=\"inputZip\" placeholder=\"Post\">\n                                            </div>\n                                        </div>\n\n                                        <div class=\"form-group row\">\n                                            <div class=\"offset-4 col-8\">\n                                                <button name=\"submit\" (click)=\"updateContact(contactForm.value)\" type=\"submit\" class=\"btn btn-outline-primary mb-2 mr-2\">Opdater min profil</button>\n                                            </div>\n                                        </div>\n                                    </form>\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                </div>\n\n            </mat-tab>\n            <mat-tab label=\"Familie\">\n                    <div *ngIf=\"!activation\" class=\"ng-hide\">\n                            <div class=\"alert alert-danger\" role=\"alert\">\n                                <div *ngIf=\"!activation\" class=\"ng-hide\"></div>\n                                <strong>Hov!</strong> {{activationError}}\n                            </div>\n                    </div>\n                <div class=\"col-md-9\">\n                    <div class=\"card\">\n                        <div class=\"card-body\">\n                            <div class=\"row\">\n                                <div class=\"col-md-12\">\n                                    <form [formGroup]=\"childrenForm\">\n                                        <div class=\"form-group row\">\n                                            <label for=\"kids\" class=\"col-4 col-form-label\">Antal børn</label> \n                                            <div class=\"col-8\">\n                                                <input type=\"number\" formControlName=\"numberOfChildren\" class=\"form-control\" min=\"0\" max=\"3\" name=\"kids\" placeholder=\"Antal\" maxlength=\"1\"/>\n                                            </div>\n                                        </div>\n\n                                        <div class=\"form-row\">\n                                            <label for=\"kidBirthday1\" class=\"col-4 col-form-label\">Fødselsdag for det første barn</label> \n                                            <div class=\"col-8\">\n                                                <input id=\"kidBirthday1\" formControlName=\"birthdayChild1\" name=\"birthday\" class=\"form-control here\" type=\"date\">\n                                            </div>\n                                        </div>\n                                        <div class=\"form-row\">\n                                            <label for=\"kidBirthday2\" class=\"col-4 col-form-label\">Fødselsdag for det andet barn</label> \n                                            <div class=\"col-8\">\n                                                <input id=\"kidBirthday2\" formControlName=\"birthdayChild2\" name=\"birthday\" class=\"form-control here\" type=\"date\">\n                                            </div>\n                                        </div>\n                                        <div class=\"form-row\">\n                                            <label for=\"kidBirthday3\" class=\"col-4 col-form-label\">Fødselsdag for det tredje barn</label> \n                                            <div class=\"col-8\">\n                                                <input id=\"kidBirthday3\" formControlName=\"birthdayChild3\" name=\"birthday\" class=\"form-control here\" type=\"date\">\n                                            </div>\n                                        </div>\n\n                                        <div class=\"form-group row\">\n                                            <div class=\"offset-4 col-8\">\n                                                <button name=\"submit\" (click)=\"updateChildren(childrenForm.value)\" type=\"submit\" class=\"btn btn-outline-primary mb-2 mr-2\">Opdater min profil</button>\n                                            </div>\n                                        </div>\n                                    </form>\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                </div>\n\n            </mat-tab>\n            <mat-tab label=\"Billeder\">\n                    <div *ngIf=\"!activation\" class=\"ng-hide\">\n                            <div class=\"alert alert-danger\" role=\"alert\">\n                                <div *ngIf=\"!activation\" class=\"ng-hide\"></div>\n                                <strong>Hov!</strong> {{activationError}}\n                            </div>\n                    </div>\n                <div *ngIf=\"!hasImages\" class=\"ng-hide\">\n                    <div class=\"alert alert-warning\" role=\"alert\">\n                        <div *ngIf=\"!hasImages\" class=\"ng-hide\"></div>\n                        <strong>Hov!</strong> Der er ingen billeder oploadet.\n                    </div>\n                </div>\n\n                <div class=\"col-md-9\">\n                    <div class=\"card\">\n                        <div class=\"card-body\">\n                            <div class=\"row\">\n                                <div class=\"col-md-12\">\n                                    <user-image-gallery></user-image-gallery>\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                </div>\n\n                <div class=\"col-md-9\">\n                    <div class=\"card\">\n                        <div class=\"card-body\">\n                            <div class=\"row\">\n                                <div class=\"col-md-12\">\n                                    <image-upload></image-upload>\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                </div>\n\n            </mat-tab>\n            <mat-tab label=\"Indstillinger\">\n                    <div *ngIf=\"!activation\" class=\"ng-hide\">\n                            <div class=\"alert alert-danger\" role=\"alert\">\n                                <div *ngIf=\"!activation\" class=\"ng-hide\"></div>\n                                <strong>Hov!</strong> {{activationError}}\n                            </div>\n                    </div>\n                <div class=\"col-md-9\">\n                    <div class=\"card\">\n                        <div class=\"card-body\">\n                            <div class=\"row\">\n                                <div class=\"col-md-12\">\n                                    <h4>Mailopsætning</h4>\n                                    <form [formGroup]=\"settingsForm\">\n                                        <div class=\"form-row\">\n                                            <div class=\"form-group col-sm\">\n                                                <div class=\"onoffswitch\">\n                                                    <label>Nye Arrangementer</label> <br>\n                                                    <input type=\"checkbox\" formControlName=\"newsletterEvent\" name=\"onoffswitch\" class=\"onoffswitch-checkbox\" id=\"myonoffswitch\" checked>\n                                                    <label class=\"onoffswitch-label\" for=\"myonoffswitch\">\n                                                        <span class=\"onoffswitch-inner\"></span>\n                                                        <span class=\"onoffswitch-switch\"></span>\n                                                    </label>\n                                                </div>\n                                            </div>\n                                            <div class=\"form-group col-sm\">\n                                                <div class=\"onoffswitch\">\n                                                    <label>Daglig oversigt</label> <br>\n                                                    <input type=\"checkbox\" formControlName=\"newsletterDaily\" name=\"onoffswitch2\" class=\"onoffswitch-checkbox\" id=\"myonoffswitch2\" checked>\n                                                    <label class=\"onoffswitch-label\" for=\"myonoffswitch2\">\n                                                        <span class=\"onoffswitch-inner\"></span>\n                                                        <span class=\"onoffswitch-switch\"></span>\n                                                    </label>\n                                                </div>\n                                            </div>\n                                            <div class=\"form-group col-sm\">\n                                                <div class=\"onoffswitch\">\n                                                    <label>Ugentlig oversigt</label> <br>\n                                                    <input type=\"checkbox\" formControlName=\"newsletterWeekly\" name=\"onoffswitch3\" class=\"onoffswitch-checkbox\" id=\"myonoffswitch3\" checked>\n                                                    <label class=\"onoffswitch-label\" for=\"myonoffswitch3\">\n                                                        <span class=\"onoffswitch-inner\"></span>\n                                                        <span class=\"onoffswitch-switch\"></span>\n                                                    </label>\n                                                </div>\n                                            </div>\n                                        </div>\n\n                                        <div class=\"form-group row\">\n                                                <label for=\"email\" class=\"col-4 col-form-label\">Betalt indtil</label> \n                                                <div class=\"col-8\">\n                                                    <input class=\"form-control\" type=\"text\" placeholder=\"{{paidUntil}}\" readonly>\n                                                </div>\n                                            </div>\n\n                                        <div class=\"form-group row\">\n                                            <div class=\"offset-4 col-8\">\n                                                <button name=\"submit\" (click)=\"updateSettings(settingsForm.value)\" type=\"submit\" class=\"btn btn-outline-primary mb-2 mr-2\">Opdater min profil</button>\n                                            </div>\n                                        </div>\n                                    </form>\n                                </div>\n                            </div>\n\n                        </div>\n                    </div>\n                </div>\n\n            </mat-tab>\n\n            <mat-tab label=\"Rating\">\n                    <div *ngIf=\"!activation\" class=\"ng-hide\">\n                            <div class=\"alert alert-danger\" role=\"alert\">\n                                <div *ngIf=\"!activation\" class=\"ng-hide\"></div>\n                                <strong>Hov!</strong> {{activationError}}\n                            </div>\n                    </div>\n                <div class=\"col-md-9\">\n                    <div class=\"card\">\n                        <div class=\"card-body\">\n                            <div class=\"row\">\n                                <div class=\"col-md-12\">\n\n                                    <div class=\"form-group row\">\n                                        <label for=\"userRating\" class=\"col-4 col-form-label\">Rating</label>\n                                        <img class=\"ratingImg\" src=\"./assets/images/Shield_Silver.png\">\n                                    </div>\n\n                                    <form>\n                                        <div class=\"form-group row\">\n                                            <label for=\"numberOfEventsHosted\" class=\"col-4 col-form-label\">Antal events du har afholdt</label>\n                                            <div class=\"col-8\">\n                                                <input class=\"form-control\" type=\"text\" placeholder=\"0\" readonly>\n                                            </div>\n                                        </div>\n\n                                        <div class=\"form-group row\">\n                                            <label for=\"numberOfEventsAttended\" class=\"col-4 col-form-label\">Antal events du har deltaget i</label>\n                                            <div class=\"col-8\">\n                                                <input class=\"form-control\" type=\"text\" placeholder=\"7\" readonly>\n                                            </div>\n                                        </div>\n\n                                    </form>\n\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </mat-tab>\n\n                <mat-tab label=\"Deaktivering\">\n                    <div *ngIf=\"!activation\" class=\"ng-hide\">\n                            <div class=\"alert alert-danger\" role=\"alert\">\n                                <div *ngIf=\"!activation\" class=\"ng-hide\"></div>\n                                <strong>Hov!</strong> {{activationError}}\n                            </div>\n                    </div>\n                <div class=\"col-md-9\">\n                    <div class=\"card\">\n                        <div class=\"card-body\">\n                            <div class=\"row\">\n                                <div class=\"col-md-12\">\n\n                                    <div class=\"form-group row\">\n                                        <label matTooltip=\"Udfyld alle obligatoriske felter\" for=\"deactivate-activate\" class=\"col-4 col-form-label\">Deaktiver/aktiver profil</label> <br>\n                                        <label>{{confirmText}}</label> <br>\n                                    </div>\n                                    <div class=\"form-group row\">\n                                        <label for =\"activationBtn\" class=\"col-4 col-form-label\"></label>\n                                        <button [disabled]=\"btnDisabled\" (click)=\"deactivateAccount()\" matInput mat-raised-button color=\"warn\">{{btnText}}</button>\n                                    </div>\n\n                                    <div class=\"form-group row\">\n                                            <label for=\"delete-account\" class=\"col-4 col-form-label\">Slet profil</label> <br>\n                                            <label>Denne handling er <strong>permanent</strong></label> <br>\n                                        </div>\n                                        <div class=\"form-group row\">\n                                            <label for =\"activationBtn\" class=\"col-4 col-form-label\"></label>\n                                            <form [formGroup]=\"accountDeletionForm\"> \n                                                <mat-form-field>\n                                                    <input matTooltip=\"Du kan slette når feltet udfyldes. Husk store og små bogstaver\" matInput [(ngModel)]=\"accountDeletionConfirmationText\" formControlName=\"confirmationText\" mat-raised-button color=\"warn\" placeholder=\"Brugernavn\">\n                                                </mat-form-field>\n                                            </form>\n                                        </div>\n                                        <div class=\"form-group row\">\n                                            <label for =\"activationBtn\" class=\"col-4 col-form-label\"></label>\n                                            <button routerLink=\"/\" *ngIf=\"accountDeletionConfirmationText === user._username\" (click)=\"deleteAccount()\" matInput mat-raised-button color=\"warn\">Slet profil</button>\n                                        </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n\n            </mat-tab>\n\n\n        </mat-tab-group>\n    </div>\n\n    <div *ngIf=\"isMobile\">\n        <mat-card>Det er ikke muligt at ændre på din profil fra telefon. \n            *Under udvikling*\n        </mat-card>\n    </div>\n    <!-- Mobile\n<div *ngIf=\"isMobile\">\n    <div *ngIf=\"!activation\" class=\"ng-hide\">\n                            <div class=\"alert alert-danger\" role=\"alert\">\n                                <div *ngIf=\"!activation\" class=\"ng-hide\"></div>\n                                <strong>Hov!</strong> {{activationError}}\n                            </div>\n                    </div>\n    <div class=\"col-md-9\">\n            <div class=\"card\">\n                <div class=\"card-body\">\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n                            <form [formGroup]=\"personDataForm\">\n\n                                <div class=\"form-group row\">\n                                        <div class=\"list-group-item list-group-item-action active\">Person data</div>\n                                </div>\n                                \n                                <div class=\"form-group row\">\n                                    <label for=\"username\" class=\"col-4 col-form-label\">Brugernavn*</label> \n                                    <div class=\"col-8\">\n                                        <input id=\"username\" name=\"username\" placeholder=\"Brugernavn\" class=\"form-control here\" required=\"required\" type=\"text\">\n                                    </div>\n                                </div>\n                                <div class=\"form-group row\">\n                                    <label for=\"email\" class=\"col-4 col-form-label\">Email</label> \n                                    <div class=\"col-8\">\n                                        <input class=\"form-control\" type=\"text\" placeholder=\"minemail@domain.com\" readonly>\n                                    </div>\n                                </div>\n                                <div class=\"form-group row\">\n                                    <label for=\"name\" class=\"col-4 col-form-label\">Fornavn</label> \n                                    <div class=\"col-8\">\n                                        <input id=\"name\" formControlName=\"firstName\" name=\"name\" placeholder=\"Fornavn\" class=\"form-control here\" type=\"text\">\n                                    </div>\n                                </div>\n                                <div class=\"form-group row\">\n                                    <label for=\"lastname\" class=\"col-4 col-form-label\">Efternavn</label> \n                                    <div class=\"col-8\">\n                                        <input id=\"lastname\" formControlName=\"lastName\" name=\"lastname\" placeholder=\"Efternavn\" class=\"form-control here\" type=\"text\">\n                                    </div>\n                                </div>\n                                <div class=\"form-group row\">\n                                    <label for=\"birthday\" class=\"col-4 col-form-label\">Fødselsdag</label> \n                                    <div class=\"col-8\">\n                                        <input id=\"birthday\" formControlName=\"birthday\" name=\"birthday\" class=\"form-control here\" type=\"date\">\n                                    </div>\n                                </div>\n                                <div class=\"form-group row\">\n                                    <label for=\"select\" class=\"col-4 col-form-label\">Køn</label> \n                                    <div class=\"col-8\">\n                                        <select id=\"select\" formControlName=\"gender\" name=\"select\" class=\"custom-select\">\n                                            <option value=\"admin\">Mand</option>\n                                            <option value=\"admin\">Kvinde</option>\n                                            <option value=\"admin\">Ønsker ikke oplyse</option>\n                                        </select>\n                                    </div>\n                                </div>\n                                <div class=\"form-group row\">\n                                    <div class=\"offset-4 col-8\">\n                                        <button name=\"submit\" type=\"submit\" class=\"btn btn-outline-primary mb-2 mr-2\">Opdater min profil</button>\n                                    </div>\n                                </div>\n                            </form>\n                        </div>\n                    </div>\n\n                </div>\n            </div>\n        </div>\n\n\n        <div class=\"col-md-9\">\n            <div class=\"card\">\n                <div class=\"card-body\">\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n                            <form [formGroup]=\"contactForm\">\n\n                                    <div class=\"form-group row\">\n                                            <div class=\"list-group-item list-group-item-action active\">Kontakt</div>\n                                    </div>\n\n                                <div class=\"form-group row\">\n                                    <label for=\"phone\" class=\"col-4 col-form-label\">Telefon/mobil*</label> \n                                    <div class=\"col-8\">\n                                        <input type=\"tel\" formControlName=\"phone\" class=\"form-control\" name=\"telphone\" placeholder=\"Telefon/mobil\" pattern=\"[0-9]{3} [0-9]{3} [0-9]{4}\" maxlength=\"8\"  title=\"8 cifre\"/>\n                                    </div>\n                                </div>\n\n                                <div class=\"form-row\">\n                                    <div class=\"form-group col-md-6\">\n                                        <label for=\"inputAddress\">Adresse</label>\n                                        <input type=\"text\" formControlName=\"addressStreet\" class=\"form-control\" id=\"inputAddress\" placeholder=\"Adresse\">\n                                    </div>\n                                    <div class=\"form-group col-md-4\">\n                                        <label for=\"inputBy\">By</label>\n                                        <input type=\"text\" formControlName=\"addressStreet\" class=\"form-control\" id=\"inputBy\" placeholder=\"By\">\n                                    </div>\n                                    <div class=\"form-group col-md-2\">\n                                        <label for=\"inputZip\">Postnummer</label>\n                                        <input type=\"text\" formControlName=\"addressZip\" class=\"form-control\" id=\"inputZip\" placeholder=\"Post\">\n                                    </div>\n                                </div>\n\n                                <div class=\"form-group row\">\n                                    <div class=\"offset-4 col-8\">\n                                        <button name=\"submit\" type=\"submit\" class=\"btn btn-outline-primary mb-2 mr-2\">Opdater min profil</button>\n                                    </div>\n                                </div>\n                            </form>\n                        </div>\n                    </div>\n\n                </div>\n            </div>\n        </div>\n\n        <div class=\"col-md-9\">\n            <div class=\"card\">\n                <div class=\"card-body\">\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n                            <form [formGroup]=\"childrenForm\">\n\n                                    <div class=\"form-group row\">\n                                            <div class=\"list-group-item list-group-item-action active\">Familie</div>\n                                    </div>\n\n                                <div class=\"form-group row\">\n                                    <label for=\"kids\" class=\"col-4 col-form-label\">Antal børn</label> \n                                    <div class=\"col-8\">\n                                        <input type=\"number\" formControlName=\"numberOfChildren\" class=\"form-control\" min=\"0\" max=\"3\" name=\"kids\" placeholder=\"Antal\" maxlength=\"1\"/>\n                                    </div>\n                                </div>\n\n                                <div class=\"form-row\">\n                                    <label for=\"kidBirthday1\" class=\"col-4 col-form-label\">Fødselsdag for det første barn</label> \n                                    <div class=\"col-8\">\n                                        <input id=\"kidBirthday1\" formControlName=\"birthdayChild1\" name=\"birthday\" class=\"form-control here\" type=\"date\">\n                                    </div>\n                                </div>\n                                <div class=\"form-row\">\n                                    <label for=\"kidBirthday2\" class=\"col-4 col-form-label\">Fødselsdag for det andet barn</label> \n                                    <div class=\"col-8\">\n                                        <input id=\"kidBirthday2\" formControlName=\"birthdayChild2\" name=\"birthday\" class=\"form-control here\" type=\"date\">\n                                    </div>\n                                </div>\n                                <div class=\"form-row\">\n                                    <label for=\"kidBirthday3\" class=\"col-4 col-form-label\">Fødselsdag for det tredje barn</label> \n                                    <div class=\"col-8\">\n                                        <input id=\"kidBirthday3\" formControlName=\"birthdayChild3\" name=\"birthday\" class=\"form-control here\" type=\"date\">\n                                    </div>\n                                </div>\n\n                                <div class=\"form-group row\">\n                                    <div class=\"offset-4 col-8\">\n                                        <button name=\"submit\" type=\"submit\" class=\"btn btn-outline-primary mb-2 mr-2\">Opdater min profil</button>\n                                    </div>\n                                </div>\n                            </form>\n                        </div>\n                    </div>\n\n                </div>\n            </div>\n        </div>\n\n        <div class=\"col-md-9\">\n                <div class=\"card\">\n                    <div class=\"card-body\">\n                        <div class=\"row\">\n                            <div class=\"col-md-12\">\n\n                                    <div class=\"form-group row\">\n                                            <div class=\"list-group-item list-group-item-action active\">Billeder</div>\n                                    </div>\n\n                                    <div *ngIf=\"myValue\" class=\"ng-hide\">\n                                            <div class=\"alert alert-warning\" role=\"alert\">\n                                                <div *ngIf=\"myValue\" class=\"ng-hide\"></div>\n                                                <strong>Hov!</strong> Der er ingen billeder oploadet.\n                                            </div>\n                                            \n                                        </div>\n                                \n                                        <div class=\"col-md-9\">\n                                            <div class=\"card\">\n                                                <div class=\"card-body\">\n                                                    <div class=\"row\">\n                                                        <div class=\"col-md-12\">\n                                                            <user-image-gallery></user-image-gallery>\n                                                        </div>\n                                                    </div>\n                                \n                                                </div>\n                                            </div>\n                                        </div>\n\n                                        <div class=\"col-md-9\">\n                                                <div class=\"card\">\n                                                    <div class=\"card-body\">\n                                                        <div class=\"row\">\n                                                            <div class=\"col-md-12\">\n                                                                <image-upload></image-upload>\n                                                            </div>\n                                                        </div>\n                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                            </div>\n                        </div>\n    \n                    </div>\n                </div>\n            </div>\n\n\n        <div class=\"col-md-9\">\n            <div class=\"card\">\n                <div class=\"card-body\">\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n                            <h4>Mailopsætning</h4>\n                            <form [formGroup]=\"settingsForm\">\n\n                                    <div class=\"form-group row\">\n                                            <div class=\"list-group-item list-group-item-action active\">Mail opsætning</div>\n                                    </div>\n\n                                <div class=\"form-row\">\n                                    <div class=\"form-group col-sm\">\n                                        <div class=\"onoffswitch\">\n                                            <label>Nye Arrangementer</label> <br>\n                                            <input type=\"checkbox\" formControlName=\"newsletterEvent\" name=\"onoffswitch\" class=\"onoffswitch-checkbox\" id=\"myonoffswitch\" checked>\n                                            <label class=\"onoffswitch-label\" for=\"myonoffswitch\">\n                                                <span class=\"onoffswitch-inner\"></span>\n                                                <span class=\"onoffswitch-switch\"></span>\n                                            </label>\n                                        </div>\n                                    </div>\n                                    <div class=\"form-group col-sm\">\n                                        <div class=\"onoffswitch\">\n                                            <label>Daglig oversigt</label> <br>\n                                            <input type=\"checkbox\" formControlName=\"newsletterDaily\" name=\"onoffswitch2\" class=\"onoffswitch-checkbox\" id=\"myonoffswitch2\" checked>\n                                            <label class=\"onoffswitch-label\" for=\"myonoffswitch2\">\n                                                <span class=\"onoffswitch-inner\"></span>\n                                                <span class=\"onoffswitch-switch\"></span>\n                                            </label>\n                                        </div>\n                                    </div>\n                                    <div class=\"form-group col-sm\">\n                                        <div class=\"onoffswitch\">\n                                            <label>Ugentlig oversigt</label> <br>\n                                            <input type=\"checkbox\" formControlName=\"newsletterWeekly\" name=\"onoffswitch3\" class=\"onoffswitch-checkbox\" id=\"myonoffswitch3\" checked>\n                                            <label class=\"onoffswitch-label\" for=\"myonoffswitch3\">\n                                                <span class=\"onoffswitch-inner\"></span>\n                                                <span class=\"onoffswitch-switch\"></span>\n                                            </label>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <div class=\"form-group row\">\n                                    <label for=\"email\" class=\"col-4 col-form-label\">Sendes til</label> \n                                    <div class=\"col-8\">\n                                        <input class=\"form-control\" type=\"text\" placeholder=\"minemail@domain.com\" readonly>\n                                    </div>\n                                </div>\n\n                                <div class=\"form-group row\">\n                                    <div class=\"offset-4 col-8\">\n                                        <button name=\"submit\" type=\"submit\" class=\"btn btn-outline-primary mb-2 mr-2\">Opdater min profil</button>\n                                    </div>\n                                </div>\n                            </form>\n                        </div>\n                    </div>\n\n                </div>\n            </div>\n        </div>\n\n\n        <div class=\"col-md-9\">\n            <div class=\"card\">\n                <div class=\"card-body\">\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n\n                                <div class=\"form-group row\">\n                                        <div class=\"list-group-item list-group-item-action active\">Rating</div>\n                                </div>\n\n                            <div class=\"form-group row\">\n                                <label for=\"userRating\" class=\"col-4 col-form-label\">Rating</label>\n                                <img class=\"ratingImg\" src=\"./assets/images/Shield_Silver.png\">\n                            </div>\n\n                            <form>\n                                <div class=\"form-group row\">\n                                    <label for=\"numberOfEventsHosted\" class=\"col-4 col-form-label\">Antal events du har afholdt</label>\n                                    <div class=\"col-8\">\n                                        <input class=\"form-control\" type=\"text\" placeholder=\"0\" readonly>\n                                    </div>\n                                </div>\n\n                                <div class=\"form-group row\">\n                                    <label for=\"numberOfEventsAttended\" class=\"col-4 col-form-label\">Antal events du har deltaget i</label>\n                                    <div class=\"col-8\">\n                                        <input class=\"form-control\" type=\"text\" placeholder=\"7\" readonly>\n                                    </div>\n                                </div>\n\n                            </form>\n\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    -->\n\n</div>"
+module.exports = "<app-navbar></app-navbar>\n<div class=\"container\">\n    <h1>Min Profil</h1>\n\n    <mat-progress-bar \n    class=\"example-margin\"\n    [color]=\"color\"\n    [mode]=\"mode\"\n    [value]=\"value\">></mat-progress-bar>\n    \n    <!-- Desktop -->\n    <div *ngIf=\"!isMobile\" class=\"row\">\n        \n        <mat-tab-group class=\"mat-tab-profile\">\n            <mat-tab label=\"Person Data\">\n\n                <div *ngIf=\"!activation\" class=\"ng-hide\">\n                    <div class=\"alert alert-danger\" role=\"alert\">\n                        <div *ngIf=\"!activation\" class=\"ng-hide\"></div>\n                        <strong>Hov!</strong> {{activationError}}\n                    </div>\n                </div>\n\n                <mat-card>\n                    <form [formGroup]=\"personDataForm\">\n                    <mat-form-field class=\"block-field\">\n                            <input matInput id=\"name\" formControlName=\"firstName\" name=\"firstName\" placeholder=\"Fornavn\" type=\"text\" autofocus>\n                    </mat-form-field>\n\n                    <mat-form-field>\n                            <input matInput id=\"lastname\" formControlName=\"lastName\" name=\"lastName\" placeholder=\"Efternavn\" type=\"text\">\n                    </mat-form-field>\n\n                    <mat-form-field class=\"block-field\">\n                            <input id=\"birthday\" formControlName=\"birthday\" matInput [matDatepicker]=\"picker\" placeholder=\"Fødselsdag\">\n                            <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n                            <mat-datepicker #picker></mat-datepicker>\n                    </mat-form-field>\n\n                    <mat-form-field class=\"block-field\">\n                        <mat-select placeholder=\"Køn\">\n                            <mat-option value=\"Mand\">Mand</mat-option>\n                            <mat-option value=\"Kvinde\">Kvinde</mat-option>\n                            <mat-option value=\"Ønsker ikke oplyse\">Ønsker ikke oplyse</mat-option>\n                        </mat-select>\n                    </mat-form-field>\n                    </form>\n                    <mat-card-actions>\n                            <button mat-button color=\"primary\" (click)=\"updatePersonData(personDataForm.value)\">Opdater</button>\n                    </mat-card-actions>\n                </mat-card>\n            </mat-tab>\n\n            <mat-tab label=\"Kontakt\">\n                \n                <div *ngIf=\"!activation\" class=\"ng-hide\">\n                    <div class=\"alert alert-danger\" role=\"alert\">\n                        <div *ngIf=\"!activation\" class=\"ng-hide\"></div>\n                        <strong>Hov!</strong> {{activationError}}\n                    </div>\n                </div>\n\n                <mat-card>\n                    <form [formGroup]=\"contactForm\">\n                        <mat-form-field class=\"block-field\">\n                            <input matInput matTooltip=\"8 cifre\" type=\"tel\" formControlName=\"phone\" placeholder=\"Telefon/mobil\"/>\n                        </mat-form-field>\n\n                        <mat-form-field>\n                            <input matInput type=\"text\" formControlName=\"street\" class=\"form-control\" id=\"inputAddress\" placeholder=\"Adresse\">\n                        </mat-form-field>\n\n                        <mat-form-field>\n                            <input matInput type=\"text\" formControlName=\"city\" class=\"form-control\" id=\"inputBy\" placeholder=\"By\">\n                        </mat-form-field>\n\n                        <mat-form-field>\n                            <input matInput type=\"text\" formControlName=\"zip\" class=\"form-control\" id=\"inputZip\" placeholder=\"Postnummer\">\n                        </mat-form-field>\n                    </form>\n                    <mat-card-actions>\n                            <button mat-button color=\"primary\" (click)=\"updateContact(contactForm.value)\">Opdater</button>\n                    </mat-card-actions>\n                </mat-card>  \n            </mat-tab>\n\n            <mat-tab label=\"Familie\">\n                <mat-card>\n                        <div *ngIf=\"!activation\" class=\"ng-hide\">\n                                <div class=\"alert alert-danger\" role=\"alert\">\n                                    <div *ngIf=\"!activation\" class=\"ng-hide\"></div>\n                                    <strong>Hov!</strong> {{activationError}}\n                                </div>\n                        </div>\n\n                        <form [formGroup]=\"childrenForm\">\n                            <mat-form-field class=\"block-field\">\n                                <input (keyup)=\"displayBirthdayInput($event.target.value)\" matInput type=\"number\" formControlName=\"numberOfChildren\" placeholder=\"Antal børn\"/>\n                            </mat-form-field>\n\n                            <mat-form-field *ngFor=\"let child of frontEndModellerChildren; let i = index;\" class=\"block-field\">\n                                <input formControlName=\"{{child.formControlName}}\" matInput [matDatepicker]=\"i\" placeholder=\"{{child.view}}\" [attr.id]=\"dtPicker + i\">\n                                <mat-datepicker-toggle matSuffix [for]=\"i\"></mat-datepicker-toggle>\n                                <mat-datepicker #i></mat-datepicker>   \n                                       \n                            </mat-form-field>\n\n\n                        </form>\n                        \n                </mat-card>\n            </mat-tab>\n\n            <mat-tab label=\"Billeder\">\n                <mat-card>\n\n                    <div *ngIf=\"!activation\" class=\"ng-hide\">\n                        <div class=\"alert alert-danger\" role=\"alert\">\n                            <div *ngIf=\"!activation\" class=\"ng-hide\"></div>\n                             <strong>Hov!</strong> {{activationError}}\n                        </div>\n                    </div>\n\n                    <div *ngIf=\"!hasImages\" class=\"ng-hide\">\n                        <div class=\"alert alert-warning\" role=\"alert\">\n                            <div *ngIf=\"!hasImages\" class=\"ng-hide\"></div>\n                            <strong>Hov!</strong> Der er ingen billeder oploadet.\n                        </div>\n                    </div>\n\n                    <mat-card>\n                       <user-image-gallery></user-image-gallery> \n                    </mat-card>\n\n                    <mat-card>\n                        <image-upload></image-upload>\n                    </mat-card>\n                \n                </mat-card>\n            </mat-tab>\n\n            <mat-tab label=\"Indstillinger\">\n                <mat-card>\n\n                    <div *ngIf=\"!activation\" class=\"ng-hide\">\n                        <div class=\"alert alert-danger\" role=\"alert\">\n                            <div *ngIf=\"!activation\" class=\"ng-hide\"></div>\n                            <strong>Hov!</strong> {{activationError}}\n                        </div>\n                    </div>\n\n                    <form [formGroup]=\"settingsForm\">\n                        \n                        \n                        <mat-label class=\"block-field\">Nye Arrangementer</mat-label>\n                        <mat-slide-toggle matInput formControlName=\"newsletterEvent\"\n                            (change)=\"changedNewsEvent()\"\n                            class=\"example-margin\"\n                            color=\"primary\"\n                            [checked]=\"newEvents\">{{newEvents ? trueText : falseText}}</mat-slide-toggle>\n                        \n                            <mat-label class=\"block-field\">Daglige notifikationer</mat-label>\n                            <mat-slide-toggle formControlName=\"newsletterDaily\"\n                            (change)=\"changedNewsDaily()\"\n                            class=\"example-margin\"\n                            color=\"primary\"\n                            [checked]=\"newsDaily\">{{newsDaily ? trueText : falseText}}</mat-slide-toggle>\n\n                            <mat-label class=\"block-field\">Ugentlige notifikationer</mat-label>\n                            <mat-slide-toggle formControlName=\"newsletterWeekly\"\n                            (change)=\"changedNewsWeekly()\"\n                            class=\"example-margin\"\n                            color=\"primary\"\n                            [checked]=\"newsWeekly\">{{newsWeekly ? trueText : falseText}}</mat-slide-toggle>\n                        \n                            <mat-card-actions>\n                                <button mat-button color=\"primary\" (click)=\"updateSettings(settingsForm.value)\">Opdater</button>\n                            </mat-card-actions>\n\n                    </form>\n\n                </mat-card>\n            </mat-tab>\n\n            <mat-tab label=\"Rating\">\n                <mat-card>\n\n                </mat-card> \n            </mat-tab>\n\n            <mat-tab label=\"Deaktivering\">\n                <mat-card>\n\n                </mat-card>\n            </mat-tab>\n\n\n        </mat-tab-group>\n    </div>\n\n    <div *ngIf=\"isMobile\">\n        <mat-card>Det er ikke muligt at ændre på din profil fra telefon. \n            *Under udvikling*\n        </mat-card>\n    </div>\n    <!-- Mobile\n<div *ngIf=\"isMobile\">\n    <div *ngIf=\"!activation\" class=\"ng-hide\">\n                            <div class=\"alert alert-danger\" role=\"alert\">\n                                <div *ngIf=\"!activation\" class=\"ng-hide\"></div>\n                                <strong>Hov!</strong> {{activationError}}\n                            </div>\n                    </div>\n    <div class=\"col-md-9\">\n            <div class=\"card\">\n                <div class=\"card-body\">\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n                            <form [formGroup]=\"personDataForm\">\n\n                                <mat-form-field>\n                                        <div class=\"list-group-item list-group-item-action active\">Person data</div>\n                                </div>\n                                \n                                <mat-form-field>\n                                    <mat-label for=\"username\" class=\"col-4 col-form-label\">Brugernavn*</mat-label> \n                                    <div class=\"col-8\">\n                                        <input id=\"username\" name=\"username\" placeholder=\"Brugernavn\" class=\"form-control here\" required=\"required\" type=\"text\">\n                                    </div>\n                                </div>\n                                <mat-form-field>\n                                    <mat-label for=\"email\" class=\"col-4 col-form-label\">Email</mat-label> \n                                    <div class=\"col-8\">\n                                        <input class=\"form-control\" type=\"text\" placeholder=\"minemail@domain.com\" readonly>\n                                    </div>\n                                </div>\n                                <mat-form-field>\n                                    <mat-label for=\"name\" class=\"col-4 col-form-label\">Fornavn</mat-label> \n                                    <div class=\"col-8\">\n                                        <input id=\"name\" formControlName=\"firstName\" name=\"name\" placeholder=\"Fornavn\" class=\"form-control here\" type=\"text\">\n                                    </div>\n                                </div>\n                                <mat-form-field>\n                                    <mat-label for=\"lastname\" class=\"col-4 col-form-label\">Efternavn</mat-label> \n                                    <div class=\"col-8\">\n                                        <input id=\"lastname\" formControlName=\"lastName\" name=\"lastname\" placeholder=\"Efternavn\" class=\"form-control here\" type=\"text\">\n                                    </div>\n                                </div>\n                                <mat-form-field>\n                                    <mat-label for=\"birthday\" class=\"col-4 col-form-label\">Fødselsdag</mat-label> \n                                    <div class=\"col-8\">\n                                        <input id=\"birthday\" formControlName=\"birthday\" name=\"birthday\" class=\"form-control here\" type=\"date\">\n                                    </div>\n                                </div>\n                                <mat-form-field>\n                                    <mat-label for=\"select\" class=\"col-4 col-form-label\">Køn</mat-label> \n                                    <div class=\"col-8\">\n                                        <select id=\"select\" formControlName=\"gender\" name=\"select\" class=\"custom-select\">\n                                            <option value=\"admin\">Mand</option>\n                                            <option value=\"admin\">Kvinde</option>\n                                            <option value=\"admin\">Ønsker ikke oplyse</option>\n                                        </select>\n                                    </div>\n                                </div>\n                                <mat-form-field>\n                                    <div class=\"offset-4 col-8\">\n                                        <button name=\"submit\" type=\"submit\" class=\"btn btn-outline-primary mb-2 mr-2\">Opdater min profil</button>\n                                    </div>\n                                </div>\n                            </form>\n                        </div>\n                    </div>\n\n                </div>\n            </div>\n        </div>\n\n\n        <div class=\"col-md-9\">\n            <div class=\"card\">\n                <div class=\"card-body\">\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n                            <form [formGroup]=\"contactForm\">\n\n                                    <mat-form-field>\n                                            <div class=\"list-group-item list-group-item-action active\">Kontakt</div>\n                                    </div>\n\n                                <mat-form-field>\n                                    <mat-label for=\"phone\" class=\"col-4 col-form-label\">Telefon/mobil*</mat-label> \n                                    <div class=\"col-8\">\n                                        <input type=\"tel\" formControlName=\"phone\" class=\"form-control\" name=\"telphone\" placeholder=\"Telefon/mobil\" pattern=\"[0-9]{3} [0-9]{3} [0-9]{4}\" maxlength=\"8\"  title=\"8 cifre\"/>\n                                    </div>\n                                </div>\n\n                                <div class=\"form-row\">\n                                    <div class=\"form-group col-md-6\">\n                                        <mat-label for=\"inputAddress\">Adresse</mat-label>\n                                        <input type=\"text\" formControlName=\"addressStreet\" class=\"form-control\" id=\"inputAddress\" placeholder=\"Adresse\">\n                                    </div>\n                                    <div class=\"form-group col-md-4\">\n                                        <mat-label for=\"inputBy\">By</mat-label>\n                                        <input type=\"text\" formControlName=\"addressStreet\" class=\"form-control\" id=\"inputBy\" placeholder=\"By\">\n                                    </div>\n                                    <div class=\"form-group col-md-2\">\n                                        <mat-label for=\"inputZip\">Postnummer</mat-label>\n                                        <input type=\"text\" formControlName=\"addressZip\" class=\"form-control\" id=\"inputZip\" placeholder=\"Post\">\n                                    </div>\n                                </div>\n\n                                <mat-form-field>\n                                    <div class=\"offset-4 col-8\">\n                                        <button name=\"submit\" type=\"submit\" class=\"btn btn-outline-primary mb-2 mr-2\">Opdater min profil</button>\n                                    </div>\n                                </div>\n                            </form>\n                        </div>\n                    </div>\n\n                </div>\n            </div>\n        </div>\n\n        <div class=\"col-md-9\">\n            <div class=\"card\">\n                <div class=\"card-body\">\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n                            <form [formGroup]=\"childrenForm\">\n\n                                    <mat-form-field>\n                                            <div class=\"list-group-item list-group-item-action active\">Familie</div>\n                                    </div>\n\n                                <mat-form-field>\n                                    <mat-label for=\"kids\" class=\"col-4 col-form-label\">Antal børn</mat-label> \n                                    <div class=\"col-8\">\n                                        <input type=\"number\" formControlName=\"numberOfChildren\" class=\"form-control\" min=\"0\" max=\"3\" name=\"kids\" placeholder=\"Antal\" maxlength=\"1\"/>\n                                    </div>\n                                </div>\n\n                                <div class=\"form-row\">\n                                    <mat-label for=\"kidBirthday1\" class=\"col-4 col-form-label\">Fødselsdag for det første barn</mat-label> \n                                    <div class=\"col-8\">\n                                        <input id=\"kidBirthday1\" formControlName=\"birthdayChild1\" name=\"birthday\" class=\"form-control here\" type=\"date\">\n                                    </div>\n                                </div>\n                                <div class=\"form-row\">\n                                    <mat-label for=\"kidBirthday2\" class=\"col-4 col-form-label\">Fødselsdag for det andet barn</mat-label> \n                                    <div class=\"col-8\">\n                                        <input id=\"kidBirthday2\" formControlName=\"birthdayChild2\" name=\"birthday\" class=\"form-control here\" type=\"date\">\n                                    </div>\n                                </div>\n                                <div class=\"form-row\">\n                                    <mat-label for=\"kidBirthday3\" class=\"col-4 col-form-label\">Fødselsdag for det tredje barn</mat-label> \n                                    <div class=\"col-8\">\n                                        <input id=\"kidBirthday3\" formControlName=\"birthdayChild3\" name=\"birthday\" class=\"form-control here\" type=\"date\">\n                                    </div>\n                                </div>\n\n                                <mat-form-field>\n                                    <div class=\"offset-4 col-8\">\n                                        <button name=\"submit\" type=\"submit\" class=\"btn btn-outline-primary mb-2 mr-2\">Opdater min profil</button>\n                                    </div>\n                                </div>\n                            </form>\n                        </div>\n                    </div>\n\n                </div>\n            </div>\n        </div>\n\n        <div class=\"col-md-9\">\n                <div class=\"card\">\n                    <div class=\"card-body\">\n                        <div class=\"row\">\n                            <div class=\"col-md-12\">\n\n                                    <mat-form-field>\n                                            <div class=\"list-group-item list-group-item-action active\">Billeder</div>\n                                    </div>\n\n                                    <div *ngIf=\"myValue\" class=\"ng-hide\">\n                                            <div class=\"alert alert-warning\" role=\"alert\">\n                                                <div *ngIf=\"myValue\" class=\"ng-hide\"></div>\n                                                <strong>Hov!</strong> Der er ingen billeder oploadet.\n                                            </div>\n                                            \n                                        </div>\n                                \n                                        <div class=\"col-md-9\">\n                                            <div class=\"card\">\n                                                <div class=\"card-body\">\n                                                    <div class=\"row\">\n                                                        <div class=\"col-md-12\">\n                                                            <user-image-gallery></user-image-gallery>\n                                                        </div>\n                                                    </div>\n                                \n                                                </div>\n                                            </div>\n                                        </div>\n\n                                        <div class=\"col-md-9\">\n                                                <div class=\"card\">\n                                                    <div class=\"card-body\">\n                                                        <div class=\"row\">\n                                                            <div class=\"col-md-12\">\n                                                                <image-upload></image-upload>\n                                                            </div>\n                                                        </div>\n                                    \n                                                    </div>\n                                                </div>\n                                            </div>\n                            </div>\n                        </div>\n    \n                    </div>\n                </div>\n            </div>\n\n\n        <div class=\"col-md-9\">\n            <div class=\"card\">\n                <div class=\"card-body\">\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n                            <h4>Mailopsætning</h4>\n                            <form [formGroup]=\"settingsForm\">\n\n                                    <mat-form-field>\n                                            <div class=\"list-group-item list-group-item-action active\">Mail opsætning</div>\n                                    </div>\n\n                                <div class=\"form-row\">\n                                    <div class=\"form-group col-sm\">\n                                        <div class=\"onoffswitch\">\n                                            <mat-label>Nye Arrangementer</mat-label> <br>\n                                            <input type=\"checkbox\" formControlName=\"newsletterEvent\" name=\"onoffswitch\" class=\"onoffswitch-checkbox\" id=\"myonoffswitch\" checked>\n                                            <mat-label class=\"onoffswitch-label\" for=\"myonoffswitch\">\n                                                <span class=\"onoffswitch-inner\"></span>\n                                                <span class=\"onoffswitch-switch\"></span>\n                                            </mat-label>\n                                        </div>\n                                    </div>\n                                    <div class=\"form-group col-sm\">\n                                        <div class=\"onoffswitch\">\n                                            <mat-label>Daglig oversigt</mat-label> <br>\n                                            <input type=\"checkbox\" formControlName=\"newsletterDaily\" name=\"onoffswitch2\" class=\"onoffswitch-checkbox\" id=\"myonoffswitch2\" checked>\n                                            <mat-label class=\"onoffswitch-label\" for=\"myonoffswitch2\">\n                                                <span class=\"onoffswitch-inner\"></span>\n                                                <span class=\"onoffswitch-switch\"></span>\n                                            </mat-label>\n                                        </div>\n                                    </div>\n                                    <div class=\"form-group col-sm\">\n                                        <div class=\"onoffswitch\">\n                                            <mat-label>Ugentlig oversigt</mat-label> <br>\n                                            <input type=\"checkbox\" formControlName=\"newsletterWeekly\" name=\"onoffswitch3\" class=\"onoffswitch-checkbox\" id=\"myonoffswitch3\" checked>\n                                            <mat-label class=\"onoffswitch-label\" for=\"myonoffswitch3\">\n                                                <span class=\"onoffswitch-inner\"></span>\n                                                <span class=\"onoffswitch-switch\"></span>\n                                            </mat-label>\n                                        </div>\n                                    </div>\n                                </div>\n\n                                <mat-form-field>\n                                    <mat-label for=\"email\" class=\"col-4 col-form-label\">Sendes til</mat-label> \n                                    <div class=\"col-8\">\n                                        <input class=\"form-control\" type=\"text\" placeholder=\"minemail@domain.com\" readonly>\n                                    </div>\n                                </div>\n\n                                <mat-form-field>\n                                    <div class=\"offset-4 col-8\">\n                                        <button name=\"submit\" type=\"submit\" class=\"btn btn-outline-primary mb-2 mr-2\">Opdater min profil</button>\n                                    </div>\n                                </div>\n                            </form>\n                        </div>\n                    </div>\n\n                </div>\n            </div>\n        </div>\n\n\n        <div class=\"col-md-9\">\n            <div class=\"card\">\n                <div class=\"card-body\">\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n\n                                <mat-form-field>\n                                        <div class=\"list-group-item list-group-item-action active\">Rating</div>\n                                </div>\n\n                            <mat-form-field>\n                                <mat-label for=\"userRating\" class=\"col-4 col-form-label\">Rating</mat-label>\n                                <img class=\"ratingImg\" src=\"./assets/images/Shield_Silver.png\">\n                            </div>\n\n                            <form>\n                                <mat-form-field>\n                                    <mat-label for=\"numberOfEventsHosted\" class=\"col-4 col-form-label\">Antal events du har afholdt</mat-label>\n                                    <div class=\"col-8\">\n                                        <input class=\"form-control\" type=\"text\" placeholder=\"0\" readonly>\n                                    </div>\n                                </div>\n\n                                <mat-form-field>\n                                    <mat-label for=\"numberOfEventsAttended\" class=\"col-4 col-form-label\">Antal events du har deltaget i</mat-label>\n                                    <div class=\"col-8\">\n                                        <input class=\"form-control\" type=\"text\" placeholder=\"7\" readonly>\n                                    </div>\n                                </div>\n\n                            </form>\n\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    -->\n\n</div>"
 
 /***/ }),
 
@@ -3125,10 +3074,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
 /* harmony import */ var _entity_user_user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../entity/user/user */ "./src/app/entity/user/user.ts");
-/* harmony import */ var _entity_helper_profileAddress__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../entity/helper/profileAddress */ "./src/app/entity/helper/profileAddress.ts");
-/* harmony import */ var _entity_helper_child__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../entity/helper/child */ "./src/app/entity/helper/child.ts");
-/* harmony import */ var _entity_helper_newsletterSetting__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../entity/helper/newsletterSetting */ "./src/app/entity/helper/newsletterSetting.ts");
-/* harmony import */ var _mobile_detector_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../mobile-detector.service */ "./src/app/mobile-detector.service.ts");
+/* harmony import */ var _mobile_detector_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mobile-detector.service */ "./src/app/mobile-detector.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3138,9 +3084,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-
-
-
 
 
 
@@ -3167,6 +3110,18 @@ var MyProfileComponent = /** @class */ (function () {
         this.accountDeletionConfirmationText = "";
         // Subscription
         this.paidUntil = "Ikke betalt";
+        //Family
+        this.numberOfChildren = 0;
+        this.maxChildren = 3;
+        this.frontEndModellerChildren = [];
+        //Settings
+        this.newEvents = false;
+        this.newsDaily = false;
+        this.newsWeekly = false;
+        this.trueText = "Yes";
+        this.falseText = "No";
+        // Rating
+        this.userRating = 0;
         this.username = "Indlæser...";
         this.email = "Indlæser...";
         this.personDataForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
@@ -3177,9 +3132,9 @@ var MyProfileComponent = /** @class */ (function () {
         });
         this.contactForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
             phone: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](''),
-            addressStreet: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](''),
-            addressCity: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](''),
-            addressZip: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](''),
+            street: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](''),
+            city: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](''),
+            zip: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](''),
         });
         this.childrenForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
             numberOfChildren: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](''),
@@ -3199,7 +3154,7 @@ var MyProfileComponent = /** @class */ (function () {
     MyProfileComponent.prototype.ngOnInit = function () {
         this.isMobile = this.mds.check();
         this.getDisplayData();
-        this.activation = this.accountIsCompleted();
+        this.accountIsCompleted();
         this.hasImages = false;
         this.user = this.ufbs.getStorage();
         if (this.ufbs.getStorage().isActivated) {
@@ -3214,158 +3169,82 @@ var MyProfileComponent = /** @class */ (function () {
         }
     };
     MyProfileComponent.prototype.getDisplayData = function () {
-        var user = this.ufbs.getStorage();
-        this.username = user._username;
-        this.email = user.email;
-        var d = new Date(user.subscribed_until);
-        this.paidUntil = d.getDate().toString() + "-" + (d.getMonth() + 1).toString() + "-" + d.getUTCFullYear().toString();
-        if (user.firstName != undefined) {
-            this.personDataForm.get('firstName').setValue(user.firstName);
-        }
-        if (user.lastName != undefined) {
-            this.personDataForm.get('lastName').setValue(user.lastName);
-        }
-        if (user.birthday != undefined) {
-            this.personDataForm.get('birthday').setValue(user.birthday);
-        }
-        if (user.gender != undefined) {
-            this.personDataForm.get('gender').setValue(user.gender);
-        }
-        if (user.phone != undefined) {
-            this.contactForm.get('phone').setValue(user.phone);
-        }
-        if (user.address != undefined && user.address.street) {
-            this.contactForm.get('addressStreet').setValue(user.address.street);
-        }
-        if (user.address != undefined && user.address.city) {
-            this.contactForm.get('addressCity').setValue(user.address.city);
-        }
-        if (user.address != undefined && user.address.zip) {
-            this.contactForm.get('addressZip').setValue(user.address.zip);
-        }
-        if (user.newsletterSetting != undefined && user.newsletterSetting.newEvents) {
-            this.settingsForm.get('newsletterEvent').setValue(user.newsletterSetting.newEvents);
-        }
-        if (user.newsletterSetting != undefined && user.newsletterSetting.dailyNews) {
-            this.settingsForm.get('newsletterDaily').setValue(user.newsletterSetting.dailyNews);
-        }
-        if (user.newsletterSetting != undefined && user.newsletterSetting.weeklyNews) {
-            this.settingsForm.get('newsletterWeekly').setValue(user.newsletterSetting.weeklyNews);
-        }
-        if (user.numberOfChildren != undefined) {
-            this.childrenForm.get('numberOfChildren').setValue(user.numberOfChildren);
-        }
-        if (user.children != undefined) {
-            if (user.children.length > 0) {
-                this.childrenForm.get('birthdayChild1').setValue(user.children[0].birthday);
-            }
-            if (user.children.length > 1) {
-                this.childrenForm.get('birthdayChild2').setValue(user.children[1].birthday);
-            }
-            if (user.children.length > 2) {
-                this.childrenForm.get('birthdayChild3').setValue(user.children[2].birthday);
-            }
-        }
-        this.value = this.accountProgress();
+        var _this = this;
+        this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(function (value) {
+            var user = Object.assign(JSON.parse(JSON.stringify(value)), _entity_user_user__WEBPACK_IMPORTED_MODULE_4__["User"]);
+            _this.username = user._username;
+            _this.email = user.email;
+            var d = new Date(user.subscribed_until);
+            _this.paidUntil = d.getDate().toString() + "-" + (d.getMonth() + 1).toString() + "-" + d.getUTCFullYear().toString();
+            Object.keys(value).forEach(function (key) {
+                try {
+                    /*
+                    this.personDataForm.get(key).setValue(value[key]);
+                    this.childrenForm.get(key).setValue(value[key]);
+                    Object.keys(value[key]).forEach(childKey => {
+                      if (childKey.length > 2) {
+                        if (childKey.toString() !== 'true' && childKey.toString() !== 'false') {
+                          this.contactForm.get(childKey).setValue(value[key][childKey]);
+                        } else {
+                          this.settingsForm.get(childKey).setValue(value[key][childKey]);
+                        }
+                      };
+                    });
+                    */
+                }
+                catch (error) {
+                }
+            });
+        });
     };
-    MyProfileComponent.prototype.updateProfile = function (user) {
-        this.ufbs.setStorage(user);
-        this.ufbs.updateUser(user);
-        this.value = this.accountProgress();
+    MyProfileComponent.prototype.updateProfile = function (formData) {
+        var _this = this;
+        this.ufbs.updateUser(formData, this.authService.afAuth.auth.currentUser.uid);
+        this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(function (value) {
+            _this.ufbs.setStorage(Object.assign(JSON.parse(JSON.stringify(value)), _entity_user_user__WEBPACK_IMPORTED_MODULE_4__["User"]));
+        });
+        this.accountProgress();
     };
     MyProfileComponent.prototype.updateContact = function (formData) {
-        var user = this.ufbs.getStorage();
-        var newUser = new _entity_user_user__WEBPACK_IMPORTED_MODULE_4__["User"](user._username, user.email);
-        user.phone = formData.phone;
-        user.address = new _entity_helper_profileAddress__WEBPACK_IMPORTED_MODULE_5__["ProfileAddress"](formData.addressStreet, formData.addressCity, formData.addressZip);
-        this.updateProfile(user);
+        var mergedObj = { phone: formData.phone, address: { street: formData.street, city: formData.city, zip: formData.zip } };
+        this.updateProfile(mergedObj);
     };
     MyProfileComponent.prototype.updateChildren = function (formData) {
-        var user = this.ufbs.getStorage();
-        var newUser = new _entity_user_user__WEBPACK_IMPORTED_MODULE_4__["User"](user._username, user.email);
-        user.numberOfChildren = formData.numberOfChildren;
-        if (user.children != undefined) {
-            // If no, then we are overwriting.
-            if (formData.birthdayChild1 != undefined) {
-                user.children[0] = formData.birthdayChild1;
-            }
-            if (formData.birthdayChild2 != undefined) {
-                user.children[0] = formData.birthdayChild2;
-            }
-            if (formData.birthdayChild3 != undefined) {
-                user.children[0] = formData.birthdayChild3;
-            }
+        var updatesObj = { numberOfChildren: formData.numberOfChildren };
+        var appendObj = {};
+        if (formData.numberOfChildren > 0) {
+            appendObj = { children: { childOne: formData.birthdayChild1, childTwo: formData.birthdayChild2,
+                    childThree: formData.birthdayChild3 } };
         }
-        else {
-            // If yes then we are creating new array entries
-            user.children = [];
-            if (formData.birthdayChild1 != undefined) {
-                user.children.push(new _entity_helper_child__WEBPACK_IMPORTED_MODULE_6__["Child"](formData.birthdayChild1));
-            }
-            if (formData.birthdayChild2 != undefined) {
-                user.children.push(new _entity_helper_child__WEBPACK_IMPORTED_MODULE_6__["Child"](formData.birthdayChild2));
-            }
-            if (formData.birthdayChild3 != undefined) {
-                user.children.push(new _entity_helper_child__WEBPACK_IMPORTED_MODULE_6__["Child"](formData.birthdayChild3));
-            }
-        }
-        this.updateProfile(user);
+        var mergedObj = Object.assign(updatesObj, appendObj);
+        this.updateProfile(mergedObj);
     };
     MyProfileComponent.prototype.updateSettings = function (formData) {
-        var user = this.ufbs.getStorage();
-        var newUser = new _entity_user_user__WEBPACK_IMPORTED_MODULE_4__["User"](user._username, user.email);
-        if (user.newsletterSetting == undefined) {
-            user.newsletterSetting = new _entity_helper_newsletterSetting__WEBPACK_IMPORTED_MODULE_7__["NewsletterSetting"]();
-        }
-        // Usage of inverse boolean to compensate for the css change to have my toggles start on "yes" == 1
-        if (formData.newsletterEvent != undefined) {
-            user.newsletterSetting.newEvents = !formData.newsletterEvent;
-        }
-        if (formData.newsletterDaily != undefined) {
-            user.newsletterSetting.dailyNews = !formData.newsletterDaily;
-        }
-        if (formData.newsletterWeekly != undefined) {
-            user.newsletterSetting.weeklyNews = !formData.newsletterWeekly;
-        }
-        this.updateProfile(user);
+        console.log(formData);
+        var updatesObj = { newsletter: { dailyNews: formData.newsletterDaily, weeklyNews: formData.newsletterWeekly,
+                newEvents: formData.newsletterEvent } };
+        this.updateProfile(updatesObj);
     };
     MyProfileComponent.prototype.updatePersonData = function (formData) {
-        var user = this.ufbs.getStorage();
-        var newUser = new _entity_user_user__WEBPACK_IMPORTED_MODULE_4__["User"](user._username, user.email);
-        user.birthday = formData.birthday;
-        user.firstName = formData.firstName;
-        user.lastName = formData.lastName;
-        user.gender = formData.gender;
-        this.updateProfile(user);
+        this.updateProfile(formData);
     };
     MyProfileComponent.prototype.accountProgress = function () {
-        var user = this.ufbs.getStorage();
+        var _this = this;
         var count = 20;
-        if (user.firstName != undefined)
-            count += 10;
-        if (user.lastName != undefined)
-            count += 10;
-        if (user.birthday != undefined)
-            count += 10;
-        if (user.gender != undefined)
-            count += 10;
-        if (user.phone != undefined)
-            count += 10;
-        if (user.address != undefined)
-            count += 10;
-        if (user.numberOfChildren != undefined)
-            count += 10;
-        if (user.newsletterSetting != undefined)
-            count += 10;
-        count == 100 ? user.isActivated = true : user.isActivated = false;
-        return count;
+        var id = this.authService.afAuth.auth.currentUser.uid;
+        this.ufbs.getUserByID(id).subscribe(function (value) {
+            count += 10 * Object.keys(value).length;
+            count == 100 ? _this.ufbs.updateUser({ isActivated: true }, id) : _this.ufbs.updateUser({ isActivated: false }, id);
+            _this.value = count;
+        });
     };
     MyProfileComponent.prototype.accountIsCompleted = function () {
-        var user = this.ufbs.getStorage();
-        return (user.firstName != "" && user.lastName != "" && user.birthday != undefined
-            && user.gender != undefined && user.phone > 10000000 && user.address != undefined
-            && user.numberOfChildren >= 0 && user.children != undefined
-            && user.newsletterSetting != undefined);
+        var _this = this;
+        this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(function (value) {
+            if (Object.keys(value).length >= 11) {
+                _this.activation = true;
+            }
+        });
     };
     MyProfileComponent.prototype.deactivateAccount = function () {
         this.warningCount++;
@@ -3385,6 +3264,24 @@ var MyProfileComponent = /** @class */ (function () {
     MyProfileComponent.prototype.deleteAccount = function () {
         this.ufbs.deleteUser(this.ufbs.getStorage().email);
     };
+    MyProfileComponent.prototype.displayBirthdayInput = function (eventTargetValue) {
+        this.numberOfChildren = eventTargetValue;
+        this.frontEndModellerChildren = [];
+        if (eventTargetValue <= this.maxChildren) {
+            for (var i = 0; i < eventTargetValue; i++) {
+                this.frontEndModellerChildren.push({ id: "kidBirthday" + (1 + i), formControlName: "birthdayChild" + (1 + i), matDatePicker: "pickerChild" + (1 + i), view: "Fødselsdag for barn" });
+            }
+        }
+    };
+    MyProfileComponent.prototype.changedNewsEvent = function () {
+        this.newEvents = !this.newEvents;
+    };
+    MyProfileComponent.prototype.changedNewsDaily = function () {
+        this.newsDaily = !this.newsDaily;
+    };
+    MyProfileComponent.prototype.changedNewsWeekly = function () {
+        this.newsWeekly = !this.newsWeekly;
+    };
     MyProfileComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-my-profile',
@@ -3392,7 +3289,7 @@ var MyProfileComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./my-profile.component.css */ "./src/app/my-profile/my-profile.component.css")]
         }),
         __metadata("design:paramtypes", [_user_firebase_service__WEBPACK_IMPORTED_MODULE_1__["UserFirebaseService"], _auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"],
-            _mobile_detector_service__WEBPACK_IMPORTED_MODULE_8__["MobileDetectorService"]])
+            _mobile_detector_service__WEBPACK_IMPORTED_MODULE_5__["MobileDetectorService"]])
     ], MyProfileComponent);
     return MyProfileComponent;
 }());
@@ -3482,7 +3379,7 @@ module.exports = "h1 {\r\n    text-align: center;\r\n    color: snow;\r\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<landing-page-header></landing-page-header>\n<h1>Patch Notes</h1>\n<mat-card>\n    <mat-expansion-panel>\n        <mat-expansion-panel-header>\n          <mat-panel-title>\n            28/09-2018\n          </mat-panel-title>\n          <mat-panel-description>\n            Events genbesøgt\n          </mat-panel-description>\n        </mat-expansion-panel-header>\n\n        <h4>Opret et event</h4>\n        <p>Der kan oprettes events og disse kan findes i tabellen over alle events.</p>\n        <h4>Det enkelte Events</h4>\n        <p>Det er muligt at klikke på de enkelte events og komme ind på siden på dennes side, hvor der kan læses detaljer, se mødelister osv.</p>\n        <h4>Tilmelding/framelding</h4>\n        <p>Brugere kan tilmelde sig events og framelde sig events</p>\n        <h4>Rating</h4>\n        <p>Inde på de enkelte events kan brugere nu bedømme et arrangement. Der gives en score fra 1-5 og værtens totale score beregnes ved hver bedømmelse.</p>\n        <p>*En score gives for det enkelte event. En brugeres score er den totale sum af alle hans/hendes arrangementer / n, hvor n er antallet.</p>\n        <h4>Slette et event</h4>\n        <p>Der er nu muligt at slette sine egne arrangementer.</p>\n\n      </mat-expansion-panel>\n\n      <mat-expansion-panel>\n          <mat-expansion-panel-header>\n            <mat-panel-title>\n              21/09-2018\n            </mat-panel-title>\n            <mat-panel-description>\n              Social login & event redigering \n            </mat-panel-description>\n          </mat-expansion-panel-header>\n\n        <h4>Social Login</h4>\n        <p>Det er nu muligt at logge ind med Google/Facebook (og stadigvæk med oprettet konto email+password)</p>\n        <h4>Mine events</h4>\n        <p>Brugeren kan se en liste over de events, som kan selv er arrangør for.</p>\n        <h4>Mit event</h4>\n        <p>Ved at klikke på et event i listen over sine events, kan brugeren redigere eget event.</p>\n        <h4>Filtre</h4>\n        <p>Filtrene i filtervinduet virker nu på tabellen og der er kommet en ekstra indstilling: kategori</p>\n        <h4>HTML rettelser</h4>\n        <p>Footer opdateret, fyldtekst opdateret, favicon, responsive design problemer rettet</p>\n        \n      </mat-expansion-panel>\n\n        <mat-card-actions>\n          <a href=\"https://www.fenrirgamestudio.dk\" mat-button>FENRIR GAME STUDIO</a>\n        </mat-card-actions>\n          \n</mat-card>\n\n"
+module.exports = "<landing-page-header></landing-page-header>\n<h1>Patch Notes</h1>\n<mat-card>\n\n    <mat-expansion-panel>\n        <mat-expansion-panel-header>\n          <mat-panel-title>\n            05/10-2018\n          </mat-panel-title>\n          <mat-panel-description>\n            Titel\n          </mat-panel-description>\n        </mat-expansion-panel-header>\n\n        <h4>Betalingsflow</h4>\n        <p>Der er oprettet et element i menuen, hvor brugere kan betale, hvor PensoPay kan se hvordan flowet er.</p>\n        <h4>Forbedret sikkerhed</h4>\n        <p>Der er brugt tid på at forbedre login og autorisering.</p>\n\n      </mat-expansion-panel>\n\n    <mat-expansion-panel>\n        <mat-expansion-panel-header>\n          <mat-panel-title>\n            28/09-2018\n          </mat-panel-title>\n          <mat-panel-description>\n            Events genbesøgt\n          </mat-panel-description>\n        </mat-expansion-panel-header>\n\n        <h4>Opret et event</h4>\n        <p>Der kan oprettes events og disse kan findes i tabellen over alle events.</p>\n        <h4>Det enkelte Events</h4>\n        <p>Det er muligt at klikke på de enkelte events og komme ind på siden på dennes side, hvor der kan læses detaljer, se mødelister osv.</p>\n        <h4>Tilmelding/framelding</h4>\n        <p>Brugere kan tilmelde sig events og framelde sig events</p>\n        <h4>Rating</h4>\n        <p>Inde på de enkelte events kan brugere nu bedømme et arrangement. Der gives en score fra 1-5 og værtens totale score beregnes ved hver bedømmelse.</p>\n        <p>*En score gives for det enkelte event. En brugeres score er den totale sum af alle hans/hendes arrangementer / n, hvor n er antallet.</p>\n        <h4>Slette et event</h4>\n        <p>Der er nu muligt at slette sine egne arrangementer.</p>\n\n      </mat-expansion-panel>\n\n      <mat-expansion-panel>\n          <mat-expansion-panel-header>\n            <mat-panel-title>\n              21/09-2018\n            </mat-panel-title>\n            <mat-panel-description>\n              Social login & event redigering \n            </mat-panel-description>\n          </mat-expansion-panel-header>\n\n        <h4>Social Login</h4>\n        <p>Det er nu muligt at logge ind med Google/Facebook (og stadigvæk med oprettet konto email+password)</p>\n        <h4>Mine events</h4>\n        <p>Brugeren kan se en liste over de events, som kan selv er arrangør for.</p>\n        <h4>Mit event</h4>\n        <p>Ved at klikke på et event i listen over sine events, kan brugeren redigere eget event.</p>\n        <h4>Filtre</h4>\n        <p>Filtrene i filtervinduet virker nu på tabellen og der er kommet en ekstra indstilling: kategori</p>\n        <h4>HTML rettelser</h4>\n        <p>Footer opdateret, fyldtekst opdateret, favicon, responsive design problemer rettet</p>\n        \n      </mat-expansion-panel>\n\n        <mat-card-actions>\n          <a href=\"https://www.fenrirgamestudio.dk\" mat-button>FENRIR GAME STUDIO</a>\n        </mat-card-actions>\n          \n</mat-card>\n\n"
 
 /***/ }),
 
@@ -3534,7 +3431,7 @@ var PatchNotesComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "h1 {\r\n    text-align: center;\r\n    color: snow;\r\n}\r\n\r\nmat-form-field, button {\r\n    margin: 10px;\r\n}\r\n"
 
 /***/ }),
 
@@ -3545,7 +3442,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar>\n\n</app-navbar>\n<mat-card>\n  <p>Under udvikling</p>\n</mat-card>\n\n"
+module.exports = "<app-navbar>\n\n</app-navbar>\n<h1>{{title}}</h1>\n<mat-card>\n  \n  <mat-vertical-stepper #stepper>\n    <mat-step [stepControl]=\"firstFormGroup\">\n      <form [formGroup]=\"firstFormGroup\">\n        <ng-template matStepLabel>Vælg medlemstype</ng-template>\n        <mat-form-field>\n          <mat-label><fa name=\"tag\"></fa> Type</mat-label>\n          <mat-select (selectionChange)=\"selectionFormValue($event.value)\" formControlName=\"type\" name=\"payment type\" placeholder=\"Vælg emne\" required>\n            <mat-option value=\"\"></mat-option>\n            <mat-option value=\"Månedlig Abonnement\">Månedligt Abonnement</mat-option>\n            <mat-option value=\"1 Måneds Medlemsskab\">1 Måneds Medlemsskab</mat-option>\n          </mat-select> \n        </mat-form-field>\n        <div>\n          <button mat-button matStepperNext>Næste</button>\n        </div>\n      </form>\n    </mat-step>\n    <mat-step [stepControl]=\"secondFormGroup\">\n      <form [formGroup]=\"secondFormGroup\">\n        <ng-template matStepLabel>Vælg betalingsform</ng-template>\n        <mat-form-field>\n            <mat-label><fa name=\"tag\"></fa> Type</mat-label>\n            <mat-select (selectionChange)=\"cardFormValue($event.value)\" formControlName=\"card\" name=\"payment method\" placeholder=\"Vælg emne\" required>\n              <mat-option value=\"\"></mat-option>\n              <mat-option value=\"Visa/Dankort\">Visa/Dankort</mat-option>\n              <mat-option value=\"Mastercard\">Mastercard</mat-option>\n            </mat-select> \n          </mat-form-field>\n        <div>\n          <button mat-button matStepperPrevious>Tilbage</button>\n          <button mat-button matStepperNext>Næste</button>\n        </div>\n      </form>\n    </mat-step>\n    <mat-step>\n      <ng-template matStepLabel>Bekræft</ng-template>\n      <mat-card>\n        <h4>Oversigt</h4>\n        <p>Du har valgt <strong>{{selection}}</strong> </p>\n        <p>Du betaler med <strong>{{card}}</strong> </p>\n        <mat-checkbox\n        [(ngModel)]=\"checked\"\n        [(indeterminate)]=\"indeterminate\"\n        [labelPosition]=\"labelPosition\" \n        color=\"primary\">Jeg har læst og accepteret\n          <a routerLink='/privacy-policy'>handelsbetingelserne</a>\n        </mat-checkbox>\n      </mat-card>\n      <div>\n        <button mat-button matStepperPrevious>Tilbage</button>\n        <button mat-button color=\"warn\" (click)=\"stepper.reset()\">Start forfra</button>\n        <button [disabled]=\"!checked\" matTooltip=\"Når du trykker her vil du automatisk blive ført videre til vores betalingsplatform\" mat-raised-button color=\"primary\" matStepperNext>Bekræft</button>\n      </div>\n    </mat-step>\n  </mat-vertical-stepper>\n  \n  \n  <!-- Copyright 2018 Google Inc. All Rights Reserved.\n      Use of this source code is governed by an MIT-style license that\n      can be found in the LICENSE file at http://angular.io/license -->\n\n</mat-card>\n\n"
 
 /***/ }),
 
@@ -3560,6 +3457,8 @@ module.exports = "<app-navbar>\n\n</app-navbar>\n<mat-card>\n  <p>Under udviklin
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PaymentComponent", function() { return PaymentComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _user_firebase_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../user-firebase.service */ "./src/app/user-firebase.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3570,10 +3469,37 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var PaymentComponent = /** @class */ (function () {
-    function PaymentComponent() {
+    function PaymentComponent(_formBuilder, ufbs) {
+        this._formBuilder = _formBuilder;
+        this.ufbs = ufbs;
+        this.selectOptions = ['Månedlig Abonnement', '1 Måneds Medlemsskab'];
+        this.cardOptions = ['Visa/Dankort', 'Mastercard'];
+        this.title = "Betaling";
+        this.selection = "";
+        this.card = "";
+        this.checked = false;
     }
     PaymentComponent.prototype.ngOnInit = function () {
+        this.firstFormGroup = this._formBuilder.group({
+            type: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
+        });
+        this.secondFormGroup = this._formBuilder.group({
+            card: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
+        });
+        this.thirdFormGroup = this._formBuilder.group({
+            username: this.ufbs.getStorage()._username,
+            email: this.ufbs.getStorage().email,
+            date: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
+        });
+    };
+    PaymentComponent.prototype.selectionFormValue = function (s) {
+        this.selection = s;
+    };
+    PaymentComponent.prototype.cardFormValue = function (c) {
+        this.card = c;
     };
     PaymentComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -3581,7 +3507,7 @@ var PaymentComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./payment.component.html */ "./src/app/payment/payment.component.html"),
             styles: [__webpack_require__(/*! ./payment.component.css */ "./src/app/payment/payment.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"], _user_firebase_service__WEBPACK_IMPORTED_MODULE_2__["UserFirebaseService"]])
     ], PaymentComponent);
     return PaymentComponent;
 }());
@@ -3952,11 +3878,10 @@ var RatingService = /** @class */ (function () {
             _this.ufbs.getList('/users/').subscribe(function (values) {
                 var email = "";
                 values.forEach(function (value) {
-                    console.log(value.email + "=" + host);
                     if (value.email === host) {
                         var user = Object.assign(value, _entity_user_user__WEBPACK_IMPORTED_MODULE_4__["User"]);
                         user.score = userScore / count;
-                        _this.ufbs.updateUser(user);
+                        _this.ufbs.updateUser({ score: user.score }, _this.afAuth.auth.currentUser.uid);
                     }
                 });
             });
@@ -4389,23 +4314,23 @@ var UserFirebaseService = /** @class */ (function () {
         this.jsonConverter = new _entity_helper_json_converter__WEBPACK_IMPORTED_MODULE_3__["JsonConverter"]();
     }
     // CRUD
-    // Test passed
     UserFirebaseService.prototype.getUsers = function () {
         this.usersObservable = this.getList(this.dbPath);
     };
-    // Test passed
     UserFirebaseService.prototype.getList = function (listPath) {
         return this.db.list(listPath).valueChanges();
     };
-    // Test passed
-    UserFirebaseService.prototype.getUserByEmail = function (email) {
-        var _this = this;
-        var path = this.dbPath + this.convertEmailToKey(email);
-        this.db.object(path).valueChanges().subscribe(function (data) {
-            var user = _this.jsonToObj(JSON.stringify(data));
-            _this.setStorage(user);
-            //console.log(user);
-        });
+    /*
+    getUserByID(id: string) {
+      let path = this.dbPath + id;
+      this.db.object(path).valueChanges().subscribe(data => {
+        let user = this.jsonToObj(JSON.stringify(data));
+        this.setStorage(user);
+        return user;
+      });
+    } */
+    UserFirebaseService.prototype.getUserByID = function (id) {
+        return this.db.object(this.dbPath + id).valueChanges();
     };
     UserFirebaseService.prototype.getUserByIndex = function (idx) {
         var _this = this;
@@ -4416,14 +4341,11 @@ var UserFirebaseService = /** @class */ (function () {
         });
     };
     //Test passed
-    UserFirebaseService.prototype.insertUser = function (user) {
-        var entry = this.objToJSON(user);
-        this.db.object(this.dbPath + this.convertEmailToKey(user.email)).update(entry);
+    UserFirebaseService.prototype.insertUser = function (user, id) {
+        this.db.object(this.dbPath + id).update(user);
     };
-    UserFirebaseService.prototype.updateUser = function (user) {
-        var entry = this.objToJSON(user);
-        var usersRef = this.db.list(this.dbPath);
-        usersRef.set(this.convertEmailToKey(user.email), entry);
+    UserFirebaseService.prototype.updateUser = function (objwithUpdates, id) {
+        this.db.object(this.dbPath + id).update(objwithUpdates);
     };
     UserFirebaseService.prototype.deleteUser = function (key) {
         var usersRef = this.db.list(this.dbPath);
@@ -4994,7 +4916,7 @@ module.exports = ".innerContainer {\r\n    margin-left: auto;\r\n    margin-righ
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n<div>\n<\n  <mat-grid-list cols=\"2\" rowHeight=\"1:2.5\">\n    <mat-grid-tile>\n        <mat-card class=\"innerContainer\">\n            <mat-card-title>{{selectedEvent.name}}</mat-card-title>\n            <mat-card-subtitle><fa name=\"tag\"></fa> {{  selectedEvent.category }} <br><br>\n              {{selectedEvent.description}}\n            </mat-card-subtitle>\n            <img src=\"../../assets/images/event_placeholder.jpg\" mat-card-image>\n            <mat-card-content>\n\n              <p><strong>Adresse:</strong><br> {{selectedEvent.address.street}} , {{selectedEvent.address.city}} , {{selectedEvent.address.zip}}</p>\n              <p><strong>Dato</strong><br> Under udvikling</p>\n              <p><strong>Kønsfordeling</strong><br> {{selectedEvent.genderRatio}}</p>\n              <p><strong>Børn</strong><br> {{selectedEvent.targetGroup}}</p>\n              <p><strong>Fra</strong><br> {{selectedEvent.minAge}} til {{selectedEvent.maxAge}}</p>\n              <p><strong>Pladser</strong><br> {{selectedEvent.maxGuests}}</p>\n              <p><strong>Pris</strong><br> {{selectedEvent.price}} DKK</p>\n              <p><strong>Hvordan betales der: </strong><br> {{selectedEvent.paymentOption}}</p>\n              <p><strong>Hvornår betales der:</strong><br> {{selectedEvent.paymentDue}}</p>\n            </mat-card-content>\n            <mat-card-actions>\n              <button *ngIf=\"!isParticipating\" (click)=\"onAttend()\" mat-button color=\"primary\">Tilmeld</button>\n              <button *ngIf=\"isParticipating\" (click)=\"onUnattend()\" mat-button color=\"warn\">Frameld</button>\n              <button mat-button (click)=\"onRateClick()\" [routerLink]=\"['/rate-event']\">Bedøm dette event</button>\n            </mat-card-actions>\n        </mat-card>\n    </mat-grid-tile>\n    <mat-grid-tile>\n      <mat-card>\n          <mat-tab-group>\n              <mat-tab label=\"Deltagere\">\n                <mat-list>\n                    <mat-list-item *ngFor=\"let participant of participantsDisplayNames\">\n                      <button color=\"primary\" mat-button><mat-icon>person</mat-icon>{{participant}}</button>\n                    </mat-list-item>\n                </mat-list>\n              </mat-tab>\n              <mat-tab label=\"Venteliste\">\n                <mat-list>\n                  <p *ngIf=\"inQueue.length < 1\">Der er ingen på ventelisten.</p>\n                   </mat-list>\n              </mat-tab>\n            </mat-tab-group>\n      </mat-card>\n    </mat-grid-tile>\n  </mat-grid-list>\n\n</div>"
+module.exports = "<app-navbar></app-navbar>\n<div>\n\n  <mat-grid-list cols=\"2\" rowHeight=\"1:2.5\">\n    <mat-grid-tile>\n        <mat-card class=\"innerContainer\">\n            <mat-card-title>{{selectedEvent.name}}</mat-card-title>\n            <mat-card-subtitle><fa name=\"tag\"></fa> {{  selectedEvent.category }} <br><br>\n              {{selectedEvent.description}}\n            </mat-card-subtitle>\n            <img src=\"../../assets/images/event_placeholder.jpg\" mat-card-image>\n            <mat-card-content>\n\n              <p><strong>Adresse:</strong><br> {{selectedEvent.address.street}} , {{selectedEvent.address.city}} , {{selectedEvent.address.zip}}</p>\n              <p><strong>Dato</strong><br> Under udvikling</p>\n              <p><strong>Kønsfordeling</strong><br> {{selectedEvent.genderRatio}}</p>\n              <p><strong>Børn</strong><br> {{selectedEvent.targetGroup}}</p>\n              <p><strong>Fra</strong><br> {{selectedEvent.minAge}} til {{selectedEvent.maxAge}}</p>\n              <p><strong>Pladser</strong><br> {{selectedEvent.maxGuests}}</p>\n              <p><strong>Pris</strong><br> {{selectedEvent.price}} DKK</p>\n              <p><strong>Hvordan betales der: </strong><br> {{selectedEvent.paymentOption}}</p>\n              <p><strong>Hvornår betales der:</strong><br> {{selectedEvent.paymentDue}}</p>\n            </mat-card-content>\n            <mat-card-actions>\n              <button *ngIf=\"!isParticipating\" (click)=\"onAttend()\" mat-button color=\"primary\">Tilmeld</button>\n              <button *ngIf=\"isParticipating\" (click)=\"onUnattend()\" mat-button color=\"warn\">Frameld</button>\n              <button mat-button (click)=\"onRateClick()\" [routerLink]=\"['/rate-event']\">Bedøm dette event</button>\n            </mat-card-actions>\n        </mat-card>\n    </mat-grid-tile>\n    <mat-grid-tile>\n      <mat-card>\n          <mat-tab-group>\n              <mat-tab label=\"Deltagere\">\n                <mat-list>\n                    <mat-list-item *ngFor=\"let participant of participantsDisplayNames\">\n                      <button color=\"primary\" mat-button><mat-icon>person</mat-icon>{{participant}}</button>\n                    </mat-list-item>\n                </mat-list>\n              </mat-tab>\n              <mat-tab label=\"Venteliste\">\n                <mat-list>\n                  <p *ngIf=\"inQueue.length < 1\">Der er ingen på ventelisten.</p>\n                   </mat-list>\n              </mat-tab>\n            </mat-tab-group>\n      </mat-card>\n    </mat-grid-tile>\n  </mat-grid-list>\n\n</div>"
 
 /***/ }),
 
@@ -5045,7 +4967,6 @@ var ViewEventComponent = /** @class */ (function () {
             _this.key = key;
             _this.efbs.getEventByKey(key).snapshotChanges().subscribe(function (then) {
                 _this.selectedEvent = Object.assign(new _entity_event_event_model__WEBPACK_IMPORTED_MODULE_2__["Event"](), then.payload.val());
-                console.log(_this.selectedEvent);
                 _this.participantsData = [];
                 _this.participantsDisplayNames = [];
                 for (var property in _this.selectedEvent.participants) {

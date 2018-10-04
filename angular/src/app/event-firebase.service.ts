@@ -36,7 +36,6 @@ export class EventFirebaseService {
   }
 
   getEventsByHost(hostMail: string): Observable<any[]> {
-    console.log(hostMail);
     let path = this.dbPath;
     return this.db.list(path, ref => ref.orderByChild('host').equalTo(hostMail)).snapshotChanges().map(events => {
       return events.map(c => ({key: c.payload.key, ...c.payload.val()}));

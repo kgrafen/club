@@ -1,7 +1,69 @@
 <app-navbar>
 
 </app-navbar>
+<h1>{{title}}</h1>
 <mat-card>
-  <p>Under udvikling</p>
+  
+  <mat-vertical-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Vælg medlemstype</ng-template>
+        <mat-form-field>
+          <mat-label><fa name="tag"></fa> Type</mat-label>
+          <mat-select (selectionChange)="selectionFormValue($event.value)" formControlName="type" name="payment type" placeholder="Vælg emne" required>
+            <mat-option value=""></mat-option>
+            <mat-option value="Månedlig Abonnement">Månedligt Abonnement</mat-option>
+            <mat-option value="1 Måneds Medlemsskab">1 Måneds Medlemsskab</mat-option>
+          </mat-select> 
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Næste</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Vælg betalingsform</ng-template>
+        <mat-form-field>
+            <mat-label><fa name="tag"></fa> Type</mat-label>
+            <mat-select (selectionChange)="cardFormValue($event.value)" formControlName="card" name="payment method" placeholder="Vælg emne" required>
+              <mat-option value=""></mat-option>
+              <mat-option value="Visa/Dankort">Visa/Dankort</mat-option>
+              <mat-option value="Mastercard">Mastercard</mat-option>
+            </mat-select> 
+          </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Tilbage</button>
+          <button mat-button matStepperNext>Næste</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Bekræft</ng-template>
+      <mat-card>
+        <h4>Oversigt</h4>
+        <p>Du har valgt <strong>{{selection}}</strong> </p>
+        <p>Du betaler med <strong>{{card}}</strong> </p>
+        <mat-checkbox
+        [(ngModel)]="checked"
+        [(indeterminate)]="indeterminate"
+        [labelPosition]="labelPosition" 
+        color="primary">Jeg har læst og accepteret
+          <a routerLink='/privacy-policy'>handelsbetingelserne</a>
+        </mat-checkbox>
+      </mat-card>
+      <div>
+        <button mat-button matStepperPrevious>Tilbage</button>
+        <button mat-button color="warn" (click)="stepper.reset()">Start forfra</button>
+        <button [disabled]="!checked" matTooltip="Når du trykker her vil du automatisk blive ført videre til vores betalingsplatform" mat-raised-button color="primary" matStepperNext>Bekræft</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+  
+  
+  <!-- Copyright 2018 Google Inc. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->
+
 </mat-card>
 

@@ -33,27 +33,31 @@ export class UserFirebaseService {
 
   // CRUD
 
-  // Test passed
+  
   getUsers() {
     this.usersObservable = this.getList(this.dbPath);
   }
 
-  // Test passed
+
   getList(listPath): Observable<any[]> {
     return this.db.list(listPath).valueChanges();
   }
 
-  // Test passed
-  getUserByEmail(email: string) {
-    let path = this.dbPath + this.convertEmailToKey(email);
+  /* 
+  getUserByID(id: string) {
+    let path = this.dbPath + id;
     this.db.object(path).valueChanges().subscribe(data => {
       let user = this.jsonToObj(JSON.stringify(data));
       this.setStorage(user);
-      //console.log(user);
+      return user;
     });
+  } */
+
+  getUserByID(id: string) {
+    return this.db.object(this.dbPath+id).valueChanges();
   }
 
-  getUserByIndex(idx: number) {
+  getUserByIndex(idx) {
     let path = this.dbPath+"/"+idx;
     this.db.object(path).valueChanges().subscribe(data => {
       let user = this.jsonToObj(JSON.stringify(data));
@@ -62,15 +66,12 @@ export class UserFirebaseService {
   }
 
   //Test passed
-  insertUser(user: User) {
-    let entry = this.objToJSON(user);
-    this.db.object(this.dbPath + this.convertEmailToKey(user.email)).update(entry);
+  insertUser(user: User, id: string) {
+    this.db.object(this.dbPath + id).update(user);
    }
  
-   updateUser(user: User) {
-    let entry = this.objToJSON(user);
-    const usersRef = this.db.list(this.dbPath);
-    usersRef.set(this.convertEmailToKey(user.email), entry);
+   updateUser(objwithUpdates, id: string) {
+      this.db.object(this.dbPath+id).update(objwithUpdates);
    }
  
    deleteUser(key: string) {

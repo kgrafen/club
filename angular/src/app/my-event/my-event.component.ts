@@ -32,7 +32,6 @@ export class MyEventComponent implements OnInit {
 
   ngOnInit() {
     this.myEvent = this.efbs.myEventSelection;
-    console.log(this.myEvent.key);
     this.firstFormGroup = this._formBuilder.group({
       eventName: ['', Validators.required],
       eventDescription: ['', Validators.required],
@@ -79,7 +78,6 @@ export class MyEventComponent implements OnInit {
   onUpdateEvent() {
     let e: Event = this.formDataToModel();
     this.efbs.updateEvent(e.key, e);
-    console.log("Updating");
   } 
 
   formDataToModel(): Event {

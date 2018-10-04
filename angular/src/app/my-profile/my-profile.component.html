@@ -13,378 +13,185 @@
         
         <mat-tab-group class="mat-tab-profile">
             <mat-tab label="Person Data">
-                    <div *ngIf="!activation" class="ng-hide">
-                            <div class="alert alert-danger" role="alert">
-                                <div *ngIf="!activation" class="ng-hide"></div>
-                                <strong>Hov!</strong> {{activationError}}
-                            </div>
-                    </div>
-                <!--
-                  <div class="col-md-3 ">
-                     <div class="list-group ">
-                          <a href="#" class="list-group-item list-group-item-action active">Kategorier</a>
-                          <a href="#" class="list-group-item list-group-item-action">Person data</a>
-                          <a href="#" class="list-group-item list-group-item-action">Kontakt oplysninger</a>
-                          <a href="#" class="list-group-item list-group-item-action">Familie</a>
-                          <a href="#" class="list-group-item list-group-item-action">Billeder</a>
-                          <a href="#" class="list-group-item list-group-item-action">Konto oplysninger</a>
-                          <a href="#" class="list-group-item list-group-item-action">Rating</a>
-                          <a href="#" class="list-group-item list-group-item-action">Nyhedsbreve</a>
-                          <a href="#" class="list-group-item list-group-item-action">Filtre</a>
-                        </div> 
-                </div>
-                -->
-                <div class="col-md-9">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form [formGroup]="personDataForm">
-                                        <div class="form-group row">
-                                            <label for="username" class="col-4 col-form-label">Brugernavn</label> 
-                                            <div class="col-8">
-                                                <input id="username" name="username" placeholder="{{username}}" class="form-control here" type="text" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="name" class="col-4 col-form-label">Fornavn</label> 
-                                            <div class="col-8">
-                                                <input id="name" formControlName="firstName" name="firstName" placeholder="Fornavn" class="form-control here" type="text" autofocus>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="lastname" class="col-4 col-form-label">Efternavn</label> 
-                                            <div class="col-8">
-                                                <input id="lastname" formControlName="lastName" name="lastName" placeholder="Efternavn" class="form-control here" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="birthday" class="col-4 col-form-label">Fødselsdag</label> 
-                                            <div class="col-8">
-                                                <input id="birthday" formControlName="birthday" name="birthday" class="form-control here" type="date">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="select" class="col-4 col-form-label">Køn</label> 
-                                            <div class="col-8">
-                                                <select id="select" formControlName="gender" name="select" class="custom-select">
-                                                    <option value="Mand">Mand</option>
-                                                    <option value="Kvinde">Kvinde</option>
-                                                    <option value="Andet">Ønsker ikke oplyse</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="offset-4 col-8">
-                                                <button name="submit" (click)="updatePersonData(personDataForm.value)" type="submit" class="btn btn-outline-primary mb-2 mr-2">Opdater min profil</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
 
-                        </div>
+                <div *ngIf="!activation" class="ng-hide">
+                    <div class="alert alert-danger" role="alert">
+                        <div *ngIf="!activation" class="ng-hide"></div>
+                        <strong>Hov!</strong> {{activationError}}
                     </div>
                 </div>
+
+                <mat-card>
+                    <form [formGroup]="personDataForm">
+                    <mat-form-field class="block-field">
+                            <input matInput id="name" formControlName="firstName" name="firstName" placeholder="Fornavn" type="text" autofocus>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                            <input matInput id="lastname" formControlName="lastName" name="lastName" placeholder="Efternavn" type="text">
+                    </mat-form-field>
+
+                    <mat-form-field class="block-field">
+                            <input id="birthday" formControlName="birthday" matInput [matDatepicker]="picker" placeholder="Fødselsdag">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field class="block-field">
+                        <mat-select placeholder="Køn">
+                            <mat-option value="Mand">Mand</mat-option>
+                            <mat-option value="Kvinde">Kvinde</mat-option>
+                            <mat-option value="Ønsker ikke oplyse">Ønsker ikke oplyse</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    </form>
+                    <mat-card-actions>
+                            <button mat-button color="primary" (click)="updatePersonData(personDataForm.value)">Opdater</button>
+                    </mat-card-actions>
+                </mat-card>
             </mat-tab>
+
             <mat-tab label="Kontakt">
-                    <div *ngIf="!activation" class="ng-hide">
-                            <div class="alert alert-danger" role="alert">
-                                <div *ngIf="!activation" class="ng-hide"></div>
-                                <strong>Hov!</strong> {{activationError}}
-                            </div>
-                    </div>
-                <div class="col-md-9">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form [formGroup]="contactForm">
-                                        <div class="form-group row">
-                                            <label for="phone" class="col-4 col-form-label">Telefon/mobil*</label> 
-                                            <div class="col-8">
-                                                <input type="tel" formControlName="phone" class="form-control" name="telphone" placeholder="Telefon/mobil" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="8"  title="8 cifre"/>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label for="inputAddress">Adresse</label>
-                                                <input type="text" formControlName="addressStreet" class="form-control" id="inputAddress" placeholder="Adresse">
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="inputBy">By</label>
-                                                <input type="text" formControlName="addressCity" class="form-control" id="inputBy" placeholder="By">
-                                            </div>
-                                            <div class="form-group col-md-2">
-                                                <label for="inputZip">Postnummer</label>
-                                                <input type="text" formControlName="addressZip" class="form-control" id="inputZip" placeholder="Post">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="offset-4 col-8">
-                                                <button name="submit" (click)="updateContact(contactForm.value)" type="submit" class="btn btn-outline-primary mb-2 mr-2">Opdater min profil</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-
-                        </div>
+                
+                <div *ngIf="!activation" class="ng-hide">
+                    <div class="alert alert-danger" role="alert">
+                        <div *ngIf="!activation" class="ng-hide"></div>
+                        <strong>Hov!</strong> {{activationError}}
                     </div>
                 </div>
 
+                <mat-card>
+                    <form [formGroup]="contactForm">
+                        <mat-form-field class="block-field">
+                            <input matInput matTooltip="8 cifre" type="tel" formControlName="phone" placeholder="Telefon/mobil"/>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input matInput type="text" formControlName="street" class="form-control" id="inputAddress" placeholder="Adresse">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input matInput type="text" formControlName="city" class="form-control" id="inputBy" placeholder="By">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <input matInput type="text" formControlName="zip" class="form-control" id="inputZip" placeholder="Postnummer">
+                        </mat-form-field>
+                    </form>
+                    <mat-card-actions>
+                            <button mat-button color="primary" (click)="updateContact(contactForm.value)">Opdater</button>
+                    </mat-card-actions>
+                </mat-card>  
             </mat-tab>
+
             <mat-tab label="Familie">
-                    <div *ngIf="!activation" class="ng-hide">
-                            <div class="alert alert-danger" role="alert">
-                                <div *ngIf="!activation" class="ng-hide"></div>
-                                <strong>Hov!</strong> {{activationError}}
-                            </div>
-                    </div>
-                <div class="col-md-9">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <form [formGroup]="childrenForm">
-                                        <div class="form-group row">
-                                            <label for="kids" class="col-4 col-form-label">Antal børn</label> 
-                                            <div class="col-8">
-                                                <input type="number" formControlName="numberOfChildren" class="form-control" min="0" max="3" name="kids" placeholder="Antal" maxlength="1"/>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-row">
-                                            <label for="kidBirthday1" class="col-4 col-form-label">Fødselsdag for det første barn</label> 
-                                            <div class="col-8">
-                                                <input id="kidBirthday1" formControlName="birthdayChild1" name="birthday" class="form-control here" type="date">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <label for="kidBirthday2" class="col-4 col-form-label">Fødselsdag for det andet barn</label> 
-                                            <div class="col-8">
-                                                <input id="kidBirthday2" formControlName="birthdayChild2" name="birthday" class="form-control here" type="date">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <label for="kidBirthday3" class="col-4 col-form-label">Fødselsdag for det tredje barn</label> 
-                                            <div class="col-8">
-                                                <input id="kidBirthday3" formControlName="birthdayChild3" name="birthday" class="form-control here" type="date">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="offset-4 col-8">
-                                                <button name="submit" (click)="updateChildren(childrenForm.value)" type="submit" class="btn btn-outline-primary mb-2 mr-2">Opdater min profil</button>
-                                            </div>
-                                        </div>
-                                    </form>
+                <mat-card>
+                        <div *ngIf="!activation" class="ng-hide">
+                                <div class="alert alert-danger" role="alert">
+                                    <div *ngIf="!activation" class="ng-hide"></div>
+                                    <strong>Hov!</strong> {{activationError}}
                                 </div>
-                            </div>
-
                         </div>
-                    </div>
-                </div>
 
+                        <form [formGroup]="childrenForm">
+                            <mat-form-field class="block-field">
+                                <input (keyup)="displayBirthdayInput($event.target.value)" matInput type="number" formControlName="numberOfChildren" placeholder="Antal børn"/>
+                            </mat-form-field>
+
+                            <mat-form-field *ngFor="let child of frontEndModellerChildren; let i = index;" class="block-field">
+                                <input formControlName="{{child.formControlName}}" matInput [matDatepicker]="i" placeholder="{{child.view}}" [attr.id]="dtPicker + i">
+                                <mat-datepicker-toggle matSuffix [for]="i"></mat-datepicker-toggle>
+                                <mat-datepicker #i></mat-datepicker>   
+                                       
+                            </mat-form-field>
+
+
+                        </form>
+                        
+                </mat-card>
             </mat-tab>
+
             <mat-tab label="Billeder">
+                <mat-card>
+
                     <div *ngIf="!activation" class="ng-hide">
-                            <div class="alert alert-danger" role="alert">
-                                <div *ngIf="!activation" class="ng-hide"></div>
-                                <strong>Hov!</strong> {{activationError}}
-                            </div>
-                    </div>
-                <div *ngIf="!hasImages" class="ng-hide">
-                    <div class="alert alert-warning" role="alert">
-                        <div *ngIf="!hasImages" class="ng-hide"></div>
-                        <strong>Hov!</strong> Der er ingen billeder oploadet.
-                    </div>
-                </div>
-
-                <div class="col-md-9">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <user-image-gallery></user-image-gallery>
-                                </div>
-                            </div>
-
+                        <div class="alert alert-danger" role="alert">
+                            <div *ngIf="!activation" class="ng-hide"></div>
+                             <strong>Hov!</strong> {{activationError}}
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-9">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <image-upload></image-upload>
-                                </div>
-                            </div>
-
+                    <div *ngIf="!hasImages" class="ng-hide">
+                        <div class="alert alert-warning" role="alert">
+                            <div *ngIf="!hasImages" class="ng-hide"></div>
+                            <strong>Hov!</strong> Der er ingen billeder oploadet.
                         </div>
                     </div>
-                </div>
 
+                    <mat-card>
+                       <user-image-gallery></user-image-gallery> 
+                    </mat-card>
+
+                    <mat-card>
+                        <image-upload></image-upload>
+                    </mat-card>
+                
+                </mat-card>
             </mat-tab>
+
             <mat-tab label="Indstillinger">
+                <mat-card>
+
                     <div *ngIf="!activation" class="ng-hide">
-                            <div class="alert alert-danger" role="alert">
-                                <div *ngIf="!activation" class="ng-hide"></div>
-                                <strong>Hov!</strong> {{activationError}}
-                            </div>
-                    </div>
-                <div class="col-md-9">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h4>Mailopsætning</h4>
-                                    <form [formGroup]="settingsForm">
-                                        <div class="form-row">
-                                            <div class="form-group col-sm">
-                                                <div class="onoffswitch">
-                                                    <label>Nye Arrangementer</label> <br>
-                                                    <input type="checkbox" formControlName="newsletterEvent" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                                    <label class="onoffswitch-label" for="myonoffswitch">
-                                                        <span class="onoffswitch-inner"></span>
-                                                        <span class="onoffswitch-switch"></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-sm">
-                                                <div class="onoffswitch">
-                                                    <label>Daglig oversigt</label> <br>
-                                                    <input type="checkbox" formControlName="newsletterDaily" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch2" checked>
-                                                    <label class="onoffswitch-label" for="myonoffswitch2">
-                                                        <span class="onoffswitch-inner"></span>
-                                                        <span class="onoffswitch-switch"></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group col-sm">
-                                                <div class="onoffswitch">
-                                                    <label>Ugentlig oversigt</label> <br>
-                                                    <input type="checkbox" formControlName="newsletterWeekly" name="onoffswitch3" class="onoffswitch-checkbox" id="myonoffswitch3" checked>
-                                                    <label class="onoffswitch-label" for="myonoffswitch3">
-                                                        <span class="onoffswitch-inner"></span>
-                                                        <span class="onoffswitch-switch"></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                                <label for="email" class="col-4 col-form-label">Betalt indtil</label> 
-                                                <div class="col-8">
-                                                    <input class="form-control" type="text" placeholder="{{paidUntil}}" readonly>
-                                                </div>
-                                            </div>
-
-                                        <div class="form-group row">
-                                            <div class="offset-4 col-8">
-                                                <button name="submit" (click)="updateSettings(settingsForm.value)" type="submit" class="btn btn-outline-primary mb-2 mr-2">Opdater min profil</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-
+                        <div class="alert alert-danger" role="alert">
+                            <div *ngIf="!activation" class="ng-hide"></div>
+                            <strong>Hov!</strong> {{activationError}}
                         </div>
                     </div>
-                </div>
 
+                    <form [formGroup]="settingsForm">
+                        
+                        
+                        <mat-label class="block-field">Nye Arrangementer</mat-label>
+                        <mat-slide-toggle matInput formControlName="newsletterEvent"
+                            (change)="changedNewsEvent()"
+                            class="example-margin"
+                            color="primary"
+                            [checked]="newEvents">{{newEvents ? trueText : falseText}}</mat-slide-toggle>
+                        
+                            <mat-label class="block-field">Daglige notifikationer</mat-label>
+                            <mat-slide-toggle formControlName="newsletterDaily"
+                            (change)="changedNewsDaily()"
+                            class="example-margin"
+                            color="primary"
+                            [checked]="newsDaily">{{newsDaily ? trueText : falseText}}</mat-slide-toggle>
+
+                            <mat-label class="block-field">Ugentlige notifikationer</mat-label>
+                            <mat-slide-toggle formControlName="newsletterWeekly"
+                            (change)="changedNewsWeekly()"
+                            class="example-margin"
+                            color="primary"
+                            [checked]="newsWeekly">{{newsWeekly ? trueText : falseText}}</mat-slide-toggle>
+                        
+                            <mat-card-actions>
+                                <button mat-button color="primary" (click)="updateSettings(settingsForm.value)">Opdater</button>
+                            </mat-card-actions>
+
+                    </form>
+
+                </mat-card>
             </mat-tab>
 
             <mat-tab label="Rating">
-                    <div *ngIf="!activation" class="ng-hide">
-                            <div class="alert alert-danger" role="alert">
-                                <div *ngIf="!activation" class="ng-hide"></div>
-                                <strong>Hov!</strong> {{activationError}}
-                            </div>
-                    </div>
-                <div class="col-md-9">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
+                <mat-card>
 
-                                    <div class="form-group row">
-                                        <label for="userRating" class="col-4 col-form-label">Rating</label>
-                                        <img class="ratingImg" src="./assets/images/Shield_Silver.png">
-                                    </div>
-
-                                    <form>
-                                        <div class="form-group row">
-                                            <label for="numberOfEventsHosted" class="col-4 col-form-label">Antal events du har afholdt</label>
-                                            <div class="col-8">
-                                                <input class="form-control" type="text" placeholder="0" readonly>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="numberOfEventsAttended" class="col-4 col-form-label">Antal events du har deltaget i</label>
-                                            <div class="col-8">
-                                                <input class="form-control" type="text" placeholder="7" readonly>
-                                            </div>
-                                        </div>
-
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </mat-card> 
             </mat-tab>
 
-                <mat-tab label="Deaktivering">
-                    <div *ngIf="!activation" class="ng-hide">
-                            <div class="alert alert-danger" role="alert">
-                                <div *ngIf="!activation" class="ng-hide"></div>
-                                <strong>Hov!</strong> {{activationError}}
-                            </div>
-                    </div>
-                <div class="col-md-9">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
+            <mat-tab label="Deaktivering">
+                <mat-card>
 
-                                    <div class="form-group row">
-                                        <label matTooltip="Udfyld alle obligatoriske felter" for="deactivate-activate" class="col-4 col-form-label">Deaktiver/aktiver profil</label> <br>
-                                        <label>{{confirmText}}</label> <br>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for ="activationBtn" class="col-4 col-form-label"></label>
-                                        <button [disabled]="btnDisabled" (click)="deactivateAccount()" matInput mat-raised-button color="warn">{{btnText}}</button>
-                                    </div>
-
-                                    <div class="form-group row">
-                                            <label for="delete-account" class="col-4 col-form-label">Slet profil</label> <br>
-                                            <label>Denne handling er <strong>permanent</strong></label> <br>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for ="activationBtn" class="col-4 col-form-label"></label>
-                                            <form [formGroup]="accountDeletionForm"> 
-                                                <mat-form-field>
-                                                    <input matTooltip="Du kan slette når feltet udfyldes. Husk store og små bogstaver" matInput [(ngModel)]="accountDeletionConfirmationText" formControlName="confirmationText" mat-raised-button color="warn" placeholder="Brugernavn">
-                                                </mat-form-field>
-                                            </form>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for ="activationBtn" class="col-4 col-form-label"></label>
-                                            <button routerLink="/" *ngIf="accountDeletionConfirmationText === user._username" (click)="deleteAccount()" matInput mat-raised-button color="warn">Slet profil</button>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                </mat-card>
             </mat-tab>
 
 
@@ -411,42 +218,42 @@
                         <div class="col-md-12">
                             <form [formGroup]="personDataForm">
 
-                                <div class="form-group row">
+                                <mat-form-field>
                                         <div class="list-group-item list-group-item-action active">Person data</div>
                                 </div>
                                 
-                                <div class="form-group row">
-                                    <label for="username" class="col-4 col-form-label">Brugernavn*</label> 
+                                <mat-form-field>
+                                    <mat-label for="username" class="col-4 col-form-label">Brugernavn*</mat-label> 
                                     <div class="col-8">
                                         <input id="username" name="username" placeholder="Brugernavn" class="form-control here" required="required" type="text">
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="email" class="col-4 col-form-label">Email</label> 
+                                <mat-form-field>
+                                    <mat-label for="email" class="col-4 col-form-label">Email</mat-label> 
                                     <div class="col-8">
                                         <input class="form-control" type="text" placeholder="minemail@domain.com" readonly>
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="name" class="col-4 col-form-label">Fornavn</label> 
+                                <mat-form-field>
+                                    <mat-label for="name" class="col-4 col-form-label">Fornavn</mat-label> 
                                     <div class="col-8">
                                         <input id="name" formControlName="firstName" name="name" placeholder="Fornavn" class="form-control here" type="text">
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="lastname" class="col-4 col-form-label">Efternavn</label> 
+                                <mat-form-field>
+                                    <mat-label for="lastname" class="col-4 col-form-label">Efternavn</mat-label> 
                                     <div class="col-8">
                                         <input id="lastname" formControlName="lastName" name="lastname" placeholder="Efternavn" class="form-control here" type="text">
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="birthday" class="col-4 col-form-label">Fødselsdag</label> 
+                                <mat-form-field>
+                                    <mat-label for="birthday" class="col-4 col-form-label">Fødselsdag</mat-label> 
                                     <div class="col-8">
                                         <input id="birthday" formControlName="birthday" name="birthday" class="form-control here" type="date">
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="select" class="col-4 col-form-label">Køn</label> 
+                                <mat-form-field>
+                                    <mat-label for="select" class="col-4 col-form-label">Køn</mat-label> 
                                     <div class="col-8">
                                         <select id="select" formControlName="gender" name="select" class="custom-select">
                                             <option value="admin">Mand</option>
@@ -455,7 +262,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <mat-form-field>
                                     <div class="offset-4 col-8">
                                         <button name="submit" type="submit" class="btn btn-outline-primary mb-2 mr-2">Opdater min profil</button>
                                     </div>
@@ -476,12 +283,12 @@
                         <div class="col-md-12">
                             <form [formGroup]="contactForm">
 
-                                    <div class="form-group row">
+                                    <mat-form-field>
                                             <div class="list-group-item list-group-item-action active">Kontakt</div>
                                     </div>
 
-                                <div class="form-group row">
-                                    <label for="phone" class="col-4 col-form-label">Telefon/mobil*</label> 
+                                <mat-form-field>
+                                    <mat-label for="phone" class="col-4 col-form-label">Telefon/mobil*</mat-label> 
                                     <div class="col-8">
                                         <input type="tel" formControlName="phone" class="form-control" name="telphone" placeholder="Telefon/mobil" pattern="[0-9]{3} [0-9]{3} [0-9]{4}" maxlength="8"  title="8 cifre"/>
                                     </div>
@@ -489,20 +296,20 @@
 
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputAddress">Adresse</label>
+                                        <mat-label for="inputAddress">Adresse</mat-label>
                                         <input type="text" formControlName="addressStreet" class="form-control" id="inputAddress" placeholder="Adresse">
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputBy">By</label>
+                                        <mat-label for="inputBy">By</mat-label>
                                         <input type="text" formControlName="addressStreet" class="form-control" id="inputBy" placeholder="By">
                                     </div>
                                     <div class="form-group col-md-2">
-                                        <label for="inputZip">Postnummer</label>
+                                        <mat-label for="inputZip">Postnummer</mat-label>
                                         <input type="text" formControlName="addressZip" class="form-control" id="inputZip" placeholder="Post">
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <mat-form-field>
                                     <div class="offset-4 col-8">
                                         <button name="submit" type="submit" class="btn btn-outline-primary mb-2 mr-2">Opdater min profil</button>
                                     </div>
@@ -522,37 +329,37 @@
                         <div class="col-md-12">
                             <form [formGroup]="childrenForm">
 
-                                    <div class="form-group row">
+                                    <mat-form-field>
                                             <div class="list-group-item list-group-item-action active">Familie</div>
                                     </div>
 
-                                <div class="form-group row">
-                                    <label for="kids" class="col-4 col-form-label">Antal børn</label> 
+                                <mat-form-field>
+                                    <mat-label for="kids" class="col-4 col-form-label">Antal børn</mat-label> 
                                     <div class="col-8">
                                         <input type="number" formControlName="numberOfChildren" class="form-control" min="0" max="3" name="kids" placeholder="Antal" maxlength="1"/>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
-                                    <label for="kidBirthday1" class="col-4 col-form-label">Fødselsdag for det første barn</label> 
+                                    <mat-label for="kidBirthday1" class="col-4 col-form-label">Fødselsdag for det første barn</mat-label> 
                                     <div class="col-8">
                                         <input id="kidBirthday1" formControlName="birthdayChild1" name="birthday" class="form-control here" type="date">
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <label for="kidBirthday2" class="col-4 col-form-label">Fødselsdag for det andet barn</label> 
+                                    <mat-label for="kidBirthday2" class="col-4 col-form-label">Fødselsdag for det andet barn</mat-label> 
                                     <div class="col-8">
                                         <input id="kidBirthday2" formControlName="birthdayChild2" name="birthday" class="form-control here" type="date">
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <label for="kidBirthday3" class="col-4 col-form-label">Fødselsdag for det tredje barn</label> 
+                                    <mat-label for="kidBirthday3" class="col-4 col-form-label">Fødselsdag for det tredje barn</mat-label> 
                                     <div class="col-8">
                                         <input id="kidBirthday3" formControlName="birthdayChild3" name="birthday" class="form-control here" type="date">
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <mat-form-field>
                                     <div class="offset-4 col-8">
                                         <button name="submit" type="submit" class="btn btn-outline-primary mb-2 mr-2">Opdater min profil</button>
                                     </div>
@@ -571,7 +378,7 @@
                         <div class="row">
                             <div class="col-md-12">
 
-                                    <div class="form-group row">
+                                    <mat-form-field>
                                             <div class="list-group-item list-group-item-action active">Billeder</div>
                                     </div>
 
@@ -624,51 +431,51 @@
                             <h4>Mailopsætning</h4>
                             <form [formGroup]="settingsForm">
 
-                                    <div class="form-group row">
+                                    <mat-form-field>
                                             <div class="list-group-item list-group-item-action active">Mail opsætning</div>
                                     </div>
 
                                 <div class="form-row">
                                     <div class="form-group col-sm">
                                         <div class="onoffswitch">
-                                            <label>Nye Arrangementer</label> <br>
+                                            <mat-label>Nye Arrangementer</mat-label> <br>
                                             <input type="checkbox" formControlName="newsletterEvent" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-                                            <label class="onoffswitch-label" for="myonoffswitch">
+                                            <mat-label class="onoffswitch-label" for="myonoffswitch">
                                                 <span class="onoffswitch-inner"></span>
                                                 <span class="onoffswitch-switch"></span>
-                                            </label>
+                                            </mat-label>
                                         </div>
                                     </div>
                                     <div class="form-group col-sm">
                                         <div class="onoffswitch">
-                                            <label>Daglig oversigt</label> <br>
+                                            <mat-label>Daglig oversigt</mat-label> <br>
                                             <input type="checkbox" formControlName="newsletterDaily" name="onoffswitch2" class="onoffswitch-checkbox" id="myonoffswitch2" checked>
-                                            <label class="onoffswitch-label" for="myonoffswitch2">
+                                            <mat-label class="onoffswitch-label" for="myonoffswitch2">
                                                 <span class="onoffswitch-inner"></span>
                                                 <span class="onoffswitch-switch"></span>
-                                            </label>
+                                            </mat-label>
                                         </div>
                                     </div>
                                     <div class="form-group col-sm">
                                         <div class="onoffswitch">
-                                            <label>Ugentlig oversigt</label> <br>
+                                            <mat-label>Ugentlig oversigt</mat-label> <br>
                                             <input type="checkbox" formControlName="newsletterWeekly" name="onoffswitch3" class="onoffswitch-checkbox" id="myonoffswitch3" checked>
-                                            <label class="onoffswitch-label" for="myonoffswitch3">
+                                            <mat-label class="onoffswitch-label" for="myonoffswitch3">
                                                 <span class="onoffswitch-inner"></span>
                                                 <span class="onoffswitch-switch"></span>
-                                            </label>
+                                            </mat-label>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label for="email" class="col-4 col-form-label">Sendes til</label> 
+                                <mat-form-field>
+                                    <mat-label for="email" class="col-4 col-form-label">Sendes til</mat-label> 
                                     <div class="col-8">
                                         <input class="form-control" type="text" placeholder="minemail@domain.com" readonly>
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <mat-form-field>
                                     <div class="offset-4 col-8">
                                         <button name="submit" type="submit" class="btn btn-outline-primary mb-2 mr-2">Opdater min profil</button>
                                     </div>
@@ -688,25 +495,25 @@
                     <div class="row">
                         <div class="col-md-12">
 
-                                <div class="form-group row">
+                                <mat-form-field>
                                         <div class="list-group-item list-group-item-action active">Rating</div>
                                 </div>
 
-                            <div class="form-group row">
-                                <label for="userRating" class="col-4 col-form-label">Rating</label>
+                            <mat-form-field>
+                                <mat-label for="userRating" class="col-4 col-form-label">Rating</mat-label>
                                 <img class="ratingImg" src="./assets/images/Shield_Silver.png">
                             </div>
 
                             <form>
-                                <div class="form-group row">
-                                    <label for="numberOfEventsHosted" class="col-4 col-form-label">Antal events du har afholdt</label>
+                                <mat-form-field>
+                                    <mat-label for="numberOfEventsHosted" class="col-4 col-form-label">Antal events du har afholdt</mat-label>
                                     <div class="col-8">
                                         <input class="form-control" type="text" placeholder="0" readonly>
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label for="numberOfEventsAttended" class="col-4 col-form-label">Antal events du har deltaget i</label>
+                                <mat-form-field>
+                                    <mat-label for="numberOfEventsAttended" class="col-4 col-form-label">Antal events du har deltaget i</mat-label>
                                     <div class="col-8">
                                         <input class="form-control" type="text" placeholder="7" readonly>
                                     </div>

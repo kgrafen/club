@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'image-upload',
@@ -22,6 +23,10 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class ImageUploadComponent implements OnInit {
 
   closeResult: string;
+
+  fileForm: FormGroup = new FormGroup({
+    file: new FormControl('', Validators.required)
+  });
 
   constructor(private modalService: NgbModal) {}
 

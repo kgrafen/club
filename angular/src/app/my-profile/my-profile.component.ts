@@ -38,6 +38,21 @@ export class MyProfileComponent implements OnInit {
   // Subscription
   paidUntil = "Ikke betalt";
 
+  //Family
+  numberOfChildren = 0;
+  maxChildren = 3;
+  frontEndModellerChildren = [];
+
+  //Settings
+  newEvents = false;
+  newsDaily = false;
+  newsWeekly = false;
+  trueText = "Yes";
+  falseText = "No";
+
+  // Rating
+  userRating = 0;
+
   constructor(private ufbs: UserFirebaseService, private authService: AuthService, 
     private mds: MobileDetectorService) { }
 
@@ -55,9 +70,9 @@ export class MyProfileComponent implements OnInit {
 
 public contactForm = new FormGroup({
     phone: new FormControl(''),
-    addressStreet: new FormControl(''),
-    addressCity: new FormControl(''),
-    addressZip: new FormControl(''),
+    street: new FormControl(''),
+    city: new FormControl(''),
+    zip: new FormControl(''),
 });
 
 public childrenForm = new FormGroup({
@@ -68,7 +83,7 @@ public childrenForm = new FormGroup({
 });
 
 public settingsForm = new FormGroup({
-  newsletterEvent: new FormControl(''),
+    newsletterEvent: new FormControl(''),
     newsletterDaily: new FormControl(''),
     newsletterWeekly: new FormControl('')
 });
@@ -82,7 +97,8 @@ public accountDeletionForm = new FormGroup ({
     this.isMobile = this.mds.check();
 
     this.getDisplayData();
-    this.activation = this.accountIsCompleted();
+    this.accountIsCompleted();
+
     this.hasImages = false;
     this.user = this.ufbs.getStorage();
 
@@ -99,162 +115,89 @@ public accountDeletionForm = new FormGroup ({
   }
 
   getDisplayData() {
-    let user = this.ufbs.getStorage();
-    this.username = user._username;
-    this.email = user.email;
-    let d = new Date(user.subscribed_until);
-    this.paidUntil = d.getDate().toString() + "-" + (d.getMonth() + 1).toString() + "-" + d.getUTCFullYear().toString();
-
-    if (user.firstName != undefined) {
-      this.personDataForm.get('firstName').setValue(user.firstName);
-    }
-    if (user.lastName != undefined) {
-      this.personDataForm.get('lastName').setValue(user.lastName);
-    }
-    if (user.birthday != undefined) {
-      this.personDataForm.get('birthday').setValue(user.birthday);
-    }
-    if(user.gender != undefined) {
-      this.personDataForm.get('gender').setValue(user.gender);
-    }
-    if(user.phone != undefined) {
-      this.contactForm.get('phone').setValue(user.phone);
-    }
-    if(user.address != undefined && user.address.street) {
-      this.contactForm.get('addressStreet').setValue(user.address.street);
-    }
-    if(user.address != undefined && user.address.city) {
-      this.contactForm.get('addressCity').setValue(user.address.city);
-    }
-    if(user.address != undefined && user.address.zip) {
-      this.contactForm.get('addressZip').setValue(user.address.zip);
-    }
-    if(user.newsletterSetting != undefined && user.newsletterSetting.newEvents) {
-      this.settingsForm.get('newsletterEvent').setValue(user.newsletterSetting.newEvents);
-    }
-    if(user.newsletterSetting != undefined && user.newsletterSetting.dailyNews) {
-      this.settingsForm.get('newsletterDaily').setValue(user.newsletterSetting.dailyNews);
-    }
-    if(user.newsletterSetting != undefined && user.newsletterSetting.weeklyNews) {
-      this.settingsForm.get('newsletterWeekly').setValue(user.newsletterSetting.weeklyNews);
-    }
-    if (user.numberOfChildren != undefined) {
-      this.childrenForm.get('numberOfChildren').setValue(user.numberOfChildren);
-    }
-    if (user.children != undefined) {
-      if (user.children.length > 0) {
-        this.childrenForm.get('birthdayChild1').setValue(user.children[0].birthday);
-      }
-      if (user.children.length > 1) {
-        this.childrenForm.get('birthdayChild2').setValue(user.children[1].birthday);
-      }
-      if (user.children.length > 2) {
-        this.childrenForm.get('birthdayChild3').setValue(user.children[2].birthday);
-      }
-    }
-    this.value = this.accountProgress();
+    this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(value => {
+      let user: User = Object.assign(JSON.parse(JSON.stringify(value)), User);
+      this.username = user._username;
+      this.email = user.email;
+      let d = new Date(user.subscribed_until);
+      this.paidUntil = d.getDate().toString() + "-" + (d.getMonth() + 1).toString() + "-" + d.getUTCFullYear().toString();
+    
+      Object.keys(value).forEach(key => {
+        try {
+          /*
+          this.personDataForm.get(key).setValue(value[key]);
+          this.childrenForm.get(key).setValue(value[key]);
+          Object.keys(value[key]).forEach(childKey => {
+            if (childKey.length > 2) {
+              if (childKey.toString() !== 'true' && childKey.toString() !== 'false') {
+                this.contactForm.get(childKey).setValue(value[key][childKey]);
+              } else {
+                this.settingsForm.get(childKey).setValue(value[key][childKey]);
+              }
+            };
+          });
+          */
+        } catch(error) {
+          
+        }
+      });
+    
+    });
+    
+    
   }
 
-  updateProfile(user: User) {
-    this.ufbs.setStorage(user);
-    this.ufbs.updateUser(user);
-    this.value = this.accountProgress();
+  updateProfile(formData) {
+    this.ufbs.updateUser(formData, this.authService.afAuth.auth.currentUser.uid);
+    this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(value => {
+      this.ufbs.setStorage(Object.assign(JSON.parse(JSON.stringify(value)), User));
+    });
+    this.accountProgress();
   }
 
   updateContact(formData) {
-    let user = this.ufbs.getStorage();
-    const newUser = new User(user._username, user.email);
-    user.phone = formData.phone;
-    user.address = new ProfileAddress(formData.addressStreet, formData.addressCity, formData.addressZip);
-    this.updateProfile(user);
+    let mergedObj = { phone: formData.phone, address: {street: formData.street, city: formData.city, zip: formData.zip} };
+    this.updateProfile(mergedObj);
   }
 
   updateChildren(formData) {
-    let user = this.ufbs.getStorage();
-    const newUser = new User(user._username, user.email);
-    user.numberOfChildren = formData.numberOfChildren;
-    
-    if (user.children != undefined) {
-      // If no, then we are overwriting.
-      if (formData.birthdayChild1 != undefined) {
-        user.children[0] = formData.birthdayChild1;
-      }
-      if (formData.birthdayChild2 != undefined) {
-        user.children[0] = formData.birthdayChild2;
-      }
-      if (formData.birthdayChild3 != undefined) {
-        user.children[0] = formData.birthdayChild3;
-      }
-    } else {
-      // If yes then we are creating new array entries
-      user.children = [];
-      if (formData.birthdayChild1 != undefined) {
-        user.children.push(new Child(formData.birthdayChild1));
-      }
-      if (formData.birthdayChild2 != undefined) {
-        user.children.push(new Child(formData.birthdayChild2));
-      }
-      if (formData.birthdayChild3 != undefined) {
-        user.children.push(new Child(formData.birthdayChild3));
-      }
+    let updatesObj = {numberOfChildren: formData.numberOfChildren};
+    let appendObj = {};
+    if (formData.numberOfChildren > 0) {
+      appendObj = {children: {childOne: formData.birthdayChild1, childTwo: formData.birthdayChild2, 
+        childThree: formData.birthdayChild3}};
     }
-
-     this.updateProfile(user);
+    let mergedObj = Object.assign(updatesObj, appendObj);
+    this.updateProfile(mergedObj);
   }
 
   updateSettings(formData) {
-    let user = this.ufbs.getStorage();
-    const newUser = new User(user._username, user.email);
-    
-    if (user.newsletterSetting == undefined) {
-      user.newsletterSetting = new NewsletterSetting();
-    }
-    // Usage of inverse boolean to compensate for the css change to have my toggles start on "yes" == 1
-    if (formData.newsletterEvent != undefined) {
-      user.newsletterSetting.newEvents = !formData.newsletterEvent;
-    } 
-    if (formData.newsletterDaily != undefined) {
-      user.newsletterSetting.dailyNews = !formData.newsletterDaily;
-    } 
-    if (formData.newsletterWeekly != undefined) {
-      user.newsletterSetting.weeklyNews = !formData.newsletterWeekly;
-    } 
-    this.updateProfile(user);
+    console.log(formData);
+    let updatesObj = {newsletter: { dailyNews: formData.newsletterDaily, weeklyNews: formData.newsletterWeekly, 
+                      newEvents: formData.newsletterEvent}};
+    this.updateProfile(updatesObj);
   }
 
   updatePersonData(formData) {
-    let user = this.ufbs.getStorage();
-    const newUser = new User(user._username, user.email);
-    user.birthday = formData.birthday;
-    user.firstName = formData.firstName;
-    user.lastName = formData.lastName;
-    user.gender = formData.gender;
-    this.updateProfile(user);
+    this.updateProfile(formData);
   }
 
-  accountProgress(): number {
-    let user = this.ufbs.getStorage();
+  accountProgress() {
     let count = 20;
-    if (user.firstName != undefined) count+=10;
-    if (user.lastName != undefined) count+=10;
-    if (user.birthday != undefined) count+=10;
-    if (user.gender != undefined) count+=10;
-    if (user.phone != undefined) count+=10;
-    if (user.address != undefined) count+=10;
-    if (user.numberOfChildren != undefined) count+=10;
-    if (user.newsletterSetting != undefined) count+=10;
-
-    count == 100 ? user.isActivated = true : user.isActivated = false;
-
-    return count;
+    let id = this.authService.afAuth.auth.currentUser.uid;
+    this.ufbs.getUserByID(id).subscribe(value => {
+      count += 10 * Object.keys(value).length;
+      count == 100 ? this.ufbs.updateUser({ isActivated: true}, id) : this.ufbs.updateUser({ isActivated: false}, id);
+      this.value = count;
+    });
 }
 
-  accountIsCompleted(): boolean {
-    let user = this.ufbs.getStorage();
-    return (user.firstName != "" && user.lastName != "" && user.birthday != undefined 
-    && user.gender != undefined && user.phone > 10000000 && user.address != undefined 
-    && user.numberOfChildren >= 0 && user.children != undefined 
-    && user.newsletterSetting != undefined)
+  accountIsCompleted() {
+    this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(value => {
+      if (Object.keys(value).length >= 11) {
+        this.activation = true;
+      }
+    })
 }
 
   deactivateAccount() {
@@ -276,4 +219,25 @@ public accountDeletionForm = new FormGroup ({
     this.ufbs.deleteUser(this.ufbs.getStorage().email);
   }
 
+  displayBirthdayInput(eventTargetValue) {
+    this.numberOfChildren = eventTargetValue;
+    this.frontEndModellerChildren = [];
+    if (eventTargetValue <= this.maxChildren) {
+      for (let i = 0; i < eventTargetValue; i++) {
+        this.frontEndModellerChildren.push({id: "kidBirthday" + (1+i), formControlName: "birthdayChild" + (1+i), matDatePicker: "pickerChild" + (1+i), view: "Fødselsdag for barn"});
+      }
+    }
+  }
+
+  changedNewsEvent() {
+    this.newEvents = !this.newEvents;
+  }
+
+  changedNewsDaily() {
+    this.newsDaily = !this.newsDaily;
+  }
+
+  changedNewsWeekly() {
+    this.newsWeekly = !this.newsWeekly;
+  }
 }

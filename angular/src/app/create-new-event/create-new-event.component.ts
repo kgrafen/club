@@ -124,8 +124,6 @@ export class CreateNewEventComponent implements OnInit {
 
     event.host = this.ufbs.getStorage().email;
 
-    console.log(event.queue);
-
     if (event.hostRating === undefined) {
       event.hostRating = 0;
     }
@@ -140,7 +138,6 @@ export class CreateNewEventComponent implements OnInit {
 
   lookUpZip(event) {
     if ( (event.target.value as string).length > 3 ) {
-      console.log("attempting");
       this.geoAPI.getZipFromCity(event.target.value).map(response => response.json()).subscribe(result => this.apiZipValue = result.navn);
     }
   }
