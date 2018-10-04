@@ -5,7 +5,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'image-upload',
   templateUrl: './image-upload.component.html',
-  styleUrls: ['./image-upload.component.css'],
   encapsulation: ViewEncapsulation.None,
   styles: [`
     .dark-modal .modal-content {
