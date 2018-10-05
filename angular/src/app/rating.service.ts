@@ -33,6 +33,12 @@ export class RatingService {
     return this.db.list(this.dbPath).valueChanges();
   }
 
+  getRecentRatingsForUserByID(id: string) : Observable<any[]>  {
+    return this.db.list(this.dbPath, ref => ref.orderByChild('fk_host').equalTo(id)).snapshotChanges().map(events => {
+      return events.map(c => ({key: c.payload.key, ...c.payload.val()}));
+    });
+  }
+
   updateUserScore(host: string) {
     let userScore = 0;
     let count = 0;
