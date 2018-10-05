@@ -34,7 +34,7 @@ export class AuthService {
       firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password)
       .then(res => {
         resolve(res);
-        const user = new User(formData.username, formData.email);
+        const user = new User(formData);
         const date = new Date();
         date.setUTCFullYear(2019, 0, 1);
         user.subscribed_until = date;
@@ -57,7 +57,7 @@ export class AuthService {
 
 
   doSocialLoginRegister(firebaseUser: firebase.User) {
-    const userEntity = new User(firebaseUser.displayName, firebaseUser.email);
+    const userEntity = new User(firebaseUser);
     const date = new Date();
     date.setUTCFullYear(2019, 0, 1);
     userEntity.subscribed_until = date;

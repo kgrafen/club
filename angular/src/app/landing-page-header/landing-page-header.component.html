@@ -36,11 +36,18 @@
 <div *ngIf="isMobile">
 
   <a [routerLink]="['/']"><img class="mobile" src="./assets/images/Logo_white.png"></a>
+
+  <div *ngIf="!isLoggedOn">
+      <button class="mobileBtn" mat-raised-button (click)="openDialog()">Login</button>
+      <button class="mobileBtn" (click)="tryFacebookLogin()" mat-raised-button color="primary">Login med Facebook</button>
+      <button class="mobileBtn" (click)="tryGoogleLogin()" mat-raised-button color="accent">Login med Google</button>    
+  </div>
   
-  <button class="mobileBtn" mat-raised-button (click)="openDialog()">Login</button>
-  <button class="mobileBtn" (click)="tryFacebookLogin()" mat-raised-button color="primary">Login med Facebook</button>
-  <button class="mobileBtn" (click)="tryGoogleLogin()" mat-raised-button color="accent">Login med Google</button>
-      
+
+  <div *ngIf="isLoggedOn">
+      <button class="mobileBtn" matTooltip="Logget på som {{username}}" routerLink="/loggedin-dashboard" mat-raised-button>Til Dashboard</button>
+  </div>
+
 </div>
 
 <ngx-spinner

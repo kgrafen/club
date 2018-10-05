@@ -6,6 +6,7 @@ import { UserFirebaseService } from '../user-firebase.service';
 import { MatDialog } from '@angular/material';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { unescapeIdentifier } from '@angular/compiler';
+import { MobileDetectorService } from '../mobile-detector.service';
 
 @Component({
   selector: 'app-view-event',
@@ -13,6 +14,8 @@ import { unescapeIdentifier } from '@angular/compiler';
   styleUrls: ['./view-event.component.css']
 })
 export class ViewEventComponent implements OnInit {
+
+  isMobile = false;
 
   selectedEvent: Event;
   key;
@@ -25,7 +28,8 @@ export class ViewEventComponent implements OnInit {
   isParticipating: boolean = false;
 
   constructor(private route: ActivatedRoute, private efbs: EventFirebaseService, 
-    private ufbs: UserFirebaseService, private router: Router) { 
+    private ufbs: UserFirebaseService, private router: Router, 
+    private md: MobileDetectorService) { 
     this.route.queryParams.subscribe(params => {
       let key = params['key'];
       this.key = key;
@@ -49,7 +53,7 @@ export class ViewEventComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+    this.isMobile = this.md.check();
   }
 
   getParticipantKey(): string {

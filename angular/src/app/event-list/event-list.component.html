@@ -60,7 +60,7 @@
           </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClick(row)"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
 
     <table *ngIf="isMobile" mat-table [dataSource]="dataSourceMobile" matSort class="mat-elevation-z8">
@@ -87,7 +87,7 @@
           </ng-container>
         
           <tr mat-header-row *matHeaderRowDef="displayedColumnsMobile"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumnsMobile;" (click)="onRowClick(row)"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsMobile;" (click)="onViewClick(row)"></tr>
       </table>
 
   <mat-paginator *ngIf="!isMobile" [pageSizeOptions]="[10, 15, 20, 50, 100]"></mat-paginator>

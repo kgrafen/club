@@ -9,7 +9,7 @@ export const environment = {
     authDomain: "single-network.firebaseapp.com",
     databaseURL: "https://single-network.firebaseio.com",
     projectId: "single-network",
-    storageBucket: "",
+    storageBucket: "gs://single-network.appspot.com",
     messagingSenderId: "822295237709"
   }
 };

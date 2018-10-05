@@ -29,11 +29,8 @@ export class MyProfileComponent implements OnInit {
   public isMobile: boolean = false;
 
   // Activation
-  warningCount = 0;
-  confirmText = "";
-  btnDisabled = true;
-  btnText = "Låst";
-  accountDeletionConfirmationText = "";
+  activationText = "";
+  usernameValidation = "";
 
   // Subscription
   paidUntil = "Ikke betalt";
@@ -50,15 +47,12 @@ export class MyProfileComponent implements OnInit {
   trueText = "Yes";
   falseText = "No";
 
-  // Rating
-  userRating = 0;
-
   constructor(private ufbs: UserFirebaseService, private authService: AuthService, 
     private mds: MobileDetectorService) { }
 
   username: string = "Indlæser...";
   email: string = "Indlæser...";
-  activation: boolean;
+  state: boolean;
   hasImages: boolean;
 
   public personDataForm = new FormGroup({
@@ -100,28 +94,21 @@ public accountDeletionForm = new FormGroup ({
     this.accountIsCompleted();
 
     this.hasImages = false;
-    this.user = this.ufbs.getStorage();
-
-    if (this.ufbs.getStorage().isActivated) {
-      this.btnText = "Deaktiver";
-      this.btnDisabled = false;
-    } else {
-      if (this.activation) {
-        this.btnText = "Activate";
-        this.btnDisabled = false;
-      }
-    }
 
   }
 
   getDisplayData() {
     this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(value => {
-      let user: User = Object.assign(JSON.parse(JSON.stringify(value)), User);
+      let user: User = new User(value);
       this.username = user._username;
       this.email = user.email;
+
+      this.state = user.isActivated;
+      this.activationText = this.state ? "Deaktiver" : "Aktiver";
+   
       let d = new Date(user.subscribed_until);
       this.paidUntil = d.getDate().toString() + "-" + (d.getMonth() + 1).toString() + "-" + d.getUTCFullYear().toString();
-    
+
       Object.keys(value).forEach(key => {
         try {
           /*
@@ -172,7 +159,6 @@ public accountDeletionForm = new FormGroup ({
   }
 
   updateSettings(formData) {
-    console.log(formData);
     let updatesObj = {newsletter: { dailyNews: formData.newsletterDaily, weeklyNews: formData.newsletterWeekly, 
                       newEvents: formData.newsletterEvent}};
     this.updateProfile(updatesObj);
@@ -195,24 +181,13 @@ public accountDeletionForm = new FormGroup ({
   accountIsCompleted() {
     this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(value => {
       if (Object.keys(value).length >= 11) {
-        this.activation = true;
+        //this.state = true;
       }
     })
 }
 
-  deactivateAccount() {
-    this.warningCount++;
-    this.confirmText = "Tryk " + (3 - this.warningCount) + " gange for at bekræfte";
-    if (this.warningCount >= 3 && this.accountIsCompleted()) {
-      this.btnDisabled = true;
-      const user: User = this.ufbs.getStorage();
-      user.isActivated ? user.isActivated = false : user.isActivated = true;
-      this.ufbs.setStorage(user);
-      let str = user.isActivated ? "aktiveret." : "deaktiveret.";
-      this.confirmText = "Profilen er nu " + str;
-    } else {
-      this.btnDisabled = true;
-    }
+  deactivateAccount(value) {
+    this.ufbs.updateUser({isActivated: value}, this.authService.afAuth.auth.currentUser.uid);
   }
 
   deleteAccount() {
@@ -239,5 +214,9 @@ public accountDeletionForm = new FormGroup ({
 
   changedNewsWeekly() {
     this.newsWeekly = !this.newsWeekly;
+  }
+
+  usernameInput(input) {
+    this.usernameValidation = input;
   }
 }

@@ -3,11 +3,6 @@ event-control-menu {
     width: 100%;
 }
 
-.mobile {
-    display:none;
-}
-
-
 h1 {
     color: snow;
     text-align: center;
@@ -17,19 +12,6 @@ event-filter {
     width: 100%;
 }
 
-@media only screen and (max-width: 900px) {
-    .mobile {
-        display: block;
-    }
-
-    .desktop {
-        display:none;
-    }
-}
-
-.row {
-    overflow: hidden;
-}
 
 .btnLabel {
     width: 100%;

@@ -34,6 +34,7 @@ export interface EventDataMobile {
 export class MyEventsComponent implements OnInit {
 
   isMobile = false;
+  error = "";
 
   dataSource = new MatTableDataSource<EventData>();
   displayedColumns = ['name', 'address', 'distance', 'category', 'genderRatio', 'targetGroup', 'available', 'actions'];
@@ -49,21 +50,33 @@ export class MyEventsComponent implements OnInit {
     private spinner: NgxSpinnerService, private ufbs: UserFirebaseService, 
     public dialog: MatDialog) {
       this.efbs.getEventsByHost(this.ufbs.getStorage().email).subscribe(res => {
+        console.log(res);
+        /*
         this.events = res;
         this.dataSource = new MatTableDataSource(this.events);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
 
-      this.dataSourceMobile = new MatTableDataSource(this.events);
-      this.dataSourceMobile.paginator = this.paginator;
-      this.dataSourceMobile.sort = this.sort;
-      this.spinner.hide();
+        this.dataSourceMobile = new MatTableDataSource(this.events);
+        this.dataSourceMobile.paginator = this.paginator;
+        this.dataSourceMobile.sort = this.sort;
+        this.spinner.hide();
+        */
       });
     }
 
   ngOnInit() {
     this.spinner.show();
     this.isMobile = this.mds.check();
+  }
+
+  ngAfterViewInit() {
+    setTimeout( ()=>{
+      if (this.events.length < 1) {
+        this.spinner.hide();
+        this.error = "Du har ikke oprettet et event endnu.";
+      }
+      }, 3000)
   }
 
   onEditClick(element) {

@@ -6,7 +6,7 @@ import { Rating } from '../rating/rating.model';
 export class JsonConverter {
     public convertJsonToUserObj(json: string) : User {
         let obj = JSON.parse(json);
-        let user: User = Object.assign(obj, User);
+        let user: User = new User(obj);
         /*
         let user = new User(obj._username, obj.email);
         user.address = obj.address;

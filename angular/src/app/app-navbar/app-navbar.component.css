@@ -1,12 +1,20 @@
 .pusher {
-    margin-bottom: 20px;
+    margin-bottom: 80px;
 }
 
-img {
+matTooltip {
+    
+}
+
+.menu-logo {
     max-width:5%;
 }
 
-img:hover {
+.rating-shield {
+    transform: scale(0.7);
+}
+
+.menu-logo:hover {
     cursor: pointer;
 }
 
@@ -23,7 +31,7 @@ img:hover {
 }
 
 button {
-    margin: 10px;
+    
 }
 
 @media only screen and (max-width: 600px) {

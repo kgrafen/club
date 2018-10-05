@@ -36,9 +36,8 @@ export class User {
     isActivated: boolean;
     subscribed_until: Date;
 
-    constructor(username: string, email: string) {
-        this._username = username;
-        this.email = email;
+    constructor(obj) {
+        obj && Object.assign(this, obj);
     }
 }
 

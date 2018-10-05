@@ -1,11 +1,21 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
 
-    <img src="assets/images/Logo.png" routerLink='/loggedin-dashboard'>
-    <a routerLink="/loggedin-dashboard"><button *ngIf="isMobile" class="btn btn-light">Tilbage</button></a>
+    <img class="menu-logo" src="../../assets/images/Logo.png" routerLink='/loggedin-dashboard'>
+  
+
+    <button *ngIf="isMobile" routerLink='/my-profile' color="primary" mat-button> 
+      <img class="rating-shield" [src]="source">
+      {{rating}}<mat-icon>star</mat-icon>
+    </button>
     
     
     <div *ngIf="!isMobile" class="navbar-nav ml-auto">
-      <button matTooltip="{{field.description}}" *ngFor="let field of menuFields" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>
+      <button *ngFor="let field of menuFields" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>
+      <button routerLink='/my-profile' color="primary" mat-button> 
+        <mat-icon>person</mat-icon> {{username | uppercase}}
+        <img class="rating-shield" [src]="source">
+        {{rating}}<mat-icon>star</mat-icon>
+      </button>
     </div>
     
     <button *ngIf="isMobile" mat-icon-button [matMenuTriggerFor]="menu">
@@ -13,18 +23,22 @@
     </button>
 
       <mat-menu #menu="matMenu" [overlapTrigger]="false" yPosition="below">
-        <button mat-menu-item>
-          <mat-icon>dialpad</mat-icon>
-          <span>Redial</span>
+        <button routerLink="/loggedin-dashboard" mat-menu-item>
+          <mat-icon>dashboard</mat-icon>
+          <span>Dashboard</span>
         </button>
-        <button mat-menu-item disabled>
-          <mat-icon>voicemail</mat-icon>
-          <span>Check voicemail</span>
+        <button routerLink="/events" mat-menu-item>
+          <mat-icon>calendar_today</mat-icon>
+          <span>Events</span>
         </button>
-        <button mat-menu-item>
-          <mat-icon>notifications_off</mat-icon>
-          <span>Disable alerts</span>
+        <button routerLink="/my-profile" mat-menu-item>
+          <mat-icon>person</mat-icon>
+          <span>Min Profil</span>
         </button>
+        <button routerLink="/payment" mat-menu-item>
+          <mat-icon>payment</mat-icon>
+          <span>Betaling</span>
+          </button>
       </mat-menu>
       
     <button (click)="signout()" mat-raised-button color="warn">Log ud</button>
@@ -35,32 +49,12 @@
   <!-- DO NOT EDIT HERE -->
   <nav style="visibility: hidden;" class="navbar navbar-expand-md navbar-light bg-light pusher">
 
-      <img src="./assets/images/Logo.png" routerLink='/loggedin-dashboard'>
       <a routerLink="/loggedin-dashboard"><button *ngIf="isMobile" class="btn btn-light">Tilbage</button></a>
       
       
       <div *ngIf="!isMobile" class="navbar-nav ml-auto">
         <button *ngFor="let field of menuFields" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>
       </div>
-      
-      <button *ngIf="isMobile" mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon>menu</mat-icon>
-      </button>
-  
-        <mat-menu #menu="matMenu" [overlapTrigger]="false" yPosition="below">
-          <button mat-menu-item>
-            <mat-icon>dialpad</mat-icon>
-            <span>Redial</span>
-          </button>
-          <button mat-menu-item disabled>
-            <mat-icon>voicemail</mat-icon>
-            <span>Check voicemail</span>
-          </button>
-          <button mat-menu-item>
-            <mat-icon>notifications_off</mat-icon>
-            <span>Disable alerts</span>
-          </button>
-        </mat-menu>
         
       <button (click)="signout()" mat-raised-button color="warn">Log ud</button>
         

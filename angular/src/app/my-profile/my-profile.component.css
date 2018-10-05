@@ -4,8 +4,8 @@ h1 {
 }
 
 .mat-tab-profile {
-    margin: 20px;
     background-color:#fff;
+    margin-top: 10px;
 }
 
 mat-form-field {
@@ -41,6 +41,7 @@ mat-progress-bar {
     text-align: center;
 }
 
-.ratingImg {
-    transform: scale(0.75);
+label, p, button {
+    margin: 10px;
+    display: block;
 }

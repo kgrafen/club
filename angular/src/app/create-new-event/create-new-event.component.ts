@@ -122,7 +122,7 @@ export class CreateNewEventComponent implements OnInit {
 
     event.participants = [{username: this.ufbs.getStorage()._username}];
 
-    event.host = this.ufbs.getStorage().email;
+    event.host = this.authService.afAuth.auth.currentUser.uid;
 
     if (event.hostRating === undefined) {
       event.hostRating = 0;

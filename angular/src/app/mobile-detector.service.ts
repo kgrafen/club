@@ -7,7 +7,7 @@ export class MobileDetectorService {
 
   constructor() { }
 
-  check(w=800): boolean {
+  check(w=900): boolean {
     return window.screen.width <= w;
   }
 
