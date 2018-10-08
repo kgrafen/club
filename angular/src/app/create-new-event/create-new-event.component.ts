@@ -9,6 +9,7 @@ import { UserFirebaseService } from '../user-firebase.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { GeoCodingApiService } from '../geo-coding-api.service';
 import { Observable } from 'rxjs';
+import { User } from '../entity/user/user';
 
 export interface DialogData {
   animal: string;
@@ -87,14 +88,18 @@ export class CreateNewEventComponent implements OnInit {
   onSubmitEvent() {
     let e: Event = this.formDataToModel();
     this.efbs.insertEvent(e);
+    this.ufbs.updateUser({numberOfEventsHosted: this.ufbs.getStorage().numberOfEventsHosted + 1}, 
+                        this.authService.afAuth.auth.currentUser.uid);
+    console.log(this.ufbs.getStorage().numberOfEventsHosted + 1);
   } 
 
   formDataToModel(): Event {
-    const event = new Event();
+
+    const event = new Event({});
 
     event.name = this.firstFormGroup.value.eventName;
     event.address = new EventAddress(this.firstFormGroup.value.eventLocationStreet, 
-      this.apiZipValue, this.firstFormGroup.value.eventLocationZip);
+                    this.apiZipValue, this.firstFormGroup.value.eventLocationZip);
     event.category = this.firstFormGroup.value.eventCategory;
     event.description = this.firstFormGroup.value.eventDescription;
 
@@ -120,7 +125,7 @@ export class CreateNewEventComponent implements OnInit {
     event.queue = this.secondFormGroup.value.eventQueue;
     event.targetGroup = this.secondFormGroup.value.eventTargetGroup;
 
-    event.participants = [{username: this.ufbs.getStorage()._username}];
+    event.participants = [{username: this.ufbs.getStorage().username}];
 
     event.host = this.authService.afAuth.auth.currentUser.uid;
 
@@ -128,7 +133,6 @@ export class CreateNewEventComponent implements OnInit {
       event.hostRating = 0;
     }
     this.onNoClick();
-    //event.$key = this.efbs.generateNewHashKey(this.ufbs.convertEmailToKey(this.authService.user.email), event.name);
     return event;
   }
 

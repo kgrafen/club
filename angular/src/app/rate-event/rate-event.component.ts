@@ -7,6 +7,7 @@ import { Event } from '../entity/event/event.model';
 import { User } from '../entity/user/user';
 import { RatingService } from '../rating.service';
 import { Rating } from '../entity/rating/rating.model';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'rate-event',
@@ -19,12 +20,12 @@ export class RateEventComponent implements OnInit {
   event: Event;
 
   constructor(private ufbs: UserFirebaseService, private efbs: EventFirebaseService, 
-    private route: ActivatedRoute, private rs: RatingService) {
+    private route: ActivatedRoute, private rs: RatingService, private authService: AuthService) {
       this.route.queryParams.subscribe(params => {
         this.efbs.getEventByKey(params['key']).snapshotChanges().subscribe(res => {
           this.event = Object.assign(res.payload.val());
           this.event.key = res.key;
-        });
+        }).unsubscribe();
       });
      }
 
@@ -32,12 +33,16 @@ export class RateEventComponent implements OnInit {
   }
 
   rate(scoreValueFromForm) {
-    let r = new Rating();
-    r.score = scoreValueFromForm
-    r.fk_event = this.event.key;
-    r.fk_host = this.event.host;
-    r.byUser = this.ufbs.getStorage()._username;
-    this.rs.insertRating(r, this.event);
+    this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(snapshot => {
+      let r = new Rating();
+      let u: User = new User(snapshot);
+      r.score = scoreValueFromForm
+      r.fk_event = this.event.key;
+      r.fk_host = this.event.host;
+      r.byUser = u.username;
+      this.rs.insertRating(r);
+      this.rs.updateUserScore(r.fk_host);
+    }).unsubscribe();
   }
 
   updateUserScore() {

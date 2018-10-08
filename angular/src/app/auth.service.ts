@@ -57,7 +57,7 @@ export class AuthService {
 
 
   doSocialLoginRegister(firebaseUser: firebase.User) {
-    const userEntity = new User(firebaseUser);
+    const userEntity: User = new User({"username": firebaseUser.displayName, "email": firebaseUser.email});
     const date = new Date();
     date.setUTCFullYear(2019, 0, 1);
     userEntity.subscribed_until = date;

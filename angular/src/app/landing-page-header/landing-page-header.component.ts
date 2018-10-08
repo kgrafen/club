@@ -43,10 +43,9 @@ export class LandingPageHeaderComponent implements OnInit {
           } else {
             this.ufbs.getUserByID(user.uid).subscribe(value => {
               // This error lies.
-              let obj = JSON.parse(JSON.stringify(value));
-              let u: User = Object.assign(obj, User);
+              let u: User = new User(value);
               this.ufbs.setStorage(u);
-              this.username = u._username;
+              this.username = u.username
             })
           }
         })

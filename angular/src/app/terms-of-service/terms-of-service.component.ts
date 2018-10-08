@@ -21,7 +21,7 @@ export class TermsOfServiceComponent implements OnInit {
     this.http.get('./assets/files/Retningslinjer.txt', { responseType: 'text' }).subscribe(data => {
       //this.inputHTML = data;
       this.inputHTML = this.inputTextToHTML(data);
-    });
+    }).unsubscribe();
   }
 
   inputTextToHTML(inputDoc: string): string {

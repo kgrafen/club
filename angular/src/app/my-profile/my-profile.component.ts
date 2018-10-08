@@ -100,7 +100,7 @@ public accountDeletionForm = new FormGroup ({
   getDisplayData() {
     this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(value => {
       let user: User = new User(value);
-      this.username = user._username;
+      this.username = user.username;
       this.email = user.email;
 
       this.state = user.isActivated;
@@ -137,7 +137,7 @@ public accountDeletionForm = new FormGroup ({
   updateProfile(formData) {
     this.ufbs.updateUser(formData, this.authService.afAuth.auth.currentUser.uid);
     this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(value => {
-      this.ufbs.setStorage(Object.assign(JSON.parse(JSON.stringify(value)), User));
+      this.ufbs.setStorage(new User(value));
     });
     this.accountProgress();
   }

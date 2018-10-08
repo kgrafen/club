@@ -26,4 +26,9 @@ export class Event {
     paymentDate: Date;
     participants: {};
     host: string;
+
+    constructor(obj) {
+        obj && Object.assign(this, obj);
+    }
+
 }

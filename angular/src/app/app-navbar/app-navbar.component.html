@@ -4,8 +4,8 @@
   
 
     <button *ngIf="isMobile" routerLink='/my-profile' color="primary" mat-button> 
-      <img class="rating-shield" [src]="source">
-      {{rating}}<mat-icon>star</mat-icon>
+      <img class="rating-shield" src="{{metal}}">
+      {{rating}}<mat-icon [ngStyle]="{'color': metal}">star</mat-icon>
     </button>
     
     
@@ -13,8 +13,8 @@
       <button *ngFor="let field of menuFields" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>
       <button routerLink='/my-profile' color="primary" mat-button> 
         <mat-icon>person</mat-icon> {{username | uppercase}}
-        <img class="rating-shield" [src]="source">
-        {{rating}}<mat-icon>star</mat-icon>
+        <img class="rating-shield" src="{{metal}}">
+        {{rating}}<mat-icon [ngStyle]="{'color': metal}">star</mat-icon>
       </button>
     </div>
     

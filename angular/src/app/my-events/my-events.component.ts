@@ -8,6 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { UserFirebaseService } from '../user-firebase.service';
 import { Event } from '../entity/event/event.model';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { AuthService } from '../auth.service';
 
 export interface EventData {
   name: string;
@@ -48,10 +49,9 @@ export class MyEventsComponent implements OnInit {
 
   constructor(private efbs: EventFirebaseService, private mds: MobileDetectorService, 
     private spinner: NgxSpinnerService, private ufbs: UserFirebaseService, 
-    public dialog: MatDialog) {
-      this.efbs.getEventsByHost(this.ufbs.getStorage().email).subscribe(res => {
-        console.log(res);
-        /*
+    public dialog: MatDialog, private authService: AuthService) {
+      this.efbs.getEventsByHost(this.authService.afAuth.auth.currentUser.uid).subscribe(res => {
+        
         this.events = res;
         this.dataSource = new MatTableDataSource(this.events);
         this.dataSource.paginator = this.paginator;
@@ -61,7 +61,7 @@ export class MyEventsComponent implements OnInit {
         this.dataSourceMobile.paginator = this.paginator;
         this.dataSourceMobile.sort = this.sort;
         this.spinner.hide();
-        */
+        
       });
     }
 

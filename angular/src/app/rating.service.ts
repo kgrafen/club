@@ -45,27 +45,16 @@ export class RatingService {
     this.db.list(this.dbPath).snapshotChanges().subscribe(snapshots => {
       snapshots.forEach(snapshot => {
         if(snapshot.payload.val().fk_host === host) {
-          userScore += snapshot.payload.val().score
+          userScore += Number(snapshot.payload.val().score);
           count++;
         }
-      })
-      this.ufbs.getList('/users/').subscribe(values => {
-        let email = "";
-        values.forEach(value => {
-          if (value.email === host) {
-            let user = Object.assign(value, User);
-            user.score = userScore / count;
-            this.ufbs.updateUser({score: user.score}, this.afAuth.auth.currentUser.uid);
-          }
-        })
-      })
-    })
+      });
+      this.ufbs.updateUser({rating: userScore}, host);
+    }).unsubscribe();
   }
 
-  async insertRating(rating: Rating, event: Event) {
-    let entry = this.objToJSON(rating);
-    this.db.object(this.dbPath + (rating.fk_event+this.ufbs.getStorage()._username)).update(entry);
-    //this.db.list(this.dbPath).push(entry);
+  async insertRating(rating: Rating) {
+    this.db.object(this.dbPath + (rating.fk_event+rating.byUser)).update(rating);
    }
 
    private objToJSON(ratingObject : Rating): string {

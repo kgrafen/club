@@ -4,7 +4,7 @@ import { NewsletterSetting } from '../helper/newsletterSetting';
 
 export class User {
     // Person data
-    _username: string;
+    username: string;
     email: string;
     firstName: string;
     lastName: string;

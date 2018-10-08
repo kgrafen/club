@@ -36,8 +36,8 @@ export class LoggedinDashboardComponent implements OnInit {
       this.rs.getRecentRatingsForUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(snapshots => {
         snapshots.forEach(snapshot => {
           this.feedbackTiles = [];
-          this.efbs.getEventByKey(snapshot.fk_event).snapshotChanges().subscribe(value => {
-            this.feedbackTiles.push({score: snapshot.score, fk_event: value.payload.val().name, fk_host: snapshot.fk_host})
+          this.efbs.getEventByKey(snapshot.fk_event).snapshotChanges().subscribe(ss => {
+            this.feedbackTiles.push({score: snapshot.score, fk_event: ss.payload.val().name, fk_host: snapshot.fk_host})
           });
         });
       });

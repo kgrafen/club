@@ -8,7 +8,7 @@ export class JsonConverter {
         let obj = JSON.parse(json);
         let user: User = new User(obj);
         /*
-        let user = new User(obj._username, obj.email);
+        let user = new User(obj.username, obj.email);
         user.address = obj.address;
         user.birthday = obj.birthday;
         user.children = obj.children;

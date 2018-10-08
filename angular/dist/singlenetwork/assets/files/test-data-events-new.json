@@ -1,6 +1,6 @@
 {
   "users": [{
-    "_username": "Hr. Test",
+    "username": "Hr. Test",
     "email": "test@testmail.dk",
     "settings": {
       "newsletter": {

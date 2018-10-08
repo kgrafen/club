@@ -6,6 +6,7 @@ import { AuthService } from '../auth.service';
 import { UserFirebaseService } from '../user-firebase.service';
 import { GeoCodingApiService } from '../geo-coding-api.service';
 import { EventAddress } from '../entity/helper/EventAddress';
+import { User } from '../entity/user/user';
 
 @Component({
   selector: 'my-event',
@@ -81,12 +82,11 @@ export class MyEventComponent implements OnInit {
   } 
 
   formDataToModel(): Event {
-    const event = new Event();
-    
-    event.key = this.myEvent.key;
+    const event = new Event({});
+  
     event.name = this.firstFormGroup.value.eventName;
     event.address = new EventAddress(this.firstFormGroup.value.eventLocationStreet, 
-      this.apiZipValue, this.firstFormGroup.value.eventLocationZip);
+                    this.apiZipValue, this.firstFormGroup.value.eventLocationZip);
     event.category = this.firstFormGroup.value.eventCategory;
     event.description = this.firstFormGroup.value.eventDescription;
 
@@ -112,13 +112,14 @@ export class MyEventComponent implements OnInit {
     event.queue = this.secondFormGroup.value.eventQueue;
     event.targetGroup = this.secondFormGroup.value.eventTargetGroup;
 
-    event.host = this.ufbs.getStorage().email;
+    event.participants = [{username: this.ufbs.getStorage().username}];
+
+    event.host = this.authService.afAuth.auth.currentUser.uid;
 
     if (event.hostRating === undefined) {
       event.hostRating = 0;
     }
-    
-    //event.$key = this.efbs.generateNewHashKey(this.ufbs.convertEmailToKey(this.authService.user.email), event.name);
+
     return event;
   }
 

@@ -1,0 +1,314 @@
+{
+    "users": 
+    [
+        
+        {
+            "username": "DO NOT USE",
+            "email": "DO@NOT.USE",
+            "settings": {
+                "newsletter": {
+                "newEvents": false,
+                "dailyNews": false,
+                "weeklyNews": false
+                }
+            }
+        }
+    ], 
+  
+    "ratings": [{
+      "score": 0,
+      "fk_event": "ALPHA",
+      "fk_host": "ALPHA"
+    }],
+  
+    "events": [
+        {
+            "name": "Hverdagsmad & hygge",
+            "description": "Et tilbagevendende arrangement, hvor temaet er god og billig hverdagsmad i kombination med gode interessante samtaler med ligesindede.\nDenne gang serverer jeg gullash med kartoffelmos.\nkonceptet er meget simpelt, idet vi blot mødes hos mig som angivet kl 18, og spiser relativt hurtigt derefter. Du er velkommen til at komme allerede fra kl 17, hvis det passer bedre ift at komme direkte fra arbejde, men du må være forberedt på at risikere at blive sat i arbejde (dække bord e.a.), hvis du er her før kl 18.\nPrisen dækker maden og vand fra hanen / danskvand fra Netto, samt kaffe. Har du ønske til andre drikkevarer, så medbringer du selv.\nJeg glæder mig til at se Jer, og håber vi får en hyggelig aften!",
+            "category": "Hjemmehygge",
+            "address": {
+                "street": "Wagnersvej 19",
+                "zip": 2450,
+                "city": "København S"
+            },
+            "genderRatio": "50/50",
+            "targetGroup": "Nej",
+            "minAge": 18,
+            "maxAge": 99,
+            "min antal gæster": 4,
+            "max antal gæster": 8,
+            "queue": "nej",
+            "dateStart": "5/11-2018",
+            "timeStart": "18:00",
+            "timeEnd": "22:00",
+            "deadlineDate": "Ingen",
+            "deadlineTime": "ingen",
+            "price": 40,
+            "paymentOption": "Mobilepay",
+            "paymentDue": "ved tilmelding",
+            "paymentDate": "Aldrig",
+            "host": "km62zxrGSUf2Jqb28SsmUfZRc6C3",
+            "hostRating": "",
+            "file": "https://www.someurl.com",
+            "participants" : {
+                "0": "km62zxrGSUf2Jqb28SsmUfZRc6C3"
+            }
+          },
+          {
+            "name": "Hverdagsmad & hygge",
+            "description": "Et tilbagevendende arrangement, hvor temaet er god og billig hverdagsmad i kombination med gode interessante samtaler med ligesindede.\nDenne gang serverer jeg frikadeller med stuvet hvidkål.\nkonceptet er meget simpelt, idet vi blot mødes hos mig som angivet kl 18, og spiser relativt hurtigt derefter. Du er velkommen til at komme allerede fra kl 17, hvis det passer bedre ift at komme direkte fra arbejde, men du må være forberedt på at risikere at blive sat i arbejde (dække bord e.a.), hvis du er her før kl 18.\nPrisen dækker maden og vand fra hanen / danskvand fra Netto, samt kaffe. Har du ønske til andre drikkevarer, så medbringer du selv.\nJeg glæder mig til at se Jer, og håber vi får en hyggelig aften!",
+            "category": "Hjemmehygge",
+            "address": {
+                "street": "Wagnersvej 19",
+                "zip": 2450,
+                "city": "København S"
+            },
+            "genderRatio": "50/50",
+            "targetGroup": "Nej",
+            "minAge": 18,
+            "maxAge": 99,
+            "min antal gæster": 4,
+            "max antal gæster": 8,
+            "queue": "nej",
+            "dateStart": "12/11-2018",
+            "timeStart": "18:00",
+            "timeEnd": "22:00",
+            "deadlineDate": "Ingen",
+            "deadlineTime": "ingen",
+            "price": 40,
+            "paymentOption": "Mobilepay",
+            "paymentDue": "ved tilmelding",
+            "paymentDate": "Aldrig",
+            "host": "km62zxrGSUf2Jqb28SsmUfZRc6C3",
+            "hostRating": "",
+            "file": "https://www.someurl.com",
+            "participants" : {
+                "0": "km62zxrGSUf2Jqb28SsmUfZRc6C3"
+            }
+          },
+          {
+            "name": "Hverdagsmad & hygge",
+            "description": "Et tilbagevendende arrangement, hvor temaet er god og billig hverdagsmad i kombination med gode interessante samtaler med ligesindede.\nDenne gang serverer jeg flæskesteg med hele svineriet.\nkonceptet er meget simpelt, idet vi blot mødes hos mig som angivet kl 18, og spiser relativt hurtigt derefter. Du er velkommen til at komme allerede fra kl 17, hvis det passer bedre ift at komme direkte fra arbejde, men du må være forberedt på at risikere at blive sat i arbejde (dække bord e.a.), hvis du er her før kl 18.\nPrisen dækker maden og vand fra hanen / danskvand fra Netto, samt kaffe. Har du ønske til andre drikkevarer, så medbringer du selv.\nJeg glæder mig til at se Jer, og håber vi får en hyggelig aften!",
+            "category": "Hjemmehygge",
+            "address": {
+                "street": "Wagnersvej 19",
+                "zip": 2450,
+                "city": "København S"
+            },
+            "genderRatio": "50/50",
+            "targetGroup": "Nej",
+            "minAge": 18,
+            "maxAge": 99,
+            "min antal gæster": 4,
+            "max antal gæster": 8,
+            "queue": "nej",
+            "dateStart": "19/11-2018",
+            "timeStart": "18:00",
+            "timeEnd": "22:00",
+            "deadlineDate": "Ingen",
+            "deadlineTime": "ingen",
+            "price": 40,
+            "paymentOption": "Mobilepay",
+            "paymentDue": "ved tilmelding",
+            "paymentDate": "Aldrig",
+            "host": "km62zxrGSUf2Jqb28SsmUfZRc6C3",
+            "hostRating": "",
+            "file": "https://www.someurl.com",
+            "participants" : {
+                "0": "km62zxrGSUf2Jqb28SsmUfZRc6C3"
+            }
+          },
+          {
+            "name": "Hverdagsmad & hygge",
+            "description": "Et tilbagevendende arrangement, hvor temaet er god og billig hverdagsmad i kombination med gode interessante samtaler med ligesindede.\nDenne gang serverer jeg skinke med flødestuvet spinat og kartofler.\nkonceptet er meget simpelt, idet vi blot mødes hos mig som angivet kl 18, og spiser relativt hurtigt derefter. Du er velkommen til at komme allerede fra kl 17, hvis det passer bedre ift at komme direkte fra arbejde, men du må være forberedt på at risikere at blive sat i arbejde (dække bord e.a.), hvis du er her før kl 18.\nPrisen dækker maden og vand fra hanen / danskvand fra Netto, samt kaffe. Har du ønske til andre drikkevarer, så medbringer du selv.\nJeg glæder mig til at se Jer, og håber vi får en hyggelig aften!",
+            "category": "Hjemmehygge",
+            "address": {
+                "street": "Wagnersvej 19",
+                "zip": 2450,
+                "city": "København S"
+            },
+            "genderRatio": "50/50",
+            "targetGroup": "Nej",
+            "minAge": 18,
+            "maxAge": 99,
+            "min antal gæster": 4,
+            "max antal gæster": 8,
+            "queue": "nej",
+            "dateStart": "26/11-2018",
+            "timeStart": "18:00",
+            "timeEnd": "22:00",
+            "deadlineDate": "Ingen",
+            "deadlineTime": "ingen",
+            "price": 40,
+            "paymentOption": "Mobilepay",
+            "paymentDue": "ved tilmelding",
+            "paymentDate": "Aldrig",
+            "host": "km62zxrGSUf2Jqb28SsmUfZRc6C3",
+            "hostRating": "",
+            "file": "https://www.someurl.com",
+            "participants" : {
+                "0": "km62zxrGSUf2Jqb28SsmUfZRc6C3"
+            }
+          },
+          {
+            "name": "Middag og cola-quiz",
+            "description": "vi går lige til stålet når vi mødes. Quizzen der kan nedbryde fordomme og forudindtagede meninger. Tør du blive udfordret på din cola-religion? \n\nJeg køber 8-10 forskellige colaer, som serveres i små glas. Det er nu din opgave at identificere de forskellige colamærker, og desuden give de forskellige colaer karakter. Hvor sikker er du på at kunne finde coca-colaen og pepsi max'en ? \n\nEfter vi har leget med cola, så serveres en middag bestående af pulled pork burgere med coleslaw. Vil du have andet end cola eller vand til maden, så medbringer du selv drikkevarer.",
+            "category": "Hjemmehygge",
+            "address": {
+                "street": "Wagnersvej 19",
+                "zip": 2450,
+                "city": "København S"
+            },
+            "genderRatio": "50/50",
+            "targetGroup": "Nej",
+            "minAge": 18,
+            "maxAge": 99,
+            "min antal gæster": 4,
+            "max antal gæster": 8,
+            "queue": "nej",
+            "dateStart": "14/11-2018",
+            "timeStart": "18:00",
+            "timeEnd": "22:00",
+            "deadlineDate": "Ingen",
+            "deadlineTime": "ingen",
+            "price": 40,
+            "paymentOption": "Mobilepay",
+            "paymentDue": "ved tilmelding",
+            "paymentDate": "Aldrig",
+            "host": "km62zxrGSUf2Jqb28SsmUfZRc6C3",
+            "hostRating": "",
+            "file": "https://www.someurl.com",
+            "participants" : {
+                "0": "km62zxrGSUf2Jqb28SsmUfZRc6C3"
+            }
+          },
+          {
+            "name": "Middag og brætspil",
+            "description": "Jeg vil denne lørdag aften hygge om jer med tre retter mad, der bliver tilberedt med kærlighed og hjælp fra diverse opskriftsamlinger.\nDen endelige menu er ikke fastlagt, men jeg plejer at finde på noget alle sætter pris på, -giv dog gerne lyd hurtigt, hvor du er allergisk overfor visse fødevarer.\nDu skal selv medbringe drikkevarer, hvis du ønsker andet end vand, som serveres ad libitum :-)\nEfter middagen tænker jeg at vi spiller et spil i hold. Det kunne f.eks. være Trivial Pursuit, “Det Dårlige Selskab” eller tilsvarende.\nDa jeg holder mange arrangementer, så må jeg passe lidt på mine naboer, så dette er ikke et arrangement der udvikler sig til fuld blæs på  musikken senere, -vi må nøjes nogle gode snakke og hyggen.",
+            "category": "Hjemmehygge",
+            "address": {
+                "street": "Wagnersvej 19",
+                "zip": 2450,
+                "city": "København S"
+            },
+            "genderRatio": "50/50",
+            "targetGroup": "Nej",
+            "minAge": 18,
+            "maxAge": 99,
+            "min antal gæster": 4,
+            "max antal gæster": 6,
+            "queue": "nej",
+            "dateStart": "17/11-2019",
+            "timeStart": "18:00",
+            "timeEnd": "00:00",
+            "deadlineDate": "14/11",
+            "deadlineTime": "ingen",
+            "price": 80,
+            "paymentOption": "Mobilepay",
+            "paymentDue": "ved tilmelding",
+            "paymentDate": "Aldrig",
+            "host": "km62zxrGSUf2Jqb28SsmUfZRc6C3",
+            "hostRating": "",
+            "file": "https://www.someurl.com",
+            "participants" : {
+                "0": "km62zxrGSUf2Jqb28SsmUfZRc6C3"
+            }
+          },
+          {
+            "name": "Julefrokost",
+            "description": "Alle skal have en ret med! \nSkriv i kommentarsporet hvad du medbringer, så vi ikke ender med 8 gange frikadeller :-) \nJeg bidrager selv med rugbrød, franskbrød, smør og opdækningen. \nTilmeldingsprisen dækker 2 flasker snaps til deling. \nDrikkevarer ud over snapsen skal du selv medbringe! \n\nJeg foreslår følgende, men du er meget velkommen til at tage noget andet med:\nFiskefilletter m remoulade\nsild og æg\nLaks m tilbehør (dild/rævesauce e.a.)\nfrikadeller m surt\nmørbrad i fad\nroastbeef\nhakkebøffer i fad m flødesauce\n\nBemærk, at jeg laver mange arrangementer, og derfor må vise lidt ekstra hensyn til naboerne. Derfor bliver volumenknappen holdt lidt nede på musikken denne dag!",
+            "category": "Hjemmehygge",
+            "address": {
+                "street": "Wagnersvej 19",
+                "zip": 2450,
+                "city": "København S"
+            },
+            "genderRatio": "50/50",
+            "targetGroup": "Nej",
+            "minAge": 18,
+            "maxAge": 99,
+            "min antal gæster": 6,
+            "max antal gæster": 12,
+            "queue": "nej",
+            "dateStart": "15/12-2018",
+            "timeStart": "18:00",
+            "timeEnd": "00:00",
+            "deadlineDate": "14/11",
+            "deadlineTime": "ingen",
+            "price": 25,
+            "paymentOption": "Mobilepay",
+            "paymentDue": "ved tilmelding",
+            "paymentDate": "Aldrig",
+            "host": "km62zxrGSUf2Jqb28SsmUfZRc6C3",
+            "hostRating": "",
+            "file": "https://www.someurl.com",
+            "participants" : {
+                "0": "km62zxrGSUf2Jqb28SsmUfZRc6C3"
+            }
+          },
+          {
+            "name": "Mandehørm og Chili con carne",
+            "description": "Jeg serverer en ond omgang Chili Con Carne, og lægger op til en aften med mandehygge. \nDu behøver ikke kende samtlige bilmærker og spanske fodboldspillere, men du skal blot have lyst til en aften i selskab med andre mænd, hvor snakken kan slippes løs om emner som sjældent bliver luftet når der er kvinder til stede. \n\nDer er vand til maden, eller de drikkevarer du selv medbringer.",
+            "address": {
+                "street": "Wagnersvej 19",
+                "zip": 2450,
+                "city": "København S"
+            },
+            "city": "Valby",
+            "genderRatio": "Kun for mænd",
+            "targetGroup": "Nej",
+            "minAge": 30,
+            "maxAge": 60,
+            "min antal gæster": 4,
+            "max antal gæster": 8,
+            "queue": "nej",
+            "dateStart": "4/12-2018",
+            "timeStart": "18:00",
+            "timeEnd": "22:00",
+            "deadlineDate": "Ingen",
+            "deadlineTime": "ingen",
+            "price": 40,
+            "paymentOption": "Mobilepay",
+            "paymentDue": "ved tilmelding",
+            "paymentDate": "Aldrig",
+            "host": "km62zxrGSUf2Jqb28SsmUfZRc6C3",
+            "hostRating": "",
+            "file": "https://www.someurl.com",
+            "participants" : {
+                "0": "km62zxrGSUf2Jqb28SsmUfZRc6C3"
+            }
+          },
+          {
+            "name": "Søndags walk and talk",
+            "description": "Kender du Sydhavnstippen? http://www.sydhavnstippen.dk/about \nvi mødes kl 14 ved Karens Minde, og går derfra 14:05, så kom ikke for sent! \n\nTippen er et skønt området for en vandretur. Jeg regner med at vi går et par timer, og så blot går hver til sit. \nDa det er et gratis arrangement virker det typisk mere uforpligtende end arrangementer hvor der opkræves betaling, men det gør det ikke mindre irriterende hvis tilmeldte blot bliver væk. Hvis der skulle opstå en situation hvor du forhindres i at deltage, så vil jeg bede om at du melder dig af arrangementet. \n\nJeg vil opfordre til at du tjekker vejrudsigten på dagen, og klæder dig derefter, samt at du har godt fodtøj til en længere gåtur. Endelig, at du medbringer en flaske vand.",
+            "category": "Naturoplevelse",
+            "address": {
+                "street": "Wagnersvej 19",
+                "zip": 2450,
+                "city": "København S"
+            },
+            "genderRatio": "50/50",
+            "targetGroup": "børn velkomne",
+            "minAge": 0,
+            "maxAge": 60,
+            "min antal gæster": 4,
+            "max antal gæster": 99,
+            "queue": "nej",
+            "dateStart": "18/11-2019",
+            "timeStart": 14,
+            "timeEnd": 17,
+            "deadlineDate": "Ingen",
+            "deadlineTime": "ingen",
+            "price": 0,
+            "paymentOption": "",
+            "paymentDue": "",
+            "paymentDate": "Aldrig",
+            "host": "km62zxrGSUf2Jqb28SsmUfZRc6C3",
+            "hostRating": "",
+            "file": "https://www.someurl.com",
+            "participants" : {
+                "0": "km62zxrGSUf2Jqb28SsmUfZRc6C3"
+            }
+          }
+    ]
+  }

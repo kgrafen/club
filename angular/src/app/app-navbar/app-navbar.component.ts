@@ -18,7 +18,7 @@ export class AppNavbarComponent implements OnInit {
   rating = 0;
   public navbarCollapsed = true;
   public isMobile: boolean = false;
-  source = "../../assets/images/shield_";
+  metal = "";
 
   menuFields = [{'displayName' : "dashboard", 'link' : "/loggedin-dashboard", 'description': "Se hvad der bevæger sig og få et overblik"},
                 {'displayName' : "events", 'link' : "/events", 'description': "Listen over bruger arrangementer. Find dit næste event!"},
@@ -40,19 +40,17 @@ export class AppNavbarComponent implements OnInit {
 
     this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(value => {
       let user: User = new User(value);
-      this.username = user._username;
+      this.username = user.username;
       this.rating = user.rating;
-      this.efbs.getEventsByHost(this.authService.afAuth.auth.currentUser.uid).subscribe(snapshots => {
-        if (snapshots.length < 30) {
-          this.source += "bronze.ico";
-        } else if (snapshots.length < 100) {
-          this.source += "silver.ico";
-        } else if (snapshots.length < 300) {
-          this.source += "gold.ico";
-        } else {
-          this.source += "platinum.ico";
-        }
-      });
+      if (user.numberOfEventsHosted < 30) {
+          this.metal += "../../assets/images/shield_bronze.ico";
+      } else if (user.numberOfEventsHosted < 100) {
+          this.metal += "../../assets/images/shield_silver.ico";
+      } else if (user.numberOfEventsHosted < 300) {
+          this.metal += "../../assets/images/shield_gold.ico";
+      } else {
+          this.metal += "../../assets/images/shield_platinum.ico";
+      }
       
     });
 

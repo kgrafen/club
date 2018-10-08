@@ -31,7 +31,7 @@ export class PaymentComponent implements OnInit {
       card: ['', Validators.required]
     });
     this.thirdFormGroup = this._formBuilder.group({
-      username: this.ufbs.getStorage()._username,
+      username: this.ufbs.getStorage().username,
       email: this.ufbs.getStorage().email,
       date: ['', Validators.required]
     });
