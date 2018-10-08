@@ -12,45 +12,31 @@ import { MatFormFieldModule, MatCardModule, MatListModule, MatIconModule, MatExp
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AdminNavbarComponent } from '../admin-navbar/admin-navbar.component';
+import { AdminRoutingModule } from '../admin-routing/admin-routing.module';
+import { AdminNewsletterComponent } from '../admin-newsletter/admin-newsletter.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,
-    NgbModule.forRoot(),
-    RoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
+    AdminRoutingModule,
     MatCardModule,
-    MatListModule,
-    MatIconModule,
-    MatExpansionModule,
-    MatInputModule,
-    MatButtonModule,
-    MatChipsModule,
-    MatSelectModule,
-    MatGridListModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
     MatMenuModule,
-    MatToolbarModule,
+    MatButtonModule,
     MatTooltipModule,
-    MatDialogModule,
+    MatSelectModule,
     MatRadioModule,
-    MatStepperModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatBadgeModule,
-    RouterTestingModule,
-    NgxSpinnerModule,
+    MatInputModule,
+    FormsModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
+    
   ],
-  declarations: [AdminDashboardComponent, AdminNavbarComponent],
-  bootstrap: [AdminModule]
+  exports: [
+    AdminNavbarComponent,
+    AdminDashboardComponent,
+    AdminNewsletterComponent
+  ],
+  declarations: [AdminDashboardComponent, AdminNavbarComponent, AdminNewsletterComponent],
+  bootstrap: []
 })
 export class AdminModule { }

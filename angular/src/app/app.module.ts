@@ -89,6 +89,7 @@ import { ActiveBlockedPipe } from './pipes/active-blocked.pipe';
 
 // Spinner
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -174,7 +175,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MatBadgeModule,
     RouterTestingModule,
     NgxSpinnerModule,
-    HttpModule
+    HttpModule,
+    AdminModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

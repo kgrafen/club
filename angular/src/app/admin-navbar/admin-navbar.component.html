@@ -1,3 +1,19 @@
-<p>
-  admin-navbar works!
-</p>
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+  <button routerLink="{{menuField.link}}" matTooltip="{{menuField.description}}" mat-button color="primary" *ngFor="let menuField of menuFields">{{menuField.displayName}}</button>
+  
+</nav>
+
+ <!-- Pusher -->
+  <!-- DO NOT EDIT HERE -->
+  <nav style="visibility: hidden;" class="navbar navbar-expand-md navbar-light bg-light pusher">
+
+    <a routerLink="/loggedin-dashboard"><button *ngIf="isMobile" class="btn btn-light">Tilbage</button></a>
+    
+    
+    <div *ngIf="!isMobile" class="navbar-nav ml-auto">
+      <button *ngFor="let field of menuFields" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>
+    </div>
+      
+    <button (click)="signout()" mat-raised-button color="warn">Log ud</button>
+      
+  </nav>

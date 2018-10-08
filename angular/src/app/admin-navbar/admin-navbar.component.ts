@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminNavbarComponent implements OnInit {
 
+  menuFields = [{'displayName' : "Forside", 'link' : "/landing-page", 'description': "Tilbage til forsiden"},
+                {'displayName' : "Nyhedsbrev", 'link' : "/admin-module/admin-newsletter", 'description': "Skriv et nyhedsbrev ud til brugerne"}
+                ]
+
+
   constructor() { }
 
   ngOnInit() {

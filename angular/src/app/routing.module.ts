@@ -20,6 +20,8 @@ import { MyEventComponent } from './my-event/my-event.component';
 import { PatchNotesComponent } from './patch-notes/patch-notes.component';
 import { ViewEventComponent } from './view-event/view-event.component';
 import { RateEventComponent } from './rate-event/rate-event.component';
+import { ModuleWithProviders } from '@angular/compiler/src/core';
+import { AdminModule } from './admin/admin.module';
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
@@ -40,6 +42,7 @@ const routes: Routes = [
   { path: 'patch-notes', component: PatchNotesComponent },
   { path: 'view-event', component: ViewEventComponent },
   { path: 'rate-event', component: RateEventComponent },
+  { path: 'admin-module', loadChildren: () => AdminModule },
   {
     path: 'dummy-list',
     component: DummyListComponent,
@@ -51,6 +54,8 @@ const routes: Routes = [
   },
   { path: '**', component: PageNotFoundComponent }
 ];
+
+export const ModuleRouting: ModuleWithProviders = RouterModule.forRoot(routes);
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
