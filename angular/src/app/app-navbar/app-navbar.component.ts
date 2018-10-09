@@ -20,10 +20,12 @@ export class AppNavbarComponent implements OnInit {
   public isMobile: boolean = false;
   metal = "";
 
-  menuFields = [{'displayName' : "dashboard", 'link' : "/loggedin-dashboard", 'description': "Se hvad der bevæger sig og få et overblik"},
+  menuFields = [
                 {'displayName' : "events", 'link' : "/events", 'description': "Listen over bruger arrangementer. Find dit næste event!"},
                 {'displayName' : "min profil", 'link' : "/my-profile", 'description': "Opdater din profil og se status"},
-                {'displayName' : "betaling", 'link' : "/payment", 'description': "Til betalingsgateway hvor du kan styre dit abonnement"}];
+                {'displayName' : "betaling", 'link' : "/payment", 'description': "Til betalingsgateway hvor du kan styre dit abonnement"},
+                {'displayName' : "oversigt", 'link' : "/loggedin-dashboard", 'description': "Se hvad der bevæger sig og få et overblik"},
+              ];
 
   public loginForm = new FormGroup({
     email: new FormControl(''),

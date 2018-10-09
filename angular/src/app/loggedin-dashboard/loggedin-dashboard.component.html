@@ -1,17 +1,11 @@
 <app-navbar></app-navbar>
 <div class="container">
-    <h1>Mit Dashboard</h1>
-
-    <mat-card>
-        <mat-card class="mat-card-menu" *ngFor="let tile of tiles">
-            <button class="dashboard-button" mat-button [disabled]="!tile.enabled" routerLink='{{tile.link}}'>{{tile.text}}</button>
-        </mat-card>
-    </mat-card>
+    <h1>Overblik</h1>
 
     <mat-card *ngIf="!isMobile">
         <mat-grid-list cols="3" rowHeight="50px">
             <mat-grid-tile>
-                    <h3>Events: netop nu</h3>
+                    <h3>Seneste events</h3>
             </mat-grid-tile>
             <mat-grid-tile>
                 
@@ -28,6 +22,11 @@
                             <mat-chip *ngFor="let recTile of recommendationTiles | slice:-6" color="primary" selected><mat-icon>today</mat-icon>{{recTile.name}}<mat-icon>group</mat-icon>{{recTile.pCount}}</mat-chip>
                         </div>
                     </mat-chip-list>
+
+                    <mat-card-actions>
+                        <button routerLink="/events" mat-button color="primary">Se flere</button> 
+                    </mat-card-actions>
+
                </mat-card>
             </mat-grid-tile>
             <mat-grid-tile>
@@ -38,6 +37,11 @@
                     <mat-chip-list>
                         <div class="center">
                             <mat-chip *ngFor="let feedback of feedbackTiles" color="accent" selected><mat-icon>today</mat-icon>{{feedback.fk_event}}<mat-icon>thumb_up_alt</mat-icon> + {{feedback.score}}</mat-chip>
+                            
+                            <mat-card-actions>
+                                <button *ngIf="tCount === 0" mat-button color="warn">Ingen bedømmelser</button>
+                            </mat-card-actions>
+                        
                         </div>
                     </mat-chip-list>
                 </mat-card>
