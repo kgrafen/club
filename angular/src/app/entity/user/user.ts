@@ -35,6 +35,7 @@ export class User {
     //Account status
     isActivated: boolean;
     subscribed_until: Date;
+    fk_user_role: string;
 
     constructor(obj) {
         obj && Object.assign(this, obj);

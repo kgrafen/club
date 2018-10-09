@@ -90,6 +90,7 @@ import { ActiveBlockedPipe } from './pipes/active-blocked.pipe';
 // Spinner
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AdminModule } from './admin/admin.module';
+import { UserRoleService } from './user-role.service';
 
 @NgModule({
   declarations: [

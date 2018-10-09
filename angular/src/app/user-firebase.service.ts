@@ -16,6 +16,7 @@ import { JsonConverter } from './entity/helper/json-converter';
 
 // Session storage
 import { SessionStorage, SessionStorageService } from 'angular-web-storage';
+import { UserRoleService } from './user-role.service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class UserFirebaseService {
   jsonConverter: JsonConverter = new JsonConverter();
 
   constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase, 
-    public session: SessionStorageService) { }
+    public session: SessionStorageService, private urs: UserRoleService) { }
 
   // CRUD
 
@@ -67,6 +68,7 @@ export class UserFirebaseService {
   //Test passed
   insertUser(user: User, id: string) {
     this.db.object(this.dbPath + id).update(user);
+    this.urs.insertRole({fk_id: id, type: this.urs.userTypes.MEMBER});
    }
  
    updateUser(objwithUpdates, id: string) {

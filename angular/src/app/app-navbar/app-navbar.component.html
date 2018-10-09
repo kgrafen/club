@@ -5,7 +5,7 @@
 
     <button *ngIf="isMobile" routerLink='/my-profile' color="primary" mat-button> 
       <img class="rating-shield" src="{{metal}}">
-      {{rating}}<mat-icon [ngStyle]="{'color': metal}">star</mat-icon>
+      {{rating}}<mat-icon>star</mat-icon>
     </button>
     
     
@@ -14,7 +14,7 @@
       <button routerLink='/my-profile' color="primary" mat-button> 
         <mat-icon>person</mat-icon> {{username | uppercase}}
         <img class="rating-shield" src="{{metal}}">
-        {{rating}}<mat-icon [ngStyle]="{'color': metal}">star</mat-icon>
+        {{rating}}<mat-icon>star</mat-icon>
       </button>
     </div>
     

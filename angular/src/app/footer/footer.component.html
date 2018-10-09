@@ -8,7 +8,7 @@
                   <li><a [routerLink]="['/']"> Forside </a></li>
                   <li><a [routerLink]="['/about']"> Om </a></li>
                   <li *ngIf="isDevelopmentBuild"><a [routerLink]="['/patch-notes']">Patch Notes</a></li>
-                  <li><a [routerLink]="['/admin-module']">Admin</a></li>
+                  <li><a (click)="authorize()" [routerLink]="['']">Admin</a></li>
                 </ul>
               </mat-toolbar-row>
         </mat-grid-tile>

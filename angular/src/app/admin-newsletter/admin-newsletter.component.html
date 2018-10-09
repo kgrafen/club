@@ -7,7 +7,7 @@
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput formControlName="username" placeholder="email" required>
+        <input matInput formControlName="username" placeholder="username" required>
     </mat-form-field>
 
     <mat-form-field>
@@ -27,7 +27,7 @@
 
     <textarea formControlName="text" placeholder="besked" required cols="6"></textarea>
     
-    <button mat-raised-button color="primary">Send nyhedsbrev</button>
+    <button (click)="sendNewsletter(newsletterForm.value)" mat-raised-button color="primary">Send nyhedsbrev</button>
 
 
       

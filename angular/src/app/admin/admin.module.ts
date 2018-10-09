@@ -8,7 +8,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RoutingModule } from '../routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule, MatCardModule, MatListModule, MatIconModule, MatExpansionModule, MatInputModule, MatButtonModule, MatChipsModule, MatSelectModule, MatGridListModule, MatSliderModule, MatSlideToggleModule, MatTableModule, MatSortModule, MatPaginatorModule, MatMenuModule, MatToolbarModule, MatTooltipModule, MatDialogModule, MatRadioModule, MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatBadgeModule } from '@angular/material';
+import { MatFormFieldModule, MatCardModule, MatListModule, MatIconModule, MatExpansionModule, MatInputModule, MatButtonModule, MatChipsModule, MatSelectModule, MatGridListModule, MatSliderModule, MatSlideToggleModule, MatTableModule, MatSortModule, MatPaginatorModule, MatMenuModule, MatToolbarModule, MatTooltipModule, MatDialogModule, MatRadioModule, MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatBadgeModule, MatBottomSheetModule } from '@angular/material';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AdminNavbarComponent } from '../admin-navbar/admin-navbar.component';
@@ -29,7 +29,6 @@ import { AdminNewsletterComponent } from '../admin-newsletter/admin-newsletter.c
     FormsModule,
     MatFormFieldModule,
     ReactiveFormsModule
-    
   ],
   exports: [
     AdminNavbarComponent,
@@ -37,6 +36,7 @@ import { AdminNewsletterComponent } from '../admin-newsletter/admin-newsletter.c
     AdminNewsletterComponent
   ],
   declarations: [AdminDashboardComponent, AdminNavbarComponent, AdminNewsletterComponent],
+  entryComponents: [],
   bootstrap: []
 })
 export class AdminModule { }

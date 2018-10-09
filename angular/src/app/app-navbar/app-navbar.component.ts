@@ -41,15 +41,18 @@ export class AppNavbarComponent implements OnInit {
     this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(value => {
       let user: User = new User(value);
       this.username = user.username;
-      this.rating = user.rating;
-      if (user.numberOfEventsHosted < 30) {
-          this.metal += "../../assets/images/shield_bronze.ico";
-      } else if (user.numberOfEventsHosted < 100) {
-          this.metal += "../../assets/images/shield_silver.ico";
-      } else if (user.numberOfEventsHosted < 300) {
-          this.metal += "../../assets/images/shield_gold.ico";
+      if (user.rating) {
+        this.rating = user.rating;
+      }
+      
+      if (user.numberOfEventsHosted >= 300) {
+        this.metal = "/assets/images/shield_platinum.ico";
+      } else if (user.numberOfEventsHosted >= 100) {
+        this.metal = "/assets/images/shield_gold.ico";
+      } else if (user.numberOfEventsHosted >= 30) {
+        this.metal = "/assets/images/shield_silver.ico";
       } else {
-          this.metal += "../../assets/images/shield_platinum.ico";
+        this.metal = "/assets/images/shield_bronze.ico";
       }
       
     });

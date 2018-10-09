@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { UserFirebaseService } from '../user-firebase.service';
+import { Http, Headers, Response, URLSearchParams, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
+import { HttpHeaders } from '@angular/common/http';
+import { AuthService } from '../auth.service';
+import { UserRoleService } from '../user-role.service';
+import { Role } from '../entity/user/role.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'admin-newsletter',
@@ -7,6 +15,8 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./admin-newsletter.component.css']
 })
 export class AdminNewsletterComponent implements OnInit {
+
+  isLoggedOn = false;
 
   public newsletterForm = new FormGroup({
     email: new FormControl(''),
@@ -16,9 +26,22 @@ export class AdminNewsletterComponent implements OnInit {
     text: new FormControl('')
 });
 
-  constructor() { }
+  constructor(private ufbs: UserFirebaseService, private http: Http) { }
 
   ngOnInit() {
+    
+  }
+
+  sendNewsletter(formData) {
+    let userEmails = [];
+    this.ufbs.getList("/users").subscribe(values => {
+      values.forEach(value => {
+        userEmails.push(value);
+      });
+    });
+
+    // Send emails from here to all userEmails
+
   }
 
 }
