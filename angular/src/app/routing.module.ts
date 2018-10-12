@@ -22,35 +22,36 @@ import { ViewEventComponent } from './view-event/view-event.component';
 import { RateEventComponent } from './rate-event/rate-event.component';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { AdminModule } from './admin/admin.module';
+import { AuthGuard } from './core/auth.guard';
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
-  { path: 'loggedin-dashboard', component: LoggedinDashboardComponent },
-  { path: 'events', component: EventsComponent },
-  { path: 'my-profile', component: MyProfileComponent },
-  { path: 'create-new-event', component: CreateNewEventComponent },
+  { path: 'loggedin-dashboard', component: LoggedinDashboardComponent, canActivate: [AuthGuard] },
+  { path: 'events', component: EventsComponent, canActivate: [AuthGuard] },
+  { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard] },
+  { path: 'create-new-event', component: CreateNewEventComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent },
-  { path: 'feedback', component: FeedbackComponent },
+  { path: 'feedback', component: FeedbackComponent, canActivate: [AuthGuard] },
   { path: 'contact', component: ContactComponent },
-  { path: 'terms-of-service', component: TermsOfServiceComponent },
-  { path: 'cookies-consent', component: CookiesConsentComponent },
+  { path: 'terms-of-service', component: TermsOfServiceComponent},
+  { path: 'cookies-consent', component: CookiesConsentComponent, canActivate: [AuthGuard] },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
-  { path: 'my-events', component: MyEventsComponent },
-  { path: 'prices', component: PricesComponent },
-  { path: 'payment', component: PaymentComponent },
-  { path: 'my-event', component: MyEventComponent },
-  { path: 'patch-notes', component: PatchNotesComponent },
-  { path: 'view-event', component: ViewEventComponent },
-  { path: 'rate-event', component: RateEventComponent },
-  { path: 'admin-module', loadChildren: () => AdminModule },
+  { path: 'my-events', component: MyEventsComponent, canActivate: [AuthGuard] },
+  { path: 'prices', component: PricesComponent},
+  { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard] },
+  { path: 'my-event', component: MyEventComponent, canActivate: [AuthGuard] },
+  { path: 'patch-notes', component: PatchNotesComponent, canActivate: [AuthGuard] },
+  { path: 'view-event', component: ViewEventComponent, canActivate: [AuthGuard] },
+  { path: 'rate-event', component: RateEventComponent, canActivate: [AuthGuard] },
+  { path: 'admin-module', loadChildren: () => AdminModule, canActivate: [AuthGuard] },
   {
     path: 'dummy-list',
     component: DummyListComponent,
-    data: { title: 'Dummy List' }
+    data: { title: 'Dummy List' },
   },
   { path: '',
     redirectTo: '/landing-page',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   { path: '**', component: PageNotFoundComponent }
 ];

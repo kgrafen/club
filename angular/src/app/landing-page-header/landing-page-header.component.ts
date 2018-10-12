@@ -9,6 +9,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { TwitterAuthProvider_Instance } from '@firebase/auth-types';
 import { UserFirebaseService } from '../user-firebase.service';
 import { User } from '../entity/user/user';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'landing-page-header',
@@ -29,7 +31,8 @@ export class LandingPageHeaderComponent implements OnInit {
 
   constructor(private authService: AuthService, public dialog: MatDialog, 
     private mds: MobileDetectorService, private spinner: NgxSpinnerService, 
-    private ufbs: UserFirebaseService) { }
+    private ufbs: UserFirebaseService, private toastr: ToastrService, 
+    private router: Router) { }
 
   ngOnInit() {
     this.isMobile = this.mds.check();
@@ -40,14 +43,20 @@ export class LandingPageHeaderComponent implements OnInit {
         this.ufbs.getUserByID(user.uid).subscribe(value => {
           if (value === null) {
             this.authService.doSocialLoginRegister(user);
+            this.showSuccess("Du er nu oprettet & logget ind 👍" , "Success!");
           } else {
             this.ufbs.getUserByID(user.uid).subscribe(value => {
-              // This error lies.
               let u: User = new User(value);
               this.ufbs.setStorage(u);
-              this.username = u.username
-            })
+              this.username = u.username;
+              
+              if (this.router.url === "/landing-page") {
+                this.showSuccess("Velkommen tilbage 🙂", this.ufbs.getStorage().username); 
+              }
+              
+            });
           }
+          this.spinner.hide();
         })
       }
     });
@@ -63,10 +72,12 @@ export class LandingPageHeaderComponent implements OnInit {
   }
 
   tryFacebookLogin() {
+    this.spinner.show();
     this.authService.doFacebookLogin();
   }
 
   tryGoogleLogin() {
+    this.spinner.show();
     this.authService.doGoogleLogin();
   }
 
@@ -78,6 +89,11 @@ export class LandingPageHeaderComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       
     });
+  }
+
+  showSuccess(msg = "", status = "") {
+    this.toastr.clear();
+    this.toastr.success(msg, status);
   }
 
 }

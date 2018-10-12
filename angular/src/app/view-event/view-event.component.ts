@@ -9,6 +9,18 @@ import { unescapeIdentifier } from '@angular/compiler';
 import { MobileDetectorService } from '../mobile-detector.service';
 import { AuthService } from '../auth.service';
 import { User } from '../entity/user/user';
+import { WallService } from '../wall.service';
+import { Wall } from '../entity/wall/wall.model';
+import { WallPost } from '../entity/wall/wall-post.model';
+import { CreateWallPostComponent } from '../create-wall-post/create-wall-post.component';
+
+export interface DialogData {
+  fk_wall: string;
+}
+
+export interface User {
+  username: string;
+}
 
 @Component({
   selector: 'app-view-event',
@@ -19,23 +31,31 @@ export class ViewEventComponent implements OnInit {
 
   isMobile = false;
 
-  selectedEvent: Event;
+  selectedEvent = new Event({});
   key;
   pKey = "";
   participantsDisplayNames = [];
   participantsData = []
   inQueue = [];
 
+  // Wall
+  wall = new Wall({});
+  wallKey = "";
+  userNames = [];
+  tempDate = new Date().toLocaleString();
+
   // Test
   isParticipating: boolean = false;
 
   constructor(private route: ActivatedRoute, private efbs: EventFirebaseService, 
     private ufbs: UserFirebaseService, private router: Router, 
-    private md: MobileDetectorService, private authService: AuthService) { 
+    private md: MobileDetectorService, private authService: AuthService, 
+    private ws: WallService, public dialog: MatDialog) { 
     this.route.queryParams.subscribe(params => {
       let key = params['key'];
       this.key = key;
       
+      /* Event */
       this.efbs.getEventByKey(key).snapshotChanges().subscribe(then => {
         this.selectedEvent = new Event(then.payload.val());
         this.participantsData = [];
@@ -47,10 +67,33 @@ export class ViewEventComponent implements OnInit {
           }
         }
 
+        /* Participation limited to one signup. */
         if (this.getParticipantKey() !== "Not Found") {
           this.isParticipating = true;
         }
-      })
+
+      });
+
+      /* Wall */
+      this.ws.getWallByKey(this.key).subscribe(snapshot => {
+        this.wall.posts = [];
+        snapshot.forEach(value => {
+          this.wall.fk_event = value.fk_event;
+          this.wallKey = value.key;
+          let subPosts = [];
+
+          Object.values(value.posts).forEach(property => {
+            subPosts.push(property);
+          });
+
+          let idx = 0;
+          Object.keys(value.posts).forEach(k => {
+            this.wall.posts.push(Object.assign(subPosts[idx], {key: k} ));
+            idx++;
+          });
+        });
+        this.updateDisplayForWall();
+      });
     });
   }
 
@@ -82,24 +125,16 @@ export class ViewEventComponent implements OnInit {
 
   onAttend() {
 
-    this.efbs.joinEvent(this.key, this.authService.afAuth.auth.currentUser.uid);
+    this.efbs.joinEvent(this.key, this.ufbs.getStorage().username);
     this.isParticipating = true;
-    this.updateUserAttended(1);
   }
 
   onUnattend() {
     this.efbs.leaveEvent(this.key, this.getParticipantKey());
     this.removeParticipant();
     this.isParticipating = false;
-    this.updateUserAttended(-1);
   }
 
-  updateUserAttended(value) {
-    this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(snapshot => {
-      let u: User = new User(snapshot);
-      this.ufbs.updateUser({numberOfEventsAttended: u.numberOfEventsAttended + value}, this.authService.afAuth.auth.currentUser.uid)
-    });
-  }
   
   onRateClick() {
     let navigationExtras: NavigationExtras = {
@@ -109,4 +144,36 @@ export class ViewEventComponent implements OnInit {
     }
     this.router.navigate(['/rate-event'], navigationExtras);
   }
+
+  createWallPost(formData) {
+    this.ws.insertPost(formData, this.key);
+
+  }
+
+  openWallPostDialog() {
+    const dialogRef = this.dialog.open(CreateWallPostComponent, {
+      width: '500px',
+      data: {fk_wall: this.wallKey}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
+  }
+
+  deleteWallPost(postObj) {
+    //this.wall.posts.splice(idx, 1);
+    this.ws.deletePost(this.wallKey, Object.assign(postObj, WallPost));
+  }
+
+  updateDisplayForWall() {
+    /* Display usernames */
+    this.userNames = [];
+    this.wall.posts.forEach(post => {
+      this.ufbs.getUserByID(post.fk_id).subscribe( (u:any) => {
+        this.userNames.push(u.username);
+      });
+    });
+  }
+
 }

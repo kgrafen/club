@@ -1,7 +1,59 @@
-.innerContainer {
-    width: 100%;
-}
-
 .mobileContainer {
     margin-top: 20px;
+}
+
+.wall-img {
+    max-width: 50px;
+    max-height: 50px;
+    margin: 10px;
+}
+
+.round {
+    -webkit-border-top-left-radius: 1px;
+    -webkit-border-top-right-radius: 2px;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 4px;
+  
+    -moz-border-radius-topleft: 1px;
+    -moz-border-radius-topright: 2px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 4px;
+  
+    border-top-left-radius: 1px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 4px;
+}
+
+mat-card-title {
+    font-size: 16px;
+}
+
+.wall-timedate {
+    color: rgba(110,110,110, 1);
+    font-size: 12px;
+}
+
+button {
+    margin: 10px;
+}
+
+.usernameBtn {
+    margin: 0px !important;
+}
+
+mat-card {
+    margin-bottom: 20px;
+}
+
+.wall {
+    width: 90%;
+}
+
+.participants {
+    width: 48.7%;
+}
+
+#mat-tab-content-0-0 > div {
+    overflow: hidden !important;
 }

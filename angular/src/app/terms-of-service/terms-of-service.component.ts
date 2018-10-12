@@ -18,10 +18,19 @@ export class TermsOfServiceComponent implements OnInit {
   }
 
   readTosFile() {
-    this.http.get('./assets/files/Retningslinjer.txt', { responseType: 'text' }).subscribe(data => {
-      //this.inputHTML = data;
-      this.inputHTML = this.inputTextToHTML(data);
-    }).unsubscribe();
+		console.log("before");
+
+		this.http.get('./assets/files/Retningslinjer.txt', {responseType: 'text'}).subscribe(data => {
+			console.log("after");
+			this.inputHTML = this.inputTextToHTML(data);
+		});
+
+    /*this.http.get('./assets/files/Retningslinjer.txt', { responseType: 'text' }).subscribe(data => {
+
+			console.log("Hallo?");
+			//this.inputHTML = data;
+			//this.inputHTML = this.inputTextToHTML(data);
+    }).unsubscribe(); */
   }
 
   inputTextToHTML(inputDoc: string): string {

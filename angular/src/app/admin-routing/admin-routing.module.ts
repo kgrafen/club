@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminNavbarComponent } from '../admin-navbar/admin-navbar.component';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { AdminNewsletterComponent } from '../admin-newsletter/admin-newsletter.component';
+import { AuthGuard } from '../core/auth.guard';
 
 const routes: Routes = [
   /*
@@ -15,9 +16,9 @@ const routes: Routes = [
   
   { 
     path:'', component: AdminDashboardComponent, children: [
-      {path: '', redirectTo: 'admin-newsletter', pathMatch:'full'},
-      {path: 'admin-dashboard', component: AdminDashboardComponent},
-      {path: 'admin-newsletter', component: AdminNewsletterComponent}
+      {path: '', redirectTo: 'admin-newsletter', pathMatch:'full', canActivate: [AuthGuard]},
+      {path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard]},
+      {path: 'admin-newsletter', component: AdminNewsletterComponent, canActivate: [AuthGuard]}
     ]
   } 
 ];

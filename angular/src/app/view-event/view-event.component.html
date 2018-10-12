@@ -1,51 +1,74 @@
 <app-navbar></app-navbar>
 <div *ngIf="!isMobile">
-  <mat-grid-list cols="2" rowHeight="1:2.5">
-    <mat-grid-tile>
-        <mat-card class="innerContainer">
-            <mat-card-title>{{selectedEvent.name}}</mat-card-title>
-            <mat-card-subtitle><fa name="tag"></fa> {{  selectedEvent.category }} <br><br>
-              {{selectedEvent.description}}
-            </mat-card-subtitle>
-            <img src="../../assets/images/event_placeholder.jpg" mat-card-image>
-            <mat-card-content>
 
-              <p><strong>Adresse:</strong><br> {{selectedEvent.address.street}} , {{selectedEvent.address.city}} , {{selectedEvent.address.zip}}</p>
-              <p><strong>Dato</strong><br> Under udvikling</p>
-              <p><strong>Kønsfordeling</strong><br> {{selectedEvent.genderRatio}}</p>
-              <p><strong>Børn</strong><br> {{selectedEvent.targetGroup}}</p>
-              <p><strong>Fra</strong><br> {{selectedEvent.minAge}} til {{selectedEvent.maxAge}}</p>
-              <p><strong>Pladser</strong><br> {{selectedEvent.maxGuests}}</p>
-              <p><strong>Pris</strong><br> {{selectedEvent.price}} DKK</p>
-              <p><strong>Hvordan betales der: </strong><br> {{selectedEvent.paymentOption}}</p>
-              <p><strong>Hvornår betales der:</strong><br> {{selectedEvent.paymentDue}}</p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button *ngIf="!isParticipating" (click)="onAttend()" mat-button color="primary">Tilmeld</button>
-              <button *ngIf="isParticipating" (click)="onUnattend()" mat-button color="warn">Frameld</button>
-              <button mat-button (click)="onRateClick()" [routerLink]="['/rate-event']">Bedøm dette event</button>
-            </mat-card-actions>
+    <div class="container">
+        <div class="row">
+          <div class="col">
+              <mat-card>
+                  <mat-card-title>{{selectedEvent.name}}</mat-card-title>
+                  <mat-card-subtitle><fa name="tag"></fa> {{  selectedEvent.category }} <br><br>
+                    {{selectedEvent.description}}
+                  </mat-card-subtitle>
+                  <img src="../../assets/images/event_placeholder.jpg" mat-card-image>
+                  <mat-card-content>
+      
+                    <p><strong>Adresse:</strong><br> {{selectedEvent.address.street}} , {{selectedEvent.address.city}} , {{selectedEvent.address.zip}}</p>
+                    <p><strong>Dato</strong><br> Under udvikling</p>
+                    <p><strong>Kønsfordeling</strong><br> {{selectedEvent.genderRatio}}</p>
+                    <p><strong>Børn</strong><br> {{selectedEvent.targetGroup}}</p>
+                    <p><strong>Fra</strong><br> {{selectedEvent.minAge}} til {{selectedEvent.maxAge}}</p>
+                    <p><strong>Pladser</strong><br> {{selectedEvent.maxGuests}}</p>
+                    <p><strong>Pris</strong><br> {{selectedEvent.price}} DKK</p>
+                    <p><strong>Hvordan betales der: </strong><br> {{selectedEvent.paymentOption}}</p>
+                    <p><strong>Hvornår betales der:</strong><br> {{selectedEvent.paymentDue}}</p>
+                  </mat-card-content>
+                  <mat-card-actions>
+                    <button *ngIf="!isParticipating" (click)="onAttend()" mat-button color="primary">Tilmeld</button>
+                    <button *ngIf="isParticipating" (click)="onUnattend()" mat-button color="warn">Frameld</button>
+                    <button mat-button (click)="onRateClick()" [routerLink]="['/rate-event']">Bedøm dette event</button>
+                  </mat-card-actions>
+              </mat-card>
+          </div>
+          <div class="col">
+              <mat-card class="wall">
+                  <mat-card-title><h3>Væg</h3></mat-card-title>
+              
+                  <mat-card *ngFor="let post of wall.posts">
+                    <mat-card-title>
+                      <img class="wall-img round" src="../../assets/images/Logo.png">
+                      <a routerLink="/view-profile/">{{userNames[idx]}}</a>
+                      <p class="wall-timedate">{{tempDate}}</p>
+                    </mat-card-title>
+                    <mat-card-content>{{post.message}}</mat-card-content>
+                    <mat-card-actions>
+                      <button *ngIf="post.fk_id === this.authService.afAuth.auth.currentUser.uid || this.selectedEvent.host === this.authService.afAuth.auth.currentUser.uid" (click)="deleteWallPost(post)" mat-button color="warn">Slet</button>
+                    </mat-card-actions>
+                  </mat-card>
+              
+                  <mat-card-actions>
+                    <button (click)="openWallPostDialog()" mat-raised-button color="primary">Svar</button>
+                  </mat-card-actions>
+              </mat-card>
+          </div>
+        </div>
+
+        <mat-card class="participants">
+            <mat-tab-group>
+                <mat-tab label="Deltagere">
+                  <mat-list>
+                      <mat-list-item *ngFor="let participant of participantsDisplayNames">
+                        <button class="usernameBtn" color="primary" mat-button><mat-icon>person</mat-icon>{{participant}}</button>
+                      </mat-list-item>
+                  </mat-list>
+                </mat-tab>
+                <mat-tab label="Venteliste">
+                  <mat-list>
+                    <p *ngIf="inQueue.length < 1">Der er ingen på ventelisten.</p>
+                  </mat-list>
+                </mat-tab>
+              </mat-tab-group>
         </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-      <mat-card>
-          <mat-tab-group>
-              <mat-tab label="Deltagere">
-                <mat-list>
-                    <mat-list-item *ngFor="let participant of participantsDisplayNames">
-                      <button color="primary" mat-button><mat-icon>person</mat-icon>{{participant}}</button>
-                    </mat-list-item>
-                </mat-list>
-              </mat-tab>
-              <mat-tab label="Venteliste">
-                <mat-list>
-                  <p *ngIf="inQueue.length < 1">Der er ingen på ventelisten.</p>
-                   </mat-list>
-              </mat-tab>
-            </mat-tab-group>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+
 </div>
 
 <div *ngIf="isMobile">
@@ -90,4 +113,17 @@
           </mat-tab>
         </mat-tab-group>
   </mat-card>
+
+  <mat-card *ngFor="let post of wall.posts; let idx = index">
+      <mat-card-title>
+        <img class="wall-img round" src="../../assets/images/Logo.png">
+        <a routerLink="/view-profile/">{{userNames[idx]}}</a>
+        <p class="wall-timedate">{{tempDate}}</p>
+      </mat-card-title>
+      <mat-card-content>{{post.message}}</mat-card-content>
+      <mat-card-actions>
+        <button *ngIf="post.fk_id === this.authService.afAuth.auth.currentUser.uid || this.selectedEvent.host === this.authService.afAuth.auth.currentUser.uid" (click)="deleteWallPost(idx)" mat-button color="warn">Slet</button>
+      </mat-card-actions>
+    </mat-card>
+
 </div>

@@ -14,6 +14,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { AdminNavbarComponent } from '../admin-navbar/admin-navbar.component';
 import { AdminRoutingModule } from '../admin-routing/admin-routing.module';
 import { AdminNewsletterComponent } from '../admin-newsletter/admin-newsletter.component';
+import { AuthGuard } from '../core/auth.guard';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { AdminNewsletterComponent } from '../admin-newsletter/admin-newsletter.c
     AdminNewsletterComponent
   ],
   declarations: [AdminDashboardComponent, AdminNavbarComponent, AdminNewsletterComponent],
+  providers: [AuthGuard],
   entryComponents: [],
   bootstrap: []
 })

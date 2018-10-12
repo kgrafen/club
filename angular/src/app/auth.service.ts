@@ -8,9 +8,11 @@ import { Router} from '@angular/router';
 
 // Session storage
 import { SessionStorage, SessionStorageService } from 'angular-web-storage'
+
 import { UserFirebaseService } from './user-firebase.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { User } from './entity/user/user';
+
 
 @Injectable({
   providedIn: 'root'
@@ -117,6 +119,14 @@ export class AuthService {
 
   signoutRedirect() {
     this.router.navigate(['/']);
+  }
+
+  authenticated(): boolean {
+    return this.afAuth.auth.currentUser !== null;
+  }
+
+  currentUserObservable(): any {
+    return this.afAuth.authState;
   }
 
   makeid() {

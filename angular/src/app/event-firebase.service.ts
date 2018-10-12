@@ -57,9 +57,9 @@ export class EventFirebaseService {
     itemsRef.remove(key);
   }
 
-  joinEvent(key: string, username: string) {
+  joinEvent(key: string, un: string) {
     const itemRef = this.db.list(this.dbPath + key + '/participants/');
-    itemRef.push({username: username});
+    itemRef.push({username: un});
   }
 
   leaveEvent(key: string, pKey: string) {

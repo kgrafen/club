@@ -4,6 +4,7 @@ import { UserRoleService } from '../user-role.service';
 import { Role } from '../entity/user/role.model';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class FooterComponent implements OnInit {
   isDevelopmentBuild = true;
 
   constructor(private mds: MobileDetectorService, private urs: UserRoleService, 
-    private authService: AuthService, private router: Router) { }
+    private authService: AuthService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.isMobile = this.mds.check();
@@ -30,10 +31,10 @@ export class FooterComponent implements OnInit {
         if (snapshot.payload.val().fk_id === this.authService.afAuth.auth.currentUser.uid) {
           let role = new Role(snapshot.payload.val());
           if (role.type === this.urs.userTypes.ADMIN) {
-            console.log("Authorized. Welcome back, commander");
+            this.successToast("Du har nu admin adgang", "Success");
             this.router.navigate(['/admin-module']);
           } else {
-            console.log("Unauthorized. This attempt has been logged and an admin notified.");
+            this.errorToast("Du har ikke adgang.", "Fejl");
           }
         }
       })
@@ -43,6 +44,16 @@ export class FooterComponent implements OnInit {
    //if (userRole.fk_id === "Din Mor") {
 
    //}
+  }
+
+  successToast(msg, title) {
+    this.toastr.clear();
+    this.toastr.success(msg, title);
+  }
+
+  errorToast(msg, title) {
+    this.toastr.clear();
+    this.toastr.error(msg, title);
   }
 
 }

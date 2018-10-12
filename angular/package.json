@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^6.1.2",
+    "@angular/animations": "^6.1.9",
     "@angular/cdk": "^6.4.5",
     "@angular/common": "^6.0.3",
     "@angular/compiler": "^6.0.3",
@@ -41,6 +41,7 @@
     "mousetrap": "^1.6.2",
     "ng4-loading-spinner": "^1.2.3",
     "ngx-spinner": "^6.1.2",
+    "ngx-toastr": "^9.1.0",
     "npm": "^6.3.0",
     "rxjs": "^6.2.2",
     "rxjs-compat": "^6.2.2",

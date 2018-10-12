@@ -91,6 +91,12 @@ import { ActiveBlockedPipe } from './pipes/active-blocked.pipe';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AdminModule } from './admin/admin.module';
 import { UserRoleService } from './user-role.service';
+import { AuthGuard } from './core/auth.guard';
+
+// Toaster
+import { ToastrModule } from 'ngx-toastr';
+import { CreateWallPostComponent } from './create-wall-post/create-wall-post.component';
+
 
 @NgModule({
   declarations: [
@@ -129,9 +135,10 @@ import { UserRoleService } from './user-role.service';
     PatchNotesComponent,
     ViewEventComponent,
     ConfirmationDialogComponent,
-    RateEventComponent
+    RateEventComponent,
+    CreateWallPostComponent
   ],
-  entryComponents: [MobileLoginHeaderComponent, ConfirmationDialogComponent],
+  entryComponents: [MobileLoginHeaderComponent, ConfirmationDialogComponent, CreateWallPostComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -177,9 +184,10 @@ import { UserRoleService } from './user-role.service';
     RouterTestingModule,
     NgxSpinnerModule,
     HttpModule,
-    AdminModule
+    AdminModule,
+    ToastrModule.forRoot()
   ],
-  providers: [CookieService],
+  providers: [CookieService, AuthGuard],
   bootstrap: [AppComponent]
 })
 
