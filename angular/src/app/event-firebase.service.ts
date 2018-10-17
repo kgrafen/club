@@ -10,6 +10,8 @@ import { timestamp } from 'rxjs/internal/operators/timestamp';
 // Entity
 import { Event } from './entity/event/event.model';
 import { JsonConverter } from './entity/helper/json-converter';
+import { WallService } from './wall.service';
+import { Wall } from './entity/wall/wall.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +24,8 @@ export class EventFirebaseService {
   eventsObservable: Observable<any[]>;
   myEventSelection: Event;
 
-  constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase) { }
+  constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase, 
+    private ws: WallService) { }
 
   getList(listPath): Observable<any> {
     return this.db.list(this.dbPath).snapshotChanges().map(events => {
@@ -44,7 +47,9 @@ export class EventFirebaseService {
 
   insertEvent(event: Event) {
     const entry = this.objToJSON(event);
-    this.db.list(this.dbPath).push(event);
+    this.db.list(this.dbPath).push(event).then(finished => {
+      console.log(finished);
+    });
   }
 
   updateEvent(key: string, e: Event) {
@@ -54,7 +59,9 @@ export class EventFirebaseService {
 
   deleteEvent(key: string) {
     const itemsRef = this.db.list(this.dbPath);
-    itemsRef.remove(key);
+    itemsRef.remove(key).then(finished => {
+      this.ws.deleteWall(finished.key);
+    });
   }
 
   joinEvent(key: string, un: string) {

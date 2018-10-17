@@ -1,34 +1,24 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import * as sendgrid from '@sendgrid/mail';
+admin.initializeApp();
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-export const helloWorld = functions.https.onRequest((request, response) => {
-  //response.send("Hello from Firebase!");
- });
 
-export const sendContactMail = functions.https.onRequest( (req, res) => {
+import * as cors from 'cors';
+const corsHandler = cors({origin: true});
 
-    console.log("Request: " + req.body.email + ", response: " + res);
-    // using SendGrid's v3 Node.js Library
-    // https://github.com/sendgrid/sendgrid-nodejs
-    sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
-    //sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
-    console.log("Key: " + process.env.SENDGRID_API_KEY);
-    const msg = {
-        to: req.body.to,
-        from: req.body.from,
-        subject: req.body.subject,
-        content: req.body.content,
-        html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-    };
-    return sendgrid.send(msg).then(() => {
-        //celebrate
-        console.log("I think we did it...");
-    }).catch(error => {
-        //cry everytiem
-        console.log(error);
-    });
+export const helloWorld= functions.https.onRequest(async (request, response) => {
+    // This line is GOD.
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    response.status(200).send('Hello, World!');
 });
+
+export const pingPongObj = functions.https.onRequest(async (request, response) => {
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    response.setHeader("Access-Control-Allow-Credentials", "true");
+    response.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+    // Below might not work?
+    //response.setHeader("Access-Control-Allow-Methods", "*");
+    response.status(200).send(request.body);
+});
+

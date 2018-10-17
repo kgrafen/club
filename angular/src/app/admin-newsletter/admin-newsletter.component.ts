@@ -3,11 +3,12 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { UserFirebaseService } from '../user-firebase.service';
 import { Http, Headers, Response, URLSearchParams, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth.service';
 import { UserRoleService } from '../user-role.service';
 import { Role } from '../entity/user/role.model';
 import { Router } from '@angular/router';
+import { TransactionalEmailService } from '../transactional-email.service';
 
 @Component({
   selector: 'admin-newsletter',
@@ -26,22 +27,19 @@ export class AdminNewsletterComponent implements OnInit {
     text: new FormControl('')
 });
 
-  constructor(private ufbs: UserFirebaseService, private http: Http) { }
+  constructor(private ufbs: UserFirebaseService, private tes: TransactionalEmailService) { }
 
   ngOnInit() {
     
   }
 
   sendNewsletter(formData) {
-    let userEmails = [];
-    this.ufbs.getList("/users").subscribe(values => {
-      values.forEach(value => {
-        userEmails.push(value);
-      });
+    // this.tes.helloWorld().subscribe(response => {
+    //   console.log(response);
+    // });
+    this.tes.pingPongObj(formData).subscribe(response => {
+      console.log(response);
     });
-
-    // Send emails from here to all userEmails
-
   }
 
 }

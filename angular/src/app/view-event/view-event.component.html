@@ -33,7 +33,7 @@
               <mat-card class="wall">
                   <mat-card-title><h3>Væg</h3></mat-card-title>
               
-                  <mat-card *ngFor="let post of wall.posts">
+                  <mat-card *ngFor="let post of wall.posts; let idx = index">
                     <mat-card-title>
                       <img class="wall-img round" src="../../assets/images/Logo.png">
                       <a routerLink="/view-profile/">{{userNames[idx]}}</a>

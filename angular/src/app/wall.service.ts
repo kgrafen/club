@@ -24,6 +24,10 @@ export class WallService {
     this.db.list(this.dbPath).push(wallObj);
   }
 
+  deleteWall(key: string) {
+    this.db.list(this.dbPath).remove(key);
+  }
+
   getWallByKey(key) {
     let path = this.dbPath;
     return this.db.list(path, ref => ref.orderByChild('fk_event').equalTo(key)).snapshotChanges().map(snapshot => {

@@ -1,5 +1,6 @@
 {
   "projects": {
-    "sn": "single-network"
+    "sn": "single-network",
+    "default": "single-network"
   }
 }

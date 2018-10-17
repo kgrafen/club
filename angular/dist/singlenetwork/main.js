@@ -86,6 +86,388 @@ var AboutComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/admin-dashboard/admin-dashboard.component.css":
+/*!***************************************************************!*\
+  !*** ./src/app/admin-dashboard/admin-dashboard.component.css ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/admin-dashboard/admin-dashboard.component.html":
+/*!****************************************************************!*\
+  !*** ./src/app/admin-dashboard/admin-dashboard.component.html ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<admin-navbar></admin-navbar>\n\n\n<router-outlet></router-outlet>"
+
+/***/ }),
+
+/***/ "./src/app/admin-dashboard/admin-dashboard.component.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/admin-dashboard/admin-dashboard.component.ts ***!
+  \**************************************************************/
+/*! exports provided: AdminDashboardComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminDashboardComponent", function() { return AdminDashboardComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var AdminDashboardComponent = /** @class */ (function () {
+    function AdminDashboardComponent() {
+    }
+    AdminDashboardComponent.prototype.ngOnInit = function () {
+    };
+    AdminDashboardComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'admin-dashboard',
+            template: __webpack_require__(/*! ./admin-dashboard.component.html */ "./src/app/admin-dashboard/admin-dashboard.component.html"),
+            styles: [__webpack_require__(/*! ./admin-dashboard.component.css */ "./src/app/admin-dashboard/admin-dashboard.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], AdminDashboardComponent);
+    return AdminDashboardComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/admin-navbar/admin-navbar.component.css":
+/*!*********************************************************!*\
+  !*** ./src/app/admin-navbar/admin-navbar.component.css ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".navbar {\r\n    margin-bottom: 100px;\r\n    background-color: #fff !important; \r\n}\r\n\r\n.pusher {\r\n    margin-bottom: 100px;\r\n}"
+
+/***/ }),
+
+/***/ "./src/app/admin-navbar/admin-navbar.component.html":
+/*!**********************************************************!*\
+  !*** ./src/app/admin-navbar/admin-navbar.component.html ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-light bg-light fixed-top\">\n  <button routerLink=\"{{menuField.link}}\" matTooltip=\"{{menuField.description}}\" mat-button color=\"primary\" *ngFor=\"let menuField of menuFields\">{{menuField.displayName}}</button>\n  \n</nav>\n\n <!-- Pusher -->\n  <!-- DO NOT EDIT HERE -->\n  <nav style=\"visibility: hidden;\" class=\"navbar navbar-expand-md navbar-light bg-light pusher\">\n\n    <a routerLink=\"/loggedin-dashboard\"><button *ngIf=\"isMobile\" class=\"btn btn-light\">Tilbage</button></a>\n    \n    \n    <div *ngIf=\"!isMobile\" class=\"navbar-nav ml-auto\">\n      <button *ngFor=\"let field of menuFields\" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>\n    </div>\n      \n    <button (click)=\"signout()\" mat-raised-button color=\"warn\">Log ud</button>\n      \n  </nav>"
+
+/***/ }),
+
+/***/ "./src/app/admin-navbar/admin-navbar.component.ts":
+/*!********************************************************!*\
+  !*** ./src/app/admin-navbar/admin-navbar.component.ts ***!
+  \********************************************************/
+/*! exports provided: AdminNavbarComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminNavbarComponent", function() { return AdminNavbarComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+/* harmony import */ var _user_role_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../user-role.service */ "./src/app/user-role.service.ts");
+/* harmony import */ var _entity_user_role_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../entity/user/role.model */ "./src/app/entity/user/role.model.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var AdminNavbarComponent = /** @class */ (function () {
+    function AdminNavbarComponent(authService, urs, router) {
+        this.authService = authService;
+        this.urs = urs;
+        this.router = router;
+        this.menuFields = [{ 'displayName': "Forside", 'link': "/landing-page", 'description': "Tilbage til forsiden" },
+            { 'displayName': "Nyhedsbrev", 'link': "/admin-module/admin-newsletter", 'description': "Skriv et nyhedsbrev ud til brugerne" }
+        ];
+    }
+    AdminNavbarComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.authService.afAuth.auth.onAuthStateChanged(function (user) {
+            if (user) {
+                _this.urs.getList().subscribe(function (snapshots) {
+                    snapshots.forEach(function (snapshot) {
+                        var role = new _entity_user_role_model__WEBPACK_IMPORTED_MODULE_3__["Role"](snapshot);
+                        if (role.fk_id === _this.authService.afAuth.auth.currentUser.uid) {
+                            if (role.type === _this.urs.userTypes.ADMIN) {
+                                console.log("User is authorized. Welcome back, commander.");
+                            }
+                            else {
+                                _this.router.navigate(['/landing-page']);
+                                console.log("Unauthorized. Your attempt has been logged.");
+                            }
+                        }
+                    });
+                });
+            }
+            else {
+                console.log("Unauthorized. You are not logged in.");
+                _this.router.navigate(['/landing-page']);
+            }
+        });
+    };
+    AdminNavbarComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'admin-navbar',
+            template: __webpack_require__(/*! ./admin-navbar.component.html */ "./src/app/admin-navbar/admin-navbar.component.html"),
+            styles: [__webpack_require__(/*! ./admin-navbar.component.css */ "./src/app/admin-navbar/admin-navbar.component.css")]
+        }),
+        __metadata("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"], _user_role_service__WEBPACK_IMPORTED_MODULE_2__["UserRoleService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
+    ], AdminNavbarComponent);
+    return AdminNavbarComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/admin-newsletter/admin-newsletter.component.css":
+/*!*****************************************************************!*\
+  !*** ./src/app/admin-newsletter/admin-newsletter.component.css ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "mat-form-field, textarea, button {\r\n    display: block;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    width: 50%;\r\n}\r\n\r\nbutton {\r\n    margin-top: 20px;\r\n    margin-bottom: 20px;\r\n}\r\n\r\nh1 {\r\n    text-align: center;\r\n    color: snow;\r\n}"
+
+/***/ }),
+
+/***/ "./src/app/admin-newsletter/admin-newsletter.component.html":
+/*!******************************************************************!*\
+  !*** ./src/app/admin-newsletter/admin-newsletter.component.html ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h1>Nyhedsbrev</h1>\n<mat-card>\n  <form [formGroup]=\"newsletterForm\">\n\n    <mat-form-field>\n      <input matInput formControlName=\"email\" placeholder=\"email\" required>\n    </mat-form-field>\n\n    <mat-form-field>\n        <input matInput formControlName=\"username\" placeholder=\"username\" required>\n    </mat-form-field>\n\n    <mat-form-field>\n        <mat-select formControlName=\"targetGroup\" placeholder=\"Målgruppe\">\n          <mat-option value=\"Alle brugere\">Alle brugere</mat-option>\n          <mat-option value=\"Enkelt bruger\">Enkelt bruger</mat-option>\n        </mat-select>\n    </mat-form-field>\n\n    <mat-form-field>\n        <mat-select formControlName=\"subject\" placeholder=\"Emne felt\">\n          <mat-option value=\"a\">a</mat-option>\n          <mat-option value=\"b\">b</mat-option>\n          <mat-option value=\"c\">c</mat-option>\n        </mat-select>\n    </mat-form-field>\n\n    <textarea formControlName=\"text\" placeholder=\"besked\" required cols=\"6\"></textarea>\n    \n    <button (click)=\"sendNewsletter(newsletterForm.value)\" mat-raised-button color=\"primary\">Send nyhedsbrev</button>\n\n\n      \n\n  </form>\n</mat-card>\n"
+
+/***/ }),
+
+/***/ "./src/app/admin-newsletter/admin-newsletter.component.ts":
+/*!****************************************************************!*\
+  !*** ./src/app/admin-newsletter/admin-newsletter.component.ts ***!
+  \****************************************************************/
+/*! exports provided: AdminNewsletterComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminNewsletterComponent", function() { return AdminNewsletterComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _user_firebase_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../user-firebase.service */ "./src/app/user-firebase.service.ts");
+/* harmony import */ var rxjs_add_operator_toPromise__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/add/operator/toPromise */ "./node_modules/rxjs-compat/_esm5/add/operator/toPromise.js");
+/* harmony import */ var rxjs_add_operator_toPromise__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(rxjs_add_operator_toPromise__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _transactional_email_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../transactional-email.service */ "./src/app/transactional-email.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var AdminNewsletterComponent = /** @class */ (function () {
+    function AdminNewsletterComponent(ufbs, tes) {
+        this.ufbs = ufbs;
+        this.tes = tes;
+        this.isLoggedOn = false;
+        this.newsletterForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormGroup"]({
+            email: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](''),
+            username: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](''),
+            targetGroup: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](''),
+            subject: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](''),
+            text: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('')
+        });
+    }
+    AdminNewsletterComponent.prototype.ngOnInit = function () {
+    };
+    AdminNewsletterComponent.prototype.sendNewsletter = function (formData) {
+        this.tes.sendContactMail(formData).subscribe(function (response) {
+            console.log(response);
+        });
+    };
+    AdminNewsletterComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'admin-newsletter',
+            template: __webpack_require__(/*! ./admin-newsletter.component.html */ "./src/app/admin-newsletter/admin-newsletter.component.html"),
+            styles: [__webpack_require__(/*! ./admin-newsletter.component.css */ "./src/app/admin-newsletter/admin-newsletter.component.css")]
+        }),
+        __metadata("design:paramtypes", [_user_firebase_service__WEBPACK_IMPORTED_MODULE_2__["UserFirebaseService"], _transactional_email_service__WEBPACK_IMPORTED_MODULE_4__["TransactionalEmailService"]])
+    ], AdminNewsletterComponent);
+    return AdminNewsletterComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/admin-routing/admin-routing.module.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/admin-routing/admin-routing.module.ts ***!
+  \*******************************************************/
+/*! exports provided: AdminRoutingModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminRoutingModule", function() { return AdminRoutingModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _admin_dashboard_admin_dashboard_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../admin-dashboard/admin-dashboard.component */ "./src/app/admin-dashboard/admin-dashboard.component.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _admin_newsletter_admin_newsletter_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../admin-newsletter/admin-newsletter.component */ "./src/app/admin-newsletter/admin-newsletter.component.ts");
+/* harmony import */ var _core_auth_guard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/auth.guard */ "./src/app/core/auth.guard.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+var routes = [
+    /*
+    {path: '', redirectTo: 'admin-dashboard', pathMatch:'full'},
+    {path: 'admin-dashboard', component: AdminDashboardComponent},
+    {path: 'admin-newsletter', component: AdminNewsletterComponent},
+    */
+    {
+        path: '', component: _admin_dashboard_admin_dashboard_component__WEBPACK_IMPORTED_MODULE_1__["AdminDashboardComponent"], children: [
+            { path: '', redirectTo: 'admin-newsletter', pathMatch: 'full', canActivate: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]] },
+            { path: 'admin-dashboard', component: _admin_dashboard_admin_dashboard_component__WEBPACK_IMPORTED_MODULE_1__["AdminDashboardComponent"], canActivate: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]] },
+            { path: 'admin-newsletter', component: _admin_newsletter_admin_newsletter_component__WEBPACK_IMPORTED_MODULE_3__["AdminNewsletterComponent"], canActivate: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_4__["AuthGuard"]] }
+        ]
+    }
+];
+var AdminRoutingModule = /** @class */ (function () {
+    function AdminRoutingModule() {
+    }
+    AdminRoutingModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
+            exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]],
+            declarations: []
+        })
+    ], AdminRoutingModule);
+    return AdminRoutingModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/admin/admin.module.ts":
+/*!***************************************!*\
+  !*** ./src/app/admin/admin.module.ts ***!
+  \***************************************/
+/*! exports provided: AdminModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AdminModule", function() { return AdminModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _admin_dashboard_admin_dashboard_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../admin-dashboard/admin-dashboard.component */ "./src/app/admin-dashboard/admin-dashboard.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _admin_navbar_admin_navbar_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../admin-navbar/admin-navbar.component */ "./src/app/admin-navbar/admin-navbar.component.ts");
+/* harmony import */ var _admin_routing_admin_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../admin-routing/admin-routing.module */ "./src/app/admin-routing/admin-routing.module.ts");
+/* harmony import */ var _admin_newsletter_admin_newsletter_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../admin-newsletter/admin-newsletter.component */ "./src/app/admin-newsletter/admin-newsletter.component.ts");
+/* harmony import */ var _core_auth_guard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../core/auth.guard */ "./src/app/core/auth.guard.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+
+
+
+
+
+var AdminModule = /** @class */ (function () {
+    function AdminModule() {
+    }
+    AdminModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
+                _admin_routing_admin_routing_module__WEBPACK_IMPORTED_MODULE_6__["AdminRoutingModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatCardModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatMenuModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTooltipModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSelectModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatRadioModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatInputModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatFormFieldModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"]
+            ],
+            exports: [
+                _admin_navbar_admin_navbar_component__WEBPACK_IMPORTED_MODULE_5__["AdminNavbarComponent"],
+                _admin_dashboard_admin_dashboard_component__WEBPACK_IMPORTED_MODULE_2__["AdminDashboardComponent"],
+                _admin_newsletter_admin_newsletter_component__WEBPACK_IMPORTED_MODULE_7__["AdminNewsletterComponent"]
+            ],
+            declarations: [_admin_dashboard_admin_dashboard_component__WEBPACK_IMPORTED_MODULE_2__["AdminDashboardComponent"], _admin_navbar_admin_navbar_component__WEBPACK_IMPORTED_MODULE_5__["AdminNavbarComponent"], _admin_newsletter_admin_newsletter_component__WEBPACK_IMPORTED_MODULE_7__["AdminNewsletterComponent"]],
+            providers: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_8__["AuthGuard"]],
+            entryComponents: [],
+            bootstrap: []
+        })
+    ], AdminModule);
+    return AdminModule;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/app-navbar/app-navbar.component.css":
 /*!*****************************************************!*\
   !*** ./src/app/app-navbar/app-navbar.component.css ***!
@@ -93,7 +475,7 @@ var AboutComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".pusher {\r\n    margin-bottom: 80px;\r\n}\r\n\r\nmatTooltip {\r\n    \r\n}\r\n\r\n.menu-logo {\r\n    max-width:5%;\r\n}\r\n\r\n.rating-shield {\r\n    -webkit-transform: scale(0.7);\r\n            transform: scale(0.7);\r\n}\r\n\r\n.menu-logo:hover {\r\n    cursor: pointer;\r\n}\r\n\r\n.btn {\r\n    border: 1px solid rgba(0,0,0,0.1);\r\n}\r\n\r\n.alert {\r\n    margin-top: 80px;\r\n    width: 100%;\r\n    padding: 10px;\r\n    text-align: center;\r\n    position: fixed;\r\n}\r\n\r\nbutton {\r\n    \r\n}\r\n\r\n@media only screen and (max-width: 600px) {\r\n    .pusher {\r\n        margin-bottom: 0px;\r\n    }\r\n}"
+module.exports = ".pusher {\r\n    margin-bottom: 100px;\r\n}\r\n\r\nmatTooltip {\r\n    \r\n}\r\n\r\n.menu-logo {\r\n    max-width:5%;\r\n}\r\n\r\n.rating-shield {\r\n    -webkit-transform: scale(0.7);\r\n            transform: scale(0.7);\r\n}\r\n\r\n.menu-logo:hover {\r\n    cursor: pointer;\r\n}\r\n\r\n.btn {\r\n    border: 1px solid rgba(0,0,0,0.1);\r\n}\r\n\r\n.alert {\r\n    margin-top: 80px;\r\n    width: 100%;\r\n    padding: 10px;\r\n    text-align: center;\r\n    position: fixed;\r\n}\r\n\r\n@media only screen and (max-width: 600px) {\r\n    .pusher {\r\n        margin-bottom: 0px;\r\n    }\r\n}"
 
 /***/ }),
 
@@ -104,7 +486,7 @@ module.exports = ".pusher {\r\n    margin-bottom: 80px;\r\n}\r\n\r\nmatTooltip {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-light bg-light fixed-top\">\r\n\r\n    <img class=\"menu-logo\" src=\"../../assets/images/Logo.png\" routerLink='/loggedin-dashboard'>\r\n  \r\n\r\n    <button *ngIf=\"isMobile\" routerLink='/my-profile' color=\"primary\" mat-button> \r\n      <img class=\"rating-shield\" [src]=\"source\">\r\n      {{rating}}<mat-icon>star</mat-icon>\r\n    </button>\r\n    \r\n    \r\n    <div *ngIf=\"!isMobile\" class=\"navbar-nav ml-auto\">\r\n      <button *ngFor=\"let field of menuFields\" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>\r\n      <button routerLink='/my-profile' color=\"primary\" mat-button> \r\n        <mat-icon>person</mat-icon> {{username | uppercase}}\r\n        <img class=\"rating-shield\" [src]=\"source\">\r\n        {{rating}}<mat-icon>star</mat-icon>\r\n      </button>\r\n    </div>\r\n    \r\n    <button *ngIf=\"isMobile\" mat-icon-button [matMenuTriggerFor]=\"menu\">\r\n        <mat-icon>menu</mat-icon>\r\n    </button>\r\n\r\n      <mat-menu #menu=\"matMenu\" [overlapTrigger]=\"false\" yPosition=\"below\">\r\n        <button routerLink=\"/loggedin-dashboard\" mat-menu-item>\r\n          <mat-icon>dashboard</mat-icon>\r\n          <span>Dashboard</span>\r\n        </button>\r\n        <button routerLink=\"/events\" mat-menu-item>\r\n          <mat-icon>calendar_today</mat-icon>\r\n          <span>Events</span>\r\n        </button>\r\n        <button routerLink=\"/my-profile\" mat-menu-item>\r\n          <mat-icon>person</mat-icon>\r\n          <span>Min Profil</span>\r\n        </button>\r\n        <button routerLink=\"/payment\" mat-menu-item>\r\n          <mat-icon>payment</mat-icon>\r\n          <span>Betaling</span>\r\n          </button>\r\n      </mat-menu>\r\n      \r\n    <button (click)=\"signout()\" mat-raised-button color=\"warn\">Log ud</button>\r\n      \r\n  </nav>\r\n\r\n  <!-- Pusher -->\r\n  <!-- DO NOT EDIT HERE -->\r\n  <nav style=\"visibility: hidden;\" class=\"navbar navbar-expand-md navbar-light bg-light pusher\">\r\n\r\n      <a routerLink=\"/loggedin-dashboard\"><button *ngIf=\"isMobile\" class=\"btn btn-light\">Tilbage</button></a>\r\n      \r\n      \r\n      <div *ngIf=\"!isMobile\" class=\"navbar-nav ml-auto\">\r\n        <button *ngFor=\"let field of menuFields\" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>\r\n      </div>\r\n        \r\n      <button (click)=\"signout()\" mat-raised-button color=\"warn\">Log ud</button>\r\n        \r\n    </nav>\r\n\r\n  "
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-light bg-light fixed-top\">\r\n\r\n    <img class=\"menu-logo\" src=\"../../assets/images/Logo.png\" routerLink='/loggedin-dashboard'>\r\n  \r\n\r\n    <button *ngIf=\"isMobile\" routerLink='/my-profile' color=\"primary\" mat-button> \r\n      <img class=\"rating-shield\" src=\"{{metal}}\">\r\n      {{rating}}<mat-icon>star</mat-icon>\r\n    </button>\r\n    \r\n    \r\n    <div *ngIf=\"!isMobile\" class=\"navbar-nav ml-auto\">\r\n      <button *ngFor=\"let field of menuFields\" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>\r\n      <button routerLink='/my-profile' color=\"primary\" mat-button> \r\n        <mat-icon>person</mat-icon> {{username | uppercase}}\r\n        <img class=\"rating-shield\" src=\"{{metal}}\">\r\n        {{rating}}<mat-icon>star</mat-icon>\r\n      </button>\r\n    </div>\r\n    \r\n    <button *ngIf=\"isMobile\" mat-icon-button [matMenuTriggerFor]=\"menu\">\r\n        <mat-icon>menu</mat-icon>\r\n    </button>\r\n\r\n      <mat-menu #menu=\"matMenu\" [overlapTrigger]=\"false\" yPosition=\"below\">\r\n        <button routerLink=\"/loggedin-dashboard\" mat-menu-item>\r\n          <mat-icon>dashboard</mat-icon>\r\n          <span>Dashboard</span>\r\n        </button>\r\n        <button routerLink=\"/events\" mat-menu-item>\r\n          <mat-icon>calendar_today</mat-icon>\r\n          <span>Events</span>\r\n        </button>\r\n        <button routerLink=\"/my-profile\" mat-menu-item>\r\n          <mat-icon>person</mat-icon>\r\n          <span>Min Profil</span>\r\n        </button>\r\n        <button routerLink=\"/payment\" mat-menu-item>\r\n          <mat-icon>payment</mat-icon>\r\n          <span>Betaling</span>\r\n          </button>\r\n      </mat-menu>\r\n      \r\n    <button (click)=\"signout()\" mat-raised-button color=\"warn\">Log ud</button>\r\n      \r\n  </nav>\r\n\r\n  <!-- Pusher -->\r\n  <!-- DO NOT EDIT HERE -->\r\n  <nav style=\"visibility: hidden;\" class=\"navbar navbar-expand-md navbar-light bg-light pusher\">\r\n\r\n      <a routerLink=\"/loggedin-dashboard\"><button *ngIf=\"isMobile\" class=\"btn btn-light\">Tilbage</button></a>\r\n      \r\n      \r\n      <div *ngIf=\"!isMobile\" class=\"navbar-nav ml-auto\">\r\n        <button *ngFor=\"let field of menuFields\" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>\r\n      </div>\r\n        \r\n      <button (click)=\"signout()\" mat-raised-button color=\"warn\">Log ud</button>\r\n        \r\n    </nav>\r\n\r\n  "
 
 /***/ }),
 
@@ -147,11 +529,13 @@ var AppNavbarComponent = /** @class */ (function () {
         this.rating = 0;
         this.navbarCollapsed = true;
         this.isMobile = false;
-        this.source = "../../assets/images/shield_";
-        this.menuFields = [{ 'displayName': "dashboard", 'link': "/loggedin-dashboard", 'description': "Se hvad der bevæger sig og få et overblik" },
+        this.metal = "";
+        this.menuFields = [
             { 'displayName': "events", 'link': "/events", 'description': "Listen over bruger arrangementer. Find dit næste event!" },
             { 'displayName': "min profil", 'link': "/my-profile", 'description': "Opdater din profil og se status" },
-            { 'displayName': "betaling", 'link': "/payment", 'description': "Til betalingsgateway hvor du kan styre dit abonnement" }];
+            { 'displayName': "betaling", 'link': "/payment", 'description': "Til betalingsgateway hvor du kan styre dit abonnement" },
+            { 'displayName': "oversigt", 'link': "/loggedin-dashboard", 'description': "Se hvad der bevæger sig og få et overblik" },
+        ];
         this.loginForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
             email: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"](''),
             password: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('')
@@ -164,22 +548,22 @@ var AppNavbarComponent = /** @class */ (function () {
         }
         this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(function (value) {
             var user = new _entity_user_user__WEBPACK_IMPORTED_MODULE_5__["User"](value);
-            _this.username = user._username;
-            _this.rating = user.rating;
-            _this.efbs.getEventsByHost(_this.authService.afAuth.auth.currentUser.uid).subscribe(function (snapshots) {
-                if (snapshots.length < 30) {
-                    _this.source += "bronze.ico";
-                }
-                else if (snapshots.length < 100) {
-                    _this.source += "silver.ico";
-                }
-                else if (snapshots.length < 300) {
-                    _this.source += "gold.ico";
-                }
-                else {
-                    _this.source += "platinum.ico";
-                }
-            });
+            _this.username = user.username;
+            if (user.rating) {
+                _this.rating = user.rating;
+            }
+            if (user.numberOfEventsHosted >= 300) {
+                _this.metal = "/assets/images/shield_platinum.ico";
+            }
+            else if (user.numberOfEventsHosted >= 100) {
+                _this.metal = "/assets/images/shield_gold.ico";
+            }
+            else if (user.numberOfEventsHosted >= 30) {
+                _this.metal = "/assets/images/shield_silver.ico";
+            }
+            else {
+                _this.metal = "/assets/images/shield_bronze.ico";
+            }
         });
     };
     AppNavbarComponent.prototype.signout = function () {
@@ -334,6 +718,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router_testing__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! @angular/router/testing */ "./node_modules/@angular/router/fesm5/testing.js");
 /* harmony import */ var _pipes_active_blocked_pipe__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./pipes/active-blocked.pipe */ "./src/app/pipes/active-blocked.pipe.ts");
 /* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
+/* harmony import */ var _admin_admin_module__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./admin/admin.module */ "./src/app/admin/admin.module.ts");
+/* harmony import */ var _core_auth_guard__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ./core/auth.guard */ "./src/app/core/auth.guard.ts");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _create_wall_post_create_wall_post_component__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ./create-wall-post/create-wall-post.component */ "./src/app/create-wall-post/create-wall-post.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -409,6 +797,11 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 // Spinner
 
+
+
+// Toaster
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -450,9 +843,10 @@ var AppModule = /** @class */ (function () {
                 _patch_notes_patch_notes_component__WEBPACK_IMPORTED_MODULE_17__["PatchNotesComponent"],
                 _view_event_view_event_component__WEBPACK_IMPORTED_MODULE_18__["ViewEventComponent"],
                 _confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_19__["ConfirmationDialogComponent"],
-                _rate_event_rate_event_component__WEBPACK_IMPORTED_MODULE_20__["RateEventComponent"]
+                _rate_event_rate_event_component__WEBPACK_IMPORTED_MODULE_20__["RateEventComponent"],
+                _create_wall_post_create_wall_post_component__WEBPACK_IMPORTED_MODULE_59__["CreateWallPostComponent"]
             ],
-            entryComponents: [_mobile_login_header_mobile_login_header_component__WEBPACK_IMPORTED_MODULE_38__["MobileLoginHeaderComponent"], _confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_19__["ConfirmationDialogComponent"]],
+            entryComponents: [_mobile_login_header_mobile_login_header_component__WEBPACK_IMPORTED_MODULE_38__["MobileLoginHeaderComponent"], _confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_19__["ConfirmationDialogComponent"], _create_wall_post_create_wall_post_component__WEBPACK_IMPORTED_MODULE_59__["CreateWallPostComponent"]],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
                 angularfire2__WEBPACK_IMPORTED_MODULE_4__["AngularFireModule"].initializeApp(_environments_environment__WEBPACK_IMPORTED_MODULE_7__["environment"].firebase),
@@ -497,9 +891,11 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_42__["MatBadgeModule"],
                 _angular_router_testing__WEBPACK_IMPORTED_MODULE_53__["RouterTestingModule"],
                 ngx_spinner__WEBPACK_IMPORTED_MODULE_55__["NgxSpinnerModule"],
-                _angular_http__WEBPACK_IMPORTED_MODULE_3__["HttpModule"]
+                _angular_http__WEBPACK_IMPORTED_MODULE_3__["HttpModule"],
+                _admin_admin_module__WEBPACK_IMPORTED_MODULE_56__["AdminModule"],
+                ngx_toastr__WEBPACK_IMPORTED_MODULE_58__["ToastrModule"].forRoot()
             ],
-            providers: [angular2_cookie_services_cookies_service__WEBPACK_IMPORTED_MODULE_50__["CookieService"]],
+            providers: [angular2_cookie_services_cookies_service__WEBPACK_IMPORTED_MODULE_50__["CookieService"], _core_auth_guard__WEBPACK_IMPORTED_MODULE_57__["AuthGuard"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]]
         })
     ], AppModule);
@@ -587,7 +983,7 @@ var AuthService = /** @class */ (function () {
             .catch(function (error) { return console.log(error); });
     };
     AuthService.prototype.doSocialLoginRegister = function (firebaseUser) {
-        var userEntity = new _entity_user_user__WEBPACK_IMPORTED_MODULE_7__["User"](firebaseUser);
+        var userEntity = new _entity_user_user__WEBPACK_IMPORTED_MODULE_7__["User"]({ "username": firebaseUser.displayName, "email": firebaseUser.email });
         var date = new Date();
         date.setUTCFullYear(2019, 0, 1);
         userEntity.subscribed_until = date;
@@ -643,6 +1039,12 @@ var AuthService = /** @class */ (function () {
     };
     AuthService.prototype.signoutRedirect = function () {
         this.router.navigate(['/']);
+    };
+    AuthService.prototype.authenticated = function () {
+        return this.afAuth.auth.currentUser !== null;
+    };
+    AuthService.prototype.currentUserObservable = function () {
+        return this.afAuth.authState;
     };
     AuthService.prototype.makeid = function () {
         var text = "";
@@ -916,6 +1318,64 @@ var CookiesConsentComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/core/auth.guard.ts":
+/*!************************************!*\
+  !*** ./src/app/core/auth.guard.ts ***!
+  \************************************/
+/*! exports provided: AuthGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuard", function() { return AuthGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var AuthGuard = /** @class */ (function () {
+    function AuthGuard(authService, router) {
+        this.authService = authService;
+        this.router = router;
+    }
+    AuthGuard.prototype.canActivate = function (next, state) {
+        var _this = this;
+        if (this.authService.authenticated()) {
+            return true;
+        }
+        return this.authService.currentUserObservable().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["take"])(1), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (user) {
+            return !!user;
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (loggedIn) {
+            if (!loggedIn) {
+                _this.router.navigate(['/landing-page']);
+            }
+        }));
+    };
+    AuthGuard = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], AuthGuard);
+    return AuthGuard;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/create-account-form/create-account-form.component.css":
 /*!***********************************************************************!*\
   !*** ./src/app/create-account-form/create-account-form.component.css ***!
@@ -1163,9 +1623,11 @@ var CreateNewEventComponent = /** @class */ (function () {
     CreateNewEventComponent.prototype.onSubmitEvent = function () {
         var e = this.formDataToModel();
         this.efbs.insertEvent(e);
+        this.ufbs.updateUser({ numberOfEventsHosted: this.ufbs.getStorage().numberOfEventsHosted + 1 }, this.authService.afAuth.auth.currentUser.uid);
+        console.log(this.ufbs.getStorage().numberOfEventsHosted + 1);
     };
     CreateNewEventComponent.prototype.formDataToModel = function () {
-        var event = new _entity_event_event_model__WEBPACK_IMPORTED_MODULE_2__["Event"]();
+        var event = new _entity_event_event_model__WEBPACK_IMPORTED_MODULE_2__["Event"]({});
         event.name = this.firstFormGroup.value.eventName;
         event.address = new _entity_helper_EventAddress__WEBPACK_IMPORTED_MODULE_3__["EventAddress"](this.firstFormGroup.value.eventLocationStreet, this.apiZipValue, this.firstFormGroup.value.eventLocationZip);
         event.category = this.firstFormGroup.value.eventCategory;
@@ -1188,13 +1650,12 @@ var CreateNewEventComponent = /** @class */ (function () {
         event.minGuests = this.secondFormGroup.value.eventMinGuests;
         event.queue = this.secondFormGroup.value.eventQueue;
         event.targetGroup = this.secondFormGroup.value.eventTargetGroup;
-        event.participants = [{ username: this.ufbs.getStorage()._username }];
+        event.participants = [{ username: this.ufbs.getStorage().username }];
         event.host = this.authService.afAuth.auth.currentUser.uid;
         if (event.hostRating === undefined) {
             event.hostRating = 0;
         }
         this.onNoClick();
-        //event.$key = this.efbs.generateNewHashKey(this.ufbs.convertEmailToKey(this.authService.user.email), event.name);
         return event;
     };
     CreateNewEventComponent.prototype.onNoClick = function () {
@@ -1224,6 +1685,98 @@ var CreateNewEventComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/create-wall-post/create-wall-post.component.css":
+/*!*****************************************************************!*\
+  !*** ./src/app/create-wall-post/create-wall-post.component.css ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "mat-form-field {\r\n    display: block;\r\n}\r\n\r\nbutton {\r\n    margin: 10px;\r\n}"
+
+/***/ }),
+
+/***/ "./src/app/create-wall-post/create-wall-post.component.html":
+/*!******************************************************************!*\
+  !*** ./src/app/create-wall-post/create-wall-post.component.html ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n  <form [formGroup]=\"wallPostForm\">\n    <mat-form-field>\n      <input formControlName=\"message\" matInput placeholder=\"Besked\">\n    </mat-form-field>\n  </form>\n  <button (click)=\"insertWallPost(wallPostForm.value)\" mat-raised-button color=\"primary\">Svar</button>"
+
+/***/ }),
+
+/***/ "./src/app/create-wall-post/create-wall-post.component.ts":
+/*!****************************************************************!*\
+  !*** ./src/app/create-wall-post/create-wall-post.component.ts ***!
+  \****************************************************************/
+/*! exports provided: CreateWallPostComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateWallPostComponent", function() { return CreateWallPostComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _wall_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../wall.service */ "./src/app/wall.service.ts");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+var CreateWallPostComponent = /** @class */ (function () {
+    function CreateWallPostComponent(dialogRef, data, _formBuilder, ws, authService) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this._formBuilder = _formBuilder;
+        this.ws = ws;
+        this.authService = authService;
+    }
+    CreateWallPostComponent.prototype.ngOnInit = function () {
+        this.wallPostForm = this._formBuilder.group({
+            message: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+        });
+    };
+    CreateWallPostComponent.prototype.insertWallPost = function (formData) {
+        console.log(formData, this.data.fk_wall);
+        this.ws.insertPost({ fk_id: this.authService.afAuth.auth.currentUser.uid, message: formData.message }, this.data.fk_wall);
+        this.onNoClick();
+    };
+    CreateWallPostComponent.prototype.onNoClick = function () {
+        this.dialogRef.close();
+    };
+    CreateWallPostComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-create-wall-post',
+            template: __webpack_require__(/*! ./create-wall-post.component.html */ "./src/app/create-wall-post/create-wall-post.component.html"),
+            styles: [__webpack_require__(/*! ./create-wall-post.component.css */ "./src/app/create-wall-post/create-wall-post.component.css")]
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"], Object, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"], _wall_service__WEBPACK_IMPORTED_MODULE_3__["WallService"],
+            _auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]])
+    ], CreateWallPostComponent);
+    return CreateWallPostComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/dummy-list/dummy-list.component.css":
 /*!*****************************************************!*\
   !*** ./src/app/dummy-list/dummy-list.component.css ***!
@@ -1231,7 +1784,7 @@ var CreateNewEventComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "h3 {\r\n    font-size: 0.8rem !important;\r\n    display: table-cell;\r\n    vertical-align: middle;\r\n}\r\n\r\nimg {\r\n    width: 50%;\r\n}\r\n\r\n.column {\r\n    display: table;\r\n}\r\n\r\nbutton {\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    display: block;\r\n    width: 50%;\r\n}"
+module.exports = "h3 {\r\n    font-size: 0.8rem !important;\r\n    display: table-cell;\r\n    vertical-align: middle;\r\n}\r\n\r\nimg {\r\n    width: 50%;\r\n}\r\n\r\n.column {\r\n    display: table;\r\n}\r\n\r\nbutton {\r\n    width: 100%;\r\n}"
 
 /***/ }),
 
@@ -1306,7 +1859,8 @@ var DummyListComponent = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Event", function() { return Event; });
 var Event = /** @class */ (function () {
-    function Event() {
+    function Event(obj) {
+        obj && Object.assign(this, obj);
     }
     return Event;
 }());
@@ -1363,7 +1917,7 @@ var JsonConverter = /** @class */ (function () {
         var obj = JSON.parse(json);
         var user = new _user_user__WEBPACK_IMPORTED_MODULE_0__["User"](obj);
         /*
-        let user = new User(obj._username, obj.email);
+        let user = new User(obj.username, obj.email);
         user.address = obj.address;
         user.birthday = obj.birthday;
         user.children = obj.children;
@@ -1474,6 +2028,27 @@ var Rating = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/entity/user/role.model.ts":
+/*!*******************************************!*\
+  !*** ./src/app/entity/user/role.model.ts ***!
+  \*******************************************/
+/*! exports provided: Role */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Role", function() { return Role; });
+var Role = /** @class */ (function () {
+    function Role(obj) {
+        obj && Object.assign(this, obj);
+    }
+    return Role;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/entity/user/user.ts":
 /*!*************************************!*\
   !*** ./src/app/entity/user/user.ts ***!
@@ -1496,6 +2071,49 @@ var Gender;
     Gender[Gender["MALE"] = 0] = "MALE";
     Gender[Gender["FEMALE"] = 1] = "FEMALE";
 })(Gender || (Gender = {}));
+
+
+/***/ }),
+
+/***/ "./src/app/entity/wall/wall-post.model.ts":
+/*!************************************************!*\
+  !*** ./src/app/entity/wall/wall-post.model.ts ***!
+  \************************************************/
+/*! exports provided: WallPost */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WallPost", function() { return WallPost; });
+var WallPost = /** @class */ (function () {
+    function WallPost(obj) {
+        obj && Object.assign(this, obj);
+    }
+    return WallPost;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/entity/wall/wall.model.ts":
+/*!*******************************************!*\
+  !*** ./src/app/entity/wall/wall.model.ts ***!
+  \*******************************************/
+/*! exports provided: Wall */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Wall", function() { return Wall; });
+var Wall = /** @class */ (function () {
+    function Wall(obj) {
+        obj && Object.assign(this, obj);
+        this.posts = [];
+    }
+    return Wall;
+}());
+
 
 
 /***/ }),
@@ -1700,6 +2318,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angularfire2_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! angularfire2/auth */ "./node_modules/angularfire2/auth/index.js");
 /* harmony import */ var _node_modules_angularfire2_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/angularfire2/database */ "./node_modules/angularfire2/database/index.js");
 /* harmony import */ var _entity_helper_json_converter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./entity/helper/json-converter */ "./src/app/entity/helper/json-converter.ts");
+/* harmony import */ var _wall_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./wall.service */ "./src/app/wall.service.ts");
 var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -1721,10 +2340,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var EventFirebaseService = /** @class */ (function () {
-    function EventFirebaseService(afAuth, db) {
+    function EventFirebaseService(afAuth, db, ws) {
         this.afAuth = afAuth;
         this.db = db;
+        this.ws = ws;
         this.dbPath = '/events/';
         this.jsonConverter = new _entity_helper_json_converter__WEBPACK_IMPORTED_MODULE_3__["JsonConverter"]();
     }
@@ -1745,19 +2366,24 @@ var EventFirebaseService = /** @class */ (function () {
     };
     EventFirebaseService.prototype.insertEvent = function (event) {
         var entry = this.objToJSON(event);
-        this.db.list(this.dbPath).push(event);
+        this.db.list(this.dbPath).push(event).then(function (finished) {
+            console.log(finished);
+        });
     };
     EventFirebaseService.prototype.updateEvent = function (key, e) {
         var eventsRef = this.db.list(this.dbPath);
         eventsRef.set(key, e);
     };
     EventFirebaseService.prototype.deleteEvent = function (key) {
+        var _this = this;
         var itemsRef = this.db.list(this.dbPath);
-        itemsRef.remove(key);
+        itemsRef.remove(key).then(function (finished) {
+            _this.ws.deleteWall(finished.key);
+        });
     };
-    EventFirebaseService.prototype.joinEvent = function (key, username) {
+    EventFirebaseService.prototype.joinEvent = function (key, un) {
         var itemRef = this.db.list(this.dbPath + key + '/participants/');
-        itemRef.push({ username: username });
+        itemRef.push({ username: un });
     };
     EventFirebaseService.prototype.leaveEvent = function (key, pKey) {
         var itemRef = this.db.object(this.dbPath + "/" + key + "/participants/" + pKey);
@@ -1781,7 +2407,8 @@ var EventFirebaseService = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [angularfire2_auth__WEBPACK_IMPORTED_MODULE_1__["AngularFireAuth"], _node_modules_angularfire2_database__WEBPACK_IMPORTED_MODULE_2__["AngularFireDatabase"]])
+        __metadata("design:paramtypes", [angularfire2_auth__WEBPACK_IMPORTED_MODULE_1__["AngularFireAuth"], _node_modules_angularfire2_database__WEBPACK_IMPORTED_MODULE_2__["AngularFireDatabase"],
+            _wall_service__WEBPACK_IMPORTED_MODULE_4__["WallService"]])
     ], EventFirebaseService);
     return EventFirebaseService;
 }());
@@ -1991,6 +2618,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var EventsComponent = /** @class */ (function () {
     function EventsComponent() {
+        this.messages = [
+            { msg: "Her kan du finde alle events som brugerne er arrangøre af netop nu!", title: "Tip" },
+            { msg: "Du kan filtrere ved brug af vinduet: filter til venstre eller ved brug af søgefeltet", title: "Tip" },
+            { msg: "Brug knapperne til at gå til dine egne events, oprette et nyt eller fjerne filtre", title: "Tip" }
+        ];
         this.isMobile = false;
     }
     EventsComponent.prototype.ngOnInit = function () {
@@ -2120,7 +2752,7 @@ module.exports = "mat-card {\r\n    background-color: #1a1a1a;\r\n\tbottom: 0;\r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ### NEW ###-->\r\n  <mat-card>\r\n    <mat-grid-list *ngIf=\"!isMobile\" cols=\"3\" rowHeight=\"200px\">\r\n        <mat-grid-tile>\r\n            <mat-toolbar-row>\r\n                <h4>Hurtige links</h4>\r\n                <ul class=\"cl-effect-1 list-unstyled quick-links\">\r\n                  <li><a [routerLink]=\"['/']\"> Forside </a></li>\r\n                  <li><a [routerLink]=\"['/about']\"> Om </a></li>\r\n                  <li *ngIf=\"isDevelopmentBuild\"><a [routerLink]=\"['/patch-notes']\">Patch Notes</a></li>\r\n                  <li class=\"empty\">empty</li>\r\n                </ul>\r\n              </mat-toolbar-row>\r\n        </mat-grid-tile>\r\n        <mat-grid-tile>\r\n            <mat-toolbar-row>\r\n                <h4>Feedback</h4>\r\n                <ul class=\"cl-effect-1 list-unstyled quick-links\">\r\n                  <li><a [routerLink]=\"['/feedback']\"> Del din historie / Lad os høre din mening </a></li>\r\n                  <li><a [routerLink]=\"['/contact']\"> Kontakt </a></li>\r\n                  <li class=\"empty\">empty</li>\r\n                  <li class=\"empty\">empty</li>\r\n                </ul>\r\n              </mat-toolbar-row>\r\n        </mat-grid-tile>\r\n        <mat-grid-tile>\r\n            <mat-toolbar-row>\r\n                <h4>Privat og vilkår</h4>\r\n                <ul class=\"cl-effect-1 list-unstyled quick-links\">\r\n                  <li><a [routerLink]=\"['/privacy-policy']\"> Handelsbetingelser og Privatlivspolitik </a></li>\r\n                  <li><a [routerLink]=\"['/terms-of-service']\"> Brugsvilkår </a></li>\r\n                  <li><a [routerLink]=\"['/prices']\"> Priser </a></li>\r\n                  <li class=\"empty\">empty</li>\r\n                </ul>\r\n              </mat-toolbar-row>\r\n        </mat-grid-tile>\r\n      </mat-grid-list>\r\n\r\n      <mat-list *ngIf=\"isMobile\">\r\n        <mat-icon [routerLink]=\"['/']\">home</mat-icon>\r\n        <mat-icon [routerLink]=\"['/about']\">info</mat-icon>\r\n        <mat-icon [routerLink]=\"['/contact']\">email</mat-icon>\r\n        <mat-icon [routerLink]=\"['/feedback']\">border_color</mat-icon>\r\n        <mat-icon [routerLink]=\"['/privacy-policy']\">verified_user</mat-icon>\r\n        <mat-icon [routerLink]=\"['/terms-of-service']\">gavel</mat-icon>\r\n        <mat-icon>language</mat-icon>\r\n        <mat-icon [routerLink]=\"['/prices']\">credit_card</mat-icon>\r\n      </mat-list>\r\n\r\n      <mat-toolbar-row>\r\n          <p class=\"cl-effect-1 list-unstyled quick-links signature\"><a class=\"text-green ml-2\" [routerLink]=\"['/']\" target=\"_blank\">© 2018  SingleNetværket</a> </p>\r\n      </mat-toolbar-row>\r\n\r\n  </mat-card>\r\n"
+module.exports = "<!-- ### NEW ###-->\r\n  <mat-card>\r\n    <mat-grid-list *ngIf=\"!isMobile\" cols=\"3\" rowHeight=\"200px\">\r\n        <mat-grid-tile>\r\n            <mat-toolbar-row>\r\n                <h4>Hurtige links</h4>\r\n                <ul class=\"cl-effect-1 list-unstyled quick-links\">\r\n                  <li><a [routerLink]=\"['/']\"> Forside </a></li>\r\n                  <li><a [routerLink]=\"['/about']\"> Om </a></li>\r\n                  <li *ngIf=\"isDevelopmentBuild\"><a [routerLink]=\"['/patch-notes']\">Patch Notes</a></li>\r\n                  <li><a (click)=\"authorize()\" [routerLink]=\"['']\">Admin</a></li>\r\n                </ul>\r\n              </mat-toolbar-row>\r\n        </mat-grid-tile>\r\n        <mat-grid-tile>\r\n            <mat-toolbar-row>\r\n                <h4>Feedback</h4>\r\n                <ul class=\"cl-effect-1 list-unstyled quick-links\">\r\n                  <li><a [routerLink]=\"['/feedback']\"> Del din historie / Lad os høre din mening </a></li>\r\n                  <li><a [routerLink]=\"['/contact']\"> Kontakt </a></li>\r\n                  <li class=\"empty\">empty</li>\r\n                  <li class=\"empty\">empty</li>\r\n                </ul>\r\n              </mat-toolbar-row>\r\n        </mat-grid-tile>\r\n        <mat-grid-tile>\r\n            <mat-toolbar-row>\r\n                <h4>Privat og vilkår</h4>\r\n                <ul class=\"cl-effect-1 list-unstyled quick-links\">\r\n                  <li><a [routerLink]=\"['/privacy-policy']\"> Handelsbetingelser og Privatlivspolitik </a></li>\r\n                  <li><a [routerLink]=\"['/terms-of-service']\"> Brugsvilkår </a></li>\r\n                  <li><a [routerLink]=\"['/prices']\"> Priser </a></li>\r\n                  <li class=\"empty\">empty</li>\r\n                </ul>\r\n              </mat-toolbar-row>\r\n        </mat-grid-tile>\r\n      </mat-grid-list>\r\n\r\n      <mat-list *ngIf=\"isMobile\">\r\n        <mat-icon [routerLink]=\"['/']\">home</mat-icon>\r\n        <mat-icon [routerLink]=\"['/about']\">info</mat-icon>\r\n        <mat-icon [routerLink]=\"['/contact']\">email</mat-icon>\r\n        <mat-icon [routerLink]=\"['/feedback']\">border_color</mat-icon>\r\n        <mat-icon [routerLink]=\"['/privacy-policy']\">verified_user</mat-icon>\r\n        <mat-icon [routerLink]=\"['/terms-of-service']\">gavel</mat-icon>\r\n        <mat-icon>language</mat-icon>\r\n        <mat-icon [routerLink]=\"['/prices']\">credit_card</mat-icon>\r\n      </mat-list>\r\n\r\n      <mat-toolbar-row>\r\n          <p class=\"cl-effect-1 list-unstyled quick-links signature\"><a class=\"text-green ml-2\" [routerLink]=\"['/']\" target=\"_blank\">© 2018  SingleNetværket</a> </p>\r\n      </mat-toolbar-row>\r\n\r\n  </mat-card>\r\n"
 
 /***/ }),
 
@@ -2136,6 +2768,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FooterComponent", function() { return FooterComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _mobile_detector_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mobile-detector.service */ "./src/app/mobile-detector.service.ts");
+/* harmony import */ var _user_role_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../user-role.service */ "./src/app/user-role.service.ts");
+/* harmony import */ var _entity_user_role_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../entity/user/role.model */ "./src/app/entity/user/role.model.ts");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2147,14 +2784,51 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
+
+
+
 var FooterComponent = /** @class */ (function () {
-    function FooterComponent(mds) {
+    function FooterComponent(mds, urs, authService, router, toastr) {
         this.mds = mds;
+        this.urs = urs;
+        this.authService = authService;
+        this.router = router;
+        this.toastr = toastr;
         this.isMobile = false;
         this.isDevelopmentBuild = true;
     }
     FooterComponent.prototype.ngOnInit = function () {
         this.isMobile = this.mds.check();
+    };
+    FooterComponent.prototype.authorize = function () {
+        var _this = this;
+        this.urs.getList().subscribe(function (snapshots) {
+            snapshots.forEach(function (snapshot) {
+                if (snapshot.payload.val().fk_id === _this.authService.afAuth.auth.currentUser.uid) {
+                    var role = new _entity_user_role_model__WEBPACK_IMPORTED_MODULE_3__["Role"](snapshot.payload.val());
+                    if (role.type === _this.urs.userTypes.ADMIN) {
+                        _this.successToast("Du har nu admin adgang", "Success");
+                        _this.router.navigate(['/admin-module']);
+                    }
+                    else {
+                        _this.errorToast("Du har ikke adgang.", "Fejl");
+                    }
+                }
+            });
+        });
+        //let userRole: Role = this.urs.getUserRoleByUserID(this.authService.afAuth.auth.currentUser.uid);
+        //if (userRole.fk_id === "Din Mor") {
+        //}
+    };
+    FooterComponent.prototype.successToast = function (msg, title) {
+        this.toastr.clear();
+        this.toastr.success(msg, title);
+    };
+    FooterComponent.prototype.errorToast = function (msg, title) {
+        this.toastr.clear();
+        this.toastr.error(msg, title);
     };
     FooterComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2162,7 +2836,8 @@ var FooterComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./footer.component.html */ "./src/app/footer/footer.component.html"),
             styles: [__webpack_require__(/*! ./footer.component.css */ "./src/app/footer/footer.component.css")]
         }),
-        __metadata("design:paramtypes", [_mobile_detector_service__WEBPACK_IMPORTED_MODULE_1__["MobileDetectorService"]])
+        __metadata("design:paramtypes", [_mobile_detector_service__WEBPACK_IMPORTED_MODULE_1__["MobileDetectorService"], _user_role_service__WEBPACK_IMPORTED_MODULE_2__["UserRoleService"],
+            _auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], ngx_toastr__WEBPACK_IMPORTED_MODULE_6__["ToastrService"]])
     ], FooterComponent);
     return FooterComponent;
 }());
@@ -2309,7 +2984,7 @@ module.exports = "mat-card {\r\n margin: 5px;\r\n -webkit-transform: translateY(
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!isMobile\" class=\"container\">\r\n\r\n    <a [routerLink]=\"['/']\"><img class=\"mobile\" src=\"./assets/images/Logo_white.png\"></a>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col left\">\r\n        <a [routerLink]=\"['/']\"><img src=\"./assets/images/Logo_white.png\"></a>\r\n      </div>\r\n      <div *ngIf=\"!isMobile && !isLoggedOn\" class=\"col right\">\r\n        <mat-card>\r\n            <form [formGroup]=\"loginForm\">\r\n                <mat-form-field>\r\n                    <mat-label>Email</mat-label>\r\n                    <input formControlName=\"email\" name=\"email\" matInput placeholder=\"email\" autofocus>\r\n                </mat-form-field>\r\n                \r\n                <mat-form-field>\r\n                    <mat-label>Password</mat-label>\r\n                    <input formControlName=\"password\" name=\"password\" matInput placeholder=\"password\" type=\"password\">\r\n                </mat-form-field>\r\n    \r\n                <button (click)=\"tryLogin(loginForm.value)\" mat-raised-button>Login</button>\r\n                <button (click)=\"tryFacebookLogin()\" mat-raised-button color=\"primary\">Login med Facebook</button>\r\n                <button (click)=\"tryGoogleLogin()\" mat-raised-button color=\"accent\">Login med Google</button>\r\n            </form>\r\n        </mat-card>\r\n      </div>\r\n\r\n      <div *ngIf=\"!isMobile && isLoggedOn\" class=\"col right\">\r\n        <button matTooltip=\"Logget på som {{username}}\" class=\"singleton\" routerLink=\"/loggedin-dashboard\" mat-raised-button>Til Dashboard</button>\r\n      </div>\r\n\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"isMobile\">\r\n\r\n  <a [routerLink]=\"['/']\"><img class=\"mobile\" src=\"./assets/images/Logo_white.png\"></a>\r\n\r\n  <div *ngIf=\"!isLoggedOn\">\r\n      <button class=\"mobileBtn\" mat-raised-button (click)=\"openDialog()\">Login</button>\r\n      <button class=\"mobileBtn\" (click)=\"tryFacebookLogin()\" mat-raised-button color=\"primary\">Login med Facebook</button>\r\n      <button class=\"mobileBtn\" (click)=\"tryGoogleLogin()\" mat-raised-button color=\"accent\">Login med Google</button>    \r\n  </div>\r\n  \r\n\r\n  <div *ngIf=\"isLoggedOn\">\r\n      <button class=\"mobileBtn\" matTooltip=\"Logget på som {{username}}\" routerLink=\"/loggedin-dashboard\" mat-raised-button>Til Dashboard</button>\r\n  </div>\r\n\r\n</div>\r\n\r\n<ngx-spinner\r\nbdColor = \"rgba(51, 51, 51, 0.8)\"\r\nsize = \"large\"\r\ncolor = \"#fff\"\r\ntype = \"square-loader\">\r\n</ngx-spinner>"
+module.exports = "<div *ngIf=\"!isMobile\" class=\"container\">\r\n\r\n    <a [routerLink]=\"['/']\"><img class=\"mobile\" src=\"./assets/images/Logo_white.png\"></a>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col left\">\r\n        <a [routerLink]=\"['/']\"><img src=\"./assets/images/Logo_white.png\"></a>\r\n      </div>\r\n      <div *ngIf=\"!isMobile && !isLoggedOn\" class=\"col right\">\r\n        <mat-card>\r\n            <form [formGroup]=\"loginForm\">\r\n                <mat-form-field>\r\n                    <mat-label>Email</mat-label>\r\n                    <input formControlName=\"email\" name=\"email\" matInput placeholder=\"email\" autofocus>\r\n                </mat-form-field>\r\n                \r\n                <mat-form-field>\r\n                    <mat-label>Password</mat-label>\r\n                    <input formControlName=\"password\" name=\"password\" matInput placeholder=\"password\" type=\"password\">\r\n                </mat-form-field>\r\n    \r\n                <button (click)=\"tryLogin(loginForm.value)\" mat-raised-button>Login</button>\r\n                <button (click)=\"tryFacebookLogin()\" mat-raised-button color=\"primary\">Login med Facebook</button>\r\n                <button (click)=\"tryGoogleLogin()\" mat-raised-button color=\"accent\">Login med Google</button>\r\n            </form>\r\n        </mat-card>\r\n      </div>\r\n\r\n      <div *ngIf=\"!isMobile && isLoggedOn\" class=\"col right\">\r\n        <button matTooltip=\"Logget på som {{username}}\" class=\"singleton\" routerLink=\"/events\" mat-raised-button>Til Events</button>\r\n      </div>\r\n\r\n    </div>\r\n</div>\r\n\r\n<div *ngIf=\"isMobile\">\r\n\r\n  <a [routerLink]=\"['/']\"><img class=\"mobile\" src=\"./assets/images/Logo_white.png\"></a>\r\n\r\n  <div *ngIf=\"!isLoggedOn\">\r\n      <button class=\"mobileBtn\" mat-raised-button (click)=\"openDialog()\">Login</button>\r\n      <button class=\"mobileBtn\" (click)=\"tryFacebookLogin()\" mat-raised-button color=\"primary\">Login med Facebook</button>\r\n      <button class=\"mobileBtn\" (click)=\"tryGoogleLogin()\" mat-raised-button color=\"accent\">Login med Google</button>    \r\n  </div>\r\n  \r\n\r\n  <div *ngIf=\"isLoggedOn\">\r\n      <button class=\"mobileBtn\" matTooltip=\"Logget på som {{username}}\" routerLink=\"/loggedin-dashboard\" mat-raised-button>Til Dashboard</button>\r\n  </div>\r\n\r\n</div>\r\n\r\n<ngx-spinner\r\nbdColor = \"rgba(51, 51, 51, 0.8)\"\r\nsize = \"large\"\r\ncolor = \"#fff\"\r\ntype = \"square-loader\">\r\n</ngx-spinner>"
 
 /***/ }),
 
@@ -2332,6 +3007,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
 /* harmony import */ var _user_firebase_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../user-firebase.service */ "./src/app/user-firebase.service.ts");
 /* harmony import */ var _entity_user_user__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../entity/user/user */ "./src/app/entity/user/user.ts");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2350,13 +3027,17 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var LandingPageHeaderComponent = /** @class */ (function () {
-    function LandingPageHeaderComponent(authService, dialog, mds, spinner, ufbs) {
+    function LandingPageHeaderComponent(authService, dialog, mds, spinner, ufbs, toastr, router) {
         this.authService = authService;
         this.dialog = dialog;
         this.mds = mds;
         this.spinner = spinner;
         this.ufbs = ufbs;
+        this.toastr = toastr;
+        this.router = router;
         this.isMobile = false;
         this.isLoggedOn = false;
         this.loginForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
@@ -2374,16 +3055,19 @@ var LandingPageHeaderComponent = /** @class */ (function () {
                 _this.ufbs.getUserByID(user.uid).subscribe(function (value) {
                     if (value === null) {
                         _this.authService.doSocialLoginRegister(user);
+                        _this.showSuccess("Du er nu oprettet & logget ind 👍", "Success!");
                     }
                     else {
                         _this.ufbs.getUserByID(user.uid).subscribe(function (value) {
-                            // This error lies.
-                            var obj = JSON.parse(JSON.stringify(value));
-                            var u = Object.assign(obj, _entity_user_user__WEBPACK_IMPORTED_MODULE_8__["User"]);
+                            var u = new _entity_user_user__WEBPACK_IMPORTED_MODULE_8__["User"](value);
                             _this.ufbs.setStorage(u);
-                            _this.username = u._username;
+                            _this.username = u.username;
+                            if (_this.router.url === "/landing-page") {
+                                _this.showSuccess("Velkommen tilbage 🙂", _this.ufbs.getStorage().username);
+                            }
                         });
                     }
+                    _this.spinner.hide();
                 });
             }
         });
@@ -2398,9 +3082,11 @@ var LandingPageHeaderComponent = /** @class */ (function () {
         }, 2000);
     };
     LandingPageHeaderComponent.prototype.tryFacebookLogin = function () {
+        this.spinner.show();
         this.authService.doFacebookLogin();
     };
     LandingPageHeaderComponent.prototype.tryGoogleLogin = function () {
+        this.spinner.show();
         this.authService.doGoogleLogin();
     };
     LandingPageHeaderComponent.prototype.openDialog = function () {
@@ -2410,6 +3096,12 @@ var LandingPageHeaderComponent = /** @class */ (function () {
         dialogRef.afterClosed().subscribe(function (result) {
         });
     };
+    LandingPageHeaderComponent.prototype.showSuccess = function (msg, status) {
+        if (msg === void 0) { msg = ""; }
+        if (status === void 0) { status = ""; }
+        this.toastr.clear();
+        this.toastr.success(msg, status);
+    };
     LandingPageHeaderComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'landing-page-header',
@@ -2418,7 +3110,8 @@ var LandingPageHeaderComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"], _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"],
             _mobile_detector_service__WEBPACK_IMPORTED_MODULE_5__["MobileDetectorService"], ngx_spinner__WEBPACK_IMPORTED_MODULE_6__["NgxSpinnerService"],
-            _user_firebase_service__WEBPACK_IMPORTED_MODULE_7__["UserFirebaseService"]])
+            _user_firebase_service__WEBPACK_IMPORTED_MODULE_7__["UserFirebaseService"], ngx_toastr__WEBPACK_IMPORTED_MODULE_9__["ToastrService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_10__["Router"]])
     ], LandingPageHeaderComponent);
     return LandingPageHeaderComponent;
 }());
@@ -2546,7 +3239,7 @@ module.exports = ".mat-card-menu {\r\n    margin-top: auto;\r\n    margin-bottom
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\r\n<div class=\"container\">\r\n    <h1>Mit Dashboard</h1>\r\n\r\n    <mat-card>\r\n        <mat-card class=\"mat-card-menu\" *ngFor=\"let tile of tiles\">\r\n            <button class=\"dashboard-button\" mat-button [disabled]=\"!tile.enabled\" routerLink='{{tile.link}}'>{{tile.text}}</button>\r\n        </mat-card>\r\n    </mat-card>\r\n\r\n    <mat-card *ngIf=\"!isMobile\">\r\n        <mat-grid-list cols=\"3\" rowHeight=\"50px\">\r\n            <mat-grid-tile>\r\n                    <h3>Events: netop nu</h3>\r\n            </mat-grid-tile>\r\n            <mat-grid-tile>\r\n                \r\n            </mat-grid-tile>\r\n            <mat-grid-tile>\r\n                    <h3>Rating af mine events</h3>\r\n            </mat-grid-tile>\r\n        </mat-grid-list>\r\n        <mat-grid-list cols=\"3\" rowHeight=\"350px\">\r\n            <mat-grid-tile>\r\n               <mat-card>\r\n                    <mat-chip-list>\r\n                        <div class=\"center\">\r\n                            <mat-chip *ngFor=\"let recTile of recommendationTiles | slice:-6\" color=\"primary\" selected><mat-icon>today</mat-icon>{{recTile.name}}<mat-icon>group</mat-icon>{{recTile.pCount}}</mat-chip>\r\n                        </div>\r\n                    </mat-chip-list>\r\n               </mat-card>\r\n            </mat-grid-tile>\r\n            <mat-grid-tile>\r\n\r\n            </mat-grid-tile>\r\n            <mat-grid-tile>\r\n                <mat-card>\r\n                    <mat-chip-list>\r\n                        <div class=\"center\">\r\n                            <mat-chip *ngFor=\"let feedback of feedbackTiles\" color=\"accent\" selected><mat-icon>today</mat-icon>{{feedback.fk_event}}<mat-icon>thumb_up_alt</mat-icon> + {{feedback.score}}</mat-chip>\r\n                        </div>\r\n                    </mat-chip-list>\r\n                </mat-card>\r\n            </mat-grid-tile>\r\n        </mat-grid-list>\r\n    </mat-card>\r\n\r\n    <mat-card *ngIf=\"isMobile\">\r\n        <mat-chip-list>\r\n            <div class=\"center\">\r\n                <h3>Events: netop nu</h3>\r\n                <mat-chip *ngFor=\"let recTile of recommendationTiles\" color=\"primary\" selected><mat-icon>today</mat-icon>{{recTile.eventName}}<mat-icon>group</mat-icon>{{recTile.participants}}</mat-chip>\r\n            </div>\r\n        </mat-chip-list>\r\n    </mat-card>\r\n\r\n    <mat-card *ngIf=\"isMobile\">\r\n        <mat-chip-list>\r\n            <div class=\"center\">\r\n                <h3>Rating af mine events</h3>\r\n                <mat-chip *ngFor=\"let feedback of feedbackTiles\" color=\"accent\" selected><mat-icon>today</mat-icon>{{feedback.fk_event}}<mat-icon>thumb_up_alt</mat-icon> + {{feedback.score}}</mat-chip>\r\n            </div>\r\n        </mat-chip-list>\r\n    </mat-card>\r\n\r\n</div>\r\n"
+module.exports = "<app-navbar></app-navbar>\r\n<div class=\"container\">\r\n    <h1>Overblik</h1>\r\n\r\n    <mat-card *ngIf=\"!isMobile\">\r\n        <mat-grid-list cols=\"3\" rowHeight=\"50px\">\r\n            <mat-grid-tile>\r\n                    <h3>Seneste events</h3>\r\n            </mat-grid-tile>\r\n            <mat-grid-tile>\r\n                \r\n            </mat-grid-tile>\r\n            <mat-grid-tile>\r\n                    <h3>Rating af mine events</h3>\r\n            </mat-grid-tile>\r\n        </mat-grid-list>\r\n        <mat-grid-list cols=\"3\" rowHeight=\"350px\">\r\n            <mat-grid-tile>\r\n               <mat-card>\r\n                    <mat-chip-list>\r\n                        <div class=\"center\">\r\n                            <mat-chip *ngFor=\"let recTile of recommendationTiles | slice:-6\" color=\"primary\" selected><mat-icon>today</mat-icon>{{recTile.name}}<mat-icon>group</mat-icon>{{recTile.pCount}}</mat-chip>\r\n                        </div>\r\n                    </mat-chip-list>\r\n\r\n                    <mat-card-actions>\r\n                        <button routerLink=\"/events\" mat-button color=\"primary\">Se flere</button> \r\n                    </mat-card-actions>\r\n\r\n               </mat-card>\r\n            </mat-grid-tile>\r\n            <mat-grid-tile>\r\n\r\n            </mat-grid-tile>\r\n            <mat-grid-tile>\r\n                <mat-card>\r\n                    <mat-chip-list>\r\n                        <div class=\"center\">\r\n                            <mat-chip *ngFor=\"let feedback of feedbackTiles\" color=\"accent\" selected><mat-icon>today</mat-icon>{{feedback.fk_event}}<mat-icon>thumb_up_alt</mat-icon> + {{feedback.score}}</mat-chip>\r\n                            \r\n                            <mat-card-actions>\r\n                                <button *ngIf=\"tCount === 0\" mat-button color=\"warn\">Ingen bedømmelser</button>\r\n                            </mat-card-actions>\r\n                        \r\n                        </div>\r\n                    </mat-chip-list>\r\n                </mat-card>\r\n            </mat-grid-tile>\r\n        </mat-grid-list>\r\n    </mat-card>\r\n\r\n    <mat-card *ngIf=\"isMobile\">\r\n        <mat-chip-list>\r\n            <div class=\"center\">\r\n                <h3>Events: netop nu</h3>\r\n                <mat-chip *ngFor=\"let recTile of recommendationTiles\" color=\"primary\" selected><mat-icon>today</mat-icon>{{recTile.eventName}}<mat-icon>group</mat-icon>{{recTile.participants}}</mat-chip>\r\n            </div>\r\n        </mat-chip-list>\r\n    </mat-card>\r\n\r\n    <mat-card *ngIf=\"isMobile\">\r\n        <mat-chip-list>\r\n            <div class=\"center\">\r\n                <h3>Rating af mine events</h3>\r\n                <mat-chip *ngFor=\"let feedback of feedbackTiles\" color=\"accent\" selected><mat-icon>today</mat-icon>{{feedback.fk_event}}<mat-icon>thumb_up_alt</mat-icon> + {{feedback.score}}</mat-chip>\r\n            </div>\r\n        </mat-chip-list>\r\n    </mat-card>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2565,6 +3258,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
 /* harmony import */ var _rating_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../rating.service */ "./src/app/rating.service.ts");
 /* harmony import */ var _event_firebase_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../event-firebase.service */ "./src/app/event-firebase.service.ts");
+/* harmony import */ var _mobile_detector_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mobile-detector.service */ "./src/app/mobile-detector.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2579,28 +3273,31 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var LoggedinDashboardComponent = /** @class */ (function () {
-    function LoggedinDashboardComponent(ufbs, authService, rs, efbs) {
+    function LoggedinDashboardComponent(ufbs, authService, rs, efbs, md) {
         var _this = this;
         this.ufbs = ufbs;
         this.authService = authService;
         this.rs = rs;
         this.efbs = efbs;
+        this.md = md;
         this.isMobile = false;
         this.tiles = [
             { text: 'Events', link: '/events', enabled: true },
             { text: 'Min Profil', link: '/my-profile', enabled: true },
-            { text: 'Dashboard', link: '/loggedin-dashboard', enabled: true },
+            { text: 'Oversigt', link: '/loggedin-dashboard', enabled: true },
             { text: 'Betaling', link: '/payment', enabled: true },
             { text: 'Beskeder', link: '/privmsg', enabled: false },
         ];
-        this.unreadMessages = 0;
+        this.tCount = 0;
         this.rs.getRecentRatingsForUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(function (snapshots) {
             snapshots.forEach(function (snapshot) {
                 _this.feedbackTiles = [];
-                _this.efbs.getEventByKey(snapshot.fk_event).snapshotChanges().subscribe(function (value) {
-                    _this.feedbackTiles.push({ score: snapshot.score, fk_event: value.payload.val().name, fk_host: snapshot.fk_host });
+                _this.efbs.getEventByKey(snapshot.fk_event).snapshotChanges().subscribe(function (ss) {
+                    _this.feedbackTiles.push({ score: snapshot.score, fk_event: ss.payload.val().name, fk_host: snapshot.fk_host });
                 });
+                _this.tCount = _this.feedbackTiles.length;
             });
         });
         this.efbs.getList('/events').subscribe(function (snapshots) {
@@ -2616,17 +3313,7 @@ var LoggedinDashboardComponent = /** @class */ (function () {
         });
     }
     LoggedinDashboardComponent.prototype.ngOnInit = function () {
-        this.unreadMessages = Math.floor(Math.random() * 20) + 1;
-        if (window.screen.width <= 600) {
-            this.isMobile = true;
-        }
-    };
-    LoggedinDashboardComponent.prototype.makeid = function (count) {
-        var text = "";
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        for (var i = 0; i < count; i++)
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-        return text;
+        this.isMobile = this.md.check();
     };
     LoggedinDashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2635,7 +3322,7 @@ var LoggedinDashboardComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./loggedin-dashboard.component.css */ "./src/app/loggedin-dashboard/loggedin-dashboard.component.css")]
         }),
         __metadata("design:paramtypes", [_user_firebase_service__WEBPACK_IMPORTED_MODULE_1__["UserFirebaseService"], _auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"],
-            _rating_service__WEBPACK_IMPORTED_MODULE_3__["RatingService"], _event_firebase_service__WEBPACK_IMPORTED_MODULE_4__["EventFirebaseService"]])
+            _rating_service__WEBPACK_IMPORTED_MODULE_3__["RatingService"], _event_firebase_service__WEBPACK_IMPORTED_MODULE_4__["EventFirebaseService"], _mobile_detector_service__WEBPACK_IMPORTED_MODULE_5__["MobileDetectorService"]])
     ], LoggedinDashboardComponent);
     return LoggedinDashboardComponent;
 }());
@@ -2888,8 +3575,7 @@ var MyEventComponent = /** @class */ (function () {
         this.efbs.updateEvent(e.key, e);
     };
     MyEventComponent.prototype.formDataToModel = function () {
-        var event = new _entity_event_event_model__WEBPACK_IMPORTED_MODULE_1__["Event"]();
-        event.key = this.myEvent.key;
+        var event = new _entity_event_event_model__WEBPACK_IMPORTED_MODULE_1__["Event"]({});
         event.name = this.firstFormGroup.value.eventName;
         event.address = new _entity_helper_EventAddress__WEBPACK_IMPORTED_MODULE_7__["EventAddress"](this.firstFormGroup.value.eventLocationStreet, this.apiZipValue, this.firstFormGroup.value.eventLocationZip);
         event.category = this.firstFormGroup.value.eventCategory;
@@ -2912,11 +3598,11 @@ var MyEventComponent = /** @class */ (function () {
         event.minGuests = this.secondFormGroup.value.eventMinGuests;
         event.queue = this.secondFormGroup.value.eventQueue;
         event.targetGroup = this.secondFormGroup.value.eventTargetGroup;
-        event.host = this.ufbs.getStorage().email;
+        event.participants = [{ username: this.ufbs.getStorage().username }];
+        event.host = this.authService.afAuth.auth.currentUser.uid;
         if (event.hostRating === undefined) {
             event.hostRating = 0;
         }
-        //event.$key = this.efbs.generateNewHashKey(this.ufbs.convertEmailToKey(this.authService.user.email), event.name);
         return event;
     };
     MyEventComponent.prototype.lookUpZip = function (event) {
@@ -2981,6 +3667,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-spinner */ "./node_modules/ngx-spinner/fesm5/ngx-spinner.js");
 /* harmony import */ var _user_firebase_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../user-firebase.service */ "./src/app/user-firebase.service.ts");
 /* harmony import */ var _confirmation_dialog_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../confirmation-dialog/confirmation-dialog.component */ "./src/app/confirmation-dialog/confirmation-dialog.component.ts");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2997,13 +3684,16 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var MyEventsComponent = /** @class */ (function () {
-    function MyEventsComponent(efbs, mds, spinner, ufbs, dialog) {
+    function MyEventsComponent(efbs, mds, spinner, ufbs, dialog, authService) {
+        var _this = this;
         this.efbs = efbs;
         this.mds = mds;
         this.spinner = spinner;
         this.ufbs = ufbs;
         this.dialog = dialog;
+        this.authService = authService;
         this.isMobile = false;
         this.error = "";
         this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableDataSource"]();
@@ -3011,19 +3701,15 @@ var MyEventsComponent = /** @class */ (function () {
         this.dataSourceMobile = new _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableDataSource"]();
         this.displayedColumnsMobile = ['name', 'address', 'available', 'actions'];
         this.events = [];
-        this.efbs.getEventsByHost(this.ufbs.getStorage().email).subscribe(function (res) {
-            console.log(res);
-            /*
-            this.events = res;
-            this.dataSource = new MatTableDataSource(this.events);
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
-    
-            this.dataSourceMobile = new MatTableDataSource(this.events);
-            this.dataSourceMobile.paginator = this.paginator;
-            this.dataSourceMobile.sort = this.sort;
-            this.spinner.hide();
-            */
+        this.efbs.getEventsByHost(this.authService.afAuth.auth.currentUser.uid).subscribe(function (res) {
+            _this.events = res;
+            _this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableDataSource"](_this.events);
+            _this.dataSource.paginator = _this.paginator;
+            _this.dataSource.sort = _this.sort;
+            _this.dataSourceMobile = new _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableDataSource"](_this.events);
+            _this.dataSourceMobile.paginator = _this.paginator;
+            _this.dataSourceMobile.sort = _this.sort;
+            _this.spinner.hide();
         });
     }
     MyEventsComponent.prototype.ngOnInit = function () {
@@ -3070,7 +3756,7 @@ var MyEventsComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_event_firebase_service__WEBPACK_IMPORTED_MODULE_2__["EventFirebaseService"], _mobile_detector_service__WEBPACK_IMPORTED_MODULE_3__["MobileDetectorService"],
             ngx_spinner__WEBPACK_IMPORTED_MODULE_4__["NgxSpinnerService"], _user_firebase_service__WEBPACK_IMPORTED_MODULE_5__["UserFirebaseService"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"]])
+            _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"], _auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"]])
     ], MyEventsComponent);
     return MyEventsComponent;
 }());
@@ -3198,7 +3884,7 @@ var MyProfileComponent = /** @class */ (function () {
         var _this = this;
         this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(function (value) {
             var user = new _entity_user_user__WEBPACK_IMPORTED_MODULE_4__["User"](value);
-            _this.username = user._username;
+            _this.username = user.username;
             _this.email = user.email;
             _this.state = user.isActivated;
             _this.activationText = _this.state ? "Deaktiver" : "Aktiver";
@@ -3229,7 +3915,7 @@ var MyProfileComponent = /** @class */ (function () {
         var _this = this;
         this.ufbs.updateUser(formData, this.authService.afAuth.auth.currentUser.uid);
         this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(function (value) {
-            _this.ufbs.setStorage(Object.assign(JSON.parse(JSON.stringify(value)), _entity_user_user__WEBPACK_IMPORTED_MODULE_4__["User"]));
+            _this.ufbs.setStorage(new _entity_user_user__WEBPACK_IMPORTED_MODULE_4__["User"](value));
         });
         this.accountProgress();
     };
@@ -3396,7 +4082,7 @@ module.exports = "h1 {\r\n    text-align: center;\r\n    color: snow;\r\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<landing-page-header></landing-page-header>\r\n<h1>Patch Notes</h1>\r\n<mat-card>\r\n\r\n    <mat-expansion-panel>\r\n        <mat-expansion-panel-header>\r\n          <mat-panel-title>\r\n            05/10-2018\r\n          </mat-panel-title>\r\n          <mat-panel-description>\r\n            Titel\r\n          </mat-panel-description>\r\n        </mat-expansion-panel-header>\r\n\r\n        <h4>Betalingsflow</h4>\r\n        <p>Der er oprettet et element i menuen, hvor brugere kan betale, hvor PensoPay kan se hvordan flowet er.</p>\r\n        <h4>Forbedret sikkerhed</h4>\r\n        <p>Der er brugt tid på at forbedre login og autorisering.</p>\r\n        <h4>Responsive design forbedringer</h4>\r\n        <p>Vi har forbedret det responsive design så det er mere mobil venligt</p>\r\n        <h4>Navigations menu opdateringer</h4>\r\n        <p>Der er kommet nye felter i menuen, inklusiv rating. </p>\r\n        <h4>Dashboard opdateringer</h4>\r\n        <p>Nye events bliver vist i dashboard inklusive rating af værtens arrangementer.</p>\r\n        <h4>HTML opdateringer</h4>\r\n        <p>Deaktivering/aktivering af profil og sletning. Advarsels tekst m.fl.</p>\r\n\r\n      </mat-expansion-panel>\r\n\r\n    <mat-expansion-panel>\r\n        <mat-expansion-panel-header>\r\n          <mat-panel-title>\r\n            28/09-2018\r\n          </mat-panel-title>\r\n          <mat-panel-description>\r\n            Events genbesøgt\r\n          </mat-panel-description>\r\n        </mat-expansion-panel-header>\r\n\r\n        <h4>Opret et event</h4>\r\n        <p>Der kan oprettes events og disse kan findes i tabellen over alle events.</p>\r\n        <h4>Det enkelte Events</h4>\r\n        <p>Det er muligt at klikke på de enkelte events og komme ind på siden på dennes side, hvor der kan læses detaljer, se mødelister osv.</p>\r\n        <h4>Tilmelding/framelding</h4>\r\n        <p>Brugere kan tilmelde sig events og framelde sig events</p>\r\n        <h4>Rating</h4>\r\n        <p>Inde på de enkelte events kan brugere nu bedømme et arrangement. Der gives en score fra 1-5 og værtens totale score beregnes ved hver bedømmelse.</p>\r\n        <p>*En score gives for det enkelte event. En brugeres score er den totale sum af alle hans/hendes arrangementer / n, hvor n er antallet.</p>\r\n        <h4>Slette et event</h4>\r\n        <p>Der er nu muligt at slette sine egne arrangementer.</p>\r\n\r\n      </mat-expansion-panel>\r\n\r\n      <mat-expansion-panel>\r\n          <mat-expansion-panel-header>\r\n            <mat-panel-title>\r\n              21/09-2018\r\n            </mat-panel-title>\r\n            <mat-panel-description>\r\n              Social login & event redigering \r\n            </mat-panel-description>\r\n          </mat-expansion-panel-header>\r\n\r\n        <h4>Social Login</h4>\r\n        <p>Det er nu muligt at logge ind med Google/Facebook (og stadigvæk med oprettet konto email+password)</p>\r\n        <h4>Mine events</h4>\r\n        <p>Brugeren kan se en liste over de events, som kan selv er arrangør for.</p>\r\n        <h4>Mit event</h4>\r\n        <p>Ved at klikke på et event i listen over sine events, kan brugeren redigere eget event.</p>\r\n        <h4>Filtre</h4>\r\n        <p>Filtrene i filtervinduet virker nu på tabellen og der er kommet en ekstra indstilling: kategori</p>\r\n        <h4>HTML rettelser</h4>\r\n        <p>Footer opdateret, fyldtekst opdateret, favicon, responsive design problemer rettet</p>\r\n        \r\n      </mat-expansion-panel>\r\n\r\n        <mat-card-actions>\r\n          <a href=\"https://www.fenrirgamestudio.dk\" mat-button>FENRIR GAME STUDIO</a>\r\n        </mat-card-actions>\r\n          \r\n</mat-card>\r\n\r\n"
+module.exports = "<landing-page-header></landing-page-header>\r\n<h1>Patch Notes</h1>\r\n<mat-card>\r\n\r\n    <mat-expansion-panel>\r\n        <mat-expansion-panel-header>\r\n          <mat-panel-title>\r\n            12/10-2018\r\n          </mat-panel-title>\r\n          <mat-panel-description>\r\n            Messenging, admin, refactor\r\n          </mat-panel-description>\r\n        </mat-expansion-panel-header>\r\n\r\n        <h4>Messenging</h4>\r\n        <p>Inde på det enkelte event er der en væg, hvor brugerne kan skrive beskeder. Beskedens ejermand kan slette og værten kan slette.</p>\r\n        <h4>Forbedret sikkerhed</h4>\r\n        <p>Der er brugt tid på at implementerer sti beskyttelse, så kun autoriserede brugere kan få adgang til resourcer.</p>\r\n        <h4>Admin</h4>\r\n        <p>Der er lavet en tabel for brugertyper. Hvis man er admin kan man få adgang til admin panelet i footeren</p>\r\n        <h4>Newsletter</h4>\r\n        <p>Som admin kan man nu skrive nyhedsbreve ud. Dog bliver de ikke sendt ud endnu. Denne feature afhæner af cloud functions</p>\r\n        <h4>Toastr</h4>\r\n        <p>System der viser brugeren beskeder når der logges ind er implementeret. Det understøtte også tips/info, hvor der kunne være behov for det.</p>\r\n\r\n      </mat-expansion-panel>\r\n\r\n    <mat-expansion-panel>\r\n        <mat-expansion-panel-header>\r\n          <mat-panel-title>\r\n            05/10-2018\r\n          </mat-panel-title>\r\n          <mat-panel-description>\r\n            Titel\r\n          </mat-panel-description>\r\n        </mat-expansion-panel-header>\r\n\r\n        <h4>Betalingsflow</h4>\r\n        <p>Der er oprettet et element i menuen, hvor brugere kan betale, hvor PensoPay kan se hvordan flowet er.</p>\r\n        <h4>Forbedret sikkerhed</h4>\r\n        <p>Der er brugt tid på at forbedre login og autorisering.</p>\r\n        <h4>Responsive design forbedringer</h4>\r\n        <p>Vi har forbedret det responsive design så det er mere mobil venligt</p>\r\n        <h4>Navigations menu opdateringer</h4>\r\n        <p>Der er kommet nye felter i menuen, inklusiv rating. </p>\r\n        <h4>Dashboard opdateringer</h4>\r\n        <p>Nye events bliver vist i dashboard inklusive rating af værtens arrangementer.</p>\r\n        <h4>HTML opdateringer</h4>\r\n        <p>Deaktivering/aktivering af profil og sletning. Advarsels tekst m.fl.</p>\r\n\r\n      </mat-expansion-panel>\r\n\r\n    <mat-expansion-panel>\r\n        <mat-expansion-panel-header>\r\n          <mat-panel-title>\r\n            28/09-2018\r\n          </mat-panel-title>\r\n          <mat-panel-description>\r\n            Events genbesøgt\r\n          </mat-panel-description>\r\n        </mat-expansion-panel-header>\r\n\r\n        <h4>Opret et event</h4>\r\n        <p>Der kan oprettes events og disse kan findes i tabellen over alle events.</p>\r\n        <h4>Det enkelte Events</h4>\r\n        <p>Det er muligt at klikke på de enkelte events og komme ind på siden på dennes side, hvor der kan læses detaljer, se mødelister osv.</p>\r\n        <h4>Tilmelding/framelding</h4>\r\n        <p>Brugere kan tilmelde sig events og framelde sig events</p>\r\n        <h4>Rating</h4>\r\n        <p>Inde på de enkelte events kan brugere nu bedømme et arrangement. Der gives en score fra 1-5 og værtens totale score beregnes ved hver bedømmelse.</p>\r\n        <p>*En score gives for det enkelte event. En brugeres score er den totale sum af alle hans/hendes arrangementer / n, hvor n er antallet.</p>\r\n        <h4>Slette et event</h4>\r\n        <p>Der er nu muligt at slette sine egne arrangementer.</p>\r\n\r\n      </mat-expansion-panel>\r\n\r\n      <mat-expansion-panel>\r\n          <mat-expansion-panel-header>\r\n            <mat-panel-title>\r\n              21/09-2018\r\n            </mat-panel-title>\r\n            <mat-panel-description>\r\n              Social login & event redigering \r\n            </mat-panel-description>\r\n          </mat-expansion-panel-header>\r\n\r\n        <h4>Social Login</h4>\r\n        <p>Det er nu muligt at logge ind med Google/Facebook (og stadigvæk med oprettet konto email+password)</p>\r\n        <h4>Mine events</h4>\r\n        <p>Brugeren kan se en liste over de events, som kan selv er arrangør for.</p>\r\n        <h4>Mit event</h4>\r\n        <p>Ved at klikke på et event i listen over sine events, kan brugeren redigere eget event.</p>\r\n        <h4>Filtre</h4>\r\n        <p>Filtrene i filtervinduet virker nu på tabellen og der er kommet en ekstra indstilling: kategori</p>\r\n        <h4>HTML rettelser</h4>\r\n        <p>Footer opdateret, fyldtekst opdateret, favicon, responsive design problemer rettet</p>\r\n        \r\n      </mat-expansion-panel>\r\n\r\n        <mat-card-actions>\r\n          <a href=\"https://www.fenrirgamestudio.dk\" mat-button>FENRIR GAME STUDIO</a>\r\n        </mat-card-actions>\r\n          \r\n</mat-card>\r\n\r\n"
 
 /***/ }),
 
@@ -3507,7 +4193,7 @@ var PaymentComponent = /** @class */ (function () {
             card: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
         });
         this.thirdFormGroup = this._formBuilder.group({
-            username: this.ufbs.getStorage()._username,
+            username: this.ufbs.getStorage().username,
             email: this.ufbs.getStorage().email,
             date: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
         });
@@ -3736,8 +4422,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user_firebase_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../user-firebase.service */ "./src/app/user-firebase.service.ts");
 /* harmony import */ var _event_firebase_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../event-firebase.service */ "./src/app/event-firebase.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _rating_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../rating.service */ "./src/app/rating.service.ts");
-/* harmony import */ var _entity_rating_rating_model__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../entity/rating/rating.model */ "./src/app/entity/rating/rating.model.ts");
+/* harmony import */ var _entity_user_user__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../entity/user/user */ "./src/app/entity/user/user.ts");
+/* harmony import */ var _rating_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../rating.service */ "./src/app/rating.service.ts");
+/* harmony import */ var _entity_rating_rating_model__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../entity/rating/rating.model */ "./src/app/entity/rating/rating.model.ts");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3754,30 +4442,38 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var RateEventComponent = /** @class */ (function () {
-    function RateEventComponent(ufbs, efbs, route, rs) {
+    function RateEventComponent(ufbs, efbs, route, rs, authService) {
         var _this = this;
         this.ufbs = ufbs;
         this.efbs = efbs;
         this.route = route;
         this.rs = rs;
+        this.authService = authService;
         this.ratingForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]();
         this.route.queryParams.subscribe(function (params) {
             _this.efbs.getEventByKey(params['key']).snapshotChanges().subscribe(function (res) {
                 _this.event = Object.assign(res.payload.val());
                 _this.event.key = res.key;
-            });
+            }).unsubscribe();
         });
     }
     RateEventComponent.prototype.ngOnInit = function () {
     };
     RateEventComponent.prototype.rate = function (scoreValueFromForm) {
-        var r = new _entity_rating_rating_model__WEBPACK_IMPORTED_MODULE_6__["Rating"]();
-        r.score = scoreValueFromForm;
-        r.fk_event = this.event.key;
-        r.fk_host = this.event.host;
-        r.byUser = this.ufbs.getStorage()._username;
-        this.rs.insertRating(r, this.event);
+        var _this = this;
+        this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(function (snapshot) {
+            var r = new _entity_rating_rating_model__WEBPACK_IMPORTED_MODULE_7__["Rating"]();
+            var u = new _entity_user_user__WEBPACK_IMPORTED_MODULE_5__["User"](snapshot);
+            r.score = scoreValueFromForm;
+            r.fk_event = _this.event.key;
+            r.fk_host = _this.event.host;
+            r.byUser = u.username;
+            _this.rs.insertRating(r);
+            _this.rs.updateUserScore(r.fk_host);
+        }).unsubscribe();
     };
     RateEventComponent.prototype.updateUserScore = function () {
         this.rs.updateUserScore(this.event.host);
@@ -3789,7 +4485,7 @@ var RateEventComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./rate-event.component.css */ "./src/app/rate-event/rate-event.component.css")]
         }),
         __metadata("design:paramtypes", [_user_firebase_service__WEBPACK_IMPORTED_MODULE_2__["UserFirebaseService"], _event_firebase_service__WEBPACK_IMPORTED_MODULE_3__["EventFirebaseService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"], _rating_service__WEBPACK_IMPORTED_MODULE_5__["RatingService"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["ActivatedRoute"], _rating_service__WEBPACK_IMPORTED_MODULE_6__["RatingService"], _auth_service__WEBPACK_IMPORTED_MODULE_8__["AuthService"]])
     ], RateEventComponent);
     return RateEventComponent;
 }());
@@ -3812,9 +4508,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angularfire2_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! angularfire2/auth */ "./node_modules/angularfire2/auth/index.js");
 /* harmony import */ var _node_modules_angularfire2_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/angularfire2/database */ "./node_modules/angularfire2/database/index.js");
 /* harmony import */ var _entity_helper_json_converter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./entity/helper/json-converter */ "./src/app/entity/helper/json-converter.ts");
-/* harmony import */ var _entity_user_user__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./entity/user/user */ "./src/app/entity/user/user.ts");
-/* harmony import */ var _user_firebase_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./user-firebase.service */ "./src/app/user-firebase.service.ts");
-/* harmony import */ var _event_firebase_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./event-firebase.service */ "./src/app/event-firebase.service.ts");
+/* harmony import */ var _user_firebase_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./user-firebase.service */ "./src/app/user-firebase.service.ts");
+/* harmony import */ var _event_firebase_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./event-firebase.service */ "./src/app/event-firebase.service.ts");
 var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
         s = arguments[i];
@@ -3873,7 +4568,6 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 
-
 var RatingService = /** @class */ (function () {
     function RatingService(afAuth, db, ufbs, efbs) {
         this.afAuth = afAuth;
@@ -3901,28 +4595,17 @@ var RatingService = /** @class */ (function () {
         this.db.list(this.dbPath).snapshotChanges().subscribe(function (snapshots) {
             snapshots.forEach(function (snapshot) {
                 if (snapshot.payload.val().fk_host === host) {
-                    userScore += snapshot.payload.val().score;
+                    userScore += Number(snapshot.payload.val().score);
                     count++;
                 }
             });
-            _this.ufbs.getList('/users/').subscribe(function (values) {
-                var email = "";
-                values.forEach(function (value) {
-                    if (value.email === host) {
-                        var user = Object.assign(value, _entity_user_user__WEBPACK_IMPORTED_MODULE_4__["User"]);
-                        user.score = userScore / count;
-                        _this.ufbs.updateUser({ score: user.score }, _this.afAuth.auth.currentUser.uid);
-                    }
-                });
-            });
-        });
+            _this.ufbs.updateUser({ rating: userScore }, host);
+        }).unsubscribe();
     };
-    RatingService.prototype.insertRating = function (rating, event) {
+    RatingService.prototype.insertRating = function (rating) {
         return __awaiter(this, void 0, void 0, function () {
-            var entry;
             return __generator(this, function (_a) {
-                entry = this.objToJSON(rating);
-                this.db.object(this.dbPath + (rating.fk_event + this.ufbs.getStorage()._username)).update(entry);
+                this.db.object(this.dbPath + (rating.fk_event + rating.byUser)).update(rating);
                 return [2 /*return*/];
             });
         });
@@ -3935,7 +4618,7 @@ var RatingService = /** @class */ (function () {
             providedIn: 'root'
         }),
         __metadata("design:paramtypes", [angularfire2_auth__WEBPACK_IMPORTED_MODULE_1__["AngularFireAuth"], _node_modules_angularfire2_database__WEBPACK_IMPORTED_MODULE_2__["AngularFireDatabase"],
-            _user_firebase_service__WEBPACK_IMPORTED_MODULE_5__["UserFirebaseService"], _event_firebase_service__WEBPACK_IMPORTED_MODULE_6__["EventFirebaseService"]])
+            _user_firebase_service__WEBPACK_IMPORTED_MODULE_4__["UserFirebaseService"], _event_firebase_service__WEBPACK_IMPORTED_MODULE_5__["EventFirebaseService"]])
     ], RatingService);
     return RatingService;
 }());
@@ -3948,11 +4631,12 @@ var RatingService = /** @class */ (function () {
 /*!***********************************!*\
   !*** ./src/app/routing.module.ts ***!
   \***********************************/
-/*! exports provided: RoutingModule */
+/*! exports provided: ModuleRouting, RoutingModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModuleRouting", function() { return ModuleRouting; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RoutingModule", function() { return RoutingModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
@@ -3976,6 +4660,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _patch_notes_patch_notes_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./patch-notes/patch-notes.component */ "./src/app/patch-notes/patch-notes.component.ts");
 /* harmony import */ var _view_event_view_event_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./view-event/view-event.component */ "./src/app/view-event/view-event.component.ts");
 /* harmony import */ var _rate_event_rate_event_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./rate-event/rate-event.component */ "./src/app/rate-event/rate-event.component.ts");
+/* harmony import */ var _admin_admin_module__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./admin/admin.module */ "./src/app/admin/admin.module.ts");
+/* harmony import */ var _core_auth_guard__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./core/auth.guard */ "./src/app/core/auth.guard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4004,40 +4690,40 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 var routes = [
     { path: 'landing-page', component: _landing_page_landing_page_component__WEBPACK_IMPORTED_MODULE_2__["LandingPageComponent"] },
-    { path: 'loggedin-dashboard', component: _loggedin_dashboard_loggedin_dashboard_component__WEBPACK_IMPORTED_MODULE_5__["LoggedinDashboardComponent"] },
-    { path: 'events', component: _events_events_component__WEBPACK_IMPORTED_MODULE_6__["EventsComponent"] },
-    { path: 'my-profile', component: _my_profile_my_profile_component__WEBPACK_IMPORTED_MODULE_7__["MyProfileComponent"] },
-    { path: 'create-new-event', component: _create_new_event_create_new_event_component__WEBPACK_IMPORTED_MODULE_8__["CreateNewEventComponent"] },
+    { path: 'loggedin-dashboard', component: _loggedin_dashboard_loggedin_dashboard_component__WEBPACK_IMPORTED_MODULE_5__["LoggedinDashboardComponent"], canActivate: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_23__["AuthGuard"]] },
+    { path: 'events', component: _events_events_component__WEBPACK_IMPORTED_MODULE_6__["EventsComponent"], canActivate: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_23__["AuthGuard"]] },
+    { path: 'my-profile', component: _my_profile_my_profile_component__WEBPACK_IMPORTED_MODULE_7__["MyProfileComponent"], canActivate: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_23__["AuthGuard"]] },
+    { path: 'create-new-event', component: _create_new_event_create_new_event_component__WEBPACK_IMPORTED_MODULE_8__["CreateNewEventComponent"], canActivate: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_23__["AuthGuard"]] },
     { path: 'about', component: _about_about_component__WEBPACK_IMPORTED_MODULE_9__["AboutComponent"] },
-    { path: 'feedback', component: _feedback_feedback_component__WEBPACK_IMPORTED_MODULE_11__["FeedbackComponent"] },
+    { path: 'feedback', component: _feedback_feedback_component__WEBPACK_IMPORTED_MODULE_11__["FeedbackComponent"], canActivate: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_23__["AuthGuard"]] },
     { path: 'contact', component: _contact_contact_component__WEBPACK_IMPORTED_MODULE_10__["ContactComponent"] },
     { path: 'terms-of-service', component: _terms_of_service_terms_of_service_component__WEBPACK_IMPORTED_MODULE_12__["TermsOfServiceComponent"] },
-    { path: 'cookies-consent', component: _cookies_consent_cookies_consent_component__WEBPACK_IMPORTED_MODULE_13__["CookiesConsentComponent"] },
+    { path: 'cookies-consent', component: _cookies_consent_cookies_consent_component__WEBPACK_IMPORTED_MODULE_13__["CookiesConsentComponent"], canActivate: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_23__["AuthGuard"]] },
     { path: 'privacy-policy', component: _privacy_policy_privacy_policy_component__WEBPACK_IMPORTED_MODULE_14__["PrivacyPolicyComponent"] },
-    { path: 'my-events', component: _my_events_my_events_component__WEBPACK_IMPORTED_MODULE_15__["MyEventsComponent"] },
+    { path: 'my-events', component: _my_events_my_events_component__WEBPACK_IMPORTED_MODULE_15__["MyEventsComponent"], canActivate: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_23__["AuthGuard"]] },
     { path: 'prices', component: _prices_prices_component__WEBPACK_IMPORTED_MODULE_16__["PricesComponent"] },
-    { path: 'payment', component: _payment_payment_component__WEBPACK_IMPORTED_MODULE_17__["PaymentComponent"] },
-    { path: 'my-event', component: _my_event_my_event_component__WEBPACK_IMPORTED_MODULE_18__["MyEventComponent"] },
-    { path: 'patch-notes', component: _patch_notes_patch_notes_component__WEBPACK_IMPORTED_MODULE_19__["PatchNotesComponent"] },
-    { path: 'view-event', component: _view_event_view_event_component__WEBPACK_IMPORTED_MODULE_20__["ViewEventComponent"] },
-    { path: 'rate-event', component: _rate_event_rate_event_component__WEBPACK_IMPORTED_MODULE_21__["RateEventComponent"] },
+    { path: 'payment', component: _payment_payment_component__WEBPACK_IMPORTED_MODULE_17__["PaymentComponent"], canActivate: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_23__["AuthGuard"]] },
+    { path: 'my-event', component: _my_event_my_event_component__WEBPACK_IMPORTED_MODULE_18__["MyEventComponent"], canActivate: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_23__["AuthGuard"]] },
+    { path: 'patch-notes', component: _patch_notes_patch_notes_component__WEBPACK_IMPORTED_MODULE_19__["PatchNotesComponent"], canActivate: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_23__["AuthGuard"]] },
+    { path: 'view-event', component: _view_event_view_event_component__WEBPACK_IMPORTED_MODULE_20__["ViewEventComponent"], canActivate: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_23__["AuthGuard"]] },
+    { path: 'rate-event', component: _rate_event_rate_event_component__WEBPACK_IMPORTED_MODULE_21__["RateEventComponent"], canActivate: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_23__["AuthGuard"]] },
+    { path: 'admin-module', loadChildren: function () { return _admin_admin_module__WEBPACK_IMPORTED_MODULE_22__["AdminModule"]; }, canActivate: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_23__["AuthGuard"]] },
     {
         path: 'dummy-list',
         component: _dummy_list_dummy_list_component__WEBPACK_IMPORTED_MODULE_3__["DummyListComponent"],
-        data: { title: 'Dummy List' }
+        data: { title: 'Dummy List' },
     },
     { path: '',
         redirectTo: '/landing-page',
-        pathMatch: 'full'
-    },
-    { path: 'admin',
-        redirectTo: '/admin-dashboard',
-        pathMatch: 'full'
+        pathMatch: 'full',
     },
     { path: '**', component: _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_4__["PageNotFoundComponent"] }
 ];
+var ModuleRouting = _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes);
 var RoutingModule = /** @class */ (function () {
     function RoutingModule() {
     }
@@ -4177,10 +4863,17 @@ var TermsOfServiceComponent = /** @class */ (function () {
     };
     TermsOfServiceComponent.prototype.readTosFile = function () {
         var _this = this;
+        console.log("before");
         this.http.get('./assets/files/Retningslinjer.txt', { responseType: 'text' }).subscribe(function (data) {
-            //this.inputHTML = data;
+            console.log("after");
             _this.inputHTML = _this.inputTextToHTML(data);
         });
+        /*this.http.get('./assets/files/Retningslinjer.txt', { responseType: 'text' }).subscribe(data => {
+    
+                console.log("Hallo?");
+                //this.inputHTML = data;
+                //this.inputHTML = this.inputTextToHTML(data);
+        }).unsubscribe(); */
     };
     TermsOfServiceComponent.prototype.inputTextToHTML = function (inputDoc) {
         var outputHTML = "<h2>";
@@ -4276,24 +4969,15 @@ var TransactionalEmailService = /** @class */ (function () {
         this.db = db;
         this.http = http;
         this.path = "/messages/";
-        this.to = 'singlenetworktest@armyspy.com';
+        this.to = 'SpicyMexican@superrito.com';
     }
     TransactionalEmailService.prototype.sendContactMail = function (formData) {
-        var url = "https://your-cloud-function-url/sendContactMail";
-        var params = new _angular_http__WEBPACK_IMPORTED_MODULE_2__["URLSearchParams"]();
-        var headers = new _angular_http__WEBPACK_IMPORTED_MODULE_2__["Headers"]({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-        params.set('to', this.to);
-        params.set('from', formData.email);
-        params.set('subject', formData.Subject);
-        params.set('content', formData.message);
-        return this.http.post(url, params)
-            .toPromise()
-            .then(function (res) {
-            console.log(res);
-        })
-            .catch(function (err) {
-            console.log(err);
-        });
+        var url = 'https://us-central1-single-network.cloudfunctions.net/exampleFunction';
+        // let headers = new Headers();
+        // headers.append('Content-Type', 'application/json');
+        // headers.append('Access-Control-Allow-Origin', '*');
+        return this.http.get(url);
+        //return this.http.get(url, {headers: headers}).subscribe(res => resolve(res.json()));
     };
     TransactionalEmailService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
@@ -4321,8 +5005,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var angularfire2_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! angularfire2/auth */ "./node_modules/angularfire2/auth/index.js");
 /* harmony import */ var _node_modules_angularfire2_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/angularfire2/database */ "./node_modules/angularfire2/database/index.js");
-/* harmony import */ var _entity_helper_json_converter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./entity/helper/json-converter */ "./src/app/entity/helper/json-converter.ts");
-/* harmony import */ var angular_web_storage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! angular-web-storage */ "./node_modules/angular-web-storage/esm5/web-storage.js");
+/* harmony import */ var _entity_user_user__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./entity/user/user */ "./src/app/entity/user/user.ts");
+/* harmony import */ var _entity_helper_json_converter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./entity/helper/json-converter */ "./src/app/entity/helper/json-converter.ts");
+/* harmony import */ var angular_web_storage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! angular-web-storage */ "./node_modules/angular-web-storage/esm5/web-storage.js");
+/* harmony import */ var _user_role_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./user-role.service */ "./src/app/user-role.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4335,17 +5021,21 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+// Entity
+
 // Helper classes
 
 // Session storage
 
+
 var UserFirebaseService = /** @class */ (function () {
-    function UserFirebaseService(afAuth, db, session) {
+    function UserFirebaseService(afAuth, db, session, urs) {
         this.afAuth = afAuth;
         this.db = db;
         this.session = session;
+        this.urs = urs;
         this.dbPath = '/users/';
-        this.jsonConverter = new _entity_helper_json_converter__WEBPACK_IMPORTED_MODULE_3__["JsonConverter"]();
+        this.jsonConverter = new _entity_helper_json_converter__WEBPACK_IMPORTED_MODULE_4__["JsonConverter"]();
     }
     // CRUD
     UserFirebaseService.prototype.getUsers = function () {
@@ -4370,13 +5060,13 @@ var UserFirebaseService = /** @class */ (function () {
         var _this = this;
         var path = this.dbPath + "/" + idx;
         this.db.object(path).valueChanges().subscribe(function (data) {
-            var user = _this.jsonToObj(JSON.stringify(data));
-            _this.setStorage(user);
+            _this.setStorage(new _entity_user_user__WEBPACK_IMPORTED_MODULE_3__["User"](data));
         });
     };
     //Test passed
     UserFirebaseService.prototype.insertUser = function (user, id) {
         this.db.object(this.dbPath + id).update(user);
+        this.urs.insertRole({ fk_id: id, type: this.urs.userTypes.MEMBER });
     };
     UserFirebaseService.prototype.updateUser = function (objwithUpdates, id) {
         this.db.object(this.dbPath + id).update(objwithUpdates);
@@ -4416,7 +5106,7 @@ var UserFirebaseService = /** @class */ (function () {
             providedIn: 'root'
         }),
         __metadata("design:paramtypes", [angularfire2_auth__WEBPACK_IMPORTED_MODULE_1__["AngularFireAuth"], _node_modules_angularfire2_database__WEBPACK_IMPORTED_MODULE_2__["AngularFireDatabase"],
-            angular_web_storage__WEBPACK_IMPORTED_MODULE_4__["SessionStorageService"]])
+            angular_web_storage__WEBPACK_IMPORTED_MODULE_5__["SessionStorageService"], _user_role_service__WEBPACK_IMPORTED_MODULE_6__["UserRoleService"]])
     ], UserFirebaseService);
     return UserFirebaseService;
 }());
@@ -4932,6 +5622,70 @@ var UserImageGalleryComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/user-role.service.ts":
+/*!**************************************!*\
+  !*** ./src/app/user-role.service.ts ***!
+  \**************************************/
+/*! exports provided: UserRoleService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserRoleService", function() { return UserRoleService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var angularfire2_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! angularfire2/auth */ "./node_modules/angularfire2/auth/index.js");
+/* harmony import */ var _node_modules_angularfire2_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/angularfire2/database */ "./node_modules/angularfire2/database/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var UserRoleService = /** @class */ (function () {
+    function UserRoleService(afAuth, db) {
+        this.afAuth = afAuth;
+        this.db = db;
+        this.dbPath = '/user-roles/';
+        this.userTypes = {
+            ADMIN: "admin",
+            MEMBER: "member",
+            MODERATOR: "moderator"
+        };
+    }
+    UserRoleService.prototype.getList = function () {
+        return this.db.list(this.dbPath).snapshotChanges();
+    };
+    UserRoleService.prototype.insertRole = function (obj) {
+        this.db.list(this.dbPath).push(obj);
+    };
+    UserRoleService.prototype.updateRole = function (obj, id) {
+        this.db.object(this.dbPath + id).update(obj);
+    };
+    UserRoleService.prototype.flushSetup = function () {
+        this.insertRole({ fk_id: "3BB4t1qL0mh0c55LfiTy55kdLhK2", type: "admin" });
+        this.insertRole({ fk_id: "XxftCOedzEYwLBbcYkyTw1K4nts1", type: "admin" });
+        this.insertRole({ fk_id: "yI9xT7NCsZh3pTS1DxBb8fvoXz62", type: "admin" });
+        this.insertRole({ fk_id: "baKzGAMnzJPQ9EzJ73RrvG0iGR33", type: "member" });
+    };
+    UserRoleService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [angularfire2_auth__WEBPACK_IMPORTED_MODULE_1__["AngularFireAuth"], _node_modules_angularfire2_database__WEBPACK_IMPORTED_MODULE_2__["AngularFireDatabase"]])
+    ], UserRoleService);
+    return UserRoleService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/view-event/view-event.component.css":
 /*!*****************************************************!*\
   !*** ./src/app/view-event/view-event.component.css ***!
@@ -4939,7 +5693,7 @@ var UserImageGalleryComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".innerContainer {\r\n    width: 100%;\r\n}\r\n\r\n.mobileContainer {\r\n    margin-top: 20px;\r\n}"
+module.exports = ".mobileContainer {\r\n    margin-top: 20px;\r\n}\r\n\r\n.wall-img {\r\n    max-width: 50px;\r\n    max-height: 50px;\r\n    margin: 10px;\r\n}\r\n\r\n.round {\r\n    -webkit-border-top-left-radius: 1px;\r\n    -webkit-border-top-right-radius: 2px;\r\n    -webkit-border-bottom-right-radius: 3px;\r\n    -webkit-border-bottom-left-radius: 4px;\r\n  \r\n    -moz-border-radius-topleft: 1px;\r\n    -moz-border-radius-topright: 2px;\r\n    -moz-border-radius-bottomright: 3px;\r\n    -moz-border-radius-bottomleft: 4px;\r\n  \r\n    border-top-left-radius: 1px;\r\n    border-top-right-radius: 2px;\r\n    border-bottom-right-radius: 3px;\r\n    border-bottom-left-radius: 4px;\r\n}\r\n\r\nmat-card-title {\r\n    font-size: 16px;\r\n}\r\n\r\n.wall-timedate {\r\n    color: rgba(110,110,110, 1);\r\n    font-size: 12px;\r\n}\r\n\r\nbutton {\r\n    margin: 10px;\r\n}\r\n\r\n.usernameBtn {\r\n    margin: 0px !important;\r\n}\r\n\r\nmat-card {\r\n    margin-bottom: 20px;\r\n}\r\n\r\n.wall {\r\n    width: 90%;\r\n}\r\n\r\n.participants {\r\n    width: 48.7%;\r\n}\r\n\r\n#mat-tab-content-0-0 > div {\r\n    overflow: hidden !important;\r\n}"
 
 /***/ }),
 
@@ -4950,7 +5704,7 @@ module.exports = ".innerContainer {\r\n    width: 100%;\r\n}\r\n\r\n.mobileConta
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\r\n<div *ngIf=\"!isMobile\">\r\n  <mat-grid-list cols=\"2\" rowHeight=\"1:2.5\">\r\n    <mat-grid-tile>\r\n        <mat-card class=\"innerContainer\">\r\n            <mat-card-title>{{selectedEvent.name}}</mat-card-title>\r\n            <mat-card-subtitle><fa name=\"tag\"></fa> {{  selectedEvent.category }} <br><br>\r\n              {{selectedEvent.description}}\r\n            </mat-card-subtitle>\r\n            <img src=\"../../assets/images/event_placeholder.jpg\" mat-card-image>\r\n            <mat-card-content>\r\n\r\n              <p><strong>Adresse:</strong><br> {{selectedEvent.address.street}} , {{selectedEvent.address.city}} , {{selectedEvent.address.zip}}</p>\r\n              <p><strong>Dato</strong><br> Under udvikling</p>\r\n              <p><strong>Kønsfordeling</strong><br> {{selectedEvent.genderRatio}}</p>\r\n              <p><strong>Børn</strong><br> {{selectedEvent.targetGroup}}</p>\r\n              <p><strong>Fra</strong><br> {{selectedEvent.minAge}} til {{selectedEvent.maxAge}}</p>\r\n              <p><strong>Pladser</strong><br> {{selectedEvent.maxGuests}}</p>\r\n              <p><strong>Pris</strong><br> {{selectedEvent.price}} DKK</p>\r\n              <p><strong>Hvordan betales der: </strong><br> {{selectedEvent.paymentOption}}</p>\r\n              <p><strong>Hvornår betales der:</strong><br> {{selectedEvent.paymentDue}}</p>\r\n            </mat-card-content>\r\n            <mat-card-actions>\r\n              <button *ngIf=\"!isParticipating\" (click)=\"onAttend()\" mat-button color=\"primary\">Tilmeld</button>\r\n              <button *ngIf=\"isParticipating\" (click)=\"onUnattend()\" mat-button color=\"warn\">Frameld</button>\r\n              <button mat-button (click)=\"onRateClick()\" [routerLink]=\"['/rate-event']\">Bedøm dette event</button>\r\n            </mat-card-actions>\r\n        </mat-card>\r\n    </mat-grid-tile>\r\n    <mat-grid-tile>\r\n      <mat-card>\r\n          <mat-tab-group>\r\n              <mat-tab label=\"Deltagere\">\r\n                <mat-list>\r\n                    <mat-list-item *ngFor=\"let participant of participantsDisplayNames\">\r\n                      <button color=\"primary\" mat-button><mat-icon>person</mat-icon>{{participant}}</button>\r\n                    </mat-list-item>\r\n                </mat-list>\r\n              </mat-tab>\r\n              <mat-tab label=\"Venteliste\">\r\n                <mat-list>\r\n                  <p *ngIf=\"inQueue.length < 1\">Der er ingen på ventelisten.</p>\r\n                   </mat-list>\r\n              </mat-tab>\r\n            </mat-tab-group>\r\n      </mat-card>\r\n    </mat-grid-tile>\r\n  </mat-grid-list>\r\n</div>\r\n\r\n<div *ngIf=\"isMobile\">\r\n  <mat-card class=\"mobileContainer\">\r\n          <mat-card-title>{{selectedEvent.name}}</mat-card-title>\r\n          <mat-card-subtitle><fa name=\"tag\"></fa> {{  selectedEvent.category }} <br><br>\r\n            {{selectedEvent.description}}\r\n          </mat-card-subtitle>\r\n          <img src=\"../../assets/images/event_placeholder.jpg\" mat-card-image>\r\n          <mat-card-content>\r\n\r\n            <p><strong>Adresse:</strong><br> {{selectedEvent.address.street}} , {{selectedEvent.address.city}} , {{selectedEvent.address.zip}}</p>\r\n            <p><strong>Dato</strong><br> Under udvikling</p>\r\n            <p><strong>Kønsfordeling</strong><br> {{selectedEvent.genderRatio}}</p>\r\n            <p><strong>Børn</strong><br> {{selectedEvent.targetGroup}}</p>\r\n            <p><strong>Fra</strong><br> {{selectedEvent.minAge}} til {{selectedEvent.maxAge}}</p>\r\n            <p><strong>Pladser</strong><br> {{selectedEvent.maxGuests}}</p>\r\n            <p><strong>Pris</strong><br> {{selectedEvent.price}} DKK</p>\r\n            <p><strong>Hvordan betales der: </strong><br> {{selectedEvent.paymentOption}}</p>\r\n            <p><strong>Hvornår betales der:</strong><br> {{selectedEvent.paymentDue}}</p>\r\n          </mat-card-content>\r\n          <mat-card-actions>\r\n            <button *ngIf=\"!isParticipating\" (click)=\"onAttend()\" mat-button color=\"primary\">Tilmeld</button>\r\n            <button *ngIf=\"isParticipating\" (click)=\"onUnattend()\" mat-button color=\"warn\">Frameld</button>\r\n            <button mat-button (click)=\"onRateClick()\" [routerLink]=\"['/rate-event']\">Bedøm dette event</button>\r\n          </mat-card-actions>\r\n  </mat-card>\r\n\r\n  <mat-card class=\"mobileContainer\">\r\n      <mat-tab-group>\r\n          <mat-tab label=\"Deltagere\">\r\n            <mat-list>\r\n                <mat-list-item *ngFor=\"let participant of participantsDisplayNames\">\r\n                  <button color=\"primary\" mat-button><mat-icon>person</mat-icon>{{participant}}</button>\r\n                </mat-list-item>\r\n            </mat-list>\r\n          </mat-tab>\r\n          <mat-tab label=\"Venteliste\">\r\n            <mat-list>\r\n              <p *ngIf=\"inQueue.length < 1\">Der er ingen på ventelisten.</p>\r\n               </mat-list>\r\n          </mat-tab>\r\n        </mat-tab-group>\r\n  </mat-card>\r\n</div>"
+module.exports = "<app-navbar></app-navbar>\r\n<div *ngIf=\"!isMobile\">\r\n\r\n    <div class=\"container\">\r\n        <div class=\"row\">\r\n          <div class=\"col\">\r\n              <mat-card>\r\n                  <mat-card-title>{{selectedEvent.name}}</mat-card-title>\r\n                  <mat-card-subtitle><fa name=\"tag\"></fa> {{  selectedEvent.category }} <br><br>\r\n                    {{selectedEvent.description}}\r\n                  </mat-card-subtitle>\r\n                  <img src=\"../../assets/images/event_placeholder.jpg\" mat-card-image>\r\n                  <mat-card-content>\r\n      \r\n                    <p><strong>Adresse:</strong><br> {{selectedEvent.address.street}} , {{selectedEvent.address.city}} , {{selectedEvent.address.zip}}</p>\r\n                    <p><strong>Dato</strong><br> Under udvikling</p>\r\n                    <p><strong>Kønsfordeling</strong><br> {{selectedEvent.genderRatio}}</p>\r\n                    <p><strong>Børn</strong><br> {{selectedEvent.targetGroup}}</p>\r\n                    <p><strong>Fra</strong><br> {{selectedEvent.minAge}} til {{selectedEvent.maxAge}}</p>\r\n                    <p><strong>Pladser</strong><br> {{selectedEvent.maxGuests}}</p>\r\n                    <p><strong>Pris</strong><br> {{selectedEvent.price}} DKK</p>\r\n                    <p><strong>Hvordan betales der: </strong><br> {{selectedEvent.paymentOption}}</p>\r\n                    <p><strong>Hvornår betales der:</strong><br> {{selectedEvent.paymentDue}}</p>\r\n                  </mat-card-content>\r\n                  <mat-card-actions>\r\n                    <button *ngIf=\"!isParticipating\" (click)=\"onAttend()\" mat-button color=\"primary\">Tilmeld</button>\r\n                    <button *ngIf=\"isParticipating\" (click)=\"onUnattend()\" mat-button color=\"warn\">Frameld</button>\r\n                    <button mat-button (click)=\"onRateClick()\" [routerLink]=\"['/rate-event']\">Bedøm dette event</button>\r\n                  </mat-card-actions>\r\n              </mat-card>\r\n          </div>\r\n          <div class=\"col\">\r\n              <mat-card class=\"wall\">\r\n                  <mat-card-title><h3>Væg</h3></mat-card-title>\r\n              \r\n                  <mat-card *ngFor=\"let post of wall.posts; let idx = index\">\r\n                    <mat-card-title>\r\n                      <img class=\"wall-img round\" src=\"../../assets/images/Logo.png\">\r\n                      <a routerLink=\"/view-profile/\">{{userNames[idx]}}</a>\r\n                      <p class=\"wall-timedate\">{{tempDate}}</p>\r\n                    </mat-card-title>\r\n                    <mat-card-content>{{post.message}}</mat-card-content>\r\n                    <mat-card-actions>\r\n                      <button *ngIf=\"post.fk_id === this.authService.afAuth.auth.currentUser.uid || this.selectedEvent.host === this.authService.afAuth.auth.currentUser.uid\" (click)=\"deleteWallPost(post)\" mat-button color=\"warn\">Slet</button>\r\n                    </mat-card-actions>\r\n                  </mat-card>\r\n              \r\n                  <mat-card-actions>\r\n                    <button (click)=\"openWallPostDialog()\" mat-raised-button color=\"primary\">Svar</button>\r\n                  </mat-card-actions>\r\n              </mat-card>\r\n          </div>\r\n        </div>\r\n\r\n        <mat-card class=\"participants\">\r\n            <mat-tab-group>\r\n                <mat-tab label=\"Deltagere\">\r\n                  <mat-list>\r\n                      <mat-list-item *ngFor=\"let participant of participantsDisplayNames\">\r\n                        <button class=\"usernameBtn\" color=\"primary\" mat-button><mat-icon>person</mat-icon>{{participant}}</button>\r\n                      </mat-list-item>\r\n                  </mat-list>\r\n                </mat-tab>\r\n                <mat-tab label=\"Venteliste\">\r\n                  <mat-list>\r\n                    <p *ngIf=\"inQueue.length < 1\">Der er ingen på ventelisten.</p>\r\n                  </mat-list>\r\n                </mat-tab>\r\n              </mat-tab-group>\r\n        </mat-card>\r\n\r\n</div>\r\n\r\n<div *ngIf=\"isMobile\">\r\n  <mat-card class=\"mobileContainer\">\r\n          <mat-card-title>{{selectedEvent.name}}</mat-card-title>\r\n          <mat-card-subtitle><fa name=\"tag\"></fa> {{  selectedEvent.category }} <br><br>\r\n            {{selectedEvent.description}}\r\n          </mat-card-subtitle>\r\n          <img src=\"../../assets/images/event_placeholder.jpg\" mat-card-image>\r\n          <mat-card-content>\r\n\r\n            <p><strong>Adresse:</strong><br> {{selectedEvent.address.street}} , {{selectedEvent.address.city}} , {{selectedEvent.address.zip}}</p>\r\n            <p><strong>Dato</strong><br> Under udvikling</p>\r\n            <p><strong>Kønsfordeling</strong><br> {{selectedEvent.genderRatio}}</p>\r\n            <p><strong>Børn</strong><br> {{selectedEvent.targetGroup}}</p>\r\n            <p><strong>Fra</strong><br> {{selectedEvent.minAge}} til {{selectedEvent.maxAge}}</p>\r\n            <p><strong>Pladser</strong><br> {{selectedEvent.maxGuests}}</p>\r\n            <p><strong>Pris</strong><br> {{selectedEvent.price}} DKK</p>\r\n            <p><strong>Hvordan betales der: </strong><br> {{selectedEvent.paymentOption}}</p>\r\n            <p><strong>Hvornår betales der:</strong><br> {{selectedEvent.paymentDue}}</p>\r\n          </mat-card-content>\r\n          <mat-card-actions>\r\n            <button *ngIf=\"!isParticipating\" (click)=\"onAttend()\" mat-button color=\"primary\">Tilmeld</button>\r\n            <button *ngIf=\"isParticipating\" (click)=\"onUnattend()\" mat-button color=\"warn\">Frameld</button>\r\n            <button mat-button (click)=\"onRateClick()\" [routerLink]=\"['/rate-event']\">Bedøm dette event</button>\r\n          </mat-card-actions>\r\n  </mat-card>\r\n\r\n  <mat-card class=\"mobileContainer\">\r\n      <mat-tab-group>\r\n          <mat-tab label=\"Deltagere\">\r\n            <mat-list>\r\n                <mat-list-item *ngFor=\"let participant of participantsDisplayNames\">\r\n                  <button color=\"primary\" mat-button><mat-icon>person</mat-icon>{{participant}}</button>\r\n                </mat-list-item>\r\n            </mat-list>\r\n          </mat-tab>\r\n          <mat-tab label=\"Venteliste\">\r\n            <mat-list>\r\n              <p *ngIf=\"inQueue.length < 1\">Der er ingen på ventelisten.</p>\r\n               </mat-list>\r\n          </mat-tab>\r\n        </mat-tab-group>\r\n  </mat-card>\r\n\r\n  <mat-card *ngFor=\"let post of wall.posts; let idx = index\">\r\n      <mat-card-title>\r\n        <img class=\"wall-img round\" src=\"../../assets/images/Logo.png\">\r\n        <a routerLink=\"/view-profile/\">{{userNames[idx]}}</a>\r\n        <p class=\"wall-timedate\">{{tempDate}}</p>\r\n      </mat-card-title>\r\n      <mat-card-content>{{post.message}}</mat-card-content>\r\n      <mat-card-actions>\r\n        <button *ngIf=\"post.fk_id === this.authService.afAuth.auth.currentUser.uid || this.selectedEvent.host === this.authService.afAuth.auth.currentUser.uid\" (click)=\"deleteWallPost(idx)\" mat-button color=\"warn\">Slet</button>\r\n      </mat-card-actions>\r\n    </mat-card>\r\n\r\n</div>"
 
 /***/ }),
 
@@ -4969,7 +5723,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _entity_event_event_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../entity/event/event.model */ "./src/app/entity/event/event.model.ts");
 /* harmony import */ var _event_firebase_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../event-firebase.service */ "./src/app/event-firebase.service.ts");
 /* harmony import */ var _user_firebase_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../user-firebase.service */ "./src/app/user-firebase.service.ts");
-/* harmony import */ var _mobile_detector_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../mobile-detector.service */ "./src/app/mobile-detector.service.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _mobile_detector_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../mobile-detector.service */ "./src/app/mobile-detector.service.ts");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth.service.ts");
+/* harmony import */ var _entity_user_user__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../entity/user/user */ "./src/app/entity/user/user.ts");
+/* harmony import */ var _wall_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../wall.service */ "./src/app/wall.service.ts");
+/* harmony import */ var _entity_wall_wall_model__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../entity/wall/wall.model */ "./src/app/entity/wall/wall.model.ts");
+/* harmony import */ var _entity_wall_wall_post_model__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../entity/wall/wall-post.model */ "./src/app/entity/wall/wall-post.model.ts");
+/* harmony import */ var _create_wall_post_create_wall_post_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../create-wall-post/create-wall-post.component */ "./src/app/create-wall-post/create-wall-post.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4985,26 +5746,43 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
+
+
+
+
 var ViewEventComponent = /** @class */ (function () {
-    function ViewEventComponent(route, efbs, ufbs, router, md) {
+    function ViewEventComponent(route, efbs, ufbs, router, md, authService, ws, dialog) {
         var _this = this;
         this.route = route;
         this.efbs = efbs;
         this.ufbs = ufbs;
         this.router = router;
         this.md = md;
+        this.authService = authService;
+        this.ws = ws;
+        this.dialog = dialog;
         this.isMobile = false;
+        this.selectedEvent = new _entity_event_event_model__WEBPACK_IMPORTED_MODULE_2__["Event"]({});
         this.pKey = "";
         this.participantsDisplayNames = [];
         this.participantsData = [];
         this.inQueue = [];
+        // Wall
+        this.wall = new _entity_wall_wall_model__WEBPACK_IMPORTED_MODULE_10__["Wall"]({});
+        this.wallKey = "";
+        this.userNames = [];
+        this.tempDate = new Date().toLocaleString();
         // Test
         this.isParticipating = false;
         this.route.queryParams.subscribe(function (params) {
             var key = params['key'];
             _this.key = key;
+            /* Event */
             _this.efbs.getEventByKey(key).snapshotChanges().subscribe(function (then) {
-                _this.selectedEvent = Object.assign(new _entity_event_event_model__WEBPACK_IMPORTED_MODULE_2__["Event"](), then.payload.val());
+                _this.selectedEvent = new _entity_event_event_model__WEBPACK_IMPORTED_MODULE_2__["Event"](then.payload.val());
                 _this.participantsData = [];
                 _this.participantsDisplayNames = [];
                 for (var property in _this.selectedEvent.participants) {
@@ -5013,9 +5791,28 @@ var ViewEventComponent = /** @class */ (function () {
                         _this.participantsData.push({ key: property, username: _this.selectedEvent.participants[property][value] });
                     }
                 }
+                /* Participation limited to one signup. */
                 if (_this.getParticipantKey() !== "Not Found") {
                     _this.isParticipating = true;
                 }
+            });
+            /* Wall */
+            _this.ws.getWallByKey(_this.key).subscribe(function (snapshot) {
+                _this.wall.posts = [];
+                snapshot.forEach(function (value) {
+                    _this.wall.fk_event = value.fk_event;
+                    _this.wallKey = value.key;
+                    var subPosts = [];
+                    Object.values(value.posts).forEach(function (property) {
+                        subPosts.push(property);
+                    });
+                    var idx = 0;
+                    Object.keys(value.posts).forEach(function (k) {
+                        _this.wall.posts.push(Object.assign(subPosts[idx], { key: k }));
+                        idx++;
+                    });
+                });
+                _this.updateDisplayForWall();
             });
         });
     }
@@ -5025,22 +5822,26 @@ var ViewEventComponent = /** @class */ (function () {
     ViewEventComponent.prototype.getParticipantKey = function () {
         var result = "Not Found";
         for (var i = 0; i < this.participantsData.length; i++) {
-            if (this.participantsData[i].username === this.ufbs.getStorage()._username) {
+            if (this.participantsData[i].username === this.ufbs.getStorage().username) {
                 return this.participantsData[i].key;
             }
         }
         return result;
     };
     ViewEventComponent.prototype.removeParticipant = function () {
-        for (var i = 0; i < this.participantsData.length; i++) {
-            if (this.participantsData[i].username === this.ufbs.getStorage()._username) {
-                this.participantsData.splice(i, 1);
-                this.participantsDisplayNames.splice(i, 1);
+        var _this = this;
+        this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(function (snapshot) {
+            var u = new _entity_user_user__WEBPACK_IMPORTED_MODULE_8__["User"](snapshot);
+            for (var i = 0; i < _this.participantsData.length; i++) {
+                if (_this.participantsData[i].username === u.username) {
+                    _this.participantsData.splice(i, 1);
+                    _this.participantsDisplayNames.splice(i, 1);
+                }
             }
-        }
+        });
     };
     ViewEventComponent.prototype.onAttend = function () {
-        this.efbs.joinEvent(this.key, this.ufbs.getStorage()._username);
+        this.efbs.joinEvent(this.key, this.ufbs.getStorage().username);
         this.isParticipating = true;
     };
     ViewEventComponent.prototype.onUnattend = function () {
@@ -5056,6 +5857,35 @@ var ViewEventComponent = /** @class */ (function () {
         };
         this.router.navigate(['/rate-event'], navigationExtras);
     };
+    ViewEventComponent.prototype.createWallPost = function (formData) {
+        this.ws.insertPost(formData, this.key);
+    };
+    ViewEventComponent.prototype.openWallPostDialog = function () {
+        var dialogRef = this.dialog.open(_create_wall_post_create_wall_post_component__WEBPACK_IMPORTED_MODULE_12__["CreateWallPostComponent"], {
+            width: '500px',
+            data: { fk_wall: this.wallKey }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+        });
+    };
+    ViewEventComponent.prototype.deleteWallPost = function (postObj) {
+        //this.wall.posts.splice(idx, 1);
+        this.ws.deletePost(this.wallKey, Object.assign(postObj, _entity_wall_wall_post_model__WEBPACK_IMPORTED_MODULE_11__["WallPost"]));
+    };
+    ViewEventComponent.prototype.updateDisplayForWall = function () {
+        var _this = this;
+        /* Display usernames */
+        console.log("Reach 1");
+        this.userNames = [];
+        console.log("Reach 2");
+        this.wall.posts.forEach(function (post) {
+            console.log(post);
+            _this.ufbs.getUserByID(post.fk_id).subscribe(function (u) {
+                console.log(u);
+                _this.userNames.push(u.username);
+            });
+        });
+    };
     ViewEventComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-view-event',
@@ -5064,9 +5894,83 @@ var ViewEventComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"], _event_firebase_service__WEBPACK_IMPORTED_MODULE_3__["EventFirebaseService"],
             _user_firebase_service__WEBPACK_IMPORTED_MODULE_4__["UserFirebaseService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
-            _mobile_detector_service__WEBPACK_IMPORTED_MODULE_5__["MobileDetectorService"]])
+            _mobile_detector_service__WEBPACK_IMPORTED_MODULE_6__["MobileDetectorService"], _auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"],
+            _wall_service__WEBPACK_IMPORTED_MODULE_9__["WallService"], _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatDialog"]])
     ], ViewEventComponent);
     return ViewEventComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/wall.service.ts":
+/*!*********************************!*\
+  !*** ./src/app/wall.service.ts ***!
+  \*********************************/
+/*! exports provided: WallService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WallService", function() { return WallService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var angularfire2_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! angularfire2/auth */ "./node_modules/angularfire2/auth/index.js");
+/* harmony import */ var _node_modules_angularfire2_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../node_modules/angularfire2/database */ "./node_modules/angularfire2/database/index.js");
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var WallService = /** @class */ (function () {
+    function WallService(afAuth, db) {
+        this.afAuth = afAuth;
+        this.db = db;
+        this.dbPath = '/walls/';
+    }
+    WallService.prototype.getList = function () {
+        return this.db.list(this.dbPath).snapshotChanges();
+    };
+    WallService.prototype.insertWall = function (wallObj) {
+        this.db.list(this.dbPath).push(wallObj);
+    };
+    WallService.prototype.deleteWall = function (key) {
+        this.db.list(this.dbPath).remove(key);
+    };
+    WallService.prototype.getWallByKey = function (key) {
+        var path = this.dbPath;
+        return this.db.list(path, function (ref) { return ref.orderByChild('fk_event').equalTo(key); }).snapshotChanges().map(function (snapshot) {
+            return snapshot.map(function (c) { return (__assign({ key: c.payload.key }, c.payload.val())); });
+        });
+    };
+    WallService.prototype.insertPost = function (postsObj, key) {
+        this.db.list(this.dbPath + key + "/posts/").push(postsObj);
+    };
+    WallService.prototype.deletePost = function (wallKey, postObj) {
+        this.db.list(this.dbPath + wallKey + "/posts/").remove(postObj.key);
+    };
+    WallService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [angularfire2_auth__WEBPACK_IMPORTED_MODULE_1__["AngularFireAuth"], _node_modules_angularfire2_database__WEBPACK_IMPORTED_MODULE_2__["AngularFireDatabase"]])
+    ], WallService);
+    return WallService;
 }());
 
 

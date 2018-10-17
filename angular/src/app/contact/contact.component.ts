@@ -26,7 +26,7 @@ export class ContactComponent implements OnInit {
   }
 
   sendMail(formData) {
-    this.tes.sendContactMail(formData);
+    //this.tes.sendContactMail(formData);
   }
 
 }

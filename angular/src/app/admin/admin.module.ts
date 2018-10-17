@@ -15,6 +15,7 @@ import { AdminNavbarComponent } from '../admin-navbar/admin-navbar.component';
 import { AdminRoutingModule } from '../admin-routing/admin-routing.module';
 import { AdminNewsletterComponent } from '../admin-newsletter/admin-newsletter.component';
 import { AuthGuard } from '../core/auth.guard';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { AuthGuard } from '../core/auth.guard';
     MatInputModule,
     FormsModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [
     AdminNavbarComponent,

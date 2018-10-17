@@ -1,33 +1,30 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const functions = require("firebase-functions");
-const sendgrid = require("@sendgrid/mail");
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-exports.helloWorld = functions.https.onRequest((request, response) => {
-    //response.send("Hello from Firebase!");
-});
-exports.sendContactMail = functions.https.onRequest((req, res) => {
-    console.log("Request: " + req.param('email', 9999) + ", response: " + res);
-    // using SendGrid's v3 Node.js Library
-    // https://github.com/sendgrid/sendgrid-nodejs
-    sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
-    //sendgrid.setApiKey(process.env.SENDGRID_API_KEY);
-    console.log("Key: " + process.env.SENDGRID_API_KEY);
-    const msg = {
-        to: 'test@example.com',
-        from: 'test@example.com',
-        subject: 'Sending with SendGrid is Fun',
-        text: 'and easy to do anywhere, even with Node.js',
-        html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-    };
-    return sendgrid.send(msg).then(() => {
-        //celebrate
-        console.log("I think we did it...");
-    }).catch(error => {
-        //cry everytiem
-        console.log(error);
-    });
-});
+const admin = require("firebase-admin");
+admin.initializeApp();
+const cors = require("cors");
+const corsHandler = cors({ origin: true });
+exports.helloWorld = functions.https.onRequest((request, response) => __awaiter(this, void 0, void 0, function* () {
+    // This line is GOD.
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    response.status(200).send('Hello, World!');
+}));
+exports.pingPongObj = functions.https.onRequest((request, response) => __awaiter(this, void 0, void 0, function* () {
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    response.setHeader("Access-Control-Allow-Credentials", "true");
+    response.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+    // Below might not work?
+    //response.setHeader("Access-Control-Allow-Methods", "*");
+    response.status(200).send(request.body);
+}));
 //# sourceMappingURL=index.js.map

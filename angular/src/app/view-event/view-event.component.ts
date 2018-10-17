@@ -147,7 +147,6 @@ export class ViewEventComponent implements OnInit {
 
   createWallPost(formData) {
     this.ws.insertPost(formData, this.key);
-
   }
 
   openWallPostDialog() {
@@ -168,9 +167,13 @@ export class ViewEventComponent implements OnInit {
 
   updateDisplayForWall() {
     /* Display usernames */
+    console.log("Reach 1");
     this.userNames = [];
+    console.log("Reach 2");
     this.wall.posts.forEach(post => {
+      console.log(post);
       this.ufbs.getUserByID(post.fk_id).subscribe( (u:any) => {
+        console.log(u);
         this.userNames.push(u.username);
       });
     });

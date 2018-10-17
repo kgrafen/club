@@ -7,8 +7,9 @@ import { AngularFireDatabase, AngularFireList  } from '../../node_modules/angula
 import { Time } from '@angular/common';
 import { timestamp } from 'rxjs/internal/operators/timestamp';
 
-import { Http, Headers, Response, URLSearchParams } from '@angular/http';
+import { Headers, Response, URLSearchParams, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,28 +17,16 @@ import 'rxjs/add/operator/toPromise';
 export class TransactionalEmailService {
 
   path = "/messages/";
-  to = 'singlenetworktest@armyspy.com'
+  to = 'SpicyMexican@superrito.com'
 
   constructor(private db: AngularFireDatabase, private http: Http) { }
 
-  sendContactMail(formData) {
-    let url = `https://your-cloud-function-url/sendContactMail`
-    let params: URLSearchParams = new URLSearchParams();
-    let headers = new Headers({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-
-    params.set('to', this.to);
-    params.set('from', formData.email);
-    params.set('subject', formData.Subject);
-    params.set('content', formData.message);
-
-    return this.http.post(url, params)
-                    .toPromise()
-                    .then( res => {
-                      console.log(res)
-                    })
-                    .catch(err => {
-                      console.log(err)
-                    })
-
+  helloWorld() {
+    return this.http.get("https://us-central1-single-network.cloudfunctions.net/helloWorld");
   }
+
+  pingPongObj(obj) {
+    return this.http.post("https://us-central1-single-network.cloudfunctions.net/pingPongObj", obj);
+  }
+
 }
