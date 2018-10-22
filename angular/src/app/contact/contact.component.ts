@@ -26,7 +26,10 @@ export class ContactComponent implements OnInit {
   }
 
   sendMail(formData) {
-    //this.tes.sendContactMail(formData);
+    this.tes.sendContactMail(formData).subscribe(response => {
+      console.log("Placeholder");
+      console.log(response);
+    });
   }
 
 }

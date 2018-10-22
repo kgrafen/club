@@ -34,12 +34,7 @@ export class AdminNewsletterComponent implements OnInit {
   }
 
   sendNewsletter(formData) {
-    // this.tes.helloWorld().subscribe(response => {
-    //   console.log(response);
-    // });
-    this.tes.pingPongObj(formData).subscribe(response => {
-      console.log(response);
-    });
+    
   }
 
 }

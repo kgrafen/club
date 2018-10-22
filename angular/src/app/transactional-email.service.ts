@@ -7,7 +7,7 @@ import { AngularFireDatabase, AngularFireList  } from '../../node_modules/angula
 import { Time } from '@angular/common';
 import { timestamp } from 'rxjs/internal/operators/timestamp';
 
-import { Headers, Response, URLSearchParams, Http } from '@angular/http';
+import { Headers, Response, URLSearchParams, Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
@@ -21,12 +21,13 @@ export class TransactionalEmailService {
 
   constructor(private db: AngularFireDatabase, private http: Http) { }
 
-  helloWorld() {
-    return this.http.get("https://us-central1-single-network.cloudfunctions.net/helloWorld");
+  sendContactMail(formData) {
+    let obj = {from: formData.email, name: formData.name, subject: formData.subject, mailText: formData.message}
+    return this.http.post("https://us-central1-single-network.cloudfunctions.net/sendContactMail", obj);
   }
 
-  pingPongObj(obj) {
-    return this.http.post("https://us-central1-single-network.cloudfunctions.net/pingPongObj", obj);
+  test() {
+    return this.http.get("https://us-central1-single-network.cloudfunctions.net/sendContactMail");
   }
 
 }
