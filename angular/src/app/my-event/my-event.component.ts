@@ -66,6 +66,9 @@ export class MyEventComponent implements OnInit {
     this.fifthFormGroup = this._formBuilder.group({
       eventFile: ['', Validators.required],
     });
+
+    this.getDisplayData();
+
   }
 
   onItemChange(value) {
@@ -78,7 +81,7 @@ export class MyEventComponent implements OnInit {
 
   onUpdateEvent() {
     let e: Event = this.formDataToModel();
-    this.efbs.updateEvent(e.key, e);
+    this.efbs.updateEvent(this.efbs.myEventSelection.key, e);
   } 
 
   formDataToModel(): Event {
@@ -127,6 +130,47 @@ export class MyEventComponent implements OnInit {
     if ( (event.target.value as string).length > 3 ) {
       this.geoAPI.getZipFromCity(event.target.value).map(response => response.json()).subscribe(result => this.apiZipValue = result.navn);
     }
+  }
+
+  getDisplayData() {
+    const event = this.efbs.myEventSelection;
+
+    console.log( new Date(event.deadlineDate) );
+    console.log( new Date(event.dateStart) );
+    
+    /* First form group*/
+    this.firstFormGroup.get('eventName').setValue(event.name);
+    this.firstFormGroup.get('eventLocationCity').setValue(event.address.city);
+    this.firstFormGroup.get('eventLocationStreet').setValue(event.address.street);
+    this.firstFormGroup.get('eventLocationZip').setValue(event.address.zip);
+    this.firstFormGroup.get('eventDescription').setValue(event.description);
+    this.firstFormGroup.get('eventCategory').setValue(event.category);
+
+    /* Second form group */
+    this.secondFormGroup.get('eventTargetGroup').setValue(event.targetGroup);
+    this.secondFormGroup.get('eventMinAge').setValue(event.minAge);
+    this.secondFormGroup.get('eventMaxAge').setValue(event.maxAge);
+    this.secondFormGroup.get('eventMinGuests').setValue(event.minGuests);
+    this.secondFormGroup.get('eventMaxGuests').setValue(event.maxGuests);
+    this.secondFormGroup.get('eventGender').setValue(event.genderRatio);
+    this.secondFormGroup.get('eventQueue').setValue(event.queue);
+
+    /* Third form group */
+    this.thirdFormGroup.get('eventDate').setValue(new Date(event.dateStart));
+    this.thirdFormGroup.get('eventStartTime').setValue(event.timeStart);
+    this.thirdFormGroup.get('eventEndTime').setValue(event.timeEnd);
+    this.thirdFormGroup.get('eventDeadlineDate').setValue(new Date(event.deadlineDate));
+    this.thirdFormGroup.get('eventDeadlineTime').setValue(event.deadlineTime);
+
+    /* Fourth form group */
+    this.fourthFormGroup.get('eventPrice').setValue(event.price);
+    this.fourthFormGroup.get('eventPaymentOption').setValue(event.paymentOption);
+    this.fourthFormGroup.get('eventPaymentDue').setValue(event.paymentDue);
+    this.fourthFormGroup.get('eventPaymentDate').setValue(event.paymentDate);
+    
+    /* Fifth form group */
+    this.fifthFormGroup.get('eventFile').setValue(event.file);
+
   }
 
 }

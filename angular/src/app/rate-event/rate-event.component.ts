@@ -25,7 +25,8 @@ export class RateEventComponent implements OnInit {
         this.efbs.getEventByKey(params['key']).snapshotChanges().subscribe(res => {
           this.event = Object.assign(res.payload.val());
           this.event.key = res.key;
-        }).unsubscribe();
+          console.log(this.event, res);
+        });
       });
      }
 
@@ -41,12 +42,7 @@ export class RateEventComponent implements OnInit {
       r.fk_host = this.event.host;
       r.byUser = u.username;
       this.rs.insertRating(r);
-      this.rs.updateUserScore(r.fk_host);
-    }).unsubscribe();
-  }
-
-  updateUserScore() {
-    this.rs.updateUserScore(this.event.host);
+    });
   }
 
 }

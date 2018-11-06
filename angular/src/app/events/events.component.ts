@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { IndexMap } from '@firebase/database/dist/src/core/snap/IndexMap';
+import { DialogService } from '../dialog.service';
+import { Observable } from '@firebase/util';
 
 @Component({
   selector: 'app-events',

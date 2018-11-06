@@ -12,8 +12,11 @@ import { MatBottomSheet } from '@angular/material';
 })
 export class AdminNavbarComponent implements OnInit {
 
-  menuFields = [{'displayName' : "Forside", 'link' : "/landing-page", 'description': "Tilbage til forsiden"},
-                {'displayName' : "Nyhedsbrev", 'link' : "/admin-module/admin-newsletter", 'description': "Skriv et nyhedsbrev ud til brugerne"}
+  menuFields = [
+                // {'displayName' : "Forside", 'link' : "/landing-page", 'description': "Tilbage til forsiden", 'disabled': false},
+                {'displayName' : "Nyhedsbrev", 'link' : "/admin-module/admin-newsletter", 'description': "Skriv et nyhedsbrev ud til brugerne", 'disabled': false},
+                {'displayName' : "Administrer brugere", 'link' : "/admin-module/", 'description': "Skriv et nyhedsbrev ud til brugerne", 'disabled': true},
+                {'displayName' : "Administrer events", 'link' : "/admin-module/", 'description': "Skriv et nyhedsbrev ud til brugerne", 'disabled': true}
                 ]
 
 
@@ -41,6 +44,10 @@ export class AdminNavbarComponent implements OnInit {
         this.router.navigate(['/landing-page']);
       }
     });
+  }
+
+  signout() {
+    this.router.navigate(['/landing-page']);
   }
 
 }

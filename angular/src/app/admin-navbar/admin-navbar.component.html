@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-  <button routerLink="{{menuField.link}}" matTooltip="{{menuField.description}}" mat-button color="primary" *ngFor="let menuField of menuFields">{{menuField.displayName}}</button>
-  
+  <div class="navbar-nav ml-auto ng-star-inserted">
+      <button [disabled]='menuField.disabled' routerLink="{{menuField.link}}" matTooltip="{{menuField.description}}" mat-button color="primary" *ngFor="let menuField of menuFields">{{menuField.displayName}}</button>
+      <button (click)="signout()" mat-raised-button color="warn">Afslut</button>
+  </div>
 </nav>
 
  <!-- Pusher -->

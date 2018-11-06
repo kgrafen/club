@@ -9,7 +9,7 @@
                   <mat-card-subtitle><fa name="tag"></fa> {{  selectedEvent.category }} <br><br>
                     {{selectedEvent.description}}
                   </mat-card-subtitle>
-                  <img src="../../singlenetwork/assets/images/event_placeholder.jpg" mat-card-image>
+                  <img src="/assets/images/event_placeholder.jpg" mat-card-image>
                   <mat-card-content>
       
                     <p><strong>Adresse:</strong><br> {{selectedEvent.address.street}} , {{selectedEvent.address.city}} , {{selectedEvent.address.zip}}</p>
@@ -33,17 +33,19 @@
               <mat-card class="wall">
                   <mat-card-title><h3>Væg</h3></mat-card-title>
               
-                  <mat-card *ngFor="let post of wall.posts; let idx = index">
-                    <mat-card-title>
-                      <img class="wall-img round" src="../../singlenetwork/assets/images/Logo.png">
-                      <a routerLink="/view-profile/">{{userNames[idx]}}</a>
-                      <p class="wall-timedate">{{tempDate}}</p>
-                    </mat-card-title>
-                    <mat-card-content>{{post.message}}</mat-card-content>
-                    <mat-card-actions>
-                      <button *ngIf="post.fk_id === this.authService.afAuth.auth.currentUser.uid || this.selectedEvent.host === this.authService.afAuth.auth.currentUser.uid" (click)="deleteWallPost(post)" mat-button color="warn">Slet</button>
-                    </mat-card-actions>
-                  </mat-card>
+                  <div *ngFor="let post of wall.posts; let idx = index">
+                    <mat-card *ngIf="idx > 0">
+                      <mat-card-title>
+                        <img class="wall-img round" src="/assets/images/Logo.png">
+                        <a routerLink="/view-profile/">{{userNames[idx-1]}}</a>
+                        <p class="wall-timedate">{{tempDate}}</p>
+                      </mat-card-title>
+                      <mat-card-content>{{post.message}}</mat-card-content>
+                      <mat-card-actions>
+                        <button *ngIf="post.fk_id === this.authService.afAuth.auth.currentUser.uid || this.selectedEvent.host === this.authService.afAuth.auth.currentUser.uid" (click)="deleteWallPost(post)" mat-button color="warn">Slet</button>
+                      </mat-card-actions>
+                    </mat-card>
+                  </div>
               
                   <mat-card-actions>
                     <button (click)="openWallPostDialog()" mat-raised-button color="primary">Svar</button>

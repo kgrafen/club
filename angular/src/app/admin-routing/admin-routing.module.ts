@@ -8,15 +8,9 @@ import { AdminNewsletterComponent } from '../admin-newsletter/admin-newsletter.c
 import { AuthGuard } from '../core/auth.guard';
 
 const routes: Routes = [
-  /*
-  {path: '', redirectTo: 'admin-dashboard', pathMatch:'full'},
-  {path: 'admin-dashboard', component: AdminDashboardComponent},
-  {path: 'admin-newsletter', component: AdminNewsletterComponent},
-  */
-  
   { 
-    path:'', component: AdminDashboardComponent, children: [
-      {path: '', redirectTo: 'admin-newsletter', pathMatch:'full', canActivate: [AuthGuard]},
+    path:'admin-module', component: AdminDashboardComponent, children: [
+      {path: '', redirectTo: '/admin-module/admin-newsletter', pathMatch:'full', canActivate: [AuthGuard]},
       {path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AuthGuard]},
       {path: 'admin-newsletter', component: AdminNewsletterComponent, canActivate: [AuthGuard]}
     ]

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'privacy-policy',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrivacyPolicyComponent implements OnInit {
 
-  constructor() { }
+  displayNavbar = false;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.afAuth.auth.onAuthStateChanged(user => {
+      if (user) {
+        this.displayNavbar = true;
+      }
+    });
   }
 
 }

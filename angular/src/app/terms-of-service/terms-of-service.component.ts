@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'terms-of-service',
@@ -9,12 +10,19 @@ import { Observable } from 'rxjs/Observable';
 })
 export class TermsOfServiceComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+	displayNavbar = false;
+
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   inputHTML;
 
   ngOnInit() {
-    this.readTosFile();
+		this.readTosFile();
+		this.authService.afAuth.auth.onAuthStateChanged(user => {
+      if (user) {
+        this.displayNavbar = true;
+      }
+    });
   }
 
   readTosFile() {

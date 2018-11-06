@@ -5,6 +5,7 @@ import { $ } from 'protractor';
 import { UserFirebaseService } from '../user-firebase.service';
 import { EventFirebaseService } from '../event-firebase.service';
 import { User } from '../entity/user/user';
+import { RatingService } from '../rating.service';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class AppNavbarComponent implements OnInit {
 });
 
   constructor(private authService: AuthService, private ufbs: UserFirebaseService, 
-              private efbs: EventFirebaseService) { }
+              private efbs: EventFirebaseService, private rs: RatingService) { }
 
   ngOnInit() {
     if (window.screen.width <= 600) {
@@ -43,9 +44,6 @@ export class AppNavbarComponent implements OnInit {
     this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(value => {
       let user: User = new User(value);
       this.username = user.username;
-      if (user.rating) {
-        this.rating = user.rating;
-      }
       
       if (user.numberOfEventsHosted >= 300) {
         this.metal = "/assets/images/shield_platinum.ico";
@@ -56,9 +54,19 @@ export class AppNavbarComponent implements OnInit {
       } else {
         this.metal = "/assets/images/shield_bronze.ico";
       }
-      
     });
 
+    this.rs.getRatings().subscribe(snapshots => {
+      let userScore = 0;
+      let count = 0;
+      snapshots.forEach(snapshot => {
+        if(snapshot.payload.val().fk_host === this.authService.afAuth.auth.currentUser.uid) {
+          userScore += Number(snapshot.payload.val().score);
+          count++;
+        }
+      });
+      this.rating = userScore / count;
+    });
   }
 
   signout() {

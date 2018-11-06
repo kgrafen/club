@@ -73,7 +73,17 @@ export class LandingPageHeaderComponent implements OnInit {
 
   tryFacebookLogin() {
     this.spinner.show();
-    this.authService.doFacebookLogin();
+    this.authService.doFacebookLogin().then( (callback) => {
+      this.spinner.hide();
+      console.log(callback);
+      const code: string = callback.code;
+      console.log(code);
+      if (code.includes('account-exists-with-different-credential')) {
+        this.toastr.error(this.translateCallback(callback.message), "Fejl");
+      } else {
+        this.toastr.success(callback.message, "Success");
+      }
+    });
   }
 
   tryGoogleLogin() {
@@ -94,6 +104,12 @@ export class LandingPageHeaderComponent implements OnInit {
   showSuccess(msg = "", status = "") {
     this.toastr.clear();
     this.toastr.success(msg, status);
+  }
+
+  translateCallback(message: string) {
+    if (message.includes('An account already exists')) {
+      return "En konto findes allerede oprettet med den samme email addresse. Dette skyldes at du allerede har en Google konto eller Facebook konto tilknyttet SingleNetværket. Log derfor ind med den anden.";
+    }
   }
 
 }

@@ -3,31 +3,23 @@
   <form [formGroup]="newsletterForm">
 
     <mat-form-field>
-      <input matInput formControlName="email" placeholder="email" required>
-    </mat-form-field>
-
-    <mat-form-field>
-        <input matInput formControlName="username" placeholder="username" required>
-    </mat-form-field>
-
-    <mat-form-field>
-        <mat-select formControlName="targetGroup" placeholder="Målgruppe">
-          <mat-option value="Alle brugere">Alle brugere</mat-option>
-          <mat-option value="Enkelt bruger">Enkelt bruger</mat-option>
+        <mat-select formControlName="username" placeholder="Afsender">
+          <mat-option value="Henrik & Diana">Henrik & Diana</mat-option>
+          <mat-option value="SingleNetvaerket">SingleNetværket</mat-option>
         </mat-select>
     </mat-form-field>
 
     <mat-form-field>
         <mat-select formControlName="subject" placeholder="Emne felt">
-          <mat-option value="a">a</mat-option>
-          <mat-option value="b">b</mat-option>
-          <mat-option value="c">c</mat-option>
+          <mat-option value="Nyhedsbrev: Feature">Nyhedsbrev: Feature</mat-option>
+          <mat-option value="Nyhedsbrev: Status">Nyhedsbrev: Status</mat-option>
+          <mat-option value="Nyhedsbrev: OBS">Nyhedsbrev: OBS</mat-option>
         </mat-select>
     </mat-form-field>
 
     <textarea formControlName="text" placeholder="besked" required cols="6"></textarea>
     
-    <button (click)="sendNewsletter(newsletterForm.value)" mat-raised-button color="primary">Send nyhedsbrev</button>
+    <button [disabled]="disabled" (click)="sendNewsletter(newsletterForm.value)" mat-raised-button color="primary">Send nyhedsbrev</button>
 
 
       

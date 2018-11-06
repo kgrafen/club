@@ -1,4 +1,5 @@
-<landing-page-header></landing-page-header>
+<landing-page-header *ngIf="!displayNavbar"></landing-page-header>
+<app-navbar *ngIf="displayNavbar"></app-navbar>
 
 <mat-card *ngIf="!isMobile">
 
@@ -36,7 +37,7 @@
                                 </mat-form-field>
                             
                             
-                                <button (click)="sendMail(contactForm.value)" mat-raised-button color="primary">Send</button>
+                                <button [disabled]="disabled" (click)="sendMail(contactForm.value)" mat-raised-button color="primary">Send</button>
                             </form>
             </mat-card>
         </mat-grid-tile>
@@ -89,7 +90,7 @@
                     </mat-form-field>
                 
                 
-                    <button (click)="tryRegister(registerForm.value)" mat-raised-button color="primary">Send</button>
+                    <button [disabled]="disabled" (click)="sendMail(contactForm.value)" mat-raised-button color="primary">Send</button>
                 </form>
 </mat-card>
 

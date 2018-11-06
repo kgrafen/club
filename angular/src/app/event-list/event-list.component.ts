@@ -8,6 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { TableFilterService } from '../table-filter.service';
 import { Event } from '../entity/event/event.model';
 import { Router, NavigationExtras } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 export interface EventData {
   name: string;
@@ -50,19 +51,22 @@ export class EventListComponent implements OnInit {
   
   constructor(private efbs: EventFirebaseService, 
     private mds: MobileDetectorService, private spinner: NgxSpinnerService, 
-    private tfs: TableFilterService, private router: Router) {
+    private tfs: TableFilterService, private router: Router, 
+    private toast: ToastrService) {
     this.efbs.getList('events').subscribe(res => {
       this.events = res;
-      this.dataSource = new MatTableDataSource(this.events);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.events.splice(0, 1);
+      if (this.events.length > 0) {
+        this.dataSource = new MatTableDataSource(this.events);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
 
-      this.dataSourceMobile = new MatTableDataSource(this.events);
-      this.dataSourceMobile.paginator = this.paginator;
-      this.dataSourceMobile.sort = this.sort;
-      this.spinner.hide();
-    },
-    (error) => {console.log("Something went wrong :(")
+        this.dataSourceMobile = new MatTableDataSource(this.events);
+        this.dataSourceMobile.paginator = this.paginator;
+        this.dataSourceMobile.sort = this.sort;
+        this.spinner.hide();
+      } 
+    },    (error) => {console.log("Something went wrong :(")
   });
     this.subscription = this.tfs.getEvent().subscribe(filter => { this.applyFilter(filter) });
   }
@@ -70,6 +74,15 @@ export class EventListComponent implements OnInit {
   ngOnInit() {
     this.spinner.show();
     this.isMobile = this.mds.check();
+  }
+
+  ngAfterViewInit() {
+    setTimeout( ()=>{
+      if (this.events.length < 1) {
+        this.spinner.hide();
+        this.toast.info("Der er ingen events oprettet", "Info");
+      }
+      }, 3000)
   }
 
   applyFilter(filterValue: string) {

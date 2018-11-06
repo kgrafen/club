@@ -4,6 +4,7 @@ import { ViewEventComponent, DialogData } from '../view-event/view-event.compone
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WallService } from '../wall.service';
 import { AuthService } from '../auth.service';
+import { UserFirebaseService } from '../user-firebase.service';
 
 @Component({
   selector: 'app-create-wall-post',
@@ -17,7 +18,7 @@ export class CreateWallPostComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<ViewEventComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData, 
     private _formBuilder: FormBuilder, private ws: WallService, 
-    private authService: AuthService) { }
+    private authService: AuthService, private ufbs: UserFirebaseService) { }
 
   ngOnInit() {
     this.wallPostForm = this._formBuilder.group({

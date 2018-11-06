@@ -22,7 +22,7 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit() {
     this.clearCache();
-    //Login validation
+
   }
 
   onLoading() {
@@ -40,7 +40,7 @@ export class LandingPageComponent implements OnInit {
       let dateStr = this.cs.get('last_visit');
       let thenMillis = Number(dateStr);
 
-      if (thenMillis + 86400 <= millis) {
+      if (thenMillis + (21600*100) <= millis) {
         this.cs.put('last_visit', millis + "");
         location.reload(true);
       }

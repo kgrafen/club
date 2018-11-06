@@ -10,6 +10,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { GeoCodingApiService } from '../geo-coding-api.service';
 import { Observable } from 'rxjs';
 import { User } from '../entity/user/user';
+import { WallService } from '../wall.service';
 
 export interface DialogData {
   animal: string;
@@ -39,7 +40,8 @@ export class CreateNewEventComponent implements OnInit {
               private ufbs: UserFirebaseService, 
               public dialogRef: MatDialogRef<CreateNewEventComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData,
-              private _formBuilder: FormBuilder, private geoAPI: GeoCodingApiService) { }
+              private _formBuilder: FormBuilder, private geoAPI: GeoCodingApiService, 
+              private ws: WallService) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -87,10 +89,12 @@ export class CreateNewEventComponent implements OnInit {
 
   onSubmitEvent() {
     let e: Event = this.formDataToModel();
-    this.efbs.insertEvent(e);
+    this.efbs.insertEvent(e).then( (thenableRef) => {
+      let key = thenableRef.path.pieces_[1];
+      this.ws.insertWall( {fk_event: key, posts: { 0: {message: "Hej og velkommen til dette event!", username: "_SYSTEM_"} } } )
+    });
     this.ufbs.updateUser({numberOfEventsHosted: this.ufbs.getStorage().numberOfEventsHosted + 1}, 
                         this.authService.afAuth.auth.currentUser.uid);
-    console.log(this.ufbs.getStorage().numberOfEventsHosted + 1);
   } 
 
   formDataToModel(): Event {
@@ -103,13 +107,13 @@ export class CreateNewEventComponent implements OnInit {
     event.category = this.firstFormGroup.value.eventCategory;
     event.description = this.firstFormGroup.value.eventDescription;
 
-    event.dateStart = this.thirdFormGroup.value.eventDate;
-    event.deadlineDate = this.thirdFormGroup.value.eventDeadlineDate;
+    event.dateStart = this.thirdFormGroup.value.eventDate.toString();
+    event.deadlineDate = this.thirdFormGroup.value.eventDeadlineDate.toString();
     event.deadlineTime = this.thirdFormGroup.value.eventDeadlineTime;
     event.timeEnd = this.thirdFormGroup.value.eventEndTime;
     event.timeStart = this.thirdFormGroup.value.eventStartTime;
 
-    event.paymentDate = this.fourthFormGroup.value.eventPaymentDate;
+    event.paymentDate = this.fourthFormGroup.value.eventPaymentDate.toString();
     event.paymentDue = this.fourthFormGroup.value.eventPaymentDue;
     event.paymentOption = this.fourthFormGroup.value.eventPaymentOption;
     event.price = this.fourthFormGroup.value.eventPrice;

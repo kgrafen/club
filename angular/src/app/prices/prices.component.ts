@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 export interface Item {
   name: string;
@@ -21,9 +22,16 @@ export class PricesComponent implements OnInit {
   displayedColumns: string[] = ['name', 'price', 'type'];
   dataSource = ITEM_DATA;
 
-  constructor() { }
+  displayNavbar = false;
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.afAuth.auth.onAuthStateChanged(user => {
+      if (user) {
+        this.displayNavbar = true;
+      }
+    });
   }
 
 }

@@ -5,10 +5,10 @@
             <mat-toolbar-row>
                 <h4>Hurtige links</h4>
                 <ul class="cl-effect-1 list-unstyled quick-links">
-                  <li><a [routerLink]="['/']"> Forside </a></li>
+                  <li><a [routerLink]="['/landing-page']"> Forside </a></li>
                   <li><a [routerLink]="['/about']"> Om </a></li>
                   <li *ngIf="isDevelopmentBuild"><a [routerLink]="['/patch-notes']">Patch Notes</a></li>
-                  <li><a (click)="authorize()" [routerLink]="['']">Admin</a></li>
+                  <li><a (click)="authorize()" [routerLink]="['/admin']">Admin</a></li>
                 </ul>
               </mat-toolbar-row>
         </mat-grid-tile>

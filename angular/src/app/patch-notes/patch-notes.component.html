@@ -1,6 +1,64 @@
-<landing-page-header></landing-page-header>
+<landing-page-header *ngIf="!displayNavbar"></landing-page-header>
+<app-navbar *ngIf="displayNavbar"></app-navbar>
+
 <h1>Patch Notes</h1>
 <mat-card>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            02/11-2018
+          </mat-panel-title>
+          <mat-panel-description>
+            Firebase backend
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <h4>Julegave</h4>
+        <p>Guna har rykket sitet fra domænet fra singlen.dk/singlenetwork/ til singlen.dk. Begge virker p.t. (denne Patch Note)</p>
+
+        <h4>Tests af Firebase funktioner</h4>
+        <p>Vi har brugt tid på at teste at automatiske emails sendes til de rette modtagere og kan hente nødvendig data. Eksempelvis data såsom: score, antal events, dage til event starter.</p>
+        <p>Og at funktionerne reagere på de rette parametre og tjekker efter de rette kriterier. (2 dage før, en uge før, hvis der er rating så skriv denne mail (ellers skriv en anden) m.v.</p>
+        <h4>Status på Firebase functions</h4>
+        <p>Vi er nu 'færdige' med implementering af backend, så vi kan rykke videre til de andre presserende opgaver.</p>
+
+        <h5>Obs</h5>
+        <p>Til Henrik & Diana: i må gerne ligge jeres events ind ved at oprette dem igennem sitet. Brug jeres login og så ellers gå igang :)
+          På den måde er vi sikre på at det format jeres event data har er det rigtige. 
+        </p>
+
+      </mat-expansion-panel>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            26/10-2019
+          </mat-panel-title>
+          <mat-panel-description>
+            Automatik
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <h4>Cron jobs</h4>
+        <p>Vi bruger <a href="https://cron-job.org"></a> <fa name="link"></fa> cron-job.org til at køre tidsbestemte routiner.</p>
+        <h4>Refactoring</h4>
+        <p>Kode opdateringer. Bl.a. til at redigere et event, vise dato.</p>
+        <h4>Firebase function: Månedens hopper</h4>
+        <p>Implementation af automatiseret routine der udvælger månedens hopper ud fra parametre der kan ændres. Default: flest events på en måned.</p>
+        <h4>Firebase function: Slettelse af event</h4>
+        <p>Alle deltagere orienteres hvis et event, som de deltager i, slettes af værten.</p>
+        <h4>Firebase function: Giv ekstra dage</h4>
+        <p>Systemet kan give en bruger ekstra dage til sit medlemsskab. Lige nu gives der for afholdt event og for månedens hopper.</p>
+        <h4>Firebase function: Husk at rate</h4>
+        <p>En funktion der håndterer at påminde deltagere om at rate. De får denne 24 timer efter et events afholdelsesdato</p>
+        <h4>Firebase function: Påmindelser</h4>
+        <p>Brugere orienteres henholdsvis en uge of 2 dage før et event finder sted.</p>
+
+        <h5>Obs</h5>
+        <p>Ved firebase funktioner, forståes der automatik. Altså emails der sendes ud til de korrekte modtager, når et event(programmering) affyrer. </p>
+
+      </mat-expansion-panel>
 
     <mat-expansion-panel>
         <mat-expansion-panel-header>

@@ -4,7 +4,7 @@ export class Event {
     key: string;
     name: string;
     description: string;
-    dateStart: Date;
+    dateStart: string;
     timeStart: number;
     timeEnd: number;
     category: string;
@@ -18,12 +18,12 @@ export class Event {
     genderRatio: string;
     queue: boolean;
     address: EventAddress;
-    deadlineDate: Date;
+    deadlineDate: string;
     deadlineTime: number;
     price: number;
     paymentOption: string;
     paymentDue: string;
-    paymentDate: Date;
+    paymentDate: string;
     participants: {};
     host: string;
 

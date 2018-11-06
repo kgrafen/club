@@ -23,8 +23,14 @@ export class TransactionalEmailService {
 
   sendContactMail(formData) {
     let obj = {from: formData.email, name: formData.name, subject: formData.subject, mailText: formData.message}
-    return this.http.post("https://us-central1-single-network.cloudfunctions.net/sendContactMail", obj);
+    return this.http.post("https://us-central1-single-network.cloudfunctions.net/sendContactMail", obj)
   }
+
+  sendNewsletter(formData) {
+    let data = JSON.stringify ( {username: formData.username, subject: formData.subject, mailMsg: formData.text} );
+    return this.http.post("https://us-central1-single-network.cloudfunctions.net/sendNewsletter", data);
+  }
+
 
   test() {
     return this.http.get("https://us-central1-single-network.cloudfunctions.net/sendContactMail");

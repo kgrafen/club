@@ -1,4 +1,6 @@
-<landing-page-header></landing-page-header>
+<landing-page-header *ngIf="!displayNavbar"></landing-page-header>
+<app-navbar *ngIf="displayNavbar"></app-navbar>
+
 <mat-card [innerHTML]="inputHTML">
             
 </mat-card>

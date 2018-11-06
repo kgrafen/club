@@ -15,7 +15,7 @@ import { environment } from '../environments/environment';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 
 //Ngb bootstrap
-import { NgbModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Components
 import { DummyListComponent } from './dummy-list/dummy-list.component';
@@ -48,13 +48,9 @@ import { CookiesConsentComponent } from './cookies-consent/cookies-consent.compo
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { MobileLoginHeaderComponent } from './mobile-login-header/mobile-login-header.component';
 
-// Services
-import { AuthService } from './auth.service';
-
 // Routing
-import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { RoutingModule } from './routing.module';
+import { RoutingModule, routingModule } from './routing.module'
 
 // Forms
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -82,7 +78,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 // Test suite
 import { RouterTestingModule } from '@angular/router/testing';
-import { TestBed, inject, async } from '@angular/core/testing';
 
 // Pipes
 import { ActiveBlockedPipe } from './pipes/active-blocked.pipe';
@@ -90,7 +85,6 @@ import { ActiveBlockedPipe } from './pipes/active-blocked.pipe';
 // Spinner
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AdminModule } from './admin/admin.module';
-import { UserRoleService } from './user-role.service';
 import { AuthGuard } from './core/auth.guard';
 
 // Toaster
@@ -141,11 +135,10 @@ import { CreateWallPostComponent } from './create-wall-post/create-wall-post.com
   entryComponents: [MobileLoginHeaderComponent, ConfirmationDialogComponent, CreateWallPostComponent],
   imports: [
     BrowserModule,
+    NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    NgbModule.forRoot(),
-    RoutingModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -185,7 +178,8 @@ import { CreateWallPostComponent } from './create-wall-post/create-wall-post.com
     NgxSpinnerModule,
     HttpModule,
     AdminModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    RoutingModule
   ],
   providers: [CookieService, AuthGuard],
   bootstrap: [AppComponent]

@@ -39,26 +39,12 @@ export class RatingService {
     });
   }
 
-  updateUserScore(host: string) {
-    let userScore = 0;
-    let count = 0;
-    this.db.list(this.dbPath).snapshotChanges().subscribe(snapshots => {
-      snapshots.forEach(snapshot => {
-        if(snapshot.payload.val().fk_host === host) {
-          userScore += Number(snapshot.payload.val().score);
-          count++;
-        }
-      });
-      this.ufbs.updateUser({rating: userScore}, host);
-    }).unsubscribe();
+  getRatings() {
+    return this.db.list(this.dbPath).snapshotChanges();
   }
 
-  async insertRating(rating: Rating) {
-    this.db.object(this.dbPath + (rating.fk_event+rating.byUser)).update(rating);
+  insertRating(rating: Rating) {
+    this.db.list(this.dbPath).push(rating);
    }
-
-   private objToJSON(ratingObject : Rating): string {
-    return JSON.parse(JSON.stringify(ratingObject));
-  }
 
 }

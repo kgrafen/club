@@ -9,6 +9,7 @@ import { UserRoleService } from '../user-role.service';
 import { Role } from '../entity/user/role.model';
 import { Router } from '@angular/router';
 import { TransactionalEmailService } from '../transactional-email.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'admin-newsletter',
@@ -18,23 +19,31 @@ import { TransactionalEmailService } from '../transactional-email.service';
 export class AdminNewsletterComponent implements OnInit {
 
   isLoggedOn = false;
+  disabled = false;
 
   public newsletterForm = new FormGroup({
-    email: new FormControl(''),
     username: new FormControl(''),
-    targetGroup: new FormControl(''),
     subject: new FormControl(''),
     text: new FormControl('')
 });
 
-  constructor(private ufbs: UserFirebaseService, private tes: TransactionalEmailService) { }
+  constructor(private ufbs: UserFirebaseService, private tes: TransactionalEmailService, 
+    private ts: ToastrService) { }
 
   ngOnInit() {
     
   }
 
   sendNewsletter(formData) {
-    
+    this.disabled = true;
+    this.ts.info("OK fra server...", "Afventer");
+
+    this.tes.sendNewsletter(formData).subscribe(response => {
+      console.log(response);
+      this.ts.show("Din besked er nu afsendt!", "Success");
+      this.disabled = false;
+    }).unsubscribe;
+
   }
 
 }

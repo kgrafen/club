@@ -1,4 +1,5 @@
-<landing-page-header></landing-page-header>
+<landing-page-header *ngIf="!displayNavbar"></landing-page-header>
+<app-navbar *ngIf="displayNavbar"></app-navbar>
 
 <mat-card>
     <h1>Del din historie eller kom med et forslag</h1>

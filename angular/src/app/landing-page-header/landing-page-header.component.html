@@ -1,10 +1,10 @@
 <div *ngIf="!isMobile" class="container">
 
-    <a [routerLink]="['/']"><img class="mobile" src="./assets/images/Logo_white.png"></a>
+    <a [routerLink]="['/landing-page']"><img class="mobile" src="./assets/images/Logo_white.png"></a>
 
     <div class="row">
       <div class="col left">
-        <a [routerLink]="['/']"><img src="./assets/images/Logo_white.png"></a>
+        <a [routerLink]="['/landing-page']"><img src="./assets/images/Logo_white.png"></a>
       </div>
       <div *ngIf="!isMobile && !isLoggedOn" class="col right">
         <mat-card>

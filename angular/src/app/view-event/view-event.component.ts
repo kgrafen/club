@@ -167,9 +167,7 @@ export class ViewEventComponent implements OnInit {
 
   updateDisplayForWall() {
     /* Display usernames */
-    console.log("Reach 1");
     this.userNames = [];
-    console.log("Reach 2");
     this.wall.posts.forEach(post => {
       console.log(post);
       this.ufbs.getUserByID(post.fk_id).subscribe( (u:any) => {
@@ -177,6 +175,7 @@ export class ViewEventComponent implements OnInit {
         this.userNames.push(u.username);
       });
     });
+    console.log(this.userNames);
   }
 
 }

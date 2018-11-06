@@ -46,21 +46,23 @@ export class EventFirebaseService {
   }
 
   insertEvent(event: Event) {
-    const entry = this.objToJSON(event);
-    this.db.list(this.dbPath).push(event).then(finished => {
-      console.log(finished);
-    });
+    return this.db.list(this.dbPath).push(event);
   }
 
   updateEvent(key: string, e: Event) {
-    const eventsRef = this.db.list(this.dbPath);
-    eventsRef.set(key, e);
+    console.log(key, e);
+    const eventsRef = this.db.object(this.dbPath+key);
+    return eventsRef.update(e);
   }
 
   deleteEvent(key: string) {
     const itemsRef = this.db.list(this.dbPath);
-    itemsRef.remove(key).then(finished => {
-      this.ws.deleteWall(finished.key);
+    itemsRef.remove(key).then( () => {
+      this.ws.getWallByKey(key).subscribe(snapshots => {
+        snapshots.forEach(snapshot => {
+          this.ws.deleteWall(snapshot.key);
+        });
+      });
     });
   }
 

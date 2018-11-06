@@ -1,5 +1,6 @@
-import { NgModule }             from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { DummyListComponent} from './dummy-list/dummy-list.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
@@ -20,12 +21,12 @@ import { MyEventComponent } from './my-event/my-event.component';
 import { PatchNotesComponent } from './patch-notes/patch-notes.component';
 import { ViewEventComponent } from './view-event/view-event.component';
 import { RateEventComponent } from './rate-event/rate-event.component';
-import { ModuleWithProviders } from '@angular/compiler/src/core';
+
 import { AdminModule } from './admin/admin.module';
 import { AuthGuard } from './core/auth.guard';
 
 const routes: Routes = [
-  { path: 'landing-page', component: LandingPageComponent },
+  { path: 'landing-page', component: LandingPageComponent},
   { path: 'loggedin-dashboard', component: LoggedinDashboardComponent, canActivate: [AuthGuard] },
   { path: 'events', component: EventsComponent, canActivate: [AuthGuard] },
   { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard] },
@@ -46,20 +47,20 @@ const routes: Routes = [
   { path: 'admin-module', loadChildren: () => AdminModule, canActivate: [AuthGuard] },
   {
     path: 'dummy-list',
-    component: DummyListComponent,
-    data: { title: 'Dummy List' },
+    component: DummyListComponent
   },
   { path: '',
     redirectTo: '/landing-page',
-    pathMatch: 'full',
+    pathMatch: 'full'
   },
   { path: '**', component: PageNotFoundComponent }
 ];
 
-export const ModuleRouting: ModuleWithProviders = RouterModule.forRoot(routes);
+// export const ModuleRouting: ModuleWithProviders = RouterModule.forRoot(routes);
+export const routingModule: ModuleWithProviders = RouterModule.forRoot(routes);
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  exports: [ RouterModule ],
+  imports: [ RouterModule.forRoot(routes) ]
 })
 export class RoutingModule {}
