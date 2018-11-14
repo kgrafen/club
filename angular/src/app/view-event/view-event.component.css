@@ -57,3 +57,7 @@ mat-card {
 #mat-tab-content-0-0 > div {
     overflow: hidden !important;
 }
+
+mat-chip {
+    transform: scale(0.8);
+}

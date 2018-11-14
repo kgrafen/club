@@ -7,6 +7,7 @@ import { User } from '../entity/user/user';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { MobileLoginHeaderComponent } from '../mobile-login-header/mobile-login-header.component';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'create-account-form',
@@ -18,6 +19,7 @@ export class CreateAccountFormComponent implements OnInit {
   isMobile = false;
   hide = true;
   displayMessage = false;
+  passwordsMatch = false;
 
   public errorMessage : string;
   public successMessage : string;
@@ -29,7 +31,8 @@ export class CreateAccountFormComponent implements OnInit {
   });
 
   constructor(private authService: AuthService, private ufbs: UserFirebaseService, 
-    public dialog: MatDialog, private spinner: NgxSpinnerService) { }
+    public dialog: MatDialog, private spinner: NgxSpinnerService, 
+    private toast: ToastrService) { }
 
   ngOnInit() {
     if (window.screen.width <= 600) {
@@ -38,19 +41,16 @@ export class CreateAccountFormComponent implements OnInit {
   }
 
   tryRegister(value){
-    this.spinner.show();
-    this.authService.doRegister(value)
-    .then(res => {
-      //this.errorMessage = "";
-      //this.successMessage = "Din nye profil er blevet oprettet!";
-      //this.displayMessage = true;
-      this.spinner.hide();
+    if (this.formValidation()) {
+        this.spinner.show();
+        this.authService.doRegister(value)
+        .then(res => {
+        this.spinner.hide();
+        this.authService.sendVerificationMail();
     }, err => {
-      this.errorMessage = this.translateErrorMsg(err);
-      this.spinner.hide();
-      this.successMessage = "";
-      this.displayMessage = true;
+        this.spinner.hide();
     })
+    }
   }
 
   translateErrorMsg(err) : string {
@@ -75,6 +75,24 @@ export class CreateAccountFormComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       
     });
+  }
+
+  comparePasswords(eventTargetValue: string) {
+    this.toast.clear();
+    if (eventTargetValue.length > 7) {
+      
+      if (eventTargetValue !== this.registerForm.get('password').value) {
+        this.toast.warning('Password er ikke ens', 'Hov!');
+        this.passwordsMatch = false;
+      } else {
+        this.passwordsMatch = true;
+      }
+    } 
+  }
+
+  formValidation(): boolean {
+    // TODO: implement this method
+    return true;
   }
 
 }

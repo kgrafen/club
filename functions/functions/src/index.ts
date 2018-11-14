@@ -16,7 +16,7 @@ export const sendContactMail = functions.https.onRequest(async (request, respons
 
     const mailOptions = {
         from: `${request.body.name} <noreply@firebase.com>`,
-        to: 'fgs@einrot.com',
+        to: 'info@singlen.dk',
         subject: request.body.subject,
         text: `Sendt fra: ${request.body.from}
         --------------------------------------
@@ -33,12 +33,15 @@ export const sendWelcomeEmail = functions.auth.user().onCreate((user) => {
       // [START eventAttributes]
     const email = user.email; // The email of the user.
     const displayName = user.displayName; // The display name of the user.
+    const mailContent = `Tak for din oprettelse ${displayName || ''}! Tak for din oprettelse, du har nu adgang til sitet ${APP_NAME}. `
+    const mailContent2 = `Tak for din oprettelse ${displayName || ''}! Husk at bekræfte din email for at få adgang. Vi har sendt en mail med et link.`
+
       // [END eventAttributes]
       const mailOptions = {
         from: `${APP_NAME} <noreply@firebase.com>`,
         to: email,
         subject: `Welcome to ${APP_NAME}`,
-        text: `Tak for din oprettelse ${displayName || ''}! Tak for din oprettelse, du har nu adgang til sitet ${APP_NAME}. ` 
+        text: `${user.emailVerified ? mailContent : mailContent2}`
     };
     
     sendEmail(mailOptions);
@@ -53,11 +56,13 @@ export const sendGoodbyeEmail = functions.auth.user().onDelete((user) => {
     const email = user.email; // The email of the user.
     const displayName = user.displayName; // The display name of the user.
 
+    const mailContent = `${user.emailVerified ? "Tak for denne gang.... ${displayName || ''} vi har nu slettet din profil fra ${APP_NAME}." : "Der er gået 24 timer uden at du har bekræftet din email. Derfor er dine oplysninger blevet slettet."}`;
+
     const mailOptions = {
         from: `${APP_NAME} <noreply@firebase.com>`,
         to: email,
         subject: `Welcome to ${APP_NAME}`,
-        text: `Tak for denne gang.... ${displayName || ''} vi har nu slettet din profil fra ${APP_NAME}. ` 
+        text: mailContent 
     };
 
     sendEmail(mailOptions);
@@ -80,7 +85,7 @@ export const sendNewsletter = functions.https.onRequest(async (request, response
         listUsersResult.users.forEach( function (userRecord) {
             const mailOptions = {
                 from: `${obj.username}`,
-                to: 'fgs@einrot.com',
+                to: 'info@singlen.dk',
                 subject: obj.subject,
                 text: obj.mailMsg
             };
@@ -145,7 +150,7 @@ export const afterEventHostMail = functions.https.onRequest(async (request, resp
                             getUserScore(users[users.indexOf(snapshot.key)]).then(userScore => {
                                 const mailOptions = {
                                     from: `${APP_NAME} <singlenetworkdatabase@gmail.com>`,
-                                    to: 'fgs@einrot.com', //snapshot.val().email
+                                    to: 'info@singlen.dk', //snapshot.val().email
                                     subject: `Tak for afholdelse af eventet`,
                                     text: `Kære ${snapshot.val().username},
                                     Vi sætter stor pris på at du bidrager til netværket med dine events. Vi håber at du selv havde
@@ -205,14 +210,15 @@ export const afterEventAttendeeMail = functions.https.onRequest(async (request, 
                              console.log("Arr of emails: " + emails);
                              emails.forEach(email => {
 
-                            const mailContent = `Tak for deltagelse i event ${snapshot.val().name}. Husk at bedømme/rate.`;
+                            const mailContent = `<html><body>Tak for deltagelse i event ${snapshot.val().name}. 
+                            Husk at bedømme/rate: <a href='https://singlen.dk/rate-event?${snapshot.key}' .</body></html>`;
                     
                             // setup e-mail data with unicode symbols
                             var mailOptions = {
                                 from: `${APP_NAME} <donotreply@singlen.dk>`,
                                 to: email, //to: email
                                 subject: "Tak for deltagelse i event",
-                                text: mailContent,
+                                html: mailContent,
                                 //html: "<b>Hello world ✔</b>" // html body
                             }
                     
@@ -243,7 +249,7 @@ export const eventDeletedNotification = functions.database.ref('/events/{eventId
                     // setup e-mail data with unicode symbols
                     var mailOptions = {
                         from: `${APP_NAME} <donotreply@singlen.dk>`,
-                        to: "fgs@einrot.com", //to: snapshot.val().email
+                        to: "info@singlen.dk", //to: snapshot.val().email
                         subject: "Et event er blevet slettet",
                         text: mailContent,
                         //html: "<b>Hello world ✔</b>" // html body
@@ -398,7 +404,7 @@ export const findAndChooseMonthlyJumper = functions.https.onRequest(async (reque
         // setup e-mail data with unicode symbols
         var mailOptions = {
             from: `${APP_NAME} <donotreply@singlen.dk>`,
-            to: "fgs@einrot.com",
+            to: "info@singlen.dk",
             subject: "Tillykke! Du er blevet valgt som månedens hopper.",
             text: mailContent,
             //html: "<b>Hello world ✔</b>" // html body
@@ -410,6 +416,17 @@ export const findAndChooseMonthlyJumper = functions.https.onRequest(async (reque
         notifying them of the winner and encourage them to attend his/her events */
 
 
+    });
+});
+
+export const deleteInvalidAccounts = functions.https.onRequest(async (request, response) => {
+    const oneDay = 24*60*60*100
+    admin.auth().listUsers().then( function(listUsersResult) {
+        listUsersResult.users.forEach( function(userRecord) {
+            if (Date.parse(userRecord.metadata.creationTime) + oneDay > Date.now()) {
+                admin.auth().deleteUser(userRecord.uid);
+            }
+        });
     });
 });
 
@@ -426,7 +443,7 @@ function sendEmail(mailOptions: {}, request=undefined, response=undefined) {
             response.status(200).send("Message was sent" + res);
             return res;
         } else {
-            return "Success";
+            return "Success!";
         }
     }).catch( (error) => {
         if (response) {

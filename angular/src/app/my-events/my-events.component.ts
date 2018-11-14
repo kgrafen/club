@@ -51,8 +51,9 @@ export class MyEventsComponent implements OnInit {
     private spinner: NgxSpinnerService, private ufbs: UserFirebaseService, 
     public dialog: MatDialog, private authService: AuthService) {
       this.efbs.getEventsByHost(this.authService.afAuth.auth.currentUser.uid).subscribe(res => {
-        
         this.events = res;
+        this.removePastEvents();
+
         this.dataSource = new MatTableDataSource(this.events);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -95,6 +96,17 @@ export class MyEventsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  private removePastEvents() {
+    this.events.forEach( event => {
+      if (new Date(event.dateStart) < new Date()) {
+        let idx = this.events.indexOf(event, 0);
+        if (idx > -1) {
+          this.events.splice(idx, 1);
+        }
+      }
     });
   }
 

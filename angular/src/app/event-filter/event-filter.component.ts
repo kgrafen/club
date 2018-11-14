@@ -13,7 +13,7 @@ export interface Selector {
 })
 export class EventFilterComponent implements OnInit {
 
-  public slider1Val: Number = 10;
+  public slider1Val: Number = 100;
   public kidsAllowed: boolean = false;
 
   public options: Selector[] = [

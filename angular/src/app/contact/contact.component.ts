@@ -40,7 +40,7 @@ export class ContactComponent implements OnInit {
     this.toast.info("Svar fra server...", "Afventer");
     this.tes.sendContactMail(formData).subscribe(response => {
       this.toast.clear();
-      this.toast.success("Din besked er afsendt!", "Success");
+      this.toast.success("Din besked er afsendt!", '👍');
       console.log("Placeholder");
       console.log(response);
       this.disabled = false;

@@ -12,6 +12,7 @@ import { SessionStorage, SessionStorageService } from 'angular-web-storage'
 import { UserFirebaseService } from './user-firebase.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { User } from './entity/user/user';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Injectable({
@@ -20,11 +21,12 @@ import { User } from './entity/user/user';
 export class AuthService {
   
   user: firebase.User;
+  isDeletingUser = false;
   //public userInfo: Observable<firebase.User>;
 
   constructor(public afAuth: AngularFireAuth, private router: Router, 
     private session: SessionStorageService, private ufbs: UserFirebaseService, 
-    private spinner: NgxSpinnerService) {
+    private spinner: NgxSpinnerService, private toast: ToastrService) {
       // To apply the default browser preference instead of explicitly setting it.
       // firebase.auth().useDeviceLanguage();
       
@@ -36,7 +38,9 @@ export class AuthService {
       firebase.auth().createUserWithEmailAndPassword(formData.email, formData.password)
       .then(res => {
         resolve(res);
-        const user = new User(formData);
+        // Don't include the password in the database -> user table
+        delete formData['password'];
+        let user = new User(formData);
         const date = new Date();
         date.setUTCFullYear(2019, 0, 1);
         user.subscribed_until = date;
@@ -58,13 +62,14 @@ export class AuthService {
   }
 
 
-  doSocialLoginRegister(firebaseUser: firebase.User) {
-    const userEntity: User = new User({"username": firebaseUser.displayName, "email": firebaseUser.email});
-    const date = new Date();
-    date.setUTCFullYear(2019, 0, 1);
-    userEntity.subscribed_until = date;
-    this.ufbs.insertUser(userEntity, firebaseUser.uid);
-  }
+  // doSocialLoginRegister(firebaseUser: firebase.User) {
+  //   console.log("Fired registration");
+    // const userEntity: User = new User({"username": firebaseUser.displayName, "email": firebaseUser.email});
+    // const date = new Date();
+    // date.setUTCFullYear(2019, 0, 1);
+    // userEntity.subscribed_until = date;
+    // this.ufbs.insertUser(userEntity, firebaseUser.uid);
+  // }
 
   doGoogleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -110,10 +115,11 @@ export class AuthService {
   }
 
   doSignout() {
-    this.afAuth.auth.signOut().then(() => {
+    return this.afAuth.auth.signOut().then(() => {
       this.user = null;
       this.signoutRedirect();
       this.session.remove("user");
+      this.router.navigated[('/landing-page')];
     });
   }
 
@@ -141,6 +147,17 @@ export class AuthService {
       text += possible.charAt(Math.floor(Math.random() * possible.length));
   
     return text;
+  }
+
+  sendVerificationMail() {
+    console.log(firebase.auth().currentUser);
+    firebase.auth().currentUser.sendEmailVerification().then( () => {
+      console.log("Send verification email");
+      this.toast.info(`En bekræftigelsesmail er afsendt til ${this.afAuth.auth.currentUser.email}`,'ℹ️ ')
+    }).catch( (err) => {
+      console.log("Failed to send verification email");
+      this.toast.error(err,'Fejl!');
+    });
   }
   
 }

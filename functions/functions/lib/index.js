@@ -20,7 +20,7 @@ exports.sendContactMail = functions.https.onRequest((request, response) => __awa
     response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
     const mailOptions = {
         from: `${request.body.name} <noreply@firebase.com>`,
-        to: 'fgs@einrot.com',
+        to: 'info@singlen.dk',
         subject: request.body.subject,
         text: `Sendt fra: ${request.body.from}
         --------------------------------------
@@ -34,12 +34,14 @@ exports.sendWelcomeEmail = functions.auth.user().onCreate((user) => {
     // [START eventAttributes]
     const email = user.email; // The email of the user.
     const displayName = user.displayName; // The display name of the user.
+    const mailContent = `Tak for din oprettelse ${displayName || ''}! Tak for din oprettelse, du har nu adgang til sitet ${APP_NAME}. `;
+    const mailContent2 = `Tak for din oprettelse ${displayName || ''}! Husk at bekræfte din email for at få adgang. Vi har sendt en mail med et link.`;
     // [END eventAttributes]
     const mailOptions = {
         from: `${APP_NAME} <noreply@firebase.com>`,
         to: email,
         subject: `Welcome to ${APP_NAME}`,
-        text: `Tak for din oprettelse ${displayName || ''}! Tak for din oprettelse, du har nu adgang til sitet ${APP_NAME}. `
+        text: `${user.emailVerified ? mailContent : mailContent2}`
     };
     sendEmail(mailOptions);
     return "done";
@@ -48,11 +50,12 @@ exports.sendWelcomeEmail = functions.auth.user().onCreate((user) => {
 exports.sendGoodbyeEmail = functions.auth.user().onDelete((user) => {
     const email = user.email; // The email of the user.
     const displayName = user.displayName; // The display name of the user.
+    const mailContent = `${user.emailVerified ? "Tak for denne gang.... ${displayName || ''} vi har nu slettet din profil fra ${APP_NAME}." : "Der er gået 24 timer uden at du har bekræftet din email. Derfor er dine oplysninger blevet slettet."}`;
     const mailOptions = {
         from: `${APP_NAME} <noreply@firebase.com>`,
         to: email,
         subject: `Welcome to ${APP_NAME}`,
-        text: `Tak for denne gang.... ${displayName || ''} vi har nu slettet din profil fra ${APP_NAME}. `
+        text: mailContent
     };
     sendEmail(mailOptions);
     return "done";
@@ -68,7 +71,7 @@ exports.sendNewsletter = functions.https.onRequest((request, response) => __awai
         listUsersResult.users.forEach(function (userRecord) {
             const mailOptions = {
                 from: `${obj.username}`,
-                to: 'fgs@einrot.com',
+                to: 'info@singlen.dk',
                 subject: obj.subject,
                 text: obj.mailMsg
             };
@@ -120,7 +123,7 @@ exports.afterEventHostMail = functions.https.onRequest((request, response) => __
                             getUserScore(users[users.indexOf(snapshot.key)]).then(userScore => {
                                 const mailOptions = {
                                     from: `${APP_NAME} <singlenetworkdatabase@gmail.com>`,
-                                    to: 'fgs@einrot.com',
+                                    to: 'info@singlen.dk',
                                     subject: `Tak for afholdelse af eventet`,
                                     text: `Kære ${snapshot.val().username},
                                     Vi sætter stor pris på at du bidrager til netværket med dine events. Vi håber at du selv havde
@@ -173,13 +176,14 @@ exports.afterEventAttendeeMail = functions.https.onRequest((request, response) =
                         });
                         console.log("Arr of emails: " + emails);
                         emails.forEach(email => {
-                            const mailContent = `Tak for deltagelse i event ${snapshot.val().name}. Husk at bedømme/rate.`;
+                            const mailContent = `<html><body>Tak for deltagelse i event ${snapshot.val().name}. 
+                            Husk at bedømme/rate: <a href='https://singlen.dk/rate-event?${snapshot.key}' .</body></html>`;
                             // setup e-mail data with unicode symbols
                             var mailOptions = {
                                 from: `${APP_NAME} <donotreply@singlen.dk>`,
                                 to: email,
                                 subject: "Tak for deltagelse i event",
-                                text: mailContent,
+                                html: mailContent,
                             };
                             sendEmail(mailOptions, request, response);
                         });
@@ -202,7 +206,7 @@ exports.eventDeletedNotification = functions.database.ref('/events/{eventId}').o
                     // setup e-mail data with unicode symbols
                     var mailOptions = {
                         from: `${APP_NAME} <donotreply@singlen.dk>`,
-                        to: "fgs@einrot.com",
+                        to: "info@singlen.dk",
                         subject: "Et event er blevet slettet",
                         text: mailContent,
                     };
@@ -327,13 +331,23 @@ exports.findAndChooseMonthlyJumper = functions.https.onRequest((request, respons
         // setup e-mail data with unicode symbols
         var mailOptions = {
             from: `${APP_NAME} <donotreply@singlen.dk>`,
-            to: "fgs@einrot.com",
+            to: "info@singlen.dk",
             subject: "Tillykke! Du er blevet valgt som månedens hopper.",
             text: mailContent,
         };
         sendEmail(mailOptions, request, response);
         /* Consider implementing emails to all the other users,
         notifying them of the winner and encourage them to attend his/her events */
+    });
+}));
+exports.deleteInvalidAccounts = functions.https.onRequest((request, response) => __awaiter(this, void 0, void 0, function* () {
+    const oneDay = 24 * 60 * 60 * 100;
+    admin.auth().listUsers().then(function (listUsersResult) {
+        listUsersResult.users.forEach(function (userRecord) {
+            if (Date.parse(userRecord.metadata.creationTime) + oneDay > Date.now()) {
+                admin.auth().deleteUser(userRecord.uid);
+            }
+        });
     });
 }));
 function sendEmail(mailOptions, request = undefined, response = undefined) {
@@ -347,7 +361,7 @@ function sendEmail(mailOptions, request = undefined, response = undefined) {
             return res;
         }
         else {
-            return "Success";
+            return "Success!";
         }
     }).catch((error) => {
         if (response) {

@@ -42,7 +42,7 @@
                     <textarea matInput formControlName="details" rows="8" required
                     placeholder="Besked..."></textarea>
             </mat-form-field>
-            <button type="submit" mat-raised-button color="primary">{{btnText}}</button>
+            <button [disabled]="isSendingMsg" (click)="send(feedbackForm.value)" type="submit" mat-raised-button color="primary">{{btnText}}</button>
 
         </form>
     </mat-card>

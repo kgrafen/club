@@ -6,6 +6,7 @@ import { UserFirebaseService } from '../user-firebase.service';
 import { EventFirebaseService } from '../event-firebase.service';
 import { User } from '../entity/user/user';
 import { RatingService } from '../rating.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -34,7 +35,8 @@ export class AppNavbarComponent implements OnInit {
 });
 
   constructor(private authService: AuthService, private ufbs: UserFirebaseService, 
-              private efbs: EventFirebaseService, private rs: RatingService) { }
+              private efbs: EventFirebaseService, private rs: RatingService,
+              private toast: ToastrService) { }
 
   ngOnInit() {
     if (window.screen.width <= 600) {
@@ -43,7 +45,11 @@ export class AppNavbarComponent implements OnInit {
 
     this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(value => {
       let user: User = new User(value);
-      this.username = user.username;
+      if (user.username) {
+        this.username = user.username;
+      } else {
+        this.username = "Inaktiv profil";
+      }
       
       if (user.numberOfEventsHosted >= 300) {
         this.metal = "/assets/images/shield_platinum.ico";
@@ -65,7 +71,9 @@ export class AppNavbarComponent implements OnInit {
           count++;
         }
       });
-      this.rating = userScore / count;
+      if (userScore > 0 && count > 0) {
+        this.rating = userScore / count;
+      }
     });
   }
 

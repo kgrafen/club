@@ -90,6 +90,7 @@ import { AuthGuard } from './core/auth.guard';
 // Toaster
 import { ToastrModule } from 'ngx-toastr';
 import { CreateWallPostComponent } from './create-wall-post/create-wall-post.component';
+import { AttendedEventsComponent } from './attended-events/attended-events.component';
 
 
 @NgModule({
@@ -130,7 +131,8 @@ import { CreateWallPostComponent } from './create-wall-post/create-wall-post.com
     ViewEventComponent,
     ConfirmationDialogComponent,
     RateEventComponent,
-    CreateWallPostComponent
+    CreateWallPostComponent,
+    AttendedEventsComponent
   ],
   entryComponents: [MobileLoginHeaderComponent, ConfirmationDialogComponent, CreateWallPostComponent],
   imports: [

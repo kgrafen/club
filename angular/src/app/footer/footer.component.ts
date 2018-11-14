@@ -31,10 +31,10 @@ export class FooterComponent implements OnInit {
         if (snapshot.payload.val().fk_id === this.authService.afAuth.auth.currentUser.uid) {
           let role = new Role(snapshot.payload.val());
           if (role.type === this.urs.userTypes.ADMIN) {
-            this.successToast("Du har nu admin adgang", "Success");
+            this.successToast("Du har nu admin adgang", '👍');
             this.router.navigate(['/admin-module']);
           } else {
-            this.errorToast("Du har ikke adgang.", "Fejl");
+            this.errorToast("Du har ikke adgang.", 'Fejl!');
           }
         }
       })

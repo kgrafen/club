@@ -3,6 +3,7 @@ export class Rating {
     fk_event: string;
     fk_host: string;
     byUser: string;
+    feedback: string;
 
     constructor() {}
     

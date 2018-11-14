@@ -5,9 +5,13 @@
         <div class="row">
           <div class="col">
               <mat-card>
-                  <mat-card-title>{{selectedEvent.name}}</mat-card-title>
-                  <mat-card-subtitle><fa name="tag"></fa> {{  selectedEvent.category }} <br><br>
-                    {{selectedEvent.description}}
+                  <mat-card-title>{{selectedEvent.name}}
+                    <mat-chip-list>
+                      <mat-chip color="primary" selected><mat-icon>person</mat-icon> {{hostName}}</mat-chip>
+                    </mat-chip-list>
+                  </mat-card-title>
+                  <mat-card-subtitle><fa name="tag"></fa> <span style="font-style:italic">{{  selectedEvent.category }} </span><br><br>
+                    <p style="white-space: pre-line">{{selectedEvent.description}}}</p>
                   </mat-card-subtitle>
                   <img src="/assets/images/event_placeholder.jpg" mat-card-image>
                   <mat-card-content>
@@ -21,11 +25,13 @@
                     <p><strong>Pris</strong><br> {{selectedEvent.price}} DKK</p>
                     <p><strong>Hvordan betales der: </strong><br> {{selectedEvent.paymentOption}}</p>
                     <p><strong>Hvornår betales der:</strong><br> {{selectedEvent.paymentDue}}</p>
+                    <p *ngIf="selectedEvent.eventMobilePayNumber > 0"><strong>Mobilepay:</strong> <br> {{selectedEvent.eventMobilePayNumber}}</p>
+                    <p *ngIf="selectedEvent.eventAccountNumber > 0"><strong>Kontonummer:</strong> <br> {{selectedEvent.eventAccountNumber}}</p>
                   </mat-card-content>
                   <mat-card-actions>
                     <button *ngIf="!isParticipating" (click)="onAttend()" mat-button color="primary">Tilmeld</button>
                     <button *ngIf="isParticipating" (click)="onUnattend()" mat-button color="warn">Frameld</button>
-                    <button mat-button (click)="onRateClick()" [routerLink]="['/rate-event']">Bedøm dette event</button>
+                    <button mat-button (click)="onRateClick()">Bedøm dette event</button>
                   </mat-card-actions>
               </mat-card>
           </div>

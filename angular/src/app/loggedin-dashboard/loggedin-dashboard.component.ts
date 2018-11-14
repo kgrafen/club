@@ -45,7 +45,7 @@ export class LoggedinDashboardComponent implements OnInit {
         });
       });
 
-      this.efbs.getList('/events').subscribe(snapshots => {
+      this.efbs.getList().subscribe(snapshots => {
         this.recommendationTiles = [];
         snapshots.forEach(snapshot => {
           if (snapshot.participants != undefined) {

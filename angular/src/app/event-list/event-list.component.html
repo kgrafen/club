@@ -51,15 +51,13 @@
           <td mat-cell *matCellDef="let element"> Ledig </td>
         </ng-container>
 
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-            <td mat-cell *matCellDef="let element">
-                <button (click)="onViewClick(element)" mat-button color="primary">Se</button>
-            </td>
+        <ng-container matColumnDef="dateStart">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Dato</th>
+            <td mat-cell *matCellDef="let element">{{element.dateStart | date:'dd/MM/yyyy'}}</td>
           </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onViewClick(row)"></tr>
       </table>
 
     <table *ngIf="isMobile" mat-table [dataSource]="dataSourceMobile" matSort class="mat-elevation-z8">

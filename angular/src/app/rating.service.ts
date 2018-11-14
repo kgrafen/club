@@ -25,14 +25,6 @@ export class RatingService {
   constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase, 
     private ufbs: UserFirebaseService, private efbs: EventFirebaseService) { }
 
-  getRatingsWithKey() {
-    return this.db.list(this.dbPath).snapshotChanges();
-  }
-
-  getRatingsJustValues() {
-    return this.db.list(this.dbPath).valueChanges();
-  }
-
   getRecentRatingsForUserByID(id: string) : Observable<any[]>  {
     return this.db.list(this.dbPath, ref => ref.orderByChild('fk_host').equalTo(id)).snapshotChanges().map(events => {
       return events.map(c => ({key: c.payload.key, ...c.payload.val()}));
@@ -44,7 +36,15 @@ export class RatingService {
   }
 
   insertRating(rating: Rating) {
-    this.db.list(this.dbPath).push(rating);
-   }
+    return this.db.list(this.dbPath).push(rating);
+  }
+
+  updateRating(rating: Rating, key: string) {
+    this.db.object(this.dbPath+key).update(rating);
+  }
+
+  hasUserRatedTheEvent(eid: string) {
+    return this.db.list(this.dbPath, ref => ref.orderByChild('fk_event').equalTo(eid)).snapshotChanges();
+  }
 
 }

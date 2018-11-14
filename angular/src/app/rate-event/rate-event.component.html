@@ -3,6 +3,7 @@
 <mat-card>
 
       <form>
+
         <mat-label>Rating</mat-label> <br>
         <mat-form-field>
             <mat-select placeholder="Vælg en score" [formControl]="ratingForm">
@@ -16,6 +17,14 @@
                 <mat-option value="5"><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon><mat-icon>star</mat-icon></mat-option>
               </mat-select>
         </mat-form-field>
+
+        <mat-label>Bemærkning</mat-label> <br>
+        <mat-form-field>
+          <textarea [formControl]="ratingFormText" matInput placeholder="Dette felt er valgfrit"
+            matTooltip="Du kan trække nede i højre hjørne for at forstørre tekstfeltet">
+          </textarea>
+        </mat-form-field>
+
       </form>
 
   <mat-card>
@@ -44,6 +53,6 @@
       </mat-card-actions>
   </mat-card>
 
-  <button mat-raised-button (click)="rate(ratingForm.value)" color="primary">Indsend bedømmelse</button>
+  <button [disabled]="hasRated" mat-raised-button (click)="rate(ratingForm.value, ratingFormText.value)" color="primary">Indsend bedømmelse</button>
 
 </mat-card>

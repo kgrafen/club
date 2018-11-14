@@ -2,6 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserFirebaseService } from '../user-firebase.service';
 
+export interface Item {
+  name: string;
+  price: number;
+  type: string;
+}
+
+const ITEM_DATA: Item[] = [
+  {name: '1 måneds medlemsskab', price: 60, type: "engangsbeløb"},
+  {name: 'Månedlig abonnement', price: 50, type: "månedlig subskription"},
+]
+
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
@@ -20,6 +31,9 @@ export class PaymentComponent implements OnInit {
   selection = "";
   card = "";
   checked = false;
+
+  displayedColumns: string[] = ['name', 'price', 'type'];
+  dataSource = ITEM_DATA;
 
   constructor(private _formBuilder: FormBuilder, private ufbs: UserFirebaseService) { }
 

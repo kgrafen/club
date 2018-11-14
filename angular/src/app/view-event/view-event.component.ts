@@ -13,6 +13,8 @@ import { WallService } from '../wall.service';
 import { Wall } from '../entity/wall/wall.model';
 import { WallPost } from '../entity/wall/wall-post.model';
 import { CreateWallPostComponent } from '../create-wall-post/create-wall-post.component';
+import { ToastrService } from 'ngx-toastr';
+import { hostname } from 'os';
 
 export interface DialogData {
   fk_wall: string;
@@ -44,13 +46,15 @@ export class ViewEventComponent implements OnInit {
   userNames = [];
   tempDate = new Date().toLocaleString();
 
+  hostName = "...HENTER VÆRTSNAVN...";
+
   // Test
   isParticipating: boolean = false;
 
   constructor(private route: ActivatedRoute, private efbs: EventFirebaseService, 
     private ufbs: UserFirebaseService, private router: Router, 
     private md: MobileDetectorService, private authService: AuthService, 
-    private ws: WallService, public dialog: MatDialog) { 
+    private ws: WallService, public dialog: MatDialog, private toast: ToastrService) { 
     this.route.queryParams.subscribe(params => {
       let key = params['key'];
       this.key = key;
@@ -71,6 +75,11 @@ export class ViewEventComponent implements OnInit {
         if (this.getParticipantKey() !== "Not Found") {
           this.isParticipating = true;
         }
+
+        this.getHostNameFromUID(this.selectedEvent.host).then( (value:string) => {
+          console.log(typeof value);
+          this.hostName = value;
+        });
 
       });
 
@@ -135,14 +144,22 @@ export class ViewEventComponent implements OnInit {
     this.isParticipating = false;
   }
 
-  
+
   onRateClick() {
+
     let navigationExtras: NavigationExtras = {
       queryParams: {
         "key": this.key
       }
     }
-    this.router.navigate(['/rate-event'], navigationExtras);
+    this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe( userSnapshot => {
+      let u: User = new User(userSnapshot);
+      if (this.participantsDisplayNames.includes(u.username)) {
+        this.router.navigate(['/rate-event'], navigationExtras);
+      } else {
+        this.toast.warning('Du kan ikke rate et event, som du ikke har deltaget i','Hov!')
+      }
+    });
   }
 
   createWallPost(formData) {
@@ -169,13 +186,18 @@ export class ViewEventComponent implements OnInit {
     /* Display usernames */
     this.userNames = [];
     this.wall.posts.forEach(post => {
-      console.log(post);
       this.ufbs.getUserByID(post.fk_id).subscribe( (u:any) => {
-        console.log(u);
         this.userNames.push(u.username);
       });
     });
-    console.log(this.userNames);
   }
+
+  getHostNameFromUID(uid: string) {
+    return new Promise( (resolve, reject) => {
+      this.ufbs.getUserByID(uid).subscribe( (snapshot:any) => {
+        resolve(snapshot.username);
+      });
+    });
+  } 
 
 }

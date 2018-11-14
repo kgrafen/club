@@ -17,7 +17,7 @@
         <input type="checkbox" class="form-control" id="inputConsent1" name="consent" value="Yes">
         <p>Jeg er indforstået med Single Netværkets privatlivs politik og giver mit samtykke</p>
         <label class="error">{{errorMessage}}</label>
-        <label class="success">{{successMessage}}</label>
+        <label class=👍>{{successMessage}}</label>
       </div>
     <button type="submit" (click)="tryRegister(registerForm.value)" class="btn btn-primary">Opret</button>
     
@@ -36,13 +36,18 @@
     </mat-form-field>
 
     <mat-form-field>
+        <mat-label>Indtast password igen</mat-label>
+        <input (change)="comparePasswords($event.target.value)" name="verification"  matInput placeholder="password" [type]="hide ? 'password' : 'text'" required>
+    </mat-form-field>
+
+    <mat-form-field>
         <mat-label>Brugernavn</mat-label>
         <input formControlName="username" name="username" matInput placeholder="brugernavn" required>
     </mat-form-field>
 
     <mat-card class="display-message" *ngIf="displayMessage">
         <mat-label class="error">{{errorMessage}}</mat-label>
-        <mat-label class="success">{{successMessage}}</mat-label>
+        <mat-label class=👍>{{successMessage}}</mat-label>
     </mat-card>
 
     <button (click)="tryRegister(registerForm.value)" mat-raised-button color="primary">Opret bruger</button>

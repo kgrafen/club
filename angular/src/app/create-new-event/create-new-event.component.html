@@ -1,7 +1,4 @@
-<app-navbar></app-navbar>
-
 <mat-card>
-
         <mat-horizontal-stepper [linear]="isLinear" #stepper>
                 <mat-step [stepControl]="firstFormGroup">
                   <form [formGroup]="firstFormGroup">
@@ -41,18 +38,18 @@
                                 <input matInput formControlName="eventLocationStreet" placeholder="Vej" required>
                             </mat-form-field>
                         </mat-grid-tile>
-                        <mat-grid-tile>
-                                <mat-form-field>
-                                    <mat-label>{{apiZipValue}}</mat-label>
-                                    <input matInput formControlName="eventLocationCity" placeholder="By" readonly
-                                    matTooltip="Dette felt udfyldes automatisk">
-                                </mat-form-field>
-                            </mat-grid-tile>
                             <mat-grid-tile>
                                     <mat-form-field>
                                         <mat-label>Post Nr.</mat-label>
                                         <input (keyup)="lookUpZip($event)" matInput formControlName="eventLocationZip" placeholder="#" required> <br>
                                     </mat-form-field>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-form-field>
+                                    <mat-label>{{apiZipValue}}</mat-label>
+                                    <input matInput formControlName="eventLocationCity" placeholder="By" readonly
+                                    matTooltip="Dette felt udfyldes automatisk">
+                                </mat-form-field>
                             </mat-grid-tile>
                     </mat-grid-list>
 
@@ -69,6 +66,7 @@
                             <mat-radio-button name="eventGender" value="Kun for mænd">Kun for mænd</mat-radio-button>
                             <mat-radio-button name="eventGender" value="Kun for kvinder">Kun for kvinder</mat-radio-button>
                             <mat-radio-button name="eventGender" value="50/50">50/50</mat-radio-button>
+                            <mat-radio-button name="eventGender" value="Først til mølle">Først til mølle</mat-radio-button>
                         </mat-radio-group>
 
                         <br> <mat-label>Børn</mat-label> <br>
@@ -91,7 +89,7 @@
                             <mat-grid-tile>
                                 <mat-form-field>
                                     <mat-label>Til</mat-label>
-                                    <input matInput type="number" min="18" max="99" formControlName="eventMaxAge" placeholder="18" required>
+                                    <input matInput type="number" min="18" max="99" formControlName="eventMaxAge" placeholder="99" required>
                                 </mat-form-field>
                             </mat-grid-tile>
                         </mat-grid-list>
@@ -130,7 +128,7 @@
                           <ng-template matStepLabel>Tidspunkt</ng-template>
                           <label>Dato for eventet</label> <br>
                           <mat-form-field>
-                                <input matInput [matDatepicker]="picker" formControlName="eventDate" placeholder="Vælg en dato">
+                                <input [(ngModel)]="maxRegistrationDate" [min]="minDate" [max]="maxDate" matTooltip="Klik på kalendar-ikonet for at vælge dato" matInput [matDatepicker]="picker" formControlName="eventDate" placeholder="DD/MM/YYYY">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
                             </mat-form-field>
@@ -153,8 +151,7 @@
 
                         <label>Tilmeldingsfrist</label> <br>
                           <mat-form-field>
-                                <mat-label>Dato</mat-label>
-                                <input matInput [matDatepicker]="picker2" formControlName="eventDeadlineDate" placeholder="Vælg en deadline">
+                                <input [min]="minDate" [max]="maxRegistrationDate" matTooltip="Klik på kalendar-ikonet for at vælge dato" matInput [matDatepicker]="picker2" formControlName="eventDeadlineDate" placeholder="DD/MM/YYYY">
                                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                 <mat-datepicker #picker2></mat-datepicker>
                             </mat-form-field>
@@ -174,35 +171,43 @@
                 </mat-step>
                 <mat-step [stepControl]="fourthFormGroup">
                         <form [formGroup]="fourthFormGroup">
-                          <ng-template matStepLabel>Pris & Betaling</ng-template>
-                          <mat-form-field>
+                        <ng-template matStepLabel>Pris & Betaling</ng-template>
+                        <mat-form-field>
                             <mat-label>Pris</mat-label>
-                            <input type="number" matInput placeholder="DKK,-" formControlName="eventPrice" required>
-                          </mat-form-field>
-
-                          <mat-form-field>
-                                <mat-label><fa name="tag"></fa> Betalingsform</mat-label>
-                                <mat-select formControlName="eventPaymentOption" name="eventPaymentOption" placeholder="Vælg emne" required>
-                                    <mat-option value="Ingen">Ingen</mat-option>
-                                    <mat-option value="Kontant">Kontant</mat-option>
-                                    <mat-option value="Mobilepay">Mobilepay</mat-option>
-                                    <mat-option value="Bankoverførelse">Bankoverførelse</mat-option>
-                                </mat-select> 
+                            <input (change)="onPriceEnter($event.target.value)" type="number" matInput placeholder="DKK,-" formControlName="eventPrice" required>
                         </mat-form-field>
 
-                        <mat-form-field>
+                        <mat-form-field *ngIf="hasPrice">
+                            <mat-label><fa name="tag"></fa> Betalingsform</mat-label>
+                            <mat-select (selectionChange)="onPaymentOptionChange($event.value)" formControlName="eventPaymentOption" name="eventPaymentOption" placeholder="Vælg emne" required>
+                                <mat-option value="Kontant">Kontant</mat-option>
+                                <mat-option value="Mobilepay">Mobilepay</mat-option>
+                                <mat-option value="Bankoverførelse">Bankoverførelse</mat-option>
+                            </mat-select> 
+                        </mat-form-field>
+
+                        <mat-form-field *ngIf="hasPrice && isTransferingMoney">
                                 <mat-label><fa name="tag"></fa> Hvornår betales der</mat-label>
-                                <mat-select (selectionChange)="onItemChange($event.value)" name="eventPaymentDue" formControlName="eventPaymentDue" placeholder="Vælg emne" required>
-                                    <mat-option value="Aldrig">Aldrig</mat-option>
+                                <mat-select (selectionChange)="onWhenPayChange($event.value)" name="eventPaymentDue" formControlName="eventPaymentDue" placeholder="Vælg emne" required>
                                     <mat-option value="Efter en gæst tilmelder sig">Efter en gæst tilmelder sig</mat-option>
-                                    <mat-option value="Kontant ved ankomst på dagen">Kontant ved ankomst på dagen</mat-option>
+                                    <mat-option hidden value="Kontant ved ankomst på dagen">Kontant ved ankomst på dagen</mat-option>
                                     <mat-option value="Dato">Dato</mat-option>
                                 </mat-select> 
                         </mat-form-field>
 
+                        <label *ngIf="displayMobilePayInput">Mobilepay</label> <br>
+                          <mat-form-field *ngIf="displayMobilePayInput">
+                                <input (change)="phoneValidation($event.target.value)" matInput formControlName="eventMobilePayNumber" pattern="[0-9]" placeholder="Mobilnummer">
+                        </mat-form-field>
+
+                        <label *ngIf="displayAccountNumberInput">Kontonummer</label> <br>
+                          <mat-form-field *ngIf="displayAccountNumberInput">
+                                <input (change)="accountNumberValidation($event.target.value)" matInput formControlName="eventAccountNumber" pattern= "[0-9]" placeholder="Kontonummer">
+                        </mat-form-field>
+
                         <label *ngIf="isPaymentDeadlineDate">Dato for betaling</label> <br>
                           <mat-form-field *ngIf="isPaymentDeadlineDate">
-                                <input matInput [matDatepicker]="picker" formControlName="eventDate" placeholder="Vælg en dato">
+                                <input matInput [matDatepicker]="picker" formControlName="eventPaymentDate" placeholder="DD/MM/YYYY">
                                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                 <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
@@ -226,13 +231,19 @@
 
                         <div>
                             <button mat-button matStepperPrevious>Tilbage</button>
-                            <button mat-raised-button color="primary" matStepperNext>Næste</button>
+                            <button (click)="displayPreview()" mat-raised-button color="primary" matStepperNext>Næste</button>
                         </div>
                 </mat-step>
 
                 <mat-step>
                   <ng-template matStepLabel>Godkend</ng-template>
                   Du er nu færdig.
+                  <mat-card *ngIf="isPreviewing">
+                      <div *ngFor="let preview of previews">
+                          <h5>{{preview.label}}</h5>
+                          <p>{{preview.body}}</p>
+                      </div>
+                  </mat-card>
                   <div>
                     <button mat-button matStepperPrevious>Tilbage</button>
                     <button mat-button color="warn" (click)="stepper.reset()">Start forfra</button>

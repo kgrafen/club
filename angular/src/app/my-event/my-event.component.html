@@ -100,13 +100,13 @@
                                     <mat-grid-tile>
                                         <mat-form-field>
                                             <mat-label>Fra</mat-label>
-                                            <input matInput type="number" min="18" max="98" formControlName="eventMinAge" placeholder="18" required>
+                                            <input matInput type="number" min="18" max="98" formControlName="eventMinAge" required>
                                         </mat-form-field>
                                     </mat-grid-tile>
                                     <mat-grid-tile>
                                         <mat-form-field>
                                             <mat-label>Til</mat-label>
-                                            <input matInput type="number" min="18" max="99" formControlName="eventMaxAge" placeholder="18" required>
+                                            <input matInput type="number" min="18" max="99" formControlName="eventMaxAge" required>
                                         </mat-form-field>
                                     </mat-grid-tile>
                                 </mat-grid-list>
@@ -204,35 +204,43 @@
                                     <ng-template matStepLabel>Pris & Betaling</ng-template>
                                     <mat-form-field>
                                       <mat-label>Pris</mat-label>
-                                      <input type="number" matInput placeholder="DKK,-" formControlName="eventPrice" required>
+                                      <input (change)="onPriceEnter($event.target.value)" type="number" matInput placeholder="DKK,-" formControlName="eventPrice" required>
+                                    </mat-form-field>
+
+                                    <mat-form-field *ngIf="hasPrice">
+                                        <mat-label><fa name="tag"></fa> Betalingsform</mat-label>
+                                        <mat-select (selectionChange)="onPaymentOptionChange($event.value)" formControlName="eventPaymentOption" name="eventPaymentOption" placeholder="Vælg emne" required>
+                                            <mat-option value="Kontant">Kontant</mat-option>
+                                            <mat-option value="Mobilepay">Mobilepay</mat-option>
+                                            <mat-option value="Bankoverførelse">Bankoverførelse</mat-option>
+                                        </mat-select> 
                                     </mat-form-field>
           
-                                    <mat-form-field>
-                                          <mat-label><fa name="tag"></fa> Betalingsform</mat-label>
-                                          <mat-select formControlName="eventPaymentOption" name="eventPaymentOption" placeholder="Vælg emne" required>
-                                              <mat-option value="Ingen">Ingen</mat-option>
-                                              <mat-option value="Kontant">Kontant</mat-option>
-                                              <mat-option value="Mobilepay">Mobilepay</mat-option>
-                                              <mat-option value="Bankoverførelse">Bankoverførelse</mat-option>
-                                          </mat-select> 
-                                  </mat-form-field>
-          
-                                  <mat-form-field>
-                                          <mat-label><fa name="tag"></fa> Hvornår betales der</mat-label>
-                                          <mat-select (selectionChange)="onItemChange($event.value)" name="eventPaymentDue" formControlName="eventPaymentDue" placeholder="Vælg emne" required>
-                                              <mat-option value="Aldrig">Aldrig</mat-option>
-                                              <mat-option value="Efter en gæst tilmelder sig">Efter en gæst tilmelder sig</mat-option>
-                                              <mat-option value="Kontant ved ankomst på dagen">Kontant ved ankomst på dagen</mat-option>
-                                              <mat-option value="Dato">Dato</mat-option>
-                                          </mat-select> 
-                                  </mat-form-field>
-          
-                                  <label *ngIf="isPaymentDeadlineDate">Dato for betaling</label> <br>
+                                    <mat-form-field *ngIf="hasPrice">
+                                        <mat-label><fa name="tag"></fa> Hvornår betales der</mat-label>
+                                        <mat-select (selectionChange)="onWhenPayChange($event.value)" name="eventPaymentDue" formControlName="eventPaymentDue" placeholder="Vælg emne" required>
+                                            <mat-option value="Efter en gæst tilmelder sig">Efter en gæst tilmelder sig</mat-option>
+                                            <mat-option value="Kontant ved ankomst på dagen">Kontant ved ankomst på dagen</mat-option>
+                                            <mat-option value="Dato">Dato</mat-option>
+                                        </mat-select> 
+                                    </mat-form-field>
+                            
+                                    <label *ngIf="displayMobilePayInput">Mobilepay</label> <br>
+                                    <mat-form-field *ngIf="displayMobilePayInput">
+                                        <input (change)="phoneValidation($event.target.value)" matInput formControlName="eventMobilePayNumber" pattern="[0-9]" placeholder="Mobilnummer">
+                                    </mat-form-field>
+
+                                    <label *ngIf="displayAccountNumberInput">Kontonummer</label> <br>
+                                    <mat-form-field *ngIf="displayAccountNumberInput">
+                                        <input (change)="accountNumberValidation($event.target.value)" matInput formControlName="eventAccountNumber" pattern= "[0-9]" placeholder="Kontonummer">
+                                    </mat-form-field>
+
+                                    <label *ngIf="isPaymentDeadlineDate">Dato for betaling</label> <br>
                                     <mat-form-field *ngIf="isPaymentDeadlineDate">
-                                          <input matInput [matDatepicker]="picker" formControlName="eventDate" placeholder="Vælg en dato">
+                                          <input matInput [matDatepicker]="picker" formControlName="eventPaymentDate" placeholder="Vælg en dato">
                                           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                           <mat-datepicker #picker></mat-datepicker>
-                                  </mat-form-field>
+                                    </mat-form-field>
     
                                   </form>
                               
@@ -258,7 +266,7 @@
                                       </form>
                                   
                             </mat-expansion-panel>
-                            <button (click)="onUpdateEvent()" mat-raised-button color="primary">Opdater event</button>
+                            <button [disabled]="hasUpdated" (click)="onUpdateEvent()" mat-raised-button color="primary">Opdater event</button>
     </mat-card>
 
     <mat-card>

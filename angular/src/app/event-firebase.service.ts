@@ -12,6 +12,7 @@ import { Event } from './entity/event/event.model';
 import { JsonConverter } from './entity/helper/json-converter';
 import { WallService } from './wall.service';
 import { Wall } from './entity/wall/wall.model';
+import { refCount } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class EventFirebaseService {
   constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase, 
     private ws: WallService) { }
 
-  getList(listPath): Observable<any> {
+  getList(): Observable<any> {
     return this.db.list(this.dbPath).snapshotChanges().map(events => {
       return events.map(c => ({key: c.payload.key, ...c.payload.val()}))
     });

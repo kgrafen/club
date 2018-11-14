@@ -7,6 +7,8 @@ import { UserFirebaseService } from '../user-firebase.service';
 import { GeoCodingApiService } from '../geo-coding-api.service';
 import { EventAddress } from '../entity/helper/EventAddress';
 import { User } from '../entity/user/user';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'my-event',
@@ -17,9 +19,11 @@ export class MyEventComponent implements OnInit {
 
   constructor(private efbs: EventFirebaseService, private authService: AuthService, 
     private ufbs: UserFirebaseService, 
-    private _formBuilder: FormBuilder, private geoAPI: GeoCodingApiService) { }
+    private _formBuilder: FormBuilder, private geoAPI: GeoCodingApiService,
+    private toast: ToastrService, private router: Router) { }
 
   myEvent: Event;
+  hasUpdated = false;
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -30,6 +34,10 @@ export class MyEventComponent implements OnInit {
   apiZipValue = "By";
   lookupCity;
   isPaymentDeadlineDate = false;
+  displayMobilePayInput = false;
+  displayAccountNumberInput = false;
+  hasPrice = false;
+  isTransferingMoney = false;
 
   ngOnInit() {
     this.myEvent = this.efbs.myEventSelection;
@@ -61,7 +69,9 @@ export class MyEventComponent implements OnInit {
       eventPrice: ['', Validators.required],
       eventPaymentOption: ['', Validators.required],
       eventPaymentDue: ['', Validators.required],
-      eventPaymentDate: ['', Validators.required]
+      eventPaymentDate: ['', Validators.required],
+      eventMobilePayNumber : ['', Validators.required],
+      eventAccountNumber: ['', Validators.required]
     });
     this.fifthFormGroup = this._formBuilder.group({
       eventFile: ['', Validators.required],
@@ -71,17 +81,40 @@ export class MyEventComponent implements OnInit {
 
   }
 
-  onItemChange(value) {
+  onWhenPayChange(value) {
     if(value === "Dato") {
       this.isPaymentDeadlineDate = true;
-    } else {
+    } 
+    else {
       this.isPaymentDeadlineDate = false;
+    }
+  }
+
+  onPaymentOptionChange(value) {
+    if (value === 'Mobilepay') {
+      this.displayMobilePayInput = true;
+      this.isTransferingMoney = true;
+      this.displayAccountNumberInput = false;
+    } else if (value === 'Bankoverførelse') {
+      this.displayAccountNumberInput = true;
+      this.isTransferingMoney = true;
+      this.displayMobilePayInput = false;
+    } else {
+      this.displayMobilePayInput = false;
+      this.displayAccountNumberInput = false;
+      this.isTransferingMoney = false;
     }
   }
 
   onUpdateEvent() {
     let e: Event = this.formDataToModel();
-    this.efbs.updateEvent(this.efbs.myEventSelection.key, e);
+    this.efbs.updateEvent(this.efbs.myEventSelection.key, e).then( () => {
+      this.toast.success('Dit event er blevet opdateret','👍  ');
+      this.hasUpdated = true;
+      setTimeout( () => {
+        this.hasUpdated = false;
+      }, 2000);
+    });
   } 
 
   formDataToModel(): Event {
@@ -103,6 +136,8 @@ export class MyEventComponent implements OnInit {
     event.paymentDue = this.fourthFormGroup.value.eventPaymentDue;
     event.paymentOption = this.fourthFormGroup.value.eventPaymentOption;
     event.price = this.fourthFormGroup.value.eventPrice;
+    event.mobilePayNumber = this.fourthFormGroup.value.eventMobilePayNumber;
+    event.accountNumber = this.fourthFormGroup.value.eventAccountNumber;
 
     event.file = this.fifthFormGroup.value.eventFile;
 
@@ -110,7 +145,7 @@ export class MyEventComponent implements OnInit {
     event.hostRating = this.ufbs.getStorage().rating;
     event.maxAge = this.secondFormGroup.value.eventMaxAge;
     event.minAge = this.secondFormGroup.value.eventMinAge;
-    event.maxGuests = this.secondFormGroup.value.eventMinGuests;
+    event.maxGuests = this.secondFormGroup.value.eventMaxGuests;
     event.minGuests = this.secondFormGroup.value.eventMinGuests;
     event.queue = this.secondFormGroup.value.eventQueue;
     event.targetGroup = this.secondFormGroup.value.eventTargetGroup;
@@ -171,6 +206,28 @@ export class MyEventComponent implements OnInit {
     /* Fifth form group */
     this.fifthFormGroup.get('eventFile').setValue(event.file);
 
+  }
+
+  phoneValidation(eventTargetValue) {
+    if (!/^\d+$/.test(eventTargetValue) && eventTargetValue !== "") {
+      this.toast.toastrConfig.positionClass = "toast-bottom-center";
+      this.toast.warning("🤖 Jeg er ret sikker på at telefonnumre ikke har bogstaver.");
+      this.toast.toastrConfig.positionClass = "toast-top-right";
+    }
+  }
+
+  accountNumberValidation(eventTargetValue) {
+    if (!/^\d+$/.test(eventTargetValue) && eventTargetValue !== "") {
+      this.toast.toastrConfig.positionClass = "toast-bottom-center";
+      this.toast.warning("🤖 Ifølge bankerne i Danmark, så er bogstaver endnu ikke en del af kontonumre");
+      this.toast.toastrConfig.positionClass = "toast-top-right";
+    }
+  }
+
+  onPriceEnter(eventTargetValue) {
+    if (eventTargetValue > 0) {
+      this.hasPrice = true;
+    }
   }
 
 }

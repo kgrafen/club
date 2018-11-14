@@ -17,7 +17,6 @@
           </mat-select> 
         </mat-form-field>
         <div>
-          <button mat-button matStepperNext>Næste</button>
         </div>
       </form>
     </mat-step>
@@ -33,8 +32,6 @@
             </mat-select> 
           </mat-form-field>
         <div>
-          <button mat-button matStepperPrevious>Tilbage</button>
-          <button mat-button matStepperNext>Næste</button>
         </div>
       </form>
     </mat-step>
@@ -53,17 +50,49 @@
         </mat-checkbox>
       </mat-card>
       <div>
-        <button mat-button matStepperPrevious>Tilbage</button>
-        <button mat-button color="warn" (click)="stepper.reset()">Start forfra</button>
         <button [disabled]="!checked" matTooltip="Når du trykker her vil du automatisk blive ført videre til vores betalingsplatform" mat-raised-button color="primary" matStepperNext>Bekræft</button>
       </div>
     </mat-step>
   </mat-vertical-stepper>
-  
   
   <!-- Copyright 2018 Google Inc. All Rights Reserved.
       Use of this source code is governed by an MIT-style license that
       can be found in the LICENSE file at http://angular.io/license -->
 
 </mat-card>
+
+<mat-card>
+    <h2>Betalingsmuligheder</h2>
+    <img src="http://kortlogo.dk/wp-content/uploads/2015/12/dankort128.jpg" /><img src="http://kortlogo.dk/wp-content/uploads/2015/12/visa128-1.jpg" /><img src="http://kortlogo.dk/wp-content/uploads/2015/12/mastercard64.png" />
+  </mat-card>
+  <mat-card>
+    <h2>Medlemskab</h2>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+        
+          <!-- Position Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Vare </th>
+            <td mat-cell *matCellDef="let item"> {{item.name | uppercase }} </td>
+          </ng-container>
+        
+          <!-- Name Column -->
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Pris </th>
+            <td mat-cell *matCellDef="let item"> {{ item.price }},- DKK </td>
+          </ng-container>
+        
+          <!-- Weight Column -->
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> Kategori </th>
+            <td mat-cell *matCellDef="let item"> {{item.type | uppercase}} </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        
+  </mat-card>
 

@@ -36,23 +36,14 @@ export class UserFirebaseService {
 
   
   getUsers() {
-    this.usersObservable = this.getList(this.dbPath);
+    this.usersObservable = this.getList();
   }
 
 
-  getList(listPath): Observable<any[]> {
-    return this.db.list(listPath).valueChanges();
+  getList() {
+    return this.db.list(this.dbPath).snapshotChanges();
   }
 
-  /* 
-  getUserByID(id: string) {
-    let path = this.dbPath + id;
-    this.db.object(path).valueChanges().subscribe(data => {
-      let user = this.jsonToObj(JSON.stringify(data));
-      this.setStorage(user);
-      return user;
-    });
-  } */
 
   getUserByID(id: string) {
     return this.db.object(this.dbPath+id).valueChanges();
@@ -61,7 +52,7 @@ export class UserFirebaseService {
   getUserByIndex(idx) {
     let path = this.dbPath+"/"+idx;
     this.db.object(path).valueChanges().subscribe(data => {
-      this.setStorage(new User(data));
+      
     });
   }
 
@@ -72,13 +63,11 @@ export class UserFirebaseService {
    }
  
    updateUser(objwithUpdates, id: string) {
-      this.db.object(this.dbPath+id).update(objwithUpdates);
+      return this.db.object(this.dbPath+id).update(objwithUpdates);
    }
  
    deleteUser(key: string) {
-     const usersRef = this.db.list(this.dbPath);
-     usersRef.remove(this.convertEmailToKey(key));
-     this.afAuth.auth.currentUser.delete();
+      return this.db.object(this.dbPath+key).remove();
    }
 
    // Session storage

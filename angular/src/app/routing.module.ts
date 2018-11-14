@@ -24,6 +24,7 @@ import { RateEventComponent } from './rate-event/rate-event.component';
 
 import { AdminModule } from './admin/admin.module';
 import { AuthGuard } from './core/auth.guard';
+import { AttendedEventsComponent } from './attended-events/attended-events.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent},
@@ -44,6 +45,7 @@ const routes: Routes = [
   { path: 'patch-notes', component: PatchNotesComponent, canActivate: [AuthGuard] },
   { path: 'view-event', component: ViewEventComponent, canActivate: [AuthGuard] },
   { path: 'rate-event', component: RateEventComponent, canActivate: [AuthGuard] },
+  { path: 'attended-events', component: AttendedEventsComponent, canActivate: [AuthGuard] },
   { path: 'admin-module', loadChildren: () => AdminModule, canActivate: [AuthGuard] },
   {
     path: 'dummy-list',

@@ -11,6 +11,7 @@ import { GeoCodingApiService } from '../geo-coding-api.service';
 import { Observable } from 'rxjs';
 import { User } from '../entity/user/user';
 import { WallService } from '../wall.service';
+import { ToastrService } from 'ngx-toastr';
 
 export interface DialogData {
   animal: string;
@@ -22,6 +23,7 @@ export interface DialogData {
   templateUrl: './create-new-event.component.html',
   styleUrls: ['./create-new-event.component.css']
 })
+
 export class CreateNewEventComponent implements OnInit {
 
   isLinear = false;
@@ -31,17 +33,28 @@ export class CreateNewEventComponent implements OnInit {
   fourthFormGroup: FormGroup;
   fifthFormGroup: FormGroup;
   isPaymentDeadlineDate = false;
+  displayMobilePayInput = false;
+  displayAccountNumberInput = false;
+  isTransferingMoney = false;
 
   apiZipValue = "By";
   lookupCity;
-  
+
+  isPreviewing = false;
+  hasPrice = false;
+  previews = [];
+
+  // Date validation
+  minDate = new Date();
+  maxDate = new Date( this.minDate.getFullYear()+1, this.minDate.getMonth(), this.minDate.getDay());
+  maxRegistrationDate = new Date();
 
   constructor(private efbs: EventFirebaseService, private authService: AuthService, 
               private ufbs: UserFirebaseService, 
               public dialogRef: MatDialogRef<CreateNewEventComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData,
               private _formBuilder: FormBuilder, private geoAPI: GeoCodingApiService, 
-              private ws: WallService) { }
+              private ws: WallService, private toast: ToastrService) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -72,18 +85,37 @@ export class CreateNewEventComponent implements OnInit {
       eventPrice: ['', Validators.required],
       eventPaymentOption: ['', Validators.required],
       eventPaymentDue: ['', Validators.required],
-      eventPaymentDate: ['', Validators.required]
+      eventPaymentDate: ['', Validators.required],
+      eventMobilePayNumber : ['', Validators.required],
+      eventAccountNumber: ['', Validators.required]
     });
     this.fifthFormGroup = this._formBuilder.group({
       eventFile: ['', Validators.required],
     });
   }
 
-  onItemChange(value) {
+  onWhenPayChange(value) {
     if(value === "Dato") {
       this.isPaymentDeadlineDate = true;
-    } else {
+    } 
+    else {
       this.isPaymentDeadlineDate = false;
+    }
+  }
+
+  onPaymentOptionChange(value) {
+    if (value === 'Mobilepay') {
+      this.displayMobilePayInput = true;
+      this.isTransferingMoney = true;
+      this.displayAccountNumberInput = false;
+    } else if (value === 'Bankoverførelse') {
+      this.displayAccountNumberInput = true;
+      this.isTransferingMoney = true;
+      this.displayMobilePayInput = false;
+    } else {
+      this.displayMobilePayInput = false;
+      this.displayAccountNumberInput = false;
+      this.isTransferingMoney = false;
     }
   }
 
@@ -117,6 +149,8 @@ export class CreateNewEventComponent implements OnInit {
     event.paymentDue = this.fourthFormGroup.value.eventPaymentDue;
     event.paymentOption = this.fourthFormGroup.value.eventPaymentOption;
     event.price = this.fourthFormGroup.value.eventPrice;
+    event.mobilePayNumber = this.fourthFormGroup.value.eventMobilePayNumber;
+    event.accountNumber = this.fourthFormGroup.value.eventAccountNumber;
 
     event.file = this.fifthFormGroup.value.eventFile;
 
@@ -124,7 +158,7 @@ export class CreateNewEventComponent implements OnInit {
     event.hostRating = this.ufbs.getStorage().rating;
     event.maxAge = this.secondFormGroup.value.eventMaxAge;
     event.minAge = this.secondFormGroup.value.eventMinAge;
-    event.maxGuests = this.secondFormGroup.value.eventMinGuests;
+    event.maxGuests = this.secondFormGroup.value.eventMaxGuests;
     event.minGuests = this.secondFormGroup.value.eventMinGuests;
     event.queue = this.secondFormGroup.value.eventQueue;
     event.targetGroup = this.secondFormGroup.value.eventTargetGroup;
@@ -135,6 +169,10 @@ export class CreateNewEventComponent implements OnInit {
 
     if (event.hostRating === undefined) {
       event.hostRating = 0;
+    }
+
+    if (!this.isTransferingMoney) {
+      event.paymentDue = "Kontant ved ankomst på dagen";
     }
     this.onNoClick();
     return event;
@@ -147,6 +185,51 @@ export class CreateNewEventComponent implements OnInit {
   lookUpZip(event) {
     if ( (event.target.value as string).length > 3 ) {
       this.geoAPI.getZipFromCity(event.target.value).map(response => response.json()).subscribe(result => this.apiZipValue = result.navn);
+    }
+  }
+
+  displayPreview() {
+    this.previews.push( {label: 'Titel', body: this.firstFormGroup.value.eventName} );
+    this.previews.push( {label: 'Beskrivelse', body: this.firstFormGroup.get('eventDescription').value} );
+    this.previews.push( {label: 'Kategori', body: this.firstFormGroup.get('eventCategory').value} );
+    this.previews.push( {label: 'Adresse', body: `
+                                                ${this.firstFormGroup.get('eventLocationStreet').value}, 
+                                                ${this.firstFormGroup.get('eventLocationZip').value}, 
+                                                ${this.apiZipValue} `} );
+    this.previews.push( {label: 'Kønsfordeling', body: this.secondFormGroup.value.genderRatio} );
+    this.previews.push( {label: 'Børn', body: this.secondFormGroup.value.eventTargetGroup} );
+    this.previews.push( {label: 'Aldersgruppe', body: `${this.secondFormGroup.value.eventMinAge} til ${this.secondFormGroup.value.eventMaxAge}`} );
+    this.previews.push( {label: 'Antal gæster', body: `${this.secondFormGroup.value.eventMinGuests} til ${this.secondFormGroup.value.eventMaxGuests}`  } );
+    this.previews.push( {label: 'Tving på venteliste', body: this.secondFormGroup.value.eventQueue} );
+    this.previews.push( {label: 'Dato for eventet', body: this.thirdFormGroup.value.eventDateStart} );
+    this.previews.push( {label: 'Tidspunkt for eventet', body: this.thirdFormGroup.value.eventTimeStart} );
+    this.previews.push( {label: 'Tilmeldingsfrist dato', body: this.thirdFormGroup.value.eventDeadlineDate} );
+    this.previews.push( {label: 'Tilmeldingsfrist tid', body: this.thirdFormGroup.value.eventDeadlineTime} );
+    this.previews.push( {label: 'Pris', body: this.fourthFormGroup.value.eventPrice} );
+    this.previews.push( {label: 'Betalingsform', body: this.fourthFormGroup.value.eventPaymentOption} );
+    this.previews.push( {label: 'Hvornår betales der', body: this.fourthFormGroup.value.eventPaymentDate} );
+    this.isPreviewing = true;
+  }
+
+  phoneValidation(eventTargetValue) {
+    if (!/^\d+$/.test(eventTargetValue) && eventTargetValue !== "") {
+      this.toast.toastrConfig.positionClass = "toast-bottom-center";
+      this.toast.warning("🤖 Jeg er ret sikker på at telefonnumre ikke har bogstaver.");
+      this.toast.toastrConfig.positionClass = "toast-top-right";
+    }
+  }
+
+  accountNumberValidation(eventTargetValue) {
+    if (!/^\d+$/.test(eventTargetValue) && eventTargetValue !== "") {
+      this.toast.toastrConfig.positionClass = "toast-bottom-center";
+      this.toast.warning("🤖 Ifølge bankerne i Danmark, så er bogstaver endnu ikke en del af kontonumre");
+      this.toast.toastrConfig.positionClass = "toast-top-right";
+    }
+  }
+
+  onPriceEnter(eventTargetValue) {
+    if (eventTargetValue > 0) {
+      this.hasPrice = true;
     }
   }
 

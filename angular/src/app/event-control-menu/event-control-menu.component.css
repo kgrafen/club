@@ -16,3 +16,7 @@ mat-card {
         margin: 0;
     }
 }
+
+.lesserBtn {
+    font-size: 12px !important;
+}

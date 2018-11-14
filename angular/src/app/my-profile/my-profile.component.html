@@ -12,14 +12,7 @@
     <div class="row">
         
         <mat-tab-group class="mat-tab-profile">
-            <mat-tab label="Person Data">
-
-                <div *ngIf="!state" class="ng-hide">
-                    <div class="alert alert-danger" role="alert">
-                        <div *ngIf="!activation" class="ng-hide"></div>
-                        <strong>Hov!</strong> {{activationError}}
-                    </div>
-                </div>
+            <mat-tab label="Persondata">
 
                 <mat-card>
                     <form [formGroup]="personDataForm">
@@ -32,70 +25,60 @@
                     </mat-form-field>
 
                     <mat-form-field class="block-field">
-                            <input id="birthday" formControlName="birthday" matInput [matDatepicker]="picker" placeholder="Fødselsdag">
+                            <input id="birthday" [min]="min" [max]="max" formControlName="birthday" matInput [matDatepicker]="picker" placeholder="DD/MM/YYYY">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
 
                     <mat-form-field class="block-field">
-                        <mat-select placeholder="Køn">
+                        <mat-select formControlName="gender" placeholder="Køn">
                             <mat-option value="Mand">Mand</mat-option>
                             <mat-option value="Kvinde">Kvinde</mat-option>
-                            <mat-option value="Ønsker ikke oplyse">Ønsker ikke oplyse</mat-option>
                         </mat-select>
                     </mat-form-field>
                     </form>
                     <mat-card-actions>
-                            <button mat-button color="primary" (click)="updatePersonData(personDataForm.value)">Opdater</button>
+                            <button mat-raised-button color="primary" (click)="updatePersonData(personDataForm.value); accountProgress()">Opdater</button>
                     </mat-card-actions>
                 </mat-card>
             </mat-tab>
 
             <mat-tab label="Kontakt">
-                
-                <div *ngIf="!state" class="ng-hide">
-                    <div class="alert alert-danger" role="alert">
-                        <div *ngIf="!activation" class="ng-hide"></div>
-                        <strong>Hov!</strong> {{activationError}}
-                    </div>
-                </div>
 
                 <mat-card>
                     <form [formGroup]="contactForm">
                         <mat-form-field class="block-field">
-                            <input matInput matTooltip="8 cifre" type="tel" formControlName="phone" placeholder="Telefon/mobil"/>
+                            <mat-label>Mobil/telefon</mat-label>
+                            <input matInput matTooltip="8 cifre" formControlName="phone" placeholder="12345678"/>
                         </mat-form-field>
 
                         <mat-form-field>
-                            <input matInput type="text" formControlName="street" class="form-control" id="inputAddress" placeholder="Adresse">
+                            <mat-label>Adresse</mat-label>
+                            <input matInput type="text" formControlName="street" placeholder="Minvej 99">
                         </mat-form-field>
 
                         <mat-form-field>
-                            <input matInput type="text" formControlName="city" class="form-control" id="inputBy" placeholder="By">
+                            <mat-label>Postnummer</mat-label>
+                            <input (keyup)="lookUpCity($event.target.value)" matInput type="text" formControlName="zip"  id="inputZip" placeholder="1234">
                         </mat-form-field>
 
                         <mat-form-field>
-                            <input matInput type="text" formControlName="zip" class="form-control" id="inputZip" placeholder="Postnummer">
+                            <mat-label>By</mat-label>
+                            <input readonly matTooltip="Slåes op automatisk" matInput type="text" formControlName="city" id="inputBy" placeholder="...">
                         </mat-form-field>
+
                     </form>
                     <mat-card-actions>
-                            <button mat-button color="primary" (click)="updateContact(contactForm.value)">Opdater</button>
+                            <button mat-raised-button color="primary" (click)="updateContact(contactForm.value); accountProgress()">Opdater</button>
                     </mat-card-actions>
                 </mat-card>  
             </mat-tab>
 
             <mat-tab label="Familie">
                 <mat-card>
-                        <div *ngIf="!state" class="ng-hide">
-                                <div class="alert alert-danger" role="alert">
-                                    <div *ngIf="!activation" class="ng-hide"></div>
-                                    <strong>Hov!</strong> {{activationError}}
-                                </div>
-                        </div>
-
                         <form [formGroup]="childrenForm">
                             <mat-form-field class="block-field">
-                                <input (keyup)="displayBirthdayInput($event.target.value)" matInput type="number" formControlName="numberOfChildren" placeholder="Antal børn"/>
+                                <input (keyup)="displayBirthdayInput($event.target.value)" min="0" max="9" pattern="[0-9]" title="Antal børn [0-9]" matInput type="number" formControlName="numberOfChildren" placeholder="Antal børn"/>
                             </mat-form-field>
 
                             <mat-form-field *ngFor="let child of frontEndModellerChildren; let i = index;" class="block-field">
@@ -105,21 +88,17 @@
                                        
                             </mat-form-field>
 
-
                         </form>
+
+                        <mat-card-actions>
+                                <button mat-raised-button color="primary" (click)="updateChildren(childrenForm.value); accountProgress()">Opdater</button>
+                        </mat-card-actions>
                         
                 </mat-card>
             </mat-tab>
 
             <mat-tab label="Billeder">
                 <mat-card>
-
-                    <div *ngIf="!state" class="ng-hide">
-                        <div class="alert alert-danger" role="alert">
-                            <div *ngIf="!activation" class="ng-hide"></div>
-                             <strong>Hov!</strong> {{activationError}}
-                        </div>
-                    </div>
 
                     <div *ngIf="!hasImages" class="ng-hide">
                         <div class="alert alert-warning" role="alert">
@@ -141,13 +120,6 @@
 
             <mat-tab label="Indstillinger">
                 <mat-card>
-
-                    <div *ngIf="!state" class="ng-hide">
-                        <div class="alert alert-danger" role="alert">
-                            <div *ngIf="!activation" class="ng-hide"></div>
-                            <strong>Hov!</strong> {{activationError}}
-                        </div>
-                    </div>
 
                     <form [formGroup]="settingsForm">
                         
@@ -174,7 +146,7 @@
                             [checked]="newsWeekly">{{newsWeekly ? trueText : falseText}}</mat-slide-toggle>
                         
                             <mat-card-actions>
-                                <button mat-button color="primary" (click)="updateSettings(settingsForm.value)">Opdater</button>
+                                <button mat-raised-button color="primary" (click)="updateSettings(settingsForm.value); accountProgress()">Opdater</button>
                             </mat-card-actions>
 
                     </form>
@@ -184,26 +156,44 @@
 
             <mat-tab label="Deaktivering">
 
-                <div *ngIf="!state" class="ng-hide">
-                    <div class="alert alert-danger" role="alert">
-                        <div *ngIf="!activation" class="ng-hide"></div>
-                        <strong>Hov!</strong> {{activationError}}
-                    </div>
-                </div>
-
                 <mat-card>
                     <h4>Skjul/vis profil</h4>
                     <button (click)="deactivateAccount(!state)" mat-raised-button>{{activationText}}</button>
 
                     <h4>Slet Profil</h4>
-                    <label *ngIf="usernameValidation === this.username"> <strong>Advarsel:</strong> denne handling er permanent. Al credit, fremgang vil blive slettet og kan ikke gøres om</label>
+                    <label *ngIf="usernameValidation"> <strong style="color:red">Advarsel:</strong> denne handling er permanent. Al credit, fremgang vil blive slettet og kan ikke gøres om</label>
                     <form>
                         <mat-form-field>
                             <input (keyup)="usernameInput($event.target.value)"  matTooltip="Bemærk at du skal tage højde for store og små bogstaver" matInput placeholder="Indtast brugernavn">
                         </mat-form-field>
-                        <button *ngIf="usernameValidation === this.username" (click)="deleteAccount()" mat-raised-button color="warn">Slet profil</button>
+                        <button *ngIf="usernameValidation" (click)="deleteAccount()" mat-raised-button color="warn">Slet profil</button>
                     </form>
                     
+                </mat-card>
+            </mat-tab>
+
+            <mat-tab label="Medlemsskab">
+                <mat-card>
+                    <mat-list>
+                        <mat-list-item>
+                                <label>Rating:</label> <strong>{{userRating}} </strong><mat-icon color="primary">star</mat-icon>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <label>Arrangørniveau</label> <strong>{{metalName}} </strong><img [src]="metal">
+                        </mat-list-item>
+                        <mat-list-item>
+                                <label>Antal events som vært:</label><mat-icon [matBadge]="eventsHosted" matBadgeColor="primary">home</mat-icon>
+                        </mat-list-item>
+                        <mat-list-item>
+                                <label>Antal events som deltager</label><mat-icon [matBadge]="eventsAttended" matBadgeColor="primary">person_add</mat-icon>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <label>Medlemskab udløber</label> 
+                            <mat-chip-list>
+                                    <mat-chip selected color="primary"> {{paidUntil | date:'short'}}</mat-chip>
+                            </mat-chip-list>
+                        </mat-list-item>
+                    </mat-list>
                 </mat-card>
             </mat-tab>
 

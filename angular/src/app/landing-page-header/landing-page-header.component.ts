@@ -37,58 +37,40 @@ export class LandingPageHeaderComponent implements OnInit {
   ngOnInit() {
     this.isMobile = this.mds.check();
     this.authService.afAuth.auth.onAuthStateChanged(user => {
-      if (user) {
-        this.isLoggedOn = true;
-        //First sign in AKA account creation
-        this.ufbs.getUserByID(user.uid).subscribe(value => {
-          if (value === null) {
-            this.authService.doSocialLoginRegister(user);
-            this.showSuccess("Du er nu oprettet & logget ind 👍" , "Success!");
-          } else {
-            this.ufbs.getUserByID(user.uid).subscribe(value => {
-              let u: User = new User(value);
-              this.ufbs.setStorage(u);
-              this.username = u.username;
-              
-              if (this.router.url === "/landing-page") {
-                this.showSuccess("Velkommen tilbage 🙂", this.ufbs.getStorage().username); 
-              }
-              
-            });
-          }
-          this.spinner.hide();
-        })
+      if (user !== null && user.emailVerified) {
+          this.isLoggedOn = true;
+          this.router.navigate(['/events']);
+      } else if (user && !user.emailVerified) {
+        this.toastr.warning("Det lader til at du har et login, men ikke har bekræftet din email. Dette skal gøres inden 24 timer.", 'ℹ️ ')
       }
     });
   }
 
   tryLogin(formData) {
     this.spinner.show();
-    this.authService.doLogin(formData);
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
+    this.authService.doLogin(formData).then( () => {
       this.spinner.hide();
-  }, 2000);
+    }).catch( () => {
+      this.spinner.hide();
+    });
   }
 
   tryFacebookLogin() {
     this.spinner.show();
     this.authService.doFacebookLogin().then( (callback) => {
       this.spinner.hide();
-      console.log(callback);
-      const code: string = callback.code;
-      console.log(code);
-      if (code.includes('account-exists-with-different-credential')) {
-        this.toastr.error(this.translateCallback(callback.message), "Fejl");
-      } else {
-        this.toastr.success(callback.message, "Success");
-      }
+    }).catch( (error) => {
+      this.spinner.hide();
     });
   }
 
   tryGoogleLogin() {
     this.spinner.show();
-    this.authService.doGoogleLogin();
+    this.authService.doGoogleLogin().then( () => {
+      this.spinner.hide();
+    }).catch( () => {
+      this.spinner.hide();
+    });
   }
 
   openDialog(): void {

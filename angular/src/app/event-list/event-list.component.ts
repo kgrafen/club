@@ -8,7 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { TableFilterService } from '../table-filter.service';
 import { Event } from '../entity/event/event.model';
 import { Router, NavigationExtras } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr'
 
 export interface EventData {
   name: string;
@@ -18,7 +18,6 @@ export interface EventData {
   targetGroup: boolean;
   available: number;
   category: string;
-  actions: string;
 }
 
 export interface EventDataMobile {
@@ -37,9 +36,9 @@ export class EventListComponent implements OnInit {
   isMobile = false;
 
   dataSource = new MatTableDataSource<EventData>();
-  displayedColumns = ['name', 'address', 'category', 'distance', 'genderRatio', 'targetGroup', 'available', 'actions'];
+  displayedColumns = ['name', 'address', 'category', 'distance', 'genderRatio', 'targetGroup', 'available', 'dateStart'];
   dataSourceMobile = new MatTableDataSource<EventDataMobile>();
-  displayedColumnsMobile = ['name', 'address', 'available'];
+  displayedColumnsMobile = ['name', 'address', 'available', 'dateStart'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -53,9 +52,10 @@ export class EventListComponent implements OnInit {
     private mds: MobileDetectorService, private spinner: NgxSpinnerService, 
     private tfs: TableFilterService, private router: Router, 
     private toast: ToastrService) {
-    this.efbs.getList('events').subscribe(res => {
+    this.efbs.getList().subscribe(res => {
       this.events = res;
-      this.events.splice(0, 1);
+      this.events.sort(this.compareObjects);
+      // this.events.splice(0, 1);
       if (this.events.length > 0) {
         this.dataSource = new MatTableDataSource(this.events);
         this.dataSource.paginator = this.paginator;
@@ -105,6 +105,14 @@ export class EventListComponent implements OnInit {
     this.router.navigate(['/view-event'], navigationExtras);
   }
 
+  compareObjects(a,b) {
+    if (a.dateStart < b.dateStart)
+      return -1;
+    if (a.dateStart > b.dateStart)
+      return 1;
+    return 0;
+  }
+
 }
 
 export class EventDataSource extends DataSource<any> {
@@ -115,7 +123,7 @@ export class EventDataSource extends DataSource<any> {
     super();
   }
   connect(): Observable<any[]> {
-    return this.efbs.getList(this.efbs.dbPath);
+    return this.efbs.getList();
   }
   disconnect() {}
 }

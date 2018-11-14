@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { CreateNewEventComponent } from '../create-new-event/create-new-event.component';
 import { MobileDetectorService } from '../mobile-detector.service';
+import { window } from 'rxjs/operators';
 
 @Component({
   selector: 'event-control-menu',
@@ -10,8 +11,8 @@ import { MobileDetectorService } from '../mobile-detector.service';
 })
 export class EventControlMenuComponent implements OnInit {
 
-  dialogWidth = "1100px";
-  dialogHeight = "800px";
+  dialogWidth = screen.width / 1.25 + "px";
+  dialogHeight = screen.height / 1.75 + "px";
 
   constructor(public dialog: MatDialog, private mds: MobileDetectorService) { }
 
@@ -22,6 +23,7 @@ export class EventControlMenuComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateNewEventComponent, {
       width: this.dialogWidth,
       height: this.dialogHeight,
+      // disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(result => {

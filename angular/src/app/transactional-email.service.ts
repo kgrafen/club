@@ -31,6 +31,11 @@ export class TransactionalEmailService {
     return this.http.post("https://us-central1-single-network.cloudfunctions.net/sendNewsletter", data);
   }
 
+  sendFeedback(formData) {
+    let obj = {from: formData.email, name: formData.name, subject: formData.subject + " - " + formData.type, mailText: formData.details}
+    return this.http.post("https://us-central1-single-network.cloudfunctions.net/sendContactMail", obj);
+  }
+
 
   test() {
     return this.http.get("https://us-central1-single-network.cloudfunctions.net/sendContactMail");
