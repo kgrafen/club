@@ -9,11 +9,7 @@ import { PlatformLocation, Location } from '@angular/common';
 export class AppComponent {
   title = 'app';
 
-  constructor(private location: Location){
-    location.subscribe( (callback) => {
-      console.log(callback);
-    });
-  }
+  constructor(){}
 
   ngOnInit() {
     

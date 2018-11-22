@@ -1,15 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
 
-import { Observable } from '../../node_modules/rxjs';
 import { AngularFireDatabase, AngularFireList  } from '../../node_modules/angularfire2/database';
-import { Time } from '@angular/common';
-import { timestamp } from 'rxjs/internal/operators/timestamp';
-
-import { Headers, Response, URLSearchParams, Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -19,26 +12,26 @@ export class TransactionalEmailService {
   path = "/messages/";
   to = 'SpicyMexican@superrito.com'
 
-  constructor(private db: AngularFireDatabase, private http: Http) { }
+  constructor(private db: AngularFireDatabase, private httpClient: HttpClient) { }
 
   sendContactMail(formData) {
     let obj = {from: formData.email, name: formData.name, subject: formData.subject, mailText: formData.message}
-    return this.http.post("https://us-central1-single-network.cloudfunctions.net/sendContactMail", obj)
+    return this.httpClient.post("https://us-central1-single-network.cloudfunctions.net/sendContactMail", obj, { responseType: 'text'})
   }
 
   sendNewsletter(formData) {
     let data = JSON.stringify ( {username: formData.username, subject: formData.subject, mailMsg: formData.text} );
-    return this.http.post("https://us-central1-single-network.cloudfunctions.net/sendNewsletter", data);
+    return this.httpClient.post("https://us-central1-single-network.cloudfunctions.net/sendNewsletter", data, {responseType: 'text'});
   }
 
   sendFeedback(formData) {
     let obj = {from: formData.email, name: formData.name, subject: formData.subject + " - " + formData.type, mailText: formData.details}
-    return this.http.post("https://us-central1-single-network.cloudfunctions.net/sendContactMail", obj);
+    return this.httpClient.post("https://us-central1-single-network.cloudfunctions.net/sendContactMail", obj, { responseType: 'text'});
   }
 
-
   test() {
-    return this.http.get("https://us-central1-single-network.cloudfunctions.net/sendContactMail");
+    return this.httpClient.get("https://us-central1-single-network.cloudfunctions.net/pingTest", { responseType: 'text'});
+    // return this.httpClient.get("httpClients://us-central1-single-network.cloudfunctions.net/sendContactMail");
   }
 
 }

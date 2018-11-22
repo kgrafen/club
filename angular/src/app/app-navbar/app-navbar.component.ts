@@ -21,12 +21,13 @@ export class AppNavbarComponent implements OnInit {
   public navbarCollapsed = true;
   public isMobile: boolean = false;
   metal = "";
+  isIE;
 
   menuFields = [
                 {'displayName' : "events", 'link' : "/events", 'description': "Listen over bruger arrangementer. Find dit næste event!"},
-                {'displayName' : "min profil", 'link' : "/my-profile", 'description': "Opdater din profil og se status"},
+                // {'displayName' : "min profil", 'link' : "/my-profile", 'description': "Opdater din profil og se status"},
                 {'displayName' : "betaling", 'link' : "/payment", 'description': "Til betalingsgateway hvor du kan styre dit abonnement"},
-                {'displayName' : "oversigt", 'link' : "/loggedin-dashboard", 'description': "Se hvad der bevæger sig og få et overblik"},
+                {'displayName' : "Min oversigt", 'link' : "/loggedin-dashboard", 'description': "Se hvad der bevæger sig og få et overblik"},
               ];
 
   public loginForm = new FormGroup({
@@ -43,7 +44,10 @@ export class AppNavbarComponent implements OnInit {
         this.isMobile = true;
     }
 
-    this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(value => {
+    // this.isIEOrEdge = /msie\s|trident\/|edge\//i.test(window.navigator.userAgent);
+    this.isIE = /msie\s|trident\//i.test(window.navigator.userAgent);
+
+    let observer = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(value => {
       let user: User = new User(value);
       if (user.username) {
         this.username = user.username;
@@ -60,20 +64,13 @@ export class AppNavbarComponent implements OnInit {
       } else {
         this.metal = "/assets/images/shield_bronze.ico";
       }
-    });
-
-    this.rs.getRatings().subscribe(snapshots => {
-      let userScore = 0;
-      let count = 0;
-      snapshots.forEach(snapshot => {
-        if(snapshot.payload.val().fk_host === this.authService.afAuth.auth.currentUser.uid) {
-          userScore += Number(snapshot.payload.val().score);
-          count++;
-        }
-      });
-      if (userScore > 0 && count > 0) {
-        this.rating = userScore / count;
+      if (user.rating) {
+        this.rating = user.rating;
+      } else {
+        this.rating = 0;
       }
+
+      observer.unsubscribe();
     });
   }
 

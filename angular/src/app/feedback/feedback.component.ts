@@ -51,12 +51,13 @@ public feedbackForm = new FormGroup({
   send(formValue) {
     this.toast.info('Afventer svar fra server','⌛️')
     this.isSendingMsg = true;
-    this.tes.sendContactMail(formValue).subscribe( () => {
+    let observer = this.tes.sendContactMail(formValue).subscribe( () => {
       if (formValue.type === "Del din historie") {
         this.toast.success('Tak for at du har delt din historie.','👍  ');
       } else {
         this.toast.success('Tak for din feedback.', '👍  ');
       }
+      observer.unsubscribe();
     });
   }
 

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'angular2-cookie/core';
 
 @Component({
   selector: 'cookies-consent',
@@ -10,23 +9,23 @@ export class CookiesConsentComponent implements OnInit {
 
   displayCookies: boolean = false;
 
-  constructor(private _cookieService: CookieService) { }
+  constructor() { }
 
   ngOnInit() {
-    if (this.getCookie('acceptCookie') === "accept") {
-      this.displayCookies = false;
-    } else {
-      this.displayCookies = true;
-    }
+    // if (this.getCookie('acceptCookie') === "accept") {
+    //   this.displayCookies = false;
+    // } else {
+    //   this.displayCookies = true;
+    // }
   }
 
-  onAcceptCookies() {
-    this.displayCookies = false;
-    this._cookieService.put('acceptCookie', "accept");
-  }
+  // onAcceptCookies() {
+  //   this.displayCookies = false;
+  //   this._cookieService.put('acceptCookie', "accept");
+  // }
 
-  getCookie(key: string): string {
-    return this._cookieService.get(key);
-  }
+  // getCookie(key: string): string {
+  //   return this._cookieService.get(key);
+  // }
 
 }

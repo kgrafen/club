@@ -18,6 +18,7 @@ export interface EventData {
   targetGroup: boolean;
   available: number;
   category: string;
+  dateStart: string;
 }
 
 export interface EventDataMobile {
@@ -34,6 +35,9 @@ export interface EventDataMobile {
 export class EventListComponent implements OnInit {
 
   isMobile = false;
+
+  /* Sorting */
+  sortAscending = true;
 
   dataSource = new MatTableDataSource<EventData>();
   displayedColumns = ['name', 'address', 'category', 'distance', 'genderRatio', 'targetGroup', 'available', 'dateStart'];
@@ -52,9 +56,11 @@ export class EventListComponent implements OnInit {
     private mds: MobileDetectorService, private spinner: NgxSpinnerService, 
     private tfs: TableFilterService, private router: Router, 
     private toast: ToastrService) {
-    this.efbs.getList().subscribe(res => {
-      this.events = res;
-      this.events.sort(this.compareObjects);
+      let observer = this.efbs.getList().subscribe(eventSnapshots => {
+      this.events = eventSnapshots;
+      
+      this.events.sort(this.compareToAscending);
+
       // this.events.splice(0, 1);
       if (this.events.length > 0) {
         this.dataSource = new MatTableDataSource(this.events);
@@ -65,9 +71,11 @@ export class EventListComponent implements OnInit {
         this.dataSourceMobile.paginator = this.paginator;
         this.dataSourceMobile.sort = this.sort;
         this.spinner.hide();
+        observer.unsubscribe();
       } 
-    },    (error) => {console.log("Something went wrong :(")
+    },(error) => {console.log("Something went wrong :(");
   });
+
     this.subscription = this.tfs.getEvent().subscribe(filter => { this.applyFilter(filter) });
   }
 
@@ -77,12 +85,13 @@ export class EventListComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    this.dataSource.sortData = this.matCompareTo;
     setTimeout( ()=>{
       if (this.events.length < 1) {
         this.spinner.hide();
         this.toast.info("Der er ingen events oprettet", "Info");
       }
-      }, 3000)
+      }, 3000);
   }
 
   applyFilter(filterValue: string) {
@@ -105,12 +114,56 @@ export class EventListComponent implements OnInit {
     this.router.navigate(['/view-event'], navigationExtras);
   }
 
-  compareObjects(a,b) {
-    if (a.dateStart < b.dateStart)
-      return -1;
-    if (a.dateStart > b.dateStart)
+  matCompareTo(data: EventData[], sort: MatSort): EventData[] {
+    return data.sort((a, b) => {
+      let dateA = new Date(a.dateStart);
+      let dateB = new Date(b.dateStart);
+      if (dateA > dateB) {
+        return 1;
+      } 
+      if (dateA < dateB) {
+        return -1;
+      }
+      return 0;
+    });
+  }
+
+  compareToAscending(a,b): number {
+    let dateA = new Date(a.dateStart);
+    let dateB = new Date(b.dateStart);
+    if (dateA > dateB) {
       return 1;
+    } 
+    if (dateA < dateB) {
+      return -1;
+    }
     return 0;
+  }
+
+  compareToDescending(a,b): number {
+    let dateA = new Date(a.dateStart);
+    let dateB = new Date(b.dateStart);
+    if (dateA > dateB) {
+      return -1;
+    } 
+    if (dateA < dateB) {
+      return 1;
+    }
+    return 0;
+  }
+
+  compareTo() {
+    this.sortAscending = !this.sortAscending;
+    this.toast.toastrConfig.timeOut = 2000;
+    if (this.sortAscending) {
+      // this.toast.info('Sorteret efter førstkommende events','Info');
+      this.events.sort(this.compareToAscending);
+      this.dataSource = new MatTableDataSource(this.events);
+    } else {
+      // this.toast.info('Sorteret efter senestkommende events','Info');
+      this.events.sort(this.compareToDescending);
+      this.dataSource = new MatTableDataSource(this.events);
+    }
   }
 
 }

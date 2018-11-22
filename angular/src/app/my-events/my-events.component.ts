@@ -9,6 +9,7 @@ import { UserFirebaseService } from '../user-firebase.service';
 import { Event } from '../entity/event/event.model';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { AuthService } from '../auth.service';
+import { NavigationExtras, Router } from '@angular/router';
 
 export interface EventData {
   name: string;
@@ -49,26 +50,14 @@ export class MyEventsComponent implements OnInit {
 
   constructor(private efbs: EventFirebaseService, private mds: MobileDetectorService, 
     private spinner: NgxSpinnerService, private ufbs: UserFirebaseService, 
-    public dialog: MatDialog, private authService: AuthService) {
-      this.efbs.getEventsByHost(this.authService.afAuth.auth.currentUser.uid).subscribe(res => {
-        this.events = res;
-        this.removePastEvents();
+    public dialog: MatDialog, private authService: AuthService, private router: Router) {
 
-        this.dataSource = new MatTableDataSource(this.events);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-
-        this.dataSourceMobile = new MatTableDataSource(this.events);
-        this.dataSourceMobile.paginator = this.paginator;
-        this.dataSourceMobile.sort = this.sort;
-        this.spinner.hide();
-        
-      });
     }
 
   ngOnInit() {
     this.spinner.show();
     this.isMobile = this.mds.check();
+    this.renderTableIntoView();
   }
 
   ngAfterViewInit() {
@@ -92,21 +81,59 @@ export class MyEventsComponent implements OnInit {
   openDialog(element): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '400px',
-      data: {key: element.key, buttonNo: "For Guds skyld nej!", buttonYes: "Ja", dialogText: "Er du sikker på at du vil slette dette event?"}
+      data: {e: element, key: element.key, buttonNo: "For Guds skyld nej!", buttonYes: "Ja", dialogText: "Er du sikker på at du vil slette dette event?"}
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.renderTableIntoView();
     });
   }
 
   private removePastEvents() {
     this.events.forEach( event => {
-      if (new Date(event.dateStart) < new Date()) {
+      if (new Date(event.dateStart) < new Date(new Date().getFullYear(), new Date().getMonth(), (new Date().getDay() + 1))) {
         let idx = this.events.indexOf(event, 0);
         if (idx > -1) {
           this.events.splice(idx, 1);
         }
       }
+    });
+  }
+
+  applyFilter(eventTargetValue: string) {
+    this.dataSource.filter = eventTargetValue.trim().toLowerCase();
+    this.dataSourceMobile.filter = eventTargetValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+      this.dataSourceMobile.paginator.firstPage();
+    }
+  }
+
+  onViewClick(element) {
+    let e: Event = element;
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "key": e.key
+      }
+    }
+    this.router.navigate(['/view-event'], navigationExtras);
+  }
+
+  renderTableIntoView() {
+    let observer = this.efbs.getEventsByHost(this.authService.afAuth.auth.currentUser.uid).subscribe(res => {
+      this.events = res;
+      this.removePastEvents();
+
+      this.dataSource = new MatTableDataSource(this.events);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+
+      this.dataSourceMobile = new MatTableDataSource(this.events);
+      this.dataSourceMobile.paginator = this.paginator;
+      this.dataSourceMobile.sort = this.sort;
+      this.spinner.hide();
+      // observer.unsubscribe();
     });
   }
 

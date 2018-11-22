@@ -1,10 +1,9 @@
 <app-navbar></app-navbar>
 <div *ngIf="!isMobile">
-
     <div class="container">
         <div class="row">
           <div class="col">
-              <mat-card>
+              <mat-card *ngIf="selectedEvent.name !== undefined">
                   <mat-card-title>{{selectedEvent.name}}
                     <mat-chip-list>
                       <mat-chip color="primary" selected><mat-icon>person</mat-icon> {{hostName}}</mat-chip>
@@ -17,18 +16,18 @@
                   <mat-card-content>
       
                     <p><strong>Adresse:</strong><br> {{selectedEvent.address.street}} , {{selectedEvent.address.city}} , {{selectedEvent.address.zip}}</p>
-                    <p><strong>Dato</strong><br> Under udvikling</p>
+                    <p><strong>Dato</strong><br> {{selectedEvent.dateStart | date:'dd/MM/yyyy' }} </p>
                     <p><strong>Kønsfordeling</strong><br> {{selectedEvent.genderRatio}}</p>
                     <p><strong>Børn</strong><br> {{selectedEvent.targetGroup}}</p>
-                    <p><strong>Fra</strong><br> {{selectedEvent.minAge}} til {{selectedEvent.maxAge}}</p>
-                    <p><strong>Pladser</strong><br> {{selectedEvent.maxGuests}}</p>
+                    <p><strong>Alder fra og til</strong><br> {{selectedEvent.minAge}} til {{selectedEvent.maxAge}}</p>
+                    <p><strong>Minimum/maksimum deltagerantal</strong><br> {{selectedEvent.minGuests}} til {{selectedEvent.maxGuests}}</p>
                     <p><strong>Pris</strong><br> {{selectedEvent.price}} DKK</p>
                     <p><strong>Hvordan betales der: </strong><br> {{selectedEvent.paymentOption}}</p>
                     <p><strong>Hvornår betales der:</strong><br> {{selectedEvent.paymentDue}}</p>
                     <p *ngIf="selectedEvent.eventMobilePayNumber > 0"><strong>Mobilepay:</strong> <br> {{selectedEvent.eventMobilePayNumber}}</p>
                     <p *ngIf="selectedEvent.eventAccountNumber > 0"><strong>Kontonummer:</strong> <br> {{selectedEvent.eventAccountNumber}}</p>
                   </mat-card-content>
-                  <mat-card-actions>
+                  <mat-card-actions *ngIf="hasOptions">
                     <button *ngIf="!isParticipating" (click)="onAttend()" mat-button color="primary">Tilmeld</button>
                     <button *ngIf="isParticipating" (click)="onUnattend()" mat-button color="warn">Frameld</button>
                     <button mat-button (click)="onRateClick()">Bedøm dette event</button>
@@ -39,11 +38,11 @@
               <mat-card class="wall">
                   <mat-card-title><h3>Væg</h3></mat-card-title>
               
-                  <div *ngFor="let post of wall.posts; let idx = index">
-                    <mat-card *ngIf="idx > 0">
+                  <div *ngFor="let post of wall.posts">
+                    <mat-card>
                       <mat-card-title>
                         <img class="wall-img round" src="/assets/images/Logo.png">
-                        <a routerLink="/view-profile/">{{userNames[idx-1]}}</a>
+                        <a routerLink="/view-profile/">{{post.username}}</a>
                         <p class="wall-timedate">{{tempDate}}</p>
                       </mat-card-title>
                       <mat-card-content>{{post.message}}</mat-card-content>
@@ -52,9 +51,13 @@
                       </mat-card-actions>
                     </mat-card>
                   </div>
+
+                  <div *ngIf="wallIsEmpty">
+                    <p style="text-align: center">Væggen er tom.</p>
+                  </div>
               
                   <mat-card-actions>
-                    <button (click)="openWallPostDialog()" mat-raised-button color="primary">Svar</button>
+                    <button (click)="openWallPostDialog()" mat-raised-button color="primary">Skriv</button>
                   </mat-card-actions>
               </mat-card>
           </div>
@@ -71,7 +74,10 @@
                 </mat-tab>
                 <mat-tab label="Venteliste">
                   <mat-list>
-                    <p *ngIf="inQueue.length < 1">Der er ingen på ventelisten.</p>
+                    <p *ngIf="queueDisplayNames.length < 1">Der er ingen på ventelisten.</p>
+                    <mat-list-item *ngFor="let inQueue of queueDisplayNames">
+                      <button class="usernameBtn" color="primary" mat-button><mat-icon>person</mat-icon>{{inQueue}}</button>
+                    </mat-list-item>
                   </mat-list>
                 </mat-tab>
               </mat-tab-group>

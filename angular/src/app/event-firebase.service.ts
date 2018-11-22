@@ -13,6 +13,9 @@ import { JsonConverter } from './entity/helper/json-converter';
 import { WallService } from './wall.service';
 import { Wall } from './entity/wall/wall.model';
 import { refCount } from 'rxjs/operators';
+import { UserFirebaseService } from './user-firebase.service';
+import { User, Gender } from './entity/user/user';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +29,7 @@ export class EventFirebaseService {
   myEventSelection: Event;
 
   constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase, 
-    private ws: WallService) { }
+    private ws: WallService, private ufbs: UserFirebaseService, private toast: ToastrService) { }
 
   getList(): Observable<any> {
     return this.db.list(this.dbPath).snapshotChanges().map(events => {
@@ -47,7 +50,9 @@ export class EventFirebaseService {
   }
 
   insertEvent(event: Event) {
-    return this.db.list(this.dbPath).push(event);
+    const timestamp = {timestamp: new Date().toString()};
+    let merged: Event = {...event, ...timestamp};
+    return this.db.list(this.dbPath).push(merged);
   }
 
   updateEvent(key: string, e: Event) {
@@ -56,24 +61,37 @@ export class EventFirebaseService {
     return eventsRef.update(e);
   }
 
-  deleteEvent(key: string) {
+  deleteEvent(key: string, reason="") {
     const itemsRef = this.db.list(this.dbPath);
+    itemsRef.update(key, {deleted: reason});
     itemsRef.remove(key).then( () => {
-      this.ws.getWallByKey(key).subscribe(snapshots => {
+      let observer = this.ws.getWallByKey(key).subscribe(snapshots => {
         snapshots.forEach(snapshot => {
           this.ws.deleteWall(snapshot.key);
+          observer.unsubscribe();
         });
       });
     });
   }
 
-  joinEvent(key: string, un: string) {
-    const itemRef = this.db.list(this.dbPath + key + '/participants/');
-    itemRef.push({username: un});
+  joinEvent(key: string, uid: string, un: string) {
+    const itemRef = this.db.object(this.dbPath + key + '/participants/' + uid);
+    itemRef.update({username: un});
   }
 
-  leaveEvent(key: string, pKey: string) {
-    const itemRef = this.db.object(this.dbPath+"/"+key+"/participants/"+ pKey);
+  leaveEvent(key: string, uid: string) {
+    const itemRef = this.db.object(this.dbPath+"/"+key+"/participants/"+ uid);
+    itemRef.remove();
+    this.leaveQueue(key, uid);
+  }
+
+  joinQueue(key: string, uid: string, un: string) {
+    const itemRef = this.db.object(this.dbPath + key + '/inQueue/' + uid);
+    itemRef.update({username: un});
+  }
+
+  leaveQueue(key: string, uid: string) {
+    const itemRef = this.db.object(this.dbPath+"/"+key+"/inQueue/"+ uid);
     itemRef.remove();
   }
 
@@ -96,4 +114,88 @@ export class EventFirebaseService {
     return this.jsonConverter.convertJsonToEventObj(json);
   } 
 
+  signupVerification(key: string, user: User) {
+    return new Promise(async (resolve, reject) => {
+      console.log(key, user);
+      let observer = this.db.object(this.dbPath+key).snapshotChanges().subscribe( eventSnapshot => {
+        // console.log(eventSnapshot);
+        const payload = eventSnapshot.payload.val();
+        const participants = Object.keys(payload.participants).length;
+        const max = payload.maxGuests;
+        const genCriteria = payload.genderRatio;
+        const childCriteria = payload.targetGroup;
+        /* Availability check */
+        const availResult: boolean = participants < max ? true : false;
+        /* Criteria check */
+        let genResult: boolean;
+        console.log("Criteria", genCriteria, childCriteria, max);
+        switch(genCriteria) {
+          case 'Kun for mænd':
+            genResult = user.gender.toString() === "Mand" ? true : false;
+            break;
+          case 'Kun for kvinder':
+            genResult = user.gender.toString() === "Kvinde" ? true : false;
+            break;
+          case '50/50':
+            let userList = [];
+            Object.keys(payload.participants).forEach(p => {
+              const observerTwo = this.ufbs.getUserByID(payload.participants[p].fk_id).subscribe( userSnapshot => {
+                userList.push(userSnapshot);
+              });
+              observerTwo.unsubscribe();
+            });
+            const dist = this.ufbs.userDistribution(userList);
+            if (user.gender === Gender.MALE) {
+              genResult = dist.male < dist.female ? true : false;
+            } else {
+              genResult = dist.female < dist.male ? true : false;
+            }
+            break;
+          default:
+            genResult = true;
+            break;
+        }
+        let childResult: boolean;
+        switch(childCriteria) {
+          case 'Kun med børn':
+            childResult = user.numberOfChildren > 0 ? true : false;
+            break;
+          default:
+            childResult = true;
+            break;
+        }
+        let activatedResult: boolean = user.isActivated === true ? true : false;
+        /* Do */
+        if (genResult && childResult && availResult && activatedResult) {
+          this.joinEvent(key, this.afAuth.auth.currentUser.uid, user.username);
+          resolve(true);
+        } else {
+          let criteria: string = "";
+          console.log("Results", genResult, childResult, availResult);
+          if (!genResult) {
+            criteria += genCriteria + ", ";
+          } 
+          if (!childResult) {
+            criteria += childCriteria + ", ";
+          }
+          if (!activatedResult) {
+            criteria += activatedResult + ", ";
+          }
+  
+          if (availResult) {
+            this.toast.warning('Du opfylder ikke kriterierne: ' + criteria,'Hov!');
+          } else if (activatedResult) {
+            this.joinQueue(key, this.afAuth.auth.currentUser.uid, user.username);
+            this.toast.info('Alle pladser er optaget, så du er landet på ventelisten','Info');
+            resolve(true);
+          } else {
+            this.toast.warning('🤖 Serveren informerer mig, at tilmelding kræver en aktiv/synlig profil','Hov!');
+          }
+          
+        }
+        resolve(false);
+        observer.unsubscribe();
+      });
+    });
+  }
 }

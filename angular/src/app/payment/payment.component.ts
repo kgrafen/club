@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserFirebaseService } from '../user-firebase.service';
+import { AuthService } from '../auth.service';
 
 export interface Item {
   name: string;
@@ -31,11 +32,13 @@ export class PaymentComponent implements OnInit {
   selection = "";
   card = "";
   checked = false;
+  idx = -1;
 
   displayedColumns: string[] = ['name', 'price', 'type'];
   dataSource = ITEM_DATA;
 
-  constructor(private _formBuilder: FormBuilder, private ufbs: UserFirebaseService) { }
+  constructor(private _formBuilder: FormBuilder, private ufbs: UserFirebaseService,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -44,15 +47,25 @@ export class PaymentComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       card: ['', Validators.required]
     });
-    this.thirdFormGroup = this._formBuilder.group({
-      username: this.ufbs.getStorage().username,
-      email: this.ufbs.getStorage().email,
-      date: ['', Validators.required]
+    let observer = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe( (snapshot:any) => {
+      this.thirdFormGroup = this._formBuilder.group({
+        username: snapshot.username,
+        email: snapshot.email,
+        date: ['', Validators.required]
+      });
+      observer.unsubscribe();
     });
+
+    console.log(this.dataSource[0].price);
   }
 
   selectionFormValue(s) {
     this.selection = s;
+    if (s === 'Månedlig Abonnement') {
+      this.idx = 1;
+    } else if (s === '1 Måneds Medlemsskab') {
+      this.idx = 0;
+    }
   }
 
   cardFormValue(c) {

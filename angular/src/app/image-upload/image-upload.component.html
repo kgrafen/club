@@ -10,14 +10,14 @@
             <label for="username" class="col-4 col-form-label">Vælg fil</label> 
             <div class="col-8">
               <form [formGroup]="fileForm">
-                  <input formControlName="file" id="uploadImage" name="uploadImage" class="" required="required" type="file">
+                  <input formControlName="file" required type="file">
               </form>
             </div>
           </div>
     </div>
     <div class="modal-footer">
         <button mat-button color="warn" (click)="c('Close click')">Luk</button>
-        <button mat-button color="primary" (click)="c('Close click')">Upload</button>
+        <button mat-button color="primary" (click)="uploadImage(fileForm.value)">Upload</button>
     </div>
   </ng-template>
   <button mat-raised-button color="primary" class="btn btn-outline-primary mb-2 mr-2" (click)="openVerticallyCentered(content)">Opload nyt billede</button>

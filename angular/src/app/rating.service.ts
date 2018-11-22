@@ -8,8 +8,6 @@ import { Rating } from './entity/rating/rating.model';
 import { User } from './entity/user/user';
 import { UserFirebaseService } from './user-firebase.service';
 import { EventFirebaseService } from './event-firebase.service';
-import { Event } from './entity/event/event.model';
-
 
 @Injectable({
   providedIn: 'root'
@@ -36,15 +34,38 @@ export class RatingService {
   }
 
   insertRating(rating: Rating) {
-    return this.db.list(this.dbPath).push(rating);
+    return this.db.list(this.dbPath).push(rating).once('value').then(() => {
+      this.updateUsersRating(rating.fk_host);
+    });
   }
 
   updateRating(rating: Rating, key: string) {
-    this.db.object(this.dbPath+key).update(rating);
+    return this.db.object(this.dbPath+key).update(rating).then( () => {
+      this.updateUsersRating(rating.fk_host);
+    });
   }
 
   hasUserRatedTheEvent(eid: string) {
     return this.db.list(this.dbPath, ref => ref.orderByChild('fk_event').equalTo(eid)).snapshotChanges();
+  }
+
+  updateUsersRating(uid) {
+    let r = 0;
+    let observer = this.getRatings().subscribe(snapshots => {
+      let userScore = 0;
+      let count = 0;
+      snapshots.forEach(snapshot => {
+        if(snapshot.payload.val().fk_host === uid) {
+          userScore += Number(snapshot.payload.val().score);
+          count++;
+        }
+      });
+      if (userScore > 0 && count > 0) {
+        r = userScore / count;
+      }
+      this.ufbs.updateUser({rating: r}, uid);
+      observer.unsubscribe();
+    });
   }
 
 }

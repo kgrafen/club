@@ -26,11 +26,12 @@ export class RateEventComponent implements OnInit {
   constructor(private ufbs: UserFirebaseService, private efbs: EventFirebaseService, 
     private route: ActivatedRoute, private rs: RatingService, private authService: AuthService, 
     private toast: ToastrService, private router: Router) {
-      this.route.queryParams.subscribe(params => {
+      let observerTwo = this.route.queryParams.subscribe(params => {
         this.efbs.getEventByKey(params['key']).snapshotChanges().subscribe(res => {
           this.event = Object.assign(res.payload.val());
           this.event.key = res.key;
         });
+        observerTwo.unsubscribe();
       });
      }
 
@@ -38,14 +39,18 @@ export class RateEventComponent implements OnInit {
   }
 
   rate(scoreValueFromForm, feedbackValueFromForm: string) {
-    this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe( (userSnapshot:any) => {
+    let observer = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe( (userSnapshot:any) => {
       let r = new Rating();
       r.byUser = userSnapshot.username;
       r.feedback = feedbackValueFromForm;
       r.score = scoreValueFromForm;
       r.fk_event = this.event.key;
       r.fk_host = this.event.host;
-      this.rs.updateRating(r, r.byUser+r.fk_event);
+      this.rs.updateRating(r, r.byUser+r.fk_event).then( () => {
+        this.hasRated = true;
+        window.history.back();
+        observer.unsubscribe();
+      });
     });
   }
 }

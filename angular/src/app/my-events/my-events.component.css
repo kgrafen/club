@@ -14,3 +14,8 @@ mat-form-field {
 .error {
     width: 100%;
 }
+
+tr:hover td {
+    background:#3f51b51c;
+    cursor: pointer;
+}

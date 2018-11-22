@@ -1,5 +1,7 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { TableFilterService } from '../table-filter.service';
+import { NgModel, FormGroup, Validators, FormControl } from '@angular/forms';
+import { MatSelect } from '@angular/material';
 
 export interface Selector {
   value: string;
@@ -17,11 +19,15 @@ export class EventFilterComponent implements OnInit {
   public kidsAllowed: boolean = false;
 
   public options: Selector[] = [
+                                {value: '', displayValue: ''},
                                 {value: 'Kun for mænd', displayValue: 'Kun for mænd'},
                                 {value: 'Kun for kvinder', displayValue: 'Kun for kvinder'},
-                                {value: '50/50', displayValue: '50/50'}];
+                                {value: '50/50', displayValue: '50/50'},
+                                {value: 'Først til mølle', displayValue: 'Først til mølle'}];
+                                
 
   public categories: Selector[] = [
+                                  {value: '', displayValue: ''},
                                   {value: 'Hjemmehygge', displayValue: 'Hjemmehygge'},
                                   {value: 'Fest i privathjem', displayValue: 'Fest i privathjem'},
                                   {value: 'Fest uden for privaten', displayValue: 'Fest uden for privaten'},
@@ -33,6 +39,22 @@ export class EventFilterComponent implements OnInit {
                                   {value: 'Koncert', displayValue: 'Koncert'},
                                   {value: 'Kultur', displayValue: 'Kultur'},
                                   {value: 'Sport', displayValue: 'Sport'},]
+
+  public childrenOptions: Selector[] = [
+                                {value: '', displayValue: ''},
+                                {value: 'Kun uden børn', displayValue: 'Kun uden børn'},
+                                {value: 'Kun med børn', displayValue: 'Kun med børn'},
+                                {value: 'Børn velkomne', displayValue: 'Børn velkomne'}];
+
+  childrenForm = new FormGroup({
+    selection: new FormControl('')
+  });
+  categoryForm = new FormGroup({
+    selection: new FormControl('')
+  });
+  genderForm = new FormGroup({
+    selection: new FormControl('')
+  });
 
   constructor(private tbs: TableFilterService) { }
 
@@ -46,8 +68,10 @@ export class EventFilterComponent implements OnInit {
     }
   }
 
-  onChildrenChange() {
-    this.tbs.onChildrenChange(this.kidsAllowed);
+  onChildrenChange(value) {
+    if (value != undefined) {
+      this.tbs.onGenderChange(value);
+    }
   }
 
   onOptionChange(value) {
@@ -60,8 +84,13 @@ export class EventFilterComponent implements OnInit {
     this.tbs.onCategoryChange(value);
   }
 
+
   clear() {
     this.tbs.clearFilters();
+    this.categoryForm.get('selection').setValue('');
+    this.childrenForm.get('selection').setValue('');
+    this.genderForm.get('selection').setValue('');
+    this.slider1Val = 100;
   }
 
 }

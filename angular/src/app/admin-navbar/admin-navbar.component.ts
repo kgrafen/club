@@ -4,6 +4,7 @@ import { UserRoleService } from '../user-role.service';
 import { Role } from '../entity/user/role.model';
 import { Router } from '@angular/router';
 import { MatBottomSheet } from '@angular/material';
+import { MobileDetectorService } from '../mobile-detector.service';
 
 @Component({
   selector: 'admin-navbar',
@@ -11,6 +12,8 @@ import { MatBottomSheet } from '@angular/material';
   styleUrls: ['./admin-navbar.component.css']
 })
 export class AdminNavbarComponent implements OnInit {
+
+  isMobile: boolean = false;
 
   menuFields = [
                 // {'displayName' : "Forside", 'link' : "/landing-page", 'description': "Tilbage til forsiden", 'disabled': false},
@@ -21,12 +24,15 @@ export class AdminNavbarComponent implements OnInit {
 
 
   constructor(private authService: AuthService, private urs: UserRoleService, 
-    private router: Router) { }
+    private router: Router, private mbs: MobileDetectorService) { }
 
   ngOnInit() {
+
+    this.isMobile = this.mbs.check();
+
     this.authService.afAuth.auth.onAuthStateChanged(user => {
       if (user) {
-        this.urs.getList().subscribe(snapshots => {
+        let observer = this.urs.getList().subscribe(snapshots => {
           snapshots.forEach(snapshot => {
             let role = new Role(snapshot);
             if (role.fk_id === this.authService.afAuth.auth.currentUser.uid) {
@@ -36,6 +42,7 @@ export class AdminNavbarComponent implements OnInit {
                 this.router.navigate(['/landing-page']);
                 console.log("Unauthorized. Your attempt has been logged.");
               }
+              observer.unsubscribe();
             }
           });
         });

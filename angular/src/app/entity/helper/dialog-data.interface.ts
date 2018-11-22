@@ -3,4 +3,5 @@ export interface DialogData {
     buttonNo: string;
     buttonYes: string;
     dialogText: string;
+    e;
 }

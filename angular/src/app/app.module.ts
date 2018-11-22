@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HttpModule } from '@angular/http';
 
 
 //Firebase
@@ -56,7 +55,7 @@ import { RoutingModule, routingModule } from './routing.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Material and animation
-import {MatButtonModule, MatNativeDateModule, MatCheckboxModule, MatProgressBarModule, MatCard, MatCardModule, MatListModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatChipsModule, MatSelectModule, MatGridListModule, MatSliderModule, MatSlideToggleModule, MatSortModule, MatTableModule, MatPaginatorModule, MatMenuModule, MatToolbarModule, MatTooltipModule, MatDialogModule, MatRadioModule, MatStepperModule, MatBadgeModule} from '@angular/material';
+import {MatButtonModule, MatNativeDateModule, MatCheckboxModule, MatProgressBarModule, MatCard, MatCardModule, MatListModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatChipsModule, MatSelectModule, MatGridListModule, MatSliderModule, MatSlideToggleModule, MatSortModule, MatTableModule, MatPaginatorModule, MatMenuModule, MatToolbarModule, MatTooltipModule, MatDialogModule, MatRadioModule, MatStepperModule, MatBadgeModule, MAT_DATE_LOCALE} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import 'hammerjs';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -69,12 +68,8 @@ import { ModalGalleryModule } from 'angular-modal-gallery';
 // Font Awesome
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
-// Cookies
-import { CookieService } from 'angular2-cookie/services/cookies.service';
-
 // Web storage
 import { AngularWebStorageModule } from 'angular-web-storage';
-import { HttpClientModule } from '@angular/common/http';
 
 // Test suite
 import { RouterTestingModule } from '@angular/router/testing';
@@ -92,6 +87,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { CreateWallPostComponent } from './create-wall-post/create-wall-post.component';
 import { AttendedEventsComponent } from './attended-events/attended-events.component';
 
+// HTTP
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+import { ParticipantListActionsComponent } from './participant-list-actions/participant-list-actions.component';
 
 @NgModule({
   declarations: [
@@ -132,9 +131,10 @@ import { AttendedEventsComponent } from './attended-events/attended-events.compo
     ConfirmationDialogComponent,
     RateEventComponent,
     CreateWallPostComponent,
-    AttendedEventsComponent
+    AttendedEventsComponent,
+    ParticipantListActionsComponent
   ],
-  entryComponents: [MobileLoginHeaderComponent, ConfirmationDialogComponent, CreateWallPostComponent],
+  entryComponents: [MobileLoginHeaderComponent, ConfirmationDialogComponent, CreateWallPostComponent, ParticipantListActionsComponent],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
@@ -151,7 +151,6 @@ import { AttendedEventsComponent } from './attended-events/attended-events.compo
     AngularFontAwesomeModule,
     AngularWebStorageModule,
     MatProgressBarModule,
-    HttpClientModule,
     MatFormFieldModule,
     MatCardModule,
     MatListModule,
@@ -176,14 +175,18 @@ import { AttendedEventsComponent } from './attended-events/attended-events.compo
     MatDatepickerModule,
     MatNativeDateModule,
     MatBadgeModule,
+    MatRadioModule,
     RouterTestingModule,
     NgxSpinnerModule,
-    HttpModule,
     AdminModule,
     ToastrModule.forRoot(),
-    RoutingModule
+    RoutingModule,
+    HttpModule,
+    HttpClientModule
   ],
-  providers: [CookieService, AuthGuard],
+  exports: [HttpClientModule, HttpModule],
+  providers: [AuthGuard, HttpClientModule, HttpModule,
+    {provide: MAT_DATE_LOCALE, useValue: 'da-DK'}],
   bootstrap: [AppComponent]
 })
 

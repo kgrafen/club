@@ -120,16 +120,19 @@ export class CreateNewEventComponent implements OnInit {
   }
 
   onSubmitEvent() {
-    let e: Event = this.formDataToModel();
-    this.efbs.insertEvent(e).then( (thenableRef) => {
-      let key = thenableRef.path.pieces_[1];
-      this.ws.insertWall( {fk_event: key, posts: { 0: {message: "Hej og velkommen til dette event!", username: "_SYSTEM_"} } } )
-    });
-    this.ufbs.updateUser({numberOfEventsHosted: this.ufbs.getStorage().numberOfEventsHosted + 1}, 
-                        this.authService.afAuth.auth.currentUser.uid);
+    let observer = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe( (userSnapshot:any) => {
+      let e: Event = this.formDataToModel(userSnapshot);
+      this.efbs.insertEvent(e).then( (thenableRef) => {
+        let key = thenableRef.path.pieces_[1];
+        this.ws.insertWall( {fk_event: key, posts: {} } );
+      });
+      this.ufbs.updateUser({numberOfEventsHosted: userSnapshot.numberOfEventsHosted + 1}, this.authService.afAuth.auth.currentUser.uid).then( () => {
+        observer.unsubscribe();
+        });
+      });
   } 
 
-  formDataToModel(): Event {
+  formDataToModel(userSnapshot): Event {
 
     const event = new Event({});
 
@@ -155,7 +158,7 @@ export class CreateNewEventComponent implements OnInit {
     event.file = this.fifthFormGroup.value.eventFile;
 
     event.genderRatio = this.secondFormGroup.value.eventGender;
-    event.hostRating = this.ufbs.getStorage().rating;
+    event.hostRating = userSnapshot.rating;
     event.maxAge = this.secondFormGroup.value.eventMaxAge;
     event.minAge = this.secondFormGroup.value.eventMinAge;
     event.maxGuests = this.secondFormGroup.value.eventMaxGuests;
@@ -163,7 +166,7 @@ export class CreateNewEventComponent implements OnInit {
     event.queue = this.secondFormGroup.value.eventQueue;
     event.targetGroup = this.secondFormGroup.value.eventTargetGroup;
 
-    event.participants = [{username: this.ufbs.getStorage().username}];
+    event.participants = [{username: userSnapshot.username}];
 
     event.host = this.authService.afAuth.auth.currentUser.uid;
 

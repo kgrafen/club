@@ -17,12 +17,12 @@ export class User {
 
     //Family
     numberOfChildren: number;
-    children: Child[];
+    children = {childOne: '', childTwo: '', childThree: ''};
 
     //Images * Might need new library
 
     //Settings
-    newsletterSetting: NewsletterSetting;
+    notifications: string;
 
     //Rating
     rating: number;
@@ -33,7 +33,7 @@ export class User {
     friendlist: string[];
 
     //Account status
-    isActivated: boolean;
+    isActivated: boolean = false;
     subscribed_until: Date;
     fk_user_role: string;
 
@@ -42,6 +42,6 @@ export class User {
     }
 }
 
-enum Gender {
+export enum Gender {
     MALE, FEMALE
 }

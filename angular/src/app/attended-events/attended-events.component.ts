@@ -44,7 +44,9 @@ export class AttendedEventsComponent implements OnInit {
             if (eventSnapshot.participants !== undefined) {
               Object.values(eventSnapshot.participants).forEach( (value:any) => {
                 if (value.username === u.username) {
-                  this.events.push(eventSnapshot);
+                  if (new Date(eventSnapshot.dateStart) < new Date() ) {
+                    this.events.push(eventSnapshot);
+                  }
                 }
               });
             }

@@ -43,9 +43,12 @@ mat-progress-bar {
 
 label, p, button {
     margin: 10px;
-    display: block;
 }
 
 h4, mat-icon {
     display: block;
+}
+
+mat-radio-button {
+    margin: 10px;
 }

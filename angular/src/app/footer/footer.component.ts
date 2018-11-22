@@ -26,7 +26,7 @@ export class FooterComponent implements OnInit {
 
   authorize() {
     
-    this.urs.getList().subscribe(snapshots => {
+    let observer = this.urs.getList().subscribe(snapshots => {
       snapshots.forEach(snapshot => {
         if (snapshot.payload.val().fk_id === this.authService.afAuth.auth.currentUser.uid) {
           let role = new Role(snapshot.payload.val());
@@ -37,7 +37,8 @@ export class FooterComponent implements OnInit {
             this.errorToast("Du har ikke adgang.", 'Fejl!');
           }
         }
-      })
+      });
+      observer.unsubscribe();
     })
     
    //let userRole: Role = this.urs.getUserRoleByUserID(this.authService.afAuth.auth.currentUser.uid);

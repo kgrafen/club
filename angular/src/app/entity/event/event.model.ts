@@ -17,6 +17,7 @@ export class Event {
     maxGuests: number;
     genderRatio: string;
     queue: boolean;
+    inQueue: {};
     address: EventAddress;
     deadlineDate: string;
     deadlineTime: number;
@@ -28,6 +29,7 @@ export class Event {
     host: string;
     accountNumber: number;
     mobilePayNumber: number;
+    timestamp: string;
 
     constructor(obj) {
         obj && Object.assign(this, obj);

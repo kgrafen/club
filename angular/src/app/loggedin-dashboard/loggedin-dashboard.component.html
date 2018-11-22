@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="container">
-    <h1>Overblik</h1>
+    <h1>Min oversigt</h1>
 
     <mat-card *ngIf="!isMobile">
         <mat-grid-list cols="3" rowHeight="50px">
@@ -19,7 +19,7 @@
                <mat-card>
                     <mat-chip-list>
                         <div class="center">
-                            <mat-chip *ngFor="let recTile of recommendationTiles | slice:-6" color="primary" selected><mat-icon>today</mat-icon>{{recTile.name}}<mat-icon>group</mat-icon>{{recTile.pCount}}</mat-chip>
+                            <mat-chip (click)="onViewClick(recTile.key)" *ngFor="let recTile of recommendationTiles | slice:-6" color="primary" selected><mat-icon>today</mat-icon>{{recTile.name}}<mat-icon>group</mat-icon>{{recTile.pCount}}</mat-chip>
                         </div>
                     </mat-chip-list>
 
@@ -39,7 +39,7 @@
                             <mat-chip *ngFor="let feedback of feedbackTiles" color="accent" selected><mat-icon>today</mat-icon>{{feedback.fk_event}}<mat-icon>thumb_up_alt</mat-icon> + {{feedback.score}}</mat-chip>
                             
                             <mat-card-actions>
-                                <button *ngIf="tCount === 0" mat-button color="warn">Ingen bedømmelser</button>
+                                <button *ngIf="feedbackTiles < 1" mat-button color="warn">Ingen bedømmelser</button>
                             </mat-card-actions>
                         
                         </div>

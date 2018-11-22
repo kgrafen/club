@@ -9,6 +9,14 @@ import { EventAddress } from '../entity/helper/EventAddress';
 import { User } from '../entity/user/user';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { ParticipantListActionsComponent } from '../participant-list-actions/participant-list-actions.component';
+
+export interface ActionData {
+  uid: string;
+  key: string;
+  un: string;
+}
 
 @Component({
   selector: 'my-event',
@@ -20,7 +28,8 @@ export class MyEventComponent implements OnInit {
   constructor(private efbs: EventFirebaseService, private authService: AuthService, 
     private ufbs: UserFirebaseService, 
     private _formBuilder: FormBuilder, private geoAPI: GeoCodingApiService,
-    private toast: ToastrService, private router: Router) { }
+    private toast: ToastrService, private router: Router,
+    public dialog: MatDialog) { }
 
   myEvent: Event;
   hasUpdated = false;
@@ -39,8 +48,26 @@ export class MyEventComponent implements OnInit {
   hasPrice = false;
   isTransferingMoney = false;
 
+  // Participants
+  participantsDisplayNames = [];
+  participantsData = []
+  
+  // inQueue
+  queueDisplayNames = [];
+  queueData = [];
+
+  // Dialog
+  dialogWidth = screen.width / 3 + "px";
+  dialogHeight = screen.height / 5 + "px";
+
+
   ngOnInit() {
     this.myEvent = this.efbs.myEventSelection;
+
+    if (this.myEvent === undefined) {
+      this.router.navigate(['my-events']);
+    }
+
     this.firstFormGroup = this._formBuilder.group({
       eventName: ['', Validators.required],
       eventDescription: ['', Validators.required],
@@ -78,6 +105,8 @@ export class MyEventComponent implements OnInit {
     });
 
     this.getDisplayData();
+    this.renderParticipantsIntoView();
+    this.renderParticipantsInQueueIntoView();
 
   }
 
@@ -168,7 +197,8 @@ export class MyEventComponent implements OnInit {
   }
 
   getDisplayData() {
-    const event = this.efbs.myEventSelection;
+    const event = this.efbs.myEventSelection
+    this.myEvent = this.efbs.myEventSelection;
 
     console.log( new Date(event.deadlineDate) );
     console.log( new Date(event.dateStart) );
@@ -230,4 +260,68 @@ export class MyEventComponent implements OnInit {
     }
   }
 
+  getParticipantKey(): Promise<string> {
+    let isDone = false;
+    return new Promise(async (resolve, reject) => {
+      for (let i = 0; i < this.participantsData.length; i++) {
+        const observerSeven = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe((userSnapshot:any) => {
+          if (this.participantsData[i].username ===  userSnapshot.username) {
+            console.log("Running nested async");
+            isDone = true;
+            resolve(userSnapshot.username);
+          } 
+          observerSeven.unsubscribe();
+        });
+      }
+      if (isDone) {
+        resolve("Not Found");
+      }
+    });
+  }
+
+  renderParticipantsIntoView() {
+    let observerTwo = this.efbs.getEventByKey(this.myEvent.key).snapshotChanges().subscribe(then => {
+      this.myEvent = new Event(then.payload.val());
+      this.participantsData = [];
+      this.participantsDisplayNames = [];
+      for (let property in this.myEvent.participants) {
+        for (let value in this.myEvent.participants[property]) {
+            this.participantsDisplayNames.push(this.myEvent.participants[property][value]);
+            this.participantsData.push({key: property, username: this.myEvent.participants[property][value]});
+        }
+      }
+    });
+  }
+
+  renderParticipantsInQueueIntoView() {
+    let observerTwo = this.efbs.getEventByKey(this.myEvent.key).snapshotChanges().subscribe(then => {
+      this.myEvent = new Event(then.payload.val());
+      this.queueData = [];
+      this.queueDisplayNames = [];
+      for (let property in this.myEvent.inQueue) {
+        for (let value in this.myEvent.inQueue[property]) {
+            this.queueDisplayNames.push(this.myEvent.inQueue[property][value]);
+            this.queueData.push({key: property, username: this.myEvent.inQueue[property][value]});
+        }
+      }
+    });
+  }
+
+  onAction(userID): void {
+
+    const observer = this.ufbs.getUserByID(userID).subscribe( (userSnapshot:any) => {
+
+      const dialogRef = this.dialog.open(ParticipantListActionsComponent, {
+        width: this.dialogWidth,
+        height: this.dialogHeight,
+        data: {uid: userID, key: this.efbs.myEventSelection.key, un: userSnapshot.username}
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        
+      });
+
+      observer.unsubscribe();
+    });
+  }
 }

@@ -41,10 +41,9 @@
         <h4>Oversigt</h4>
         <p>Du har valgt <strong>{{selection}}</strong> </p>
         <p>Du betaler med <strong>{{card}}</strong> </p>
+        <p *ngIf="idx > -1">Pris: <strong>{{dataSource[idx].price}},- kr</strong></p>
         <mat-checkbox
         [(ngModel)]="checked"
-        [(indeterminate)]="indeterminate"
-        [labelPosition]="labelPosition" 
         color="primary">Jeg har læst og accepteret
           <a routerLink='/privacy-policy'>handelsbetingelserne</a>
         </mat-checkbox>

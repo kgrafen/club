@@ -20,8 +20,8 @@ export class TableFilterService {
    this.sendEvent(this.distance);
   }
 
-  onChildrenChange(children: boolean) {
-    this.children = children ? "Kun med børn" : "Kun uden børn";
+  onChildrenChange(children: string) {
+    this.children = children;
     this.sendEvent(this.children);
   }
 

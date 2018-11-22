@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FileUploadService } from '../file-upload.service';
+import { ToastrService } from 'ngx-toastr';
+import { TransactionalEmailService } from '../transactional-email.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'image-upload',
@@ -27,7 +31,9 @@ export class ImageUploadComponent implements OnInit {
     file: new FormControl('', Validators.required)
   });
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private fus: FileUploadService,
+    private toast: ToastrService, private tes: TransactionalEmailService,
+    private httpClient: HttpClient) {}
 
   openBackDropCustomClass(content) {
     this.modalService.open(content, {backdropClass: 'light-blue-backdrop'});
@@ -52,4 +58,8 @@ export class ImageUploadComponent implements OnInit {
   ngOnInit() {
   }
 
+  uploadImage(formData) {
+    console.log(formData);
+    this.toast.info(`file: ${formData.file}` ,'Info');
+  }
 }

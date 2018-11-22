@@ -3,38 +3,48 @@
 
 <mat-card>
     <h2>Filtre</h2>
+
     <div>
-    <label>Afstand</label>
-    <mat-slider (change)="onDistanceChange()" color="primary" min="10" max="100" step="10" [(ngModel)]="slider1Val"></mat-slider>
-    <label id="distKM">{{ slider1Val }} KM</label>
+    <form [formGroup]="childrenForm">
+      <mat-form-field>
+        <mat-select formControlName="selection" (selectionChange)="onChildrenChange($event.value)" placeholder="Børn">
+          <mat-option *ngFor="let cOption of childrenOptions" [value]="cOption.value">
+            {{cOption.displayValue}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    </form>
+    <!-- <mat-slide-toggle (change)="onChildrenChange()" color="primary" [(ngModel)]="kidsAllowed">{{kidsAllowed | activeBlocked}}</mat-slide-toggle> -->
     </div>
 
     <div>
-    <label>Børn</label> 
-    <mat-slide-toggle (change)="onChildrenChange()" color="primary" [(ngModel)]="kidsAllowed">{{kidsAllowed | activeBlocked}}</mat-slide-toggle>
+    <form [formGroup]="genderForm">
+      <mat-form-field>
+        <mat-select formControlName="selection" (selectionChange)="onOptionChange($event.value)" placeholder="Fordeling">
+          <!-- <mat-option>Ingen</mat-option> -->
+          <mat-option *ngFor="let option of options" [value]="option.value">
+            {{option.displayValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+    </div>
+    <div>
+    <form [formGroup]="categoryForm">
+      <mat-form-field>
+        <mat-select formControlName="selection" (selectionChange)="onCategoryChange($event.value)" placeholder="Kategori">
+          <mat-option *ngFor="let category of categories" [value]="category.value">
+            {{category.displayValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
     </div>
 
     <div>
-    <label>Deltager køn</label>
-    <mat-form-field>
-            <mat-select (selectionChange)="onOptionChange($event.value)" placeholder="Fordeling">
-              <mat-option>Ingen</mat-option>
-              <mat-option *ngFor="let option of options" [value]="option.value">
-                {{option.displayValue}}
-              </mat-option>
-            </mat-select>
-    </mat-form-field>
-    </div>
-    <div>
-    <label>Kategori</label>
-    <mat-form-field>
-            <mat-select (selectionChange)="onCategoryChange($event.value)" placeholder="Kategori">
-              <mat-option>Ingen</mat-option>
-              <mat-option *ngFor="let category of categories" [value]="category.value">
-                {{category.displayValue}}
-              </mat-option>
-            </mat-select>
-    </mat-form-field>
+      <label>Afstand</label>
+      <mat-slider matTooltip="Denne feature er undervejs." disabled (change)="onDistanceChange()" color="primary" min="10" max="100" step="10" [(ngModel)]="slider1Val"></mat-slider>
+      <label matTooltip="Denne feature er undervejs." id="distKM">{{ slider1Val }} KM</label>
     </div>
 
     <mat-card-actions>

@@ -38,13 +38,20 @@ export class ContactComponent implements OnInit {
   sendMail(formData) {
     this.disabled = true;
     this.toast.info("Svar fra server...", "Afventer");
-    this.tes.sendContactMail(formData).subscribe(response => {
+    let observer = this.tes.test().subscribe(response => {
       this.toast.clear();
-      this.toast.success("Din besked er afsendt!", '👍');
-      console.log("Placeholder");
-      console.log(response);
+      this.toast.success('Din besked er afsendt','👍');
       this.disabled = false;
-    }).unsubscribe;
+      observer.unsubscribe();
+    });
+    // let observer = this.tes.sendContactMail(formData).subscribe(response => {
+    //   this.toast.clear();
+    //   this.toast.success("Din besked er afsendt!", '👍');
+    //   console.log("Placeholder");
+    //   console.log(response);
+    //   this.disabled = false;
+    //   observer.unsubscribe();
+    // });
   }
 
 }

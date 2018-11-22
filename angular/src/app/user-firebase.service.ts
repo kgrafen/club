@@ -9,7 +9,7 @@ import { Time } from '@angular/common';
 import { timestamp } from 'rxjs/internal/operators/timestamp';
 
 // Entity
-import { User } from './entity/user/user';
+import { User, Gender } from './entity/user/user';
 
 // Helper classes
 import { JsonConverter } from './entity/helper/json-converter';
@@ -47,13 +47,6 @@ export class UserFirebaseService {
 
   getUserByID(id: string) {
     return this.db.object(this.dbPath+id).valueChanges();
-  }
-
-  getUserByIndex(idx) {
-    let path = this.dbPath+"/"+idx;
-    this.db.object(path).valueChanges().subscribe(data => {
-      
-    });
   }
 
   //Test passed
@@ -99,6 +92,18 @@ export class UserFirebaseService {
 
    clearSession() {
     this.session.remove("user");
+   }
+
+   userDistribution(userList) {
+     let dist = {male: 0, female:0};
+     userList.forEach(user => {
+      if (user.gender === Gender.MALE) {
+        dist.male++;
+      } else {
+        dist.female++;
+      }
+     });
+     return dist;
    }
 
 }

@@ -103,7 +103,11 @@ export const sendNewsletter = functions.https.onRequest(async (request, response
 
 // Tested: Yes
 export const pingTest = functions.https.onRequest(async (request, response) => {
-    response.status(200).send("Hello from Firebase.");
+    response.setHeader("Access-Control-Allow-Origin", "*");
+    response.setHeader("Access-Control-Allow-Credentials", "true");
+    response.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+    response.status(200).send('Hello from firebase');
 });
 
 // Tested: Yes
@@ -244,13 +248,13 @@ export const eventDeletedNotification = functions.database.ref('/events/{eventId
                 console.log(snapshot);
                 if (snapshot.val().username = snapshot.val().participants[p].username) {
                     
-                    const mailContent = `Et event som du deltager i er blevet slettet. Det drejer sig om eventet med navn: ${snapshot.val().name}, som desværre er aflyst.`;
+                    const mailContent = snapshot.val().deleted;
 
                     // setup e-mail data with unicode symbols
                     var mailOptions = {
                         from: `${APP_NAME} <donotreply@singlen.dk>`,
                         to: "info@singlen.dk", //to: snapshot.val().email
-                        subject: "Et event er blevet slettet",
+                        subject: "",
                         text: mailContent,
                         //html: "<b>Hello world ✔</b>" // html body
                     }
@@ -430,6 +434,54 @@ export const deleteInvalidAccounts = functions.https.onRequest(async (request, r
     });
 });
 
+/* Undeployed functions */
+
+export const newEventCreated = functions.database.ref('/events').onCreate( (snapshot) => {
+    admin.database().ref('/users').once('value').then(snapshots => {
+        snapshots.forEach( userSnapshot => {
+            if (userSnapshot.val().notifications === "Ved hvert nyt event") {
+                const mailContent = `<p>Der er lige oprettet et nyt event: ${snapshot.val().name}, som du måske har interesse i at deltage i!
+                                    Du kan klikke <a href='https://singlen.dk/viewEvent?${snapshot.key}'>her</a> for at gå til eventet<p>`;
+
+                // setup e-mail data with unicode symbols
+                var mailOptions = {
+                    from: `${APP_NAME} <donotreply@singlen.dk>`,
+                    to: "fgs@einrot.com", //to: userSnapshot.val().email;
+                    subject: "Nyt event på SingleNetværket",
+                    html: mailContent,
+                    //html: "<b>Hello world ✔</b>" // html body
+                }
+
+                sendEmail(mailOptions);
+            }
+            return true;
+        });
+    });
+});
+
+export const dailyUpdate = functions.https.onRequest(async (request, response) => {
+    admin.database().ref('/users').once('value').then(snapshots => {
+        snapshots.forEach( userSnapshot => {
+            if (userSnapshot.val().notifications === "Dagligt") {
+                const mailContent = `Her er en oversigt over de events, som er blevet oprettet på SingleNetværket de sidste 24 timer:
+                `;
+
+                // setup e-mail data with unicode symbols
+                var mailOptions = {
+                    from: `${APP_NAME} <donotreply@singlen.dk>`,
+                    to: "fgs@einrot.com", //to: userSnapshot.val().email;
+                    subject: "Nyt event på SingleNetværket",
+                    html: mailContent,
+                    //html: "<b>Hello world ✔</b>" // html body
+                }
+
+                sendEmail(mailOptions);
+            }
+            return true;
+        });
+    });
+});
+
 function sendEmail(mailOptions: {}, request=undefined, response=undefined) {
     /* Nodemailer */
     var nodemailer = require("nodemailer");
@@ -440,7 +492,7 @@ function sendEmail(mailOptions: {}, request=undefined, response=undefined) {
 
     smtpTransport.sendMail(mailOptions).then( (res) => {
         if (response) {
-            response.status(200).send("Message was sent" + res);
+            response.status(200).send("Message was sent");
             return res;
         } else {
             return "Success!";

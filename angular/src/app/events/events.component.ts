@@ -37,7 +37,7 @@ export class EventsComponent implements OnInit {
     let userExists = false;
     let u: User;
     
-    this.ufbs.getList().subscribe( userSnapshots => {
+    let observer = this.ufbs.getList().subscribe( userSnapshots => {
       userSnapshots.forEach(userSnapshot => {
         if (userSnapshot.key === firebaseUser.uid) {
           userExists = true;
@@ -58,6 +58,7 @@ export class EventsComponent implements OnInit {
           this.toast.warning('Din profil er ikke aktiv. For at aktivere skal du udfylde "Min Profil"','Hov!');
         } 
       }
+      observer.unsubscribe();
     });
 
   }

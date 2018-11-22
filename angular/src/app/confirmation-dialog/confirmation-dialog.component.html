@@ -3,6 +3,12 @@
   <p>{{dialogText}}</p>
 </div>
 <div mat-dialog-actions>
+
+  <mat-form-field>
+    <mat-label>Angiv venligst en motiviation for at slette eventet</mat-label>
+    <input matTooltip="Du kan skrive din egen motivation ellers sendes standard skabelonnen" matInput [(ngModel)]="reason" placeholder="Årsag">
+  </mat-form-field>
+
   <button mat-button color="primary" (click)="onNoClick()">{{buttonNo}}</button>
   <button mat-raised-button color="warn" (click)="onYesClick()" cdkFocusInitial>{{buttonYes}}</button>
 </div>

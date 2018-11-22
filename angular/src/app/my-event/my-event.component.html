@@ -1,8 +1,7 @@
 <app-navbar></app-navbar>
 <h1>Mit Event</h1>
 <mat-card>
-
-    <mat-card>
+    <mat-card *ngIf="this.myEvent">
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
@@ -269,8 +268,22 @@
                             <button [disabled]="hasUpdated" (click)="onUpdateEvent()" mat-raised-button color="primary">Opdater event</button>
     </mat-card>
 
-    <mat-card>
-        <p class="center">-- Event wall with messages from users will be here. --</p>
+    <mat-card class="participants">
+            <mat-tab-group mat-stretch-tabs backgroundColor="primary">
+                <mat-tab label="Deltagere">
+                  <mat-list>
+                      <mat-list-item *ngFor="let participant of participantsData">
+                        <button (click)="onAction(participant.key)" class="usernameBtn" color="primary" mat-button><mat-icon>person</mat-icon>{{participant.username}}</button>
+                      </mat-list-item>
+                  </mat-list>
+                </mat-tab>
+                <mat-tab label="Venteliste">
+                  <mat-list>
+                    <p *ngIf="queueData.length < 1">Der er ingen på ventelisten.</p>
+                    <mat-list-item *ngFor="let queue of queueData">
+                        <button (click)="onAction(queue.key)" class="usernameBtn" color="primary" mat-button><mat-icon>person</mat-icon>{{queue.username}}</button>
+                    </mat-list-item>
+                  </mat-list>
+                </mat-tab>
+            </mat-tab-group>
     </mat-card>
-
-</mat-card>
