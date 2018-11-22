@@ -8,35 +8,64 @@ export class TableFilterService {
 
   private subject = new Subject<any>();
 
-  distance: string;
-  children: string;
-  gender: string;
-  category: string;
+  distance: string = "";
+  children: string = "";
+  gender: string = "";
+  category: string = "";
 
   constructor() { }
 
   onDistanceChange(distance: Number) {
    this.distance = distance.toString();
-   this.sendEvent(this.distance);
+  //  const arr = this.matchAgainst.split('¤', 4);
+  //  arr[0] = this.distance;
+  //  this.matchAgainst = `${arr[0]}¤${arr[1]}¤${arr[2]}¤${arr[3]}¤`;
+   this.sendEvent();
   }
 
   onChildrenChange(children: string) {
     this.children = children;
-    this.sendEvent(this.children);
+    console.log("Children: " + children);
+    // console.log(this.matchAgainst);
+    // const arr = this.matchAgainst.split('¤', 4);
+    // arr[1] = this.children;
+    // this.matchAgainst = `${arr[0]}¤${arr[1]}¤${arr[2]}¤${arr[3]}¤`;
+    this.sendEvent();
   }
 
   onGenderChange(gender: string) {
     this.gender = gender;
-    this.sendEvent(this.gender);
+    console.log("Gender: " + gender);
+    // const arr = this.matchAgainst.split('¤', 4);
+    // arr[2] = this.gender;
+    // this.matchAgainst = `${arr[0]}¤${arr[1]}¤${arr[2]}¤${arr[3]}¤`;
+    this.sendEvent();
   }
 
   onCategoryChange(category: string) {
     this.category = category;
-    this.sendEvent(this.category);
+    console.log("Category: " + category);
+    // const arr = this.matchAgainst.split('¤', 4);
+    // arr[3] = this.category;
+    // this.matchAgainst = `${arr[0]}¤${arr[1]}¤${arr[2]}¤${arr[3]}¤`;
+    this.sendEvent();
   }
 
-  sendEvent(value) {
-    this.subject.next(value);
+  sendEvent() {
+    let matchAgainst = {};
+    if (this.distance !== "") {
+      // matchAgainst = {...matchAgainst, {}}
+    } 
+    if (this.category !== "") {
+      matchAgainst = {...matchAgainst, category: this.category};
+    } 
+    if (this.gender !== "") {
+      matchAgainst = {...matchAgainst, genderRatio: this.gender};
+    } 
+    if (this.children !== "") {
+      matchAgainst = {...matchAgainst, targetGroup: this.children};
+    } 
+    this.subject.next(matchAgainst);
   }
 
   getEvent(): Observable<any> {
@@ -48,7 +77,7 @@ export class TableFilterService {
     this.gender = "";
     this.children = "";
     this.distance = "";
-    this.sendEvent("");
+    this.sendEvent();
   }
 
 }

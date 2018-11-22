@@ -91,6 +91,7 @@ import { AttendedEventsComponent } from './attended-events/attended-events.compo
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { ParticipantListActionsComponent } from './participant-list-actions/participant-list-actions.component';
+import { AttendingEventsComponent } from './attending-events/attending-events.component';
 
 @NgModule({
   declarations: [
@@ -132,7 +133,8 @@ import { ParticipantListActionsComponent } from './participant-list-actions/part
     RateEventComponent,
     CreateWallPostComponent,
     AttendedEventsComponent,
-    ParticipantListActionsComponent
+    ParticipantListActionsComponent,
+    AttendingEventsComponent
   ],
   entryComponents: [MobileLoginHeaderComponent, ConfirmationDialogComponent, CreateWallPostComponent, ParticipantListActionsComponent],
   imports: [

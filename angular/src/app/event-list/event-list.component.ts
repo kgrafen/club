@@ -15,7 +15,7 @@ export interface EventData {
   address: string;
   distance: number;
   genderRatio: string;
-  targetGroup: boolean;
+  targetGroup: string;
   available: number;
   category: string;
   dateStart: string;
@@ -64,14 +64,16 @@ export class EventListComponent implements OnInit {
       // this.events.splice(0, 1);
       if (this.events.length > 0) {
         this.dataSource = new MatTableDataSource(this.events);
+        this.dataSource.filterPredicate = this.customFilterPredicate();
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
 
         this.dataSourceMobile = new MatTableDataSource(this.events);
+        this.dataSourceMobile.filterPredicate = this.customFilterPredicate();
         this.dataSourceMobile.paginator = this.paginator;
         this.dataSourceMobile.sort = this.sort;
         this.spinner.hide();
-        observer.unsubscribe();
+        // observer.unsubscribe();
       } 
     },(error) => {console.log("Something went wrong :(");
   });
@@ -94,14 +96,43 @@ export class EventListComponent implements OnInit {
       }, 3000);
   }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    this.dataSourceMobile.filter = filterValue.trim().toLowerCase();
+  applyFilter(filterValue) {
+    console.log("Apply filter says: ", filterValue);
+    this.dataSource.filter = JSON.stringify(filterValue);
+    // console.log(filterValue);
+    // let obj = {category: strArr[1], genderRatio: strArr[2], targetGroup: strArr[3]};
+    // console.log(obj);
+    // this.dataSource.filter = JSON.stringify(obj);
+    
+    // let isAccepted = true;
+    // if (strArr[0] !== "") {
+    //   if ( Number(strArr[0]) < this.dataSource.) {
+    //     isAccepted = false;
+    //   }
+    // }
+    // if (strArr[1] !== "") {
+    //   if ( strArr[1] !== dataSource.targetGroup) {
+    //     isAccepted = false;
+    //   }
+    // }
+    // if (strArr[2] !== "") {
+    //   if ( strArr[2] !== dataSource.category) {
+    //     isAccepted = false;
+    //   }
+    // }
+    // if (strArr[3] !== "") {
+    //   if ( strArr[3] !== dataSource.genderRatio) {
+    //     isAccepted = false;
+    //   }
+    // }
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-      this.dataSourceMobile.paginator.firstPage();
-    }
+    // this.dataSource.filter = filterValue.trim().toLowerCase();
+    // this.dataSourceMobile.filter = filterValue.trim().toLowerCase();
+
+    // if (this.dataSource.paginator) {
+    //   this.dataSource.paginator.firstPage();
+    //   this.dataSourceMobile.paginator.firstPage();
+    // }
   }
 
   onViewClick(element) {
@@ -166,6 +197,40 @@ export class EventListComponent implements OnInit {
     }
   }
 
+  customFilterPredicate() { 
+    return function(data:EventData, filter:string):boolean {
+      console.log("CustomFilterPredicate", filter);
+      let searchString = JSON.parse(filter); 
+      console.log("Parsed", searchString);
+
+      let isAccepted : boolean = true;
+
+      console.log(data.targetGroup.trim() + " " + searchString.targetGroup);
+      console.log(data.targetGroup.trim().indexOf(searchString.targetGroup));
+
+      if(searchString.targetGroup !== undefined){
+        if(data.targetGroup.trim().indexOf(searchString.targetGroup) === -1){
+          isAccepted = false;
+        }
+      }
+
+      if(searchString.genderRatio !== undefined){
+        if(data.genderRatio.trim().indexOf(searchString.genderRatio) === -1){
+          isAccepted = false;
+        }
+      }
+
+      if(searchString.category !== undefined){
+        if(data.category.trim().indexOf(searchString.category) === -1){
+          isAccepted = false; 
+        }
+      }
+
+      console.log(isAccepted);
+
+      return isAccepted;
+    }
+  }
 }
 
 export class EventDataSource extends DataSource<any> {

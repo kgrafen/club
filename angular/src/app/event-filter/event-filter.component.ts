@@ -38,7 +38,8 @@ export class EventFilterComponent implements OnInit {
                                   {value: 'Ferie', displayValue: 'Ferie'},
                                   {value: 'Koncert', displayValue: 'Koncert'},
                                   {value: 'Kultur', displayValue: 'Kultur'},
-                                  {value: 'Sport', displayValue: 'Sport'},]
+                                  {value: 'Sport', displayValue: 'Sport'},
+                                  {value: 'Andet', displayValue: 'Andet'},]
 
   public childrenOptions: Selector[] = [
                                 {value: '', displayValue: ''},
@@ -70,7 +71,7 @@ export class EventFilterComponent implements OnInit {
 
   onChildrenChange(value) {
     if (value != undefined) {
-      this.tbs.onGenderChange(value);
+      this.tbs.onChildrenChange(value);
     }
   }
 
