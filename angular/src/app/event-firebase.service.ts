@@ -31,10 +31,14 @@ export class EventFirebaseService {
   constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase, 
     private ws: WallService, private ufbs: UserFirebaseService, private toast: ToastrService) { }
 
-  getList(): Observable<any> {
+  getList() {
     return this.db.list(this.dbPath).snapshotChanges().map(events => {
       return events.map(c => ({key: c.payload.key, ...c.payload.val()}))
     });
+  }
+
+  getEvents() {
+    return this.db.list(this.dbPath).snapshotChanges();
   }
 
   getEventByKey(key: string): AngularFireObject<Event>{

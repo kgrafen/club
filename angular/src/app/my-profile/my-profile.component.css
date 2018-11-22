@@ -35,6 +35,8 @@ mat-progress-bar {
     margin-right: auto;
     display:block;
     height:40px;
+    border: 2px solid #fff;
+    border-radius: 5px;
 }
 
 .alert {
@@ -51,4 +53,22 @@ h4, mat-icon {
 
 mat-radio-button {
     margin: 10px;
+}
+
+.show {
+    opacity: 1;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -ms-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
+}
+
+.hide {
+    opacity: 0;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -ms-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
 }

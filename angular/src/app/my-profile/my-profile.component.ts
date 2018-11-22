@@ -29,6 +29,7 @@ export class MyProfileComponent implements OnInit {
   color = 'primary';
   mode = 'determinate';
   value = 0;
+  showHide = "show";
   //bufferValue= 75;
 
   public isMobile: boolean = false;
@@ -279,7 +280,6 @@ public userForm = new FormGroup({
   }
 
   updateUser(formData) {
-    console.log(formData);
     let result = "available";
     let updatesObj = {username: formData.username};
     let isSearching = true;
@@ -291,12 +291,44 @@ public userForm = new FormGroup({
       });
       isSearching = false;
       if (!isSearching && result === 'available') {
-        this.ufbs.updateUser({username: formData.username}, this.authService.afAuth.auth.currentUser.uid);
+        this.updateUsernameInParticipantsAndInQueues(formData);
       } else {
         this.toast.toastrConfig.timeOut = 5000;
         this.toast.warning('Dette brugernavn er desværre allerede taget.','Hov!');
       }
       observerEight.unsubscribe();
+    });
+  }
+
+  updateUsernameInParticipantsAndInQueues(formData) {
+    const observerNine = this.efbs.getList().subscribe(eventSnapshots => {
+      eventSnapshots.forEach( (eventSnapshot:any) => {
+        const observerTen = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe( (userSnapshot:any) => {
+          if (eventSnapshot.participants) {
+            Object.keys(eventSnapshot.participants).forEach(p => {
+              console.log(userSnapshot.username, formData.username);
+              if (eventSnapshot.participants[p].username === userSnapshot.username) {
+                console.log("Updating participant");
+                this.efbs.leaveEvent(eventSnapshot.key, this.authService.afAuth.auth.currentUser.uid);
+                this.efbs.joinEvent(eventSnapshot.key, this.authService.afAuth.auth.currentUser.uid, formData.username);
+              }
+            });
+          }
+          if (eventSnapshot.inQueue) {
+            Object.keys(eventSnapshot.inQueue).forEach(qP => {
+              console.log(eventSnapshot.inQueue[qP]);
+              if (eventSnapshot.inQueue[qP].username === userSnapshot.username) {
+                console.log("Updating inQueue");
+                this.efbs.leaveQueue(eventSnapshot.key, this.authService.afAuth.auth.currentUser.uid);
+                this.efbs.joinQueue(eventSnapshot.key, this.authService.afAuth.auth.currentUser.uid, formData.username);
+              }
+            });
+          }
+          this.ufbs.updateUser({username: formData.username}, this.authService.afAuth.auth.currentUser.uid);
+          observerTen.unsubscribe();
+        });
+      });
+      observerNine.unsubscribe();
     });
   }
 
@@ -308,6 +340,11 @@ public userForm = new FormGroup({
       this.fieldsMissing();
     }
     this.value = filled;
+    if (this.value >= 100) {
+      this.showHide = "hide";
+    } else {
+      this.showHide = "show";
+    }
     return filled;
 }
 
