@@ -123,8 +123,12 @@ export class MyEventsComponent implements OnInit {
   renderTableIntoView() {
     let observer = this.efbs.getEventsByHost(this.authService.afAuth.auth.currentUser.uid).subscribe(res => {
       this.events = res;
+      Object.keys(this.events).forEach( (event:any) => {
+        this.events[event] = {...this.events[event], participantCount: Object.keys(this.events[event].participants).length};
+        console.log(this.events[event]);
+      });
       this.removePastEvents();
-
+      console.log(this.events);
       this.dataSource = new MatTableDataSource(this.events);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

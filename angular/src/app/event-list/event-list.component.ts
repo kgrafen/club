@@ -58,7 +58,10 @@ export class EventListComponent implements OnInit {
     private toast: ToastrService) {
       let observer = this.efbs.getList().subscribe(eventSnapshots => {
       this.events = eventSnapshots;
-      
+      Object.keys(this.events).forEach( (event:any) => {
+        this.events[event] = {...this.events[event], participantCount: Object.keys(this.events[event].participants).length};
+        console.log(this.events[event]);
+      });
       this.events.sort(this.compareToAscending);
 
       // this.events.splice(0, 1);

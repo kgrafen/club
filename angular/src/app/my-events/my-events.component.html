@@ -50,8 +50,8 @@
         
           <!-- Participants Column -->
           <ng-container matColumnDef="available">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Pladser </th>
-            <td mat-cell *matCellDef="let element" (click)="onViewClick(element)"> Ledig </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Deltagere </th>
+            <td mat-cell *matCellDef="let element" (click)="onViewClick(element)"> {{element.participantCount}} / {{element.maxGuests}} </td>
           </ng-container>
 
           <!-- Actions Column -->
