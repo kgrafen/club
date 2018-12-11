@@ -32,3 +32,7 @@ Indtil andet oplyses er dette listen over de teknologier som vi anvender til at 
 * [JavaScript](https://www.javascript.com/)
 * Styling: CSS
 * Grid design: Bootstrap, Ngbbootstrap, Angular Material Grid
+
+## TODO
+* UML database
+* UML architecture
