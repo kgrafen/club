@@ -1,64 +1,7 @@
 # Single Netværket status
 
-Dette Git dokument indeholder detaljer omkring udviklingen af web app (projekt: Single Netværket). Både detaljer omkring fremgangen, evt. spørgsmål og en liste over de features som der skal laves.
+Dette Git dokument indeholder detaljer omkring udviklingen af web app (projekt: Single Netværket). Specifikation af teknologier anvendt bl.a.
 
-## Opdatering 4 30/08-2018
-
-### Min profil
-Brugeren bliver informeret om at hans konto ikke er aktiv før han udfylder alle obligatoriske felter. Disse påmindelse (aktivering + ingen billeder i galleri) vises kun så længe det er tilfældet.
-
-### Services
-Opdateringer til vores vi gemmer brugeren og hans data i sessionen. Dette er praktisk ift. front end og vise/redigerer sine oplysninger.
-
-### Lidt "Juice"
-Progress bar til min profil, så man se hvor langt man er nået med udfyldelse. Det er vist visuelt med en bar der tikker op, som man gennemføre opgaver. 
-
-### UML diagram
-Der er lavet et udkast til UML for databasen. Denne skal opdateres når den endelig struktur/strategi tager form.
-
-### Firebase CRUD
-Indenfor database snakker man om akronymet CRUD. Create, read, update og delete. Alle disse operationer er nu mulige for:
-* Opret ny bruger
-* Opdater mine profil oplysninger
-* Oprette et nyt arrangement/event
-* Opdaterer et arrangement/event
-
-## Opdatering 3 23/08-2018
-
-### Om os, privatlivs politik, brugsvilkår, feedback og del din personlige historie
-Vi har lavet undersiderne tilsvarende de ovenstående overskrifter. De er fyldt ud med auto generede tekst (eks: Terms of Service og privacy. Derfor på Engelsk).
-
-### Layout
-Opdateringer til layout så det er responsivt til flere devices og platforme.
-
-### Cookies
-Vi har implementeret så brugerne er informeret om cookie per EU lovgivning og lagrer derefter en cookie der fortæller web appen at dette er godkendt. (Så generer vi ikke brugeren med den samme påmindelse hele tiden)
-
-### Database
-Vi har lagt en masse test data ind i databasen og fører efterfølgende dette ind i tabellen for alle events og de første 6 på forsiden.
-
-### Diverse formularer
-Det er nu mulgit at give feedback, komme med forslag, kontakte support og oprette nye events. (Front end delen er lavet)
-
-
-## Opdatering 2 17/08-2018
-
-### Login
-Vi har arbejdet på at lave brugerlogin der bruger email og password, som er givet til systemet efter oprettelse af en ny bruger.
-
-### Oprettelse
-Det er nu muligt for nye brugere at registrere sig
-
-### Dashboard
-Der er lavet et dashboard, som brugere umiddelbart ser efter login. Denne kan føre videre til min profil, arrangementer m.fl. Disse er selvfølgelig også tilgængelige i navigationsbaren
-
-### Min profil
-En bruger kan nu gå til sin profil side og se sine detaljer.  
-
-
-### Opdatering 1 - 10/08-2018  
-
-Dette Git dokument indeholder detaljer omkring udviklingen af web app (projekt: Single Netværket). Både detaljer omkring fremgangen, evt. spørgsmål og en liste over de features som der skal laves.
 
 ## Product backlog
 Som aftalt har vi arbejdet på at oversætte kravspecifikationen til en product backlog med tilhørende user stories. Ideen er at kort og præcist formulerer en feature. Artifaktet indeholder alle disse features og er derfor listen over alt der skal med.
@@ -72,11 +15,23 @@ Projektet udvikles umiddelbart med de mobile platformer i tankerne og testes der
 ## Teknologier
 Indtil andet oplyses er dette listen over de teknologier som vi anvender til at realisere projektet:
 * [Angular6](http://www.google.dk)
-* [Firebase](http://www.google.dk)
-* [Bootstrap](http://www.google.dk)
-* [Ngbbootstrap](http://www.google.dk)
-### Bemærk
-At der vil blive tilføjet til listen som vi kommer længere i processen. Eksempelvis for sikkerhed, privatlivs indstillinger m.v.
+* [Firebase](https://firebase.google.com/)
+* [Bootstrap](https://getbootstrap.com/)
+* [Ngbbootstrap](https://ng-bootstrap.github.io/#/home)
+* [Firebase Cloud Functions](https://firebase.google.com/docs/functions/)
+
+### Packages/Plugins/Modules
+* [Angular Material](https://material.angular.io/)
+* [Angular Icon](https://material.io/tools/icons/)
+* [Ngx Spinner](https://www.npmjs.com/package/ngx-spinner)
+* [Ngx Toastr](https://www.npmjs.com/package/ngx-toastr)
+* [Moment JS](https://momentjs.com/)
+
+### Languages
+* [TypeScript](https://www.typescriptlang.org/)
+* [JavaScript](https://www.javascript.com/)
+* Styling: CSS
+* Grid design: Bootstrap, Ngbbootstrap, Angular Material Grid
 
 ## Milestones
 Vi har lagt plan for 3 milestones:
