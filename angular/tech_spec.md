@@ -14,6 +14,7 @@ Projektet udvikles umiddelbart med de mobile platformer i tankerne og testes der
 
 ## Teknologier
 Indtil andet oplyses er dette listen over de teknologier som vi anvender til at realisere projektet:
+
 (1 - 5, hvor 1 er nybegynder og 5 'ekspert')
 
 * [Angular6](http://www.google.dk)      4/5
