@@ -14,24 +14,26 @@ Projektet udvikles umiddelbart med de mobile platformer i tankerne og testes der
 
 ## Teknologier
 Indtil andet oplyses er dette listen over de teknologier som vi anvender til at realisere projektet:
-* [Angular6](http://www.google.dk)
-* [Firebase](https://firebase.google.com/)
-* [Bootstrap](https://getbootstrap.com/)
-* [Ngbbootstrap](https://ng-bootstrap.github.io/#/home)
-* [Firebase Cloud Functions](https://firebase.google.com/docs/functions/)
+(1 - 5, hvor 1 er nybegynder og 5 'ekspert')
+
+* [Angular6](http://www.google.dk)      4/5
+* [Firebase](https://firebase.google.com/)    4/5
+* [Bootstrap](https://getbootstrap.com/)      1/5  
+* [Ngbbootstrap](https://ng-bootstrap.github.io/#/home)     1/5
+* [Firebase Cloud Functions](https://firebase.google.com/docs/functions/)     5/5
 
 ### Packages/Plugins/Modules
-* [Angular Material](https://material.angular.io/)
-* [Angular Icon](https://material.io/tools/icons/)
-* [Ngx Spinner](https://www.npmjs.com/package/ngx-spinner)
-* [Ngx Toastr](https://www.npmjs.com/package/ngx-toastr)
-* [Moment JS](https://momentjs.com/)
+* [Angular Material](https://material.angular.io/)      2/5
+* [Angular Icon](https://material.io/tools/icons/)      1/5
+* [Ngx Spinner](https://www.npmjs.com/package/ngx-spinner)      1/5
+* [Ngx Toastr](https://www.npmjs.com/package/ngx-toastr)      2/5
+* [Moment JS](https://momentjs.com/)      3/5
 
 ### Languages
-* [TypeScript](https://www.typescriptlang.org/)
-* [JavaScript](https://www.javascript.com/)
-* Styling: CSS
-* Grid design: Bootstrap, Ngbbootstrap, Angular Material Grid
+* [TypeScript](https://www.typescriptlang.org/)     3/5
+* [JavaScript](https://www.javascript.com/)     2/5
+* Styling: CSS      2/5
+* Grid design: Bootstrap, Ngbbootstrap, Angular Material Grid     2/5
 
 ## TODO
 * UML database
