@@ -93,6 +93,15 @@ import { HttpModule } from '@angular/http';
 import { ParticipantListActionsComponent } from './participant-list-actions/participant-list-actions.component';
 import { AttendingEventsComponent } from './attending-events/attending-events.component';
 
+// Translations
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+// Translate loader factory
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http, './assets/translations/', '.json');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -184,7 +193,14 @@ import { AttendingEventsComponent } from './attending-events/attending-events.co
     ToastrModule.forRoot(),
     RoutingModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    })
   ],
   exports: [HttpClientModule, HttpModule],
   providers: [AuthGuard, HttpClientModule, HttpModule,
