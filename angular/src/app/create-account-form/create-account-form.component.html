@@ -26,31 +26,31 @@
 
 <form [formGroup]="registerForm">
     <mat-form-field>
-        <mat-label>Email</mat-label>
+        <mat-label>{{'COMPONENTS.USER_INFO.EMAIL'| translate}}</mat-label>
         <input formControlName="email" name="email" matInput placeholder="email" autofocus required>
     </mat-form-field>
 
     <mat-form-field>
-        <mat-label>Password</mat-label>
+        <mat-label>{{'COMPONENTS.USER_INFO.PASSWORD'| translate}}</mat-label>
         <input formControlName="password" name="password"  matInput placeholder="password" [type]="hide ? 'password' : 'text'" required>
     </mat-form-field>
 
     <mat-form-field>
-        <mat-label>Indtast password igen</mat-label>
+        <mat-label>{{'COMPONENTS.SIGNUP.REPEAT_PASSWORD'| translate}}</mat-label>
         <input (change)="comparePasswords($event.target.value)" name="verification"  matInput placeholder="password" [type]="hide ? 'password' : 'text'" required>
     </mat-form-field>
 
     <mat-form-field>
-        <mat-label>Brugernavn</mat-label>
+        <mat-label>{{'COMPONENTS.USER_INFO.USERNAME'| translate}}</mat-label>
         <input formControlName="username" name="username" matInput placeholder="brugernavn" required>
     </mat-form-field>
 
     <mat-card class="display-message" *ngIf="displayMessage">
-        <mat-label class="error">{{errorMessage}}</mat-label>
+        <mat-label class="error">{{errorMessage | async}}</mat-label>
         <mat-label class=👍>{{successMessage}}</mat-label>
     </mat-card>
 
-    <button (click)="tryRegister(registerForm.value)" mat-raised-button color="primary">Opret bruger</button>
+    <button (click)="tryRegister(registerForm.value)" mat-raised-button color="primary">{{'COMPONENTS.SIGNUP.CONFIRM_BUTTON'| translate}}</button>
 </form>
 
 

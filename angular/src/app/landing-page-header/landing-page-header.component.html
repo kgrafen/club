@@ -10,18 +10,24 @@
         <mat-card>
             <form [formGroup]="loginForm">
                 <mat-form-field>
-                    <mat-label>Email</mat-label>
+                    <mat-label>{{'COMPONENTS.USER_INFO.EMAIL'| translate}}</mat-label>
                     <input formControlName="email" name="email" matInput placeholder="email" autofocus>
                 </mat-form-field>
                 
                 <mat-form-field>
-                    <mat-label>Password</mat-label>
+                    <mat-label>{{'COMPONENTS.USER_INFO.PASSWORD'| translate}}</mat-label>
                     <input formControlName="password" name="password" matInput placeholder="password" type="password">
                 </mat-form-field>
     
-                <button (click)="tryLogin(loginForm.value)" mat-raised-button>Login</button>
-                <button (click)="tryFacebookLogin()" mat-raised-button color="primary">Login med Facebook</button>
-                <button (click)="tryGoogleLogin()" mat-raised-button color="accent">Login med Google</button>
+                <button (click)="tryLogin(loginForm.value)" mat-raised-button>{{'COMPONENTS.LOGIN.EMAIL_LOGIN_BUTTON'| translate}}</button>
+                <button (click)="tryFacebookLogin()" mat-raised-button color="primary">
+                    {{'COMPONENTS.LOGIN.EXTERNAL_LOGIN_BUTTON_PREFIX'| translate: '{provider: "Facebook"}'}}
+                </button>
+                <button (click)="tryGoogleLogin()"
+                    translate="COMPONENTS.LOGIN.EXTERNAL_LOGIN_BUTTON_PREFIX" 
+                    mat-raised-button color="accent">
+                    {{'COMPONENTS.LOGIN.EXTERNAL_LOGIN_BUTTON_PREFIX'| translate: '{provider: "Google"}'}}
+                </button>
             </form>
         </mat-card>
       </div>
@@ -38,9 +44,9 @@
   <a [routerLink]="['/']"><img class="mobile" src="./assets/images/Logo_white.png"></a>
 
   <div *ngIf="!isLoggedOn">
-      <button class="mobileBtn" mat-raised-button (click)="openDialog()">Login</button>
-      <button class="mobileBtn" (click)="tryFacebookLogin()" mat-raised-button color="primary">Login med Facebook</button>
-      <button class="mobileBtn" (click)="tryGoogleLogin()" mat-raised-button color="accent">Login med Google</button>    
+      <button class="mobileBtn" mat-raised-button (click)="openDialog()">{{'COMPONENTS.LOGIN.EMAIL_LOGIN_BUTTON'| translate}}</button>
+      <button class="mobileBtn" (click)="tryFacebookLogin()" mat-raised-button color="primary">{{'COMPONENTS.LOGIN.EXTERNAL_LOGIN_BUTTON_PREFIX'| translate}} Facebook</button>
+      <button class="mobileBtn" (click)="tryGoogleLogin()" mat-raised-button color="accent">{{'COMPONENTS.LOGIN.EXTERNAL_LOGIN_BUTTON_PREFIX'| translate}} Google</button>    
   </div>
   
 
