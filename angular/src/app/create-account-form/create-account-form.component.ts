@@ -8,6 +8,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { MobileLoginHeaderComponent } from '../mobile-login-header/mobile-login-header.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateHelperService } from '../services/translate.service';
 
 @Component({
   selector: 'create-account-form',
@@ -21,7 +22,7 @@ export class CreateAccountFormComponent implements OnInit {
   displayMessage = false;
   passwordsMatch = false;
 
-  public errorMessage : string;
+  public errorMessage;
   public successMessage : string;
 
   public registerForm = new FormGroup({
@@ -30,9 +31,13 @@ export class CreateAccountFormComponent implements OnInit {
       username: new FormControl('')
   });
 
-  constructor(private authService: AuthService, private ufbs: UserFirebaseService, 
+  constructor(
+    private authService: AuthService, 
+    private ufbs: UserFirebaseService, 
     public dialog: MatDialog, private spinner: NgxSpinnerService, 
-    private toast: ToastrService) { }
+    private toast: ToastrService,
+    private translate: TranslateHelperService,
+    ) { }
 
   ngOnInit() {
     if (window.screen.width <= 600) {
@@ -41,13 +46,17 @@ export class CreateAccountFormComponent implements OnInit {
   }
 
   tryRegister(value){
-    if (this.formValidation()) {
+        console.log('form value', value);
+        if (this.formValidation()) {
         this.spinner.show();
         this.authService.doRegister(value)
         .then(res => {
         this.spinner.hide();
         this.authService.sendVerificationMail();
     }, err => {
+        console.log('er', err);
+        this.errorMessage = this.translate.translateFirebaseErrorMessage(err.code);
+        this.displayMessage = true;
         this.spinner.hide();
     })
     }

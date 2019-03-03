@@ -3,5 +3,13 @@
         "HOME": {
             "TITLE": "Single Network"
         }
+    },
+    "FIREBASE": {
+        "ERRORS": {
+            "auth/invalid-email": "Forkert e-mailadresse",
+            "auth/weak-password": "Adgangskoden skal være 6 tegn lang eller mere.",
+            "auth/email-already-in-use": "Adgangskoden skal være 6 tegn lang eller mere.",
+            "auth/argument-error": "Andet ddgangskoden matcher ikke den første."
+        }
     }
 }
