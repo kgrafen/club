@@ -13,7 +13,9 @@ import { UserFirebaseService } from '../user-firebase.service';
 export class LandingPageComponent implements OnInit {
 
   constructor(private spinner: NgxSpinnerService, 
-    private authService: AuthService, private ufbs: UserFirebaseService) { }
+    private authService: AuthService, 
+    private ufbs: UserFirebaseService,
+  ) { }
 
   ngOnChanges() {
   
