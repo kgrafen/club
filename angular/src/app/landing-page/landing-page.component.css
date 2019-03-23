@@ -2,6 +2,33 @@ h1, h2, h3, h4, h5 {
     text-align: center;
 }
 
+.join-container {
+    position: relative;
+    height: 460px;
+    overflow: hidden;
+}
+
+.join-button {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    background: #FA8072;
+    color: #ffe9c1;
+    padding: 10px 60px;
+    font-size: 18px;
+    border-radius: 6px;
+}
+
+.events {
+    margin: 100px 0;
+}
+
+.join-container video {
+    transform: translateY(-30%);
+    width: 100%;
+}
+
 .promotionText {
     font-size: 14px;
 }

@@ -1,7 +1,8 @@
 {
     "PAGES": {
         "HOME": {
-            "TITLE": "Single Network"
+            "TITLE": "Single Netværket",
+            "JOIN_SITE": "Join Single Netværket"
         }
     },    
     "COMPONENTS": {
