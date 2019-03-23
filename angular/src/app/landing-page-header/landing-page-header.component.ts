@@ -42,9 +42,10 @@ export class LandingPageHeaderComponent implements OnInit {
           if (this.router.url === '/landing-page') {
             this.router.navigate(['/events']);
           }
-      } else if (user && !user.emailVerified) {
-        this.toastr.warning("Det lader til at du har et login, men ikke har bekræftet din email. Dette skal gøres inden 24 timer.", 'ℹ️ ')
-      }
+      } 
+    //   else if (user && !user.emailVerified) {
+    //     this.toastr.warning("Det lader til at du har et login, men ikke har bekræftet din email. Dette skal gøres inden 24 timer.", 'ℹ️ ')
+    //   }
     });
   }
 

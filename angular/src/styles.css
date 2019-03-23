@@ -33,6 +33,24 @@ app-root {
     100% { transform: rotate(360deg); }
 }
 
+
+/* width */
+::-webkit-scrollbar {
+    -webkit-overflow-scrolling: touch;
+    width: 12px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #fa8072; 
+    border-radius: 7px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #fa807299; 
+}
+
 /* Toaster */
 /* based on angular-toastr css https://github.com/Foxandxss/angular-toastr/blob/cb508fe6801d6b288d3afc525bb40fee1b101650/dist/angular-toastr.css */
 

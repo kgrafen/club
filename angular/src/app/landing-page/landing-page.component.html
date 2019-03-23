@@ -7,7 +7,7 @@
             <source src="assets/videos/header_video.mp4" type="video/mp4">
         </video>
 
-        <div class="join-button">{{'PAGES.HOME.JOIN_SITE' | translate}}</div>
+        <div [routerLink]="['/sign-up']" class="join-button">{{'PAGES.HOME.JOIN_SITE' | translate}}</div>
     </div>
 
     <div class="events">
@@ -17,14 +17,10 @@
                     <h2>Events</h2>
                     <dummy-list></dummy-list>
                 </div>
-                <div class="col-sm">
-                    <h2>{{'PAGES.HOME.TITLE' | translate}}</h2>
-                    <create-account-form></create-account-form>
-                </div>
                 <div class="col-sm desktop">
                     <h2>Info</h2>
                     <mat-card>
-                        <p class="pr    omotionText"><strong>Gratis</strong> profil resten af året. Indtil 1/1-2019</p>
+                        <p class="promotionText"><strong>Gratis</strong> profil resten af året. Indtil 1/1-2019</p>
                     </mat-card>
                 </div>
             </div>
