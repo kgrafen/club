@@ -1,15 +1,16 @@
 h1, h2, h3, h4, h5 {
-    color: #fff2FD;
     text-align: center;
 
 }
 
 h1 {
     font-size: 4rem;
+    color: #fffeFd;
 }
 
 h3 {
     font-size: 2.5rem;
+    color: #fffeFd;
 }
 
 .join-container {
@@ -27,7 +28,7 @@ h3 {
 
 .join-button {
     background: #FA8072;
-    color: #fff2FD;
+    color: #fffeFd;
     padding: 10px 60px;
     font-size: 18px;
     border-radius: 6px;
