@@ -1,0 +1,11 @@
+:host {
+    display: contents;
+}
+
+.sign-up-component {
+    width: 400px;
+    margin: auto;
+    background: #fff2dbaa;
+    padding: 30px;
+    border-radius: 10px;
+}

@@ -53,10 +53,20 @@ export class AuthService {
   doLogin(formData) {
     return this.afAuth.auth
       .signInWithEmailAndPassword(formData.email, formData.password)
-      .then(credential => {
-        this.user = this.afAuth.auth.currentUser;
+      .then(user => {
+
+        if (user !== null) {
+            this.user = user;
+            if (user.emailVerified) {
+                this.router.navigate(['/events']);
+            } else {
+                this.router.navigate(['/verify-email']);
+            }
+        }
+      console.log('credential', user);
+      this.user = this.afAuth.auth.currentUser;
         //this.loginRedirect();
-        return credential.user;
+        return user.user;
       })
       .catch(error => console.log(error));
   }

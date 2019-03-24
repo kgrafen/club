@@ -1,28 +1,33 @@
 <cookies-consent></cookies-consent>
 <landing-page-header></landing-page-header>
 <div>
-  <mat-card>
-      <div class="row">
-          <div class="col-sm desktop">
-            <h2>Events</h2>
-            <dummy-list></dummy-list>
-          </div>
-          <div class="col-sm">
-            <h2>{{'PAGES.HOME.TITLE' | translate}}</h2>
-            <create-account-form></create-account-form>
-          </div>
-          <div class="col-sm desktop">
-            <h2>Info</h2>
-            <mat-card>
-                <p class="promotionText"><strong>Gratis</strong> profil resten af året. Indtil 1/1-2019</p>
-            </mat-card>
-          </div>
+
+    <div class="join-container">
+        <video autoplay muted loop id="myVideo">
+            <source src="assets/videos/header_video.mp4" type="video/mp4">
+        </video>
+        <div class="join-content">
+            <h1>{{'PAGES.HOME.TITLE' | translate}}</h1>
+            <h3>{{'PAGES.HOME.SUBTITLE' | translate}}</h3>
+            <div [routerLink]="['/sign-up']" class="join-button">{{'PAGES.HOME.JOIN_SITE' | translate}}</div>
         </div>
-  </mat-card>
+    </div>
+
+    <div class="events">
+        <mat-card>
+            <div class="row">
+                <div class="col-sm desktop">
+                    <h2>Events</h2>
+                    <dummy-list></dummy-list>
+                </div>
+                <div class="col-sm desktop">
+                    <h2>Info</h2>
+                    <mat-card>
+                        <p class="promotionText"><strong>Gratis</strong> profil resten af året. Indtil 1/1-2019</p>
+                    </mat-card>
+                </div>
+            </div>
+        </mat-card>
+    </div>
 </div>
-<ngx-spinner
-bdColor = "rgba(51, 51, 51, 0.8)"
-size = "large"
-color = "#fff"
-type = "square-jelly-box"
-></ngx-spinner>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="large" color="#fff" type="square-jelly-box"></ngx-spinner>

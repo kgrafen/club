@@ -26,9 +26,13 @@ import { AdminModule } from './admin/admin.module';
 import { AuthGuard } from './core/auth.guard';
 import { AttendedEventsComponent } from './attended-events/attended-events.component';
 import { AttendingEventsComponent } from './attending-events/attending-events.component';
+import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
+import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent},
+  { path: 'sign-up', component: SignUpPageComponent},
+  { path: 'verify-email', component: VerifyEmailComponent},
   { path: 'loggedin-dashboard', component: LoggedinDashboardComponent, canActivate: [AuthGuard] },
   { path: 'events', component: EventsComponent, canActivate: [AuthGuard] },
   { path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard] },

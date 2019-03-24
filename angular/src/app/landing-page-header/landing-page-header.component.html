@@ -1,13 +1,46 @@
 <div *ngIf="!isMobile">
 
-    <a [routerLink]="['/landing-page']"><img class="mobile" src="./assets/images/Logo_white.png"></a>
+    <a [routerLink]="['/landing-page']"><img class="header-logo mobile" src="./assets/images/Logo_white.png"></a>
 
     <div class="row">
-      <div class="col left">
-        <a [routerLink]="['/landing-page']"><img src="./assets/images/Logo_white.png"></a>
-      </div>
-      <div *ngIf="!isMobile && !isLoggedOn" class="col right">
-        <mat-card>
+        <div class="col left">
+            <a [routerLink]="['/landing-page']"><img class="header-logo" src="./assets/images/Logo_white.png"></a>
+        </div>
+        <div *ngIf="!isMobile && !isLoggedOn" class="col right">
+
+            <div class="buttons">
+                <form [formGroup]="loginForm">
+                    <mat-form-field>
+                        <mat-label>{{'COMPONENTS.USER_INFO.EMAIL'| translate}}</mat-label>
+                        <input formControlName="email" name="email" matInput placeholder="email" autofocus>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>{{'COMPONENTS.USER_INFO.PASSWORD'| translate}}</mat-label>
+                        <input formControlName="password" name="password" matInput placeholder="password" type="password">
+                    </mat-form-field>
+
+                    <button (click)="tryLogin(loginForm.value)" mat-raised-button>{{'COMPONENTS.LOGIN.EMAIL_LOGIN_BUTTON'|
+                        translate}}</button>
+                    <div 
+                        class="social-media-button" 
+                        (click)="tryFacebookLogin()">
+                        <img src="./assets/images/social/facebook.png" alt="">
+                        <!-- {{'COMPONENTS.LOGIN.EXTERNAL_LOGIN_BUTTON_PREFIX'| translate: '{provider: "Facebook"}'}} -->
+                    </div>
+                    <div
+                        class="social-media-button google" 
+                        (click)="tryGoogleLogin()">
+                        <img src="./assets/images/social/google.png" alt="">
+                        <!-- {{'COMPONENTS.LOGIN.EXTERNAL_LOGIN_BUTTON_PREFIX'| translate: '{provider: "Google"}'}} -->
+                    </div>
+                </form>
+                <div *ngIf="singUpVisible" class="join-button-wrapper">
+                    <div [routerLink]="['/sign-up']" class="join-button" mat-raised-button>{{'COMPONENTS.SIGNUP.CONFIRM_BUTTON'| translate}}</div>
+                </div>
+            </div>
+
+            <!-- <mat-card>
             <form [formGroup]="loginForm">
                 <mat-form-field>
                     <mat-label>{{'COMPONENTS.USER_INFO.EMAIL'| translate}}</mat-label>
@@ -29,35 +62,35 @@
                     {{'COMPONENTS.LOGIN.EXTERNAL_LOGIN_BUTTON_PREFIX'| translate: '{provider: "Google"}'}}
                 </button>
             </form>
-        </mat-card>
-      </div>
+        </mat-card> -->
+        </div>
 
-      <div *ngIf="!isMobile && isLoggedOn" class="col right">
-        <button matTooltip="Logget på som {{username}}" class="singleton" routerLink="/events" mat-raised-button>Til Events</button>
-      </div>
+        <div *ngIf="!isMobile && isLoggedOn" class="col right">
+            <button matTooltip="Logget på som {{username}}" class="singleton" routerLink="/events" mat-raised-button>Til
+                Events</button>
+        </div>
 
     </div>
 </div>
 
 <div *ngIf="isMobile">
 
-  <a [routerLink]="['/']"><img class="mobile" src="./assets/images/Logo_white.png"></a>
+    <a [routerLink]="['/']"><img class="mobile" src="./assets/images/Logo_white.png"></a>
 
-  <div *ngIf="!isLoggedOn">
-      <button class="mobileBtn" mat-raised-button (click)="openDialog()">{{'COMPONENTS.LOGIN.EMAIL_LOGIN_BUTTON'| translate}}</button>
-      <button class="mobileBtn" (click)="tryFacebookLogin()" mat-raised-button color="primary">{{'COMPONENTS.LOGIN.EXTERNAL_LOGIN_BUTTON_PREFIX'| translate}} Facebook</button>
-      <button class="mobileBtn" (click)="tryGoogleLogin()" mat-raised-button color="accent">{{'COMPONENTS.LOGIN.EXTERNAL_LOGIN_BUTTON_PREFIX'| translate}} Google</button>    
-  </div>
-  
+    <div *ngIf="!isLoggedOn">
+        <button class="mobileBtn" mat-raised-button (click)="openDialog()">{{'COMPONENTS.LOGIN.EMAIL_LOGIN_BUTTON'|
+            translate}}</button>
+        <button class="mobileBtn" (click)="tryFacebookLogin()" mat-raised-button color="primary">{{'COMPONENTS.LOGIN.EXTERNAL_LOGIN_BUTTON_PREFIX'|
+            translate}} Facebook</button>
+        <button class="mobileBtn" (click)="tryGoogleLogin()" mat-raised-button color="accent">{{'COMPONENTS.LOGIN.EXTERNAL_LOGIN_BUTTON_PREFIX'|
+            translate}} Google</button>
+    </div>
 
-  <div *ngIf="isLoggedOn">
-      <button class="mobileBtn" matTooltip="Logget på som {{username}}" routerLink="/loggedin-dashboard" mat-raised-button>Til Dashboard</button>
-  </div>
+
+    <div *ngIf="isLoggedOn">
+        <button class="mobileBtn" matTooltip="Logget på som {{username}}" routerLink="/loggedin-dashboard"
+            mat-raised-button>Til Dashboard</button>
+    </div>
 
 </div>
-<ngx-spinner
-bdColor = "rgba(51, 51, 51, 0.8)"
-size = "large"
-color = "#fff"
-type = "square-jelly-box"
-></ngx-spinner>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="large" color="#fff" type="square-jelly-box"></ngx-spinner>
