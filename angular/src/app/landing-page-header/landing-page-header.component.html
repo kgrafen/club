@@ -35,8 +35,8 @@
                         <!-- {{'COMPONENTS.LOGIN.EXTERNAL_LOGIN_BUTTON_PREFIX'| translate: '{provider: "Google"}'}} -->
                     </div>
                 </form>
-                <div class="join-button-wrapper">
-                    <div class="join-button" mat-raised-button>{{'COMPONENTS.SIGNUP.CONFIRM_BUTTON'| translate}}</div>
+                <div *ngIf="singUpVisible" class="join-button-wrapper">
+                    <div [routerLink]="['/sign-up']" class="join-button" mat-raised-button>{{'COMPONENTS.SIGNUP.CONFIRM_BUTTON'| translate}}</div>
                 </div>
             </div>
 

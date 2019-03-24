@@ -42,13 +42,13 @@ app-root {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #fa8072; 
+    background: #fa807299; 
     border-radius: 7px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #fa807299; 
+    background: #fa8072; 
 }
 
 /* Toaster */

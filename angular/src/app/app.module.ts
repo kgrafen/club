@@ -97,6 +97,7 @@ import { AttendingEventsComponent } from './attending-events/attending-events.co
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
+import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 
 // Translate loader factory
 export function HttpLoaderFactory(http: HttpClient) {
@@ -145,7 +146,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AttendedEventsComponent,
     ParticipantListActionsComponent,
     AttendingEventsComponent,
-    SignUpPageComponent
+    SignUpPageComponent,
+    VerifyEmailComponent
   ],
   entryComponents: [MobileLoginHeaderComponent, ConfirmationDialogComponent, CreateWallPostComponent, ParticipantListActionsComponent],
   imports: [

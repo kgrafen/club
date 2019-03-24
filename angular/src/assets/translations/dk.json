@@ -2,7 +2,12 @@
     "PAGES": {
         "HOME": {
             "TITLE": "Single Netværket",
+            "SUBTITLE": "Samen er det sjovere",
             "JOIN_SITE": "Join Single Netværket"
+        },
+        "VERIFY_EMAIL": {
+            "TITLE": "Du er næsten der!",
+            "DESCRIPTION": "En bekræftelses e-mail er sendt til {{email}}. Klik på bekræftelseslinket i emailen for at aktivere din konto."
         }
     },    
     "COMPONENTS": {
