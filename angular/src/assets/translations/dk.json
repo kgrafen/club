@@ -2,8 +2,8 @@
     "PAGES": {
         "HOME": {
             "TITLE": "Single Netværket",
-            "SUBTITLE": "Samen er det sjovere",
-            "JOIN_SITE": "Join Single Netværket"
+            "SUBTITLE": "Sammen er det sjovere",
+            "JOIN_SITE": "Join SingleNetværket"
         },
         "VERIFY_EMAIL": {
             "TITLE": "Du er næsten der!",
@@ -18,7 +18,7 @@
             "CREATE_USER": "Opret bruger"
         },
         "SIGNUP": {
-            "TITLE": "Single Network",
+            "TITLE": "SingleNetværket",
             "CONFIRM_BUTTON": "Opret bruger",
             "REPEAT_PASSWORD": "Gentag adgangskode"
         },
@@ -32,7 +32,7 @@
             "auth/invalid-email": "Forkert e-mailadresse",
             "auth/weak-password": "Adgangskoden skal være 6 tegn lang eller mere.",
             "auth/email-already-in-use": "Denne e-mail er allerede i brug.",
-            "auth/argument-error": "Andet ddgangskoden matcher ikke den første."
+            "auth/argument-error": "Adgangskoden matcher ikke den første."
         }
     }
 }
