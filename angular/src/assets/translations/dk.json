@@ -1,4 +1,19 @@
 {
+    "COMPANY_DETAILS": {
+        "NAME": "SingleNetværket IVS",
+        "CVR": {
+            "TEXT": "CVR",
+            "VALUE": "39557150"
+        }, 
+        "PHONE": {
+            "TEXT": "TLF",
+            "VALUE": "+45 6056 0018"
+        }, 
+        "ADDRESS": {
+            "STREET": "Valbygårdsvej 44, sttv",
+            "CITY": "2500 Valby"
+        }
+    },
     "PAGES": {
         "HOME": {
             "TITLE": "Single Netværket",
@@ -8,6 +23,208 @@
         "VERIFY_EMAIL": {
             "TITLE": "Du er næsten der!",
             "DESCRIPTION": "En bekræftelses e-mail er sendt til {{email}}. Klik på bekræftelseslinket i emailen for at aktivere din konto og reload denne side."
+        },
+        "ABOUT": {
+            "IDEAL": {
+                "HEADLINE": "Idealet",
+                "ORGANIZER_SECTION": {
+                    "TITLE": "Den gode arrangør",
+                    "ORGANIZER": {
+                        "TITLE": "Arrangør",
+                        "CONTENT": "<p>Som arrangør skal du være opmærksom på, at ting du opfatter som givet kan være svært gennemskueligt for andre. Hvis du inviterer på gåtur i skoven, så skriv gerne om du regner med at folk selv har en drikkedunk/frokost med, og gør også gerne opmærksom på, om du ved at skoven er mudret den dag, så fodtøj bør planlægges derefter. Ved events hvor du inviterer folk ind i dit hjem, så bør du være tilsvarende omhyggelig med at fortælle om hjemmets muligheder og begrænsninger. Er der f.eks. husdyr i hjemmet, så vil allergikere sætte pris på at vide det. Tilbyder du overnatning i forbindelse med dit arrangement, eller vil du gerne forventningsafstemme at eventet slutter senest kl 23, så er det en rigtigt god ide at skrive det på eventet.</p>"
+                    },
+                    "PRICE": {
+                        "TITLE": "Pris",
+                        "CONTENT": "<p>I forhold til beregning af pris på arrangementet, så er hovedreglen, at man fordeler sin kostpris på de invitere, og i øvrigt regner sig selv ind, dvs inviterer du 7 gæster, så dividerer du omkostningen ud på 8 personer. Man må til en rimelig grænse indregne forbrug af køkkenrulle, sølvpapir, krydderier, m.m. men man må naturligvis ikke få betalt husleje, eller et overdrevet indkøb af varer, der sikrer arrangøren mad 14 dage frem. Det skal selvfølgelig ikke gå så vidt, at man skal dele et overskud på 32kr mellem 8 deltagere, og det er også fint at arrangøren beholder madresterne efter et arrangement, uden at sende hver enkelt deltager hjem med en madpakke, men hovedreglen og princip om at arrangementer ikke må give overskud skal overholdes.</p>"
+                    },
+                    "LOCATION": {
+                        "TITLE": "Location, location, location",
+                        "CONTENT": "<p>Events ude i byen, hvor du er så heldig/dygtig at opnå rabat, da er retningslinjen tilsvarende, at rabatten skal gives videre til deltagerne. Køber du f.eks. en sweetdeal på en bowlingbane, så er det altså sweetdealprisen, og ikke normalprisen, som der skal fordeles blandt deltagerne.</p><p>Ved bådture er det selvfølgelig fint at indregne gebyr for havneplads i fremmede havne man sejler til, brændstofforbrug og sådanne direkte omkostninger, mens det ikke er acceptabelt at indregne inddirekte omkostninger, såsom bådens afskrivninger, løbende service og vedligehold.</p><p>Er du dygtig til at forhandle en rabat hjem, f.eks. hvis du kan fylde en bowlinghal med gæster, så skal rabatten komme deltagerne til gode.</p><p>Vi ønsker ikke kommercielle arrangementer på siden, hvor medlemmer tjener på andre medlemmer. Er du f.eks. coach eller tilsvarende, så hører dine opslag om coaching sessioner ikke hjemme på siden, med mindre du er under uddannelse, og tilbyder gratis timer til “prøvekaniner”.</p><p>Alle ovenstående regler er naturligvis også udgangspunktet for SingleNs egne events. Vi vil gerne tjene penge på Jeres abonnement, men ikke på jeres deltagelse i vores events!</p>"
+                    }
+                },
+                "PARTICIPANT_SECTION": {
+                    "TITLE": "Den gode deltager",
+                    "PAYMENT": {
+                        "TITLE": "Betaling",
+                        "CONTENT": "<p>Som deltager på et event, er din første og vigtigste forpligtelse at overholde arrangørens betalingsfrist. Arrangøren lægger en del arbejde i at skabe rammerne for et godt arrangement, og det er ærgerligt, hvis man også skal bruge tid på at rykke for betaling. Så når du melder dig til, så bedes du være opmærksom på at overholde betalingsbetingelserne.</p>"
+                    },
+                    "HELPING_HAND": {
+                        "TITLE": "En hjælpende hånd",
+                        "CONTENT": "<p>Ved deltagelse, så er det super god stil at bidrage undervejs, ikke kun med at hjælpe til med at bære ud, vaske op, rydde af vejen, men også med at skabe den gode stemning, og have en inkluderende tilgang til øvrige deltagere.</p>"
+                    },
+                    "RATING": {
+                        "TITLE": "Rating",
+                        "CONTENT": "<p>Efter et events gennemførsel får du en mail med en opfordring til at give en tilbagemelding på arrangementet. Det er hurtigt gjort, og giver dig en mulighed for at sige tak for sidst til arrangøren, der jo som nævnt ofte har brugt en del tid og energi på arrangementet. Derfor vil vil bede dig sådan en tilbagemelding. I de forhåbentligt ganske få tilfælde hvor alt er gået galt, så er det også vigtigt at du sender en vurdering af arrangementet. Men husk på, at det ikke er rimeligt at nedvurdere et arrangent ud fra parametre som arrangøren ikke er herre over, f.eks. Vejret eller DSB :-)</p>"
+                    },
+                    "ANONYMOUS": {
+                        "TITLE": "Anonymt",
+                        "CONTENT": "<p>Vurderingerne er i udgangspunktet anonyme, og sendes i samlet form til arrangøren, så det er kun hvis du sætter dit navn på en kommentar, at arrangøren vil kunne se at en kommentar er fra dig.</p>"
+                    }
+                }
+            },
+            "CONCEPT": {
+                "HEADLINE": "Konceptet",
+                "START_SECTION": {
+                    "TITLE": "Startskuddet",
+                    "CONTENT": "<p>SN startede i foråret 2018, og vi har har gjort det til vores mission, at stille en platform til rådighed, som er med til at facilitere events for singler. SN er for alle singler i alderen 18-99, der ønsker at møde andre singler ved deltagelse i events.</p>"
+                },
+                "COMMUNITY_SECTION": {
+                    "TITLE": "Fællesskab",
+                    "CONTENT": "<p>En del af vores koncept er selv at arrangere en hel del events, ikke kun i opstartsfasen, men også fremover. Derudover håber vi på, at mange af jer har lyst til at bidrage til netværket ved at oprette events med spændende alsidige temaer og gode oplevelser til følge.</p>"
+                },
+                "TRANSPARENCY_SECTION": {
+                    "TITLE": "Gennemsigtighed",
+                    "CONTENT": "<p>En anden del af vores koncept er, at indtjening udelukkende sker via abonnementsbetaling på sitet. Vi, eller de enkelte arrangører, profiterer ikke på de enkelte events.</p>"
+                },
+                "WE_ARE_NOT_SECTION": {
+                    "TITLE": "SN er ikke...",
+                    "CONTENT": "<p>SN er <strong>ikke</strong> en dating-platform, men vi har omvendt heller ikke nogen planer om at forbyde datinglignende events. Hovedformålet er dog netværksdelen og det at lave events for hinanden. SN har ikke aktuelle planer om at udvide med debatter, chat- eller dating-elementer. Vi vil gerne bevare fokus på det egentlige - nemlig events der foregår ude i virkeligheden. Sitet er altså blot tænkt som et værktøj til at skabe en kontakt der skal udleves off-line</p>"
+                },
+                "US_SECTION": {
+                    "TITLE": "Vi...",
+                    "CONTENT": "<p>\"Vi ønsker at være med til at skabe nye relationer og gode oplevelser i den virkelige verden.\"</p><p>\"Vi vil gerne fremme de gode relationsskabende arrangementer, hvilket vi forsøger at gøre ved at belønne de gode arrangører med forskellige fordele.\"</p><p>\"Vi ønsker at være synlige, og vi er meget ligetil. Vi ser frem til en masse gode oplevelser med jer!\"</p><p>\"Så glæd jer til fx Henriks middagssammenkomster og Dianas aktive events!\"</p>"
+                }
+            },
+            "OWNERS": {
+                "HEADLINE": "Ejerne",
+                "HENRIK_SECTION": {
+                    "NAME": "Henrik",
+                    "ROLE": "Ejer",
+                    "TITLE": "Om",
+                    "CONTENT": "<p>Henrik er SingleN’s charmerende mesterkok. Henrik laver (uden tvivl!) verdens bedste mormormad, og især hans frikadeller er helt i særklasse. Henrik er typen som sagtens kan starte en diskussion om alle mulige emner, men han snakker også gerne om sit liv, som bl.a. involverer 3 børn i alderen 16, 17 og 23. Derudover sætter Henrik sig flere gange om ugen i stramtsiddende bukser på spinning-cyklen, hvor han nyder at få sveden til at drible ned af sig, alt imens en spinninginstruktør giver skarpe instrukser. Om sommeren huserer han dog også gerne på Amager Fælled på racercyklen.</p><p>Henrik er til dagligt teamleder indenfor it-branchen, hvor han jonglerer mellem mange forskellige typer af interessenter. Han er SingleN’s lidt mere introverte type - men lad dig ikke narre :)</p><p>Henrik vil holde event i SingleN regi, hvor hans events vil tage udgangspunkt i hyggestunder, såsom en god middag, en bowlingtur eller måske en tur på MTB i skoven.</p><p>Henrik svarer rigtigt gerne på spørgsmål fra medlemmerne via email-adressen: henrik@singlen.dk, men vil selvfølgelig også gerne svare på jeres spørgsmål, når i mødes til events.</p>"
+                },
+                "DIANA_SECTION": {
+                    "NAME": "Diana",
+                    "ROLE": "Ejer",
+                    "TITLE": "Om",
+                    "CONTENT": "<p>Diana er SingleN’s ekstroverte smilende energibombe. Diana har sin erhvervserfaring fra it-branchen, hvor hun har haft forskellige data-arkitekt jobs. Privat har Diana en aktiv fritid, hvor hun elsker at rejse, være sammen med familie og venner, dyrke klatring, spille backgammon, gå til koncerter, og i det hele taget være aktiv, og sammen med mennesker så meget som muligt. Diana er et af de mennesker, som ikke kan tage med toget uden at falde i snak med medpassagerne. Hun er åben, imødekommende, og en vaske-ægte ”people person”.</p><p>Diana vil holde en del arrangementer i SingleN regi, hvor arrangementerne vil tage udgangspunkt i hendes livsstil, så forvent en del aktivitetsbaserede events.</p><p>Diana svarer rigtigt gerne på spørgsmål fra medlemmerne via email-adressen: diana@singlen.dk, men vil selvfølgelig også gerne svare jeres spørgsmål når i mødes til events </p>"
+                }
+            }
+        },
+        "PRIVACY_POLICY": {
+            "TITLE": "Handelsbetingelser for SingleNetværket IVS",
+            "GENERAL": {
+                "TITLE": "Generelt",
+                "CONTENT": "<p>SingleNetværket IVS stiller et abonnement baseret online tjeneste til rådighed på <a href=\"http://singlen.dk.\"><fa name=\"link\"></fa> http://singlen.dk</a>. Vilkårene er gældende mellem den enkelte bruger og SingleNetværket IVS. Disse vilkår og betingelser for brug gælder for aftaler mellem SingleNetværket IVS og én fysisk person (herefter “Brugeren”) vedrørende Tjenesten. Kun personer, der er 18 år eller ældre og bor i Danmark, kan indgå en aftale med SingleNetværket IVS vedrørende Tjenesten. Disse Betingelser udgør samlet den aftale, der er gældende mellem Brugeren og SingleNetværket IVS. For at få adgang til Tjenesten, skal Brugeren læse og acceptere handelsbetingelserne.</p>"
+            },
+            "SCOPE": {
+                "TITLE": "Ydelsens omfang",
+                "CONTENT": "<p>Tjenesten giver Brugeren adgang til SingleNetværket IVS's tjenester bestemt ved bestilling.</p>"
+            },
+            "ACCESS": {
+                "TITLE": "Adgang til tjenesten",
+                "CONTENT": "<p>Brugeren skal for at få adgang til Tjenesten registrere en brugerkonto på portalen.</p>"
+            },
+            "REGISTRATION": {
+                "TITLE": "Registrering og brugeradgang",
+                "CONTENT": "<p>Brugeren er ansvarlig for at sikre, at de angivne oplysninger er korrekte på registreringstidspunktet. Ved registrering må Brugeren kun give oplysninger vedrørende egne betalings- og kreditkort. Ved registrering skal Brugeren angive et brugernavn og et password (herefter “Login Oplysninger”). Brugerens Login Oplysninger er personlige og må ikke bruges af andre med mindre andet er anført på produktet. Brugeren skal opbevare Login Oplysningerne på et sikkert sted, således at andre ikke kan få uberettiget adgang til dem. Brugeren er ansvarlig for al brug af sin brugerkonto. Hvis Brugeren får mistanke om ulovlig brug af Brugerens Login Oplysninger, skal Brugeren omgående underrette SingleNetværket IVS samt ændre sit password.</p>"
+            },
+            "FEES": {
+                "TITLE": "Gebyrer og Betaling",
+                "CONTENT": "<p>Gebyrer for brug af Tjenesten skal betales i henhold til den til enhver tid gældende prisliste, der er tilgængelig på hjemmesiden. Betaling for abonnementet sker forud hver måned. Brugeren skal udføre betalingen for abonnementet via de af SingleNetværket IVS tilbudte betalingsmidler på hjemmesiden. Brugeren forpligter sig til at underskrive de nødvendige dokumenter, og til ved hver betalingsdato at have tilstrækkelige midler til betaling tilgængelige via det valgte betalingsmiddel.</p>"
+            },
+            "CHANGES": {
+                "TITLE": "Tilpasninger og ændringer",
+                "CONTENT": "<p>SingleNetværket IVS forbeholder sig retten til at ændre gebyret og andre betingelser for Tjenesten. Ændringen skal meddeles til Brugeren senest tredive (30) dage inden ændringen træder i kraft. I tilfælde af sådanne ændringer er Brugeren berettiget til at opsige abonnementet med virkning fra den dag, hvor ændringen træder i kraft. Hvis Brugeren ikke opsiger abonnementet før ændringen træder i kraft, skal det betragtes som accept af ændringen. Ændringer, der er til åbenbar fordel for Brugeren, gælder med det samme uden opsigelsesret for Brugeren.</p>"
+            },
+            "UNSUBSCRIBE": {
+                "TITLE": "Opsigelse af abonnement",
+                "CONTENT": "<p>Opsigelse af Tjenesten kan ske ved udgang af betalings-perioden på 1 måned fra seneste betaling. For at opsige sin aftale skal man bruge det, på forsiden, angivede link eller kontakte SingleNetværket IVS via <a href=\"mailto:info@singlen.dk\">info@singlen.dk</a></p>"
+            },
+            "PAYMENT": {
+                "TITLE": "Betaling",
+                "CONTENT": "<p>SingleNetværket IVS modtager online betalinger med Dankort, Visa/Dankort, Mastercard. Betaling vil først blive trukket på din konto, når den fysiske vare afsendes eller det virtuelle produkt er oprettet med mindre andet er aftalt eller fremgår af din ordre. Alle beløb på hjemmesiden er inklusiv moms. Hjemmesiden bruger følgende valutaer til prissætning: Denmark - Kroner (DKK) SingleNetværket IVS benytter en sikker betalingsserver, der krypterer alle oplysninger med SSL protokol hvilket betyder din data er sikker og ikke kan læses af andre udefrakommende. SingleNetværket IVS's egen hjemmeside bruger ligeledes kryptering med SSL protokol.</p>"
+            },
+            "CANCELLATION": {
+                "TITLE": "Fortrydelsesret",
+                "CONTENT": "<p>Der gives 14 dages fuld returret på varer købt på hjemmesiden med mindre andet er aftalt eller fremgår af din ordre. Den 14 dags periode starter den dag hvor ordren er leveret. Eventuelle returneringsomkostninger afholder du selv. Ønske om fortrydelse skal meddeles os senest 14 efter leveringen og være os i hænde seneste 14 dage efter vi er informeret om dit brug af fortrydelsesretten. Ønske om brug af fortrydelsesret skal gives sendes på mail info@singlen.dk. I meddelelsen skal der gøres tydeligt opmærksom på dit ønske om brugen af fortrydelsesret.</p>"
+            },
+            "WARRANTY": {
+                "TITLE": "Reklamationsret",
+                "CONTENT": "<p>Der gives 2 års reklamationsret på produkter i henhold til den danske købelov. Reklamationsretten gælder for alle fejl i software, materiale og fabrikation. Reklamation vedr. fejl og mangler skal meddeles til SingleNetværket IVS i rimelig tid efter varens modtagelse.  Her anses max. to måneder som rimelig tid, med mindre andet er aftalt. Vi refunderer rimelige fragtomkostninger. Reklamationen frafalder ved forkert eller ualmindelig betjening af produktet. SingleNetværket IVS dækker returneringsomkostningerne i rimeligt omfang. Ved returnering kontaktes virksomheden:</p>",
+                "SUBTEXT": "Reklamationer modtages ikke hvis disse er sendt på efterkrav."
+            },
+            "PRIVACY": {
+                "TITLE": "Kunde- & Privatlivspolitik",
+                "CONTENT": "<p>Vi videresælger ikke personlige oplysninger og videregiver ikke dine personlige oplysninger til andre, de er kun registreret i vores kundekartotek. Du kan til enhver tid få slettet dine oplysninger. For at du kan indgå aftale med SingleNetværket IVS, har vi brug for følgende oplysninger:</p><ul> <li>Navn</li> <li>Addresse</li> <li>Telefonnummer</li> <li>Email addresse</li></ul><p>Vi foretager registreringen af dine personoplysninger med det formål, at kunne levere varen til dig. Personoplysningerne registreres hos SingleNetværket IVS og opbevares i op til fem år, hvorefter oplysningerne slettes. Når der indsamles personoplysninger via vores hjemmeside, sikrer vi, at det altid sker ved afgivelse af dit udtrykkelige samtykke, således at du er informeret om præcis, hvilke oplysninger, der indsamles og hvorfor. Direktøren og de ansatte for SingleNetværket IVS har adgang til de oplysninger, der registreres om dig. Den dataansvarlige i SingleNetværket IVS er: Diana Ransgaard Sørensen Vi opbevarer og transmitterer ikke kundeoplysninger krypteret. Som registreret hos SingleNetværket IVS har du altid ret til at gøre indsigelse mod registreringen. Du har også ret til indsigt i, hvilke oplysninger, der er registreret om dig. Disse rettigheder har du efter Persondataloven og henvendelse i forbindelse hermed rettes til info@singlen.dk.</p><h4>Cookies</h4><p>På <a href=\"http://singlen.dk\"><fa name=\"link\"></fa> http://singlen.dk</a> anvendes cookies med det formål at optimere hjemmesiden og dets funktionalitet, og dermed gøre besøget så nemt som muligt for dig. Du kan til enhver tid slette cookies fra din computer, se vejledningen på <a href=\"http://thagaard.org/cookiehandtering\"><fa name=\"link\"></fa> thagaard.org/cookiehandtering/.</a></p><h4>Log-statistik</h4><p>Vi bruger en log-statistik på <a href=\"http://singlen.dk\"><fa name=\"link\"></fa> http://singlen.dk</a>, hvilket betyder, at et statistik-system opsamler information, som kan give et statistisk billede af, hvor mange besøgende vi har, hvor de kommer fra og hvor på websitet det forlades mv. Logstatistikken anvendes kun med det formål, at optimere SingleNetværket IVS's hjemmeside.</p>"
+            },
+            "APPEALS": {
+                "TITLE": "Klagemuligheder",
+                "CONTENT": "<p>Klager over produkter kan sendes til:</p>",
+                "COMPETIITION_CARD": {
+                    "TITLE": "Konkurrence- og Forbrugerstyrelsens",
+                    "CONTENT": "<a href=\"http://www.forbrug.dk\">www.forbrug.dk</a><br>For EU-borgere uden for EU skal klager sendes via EU Kommissionens online klageplatform.<br><a href=\"http://ec.europa.eu/\">ec.europa.eu</a><br>Ved klage skal vores email adresse angives: <a href=\"mailto:info@singlen.dk\">info@singlen.dk</a> samt hjemmesiden du har købt varen på.", 
+                    "ADDRESS": {
+                        "STREET": "Carl Jacobsens Vej 35",
+                        "CITY": "2500 Valby"
+                    }
+                }
+            }
+        },
+        "TERMS_OF_SERVICE": {
+            "TITLE": "Retningslinjer",
+            "SUBTITLE": "Udløsende begivenhed/tidsfaktor: skrives ved indmeldelse + står på sitet under “om netværket”.",
+            "RULE_1": {
+                "TITLE": "Medlemskab",
+                "CONTENT": "<p>Et medlemskab er personligt.</p>"
+            },
+            "RULE_2": {
+                "TITLE": "Varighed/Medlemskab",
+                "CONTENT": "<p>SingleNetværket (SN) anvender ikke PBS /DIBS-aftale. Ligeledes er det ikke muligt at betale kontant for medlemskab.</p><p>Medlemsskab kan ikke sættes på pause, men løber til betalingsperiodens udløb.</p><p>SingleN gemmer ikke medlemmernes betalingskortdata og kan derfor ikke tilbyd abonnementsordninger.</p>"
+            },
+            "RULE_3": {
+                "TITLE": "Betaling",
+                "CONTENT": "<p>Hos SingleNetværket (SN) modtages Dankort, eDankort, MasterCard, Maestro, Visa, Visa Electron.</p><p>Betalingskortet skal være aktivt og medlemsskab aktiveres kun ved succesfuldt gennemført betalingstransaktion.</p>"
+            },
+            "RULE_4": {
+                "TITLE": "Opsigelse",
+                "CONTENT": "<p>Der er ingen opsigelsesfrist, medlemskab udløber automatisk med udgang af betalingsperioden, hvorefter der skal betales for fornyelse.</p>"
+            },
+            "RULE_5": {
+                "TITLE": "Opbevaring af data",
+                "CONTENT": "<p>Vi gemmer medlemmers data i et år efter betalingsperiodens ophør. Hvis ikke medlemmet har genaktiveret sit medlemskab inden for 12 måneder mister medlemmet sin historik inkl. Rating, dvs alle profildata slettes.</p><p>Det er muligt for et medlem at blive fuldkommen slettet fra SingleN før dette, dvs. alle data slettes totalt. Dette kan ske fra medlemsprofilen, -funktionen er også tilgængelig selvom profilen er udløbet.</p>"
+            },
+            "RULE_6": {
+                "TITLE": "Overdragelse",
+                "CONTENT": "<p>Ved overdragelse af resterende betalingsperiode till et nyt eller eksisterende medlem, kontakt admin via admin@SingleN.dk. Overdragelse kan kun ske ved anvendelse af den mail der er angivet på den afgivende profil, samt ved oplysning om afgivende henholdsvis modtagende profilnavn.</p>"
+            },
+            "RULE_7": {
+                "TITLE": "Medlemsbetingelser",
+                "CONTENT": "<p>SingleNetværket (SN) kan ændre medlemsbetingelserne med et varsel på 30 dage. I tilfælde af ændring vil disse blive meldt ud til alle eksisterende medlemmere.</p><p>Man skal være over 18 år gammel for at blive medlem.</p>"
+            },
+            "RULE_8": {
+                "TITLE": "Prisændringer",
+                "CONTENT": "<p>SingleNetværket (SN) forbeholder sig ret til at foretage prisændringer. Sådanne vil blive varslet via e-mail til medlemmer senest 30 dage før prisændringerne træder i kraft. Ændringer vil aldrig have betydning for allerede betalte perioder.</p>"
+            },
+            "RULE_9": {
+                "TITLE": "Ledige pladser",
+                "CONTENT": "<p>SingleNetværket (SN) kan ikke garantere ledige pladser på de oprettede events, idet events bliver fyldt op efter \"først til mølle\"-princippet.</p>"
+            },
+            "RULE_10": {
+                "TITLE": "Afbud",
+                "CONTENT": "<p>I tilfælde af afbud skal dette ske til arrangøren af eventet. Tidsfristen for afbud afhænger af det enkelte event. Efter aftale med arrangør, er det muligt at afgive sin plads til et andet medlem. Ved for sent afbud eller udeblivelse, står det for medlemmets egen regning.</p>"
+            },
+            "RULE_11": {
+                "TITLE": "Ansvar",
+                "CONTENT": "<p>Al deltagelse i events sker på eget ansvar, og er et privat anliggende mellem arrangør og deltager. Som medlem af SingleNetværket (SN) er man selv ansvarlig for at være i en helbredstilstand, der tillader deltagelse (fx ved events af fysisk karakter). SingleNetværket (SN) tager ikke ansvar for personskader som følge af ulykke ved event. I øvrigt følges dansk erstatningsret på området.</p>"
+            },
+            "RULE_12": {
+                "TITLE": "Event udbud",
+                "CONTENT": "<p>Antallet af events afhænger af medlemmernes bidrag, og det er således ikke muligt at garantere andet end, at vi fra SingleNetværket (SN) vil afholde minimum 20 events om året.</p>"
+            },
+            "RULE_13": {
+                "TITLE": "Fortrydelsesret",
+                "CONTENT": "<p>Ved køb over Internettet har du som udgangspunkt 14 dages fortrydelsesret. Hvis medlemmet imidlertid vælger en startdato, som ligger inden for 14 dage frafalder fortrydelsesretten ved startdatoen.</p>"
+            },
+            "RULE_14": {
+                "TITLE": "Kvittering",
+                "CONTENT": "<p>Kvitteringen for købet sendes til den indtastede e-mailadresse. Medlemmet er selv ansvarlig for at de indtastede oplysninger er korrekte.</p>"
+            },
+            "RULE_15": {
+                "TITLE": "Persondata",
+                "CONTENT": "<p>Vi udleverer ikke persondata til andre medlemmer, uanset årsag.</p>"
+            }
+            
         }
     },    
     "COMPONENTS": {
