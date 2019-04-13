@@ -1,6 +1,12 @@
 <landing-page-header *ngIf="!displayNavbar"></landing-page-header>
 <app-navbar *ngIf="displayNavbar"></app-navbar>
 
-<mat-card [innerHTML]="inputHTML">
-            
+<mat-card>
+    <h2 [innerHTML]="'PAGES.TERMS_OF_SERVICE.TITLE' | translate"></h2>
+    <p [innerHTML]="'PAGES.TERMS_OF_SERVICE.SUBTITLE' | translate"></p>
+
+    <div *ngFor="let rule of rules">
+        <h3 [innerHTML]="rule.listIndex + (rule.title  | translate)"></h3>
+        <p [innerHTML]="rule.content | translate"></p>
+    </div>
 </mat-card>

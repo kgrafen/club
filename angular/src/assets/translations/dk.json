@@ -85,6 +85,71 @@
                     "CONTENT": "<p>Diana er SingleN’s ekstroverte smilende energibombe. Diana har sin erhvervserfaring fra it-branchen, hvor hun har haft forskellige data-arkitekt jobs. Privat har Diana en aktiv fritid, hvor hun elsker at rejse, være sammen med familie og venner, dyrke klatring, spille backgammon, gå til koncerter, og i det hele taget være aktiv, og sammen med mennesker så meget som muligt. Diana er et af de mennesker, som ikke kan tage med toget uden at falde i snak med medpassagerne. Hun er åben, imødekommende, og en vaske-ægte ”people person”.</p><p>Diana vil holde en del arrangementer i SingleN regi, hvor arrangementerne vil tage udgangspunkt i hendes livsstil, så forvent en del aktivitetsbaserede events.</p><p>Diana svarer rigtigt gerne på spørgsmål fra medlemmerne via email-adressen: diana@singlen.dk, men vil selvfølgelig også gerne svare jeres spørgsmål når i mødes til events </p>"
                 }
             }
+        },
+        "TERMS_OF_SERVICE": {
+            "TITLE": "Retningslinjer",
+            "SUBTITLE": "Udløsende begivenhed/tidsfaktor: skrives ved indmeldelse + står på sitet under “om netværket”.",
+            "RULE_1": {
+                "TITLE": "Medlemskab",
+                "CONTENT": "<p>Et medlemskab er personligt.</p>"
+            },
+            "RULE_2": {
+                "TITLE": "Varighed/Medlemskab",
+                "CONTENT": "<p>SingleNetværket (SN) anvender ikke PBS /DIBS-aftale. Ligeledes er det ikke muligt at betale kontant for medlemskab.</p><p>Medlemsskab kan ikke sættes på pause, men løber til betalingsperiodens udløb.</p><p>SingleN gemmer ikke medlemmernes betalingskortdata og kan derfor ikke tilbyd abonnementsordninger.</p>"
+            },
+            "RULE_3": {
+                "TITLE": "Betaling",
+                "CONTENT": "<p>Hos SingleNetværket (SN) modtages Dankort, eDankort, MasterCard, Maestro, Visa, Visa Electron.</p><p>Betalingskortet skal være aktivt og medlemsskab aktiveres kun ved succesfuldt gennemført betalingstransaktion.</p>"
+            },
+            "RULE_4": {
+                "TITLE": "Opsigelse",
+                "CONTENT": "<p>Der er ingen opsigelsesfrist, medlemskab udløber automatisk med udgang af betalingsperioden, hvorefter der skal betales for fornyelse.</p>"
+            },
+            "RULE_5": {
+                "TITLE": "Opbevaring af data",
+                "CONTENT": "<p>Vi gemmer medlemmers data i et år efter betalingsperiodens ophør. Hvis ikke medlemmet har genaktiveret sit medlemskab inden for 12 måneder mister medlemmet sin historik inkl. Rating, dvs alle profildata slettes.</p><p>Det er muligt for et medlem at blive fuldkommen slettet fra SingleN før dette, dvs. alle data slettes totalt. Dette kan ske fra medlemsprofilen, -funktionen er også tilgængelig selvom profilen er udløbet.</p>"
+            },
+            "RULE_6": {
+                "TITLE": "Overdragelse",
+                "CONTENT": "<p>Ved overdragelse af resterende betalingsperiode till et nyt eller eksisterende medlem, kontakt admin via admin@SingleN.dk. Overdragelse kan kun ske ved anvendelse af den mail der er angivet på den afgivende profil, samt ved oplysning om afgivende henholdsvis modtagende profilnavn.</p>"
+            },
+            "RULE_7": {
+                "TITLE": "Medlemsbetingelser",
+                "CONTENT": "<p>SingleNetværket (SN) kan ændre medlemsbetingelserne med et varsel på 30 dage. I tilfælde af ændring vil disse blive meldt ud til alle eksisterende medlemmere.</p><p>Man skal være over 18 år gammel for at blive medlem.</p>"
+            },
+            "RULE_8": {
+                "TITLE": "Prisændringer",
+                "CONTENT": "<p>SingleNetværket (SN) forbeholder sig ret til at foretage prisændringer. Sådanne vil blive varslet via e-mail til medlemmer senest 30 dage før prisændringerne træder i kraft. Ændringer vil aldrig have betydning for allerede betalte perioder.</p>"
+            },
+            "RULE_9": {
+                "TITLE": "Ledige pladser",
+                "CONTENT": "<p>SingleNetværket (SN) kan ikke garantere ledige pladser på de oprettede events, idet events bliver fyldt op efter \"først til mølle\"-princippet.</p>"
+            },
+            "RULE_10": {
+                "TITLE": "Afbud",
+                "CONTENT": "<p>I tilfælde af afbud skal dette ske til arrangøren af eventet. Tidsfristen for afbud afhænger af det enkelte event. Efter aftale med arrangør, er det muligt at afgive sin plads til et andet medlem. Ved for sent afbud eller udeblivelse, står det for medlemmets egen regning.</p>"
+            },
+            "RULE_11": {
+                "TITLE": "Ansvar",
+                "CONTENT": "<p>Al deltagelse i events sker på eget ansvar, og er et privat anliggende mellem arrangør og deltager. Som medlem af SingleNetværket (SN) er man selv ansvarlig for at være i en helbredstilstand, der tillader deltagelse (fx ved events af fysisk karakter). SingleNetværket (SN) tager ikke ansvar for personskader som følge af ulykke ved event. I øvrigt følges dansk erstatningsret på området.</p>"
+            },
+            "RULE_12": {
+                "TITLE": "Event udbud",
+                "CONTENT": "<p>Antallet af events afhænger af medlemmernes bidrag, og det er således ikke muligt at garantere andet end, at vi fra SingleNetværket (SN) vil afholde minimum 20 events om året.</p>"
+            },
+            "RULE_13": {
+                "TITLE": "Fortrydelsesret",
+                "CONTENT": "<p>Ved køb over Internettet har du som udgangspunkt 14 dages fortrydelsesret. Hvis medlemmet imidlertid vælger en startdato, som ligger inden for 14 dage frafalder fortrydelsesretten ved startdatoen.</p>"
+            },
+            "RULE_14": {
+                "TITLE": "Kvittering",
+                "CONTENT": "<p>Kvitteringen for købet sendes til den indtastede e-mailadresse. Medlemmet er selv ansvarlig for at de indtastede oplysninger er korrekte.</p>"
+            },
+            "RULE_15": {
+                "TITLE": "Persondata",
+                "CONTENT": "<p>Vi udleverer ikke persondata til andre medlemmer, uanset årsag.</p>"
+            }
+            
         }
     },    
     "COMPONENTS": {
