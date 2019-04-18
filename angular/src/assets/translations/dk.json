@@ -14,6 +14,10 @@
             "CITY": "2500 Valby"
         }
     },
+    "GENERAL": {
+        "CLICK_HERE": "klik her",
+        "CONTACT_US": "kontakt os"
+    },
     "PAGES": {
         "HOME": {
             "TITLE": "Single Netværket",
@@ -22,7 +26,13 @@
         },
         "VERIFY_EMAIL": {
             "TITLE": "Du er næsten der!",
-            "DESCRIPTION": "En bekræftelses e-mail er sendt til {{email}}. Klik på bekræftelseslinket i emailen for at aktivere din konto og reload denne side."
+            "DESCRIPTION": "En bekræftelses e-mail er sendt til <b>{{email}}</b>. Klik på bekræftelseslinket i emailen for at aktivere din konto og reload denne side.",
+            "SHOW_HINTS": "Hvis du ikke kan se e-mailen med verifikation, ",
+            "HINTS": {
+                "CHECK_SPAM": "Sørg for, at dit spamfilter tillader e-mail fra os",
+                "RESEND_EMAIL": "For at gensende e-mail igen med bekræftelse, ",
+                "CONTACT_SUPPORT": "Hvis du har ventet på over en time, "
+            }
         },
         "ABOUT": {
             "IDEAL": {

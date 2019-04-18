@@ -9,3 +9,12 @@
     padding: 30px;
     border-radius: 10px;
 }
+
+ul {
+    text-align: left; 
+}
+
+.hyperlink {
+    color: #3f51b5;
+    cursor: pointer;
+}

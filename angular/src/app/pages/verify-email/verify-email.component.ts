@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class VerifyEmailComponent implements OnInit {
 
     user;
+    hintsShown: boolean;
 
     constructor(
         private authService: AuthService,
@@ -27,5 +28,14 @@ export class VerifyEmailComponent implements OnInit {
                 this.router.navigate(['/']);
             }
         });
+    }
+
+    resendVerificationEmail() {
+        this.authService.sendVerificationMail();
+        this.hintsShown = false;
+    }
+
+    redirectToContactPage() {
+        this.router.navigate(['contact']);
     }
 }

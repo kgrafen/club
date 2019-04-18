@@ -2,7 +2,23 @@
     <h1>
         {{'PAGES.VERIFY_EMAIL.TITLE' | translate}}
     </h1>
-    <P>
-        {{'PAGES.VERIFY_EMAIL.DESCRIPTION' | translate:user}}
+    <P [innerHTML]="'PAGES.VERIFY_EMAIL.DESCRIPTION' | translate:user">
     </P>
+    <P *ngIf="!hintsShown">
+        {{'PAGES.VERIFY_EMAIL.SHOW_HINTS' | translate}}
+        <span class="hyperlink" (click)="hintsShown = true">{{'GENERAL.CLICK_HERE' | translate}}</span>
+    </P>
+    <div *ngIf="hintsShown">
+        <ul>
+            <li [innerHTML]="'PAGES.VERIFY_EMAIL.HINTS.CHECK_SPAM' | translate"></li>
+            <li>
+                {{'PAGES.VERIFY_EMAIL.HINTS.RESEND_EMAIL' | translate}}
+                <span class="hyperlink" (click)="resendVerificationEmail()">{{'GENERAL.CLICK_HERE' | translate}}</span>
+            </li>
+            <li>
+                {{'PAGES.VERIFY_EMAIL.HINTS.CONTACT_SUPPORT' | translate}}
+                <span class="hyperlink" (click)="redirectToContactPage()">{{'GENERAL.CONTACT_US' | translate}}</span>
+            </li>
+        </ul>
+    </div>
 </div>
