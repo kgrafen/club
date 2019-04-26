@@ -15,8 +15,10 @@
         }
     },
     "GENERAL": {
+        "BACK": "Tilbage",
         "CLICK_HERE": "klik her",
-        "CONTACT_US": "kontakt os"
+        "CONTACT_US": "kontakt os",
+        "OR": "Eller"
     },
     "PAGES": {
         "HOME": {

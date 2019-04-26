@@ -50,7 +50,10 @@
         <mat-label class=👍>{{successMessage}}</mat-label>
     </mat-card>
 
-    <button (click)="tryRegister(registerForm.value)" mat-raised-button color="primary">{{'COMPONENTS.SIGNUP.CONFIRM_BUTTON'| translate}}</button>
+    <div class="buttons">
+        <button [routerLink]="['/landing-page']" mat-raised-button>{{'GENERAL.BACK'| translate}}</button>
+        <button (click)="tryRegister(registerForm.value)" mat-raised-button color="primary">{{'COMPONENTS.SIGNUP.CONFIRM_BUTTON'| translate}}</button>
+    </div>
 </form>
 
 

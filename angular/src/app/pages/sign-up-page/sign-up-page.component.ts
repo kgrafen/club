@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MobileDetectorService } from 'src/app/mobile-detector.service';
 
 @Component({
   selector: 'app-sign-up-page',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpPageComponent implements OnInit {
 
-  constructor() { }
+  isMobile: boolean = false;
+
+  constructor(
+    private mds: MobileDetectorService, 
+  ) { }
 
   ngOnInit() {
+    this.isMobile = this.mds.check();
   }
 
 }

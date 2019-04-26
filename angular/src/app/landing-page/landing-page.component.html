@@ -2,7 +2,7 @@
 <landing-page-header></landing-page-header>
 <div>
 
-    <div class="join-container">
+    <div class="join-container" *ngIf="!isMobile">
         <video autoplay muted loop id="myVideo">
             <source src="assets/videos/header_video.mp4" type="video/mp4">
         </video>
@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="events">
+    <div class="events" *ngIf="!isMobile">
         <mat-card>
             <div class="row">
                 <div class="col-sm desktop">

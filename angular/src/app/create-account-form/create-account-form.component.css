@@ -7,6 +7,10 @@ h1, h2, h3, h4, h5, p, #nameLabel, #emailLabel, #passwordLabel, #consentLabel {
     text-align: center;
 }
 
+.buttons {
+    display: flex;
+}
+
 button {
     display: block;
     margin-left: auto;
