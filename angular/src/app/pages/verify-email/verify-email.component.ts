@@ -50,7 +50,7 @@ export class VerifyEmailComponent implements OnInit {
             ref.set(true).then(
               () => {
                 console.log("Email Verfied");
-                this.router.navigate(['/events']);
+                this.router.navigate(['/my-profile']);
               }
             ).catch(
               (error) => {
