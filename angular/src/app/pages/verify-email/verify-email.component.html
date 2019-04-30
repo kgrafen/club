@@ -1,4 +1,5 @@
 <div class="container">
+  <div class="verifyMessage" *ngIf="!isVerifying">
     <h1>
         {{'PAGES.VERIFY_EMAIL.TITLE' | translate}}
     </h1>
@@ -21,4 +22,10 @@
             </li>
         </ul>
     </div>
+  </div>
+
+  <div class="verifyingLoader" *ngIf="isVerifying">
+    <img src="assets/images/spinner.gif" alt="">
+    {{'PAGES.VERIFY_EMAIL.VERIFYING' | translate}}
+  </div>
 </div>

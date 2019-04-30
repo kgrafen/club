@@ -34,7 +34,8 @@
                 "CHECK_SPAM": "Sørg for, at dit spamfilter tillader e-mail fra os",
                 "RESEND_EMAIL": "For at gensende e-mail igen med bekræftelse, ",
                 "CONTACT_SUPPORT": "Hvis du har ventet på over en time, "
-            }
+            },
+            "VERIFYING": "Bekræfter din e-mail nu"
         },
         "ABOUT": {
             "IDEAL": {
