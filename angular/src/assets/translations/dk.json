@@ -26,6 +26,10 @@
             "SUBTITLE": "Sammen er det sjovere",
             "JOIN_SITE": "Join SingleNetværket"
         },
+        "MY_PROIFLE": {
+          "TITLE": "Min Profil",
+          "WELCOME_MESSAGE": "Tak for din bekræftelse af din tilmelding til SingleNetværket. Vi vil anstrenge os for at du får en god oplevelse hos os. Det betyder faktisk rigtigt meget for os, så derfor stiller vi os også til rådighed for spørgsmål eller forslag til at gøre vores endnu bedre. For at give dig de bedste muligheder for at bruge vores netværk bedst muligt, så vil vi sende dig videre til din profil, hvor du vil kunne indtaste lidt personlig information, så vi kan give dig mest muligt relevant indhold når du besøger siden. Vi håber du får stor glæde af vores netværk."
+        },
         "VERIFY_EMAIL": {
             "TITLE": "Du er næsten der!",
             "DESCRIPTION": "En bekræftelses e-mail er sendt til <b>{{email}}</b>. Klik på bekræftelseslinket i emailen for at aktivere din konto og reload denne side.",

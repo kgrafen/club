@@ -23,6 +23,8 @@ export class MyProfileComponent implements OnInit {
   user: User = new User({});
   subscription: Subscription;
 
+  isProfileFilled: boolean = false;
+
   activationError = "Profilen er ikke aktiv. Udfyld alle obligatoriske felter og/eller tryk aktiver i den sidste tab";
 
   //Progress Bar Material
@@ -335,10 +337,12 @@ public userForm = new FormGroup({
   accountProgress(userObj) {
     let point = 100 / 8;
     let filled = 0;
-    filled = point * Object.keys(userObj).length;
-    if (filled < 100) {
-      this.fieldsMissing();
-    }
+    let missingProperties = this.fieldsMissing();
+    filled = point * (8-missingProperties.length);
+    this.isProfileFilled = (filled >= 100);
+    // if (filled < 100) {
+
+    // }
     this.value = filled;
     if (this.value >= 100) {
       this.showHide = "hide";
@@ -346,6 +350,10 @@ public userForm = new FormGroup({
       this.showHide = "show";
     }
     return filled;
+
+
+
+
 }
 
   activateAccount() {
@@ -427,7 +435,7 @@ public userForm = new FormGroup({
   fieldsMissing() {
     this.toast.toastrConfig.timeOut = 10000;
     let missingProperties = [];
-    if (this.user.address === undefined) {
+    if (!this.user.address) {
       missingProperties.push("Adresse");
     }
     if (this.user.birthday === undefined) {
@@ -436,7 +444,7 @@ public userForm = new FormGroup({
     if (this.user.numberOfChildren === undefined) {
       missingProperties.push('Antal børn');
     }
-    if (this.user.firstName === undefined) {
+    if (!this.user.firstName) {
       missingProperties.push('Fornavn');
     }
     if (this.user.lastName === undefined) {
@@ -453,7 +461,6 @@ public userForm = new FormGroup({
     }
 
     let content = "";
-
     missingProperties.forEach(prop => {
       content += prop + "\n";
     });
@@ -461,7 +468,9 @@ public userForm = new FormGroup({
     if (missingProperties.length < 1) {
       this.toast.info('Du har udfyldt alle felter', 'Info');
     } else {
-      alert(`Du mangler: \n ${content}`);
+      this.toast.info(`Du mangler: \n ${content}`, 'Info');
     }
+
+    return missingProperties
   }
 }
