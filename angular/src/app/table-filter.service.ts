@@ -54,7 +54,7 @@ export class TableFilterService {
   sendEvent() {
     let matchAgainst = {};
     if (this.distance !== "") {
-      // matchAgainst = {...matchAgainst, {}}
+      matchAgainst = {...matchAgainst, distance: this.distance};
     } 
     if (this.category !== "") {
       matchAgainst = {...matchAgainst, category: this.category};

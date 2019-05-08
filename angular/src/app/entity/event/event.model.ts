@@ -1,4 +1,5 @@
 import { EventAddress } from '../helper/EventAddress';
+import { GeoCoord } from 'ng2-haversine';
 
 export class Event {
     key: string;
@@ -16,6 +17,7 @@ export class Event {
     minGuests: number;
     maxGuests: number;
     genderRatio: string;
+    geoCoord: GeoCoord;
     queue: boolean;
     inQueue: {};
     address: EventAddress;
@@ -30,6 +32,7 @@ export class Event {
     accountNumber: number;
     mobilePayNumber: number;
     timestamp: string;
+    distance: string;
 
     constructor(obj) {
         obj && Object.assign(this, obj);
