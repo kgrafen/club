@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { CreateNewEventComponent } from '../create-new-event/create-new-event.component';
-import { MobileDetectorService } from '../mobile-detector.service';
+import { CreateNewEventComponent } from '../../create-new-event/create-new-event.component';
+import { MobileDetectorService } from '../../mobile-detector.service';
 import { window } from 'rxjs/operators';
 
 @Component({

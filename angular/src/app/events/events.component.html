@@ -1,29 +1,29 @@
-<app-navbar></app-navbar>
-<h1 *ngIf="!isMobile">Events</h1>
-        <div *ngIf="!isMobile" class="row desktop">
-                <div class="col-4">
-                    <event-control-menu></event-control-menu>
-                    <event-filter></event-filter>
-                </div>
-                <div class="col-8">
-                    <event-list></event-list>
-                </div>
-        </div>
-            
-        <div *ngIf="isMobile" class="row mobile">
-                <div class="container">
+<app-new-event></app-new-event>
+<h1 *ngIf="!isMobile">Events haha</h1>
+<div *ngIf="!isMobile" class="row desktop">
+  <div class="col-4">
+    <event-control-menu></event-control-menu>
+    <event-filter></event-filter>
+  </div>
+  <div class="col-8">
+    <event-list></event-list>
+  </div>
+</div>
 
-                        <div class="row">
-                                <event-control-menu></event-control-menu>
-                        </div>
+<div *ngIf="isMobile" class="row mobile">
+  <div class="container">
 
-                        <div class="row">
-                                <event-filter></event-filter>
-                        </div>
+    <div class="row">
+      <event-control-menu></event-control-menu>
+    </div>
 
-            
-                        <div class="row">
-                            <event-list></event-list>
-                        </div>
-                </div>
-        </div>
+    <div class="row">
+      <event-filter></event-filter>
+    </div>
+
+
+    <div class="row">
+      <event-list></event-list>
+    </div>
+  </div>
+</div>

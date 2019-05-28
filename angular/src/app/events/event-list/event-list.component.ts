@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable, Subscription  } from '../../../node_modules/rxjs';
-import { EventFirebaseService } from '../event-firebase.service';
+import { Observable, Subscription  } from 'rxjs';
+import { EventFirebaseService } from '../../event-firebase.service';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { DataSource } from '@angular/cdk/table';
-import { MobileDetectorService } from '../mobile-detector.service';
+import { MobileDetectorService } from '../../mobile-detector.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { TableFilterService } from '../table-filter.service';
-import { Event } from '../entity/event/event.model';
+import { TableFilterService } from '../../table-filter.service';
+import { Event } from '../../entity/event/event.model';
 import { Router, NavigationExtras } from '@angular/router';
 import { ToastrService } from 'ngx-toastr'
 

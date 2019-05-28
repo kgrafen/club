@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
-import { TableFilterService } from '../table-filter.service';
+import { TableFilterService } from '../../table-filter.service';
 import { NgModel, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatSelect } from '@angular/material';
 

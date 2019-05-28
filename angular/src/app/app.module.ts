@@ -31,14 +31,10 @@ import { RateEventComponent } from './rate-event/rate-event.component';
 import { MyEventsComponent } from './my-events/my-events.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PricesComponent } from './prices/prices.component';
-import { EventListComponent } from './event-list/event-list.component';
-import { EventFilterComponent } from './event-filter/event-filter.component';
 import { CreateNewEventComponent } from './create-new-event/create-new-event.component';
-import { EventsComponent } from './events/events.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { UserImageGalleryComponent } from './user-image-gallery/user-image-gallery.component';
-import { EventControlMenuComponent } from './event-control-menu/event-control-menu.component'; 
 import { FeedbackComponent } from './feedback/feedback.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
@@ -98,6 +94,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
+import { EventsModule } from './events/events.module';
 
 // Translate loader factory
 export function HttpLoaderFactory(http: HttpClient) {
@@ -113,16 +110,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoggedinDashboardComponent,
     PageNotFoundComponent,
     FooterComponent,
-    EventListComponent,
-    EventFilterComponent,
     LandingPageHeaderComponent,
     CreateAccountFormComponent,
     CreateNewEventComponent,
-    EventsComponent,
     MyProfileComponent,
     ImageUploadComponent,
     UserImageGalleryComponent,
-    EventControlMenuComponent,
     FeedbackComponent,
     AboutComponent,
     ContactComponent,
@@ -153,6 +146,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
+    EventsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -172,7 +166,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatIconModule,
     MatExpansionModule,
     MatInputModule,
-    MatButtonModule,
     MatChipsModule,
     MatSelectModule,
     MatGridListModule,
