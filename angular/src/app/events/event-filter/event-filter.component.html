@@ -2,9 +2,9 @@
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 <mat-card>
-    <h2>Filtre</h2>
+  <h2>Filtre</h2>
 
-    <div>
+  <div>
     <form [formGroup]="childrenForm">
       <mat-form-field>
         <mat-select formControlName="selection" (selectionChange)="onChildrenChange($event.value)" placeholder="Børn">
@@ -12,15 +12,16 @@
             {{cOption.displayValue}}
           </mat-option>
         </mat-select>
-    </mat-form-field>
+      </mat-form-field>
     </form>
     <!-- <mat-slide-toggle (change)="onChildrenChange()" color="primary" [(ngModel)]="kidsAllowed">{{kidsAllowed | activeBlocked}}</mat-slide-toggle> -->
-    </div>
+  </div>
 
-    <div>
+  <div>
     <form [formGroup]="genderForm">
       <mat-form-field>
-        <mat-select formControlName="selection" (selectionChange)="onOptionChange($event.value)" placeholder="Fordeling">
+        <mat-select formControlName="selection" (selectionChange)="onOptionChange($event.value)"
+          placeholder="Fordeling">
           <!-- <mat-option>Ingen</mat-option> -->
           <mat-option *ngFor="let option of options" [value]="option.value">
             {{option.displayValue}}
@@ -28,33 +29,35 @@
         </mat-select>
       </mat-form-field>
     </form>
-    </div>
-    <div>
+  </div>
+  <div>
     <form [formGroup]="categoryForm">
       <mat-form-field>
-        <mat-select formControlName="selection" (selectionChange)="onCategoryChange($event.value)" placeholder="Kategori">
+        <mat-select formControlName="selection" (selectionChange)="onCategoryChange($event.value)"
+          placeholder="Kategori">
           <mat-option *ngFor="let category of categories" [value]="category.value">
             {{category.displayValue}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </form>
-    </div>
+  </div>
 
-    <div>
-      <label>Afstand</label>
-      <mat-slider matTooltip="Denne feature er undervejs." disabled (change)="onDistanceChange()" color="primary" min="10" max="100" step="10" [(ngModel)]="slider1Val"></mat-slider>
-      <label matTooltip="Denne feature er undervejs." id="distKM">{{ slider1Val }} KM</label>
-    </div>
+  <div>
+    <label>Afstand</label>
+    <mat-slider matTooltip="Denne feature er undervejs." disabled (change)="onDistanceChange()" color="primary" min="10"
+      max="100" step="10" [(ngModel)]="slider1Val"></mat-slider>
+    <label matTooltip="Denne feature er undervejs." id="distKM">{{ slider1Val }} KM</label>
+  </div>
 
-    <mat-card-actions>
-      <button (click)="clear()" routerLink="/events" mat-button color="warn">Fjern filtre</button>
-    </mat-card-actions>
+  <mat-card-actions>
+    <button (click)="clear()" routerLink="/events" mat-button color="warn">Fjern filtre</button>
+  </mat-card-actions>
 
 </mat-card>
 
 <script>
   function updateTextInput(val) {
-          $("#distKM").html($("#slider1").val + " KM"); 
-        }
+    $("#distKM").html($("#slider1").val + " KM");
+  }
 </script>

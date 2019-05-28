@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Observable, Subscription  } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { EventFirebaseService } from '../../event-firebase.service';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { DataSource } from '@angular/cdk/table';
@@ -51,15 +51,15 @@ export class EventListComponent implements OnInit {
 
   subscription: Subscription;
   filterValue: any;
-  
-  constructor(private efbs: EventFirebaseService, 
-    private mds: MobileDetectorService, private spinner: NgxSpinnerService, 
-    private tfs: TableFilterService, private router: Router, 
+
+  constructor(private efbs: EventFirebaseService,
+    private mds: MobileDetectorService, private spinner: NgxSpinnerService,
+    private tfs: TableFilterService, private router: Router,
     private toast: ToastrService) {
-      let observer = this.efbs.getList().subscribe(eventSnapshots => {
+    let observer = this.efbs.getList().subscribe(eventSnapshots => {
       this.events = eventSnapshots;
-      Object.keys(this.events).forEach( (event:any) => {
-        this.events[event] = {...this.events[event], participantCount: Object.keys(this.events[event].participants).length};
+      Object.keys(this.events).forEach((event: any) => {
+        this.events[event] = { ...this.events[event], participantCount: Object.keys(this.events[event].participants).length };
         console.log(this.events[event]);
       });
       this.events.sort(this.compareToAscending);
@@ -77,9 +77,10 @@ export class EventListComponent implements OnInit {
         this.dataSourceMobile.sort = this.sort;
         this.spinner.hide();
         // observer.unsubscribe();
-      } 
-    },(error) => {console.log("Something went wrong :(");
-  });
+      }
+    }, (error) => {
+      console.log("Something went wrong :(");
+    });
 
     this.subscription = this.tfs.getEvent().subscribe(filter => { this.applyFilter(filter) });
   }
@@ -91,12 +92,12 @@ export class EventListComponent implements OnInit {
 
   ngAfterViewInit() {
     this.dataSource.sortData = this.matCompareTo;
-    setTimeout( ()=>{
+    setTimeout(() => {
       if (this.events.length < 1) {
         this.spinner.hide();
         this.toast.info("Der er ingen events oprettet", "Info");
       }
-      }, 3000);
+    }, 3000);
   }
 
   applyFilter(filterValue) {
@@ -106,7 +107,7 @@ export class EventListComponent implements OnInit {
     // let obj = {category: strArr[1], genderRatio: strArr[2], targetGroup: strArr[3]};
     // console.log(obj);
     // this.dataSource.filter = JSON.stringify(obj);
-    
+
     // let isAccepted = true;
     // if (strArr[0] !== "") {
     //   if ( Number(strArr[0]) < this.dataSource.) {
@@ -154,7 +155,7 @@ export class EventListComponent implements OnInit {
       let dateB = new Date(b.dateStart);
       if (dateA > dateB) {
         return 1;
-      } 
+      }
       if (dateA < dateB) {
         return -1;
       }
@@ -162,24 +163,24 @@ export class EventListComponent implements OnInit {
     });
   }
 
-  compareToAscending(a,b): number {
+  compareToAscending(a, b): number {
     let dateA = new Date(a.dateStart);
     let dateB = new Date(b.dateStart);
     if (dateA > dateB) {
       return 1;
-    } 
+    }
     if (dateA < dateB) {
       return -1;
     }
     return 0;
   }
 
-  compareToDescending(a,b): number {
+  compareToDescending(a, b): number {
     let dateA = new Date(a.dateStart);
     let dateB = new Date(b.dateStart);
     if (dateA > dateB) {
       return -1;
-    } 
+    }
     if (dateA < dateB) {
       return 1;
     }
@@ -200,32 +201,32 @@ export class EventListComponent implements OnInit {
     }
   }
 
-  customFilterPredicate() { 
-    return function(data:EventData, filter:string):boolean {
+  customFilterPredicate() {
+    return function (data: EventData, filter: string): boolean {
       console.log("CustomFilterPredicate", filter);
-      let searchString = JSON.parse(filter); 
+      let searchString = JSON.parse(filter);
       console.log("Parsed", searchString);
 
-      let isAccepted : boolean = true;
+      let isAccepted: boolean = true;
 
       console.log(data.targetGroup.trim() + " " + searchString.targetGroup);
       console.log(data.targetGroup.trim().indexOf(searchString.targetGroup));
 
-      if(searchString.targetGroup !== undefined){
-        if(data.targetGroup.trim().indexOf(searchString.targetGroup) === -1){
+      if (searchString.targetGroup !== undefined) {
+        if (data.targetGroup.trim().indexOf(searchString.targetGroup) === -1) {
           isAccepted = false;
         }
       }
 
-      if(searchString.genderRatio !== undefined){
-        if(data.genderRatio.trim().indexOf(searchString.genderRatio) === -1){
+      if (searchString.genderRatio !== undefined) {
+        if (data.genderRatio.trim().indexOf(searchString.genderRatio) === -1) {
           isAccepted = false;
         }
       }
 
-      if(searchString.category !== undefined){
-        if(data.category.trim().indexOf(searchString.category) === -1){
-          isAccepted = false; 
+      if (searchString.category !== undefined) {
+        if (data.category.trim().indexOf(searchString.category) === -1) {
+          isAccepted = false;
         }
       }
 
@@ -246,6 +247,6 @@ export class EventDataSource extends DataSource<any> {
   connect(): Observable<any[]> {
     return this.efbs.getList();
   }
-  disconnect() {}
+  disconnect() { }
 }
 
