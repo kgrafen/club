@@ -6,8 +6,10 @@ import { EventListComponent } from './event-list/event-list.component';
 import { EventFilterComponent } from './event-filter/event-filter.component';
 import { EventControlMenuComponent } from './event-control-menu/event-control-menu.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { MatFormFieldModule, MatTableModule, MatPaginatorModule, MatOptionModule, MatSelectModule, MatSliderModule, MatCardModule, MatInputModule, MatButtonModule } from '@angular/material';
+import { MatFormFieldModule, MatTableModule, MatPaginatorModule, MatOptionModule, MatSelectModule, MatSliderModule, MatCardModule, MatInputModule, MatButtonModule, MatGridListModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { LibModule } from '../lib/lib.module';
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
+    LibModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
     MatFormFieldModule,
@@ -32,10 +35,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatInputModule,
     MatButtonModule,
-
+    MatGridListModule,
+    AngularFontAwesomeModule,
   ],
   exports: [
     EventsComponent,
+  ],
+  entryComponents: [
+    NewEventComponent,
   ]
 })
 export class EventsModule { }

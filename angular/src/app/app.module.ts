@@ -11,7 +11,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 //Environment
 import { environment } from '../environments/environment';
-import { AppNavbarComponent } from './app-navbar/app-navbar.component';
+import { AppNavbarComponent } from './lib/app-navbar/app-navbar.component';
 
 //Ngb bootstrap
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -95,6 +95,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 import { EventsModule } from './events/events.module';
+import { LibModule } from './lib/lib.module';
 
 // Translate loader factory
 export function HttpLoaderFactory(http: HttpClient) {
@@ -104,7 +105,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    AppNavbarComponent,
     DummyListComponent,
     LandingPageComponent,
     LoggedinDashboardComponent,
@@ -147,6 +147,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     NgbModule.forRoot(),
     EventsModule,
+    LibModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,

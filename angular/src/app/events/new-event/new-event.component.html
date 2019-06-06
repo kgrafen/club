@@ -1,3 +1,64 @@
-<p>
-  new-event works!
-</p>
+
+<form [formGroup]="newEventFormGroup">
+  <ng-template matStepLabel>Hvad & Hvor</ng-template>
+  <h2>Opret nyt event</h2>
+  <mat-form-field>
+    <input matInput placeholder="Titel" formControlName="eventName" required>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea formControlName="eventDescription" matInput placeholder="Beskrivelse" rows="3"
+      matTooltip="Du kan trække nede i højre hjørne for at forstørre tekstfeltet"
+      aria-label="Button that displays a tooltip when focused or hovered over" required></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>
+      <fa name="tag"></fa> Kategori
+    </mat-label>
+    <mat-select formControlName="eventCategory" name="eventCategory" placeholder="Vælg emne" required>
+      <mat-option value="Andet">Andet</mat-option>
+      <mat-option value="Hjemmehygge">Hjemmehygge</mat-option>
+      <mat-option value="Fest i privathjem">Fest i privathjem</mat-option>
+      <mat-option value="Fest uden for privaten">Fest uden for privaten</mat-option>
+      <mat-option value="For børn">For børn</mat-option>
+      <mat-option value="Spis sammen på restaurant">Spis sammen på restaurant</mat-option>
+      <mat-option value="Biograf">Biograf</mat-option>
+      <mat-option value="Naturoplevelse">Naturoplevelse</mat-option>
+      <mat-option value="Ferie">Ferie</mat-option>
+      <mat-option value="Koncert">Koncert</mat-option>
+      <mat-option value="Kultur">Kultur</mat-option>
+      <mat-option value="Sport">Sport</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-label>
+    <fa name="home"></fa> Adresse
+  </mat-label>
+
+  <mat-grid-list cols="3" rowHeight="70px">
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Vej</mat-label>
+        <input matInput formControlName="eventLocationStreet" placeholder="Vej" required>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>Post Nr.</mat-label>
+        <input (keyup)="lookUpZip($event)" matInput formControlName="eventLocationZip" placeholder="#" required>
+        <br>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-form-field>
+        <mat-label>{{apiZipValue}}</mat-label>
+        <input matInput formControlName="eventLocationCity" placeholder="By" readonly
+          matTooltip="Dette felt udfyldes automatisk">
+      </mat-form-field>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <div class="buttons">
+    <button mat-raised-button color="primary" matStepperNext>Udfyld detaljerne</button>
+    <button mat-raised-button color="warn" [disabled]="!newEventFormGroup.valid" (click)="onSubmitEvent()" matStepperNext>Opret event</button>
+  </div>
+</form>
