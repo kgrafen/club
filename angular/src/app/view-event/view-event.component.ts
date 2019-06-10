@@ -14,10 +14,6 @@ import { Wall } from '../entity/wall/wall.model';
 import { WallPost } from '../entity/wall/wall-post.model';
 import { CreateWallPostComponent } from '../create-wall-post/create-wall-post.component';
 import { ToastrService } from 'ngx-toastr';
-import { hostname } from 'os';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { DataSnapshot } from '@firebase/database';
-import { DatabaseSnapshot } from 'angularfire2/database';
 
 export interface DialogData {
   fk_wall: string;

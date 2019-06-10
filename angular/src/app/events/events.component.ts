@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { IndexMap } from '@firebase/database/dist/src/core/snap/IndexMap';
-import { DialogService } from '../dialog.service';
-import { Observable } from '@firebase/util';
 import { AuthService } from '../auth.service';
 import { UserFirebaseService } from '../user-firebase.service';
 import { User } from '../entity/user/user';
