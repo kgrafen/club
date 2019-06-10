@@ -12,9 +12,9 @@
 // export class CanDeactivateGuard implements CanDeactivate<any> {
 
 //   canDeactivate(component: EventsComponent, route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-//     console.log("Navigation guard");
-//     console.log(route.params);
-//     console.log(state.url);
+//     
+//     
+//     
 //     return component.canDeactivate() || window.confirm("Er du sikker på at du vil forlade denne side?");
 //   }
 

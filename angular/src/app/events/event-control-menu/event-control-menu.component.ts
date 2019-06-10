@@ -25,7 +25,6 @@ export class EventControlMenuComponent implements OnInit {
       width: this.dialogWidth,
       height: this.dialogHeight,
       panelClass: "new-event-panel"
-      
       // disableClose: true
     });
 

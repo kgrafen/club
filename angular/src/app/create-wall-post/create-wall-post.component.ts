@@ -27,7 +27,7 @@ export class CreateWallPostComponent implements OnInit {
   }
 
   insertWallPost(formData) {
-    console.log(formData, this.data.fk_wall);
+    
     this.ws.insertPost({fk_id: this.authService.afAuth.auth.currentUser.uid, message: formData.message}, this.data.fk_wall);
     this.onNoClick();
   }

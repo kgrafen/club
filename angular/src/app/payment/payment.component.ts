@@ -56,7 +56,7 @@ export class PaymentComponent implements OnInit {
       observer.unsubscribe();
     });
 
-    console.log(this.dataSource[0].price);
+    
   }
 
   selectionFormValue(s) {

@@ -59,7 +59,7 @@ export class ImageUploadComponent implements OnInit {
   }
 
   uploadImage(formData) {
-    console.log(formData);
+    
     this.toast.info(`file: ${formData.file}` ,'Info');
   }
 }

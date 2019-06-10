@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatInput, MatDialogRef } from '@angular/material';
+import { MatInput, MatDialogRef, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { GeoCodingApiService } from 'src/app/geo-coding-api.service';
 import { EventFirebaseService } from 'src/app/event-firebase.service';
@@ -28,17 +28,18 @@ export class NewEventComponent implements OnInit {
     private userService: UserFirebaseService,
     private authService: AuthService,
     public dialogRef: MatDialogRef<CreateNewEventComponent>,
+    public dialog: MatDialog,
     ) { }
 
   // @ViewChild('title') nameInput: MatInput;
 
   ngOnInit() {
     this.newEventFormGroup = this._formBuilder.group({
-      eventName: ['', Validators.required],
-      eventDescription: ['', Validators.required],
-      eventLocationStreet: ['', Validators.required],
+      eventName: ['hello', Validators.required],
+      eventDescription: ['yellow', Validators.required],
+      eventLocationStreet: ['smart road', Validators.required],
       eventLocationCity: [''],
-      eventLocationZip: ['', Validators.required],
+      eventLocationZip: ['1253', Validators.required],
       eventCategory: ['', Validators.required]
     });
     //  this.nameInput.focus();
@@ -47,13 +48,14 @@ export class NewEventComponent implements OnInit {
   onSubmitEvent() {
 
     if (this.newEventFormGroup.valid) {
-      console.log('form submitted');
+      
 
           let observer = this.userService.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe( (userSnapshot:any) => {
             let e: Event = this.formDataToModel(userSnapshot);
             console.log({e})
             this.eventService.insertEvent(e).then( (thenableRef) => {
               let key = thenableRef.path.pieces_[1];
+              console.log({key})
               this.wallService.insertWall( {fk_event: key, posts: {} } );
             });
             // this.userService.updateUser({numberOfEventsHosted: userSnapshot.numberOfEventsHosted + 1}, this.authService.afAuth.auth.currentUser.uid).then( () => {
@@ -61,7 +63,7 @@ export class NewEventComponent implements OnInit {
             //   });
             });
     } else {
-      console.log('form rejected', this.newEventFormGroup);
+      
       // validate all form fields
     }
 
@@ -87,7 +89,7 @@ export class NewEventComponent implements OnInit {
     event.category = this.newEventFormGroup.value.eventCategory;
     event.description = this.newEventFormGroup.value.eventDescription;
 
-    // event.dateStart = this.newEventFormGroup.value.eventDate.toString();
+    event.dateStart = Date.now().toString();
     // event.deadlineDate = this.newEventFormGroup.value.eventDeadlineDate.toString();
     // event.deadlineTime = this.newEventFormGroup.value.eventDeadlineTime;
     // event.timeEnd = this.newEventFormGroup.value.eventEndTime;
@@ -134,6 +136,15 @@ export class NewEventComponent implements OnInit {
     if ( (event.target.value as string).length > 3 ) {
       this.geoAPI.getZipFromCity(event.target.value).map(response => response.json()).subscribe(result => this.apiZipValue = result.navn);
     }
+  }
+
+  fillDetails(): void {
+    const dialogRef = this.dialog.open(CreateNewEventComponent, {
+      width: screen.width / 1.25 + "px",
+      height: screen.height / 1.75 + "px",
+      panelClass: "new-event-panel"
+      // disableClose: true
+    });
   }
 
 }

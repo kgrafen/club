@@ -38,7 +38,7 @@ export class LandingPageHeaderComponent implements OnInit {
         ) { }
 
     ngOnInit() {
-        console.log('this.router.url', this.router.url);
+        
         this.singUpVisible = this.router.url !== '/sign-up';
 
         this.isMobile = this.mds.check();

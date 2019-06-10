@@ -200,8 +200,8 @@ export class MyEventComponent implements OnInit {
     const event = this.efbs.myEventSelection
     this.myEvent = this.efbs.myEventSelection;
 
-    console.log( new Date(event.deadlineDate) );
-    console.log( new Date(event.dateStart) );
+    
+    
     
     /* First form group*/
     this.firstFormGroup.get('eventName').setValue(event.name);
@@ -266,7 +266,7 @@ export class MyEventComponent implements OnInit {
       for (let i = 0; i < this.participantsData.length; i++) {
         const observerSeven = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe((userSnapshot:any) => {
           if (this.participantsData[i].username ===  userSnapshot.username) {
-            console.log("Running nested async");
+            
             isDone = true;
             resolve(userSnapshot.username);
           } 

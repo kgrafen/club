@@ -29,21 +29,21 @@ export class ParticipantListActionsComponent implements OnInit {
   }
 
   moveToQueue() {
-    console.log(this.key, this.uid, this.un);
+    
     this.efbs.leaveEvent(this.key, this.uid);
     this.efbs.joinQueue(this.key, this.uid, this.un);
     this.dialogRef.close();
   }
 
   moveToParticipants() {
-    console.log(this.key, this.uid, this.un);
+    
     this.efbs.joinEvent(this.key, this.uid, this.un);
     this.efbs.leaveQueue(this.key, this.uid);
     this.dialogRef.close();
   }
 
   remove() {
-    console.log(this.key, this.uid);
+    
     this.efbs.leaveEvent(this.key, this.uid);
     this.dialogRef.close();
   }

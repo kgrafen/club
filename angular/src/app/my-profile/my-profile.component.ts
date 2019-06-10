@@ -308,9 +308,9 @@ public userForm = new FormGroup({
         const observerTen = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe( (userSnapshot:any) => {
           if (eventSnapshot.participants) {
             Object.keys(eventSnapshot.participants).forEach(p => {
-              console.log(userSnapshot.username, formData.username);
+              
               if (eventSnapshot.participants[p].username === userSnapshot.username) {
-                console.log("Updating participant");
+                
                 this.efbs.leaveEvent(eventSnapshot.key, this.authService.afAuth.auth.currentUser.uid);
                 this.efbs.joinEvent(eventSnapshot.key, this.authService.afAuth.auth.currentUser.uid, formData.username);
               }
@@ -318,9 +318,9 @@ public userForm = new FormGroup({
           }
           if (eventSnapshot.inQueue) {
             Object.keys(eventSnapshot.inQueue).forEach(qP => {
-              console.log(eventSnapshot.inQueue[qP]);
+              
               if (eventSnapshot.inQueue[qP].username === userSnapshot.username) {
-                console.log("Updating inQueue");
+                
                 this.efbs.leaveQueue(eventSnapshot.key, this.authService.afAuth.auth.currentUser.uid);
                 this.efbs.joinQueue(eventSnapshot.key, this.authService.afAuth.auth.currentUser.uid, formData.username);
               }

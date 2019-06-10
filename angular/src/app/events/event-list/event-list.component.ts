@@ -58,11 +58,13 @@ export class EventListComponent implements OnInit {
     private toast: ToastrService) {
     let observer = this.efbs.getList().subscribe(eventSnapshots => {
       this.events = eventSnapshots;
+      console.log({events: eventSnapshots})
       Object.keys(this.events).forEach((event: any) => {
         this.events[event] = { ...this.events[event], participantCount: Object.keys(this.events[event].participants).length };
-        console.log(this.events[event]);
+        
       });
-      this.events.sort(this.compareToAscending);
+      this.events.sort(this.compareToAscending).filter(event => event.name == "misio");
+      console.log({eventsSorted: this.events})
 
       // this.events.splice(0, 1);
       if (this.events.length > 0) {
@@ -79,7 +81,7 @@ export class EventListComponent implements OnInit {
         // observer.unsubscribe();
       }
     }, (error) => {
-      console.log("Something went wrong :(");
+      
     });
 
     this.subscription = this.tfs.getEvent().subscribe(filter => { this.applyFilter(filter) });
@@ -101,11 +103,11 @@ export class EventListComponent implements OnInit {
   }
 
   applyFilter(filterValue) {
-    console.log("Apply filter says: ", filterValue);
+    
     this.dataSource.filter = JSON.stringify(filterValue);
-    // console.log(filterValue);
+    
     // let obj = {category: strArr[1], genderRatio: strArr[2], targetGroup: strArr[3]};
-    // console.log(obj);
+    
     // this.dataSource.filter = JSON.stringify(obj);
 
     // let isAccepted = true;
@@ -164,8 +166,8 @@ export class EventListComponent implements OnInit {
   }
 
   compareToAscending(a, b): number {
-    let dateA = new Date(a.dateStart);
-    let dateB = new Date(b.dateStart);
+    let dateA = a.dateStart;
+    let dateB = b.dateStart;
     if (dateA > dateB) {
       return 1;
     }
@@ -203,14 +205,14 @@ export class EventListComponent implements OnInit {
 
   customFilterPredicate() {
     return function (data: EventData, filter: string): boolean {
-      console.log("CustomFilterPredicate", filter);
+      
       let searchString = JSON.parse(filter);
-      console.log("Parsed", searchString);
+      
 
       let isAccepted: boolean = true;
 
-      console.log(data.targetGroup.trim() + " " + searchString.targetGroup);
-      console.log(data.targetGroup.trim().indexOf(searchString.targetGroup));
+      
+      
 
       if (searchString.targetGroup !== undefined) {
         if (data.targetGroup.trim().indexOf(searchString.targetGroup) === -1) {
@@ -230,7 +232,7 @@ export class EventListComponent implements OnInit {
         }
       }
 
-      console.log(isAccepted);
+      
 
       return isAccepted;
     }

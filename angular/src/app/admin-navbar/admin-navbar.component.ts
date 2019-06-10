@@ -37,10 +37,10 @@ export class AdminNavbarComponent implements OnInit {
             let role = new Role(snapshot);
             if (role.fk_id === this.authService.afAuth.auth.currentUser.uid) {
               if (role.type === this.urs.userTypes.ADMIN) {
-                console.log("User is authorized. Welcome back, commander.");
+                
               } else {
                 this.router.navigate(['/landing-page']);
-                console.log("Unauthorized. Your attempt has been logged.");
+                
               }
               observer.unsubscribe();
             }

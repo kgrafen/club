@@ -39,7 +39,7 @@ export class AdminNewsletterComponent implements OnInit {
     this.ts.info("OK fra server...", "Afventer");
 
     let observer = this.tes.sendNewsletter(formData).subscribe(response => {
-      console.log(response);
+      
       this.ts.show("Din besked er nu afsendt!", '👍');
       this.disabled = false;
       observer.unsubscribe();
