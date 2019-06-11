@@ -67,7 +67,8 @@ export class CreateNewEventComponent implements OnInit {
       eventLocationStreet: [this.data.address.street, Validators.required],
       eventLocationCity: [this.data.address.city, Validators.required],
       eventLocationZip: [this.data.address.zip, Validators.required],
-      eventCategory: [this.data.category, Validators.required]
+      eventCategory: [this.data.category, Validators.required],
+      geoCoord: [this.data.geoCoord, Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
       eventTargetGroup: ['', Validators.required],
@@ -146,7 +147,7 @@ export class CreateNewEventComponent implements OnInit {
       this.apiZipValue, this.firstFormGroup.value.eventLocationZip);
     event.category = this.firstFormGroup.value.eventCategory;
     event.description = this.firstFormGroup.value.eventDescription;
-    event.geoCoord = this.geoCoord;
+    event.geoCoord = this.firstFormGroup.value.geoCoord;
 
     event.dateStart = this.thirdFormGroup.value.eventDate.toString();
     event.deadlineDate = this.thirdFormGroup.value.eventDeadlineDate.toString();
