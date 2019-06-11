@@ -48,7 +48,7 @@ export class CreateAccountFormComponent implements OnInit {
     }
 
     tryRegister(value) {
-        console.log('form value', value);
+        
         if (this.formValidation()) {
             this.spinner.show();
             this.authService.doRegister(value)
@@ -57,7 +57,7 @@ export class CreateAccountFormComponent implements OnInit {
                     this.authService.sendVerificationMail();
                     this.router.navigate(['verify-email']);
                 }, err => {
-                    console.log('er', err);
+                    
                     this.errorMessage = this.translate.translateFirebaseErrorMessage(err.code);
                     this.displayMessage = true;
                     this.spinner.hide();

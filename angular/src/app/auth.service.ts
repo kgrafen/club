@@ -63,7 +63,7 @@ export class AuthService {
                 this.router.navigate(['/verify-email']);
             }
         }
-      console.log('credential', user);
+      
       this.user = this.afAuth.auth.currentUser;
         //this.loginRedirect();
         return user.user;
@@ -73,7 +73,7 @@ export class AuthService {
 
 
   // doSocialLoginRegister(firebaseUser: firebase.User) {
-  //   console.log("Fired registration");
+  //   
     // const userEntity: User = new User({"username": firebaseUser.displayName, "email": firebaseUser.email});
     // const date = new Date();
     // date.setUTCFullYear(2019, 0, 1);
@@ -111,7 +111,7 @@ export class AuthService {
       // var user = result.user;
       // // ...
     }).catch(function(error) {
-      console.log("Failsey: " + error);
+      
       return error;
       // // Handle Errors here.
       // var errorCode = error.code;
@@ -160,12 +160,12 @@ export class AuthService {
   }
 
   sendVerificationMail() {
-    console.log(firebase.auth().currentUser);
+    
     firebase.auth().currentUser.sendEmailVerification().then( () => {
-      console.log("Send verification email");
+      
       this.toast.info(`En bekræftigelsesmail er afsendt til ${this.afAuth.auth.currentUser.email}`,'ℹ️ ')
     }).catch( (err) => {
-      console.log("Failed to send verification email");
+      
       this.toast.error(err,'Fejl!');
     });
   }

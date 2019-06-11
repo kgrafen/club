@@ -1,14 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
-import { $ } from 'protractor';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { MobileLoginHeaderComponent } from '../mobile-login-header/mobile-login-header.component';
 import { MobileDetectorService } from '../mobile-detector.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { TwitterAuthProvider_Instance } from '@firebase/auth-types';
 import { UserFirebaseService } from '../user-firebase.service';
-import { User } from '../entity/user/user';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
@@ -41,7 +38,7 @@ export class LandingPageHeaderComponent implements OnInit {
         ) { }
 
     ngOnInit() {
-        console.log('this.router.url', this.router.url);
+        
         this.singUpVisible = this.router.url !== '/sign-up';
 
         this.isMobile = this.mds.check();

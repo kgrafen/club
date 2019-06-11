@@ -14,10 +14,6 @@ import { Wall } from '../entity/wall/wall.model';
 import { WallPost } from '../entity/wall/wall-post.model';
 import { CreateWallPostComponent } from '../create-wall-post/create-wall-post.component';
 import { ToastrService } from 'ngx-toastr';
-import { hostname } from 'os';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { DataSnapshot } from '@firebase/database';
-import { DatabaseSnapshot } from 'angularfire2/database';
 
 export interface DialogData {
   fk_wall: string;
@@ -195,7 +191,7 @@ export class ViewEventComponent implements OnInit {
       this.renderParticipantsInQueueIntoView(then);
       /* Participation limited to one signup. */
       this.getParticipantKey().then(resolved => {
-        console.log(resolved);
+        
         if (resolved !== "Not Found") {
           this.isParticipating = true;
         } else {
@@ -209,7 +205,7 @@ export class ViewEventComponent implements OnInit {
       observerTwo.unsubscribe();
       
       if (this.selectedEvent.host === this.authService.afAuth.auth.currentUser.uid) {
-        console.log(this.selectedEvent.host, this.authService.afAuth.auth.currentUser.uid);
+        
         this.hasOptions = false;
       }
     });
@@ -223,7 +219,7 @@ export class ViewEventComponent implements OnInit {
           const wallPostObj = wallSnapshot[0].posts[key];
           let observerFour = this.ufbs.getUserByID(wallPostObj.fk_id).subscribe( (userSnapshot:any) => {
             let mergedObj = {...wallPostObj, ...{username: userSnapshot.username}};
-            console.log(mergedObj);
+            
             this.wall.posts.push(mergedObj);
             // observerFour.unsubscribe();
           });

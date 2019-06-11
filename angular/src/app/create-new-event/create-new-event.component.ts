@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Optional, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { $ } from 'protractor';
 import { Event } from '../entity/event/event.model';
@@ -6,7 +6,7 @@ import { EventAddress } from '../entity/helper/EventAddress';
 import { EventFirebaseService } from '../event-firebase.service';
 import { AuthService } from '../auth.service';
 import { UserFirebaseService } from '../user-firebase.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatStepper } from '@angular/material';
 import { GeoCodingApiService } from '../geo-coding-api.service';
 import { Observable } from 'rxjs';
 import { User } from '../entity/user/user';
@@ -26,6 +26,7 @@ export interface DialogData {
 })
 
 export class CreateNewEventComponent implements OnInit {
+  @ViewChild('stepper') stepper: MatStepper;
 
   isLinear = false;
   firstFormGroup: FormGroup;
@@ -48,24 +49,25 @@ export class CreateNewEventComponent implements OnInit {
 
   // Date validation
   minDate = new Date();
-  maxDate = new Date( this.minDate.getFullYear()+1, this.minDate.getMonth(), this.minDate.getDay());
+  maxDate = new Date(this.minDate.getFullYear() + 1, this.minDate.getMonth(), this.minDate.getDay());
   maxRegistrationDate = new Date();
 
-  constructor(private efbs: EventFirebaseService, private authService: AuthService, 
-              private ufbs: UserFirebaseService, 
-              public dialogRef: MatDialogRef<CreateNewEventComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: DialogData,
-              private _formBuilder: FormBuilder, private geoAPI: GeoCodingApiService, 
-              private ws: WallService, private toast: ToastrService) { }
+  constructor(
+    private efbs: EventFirebaseService, private authService: AuthService,
+    private ufbs: UserFirebaseService,
+    public dialogRef: MatDialogRef<CreateNewEventComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Event,
+    private _formBuilder: FormBuilder, private geoAPI: GeoCodingApiService,
+    private ws: WallService, private toast: ToastrService) { }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      eventName: ['', Validators.required],
-      eventDescription: ['', Validators.required],
-      eventLocationStreet: ['', Validators.required],
-      eventLocationCity: ['', Validators.required],
-      eventLocationZip: ['', Validators.required],
-      eventCategory: ['', Validators.required]
+      eventName: [this.data.name, Validators.required],
+      eventDescription: [this.data.description, Validators.required],
+      eventLocationStreet: [this.data.address.street, Validators.required],
+      eventLocationCity: [this.data.address.city, Validators.required],
+      eventLocationZip: [this.data.address.zip, Validators.required],
+      eventCategory: [this.data.category, Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
       eventTargetGroup: ['', Validators.required],
@@ -88,18 +90,19 @@ export class CreateNewEventComponent implements OnInit {
       eventPaymentOption: ['', Validators.required],
       eventPaymentDue: ['', Validators.required],
       eventPaymentDate: ['', Validators.required],
-      eventMobilePayNumber : ['', Validators.required],
+      eventMobilePayNumber: ['', Validators.required],
       eventAccountNumber: ['', Validators.required]
     });
     this.fifthFormGroup = this._formBuilder.group({
       eventFile: ['', Validators.required],
     });
+    this.stepper.selectedIndex = 1;
   }
 
   onWhenPayChange(value) {
-    if(value === "Dato") {
+    if (value === "Dato") {
       this.isPaymentDeadlineDate = true;
-    } 
+    }
     else {
       this.isPaymentDeadlineDate = false;
     }
@@ -122,26 +125,25 @@ export class CreateNewEventComponent implements OnInit {
   }
 
   onSubmitEvent() {
-    let observer = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe( (userSnapshot:any) => {
+    let observer = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe((userSnapshot: any) => {
       let e: Event = this.formDataToModel(userSnapshot);
-      console.log('new event', e);
-      this.efbs.insertEvent(e).then( (thenableRef) => {
+      this.efbs.insertEvent(e).then((thenableRef) => {
         let key = thenableRef.path.pieces_[1];
-        this.ws.insertWall( {fk_event: key, posts: {} } );
+        this.ws.insertWall({ fk_event: key, posts: {} });
       });
-      this.ufbs.updateUser({numberOfEventsHosted: userSnapshot.numberOfEventsHosted + 1}, this.authService.afAuth.auth.currentUser.uid).then( () => {
-        observer.unsubscribe();
-        });
-      });
-  } 
+      // this.ufbs.updateUser({numberOfEventsHosted: userSnapshot.numberOfEventsHosted + 1}, this.authService.afAuth.auth.currentUser.uid).then( () => {
+      //   observer.unsubscribe();
+      //   });
+    });
+  }
 
   formDataToModel(userSnapshot): Event {
 
     const event = new Event({});
 
     event.name = this.firstFormGroup.value.eventName;
-    event.address = new EventAddress(this.firstFormGroup.value.eventLocationStreet, 
-                    this.apiZipValue, this.firstFormGroup.value.eventLocationZip);
+    event.address = new EventAddress(this.firstFormGroup.value.eventLocationStreet,
+      this.apiZipValue, this.firstFormGroup.value.eventLocationZip);
     event.category = this.firstFormGroup.value.eventCategory;
     event.description = this.firstFormGroup.value.eventDescription;
     event.geoCoord = this.geoCoord;
@@ -170,7 +172,7 @@ export class CreateNewEventComponent implements OnInit {
     event.queue = this.secondFormGroup.value.eventQueue;
     event.targetGroup = this.secondFormGroup.value.eventTargetGroup;
 
-    event.participants = [{username: userSnapshot.username}];
+    event.participants = [{ username: userSnapshot.username }];
 
     event.host = this.authService.afAuth.auth.currentUser.uid;
 
@@ -202,25 +204,27 @@ export class CreateNewEventComponent implements OnInit {
   }
 
   displayPreview() {
-    this.previews.push( {label: 'Titel', body: this.firstFormGroup.value.eventName} );
-    this.previews.push( {label: 'Beskrivelse', body: this.firstFormGroup.get('eventDescription').value} );
-    this.previews.push( {label: 'Kategori', body: this.firstFormGroup.get('eventCategory').value} );
-    this.previews.push( {label: 'Adresse', body: `
-                                                ${this.firstFormGroup.get('eventLocationStreet').value}, 
-                                                ${this.firstFormGroup.get('eventLocationZip').value}, 
-                                                ${this.apiZipValue} `} );
-    this.previews.push( {label: 'Kønsfordeling', body: this.secondFormGroup.value.genderRatio} );
-    this.previews.push( {label: 'Børn', body: this.secondFormGroup.value.eventTargetGroup} );
-    this.previews.push( {label: 'Aldersgruppe', body: `${this.secondFormGroup.value.eventMinAge} til ${this.secondFormGroup.value.eventMaxAge}`} );
-    this.previews.push( {label: 'Antal gæster', body: `${this.secondFormGroup.value.eventMinGuests} til ${this.secondFormGroup.value.eventMaxGuests}`  } );
-    this.previews.push( {label: 'Tving på venteliste', body: this.secondFormGroup.value.eventQueue} );
-    this.previews.push( {label: 'Dato for eventet', body: this.thirdFormGroup.value.eventDateStart} );
-    this.previews.push( {label: 'Tidspunkt for eventet', body: this.thirdFormGroup.value.eventTimeStart} );
-    this.previews.push( {label: 'Tilmeldingsfrist dato', body: this.thirdFormGroup.value.eventDeadlineDate} );
-    this.previews.push( {label: 'Tilmeldingsfrist tid', body: this.thirdFormGroup.value.eventDeadlineTime} );
-    this.previews.push( {label: 'Pris', body: this.fourthFormGroup.value.eventPrice} );
-    this.previews.push( {label: 'Betalingsform', body: this.fourthFormGroup.value.eventPaymentOption} );
-    this.previews.push( {label: 'Hvornår betales der', body: this.fourthFormGroup.value.eventPaymentDate} );
+    this.previews.push({ label: 'Titel', body: this.firstFormGroup.value.eventName });
+    this.previews.push({ label: 'Beskrivelse', body: this.firstFormGroup.get('eventDescription').value });
+    this.previews.push({ label: 'Kategori', body: this.firstFormGroup.get('eventCategory').value });
+    this.previews.push({
+      label: 'Adresse', body: `
+                                                ${this.firstFormGroup.get('eventLocationStreet').value},
+                                                ${this.firstFormGroup.get('eventLocationZip').value},
+                                                ${this.apiZipValue} `
+    });
+    this.previews.push({ label: 'Kønsfordeling', body: this.secondFormGroup.value.genderRatio });
+    this.previews.push({ label: 'Børn', body: this.secondFormGroup.value.eventTargetGroup });
+    this.previews.push({ label: 'Aldersgruppe', body: `${this.secondFormGroup.value.eventMinAge} til ${this.secondFormGroup.value.eventMaxAge}` });
+    this.previews.push({ label: 'Antal gæster', body: `${this.secondFormGroup.value.eventMinGuests} til ${this.secondFormGroup.value.eventMaxGuests}` });
+    this.previews.push({ label: 'Tving på venteliste', body: this.secondFormGroup.value.eventQueue });
+    this.previews.push({ label: 'Dato for eventet', body: this.thirdFormGroup.value.eventDateStart });
+    this.previews.push({ label: 'Tidspunkt for eventet', body: this.thirdFormGroup.value.eventTimeStart });
+    this.previews.push({ label: 'Tilmeldingsfrist dato', body: this.thirdFormGroup.value.eventDeadlineDate });
+    this.previews.push({ label: 'Tilmeldingsfrist tid', body: this.thirdFormGroup.value.eventDeadlineTime });
+    this.previews.push({ label: 'Pris', body: this.fourthFormGroup.value.eventPrice });
+    this.previews.push({ label: 'Betalingsform', body: this.fourthFormGroup.value.eventPaymentOption });
+    this.previews.push({ label: 'Hvornår betales der', body: this.fourthFormGroup.value.eventPaymentDate });
     this.isPreviewing = true;
   }
 

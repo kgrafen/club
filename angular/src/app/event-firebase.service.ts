@@ -22,7 +22,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EventFirebaseService {
 
-  dbPath: string = '/events/';
+  dbPath: string = '/events-test/';
   jsonConverter: JsonConverter = new JsonConverter();
 
   eventsObservable: Observable<any[]>;
@@ -60,7 +60,7 @@ export class EventFirebaseService {
   }
 
   updateEvent(key: string, e: Event) {
-    console.log(key, e);
+    
     const eventsRef = this.db.object(this.dbPath+key);
     return eventsRef.update(e);
   }
@@ -120,9 +120,9 @@ export class EventFirebaseService {
 
   signupVerification(key: string, user: User) {
     return new Promise(async (resolve, reject) => {
-      console.log(key, user);
+      
       let observer = this.db.object(this.dbPath+key).snapshotChanges().subscribe( eventSnapshot => {
-        // console.log(eventSnapshot);
+        
         const payload = eventSnapshot.payload.val();
         const participants = Object.keys(payload.participants).length;
         const max = payload.maxGuests;
@@ -132,7 +132,7 @@ export class EventFirebaseService {
         const availResult: boolean = participants < max ? true : false;
         /* Criteria check */
         let genResult: boolean;
-        console.log("Criteria", genCriteria, childCriteria, max);
+        
         switch(genCriteria) {
           case 'Kun for mænd':
             genResult = user.gender.toString() === "Mand" ? true : false;
@@ -175,7 +175,7 @@ export class EventFirebaseService {
           resolve(true);
         } else {
           let criteria: string = "";
-          console.log("Results", genResult, childResult, availResult);
+          
           if (!genResult) {
             criteria += genCriteria + ", ";
           } 

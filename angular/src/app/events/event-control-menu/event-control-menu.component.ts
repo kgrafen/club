@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { CreateNewEventComponent } from '../create-new-event/create-new-event.component';
-import { MobileDetectorService } from '../mobile-detector.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { CreateNewEventComponent } from '../../create-new-event/create-new-event.component';
+import { MobileDetectorService } from '../../mobile-detector.service';
 import { window } from 'rxjs/operators';
+import { NewEventComponent } from '../new-event/new-event.component';
 
 @Component({
   selector: 'event-control-menu',
@@ -20,14 +21,15 @@ export class EventControlMenuComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(CreateNewEventComponent, {
+    const dialogRef = this.dialog.open(NewEventComponent, {
       width: this.dialogWidth,
       height: this.dialogHeight,
+      panelClass: "new-event-panel"
       // disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      
+
     });
   }
 

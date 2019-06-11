@@ -449,25 +449,25 @@ export class UserImageGalleryComponent implements OnInit {
   };
 
   openImageModalRow(image: Image) {
-    console.log('Opening modal gallery from custom plain gallery row, with image: ', image);
+    
     const index: number = this.getCurrentIndexCustomLayout(image, this.images);
     this.customPlainGalleryRowConfig = Object.assign({}, this.customPlainGalleryRowConfig, { layout: new AdvancedLayout(index, true) });
   }
 
   openImageModalColumn(image: Image) {
-    console.log('Opening modal gallery from custom plain gallery column, with image: ', image);
+    
     const index: number = this.getCurrentIndexCustomLayout(image, this.images);
     this.customPlainGalleryColumnConfig = Object.assign({}, this.customPlainGalleryColumnConfig, { layout: new AdvancedLayout(index, true) });
   }
 
   openImageModalRowDescription(image: Image) {
-    console.log('Opening modal gallery from custom plain gallery row and description, with image: ', image);
+    
     const index: number = this.getCurrentIndexCustomLayout(image, this.imagesRect);
     this.customPlainGalleryRowDescConfig = Object.assign({}, this.customPlainGalleryRowDescConfig, { layout: new AdvancedLayout(index, true) });
   }
 
   onButtonBeforeHook(event: ButtonEvent) {
-    console.log('onButtonBeforeHook ', event);
+    
 
     if (!event || !event.button) {
       return;
@@ -482,14 +482,14 @@ export class UserImageGalleryComponent implements OnInit {
     if (event.button.type === ButtonType.DELETE) {
       // remove the current image and reassign all other to the array of images
 
-      console.log('delete in app with images count ' + this.images.length);
+      
 
       this.images = this.images.filter((val: Image) => event.image && val.id !== event.image.id);
     }
   }
 
   onButtonAfterHook(event: ButtonEvent) {
-    console.log('onButtonAfterHook ', event);
+    
 
     if (!event || !event.button) {
       return;
@@ -502,7 +502,7 @@ export class UserImageGalleryComponent implements OnInit {
   }
 
   onCustomButtonBeforeHook(event: ButtonEvent, galleryId: number | undefined) {
-    console.log('onCustomButtonBeforeHook with galleryId=' + galleryId + ' and event: ', event);
+    
     if (!event || !event.button) {
       return;
     }
@@ -510,7 +510,7 @@ export class UserImageGalleryComponent implements OnInit {
     // action is applied.
 
     if (event.button.type === ButtonType.CUSTOM) {
-      console.log('adding a new random image at the end');
+      
       this.addRandomImage();
 
       setTimeout(() => {
@@ -520,7 +520,7 @@ export class UserImageGalleryComponent implements OnInit {
   }
 
   onCustomButtonAfterHook(event: ButtonEvent, galleryId: number | undefined) {
-    console.log('onCustomButtonAfterHook with galleryId=' + galleryId + ' and event: ', event);
+    
     if (!event || !event.button) {
       return;
     }
@@ -529,28 +529,28 @@ export class UserImageGalleryComponent implements OnInit {
 
   onImageLoaded(event: ImageModalEvent) {
     // angular-modal-gallery will emit this event if it will load successfully input images
-    console.log('onImageLoaded action: ' + Action[event.action]);
-    console.log('onImageLoaded result:' + event.result);
+    
+    
   }
 
   onVisibleIndex(event: ImageModalEvent) {
-    console.log('onVisibleIndex action: ' + Action[event.action]);
-    console.log('onVisibleIndex result:' + event.result);
+    
+    
   }
 
   onIsFirstImage(event: ImageModalEvent) {
-    console.log('onIsFirstImage onfirst action: ' + Action[event.action]);
-    console.log('onIsFirstImage onfirst result:' + event.result);
+    
+    
   }
 
   onIsLastImage(event: ImageModalEvent) {
-    console.log('onIsLastImage onlast action: ' + Action[event.action]);
-    console.log('onIsLastImage onlast result:' + event.result);
+    
+    
   }
 
   onCloseImageModal(event: ImageModalEvent) {
-    console.log('onClose action: ' + Action[event.action]);
-    console.log('onClose result:' + event.result);
+    
+    
     // reset custom plain gallery config
     this.customPlainGalleryRowConfig = Object.assign({}, this.customPlainGalleryRowConfig, { layout: new AdvancedLayout(-1, true) });
     this.customPlainGalleryColumnConfig = Object.assign({}, this.customPlainGalleryColumnConfig, { layout: new AdvancedLayout(-1, true) });
@@ -565,15 +565,15 @@ export class UserImageGalleryComponent implements OnInit {
 
   removeLastImage() {
     if (this.images.length > 1) {
-      console.log("Remove Function called");
+      
       this.images.pop();
       this.images = [...this.images];
-      console.log("Remaining images: " + this.images.length);
+      
     }
   }
 
   openModalViaService(id: number | undefined, index: number) {
-    console.log('opening gallery with index ' + index);
+    
     this.galleryService.openGallery(id, index);
   }
 

@@ -1,19 +1,19 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { Observable, Subscription } from '../../../node_modules/rxjs';
-import { EventFirebaseService } from '../event-firebase.service';
+import { Observable, Subscription } from 'rxjs';
+import { EventFirebaseService } from '../../event-firebase.service';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { DataSource } from '@angular/cdk/table';
-import { MobileDetectorService } from '../mobile-detector.service';
+import { MobileDetectorService } from '../../mobile-detector.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { TableFilterService } from '../table-filter.service';
-import { Event } from '../entity/event/event.model';
+import { TableFilterService } from '../../table-filter.service';
+import { Event } from '../../entity/event/event.model';
 import { Router, NavigationExtras } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HaversineService, GeoCoord } from "ng2-haversine";
-import { UserFirebaseService } from '../user-firebase.service';
-import { AuthService } from '../auth.service';
-import { User } from '../entity/user/user';
-import { GeoCodingApiService } from '../geo-coding-api.service';
+import { UserFirebaseService } from '../../user-firebase.service';
+import { AuthService } from '../../auth.service';
+import { User } from '../../entity/user/user';
+import { GeoCodingApiService } from '../../geo-coding-api.service';
 import { userInfo } from 'os';
 
 export interface EventData {
@@ -75,7 +75,8 @@ export class EventListComponent implements OnInit {
         this.events[event] = { ...this.events[event], participantCount: Object.keys(this.events[event].participants).length };
         console.log(this.events[event]);
       });
-      this.events.sort(this.compareToAscending);
+      this.events.sort(this.compareToAscending).filter(event => event.name == "misio");
+      console.log({eventsSorted: this.events})
 
 
       this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(userSnapshot => {
@@ -132,7 +133,6 @@ export class EventListComponent implements OnInit {
 
 
     }, (error) => {
-      console.log("Something went wrong :(");
     });
 
     this.subscription = this.tfs.getEvent().subscribe(filter => { this.applyFilter(filter) });
@@ -154,11 +154,11 @@ export class EventListComponent implements OnInit {
   }
 
   applyFilter(filterValue) {
-    console.log("Apply filter says: ", filterValue);
+    
     this.dataSource.filter = JSON.stringify(filterValue);
-    // console.log(filterValue);
+    
     // let obj = {category: strArr[1], genderRatio: strArr[2], targetGroup: strArr[3]};
-    // console.log(obj);
+    
     // this.dataSource.filter = JSON.stringify(obj);
 
     // let isAccepted = true;
@@ -217,8 +217,8 @@ export class EventListComponent implements OnInit {
   }
 
   compareToAscending(a, b): number {
-    let dateA = new Date(a.dateStart);
-    let dateB = new Date(b.dateStart);
+    let dateA = a.dateStart;
+    let dateB = b.dateStart;
     if (dateA > dateB) {
       return 1;
     }
@@ -255,16 +255,12 @@ export class EventListComponent implements OnInit {
   }
 
   customFilterPredicate() {
-      console.log("dco do huja");
-      return function (data: EventData, filter: string): boolean {
-      console.log("CustomFilterPredicate", filter);
-      let searchString = JSON.parse(filter);
-      console.log("Parsed", searchString);
+    return function (data: EventData, filter: string): boolean {
+    let searchString = JSON.parse(filter);
+    let isAccepted: boolean = true;
 
-      let isAccepted: boolean = true;
-
-      console.log(data.targetGroup.trim() + " " + searchString.targetGroup);
-      console.log(data.targetGroup.trim().indexOf(searchString.targetGroup));
+      
+      
 
       if (searchString.targetGroup !== undefined) {
         if (data.targetGroup.trim().indexOf(searchString.targetGroup) === -1) {
@@ -283,9 +279,6 @@ export class EventListComponent implements OnInit {
           isAccepted = false;
         }
       }
-      console.log({filtDis: searchString.distance})
-      console.log({dataDis: data.distance})
-
       let tempDist;
       let filtDist = parseFloat(searchString.distance);
 
@@ -295,9 +288,6 @@ export class EventListComponent implements OnInit {
         tempDist = parseFloat(data.distance);
       }
 
-      console.log({filtDisPar: filtDist})
-      console.log({dataDisPar: tempDist})
-
 
       if (filtDist !== undefined) {
         if (tempDist > filtDist) {
@@ -305,7 +295,7 @@ export class EventListComponent implements OnInit {
         }
       }
 
-      console.log(isAccepted);
+      
 
       return isAccepted;
     }

@@ -25,8 +25,8 @@ export class TableFilterService {
 
   onChildrenChange(children: string) {
     this.children = children;
-    console.log("Children: " + children);
-    // console.log(this.matchAgainst);
+    
+    
     // const arr = this.matchAgainst.split('¤', 4);
     // arr[1] = this.children;
     // this.matchAgainst = `${arr[0]}¤${arr[1]}¤${arr[2]}¤${arr[3]}¤`;
@@ -35,7 +35,7 @@ export class TableFilterService {
 
   onGenderChange(gender: string) {
     this.gender = gender;
-    console.log("Gender: " + gender);
+    
     // const arr = this.matchAgainst.split('¤', 4);
     // arr[2] = this.gender;
     // this.matchAgainst = `${arr[0]}¤${arr[1]}¤${arr[2]}¤${arr[3]}¤`;
@@ -44,7 +44,7 @@ export class TableFilterService {
 
   onCategoryChange(category: string) {
     this.category = category;
-    console.log("Category: " + category);
+    
     // const arr = this.matchAgainst.split('¤', 4);
     // arr[3] = this.category;
     // this.matchAgainst = `${arr[0]}¤${arr[1]}¤${arr[2]}¤${arr[3]}¤`;

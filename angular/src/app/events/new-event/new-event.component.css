@@ -1,0 +1,37 @@
+form {
+  top: 0;
+  width: 60%;
+  margin-left: auto;
+  display: block;
+}
+
+.mat-card-image {
+
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.buttons {
+  text-align: right;
+  margin-top: 15px;
+}
+
+.buttons button {
+  margin-left: 10px;
+}
+
+
+/deep/ .new-event-panel .mat-dialog-container {
+  background: url(/assets/images/event_placeholder.jpg);
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: 38% 100%;
+}
+
+mat-form-field {
+  display: block;
+  width: 100%;
+}

@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { IndexMap } from '@firebase/database/dist/src/core/snap/IndexMap';
-import { DialogService } from '../dialog.service';
-import { Observable } from '@firebase/util';
 import { AuthService } from '../auth.service';
 import { UserFirebaseService } from '../user-firebase.service';
 import { User } from '../entity/user/user';
@@ -42,7 +39,7 @@ export class EventsComponent implements OnInit {
         if (userSnapshot.key === firebaseUser.uid) {
           userExists = true;
           u = new User(userSnapshot.payload.val());
-          console.log(userSnapshot.payload.val());
+          
         }
       });
       if (!userExists) {
@@ -53,7 +50,7 @@ export class EventsComponent implements OnInit {
         userEntity.isActivated = false;
         this.ufbs.insertUser(userEntity, firebaseUser.uid);
       } else {
-        console.log(this.authService.isDeletingUser, u.isActivated);
+        
         if (u.isActivated === false && !this.authService.isDeletingUser) {
           this.toast.warning('Din profil er ikke aktiv. For at aktivere skal du udfylde "Min Profil"','Hov!');
         } 

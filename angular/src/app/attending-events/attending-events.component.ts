@@ -45,7 +45,7 @@ export class AttendingEventsComponent implements OnInit {
                   this.events.push(eventSnapshot);
                   Object.keys(this.events).forEach( (event:any) => {
                     this.events[event] = {...this.events[event], participantCount: Object.keys(this.events[event].participants).length};
-                    console.log(this.events[event]);
+                    
                   });
                 }
               });

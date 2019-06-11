@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { $ } from 'protractor';
-import { UserFirebaseService } from '../user-firebase.service';
-import { EventFirebaseService } from '../event-firebase.service';
-import { User } from '../entity/user/user';
-import { RatingService } from '../rating.service';
+import { UserFirebaseService } from '../../user-firebase.service';
+import { EventFirebaseService } from '../../event-firebase.service';
+import { User } from '../../entity/user/user';
+import { RatingService } from '../../rating.service';
 import { ToastrService } from 'ngx-toastr';
 
 

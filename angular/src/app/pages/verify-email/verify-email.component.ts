@@ -21,7 +21,7 @@ export class VerifyEmailComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.activatedRoute.queryParams.subscribe(params => {
-      console.log({code: params['oobCode']});
+      
       if (params['oobCode'] != undefined) {
         this.isVerifying = true;
         this.emailVerificationCode = params['oobCode'];
@@ -43,24 +43,24 @@ export class VerifyEmailComponent implements OnInit {
 
     this.authService.afAuth.auth.checkActionCode(this.emailVerificationCode).then(
       (user) => {
-        console.log("User Info KKKKK : " + user.data.email);
+        
         firebase.auth().applyActionCode(this.emailVerificationCode).then(
           () => {
             let ref = firebase.database().ref('verifiedEmails/' + user.data.email.replace('.', '*'));
             ref.set(true).then(
               () => {
-                console.log("Email Verfied");
+                
                 this.router.navigate(['/my-profile']);
               }
             ).catch(
               (error) => {
-                console.log("Couldn't set true : " + error.message);
+                
               }
             )
           }
         ).catch(
           (error) => {
-            console.log("Error occured : " + error.message);
+            
           }
         )
       }
