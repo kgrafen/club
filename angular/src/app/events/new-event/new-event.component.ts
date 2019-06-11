@@ -19,6 +19,7 @@ export class NewEventComponent implements OnInit {
 
   newEventFormGroup: FormGroup;
   apiZipValue = "By";
+  event: Event;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -27,7 +28,7 @@ export class NewEventComponent implements OnInit {
     private wallService: WallService,
     private userService: UserFirebaseService,
     private authService: AuthService,
-    public dialogRef: MatDialogRef<CreateNewEventComponent>,
+    public dialogRef: MatDialogRef<NewEventComponent>,
     public dialog: MatDialog,
     ) { }
 
@@ -51,11 +52,9 @@ export class NewEventComponent implements OnInit {
       
 
           let observer = this.userService.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe( (userSnapshot:any) => {
-            let e: Event = this.formDataToModel(userSnapshot);
-            console.log({e})
+            const e = this.formDataToModel(userSnapshot);
             this.eventService.insertEvent(e).then( (thenableRef) => {
               let key = thenableRef.path.pieces_[1];
-              console.log({key})
               this.wallService.insertWall( {fk_event: key, posts: {} } );
             });
             // this.userService.updateUser({numberOfEventsHosted: userSnapshot.numberOfEventsHosted + 1}, this.authService.afAuth.auth.currentUser.uid).then( () => {
@@ -79,7 +78,7 @@ export class NewEventComponent implements OnInit {
     //   });
   }
   
-  formDataToModel(userSnapshot): Event {
+  formDataToModel(userSnapshot?): Event {
 
     const event = new Event({});
 
@@ -113,7 +112,7 @@ export class NewEventComponent implements OnInit {
     // event.queue = this.newEventFormGroup.value.eventQueue;
     // event.targetGroup = this.newEventFormGroup.value.eventTargetGroup;
 
-    event.participants = [{username: userSnapshot.username}];
+    if(userSnapshot) event.participants = [{username: userSnapshot.username}];
 
     event.host = this.authService.afAuth.auth.currentUser.uid;
 
@@ -139,10 +138,11 @@ export class NewEventComponent implements OnInit {
   }
 
   fillDetails(): void {
-    const dialogRef = this.dialog.open(CreateNewEventComponent, {
+    this.dialogRef.close();
+    this.dialog.open(CreateNewEventComponent, {
       width: screen.width / 1.25 + "px",
       height: screen.height / 1.75 + "px",
-      panelClass: "new-event-panel"
+      data: this.formDataToModel()
       // disableClose: true
     });
   }

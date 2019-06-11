@@ -24,15 +24,11 @@ h2 {
 }
 
 
-/deep/ .new-event-panel{
+/deep/ .new-event-panel .mat-dialog-container {
   background: url(/assets/images/event_placeholder.jpg);
   background-color: #fff;
   background-repeat: no-repeat;
   background-size: 38% 100%;
-}
-
-/deep/ .mat-dialog-container {
-  background: transparent;
 }
 
 mat-form-field {

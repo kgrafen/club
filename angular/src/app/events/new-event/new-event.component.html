@@ -58,7 +58,7 @@
   </mat-grid-list>
 
   <div class="buttons">
-    <button mat-raised-button color="primary" (click)="fillDetails()" matStepperNext>Udfyld detaljerne</button>
+    <button mat-raised-button color="primary" [disabled]="!newEventFormGroup.valid" (click)="fillDetails()" matStepperNext>Udfyld detaljerne</button>
     <button mat-raised-button color="warn" [disabled]="!newEventFormGroup.valid" (click)="onSubmitEvent()" matStepperNext>Opret event</button>
   </div>
 </form>
