@@ -38,11 +38,11 @@ export class NewEventComponent implements OnInit {
 
   ngOnInit() {
     this.newEventFormGroup = this._formBuilder.group({
-      eventName: ['hello', Validators.required],
-      eventDescription: ['yellow', Validators.required],
-      eventLocationStreet: ['smart road', Validators.required],
+      eventName: ['', Validators.required],
+      eventDescription: ['', Validators.required],
+      eventLocationStreet: ['', Validators.required],
       eventLocationCity: [''],
-      eventLocationZip: ['1253', Validators.required],
+      eventLocationZip: ['', Validators.required],
       eventCategory: ['', Validators.required]
     });
     //  this.nameInput.focus();

@@ -22,7 +22,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EventFirebaseService {
 
-  dbPath: string = '/events-test/';
+  dbPath: string = '/events_geo/';
   jsonConverter: JsonConverter = new JsonConverter();
 
   eventsObservable: Observable<any[]>;
