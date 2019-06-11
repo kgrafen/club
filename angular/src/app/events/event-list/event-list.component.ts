@@ -69,52 +69,34 @@ export class EventListComponent implements OnInit {
     private haversineService: HaversineService,
   ) {
 
-    let observer = this.efbs.getList().subscribe(eventSnapshots => {
+    this.efbs.getList().subscribe(eventSnapshots => {
       this.events = eventSnapshots;
       Object.keys(this.events).forEach((event: any) => {
         this.events[event] = { ...this.events[event], participantCount: Object.keys(this.events[event].participants).length };
-        console.log(this.events[event]);
       });
       this.events.sort(this.compareToAscending).filter(event => event.name == "misio");
-      console.log({eventsSorted: this.events})
-
 
       this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(userSnapshot => {
         let user = new User(userSnapshot);
-        console.log({ user });
         user.address.zip;
-        let center;
-
-        let bilbao: GeoCoord = {
-          latitude: 43.262985,
-          longitude: -2.935013
-        };
 
         this.geoAPI.getZipFromCity(user.address.zip.toString()).map(response => response.json()).subscribe(result => {
-          console.log({ result });
 
-          this.events.map((event: Event, ind) => {
-
+          this.events.map((event: Event) => {
             let userGeo: GeoCoord = {
               latitude: result.visueltcenter[1],
               longitude: result.visueltcenter[0]
             };
 
-            if (event.geoCoord) {
-
+          if (event.geoCoord) {
               let meters = this.haversineService.getDistanceInMeters(event.geoCoord, userGeo);
               event.distance = (meters / 1000).toFixed(1);
-              console.log({ meters, zip: event.address.zip, eventgeo:event.geoCoord });
             }
           });
 
 
-      // this.events.splice(0, 1);
-      console.log('events before', this.events);
       if (this.events.length > 0) {
         this.dataSource = new MatTableDataSource(this.events);
-        console.log('events', this.events);
-        console.log('data source', this.dataSource);
         this.dataSource.filterPredicate = this.customFilterPredicate();
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;

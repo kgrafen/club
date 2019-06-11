@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/auth.service';
 import { Event } from 'src/app/entity/event/event.model';
 import { EventAddress } from 'src/app/entity/helper/EventAddress';
 import { CreateNewEventComponent } from 'src/app/create-new-event/create-new-event.component';
+import { GeoCoord } from 'ng2-haversine';
 
 @Component({
   selector: 'app-new-event',
@@ -20,6 +21,7 @@ export class NewEventComponent implements OnInit {
   newEventFormGroup: FormGroup;
   apiZipValue = "By";
   event: Event;
+  geoCoord: GeoCoord;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -87,6 +89,8 @@ export class NewEventComponent implements OnInit {
                     this.apiZipValue, this.newEventFormGroup.value.eventLocationZip);
     event.category = this.newEventFormGroup.value.eventCategory;
     event.description = this.newEventFormGroup.value.eventDescription;
+    
+    event.geoCoord = this.geoCoord;
 
     event.dateStart = Date.now().toString();
     // event.deadlineDate = this.newEventFormGroup.value.eventDeadlineDate.toString();
@@ -131,9 +135,16 @@ export class NewEventComponent implements OnInit {
     this.dialogRef.close();
   }
 
+
   lookUpZip(event) {
     if ( (event.target.value as string).length > 3 ) {
-      this.geoAPI.getZipFromCity(event.target.value).map(response => response.json()).subscribe(result => this.apiZipValue = result.navn);
+      this.geoAPI.getZipFromCity(event.target.value).map(response => response.json()).subscribe(result => {
+        this.geoCoord = {
+          latitude: result.visueltcenter[1],
+          longitude: result.visueltcenter[0]
+        };
+        this.apiZipValue = result.navn;
+      });
     }
   }
 
