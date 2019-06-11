@@ -11,6 +11,11 @@ import { EventAddress } from 'src/app/entity/helper/EventAddress';
 import { CreateNewEventComponent } from 'src/app/create-new-event/create-new-event.component';
 import { GeoCoord } from 'ng2-haversine';
 
+export const errorMessages: { [key: string]: string } = {
+  eventName: 'Titel må ikke være mere end 50 tegn',
+  required: 'Dette felt er obligatorisk',
+};
+
 @Component({
   selector: 'app-new-event',
   templateUrl: './new-event.component.html',
@@ -22,6 +27,7 @@ export class NewEventComponent implements OnInit {
   apiZipValue = "By";
   event: Event;
   geoCoord: GeoCoord;
+  errors = errorMessages;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -38,7 +44,7 @@ export class NewEventComponent implements OnInit {
 
   ngOnInit() {
     this.newEventFormGroup = this._formBuilder.group({
-      eventName: ['', Validators.required],
+      eventName: ['', [Validators.required, Validators.maxLength(50)]],
       eventDescription: ['', Validators.required],
       eventLocationStreet: ['', Validators.required],
       eventLocationCity: [''],
@@ -47,6 +53,10 @@ export class NewEventComponent implements OnInit {
     });
     //  this.nameInput.focus();
   }
+
+  get eventName() {
+    return this.newEventFormGroup.get('eventName');
+ }
 
   onSubmitEvent() {
 

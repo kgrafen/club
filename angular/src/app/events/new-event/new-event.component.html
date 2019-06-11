@@ -4,11 +4,22 @@
   <h2>Opret nyt event</h2>
   <mat-form-field>
     <input matInput placeholder="Titel" formControlName="eventName" required>
+    <mat-error *ngIf="eventName.errors">
+      <div *ngIf="eventName.errors.required">
+        {{errors.required}}
+      </div>
+      <div *ngIf="eventName.errors.maxlength != null">
+        {{errors.eventName}}
+      </div>
+    </mat-error>
   </mat-form-field>
   <mat-form-field>
     <textarea formControlName="eventDescription" matInput placeholder="Beskrivelse" rows="3"
       matTooltip="Du kan trække nede i højre hjørne for at forstørre tekstfeltet"
       aria-label="Button that displays a tooltip when focused or hovered over" required></textarea>
+      <mat-error>
+        {{errors.required}}
+      </mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>
@@ -28,8 +39,10 @@
       <mat-option value="Kultur">Kultur</mat-option>
       <mat-option value="Sport">Sport</mat-option>
     </mat-select>
+    <mat-error>
+      {{errors.required}}
+    </mat-error>
   </mat-form-field>
-
   <mat-label>
     <fa name="home"></fa> Adresse
   </mat-label>
@@ -39,12 +52,18 @@
       <mat-form-field>
         <mat-label>Vej</mat-label>
         <input matInput formControlName="eventLocationStreet" placeholder="Vej" required>
+        <mat-error>
+          {{errors.required}}
+        </mat-error>
       </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
       <mat-form-field>
         <mat-label>Post Nr.</mat-label>
         <input (keyup)="lookUpZip($event)" matInput formControlName="eventLocationZip" placeholder="#" required>
+        <mat-error>
+          {{errors.required}}
+        </mat-error>
         <br>
       </mat-form-field>
     </mat-grid-tile>
@@ -53,6 +72,9 @@
         <mat-label>{{apiZipValue}}</mat-label>
         <input matInput formControlName="eventLocationCity" placeholder="By" readonly
           matTooltip="Dette felt udfyldes automatisk">
+          <mat-error>
+            {{errors.required}}
+          </mat-error>
       </mat-form-field>
     </mat-grid-tile>
   </mat-grid-list>
