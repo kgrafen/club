@@ -43,12 +43,11 @@
     </form>
   </div>
 
-  <div>
-    <label>Afstand</label>
-    <mat-slider matTooltip="Denne feature er undervejs." disabled (change)="onDistanceChange()" color="primary" min="10"
-      max="100" step="10" [(ngModel)]="slider1Val"></mat-slider>
-    <label matTooltip="Denne feature er undervejs." id="distKM">{{ slider1Val }} KM</label>
-  </div>
+    <div>
+      <label>Afstand</label>
+      <mat-slider matTooltip="Denne feature er undervejs." (change)="onDistanceChange()" color="primary" min="1" max="100" step="1" [(ngModel)]="slider1Val"></mat-slider>
+      <label matTooltip="Denne feature er undervejs." id="distKM">{{ slider1Val }} KM</label>
+    </div>
 
   <mat-card-actions>
     <button (click)="clear()" routerLink="/events" mat-button color="warn">Fjern filtre</button>

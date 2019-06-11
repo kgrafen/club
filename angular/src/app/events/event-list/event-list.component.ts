@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { EventFirebaseService } from '../../event-firebase.service';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog } from '@angular/material';
@@ -8,12 +8,18 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { TableFilterService } from '../../table-filter.service';
 import { Event } from '../../entity/event/event.model';
 import { Router, NavigationExtras } from '@angular/router';
-import { ToastrService } from 'ngx-toastr'
+import { ToastrService } from 'ngx-toastr';
+import { HaversineService, GeoCoord } from "ng2-haversine";
+import { UserFirebaseService } from '../../user-firebase.service';
+import { AuthService } from '../../auth.service';
+import { User } from '../../entity/user/user';
+import { GeoCodingApiService } from '../../geo-coding-api.service';
+import { userInfo } from 'os';
 
 export interface EventData {
   name: string;
   address: string;
-  distance: number;
+  distance: string;
   genderRatio: string;
   targetGroup: string;
   available: number;
@@ -52,23 +58,63 @@ export class EventListComponent implements OnInit {
   subscription: Subscription;
   filterValue: any;
 
-  constructor(private efbs: EventFirebaseService,
+  constructor(
+    private ufbs: UserFirebaseService,
+    private authService: AuthService,
+    private efbs: EventFirebaseService,
     private mds: MobileDetectorService, private spinner: NgxSpinnerService,
     private tfs: TableFilterService, private router: Router,
-    private toast: ToastrService) {
+    private toast: ToastrService,
+    private geoAPI: GeoCodingApiService,
+    private haversineService: HaversineService,
+  ) {
+
     let observer = this.efbs.getList().subscribe(eventSnapshots => {
       this.events = eventSnapshots;
-      console.log({events: eventSnapshots})
       Object.keys(this.events).forEach((event: any) => {
         this.events[event] = { ...this.events[event], participantCount: Object.keys(this.events[event].participants).length };
-        
+        console.log(this.events[event]);
       });
       this.events.sort(this.compareToAscending).filter(event => event.name == "misio");
       console.log({eventsSorted: this.events})
 
+
+      this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(userSnapshot => {
+        let user = new User(userSnapshot);
+        console.log({ user });
+        user.address.zip;
+        let center;
+
+        let bilbao: GeoCoord = {
+          latitude: 43.262985,
+          longitude: -2.935013
+        };
+
+        this.geoAPI.getZipFromCity(user.address.zip.toString()).map(response => response.json()).subscribe(result => {
+          console.log({ result });
+
+          this.events.map((event: Event, ind) => {
+
+            let userGeo: GeoCoord = {
+              latitude: result.visueltcenter[1],
+              longitude: result.visueltcenter[0]
+            };
+
+            if (event.geoCoord) {
+
+              let meters = this.haversineService.getDistanceInMeters(event.geoCoord, userGeo);
+              event.distance = (meters / 1000).toFixed(1);
+              console.log({ meters, zip: event.address.zip, eventgeo:event.geoCoord });
+            }
+          });
+
+
       // this.events.splice(0, 1);
+      console.log('events before', this.events);
       if (this.events.length > 0) {
         this.dataSource = new MatTableDataSource(this.events);
+        console.log('events', this.events);
+        console.log('data source', this.dataSource);
         this.dataSource.filterPredicate = this.customFilterPredicate();
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -80,8 +126,13 @@ export class EventListComponent implements OnInit {
         this.spinner.hide();
         // observer.unsubscribe();
       }
+
+        });
+
+      });
+
+
     }, (error) => {
-      
     });
 
     this.subscription = this.tfs.getEvent().subscribe(filter => { this.applyFilter(filter) });
@@ -205,11 +256,8 @@ export class EventListComponent implements OnInit {
 
   customFilterPredicate() {
     return function (data: EventData, filter: string): boolean {
-      
-      let searchString = JSON.parse(filter);
-      
-
-      let isAccepted: boolean = true;
+    let searchString = JSON.parse(filter);
+    let isAccepted: boolean = true;
 
       
       
@@ -228,6 +276,21 @@ export class EventListComponent implements OnInit {
 
       if (searchString.category !== undefined) {
         if (data.category.trim().indexOf(searchString.category) === -1) {
+          isAccepted = false;
+        }
+      }
+      let tempDist;
+      let filtDist = parseFloat(searchString.distance);
+
+      if (data.distance === undefined) {
+        tempDist = 100;
+      } else {
+        tempDist = parseFloat(data.distance);
+      }
+
+
+      if (filtDist !== undefined) {
+        if (tempDist > filtDist) {
           isAccepted = false;
         }
       }

@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { User } from '../entity/user/user';
 import { WallService } from '../wall.service';
 import { ToastrService } from 'ngx-toastr';
+import { GeoCoord } from 'ng2-haversine';
 
 export interface DialogData {
   animal: string;
@@ -39,6 +40,7 @@ export class CreateNewEventComponent implements OnInit {
   isTransferingMoney = false;
 
   apiZipValue = "By";
+  geoCoord: GeoCoord;
   lookupCity;
 
   isPreviewing = false;
@@ -144,6 +146,7 @@ export class CreateNewEventComponent implements OnInit {
       this.apiZipValue, this.firstFormGroup.value.eventLocationZip);
     event.category = this.firstFormGroup.value.eventCategory;
     event.description = this.firstFormGroup.value.eventDescription;
+    event.geoCoord = this.geoCoord;
 
     event.dateStart = this.thirdFormGroup.value.eventDate.toString();
     event.deadlineDate = this.thirdFormGroup.value.eventDeadlineDate.toString();
@@ -189,8 +192,14 @@ export class CreateNewEventComponent implements OnInit {
   }
 
   lookUpZip(event) {
-    if ((event.target.value as string).length > 3) {
-      this.geoAPI.getZipFromCity(event.target.value).map(response => response.json()).subscribe(result => this.apiZipValue = result.navn);
+    if ( (event.target.value as string).length > 3 ) {
+      this.geoAPI.getZipFromCity(event.target.value).map(response => response.json()).subscribe(result => {
+        this.geoCoord = {
+          latitude: result.visueltcenter[1],
+          longitude: result.visueltcenter[0]
+        };
+        this.apiZipValue = result.navn;
+      });
     }
   }
 

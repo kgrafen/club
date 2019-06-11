@@ -96,6 +96,7 @@ import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
 import { EventsModule } from './events/events.module';
 import { LibModule } from './lib/lib.module';
+import { HaversineService } from "ng2-haversine";
 
 // Translate loader factory
 export function HttpLoaderFactory(http: HttpClient) {
@@ -201,7 +202,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   exports: [HttpClientModule, HttpModule],
-  providers: [AuthGuard, HttpClientModule, HttpModule,
+  providers: [AuthGuard, HttpClientModule, HttpModule, HaversineService,
     {provide: MAT_DATE_LOCALE, useValue: 'da-DK'}],
   bootstrap: [AppComponent]
 })
