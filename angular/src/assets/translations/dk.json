@@ -245,6 +245,41 @@
         }
     },    
     "COMPONENTS": {
+        "FORM_VALIDATION": {
+            "ERROR_MESSAGES": {
+                "EVENT_NAME": "Titel må ikke være mere end 50 tegn",
+                "REQUIRED": "Dette felt er obligatorisk"
+            }
+        },
+        "NEW_EVENT": {
+            "WHAT_AND_WHERE_STEP": {
+                "TITLE": "Opret nyt event",
+                "NAME_LABEL": "Titel",
+                "DESCRIPTION_LABEL": "Beskrivelse",
+                "DESCRIPTION_TOOLTIP": "Du kan trække nede i højre hjørne for at forstørre tekstfeltet",
+                "CATEGORY_LABEL": "Kategori",
+                "CATEGORIES": {
+                    "OTHER": "Andet",
+                    "HOME": "Hjemmehygge",
+                    "PRIVATE_PARTY": "Fest i privathjem",
+                    "OUTDOOR_PARTY": "Fest uden for privaten",
+                    "FOR_KIDS": "For børn",
+                    "RESTAURANT": "Spis sammen på restaurant",
+                    "MOVIES": "Biograf",
+                    "NATURE": "Naturoplevelse",
+                    "VACATION": "Ferie",
+                    "CONCERT": "Koncert",
+                    "CULTURE_EVENT": "Kultur",
+                    "SPORT_EVENT": "Sport"
+                },
+                "ADDRESS_LABEL": "Adresse",
+                "STREET_LABEL": "Vej",
+                "ZIP_LABEL": "Post Nr.",
+                "CITY_LABEL": "By",
+                "CITY_TOOLTIP": "Dette felt udfyldes automatisk",
+                "HOME_ADDRESS_CHECKBOX": "Vælg din hjemmeadresse"
+            }
+        },
         "USER_INFO": {
             "EMAIL": "Email",
             "PASSWORD": "Adgangskode",

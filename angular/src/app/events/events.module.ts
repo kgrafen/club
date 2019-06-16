@@ -6,10 +6,23 @@ import { EventListComponent } from './event-list/event-list.component';
 import { EventFilterComponent } from './event-filter/event-filter.component';
 import { EventControlMenuComponent } from './event-control-menu/event-control-menu.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { MatFormFieldModule, MatTableModule, MatPaginatorModule, MatOptionModule, MatSelectModule, MatSliderModule, MatCardModule, MatInputModule, MatButtonModule, MatGridListModule } from '@angular/material';
+import { MatFormFieldModule, 
+         MatTableModule, 
+         MatPaginatorModule, 
+         MatOptionModule, 
+         MatSelectModule, 
+         MatSliderModule, 
+         MatCardModule,
+         MatInputModule, 
+         MatButtonModule, 
+         MatGridListModule, 
+         MatCheckboxModule, 
+         MatTooltipModule
+        } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { LibModule } from '../lib/lib.module';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -36,7 +49,10 @@ import { LibModule } from '../lib/lib.module';
     MatInputModule,
     MatButtonModule,
     MatGridListModule,
+    MatCheckboxModule,
+    MatTooltipModule,
     AngularFontAwesomeModule,
+    TranslateModule,
   ],
   exports: [
     EventsComponent,

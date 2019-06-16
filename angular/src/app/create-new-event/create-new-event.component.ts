@@ -13,6 +13,7 @@ import { User } from '../entity/user/user';
 import { WallService } from '../wall.service';
 import { ToastrService } from 'ngx-toastr';
 import { GeoCoord } from 'ng2-haversine';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface DialogData {
   animal: string;
@@ -38,6 +39,7 @@ export class CreateNewEventComponent implements OnInit {
   displayMobilePayInput = false;
   displayAccountNumberInput = false;
   isTransferingMoney = false;
+  categories: any;
 
   apiZipValue = "By";
   geoCoord: GeoCoord;
@@ -58,7 +60,18 @@ export class CreateNewEventComponent implements OnInit {
     public dialogRef: MatDialogRef<CreateNewEventComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Event,
     private _formBuilder: FormBuilder, private geoAPI: GeoCodingApiService,
-    private ws: WallService, private toast: ToastrService) { }
+    private ws: WallService, private toast: ToastrService,
+    private translateService: TranslateService,
+    ) {
+      this.translateService.get("COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.CATEGORIES").subscribe(values => {
+        this.categories = Object.keys(values).map(function(key) {
+          return Object.create({
+            value: key.toLowerCase(),
+            name: values[key]
+          })
+        });
+      });
+    }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({

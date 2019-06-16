@@ -16,18 +16,7 @@
             <fa name="tag"></fa> Kategori
           </mat-label>
           <mat-select formControlName="eventCategory" name="eventCategory" placeholder="Vælg emne" required>
-            <mat-option value="Andet">Andet</mat-option>
-            <mat-option value="Hjemmehygge">Hjemmehygge</mat-option>
-            <mat-option value="Fest i privathjem">Fest i privathjem</mat-option>
-            <mat-option value="Fest uden for privaten">Fest uden for privaten</mat-option>
-            <mat-option value="For børn">For børn</mat-option>
-            <mat-option value="Spis sammen på restaurant">Spis sammen på restaurant</mat-option>
-            <mat-option value="Biograf">Biograf</mat-option>
-            <mat-option value="Naturoplevelse">Naturoplevelse</mat-option>
-            <mat-option value="Ferie">Ferie</mat-option>
-            <mat-option value="Koncert">Koncert</mat-option>
-            <mat-option value="Kultur">Kultur</mat-option>
-            <mat-option value="Sport">Sport</mat-option>
+            <mat-option *ngFor="let category of categories" [value]="category.value">{{category.name}}</mat-option>
           </mat-select>
         </mat-form-field>
 

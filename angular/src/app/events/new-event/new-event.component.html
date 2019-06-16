@@ -1,9 +1,8 @@
 
-<form [formGroup]="newEventFormGroup">
-  <ng-template matStepLabel>Hvad & Hvor</ng-template>
-  <h2>Opret nyt event</h2>
+<form [formGroup]="newEventFormGroup" *ngIf="(user$ | async) as user">
+  <h2>{{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.TITLE' | translate}}</h2>
   <mat-form-field>
-    <input matInput placeholder="Titel" formControlName="eventName" required>
+    <input matInput placeholder="{{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.TITLE' | translate}}" formControlName="eventName" maxlength="50" required>
     <mat-error *ngIf="eventName.errors">
       <div *ngIf="eventName.errors.required">
         {{errors.required}}
@@ -14,8 +13,9 @@
     </mat-error>
   </mat-form-field>
   <mat-form-field>
-    <textarea formControlName="eventDescription" matInput placeholder="Beskrivelse" rows="3"
-      matTooltip="Du kan trække nede i højre hjørne for at forstørre tekstfeltet"
+    <textarea formControlName="eventDescription" matInput 
+      placeholder="{{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.DESCRIPTION_LABEL' | translate}}" rows="3"
+      matTooltip="{{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.DESCRIPTION_TOOLTIP' | translate}}"
       aria-label="Button that displays a tooltip when focused or hovered over" required></textarea>
       <mat-error>
         {{errors.required}}
@@ -23,35 +23,34 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label>
-      <fa name="tag"></fa> Kategori
+      <fa name="tag"></fa>{{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.CATEGORY_LABEL' | translate}}
     </mat-label>
-    <mat-select formControlName="eventCategory" name="eventCategory" placeholder="Vælg emne" required>
-      <mat-option value="Andet">Andet</mat-option>
-      <mat-option value="Hjemmehygge">Hjemmehygge</mat-option>
-      <mat-option value="Fest i privathjem">Fest i privathjem</mat-option>
-      <mat-option value="Fest uden for privaten">Fest uden for privaten</mat-option>
-      <mat-option value="For børn">For børn</mat-option>
-      <mat-option value="Spis sammen på restaurant">Spis sammen på restaurant</mat-option>
-      <mat-option value="Biograf">Biograf</mat-option>
-      <mat-option value="Naturoplevelse">Naturoplevelse</mat-option>
-      <mat-option value="Ferie">Ferie</mat-option>
-      <mat-option value="Koncert">Koncert</mat-option>
-      <mat-option value="Kultur">Kultur</mat-option>
-      <mat-option value="Sport">Sport</mat-option>
+    <mat-select 
+      formControlName="eventCategory" 
+      name="eventCategory" 
+      required
+    >
+      <mat-option *ngFor="let category of categories" [value]="category.value">{{category.name}}</mat-option>
     </mat-select>
     <mat-error>
       {{errors.required}}
     </mat-error>
   </mat-form-field>
   <mat-label>
-    <fa name="home"></fa> Adresse
+    <fa name="home"></fa>{{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.ADDRESS_LABEL' | translate}}
   </mat-label>
 
   <mat-grid-list cols="3" rowHeight="70px">
     <mat-grid-tile>
       <mat-form-field>
-        <mat-label>Vej</mat-label>
-        <input matInput formControlName="eventLocationStreet" placeholder="Vej" required>
+        <mat-label>{{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.STREET_LABEL' | translate}}</mat-label>
+        <input 
+          (keyup)="homeAddressSelected = false"
+          matInput 
+          formControlName="eventLocationStreet" 
+          placeholder="{{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.STREET_LABEL' | translate}}" 
+          required
+        >
         <mat-error>
           {{errors.required}}
         </mat-error>
@@ -59,8 +58,14 @@
     </mat-grid-tile>
     <mat-grid-tile>
       <mat-form-field>
-        <mat-label>Post Nr.</mat-label>
-        <input (keyup)="lookUpZip($event)" matInput formControlName="eventLocationZip" placeholder="#" required>
+        <mat-label>{{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.ZIP_LABEL' | translate}}</mat-label>
+        <input 
+          (keyup)="lookUpZipFromInput($event); homeAddressSelected = false;" 
+          matInput 
+          formControlName="eventLocationZip" 
+          placeholder="#" 
+          required
+        >
         <mat-error>
           {{errors.required}}
         </mat-error>
@@ -70,14 +75,26 @@
     <mat-grid-tile>
       <mat-form-field>
         <mat-label>{{apiZipValue}}</mat-label>
-        <input matInput formControlName="eventLocationCity" placeholder="By" readonly
-          matTooltip="Dette felt udfyldes automatisk">
+        <input 
+          matInput formControlName="eventLocationCity" 
+          placeholder="{{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.CITY_LABEL' | translate}}" 
+          matTooltip="{{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.CITY_TOOLTIP' | translate}}"
+          readonly
+        >
           <mat-error>
             {{errors.required}}
           </mat-error>
       </mat-form-field>
     </mat-grid-tile>
   </mat-grid-list>
+
+  <mat-checkbox 
+    (change)="insertHomeAddress($event, user)" 
+    [(ngModel)]="homeAddressSelected" 
+    [ngModelOptions]="{standalone: true}"
+  >
+    {{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.HOME_ADDRESS_CHECKBOX' | translate}}
+  </mat-checkbox>
 
   <div class="buttons">
     <button mat-raised-button color="primary" [disabled]="!newEventFormGroup.valid" (click)="fillDetails()" matStepperNext>Udfyld detaljerne</button>
