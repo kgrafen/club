@@ -16,11 +16,13 @@ import { MatFormFieldModule,
          MatInputModule, 
          MatButtonModule, 
          MatGridListModule, 
-         MatCheckboxModule 
+         MatCheckboxModule, 
+         MatTooltipModule
         } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { LibModule } from '../lib/lib.module';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { LibModule } from '../lib/lib.module';
     MatButtonModule,
     MatGridListModule,
     MatCheckboxModule,
+    MatTooltipModule,
     AngularFontAwesomeModule,
+    TranslateModule,
   ],
   exports: [
     EventsComponent,

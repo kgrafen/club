@@ -10,6 +10,7 @@ import { Event } from 'src/app/entity/event/event.model';
 import { EventAddress } from 'src/app/entity/helper/EventAddress';
 import { CreateNewEventComponent } from 'src/app/create-new-event/create-new-event.component';
 import { GeoCoord } from 'ng2-haversine';
+import { TranslateService } from '@ngx-translate/core';
 
 export const errorMessages: { [key: string]: string } = {
   eventName: 'Titel må ikke være mere end 50 tegn',
@@ -24,13 +25,15 @@ export const errorMessages: { [key: string]: string } = {
 export class NewEventComponent implements OnInit {
 
   newEventFormGroup: FormGroup;
-  apiZipValue = "By";
+  apiZipValue;
   event: Event;
   geoCoord: GeoCoord;
   errors = errorMessages;
   userInsertedAddress: any;
   homeAddressSelected: boolean;
-  user$;
+  categories: any;
+  errorMessages
+  user$: any;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -41,8 +44,22 @@ export class NewEventComponent implements OnInit {
     private authService: AuthService,
     public dialogRef: MatDialogRef<NewEventComponent>,
     public dialog: MatDialog,
+    private translateService: TranslateService
   ) {
     this.user$ = this.userService.getUserByID(this.authService.afAuth.auth.currentUser.uid);
+
+    this.translateService.get("COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.CATEGORIES").subscribe(values => {
+      this.categories = Object.keys(values).map(function(key) {
+        return Object.create({
+          value: key.toLowerCase(),
+          name: values[key]
+        })
+      });
+    });
+
+    this.errorMessages = this.translateService.instant("COMPONENTS.FORM_VALIDATION.ERROR_MESSAGES");
+    console.log({err: this.errorMessages})
+    this.apiZipValue = this.translateService.instant("COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.CITY_LABEL");
   }
 
   // @ViewChild('title') nameInput: MatInput;
