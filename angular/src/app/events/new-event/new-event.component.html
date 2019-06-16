@@ -1,9 +1,9 @@
 
-<form [formGroup]="newEventFormGroup">
+<form [formGroup]="newEventFormGroup" *ngIf="(user$ | async) as user">
   <ng-template matStepLabel>Hvad & Hvor</ng-template>
   <h2>Opret nyt event</h2>
   <mat-form-field>
-    <input matInput placeholder="Titel" formControlName="eventName" required>
+    <input matInput placeholder="Titel" formControlName="eventName" maxlength="50" required>
     <mat-error *ngIf="eventName.errors">
       <div *ngIf="eventName.errors.required">
         {{errors.required}}
@@ -25,7 +25,12 @@
     <mat-label>
       <fa name="tag"></fa> Kategori
     </mat-label>
-    <mat-select formControlName="eventCategory" name="eventCategory" placeholder="Vælg emne" required>
+    <mat-select 
+      formControlName="eventCategory" 
+      name="eventCategory" 
+      placeholder="Vælg emne" 
+      required
+    >
       <mat-option value="Andet">Andet</mat-option>
       <mat-option value="Hjemmehygge">Hjemmehygge</mat-option>
       <mat-option value="Fest i privathjem">Fest i privathjem</mat-option>
@@ -51,7 +56,9 @@
     <mat-grid-tile>
       <mat-form-field>
         <mat-label>Vej</mat-label>
-        <input matInput formControlName="eventLocationStreet" placeholder="Vej" required>
+        <input 
+          (keyup)="homeAddressSelected = false"
+          matInput formControlName="eventLocationStreet" placeholder="Vej" required>
         <mat-error>
           {{errors.required}}
         </mat-error>
@@ -60,7 +67,8 @@
     <mat-grid-tile>
       <mat-form-field>
         <mat-label>Post Nr.</mat-label>
-        <input (keyup)="lookUpZip($event)" matInput formControlName="eventLocationZip" placeholder="#" required>
+        <input 
+          (keyup)="lookUpZip($event); homeAddressSelected = false;" matInput formControlName="eventLocationZip" placeholder="#" required>
         <mat-error>
           {{errors.required}}
         </mat-error>
@@ -78,6 +86,14 @@
       </mat-form-field>
     </mat-grid-tile>
   </mat-grid-list>
+
+  <mat-checkbox 
+    (change)="insertHomeAddress($event, user)" 
+    [(ngModel)]="homeAddressSelected" 
+    [ngModelOptions]="{standalone: true}"
+  >
+    Vælg din hjemmeadresse
+  </mat-checkbox>
 
   <div class="buttons">
     <button mat-raised-button color="primary" [disabled]="!newEventFormGroup.valid" (click)="fillDetails()" matStepperNext>Udfyld detaljerne</button>

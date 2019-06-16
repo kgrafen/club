@@ -28,6 +28,9 @@ export class NewEventComponent implements OnInit {
   event: Event;
   geoCoord: GeoCoord;
   errors = errorMessages;
+  userInsertedAddress: any;
+  homeAddressSelected: boolean;
+  user$;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -38,11 +41,14 @@ export class NewEventComponent implements OnInit {
     private authService: AuthService,
     public dialogRef: MatDialogRef<NewEventComponent>,
     public dialog: MatDialog,
-    ) { }
+  ) {
+    this.user$ = this.userService.getUserByID(this.authService.afAuth.auth.currentUser.uid);
+  }
 
   // @ViewChild('title') nameInput: MatInput;
 
   ngOnInit() {
+
     this.newEventFormGroup = this._formBuilder.group({
       eventName: ['', [Validators.required, Validators.maxLength(50)]],
       eventDescription: ['', Validators.required],
@@ -56,25 +62,25 @@ export class NewEventComponent implements OnInit {
 
   get eventName() {
     return this.newEventFormGroup.get('eventName');
- }
+  }
 
   onSubmitEvent() {
 
     if (this.newEventFormGroup.valid) {
-      
 
-          let observer = this.userService.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe( (userSnapshot:any) => {
-            const e = this.formDataToModel(userSnapshot);
-            this.eventService.insertEvent(e).then( (thenableRef) => {
-              let key = thenableRef.path.pieces_[1];
-              this.wallService.insertWall( {fk_event: key, posts: {} } );
-            });
-            // this.userService.updateUser({numberOfEventsHosted: userSnapshot.numberOfEventsHosted + 1}, this.authService.afAuth.auth.currentUser.uid).then( () => {
-            //   observer.unsubscribe();
-            //   });
-            });
+
+      this.user$.subscribe((userSnapshot: any) => {
+        const e = this.formDataToModel(userSnapshot);
+        this.eventService.insertEvent(e).then((thenableRef) => {
+          let key = thenableRef.path.pieces_[1];
+          this.wallService.insertWall({ fk_event: key, posts: {} });
+        });
+        // this.userService.updateUser({numberOfEventsHosted: userSnapshot.numberOfEventsHosted + 1}, this.authService.afAuth.auth.currentUser.uid).then( () => {
+        //   observer.unsubscribe();
+        //   });
+      });
     } else {
-      
+
       // validate all form fields
     }
 
@@ -89,17 +95,17 @@ export class NewEventComponent implements OnInit {
     //     });
     //   });
   }
-  
+
   formDataToModel(userSnapshot?): Event {
 
     const event = new Event({});
 
     event.name = this.newEventFormGroup.value.eventName;
-    event.address = new EventAddress(this.newEventFormGroup.value.eventLocationStreet, 
-                    this.apiZipValue, this.newEventFormGroup.value.eventLocationZip);
+    event.address = new EventAddress(this.newEventFormGroup.value.eventLocationStreet,
+      this.apiZipValue, this.newEventFormGroup.value.eventLocationZip);
     event.category = this.newEventFormGroup.value.eventCategory;
     event.description = this.newEventFormGroup.value.eventDescription;
-    
+
     event.geoCoord = this.geoCoord;
 
     event.dateStart = Date.now().toString();
@@ -126,7 +132,7 @@ export class NewEventComponent implements OnInit {
     // event.queue = this.newEventFormGroup.value.eventQueue;
     // event.targetGroup = this.newEventFormGroup.value.eventTargetGroup;
 
-    if(userSnapshot) event.participants = [{username: userSnapshot.username}];
+    if (userSnapshot) event.participants = [{ username: userSnapshot.username }];
 
     event.host = this.authService.afAuth.auth.currentUser.uid;
 
@@ -147,7 +153,7 @@ export class NewEventComponent implements OnInit {
 
 
   lookUpZip(event) {
-    if ( (event.target.value as string).length > 3 ) {
+    if ((event.target.value as string).length > 3) {
       this.geoAPI.getZipFromCity(event.target.value).map(response => response.json()).subscribe(result => {
         this.geoCoord = {
           latitude: result.visueltcenter[1],
@@ -166,6 +172,28 @@ export class NewEventComponent implements OnInit {
       data: this.formDataToModel()
       // disableClose: true
     });
+  }
+
+  insertHomeAddress(event, user) {
+
+    if (event.checked) {
+      this.userInsertedAddress = {
+        street: this.newEventFormGroup.get('eventLocationStreet').value,
+        zip: this.newEventFormGroup.get('eventLocationZip').value,
+        city: this.apiZipValue
+      }
+      this.newEventFormGroup.patchValue({
+        eventLocationStreet: user.address.street,
+        eventLocationZip: user.address.zip,
+      });
+      this.apiZipValue = user.address.city;
+    } else {
+      this.newEventFormGroup.patchValue({
+        eventLocationStreet: this.userInsertedAddress.street,
+        eventLocationZip: this.userInsertedAddress.zip,
+      });
+      this.apiZipValue = this.userInsertedAddress.city;
+    }
   }
 
 }
