@@ -58,7 +58,6 @@ export class NewEventComponent implements OnInit {
     });
 
     this.errorMessages = this.translateService.instant("COMPONENTS.FORM_VALIDATION.ERROR_MESSAGES");
-    console.log({err: this.errorMessages})
     this.apiZipValue = this.translateService.instant("COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.CITY_LABEL");
   }
 
@@ -169,10 +168,14 @@ export class NewEventComponent implements OnInit {
   }
 
 
-  lookUpZip(event) {
-    if ((event.target.value as string).length > 3) {
-      this.geoAPI.getZipFromCity(event.target.value).map(response => response.json()).subscribe(result => {
-        this.geoCoord = {
+  lookUpZipFromInput(event) {
+    this.lookUpZip(event.target.value);
+  }
+  
+  lookUpZip(zip) {
+    if ((zip as string).length > 3) {
+      this.geoAPI.getZipFromCity(zip).map(response => response.json()).subscribe(result => {
+      this.geoCoord = {
           latitude: result.visueltcenter[1],
           longitude: result.visueltcenter[0]
         };
@@ -203,7 +206,7 @@ export class NewEventComponent implements OnInit {
         eventLocationStreet: user.address.street,
         eventLocationZip: user.address.zip,
       });
-      this.apiZipValue = user.address.city;
+      this.lookUpZip(user.address.zip);
     } else {
       this.newEventFormGroup.patchValue({
         eventLocationStreet: this.userInsertedAddress.street,

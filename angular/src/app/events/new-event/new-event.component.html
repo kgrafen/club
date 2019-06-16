@@ -60,7 +60,7 @@
       <mat-form-field>
         <mat-label>{{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.ZIP_LABEL' | translate}}</mat-label>
         <input 
-          (keyup)="lookUpZip($event); homeAddressSelected = false;" 
+          (keyup)="lookUpZipFromInput($event); homeAddressSelected = false;" 
           matInput 
           formControlName="eventLocationZip" 
           placeholder="#" 
