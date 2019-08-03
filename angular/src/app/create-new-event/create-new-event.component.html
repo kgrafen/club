@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-horizontal-stepper [linear]="isLinear" #stepper  (selectionChange)="onNextStep($event)">
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Hvad & Hvor</ng-template>
@@ -48,7 +48,7 @@
         </mat-grid-list>
 
         <div>
-          <button mat-raised-button color="primary" matStepperNext>Næste</button>
+          <button mat-raised-button color="primary" matStepperNext [disabled]="!firstFormGroup.valid">Næste</button>
         </div>
       </form>
     </mat-step>
@@ -57,18 +57,13 @@
         <ng-template matStepLabel>Målgruppe</ng-template>
         <mat-label>Kønsfordeling</mat-label> <br>
         <mat-radio-group formControlName="eventGender">
-          <mat-radio-button name="eventGender" value="Kun for mænd">Kun for mænd</mat-radio-button>
-          <mat-radio-button name="eventGender" value="Kun for kvinder">Kun for kvinder</mat-radio-button>
-          <mat-radio-button name="eventGender" value="50/50">50/50</mat-radio-button>
-          <mat-radio-button name="eventGender" value="Først til mølle">Først til mølle</mat-radio-button>
+          <mat-radio-button *ngFor="let option of genderOptions" name="eventGender" [value]="option.value">{{option.name}}</mat-radio-button>
         </mat-radio-group>
 
         <br>
         <mat-label>Børn</mat-label> <br>
         <mat-radio-group formControlName="eventTargetGroup">
-          <mat-radio-button name="eventTargetGroup" value="Kun med børn">Kun med børn</mat-radio-button>
-          <mat-radio-button name="eventTargetGroup" value="Kun uden børn">Kun uden børn</mat-radio-button>
-          <mat-radio-button name="eventTargetGroup" value="Børn velkomne">Børn velkomne</mat-radio-button>
+          <mat-radio-button *ngFor="let option of childrenOptions" name="eventTargetGroup" [value]="option.value">{{option.name}}</mat-radio-button>
         </mat-radio-group>
 
 
@@ -78,7 +73,7 @@
           <mat-grid-tile>
             <mat-form-field>
               <mat-label>Fra</mat-label>
-              <input matInput type="number" min="18" max="98" formControlName="eventMinAge" placeholder="18" required>
+              <input matInput type="number" min="18" max="98" formControlName="eventMinAge" placeholder="18">
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile>
@@ -109,13 +104,12 @@
 
         <mat-label>Tving på venteliste?</mat-label> <br>
         <mat-radio-group formControlName="eventQueue">
-          <mat-radio-button value="Ja">Ja</mat-radio-button>
-          <mat-radio-button value="Nej">Nej</mat-radio-button>
+          <mat-radio-button *ngFor="let option of waitingListOptions" name="eventQueue" [value]="option.value">{{option.name}}</mat-radio-button>
         </mat-radio-group>
 
         <div>
           <button mat-button matStepperPrevious>Tilbage</button>
-          <button mat-raised-button color="primary" matStepperNext>Næste</button>
+          <button mat-raised-button color="primary" matStepperNext [disabled]="!secondFormGroup.valid">Næste</button>
         </div>
       </form>
     </mat-step>
@@ -124,7 +118,7 @@
         <ng-template matStepLabel>Tidspunkt</ng-template>
         <label>Dato for eventet</label> <br>
         <mat-form-field>
-          <input [(ngModel)]="maxRegistrationDate" [min]="minDate" [max]="maxDate"
+          <input [min]="minDate" [max]="maxDate"
             matTooltip="Klik på kalendar-ikonet for at vælge dato" matInput [matDatepicker]="picker"
             formControlName="eventDate" placeholder="DD/MM/YYYY">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -164,7 +158,7 @@
 
         <div>
           <button mat-button matStepperPrevious>Tilbage</button>
-          <button mat-raised-button color="primary" matStepperNext>Næste</button>
+          <button mat-raised-button color="primary" matStepperNext [disabled]="!thirdFormGroup.valid">Næste</button>
         </div>
       </form>
     </mat-step>
@@ -173,8 +167,8 @@
         <ng-template matStepLabel>Pris & Betaling</ng-template>
         <mat-form-field>
           <mat-label>Pris</mat-label>
-          <input (change)="onPriceEnter($event.target.value)" type="number" matInput placeholder="DKK,-"
-            formControlName="eventPrice" required>
+          <input (keyup)="onPriceEnter($event.target.value)" (change)="onPriceEnter($event.target.value)" type="number" matInput placeholder="DKK,-"
+            formControlName="eventPrice">
         </mat-form-field>
 
         <mat-form-field *ngIf="hasPrice">
@@ -182,7 +176,7 @@
             <fa name="tag"></fa> Betalingsform
           </mat-label>
           <mat-select (selectionChange)="onPaymentOptionChange($event.value)" formControlName="eventPaymentOption"
-            name="eventPaymentOption" placeholder="Vælg emne" required>
+            name="eventPaymentOption" placeholder="Vælg emne">
             <mat-option value="Kontant">Kontant</mat-option>
             <mat-option value="Mobilepay">Mobilepay</mat-option>
             <mat-option value="Bankoverførelse">Bankoverførelse</mat-option>
@@ -194,7 +188,7 @@
             <fa name="tag"></fa> Hvornår betales der
           </mat-label>
           <mat-select (selectionChange)="onWhenPayChange($event.value)" name="eventPaymentDue"
-            formControlName="eventPaymentDue" placeholder="Vælg emne" required>
+            formControlName="eventPaymentDue" placeholder="Vælg emne">
             <mat-option value="Efter en gæst tilmelder sig">Efter en gæst tilmelder sig</mat-option>
             <mat-option hidden value="Kontant ved ankomst på dagen">Kontant ved ankomst på dagen</mat-option>
             <mat-option value="Dato">Dato</mat-option>
@@ -204,7 +198,7 @@
         <label *ngIf="displayMobilePayInput">Mobilepay</label> <br>
         <mat-form-field *ngIf="displayMobilePayInput">
           <input (change)="phoneValidation($event.target.value)" matInput formControlName="eventMobilePayNumber"
-            pattern="[0-9]" placeholder="Mobilnummer">
+            pattern="[0-9]*" placeholder="Mobilnummer">
         </mat-form-field>
 
         <label *ngIf="displayAccountNumberInput">Kontonummer</label> <br>
@@ -222,12 +216,12 @@
 
         <div>
           <button mat-button matStepperPrevious>Tilbage</button>
-          <button mat-raised-button color="primary" matStepperNext>Næste</button>
+          <button mat-raised-button color="primary" matStepperNext [disabled]="!fourthFormGroup.valid">Næste</button>
         </div>
       </form>
     </mat-step>
 
-    <mat-step [stepControl]="fifthFormGroup">
+    <mat-step [stepControl]="fifthFormGroup" *ngIf="false">
       <form [formGroup]="fifthFormGroup">
         <ng-template matStepLabel>Billede</ng-template>
         <mat-card>
@@ -238,7 +232,7 @@
 
       <div>
         <button mat-button matStepperPrevious>Tilbage</button>
-        <button (click)="displayPreview()" mat-raised-button color="primary" matStepperNext>Næste</button>
+        <button (click)="displayPreview()" mat-raised-button color="primary" matStepperNext [disabled]="!fifthFormGroup.valid">Næste</button>
       </div>
     </mat-step>
 

@@ -51,11 +51,42 @@ import { RoutingModule, routingModule } from './routing.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Material and animation
-import {MatButtonModule, MatNativeDateModule, MatCheckboxModule, MatProgressBarModule, MatCard, MatCardModule, MatListModule, MatIconModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatChipsModule, MatSelectModule, MatGridListModule, MatSliderModule, MatSlideToggleModule, MatSortModule, MatTableModule, MatPaginatorModule, MatMenuModule, MatToolbarModule, MatTooltipModule, MatDialogModule, MatRadioModule, MatStepperModule, MatBadgeModule, MAT_DATE_LOCALE} from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MatButtonModule,
+  MatNativeDateModule,
+  MatCheckboxModule,
+  MatProgressBarModule,
+  MatCardModule,
+  MatListModule,
+  MatIconModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatChipsModule,
+  MatSelectModule,
+  MatGridListModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSortModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatMenuModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatDialogModule,
+  MatRadioModule,
+  MatStepperModule,
+  MatBadgeModule,
+  MAT_DATE_LOCALE,
+  MAT_DATE_FORMATS,
+  MatDatepickerModule,
+  MatTabsModule,
+  DateAdapter,
+  NativeDateAdapter
+} from '@angular/material';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatDatepickerModule} from '@angular/material/datepicker';
 
 // Modal gallery
 import 'mousetrap'; // <------ mandatory dependency for angular-modal-gallery
@@ -100,7 +131,37 @@ import { HaversineService } from "ng2-haversine";
 
 // Translate loader factory
 export function HttpLoaderFactory(http: HttpClient) {
-    return new TranslateHttpLoader(http, './assets/translations/', '.json');
+  return new TranslateHttpLoader(http, './assets/translations/', '.json');
+}
+
+
+export const MY_FORMATS = {
+  parse: {
+      dateInput: { month: 'short', year: 'numeric', day: 'numeric' },
+  },
+  display: {
+      dateInput: 'input',
+      monthYearLabel: { year: 'numeric', month: 'numeric' },
+      dateA11yLabel: { year: 'numeric', month: 'long', day: 'numeric' },
+      monthYearA11yLabel: { year: 'numeric', month: 'long' },
+  }
+};
+
+export class AppDateAdapter extends NativeDateAdapter {
+
+  format(date: Date, displayFormat: Object): string {
+
+      if (displayFormat === 'input') {
+
+          const day = date.getDate();
+          const month = date.getMonth() + 1;
+          const year = date.getFullYear();
+
+          return `${day}/${month}/${year}`;
+      }
+
+      return date.toDateString();
+  }
 }
 
 @NgModule({
@@ -194,16 +255,23 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpModule,
     HttpClientModule,
     TranslateModule.forRoot({
-        loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-        }
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
     })
   ],
   exports: [HttpClientModule, HttpModule],
-  providers: [AuthGuard, HttpClientModule, HttpModule, HaversineService,
-    {provide: MAT_DATE_LOCALE, useValue: 'da-DK'}],
+  providers: [
+    AuthGuard,
+    HttpClientModule,
+    HttpModule,
+    HaversineService,
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_LOCALE, useValue: 'da-DK' }
+  ],
   bootstrap: [AppComponent]
 })
 
