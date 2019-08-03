@@ -14,6 +14,7 @@ import { WallService } from '../wall.service';
 import { ToastrService } from 'ngx-toastr';
 import { GeoCoord } from 'ng2-haversine';
 import { TranslateService } from '@ngx-translate/core';
+import { nameValueDictionaryFromObject } from '../events/new-event/new-event.component';
 
 export interface DialogData {
   animal: string;
@@ -40,19 +41,28 @@ export class CreateNewEventComponent implements OnInit {
   displayAccountNumberInput = false;
   isTransferingMoney = false;
   categories: any;
+  genderOptions: any;
+  childrenOptions: any;
+  waitingListOptions: any;
 
   apiZipValue = "By";
   geoCoord: GeoCoord;
   lookupCity;
+  eventData: Event = new Event({});
 
   isPreviewing = false;
   hasPrice = false;
   previews = [];
 
   // Date validation
+  dateNow = new Date();
   minDate = new Date();
   maxDate = new Date(this.minDate.getFullYear() + 1, this.minDate.getMonth(), this.minDate.getDay());
+  eventDate = new Date();
   maxRegistrationDate = new Date();
+  user$: any;
+
+
 
   constructor(
     private efbs: EventFirebaseService, private authService: AuthService,
@@ -63,15 +73,26 @@ export class CreateNewEventComponent implements OnInit {
     private ws: WallService, private toast: ToastrService,
     private translateService: TranslateService,
     ) {
-      this.translateService.get("COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.CATEGORIES").subscribe(values => {
-        this.categories = Object.keys(values).map(function(key) {
-          return Object.create({
-            value: key.toLowerCase(),
-            name: values[key]
-          })
-        });
-      });
-    }
+    
+    this.translateService.get("COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.CATEGORIES").subscribe(values => {
+      this.categories = nameValueDictionaryFromObject(values);
+    });
+
+    this.translateService.get("COMPONENTS.NEW_EVENT.AUDIENCE_STEP.GENDER_OPTIONS").subscribe(values => {
+      this.genderOptions = nameValueDictionaryFromObject(values);
+    });
+
+    this.translateService.get("COMPONENTS.NEW_EVENT.AUDIENCE_STEP.CHILDREN_OPTIONS").subscribe(values => {
+      this.childrenOptions = nameValueDictionaryFromObject(values);
+    });
+
+    this.translateService.get("COMPONENTS.NEW_EVENT.AUDIENCE_STEP.WAITING_LIST_OPTIONS").subscribe(values => {
+      this.waitingListOptions = nameValueDictionaryFromObject(values);
+    });
+
+    this.eventDate.setDate(this.dateNow.getDate() + 7);
+    this.maxRegistrationDate.setDate(this.dateNow.getDate() + 4);
+  }
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
@@ -84,33 +105,40 @@ export class CreateNewEventComponent implements OnInit {
       geoCoord: [this.data.geoCoord, Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
-      eventTargetGroup: ['', Validators.required],
-      eventMinAge: ['', Validators.required],
-      eventMaxAge: ['', Validators.required],
-      eventMinGuests: ['', Validators.required],
-      eventMaxGuests: ['', Validators.required],
-      eventGender: ['', Validators.required],
-      eventQueue: ['', Validators.required]
+      eventTargetGroup: ['any', Validators.required],
+      eventMinAge: ['18', Validators.required],
+      eventMaxAge: ['100', Validators.required],
+      eventMinGuests: ['2', Validators.required],
+      eventMaxGuests: ['8', Validators.required],
+      eventGender: ['any', Validators.required],
+      eventQueue: ['no', Validators.required]
     });
     this.thirdFormGroup = this._formBuilder.group({
-      eventDate: ['', Validators.required],
-      eventStartTime: ['', Validators.required],
-      eventEndTime: ['', Validators.required],
-      eventDeadlineDate: ['', Validators.required],
-      eventDeadlineTime: ['', Validators.required]
+      eventDate: [this.eventDate, Validators.required],
+      eventStartTime: ['13:59', Validators.required],
+      eventEndTime: ['14:53', Validators.required],
+      eventDeadlineDate: [this.maxRegistrationDate, Validators.required],
+      eventDeadlineTime: ['00:00', Validators.required]
     });
     this.fourthFormGroup = this._formBuilder.group({
       eventPrice: ['', Validators.required],
-      eventPaymentOption: ['', Validators.required],
-      eventPaymentDue: ['', Validators.required],
-      eventPaymentDate: ['', Validators.required],
-      eventMobilePayNumber: ['', Validators.required],
-      eventAccountNumber: ['', Validators.required]
+      eventPaymentOption: [''],
+      eventPaymentDue: [''],
+      eventPaymentDate: [''],
+      eventMobilePayNumber: [''],
+      eventAccountNumber: ['']
     });
     this.fifthFormGroup = this._formBuilder.group({
       eventFile: ['', Validators.required],
     });
     this.stepper.selectedIndex = 1;
+  }
+
+  onNextStep(event) {
+    const control = event.previouslySelectedStep.stepControl;
+    if (control) {
+      this.updateEventData(control.value);
+    }
   }
 
   onWhenPayChange(value) {
@@ -127,6 +155,14 @@ export class CreateNewEventComponent implements OnInit {
       this.displayMobilePayInput = true;
       this.isTransferingMoney = true;
       this.displayAccountNumberInput = false;
+
+      this.user$ = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe((user: User) => {
+        this.fourthFormGroup.patchValue({
+          eventMobilePayNumber: user.phone
+        });
+      });
+
+
     } else if (value === 'Bankoverførelse') {
       this.displayAccountNumberInput = true;
       this.isTransferingMoney = true;
@@ -149,6 +185,53 @@ export class CreateNewEventComponent implements OnInit {
       //   observer.unsubscribe();
       //   });
     });
+  }
+
+  updateEventData(newData) {
+
+    this.eventData.name = (newData.eventName !== undefined) ? newData.eventName : this.eventData.name;
+    this.eventData.address = new EventAddress(newData.eventLocationStreet,
+      this.apiZipValue, newData.eventLocationZip);
+    this.eventData.category = (newData.eventCategory !== undefined) ? newData.eventCategory : this.eventData.category;
+    this.eventData.description = (newData.eventDescription !== undefined) ? newData.eventDescription : this.eventData.description;
+    this.eventData.geoCoord = (newData.geoCoord !== undefined) ? newData.geoCoord : this.eventData.geoCoord;
+
+    this.eventData.dateStart = (newData.eventDate !== undefined) ? newData.eventDate : this.eventData.dateStart;
+    this.eventData.deadlineDate = (newData.eventDeadlineDate !== undefined) ? newData.eventDeadlineDate : this.eventData.deadlineDate
+    this.eventData.deadlineTime = (newData.eventDeadlineTime !== undefined) ? newData.eventDeadlineTime : this.eventData.deadlineTime;
+    this.eventData.timeEnd = (newData.eventEndTime !== undefined) ? newData.eventEndTime : this.eventData.timeEnd;
+    this.eventData.timeStart = (newData.eventStartTime !== undefined) ? newData.eventStartTime : this.eventData.timeStart;
+
+    this.eventData.paymentDate = (newData.eventPaymentDate !== undefined) ? newData.eventPaymentDate : this.eventData.paymentDate;
+    this.eventData.paymentDue = (newData.eventPaymentDue !== undefined) ? newData.eventPaymentDue : this.eventData.paymentDue;
+    this.eventData.paymentOption = (newData.eventPaymentOption !== undefined) ? newData.eventPaymentOption : this.eventData.paymentOption;
+    this.eventData.price = (newData.eventPrice !== undefined) ? newData.eventPrice : this.eventData.price;
+    this.eventData.mobilePayNumber = (newData.eventMobilePayNumber !== undefined) ? newData.eventMobilePayNumber : this.eventData.mobilePayNumber;
+    this.eventData.accountNumber = (newData.eventAccountNumber !== undefined) ? newData.eventAccountNumber : this.eventData.accountNumber;
+
+    this.eventData.file = this.fifthFormGroup.value.eventFile;
+
+    this.eventData.genderRatio = (newData.eventGender !== undefined) ? newData.eventGender : this.eventData.genderRatio;
+    // this.eventData.hostRating = userSnapshot.rating;
+    this.eventData.maxAge = (newData.eventMaxAge !== undefined) ? newData.eventMaxAge : this.eventData.maxAge;
+    this.eventData.minAge = (newData.eventMinAge !== undefined) ? newData.eventMinAge : this.eventData.minAge;
+    this.eventData.maxGuests = (newData.eventMaxGuests !== undefined) ? newData.eventMaxGuests : this.eventData.maxGuests;
+    this.eventData.minGuests = (newData.eventMinGuests !== undefined) ? newData.eventMinGuests : this.eventData.minGuests;
+    this.eventData.queue = (newData.eventQueue !== undefined) ? newData.eventQueue : this.eventData.queue;
+    this.eventData.targetGroup = (newData.eventTargetGroup !== undefined) ? newData.eventTargetGroup : this.eventData.targetGroup;
+
+    // this.eventData.participants = [{ username: userSnapshot.username }];
+
+    this.eventData.host = this.authService.afAuth.auth.currentUser.uid;
+
+    if (this.eventData.hostRating === undefined) {
+      this.eventData.hostRating = 0;
+    }
+
+    if (!this.isTransferingMoney) {
+      this.eventData.paymentDue = "Kontant ved ankomst på dagen";
+    }
+
   }
 
   formDataToModel(userSnapshot): Event {
@@ -206,7 +289,7 @@ export class CreateNewEventComponent implements OnInit {
   }
 
   lookUpZip(event) {
-    if ( (event.target.value as string).length > 3 ) {
+    if ((event.target.value as string).length > 3) {
       this.geoAPI.getZipFromCity(event.target.value).map(response => response.json()).subscribe(result => {
         this.geoCoord = {
           latitude: result.visueltcenter[1],
@@ -259,9 +342,7 @@ export class CreateNewEventComponent implements OnInit {
   }
 
   onPriceEnter(eventTargetValue) {
-    if (eventTargetValue > 0) {
-      this.hasPrice = true;
-    }
+    this.hasPrice = eventTargetValue > 0;
   }
 
 }

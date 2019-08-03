@@ -17,6 +17,15 @@ export const errorMessages: { [key: string]: string } = {
   required: 'Dette felt er obligatorisk',
 };
 
+export function nameValueDictionaryFromObject(values: any): any {
+  return Object.keys(values).map(function(key) {
+    return Object.create({
+      value: key.toLowerCase(),
+      name: values[key]
+    })
+  });
+}
+
 @Component({
   selector: 'app-new-event',
   templateUrl: './new-event.component.html',
@@ -49,12 +58,7 @@ export class NewEventComponent implements OnInit {
     this.user$ = this.userService.getUserByID(this.authService.afAuth.auth.currentUser.uid);
 
     this.translateService.get("COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.CATEGORIES").subscribe(values => {
-      this.categories = Object.keys(values).map(function(key) {
-        return Object.create({
-          value: key.toLowerCase(),
-          name: values[key]
-        })
-      });
+      this.categories = nameValueDictionaryFromObject(values);
     });
 
     this.errorMessages = this.translateService.instant("COMPONENTS.FORM_VALIDATION.ERROR_MESSAGES");
