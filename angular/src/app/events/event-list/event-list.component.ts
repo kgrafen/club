@@ -74,7 +74,6 @@ export class EventListComponent implements OnInit {
       Object.keys(this.events).forEach((event: any) => {
         this.events[event] = { ...this.events[event], participantCount: Object.keys(this.events[event].participants).length };
       });
-      this.events.sort(this.compareToAscending).filter(event => event.name == "misio");
 
       this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(userSnapshot => {
         let user = new User(userSnapshot);
@@ -94,20 +93,7 @@ export class EventListComponent implements OnInit {
             }
           });
 
-
-      if (this.events.length > 0) {
-        this.dataSource = new MatTableDataSource(this.events);
-        this.dataSource.filterPredicate = this.customFilterPredicate();
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-
-        this.dataSourceMobile = new MatTableDataSource(this.events);
-        this.dataSourceMobile.filterPredicate = this.customFilterPredicate();
-        this.dataSourceMobile.paginator = this.paginator;
-        this.dataSourceMobile.sort = this.sort;
-        this.spinner.hide();
-        // observer.unsubscribe();
-      }
+          this.updateEventList(this.events);
 
         });
 
@@ -118,6 +104,33 @@ export class EventListComponent implements OnInit {
     });
 
     this.subscription = this.tfs.getEvent().subscribe(filter => { this.applyFilter(filter) });
+  }
+
+  updateEventList(events) {
+
+    if (this.events.length > 0) {
+      this.dataSource = new MatTableDataSource(events);
+      this.dataSource.filterPredicate = this.customFilterPredicate();
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+
+      this.dataSourceMobile = new MatTableDataSource(events);
+      this.dataSourceMobile.filterPredicate = this.customFilterPredicate();
+      this.dataSourceMobile.paginator = this.paginator;
+      this.dataSourceMobile.sort = this.sort;
+      this.spinner.hide();
+      // observer.unsubscribe();
+    }
+  }
+
+  showOnlyMyEvents(showMyEvents: boolean) {
+    let myEvents;
+    if (showMyEvents) {
+      myEvents = this.events.filter((event: Event) => event.host == this.authService.afAuth.auth.currentUser.uid);
+    } else {
+      myEvents = this.events;
+    }
+    this.updateEventList(myEvents);
   }
 
   ngOnInit() {

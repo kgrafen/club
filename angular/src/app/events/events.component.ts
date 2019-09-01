@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../auth.service';
 import { UserFirebaseService } from '../user-firebase.service';
 import { User } from '../entity/user/user';
+import { EventListComponent } from './event-list/event-list.component';
 
 @Component({
   selector: 'app-events',
@@ -10,6 +11,8 @@ import { User } from '../entity/user/user';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
+
+  @ViewChild(EventListComponent) eventsList: EventListComponent;
 
   messages = [
     {msg: "Her kan du finde alle events som brugerne er arrangøre af netop nu!", title: "Tip"},
@@ -19,14 +22,21 @@ export class EventsComponent implements OnInit {
 
   public isMobile: boolean = false;
 
-  constructor(private authService: AuthService, private ufbs: UserFirebaseService,
-    private toast: ToastrService) { }
+  constructor(
+    private authService: AuthService, 
+    private ufbs: UserFirebaseService,
+    private toast: ToastrService
+  ) { }
 
   ngOnInit() {
     if (window.screen.width <= 600) {
       this.isMobile = true;
     } 
     this.newUserRoutine();
+  }
+
+  showMyEvents(showMyEvents: boolean) {
+    this.eventsList.showOnlyMyEvents(showMyEvents);
   }
 
   newUserRoutine() {

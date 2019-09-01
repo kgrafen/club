@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CreateNewEventComponent } from '../../create-new-event/create-new-event.component';
 import { MobileDetectorService } from '../../mobile-detector.service';
@@ -12,8 +12,11 @@ import { NewEventComponent } from '../new-event/new-event.component';
 })
 export class EventControlMenuComponent implements OnInit {
 
+  @Output() showMyEvents = new EventEmitter();
+
   dialogWidth = screen.width / 1.25 + "px";
   dialogHeight = screen.height / 1.75 + "px";
+  myEventsShown: boolean = false;
 
   constructor(public dialog: MatDialog, private mds: MobileDetectorService) { }
 
@@ -29,6 +32,11 @@ export class EventControlMenuComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
 
     });
+  }
+
+  displayMyEventsOnly() {
+    this.myEventsShown = !this.myEventsShown;
+    this.showMyEvents.emit(this.myEventsShown);
   }
 
 }

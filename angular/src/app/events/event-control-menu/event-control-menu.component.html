@@ -1,8 +1,13 @@
 <mat-card>
   <button (click)="openDialog()" mat-raised-button color="primary">Nyt Event</button>
 
-  <button matTooltip="Events som du arrangerer" routerLink="/my-events" mat-raised-button color="accent">Mine
-    Events</button>
+  <button 
+    (click)="displayMyEventsOnly()" 
+    matTooltip="Events som du arrangerer" 
+    routerLink="/my-events" 
+    mat-raised-button color="accent">
+      {{myEventsShown ? 'Alle eventer' : 'Mine Eventer'}} 
+  </button>
 
   <button class="lesserBtn" matTooltip="En liste af de events, som du er tilmeldt" routerLink="/attending-events"
     mat-raised-button>Tilmeldte Events</button>
