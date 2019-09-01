@@ -88,9 +88,10 @@ export class NewEventComponent implements OnInit {
 
     if (this.newEventFormGroup.valid) {
 
-
       this.user$.subscribe((userSnapshot: any) => {
+        console.log({userSnapshot})
         const e = this.formDataToModel(userSnapshot);
+        console.log({e})
         this.eventService.insertEvent(e).then((thenableRef) => {
           let key = thenableRef.path.pieces_[1];
           this.wallService.insertWall({ fk_event: key, posts: {} });
@@ -127,30 +128,6 @@ export class NewEventComponent implements OnInit {
     event.description = this.newEventFormGroup.value.eventDescription;
 
     event.geoCoord = this.geoCoord;
-
-    event.dateStart = Date.now().toString();
-    // event.deadlineDate = this.newEventFormGroup.value.eventDeadlineDate.toString();
-    // event.deadlineTime = this.newEventFormGroup.value.eventDeadlineTime;
-    // event.timeEnd = this.newEventFormGroup.value.eventEndTime;
-    // event.timeStart = this.newEventFormGroup.value.eventStartTime;
-
-    // event.paymentDate = this.newEventFormGroup.value.eventPaymentDate.toString();
-    // event.paymentDue = this.newEventFormGroup.value.eventPaymentDue;
-    // event.paymentOption = this.newEventFormGroup.value.eventPaymentOption;
-    // event.price = this.newEventFormGroup.value.eventPrice;
-    // event.mobilePayNumber = this.newEventFormGroup.value.eventMobilePayNumber;
-    // event.accountNumber = this.newEventFormGroup.value.eventAccountNumber;
-
-    // event.file = this.newEventFormGroup.value.eventFile;
-
-    // event.genderRatio = this.newEventFormGroup.value.eventGender;
-    // event.hostRating = userSnapshot.rating;
-    // event.maxAge = this.newEventFormGroup.value.eventMaxAge;
-    // event.minAge = this.newEventFormGroup.value.eventMinAge;
-    // event.maxGuests = this.newEventFormGroup.value.eventMaxGuests;
-    // event.minGuests = this.newEventFormGroup.value.eventMinGuests;
-    // event.queue = this.newEventFormGroup.value.eventQueue;
-    // event.targetGroup = this.newEventFormGroup.value.eventTargetGroup;
 
     if (userSnapshot) event.participants = [{ username: userSnapshot.username }];
 
