@@ -131,7 +131,8 @@ export class CreateNewEventComponent implements OnInit {
     this.fifthFormGroup = this._formBuilder.group({
       eventFile: ['', Validators.required],
     });
-    this.stepper.selectedIndex = 1;
+    console.log({ma: this.data.minAge})
+    this.stepper.selectedIndex = this.data.minAge ? 1 : 0;
   }
 
   onNextStep(event) {

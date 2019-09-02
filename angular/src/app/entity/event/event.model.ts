@@ -52,10 +52,6 @@ export class Event {
 
     constructor(obj) {
         obj && Object.assign(this, obj);
-
-
     }
-
-    
 
 }

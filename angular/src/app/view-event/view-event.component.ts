@@ -14,6 +14,8 @@ import { Wall } from '../entity/wall/wall.model';
 import { WallPost } from '../entity/wall/wall-post.model';
 import { CreateWallPostComponent } from '../create-wall-post/create-wall-post.component';
 import { ToastrService } from 'ngx-toastr';
+import { NewEventComponent } from '../events/new-event/new-event.component';
+import { CreateNewEventComponent } from '../create-new-event/create-new-event.component';
 
 export interface DialogData {
   fk_wall: string;
@@ -252,5 +254,17 @@ export class ViewEventComponent implements OnInit {
           this.queueData.push({key: property, username: this.selectedEvent.inQueue[property][value]});
       }
     }
+  }
+
+  editEvent() {
+    const dialogRef = this.dialog.open(CreateNewEventComponent, {
+      width: screen.width / 1.25 + "px",
+      panelClass: "new-event-panel",
+      data: this.selectedEvent
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
   }
 }
