@@ -171,7 +171,7 @@ export class MyEventComponent implements OnInit {
     event.file = this.fifthFormGroup.value.eventFile;
 
     event.genderRatio = this.secondFormGroup.value.eventGender;
-    event.hostRating = this.ufbs.getStorage().rating;
+    // event.hostRating = this.ufbs.getStorage().rating;
     event.maxAge = this.secondFormGroup.value.eventMaxAge;
     event.minAge = this.secondFormGroup.value.eventMinAge;
     event.maxGuests = this.secondFormGroup.value.eventMaxGuests;

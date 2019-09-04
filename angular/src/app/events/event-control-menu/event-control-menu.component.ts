@@ -4,6 +4,7 @@ import { CreateNewEventComponent } from '../../create-new-event/create-new-event
 import { MobileDetectorService } from '../../mobile-detector.service';
 import { window } from 'rxjs/operators';
 import { NewEventComponent } from '../new-event/new-event.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'event-control-menu',
@@ -18,7 +19,11 @@ export class EventControlMenuComponent implements OnInit {
   dialogHeight = screen.height / 1.75 + "px";
   myEventsShown: boolean = false;
 
-  constructor(public dialog: MatDialog, private mds: MobileDetectorService) { }
+  constructor(
+    public dialog: MatDialog, 
+    private mds: MobileDetectorService,
+    private router: Router, 
+    ) { }
 
   ngOnInit() {
   }
@@ -29,8 +34,8 @@ export class EventControlMenuComponent implements OnInit {
       panelClass: "new-event-panel"
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-
+    dialogRef.componentInstance.onEventCreated.subscribe(key => {
+      this.router.navigate(['/view-event'], {queryParams: {key}})
     });
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Optional, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { $ } from 'protractor';
+import { EventEmitter } from '@angular/core';
 import { Event } from '../entity/event/event.model';
 import { EventAddress } from '../entity/helper/EventAddress';
 import { EventFirebaseService } from '../event-firebase.service';
@@ -15,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 import { GeoCoord } from 'ng2-haversine';
 import { TranslateService } from '@ngx-translate/core';
 import { nameValueDictionaryFromObject } from '../events/new-event/new-event.component';
+import { Router } from '@angular/router';
 
 export interface DialogData {
   animal: string;
@@ -29,6 +31,9 @@ export interface DialogData {
 
 export class CreateNewEventComponent implements OnInit {
   @ViewChild('stepper') stepper: MatStepper;
+
+  onEventSaved: EventEmitter<Event> = new EventEmitter<Event>();
+  onEventCreated: EventEmitter<string> = new EventEmitter<string>();
 
   isLinear = false;
   firstFormGroup: FormGroup;
@@ -68,7 +73,7 @@ export class CreateNewEventComponent implements OnInit {
     private efbs: EventFirebaseService, private authService: AuthService,
     private ufbs: UserFirebaseService,
     public dialogRef: MatDialogRef<CreateNewEventComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Event,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private _formBuilder: FormBuilder, private geoAPI: GeoCodingApiService,
     private ws: WallService, private toast: ToastrService,
     private translateService: TranslateService,
@@ -95,44 +100,46 @@ export class CreateNewEventComponent implements OnInit {
   }
 
   ngOnInit() {
+    const event: Event = this.data.event;
+
     this.firstFormGroup = this._formBuilder.group({
-      eventName: [this.data.name, Validators.required],
-      eventDescription: [this.data.description, Validators.required],
-      eventLocationStreet: [this.data.address.street, Validators.required],
-      eventLocationCity: [this.data.address.city, Validators.required],
-      eventLocationZip: [this.data.address.zip, Validators.required],
-      eventCategory: [this.data.category, Validators.required],
-      geoCoord: [this.data.geoCoord, Validators.required],
+      eventName: [event.name, Validators.required],
+      eventDescription: [event.description, Validators.required],
+      eventLocationStreet: [event.address.street, Validators.required],
+      eventLocationCity: [event.address.city, Validators.required],
+      eventLocationZip: [event.address.zip, Validators.required],
+      eventCategory: [event.category, Validators.required],
+      geoCoord: [event.geoCoord, Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
-      eventTargetGroup: ['any', Validators.required],
-      eventMinAge: ['18', Validators.required],
-      eventMaxAge: ['100', Validators.required],
-      eventMinGuests: ['2', Validators.required],
-      eventMaxGuests: ['8', Validators.required],
-      eventGender: ['any', Validators.required],
-      eventQueue: ['no', Validators.required]
+      eventTargetGroup: [event.targetGroup || 'any', Validators.required],
+      eventMinAge: [event.minAge || '18', Validators.required],
+      eventMaxAge: [event.maxAge || '100', Validators.required],
+      eventMinGuests: [event.minGuests || '2', Validators.required],
+      eventMaxGuests: [event.maxGuests || '8', Validators.required],
+      eventGender: [event.genderRatio || 'any', Validators.required],
+      eventQueue: [event.queue || 'no', Validators.required]
     });
+    console.log('date', new Date(event.dateStart))
     this.thirdFormGroup = this._formBuilder.group({
-      eventDate: [this.eventDate, Validators.required],
-      eventStartTime: ['13:59', Validators.required],
-      eventEndTime: ['14:53', Validators.required],
-      eventDeadlineDate: [this.maxRegistrationDate, Validators.required],
-      eventDeadlineTime: ['00:00', Validators.required]
+      eventDate: [new Date(event.dateStart) || this.eventDate, Validators.required],
+      eventStartTime: [event.timeStart || '13:59', Validators.required],
+      eventEndTime: [event.timeEnd || '14:53', Validators.required],
+      eventDeadlineDate: [new Date(event.deadlineDate) || this.maxRegistrationDate, Validators.required],
+      eventDeadlineTime: [event.deadlineTime || '00:00', Validators.required]
     });
     this.fourthFormGroup = this._formBuilder.group({
-      eventPrice: ['', Validators.required],
-      eventPaymentOption: [''],
-      eventPaymentDue: [''],
-      eventPaymentDate: [''],
-      eventMobilePayNumber: [''],
-      eventAccountNumber: ['']
+      eventPrice: [event.price || '', Validators.required],
+      eventPaymentOption: [event.paymentOption || ''],
+      eventPaymentDue: [event.paymentDue || ''],
+      eventPaymentDate: [event.paymentDate || ''],
+      eventMobilePayNumber: [event.mobilePayNumber || ''],
+      eventAccountNumber: [event.accountNumber || '']
     });
     this.fifthFormGroup = this._formBuilder.group({
       eventFile: ['', Validators.required],
     });
-    console.log({ma: this.data.minAge})
-    this.stepper.selectedIndex = this.data.minAge ? 1 : 0;
+    this.stepper.selectedIndex = this.data.stepIndex;
   }
 
   onNextStep(event) {
@@ -178,13 +185,15 @@ export class CreateNewEventComponent implements OnInit {
   onSubmitEvent() {
     let observer = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe((userSnapshot: any) => {
       let e: Event = this.formDataToModel(userSnapshot);
-      this.efbs.insertEvent(e).then((thenableRef) => {
-        let key = thenableRef.path.pieces_[1];
-        this.ws.insertWall({ fk_event: key, posts: {} });
-      });
-      // this.ufbs.updateUser({numberOfEventsHosted: userSnapshot.numberOfEventsHosted + 1}, this.authService.afAuth.auth.currentUser.uid).then( () => {
-      //   observer.unsubscribe();
-      //   });
+      if (!this.data.eventKey) {
+        this.efbs.insertEvent(e).then((thenableRef) => {
+          let key = thenableRef.key;
+          this.ws.insertWall({ fk_event: key, posts: {} });
+          this.onEventCreated.emit(key)
+        });
+      } else {
+        this.efbs.updateEvent(this.data.eventKey, e).then(()=> this.onEventSaved.emit(e));
+      }
     });
   }
 

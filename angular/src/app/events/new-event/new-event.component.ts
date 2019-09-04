@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
 import { MatInput, MatDialogRef, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { GeoCodingApiService } from 'src/app/geo-coding-api.service';
@@ -11,6 +11,7 @@ import { EventAddress } from 'src/app/entity/helper/EventAddress';
 import { CreateNewEventComponent } from 'src/app/create-new-event/create-new-event.component';
 import { GeoCoord } from 'ng2-haversine';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 export const errorMessages: { [key: string]: string } = {
   eventName: 'Titel må ikke være mere end 50 tegn',
@@ -33,6 +34,8 @@ export function nameValueDictionaryFromObject(values: any): any {
 })
 export class NewEventComponent implements OnInit {
 
+  onEventCreated: EventEmitter<string> = new EventEmitter<string>();
+
   newEventFormGroup: FormGroup;
   apiZipValue;
   event: Event;
@@ -53,7 +56,8 @@ export class NewEventComponent implements OnInit {
     private authService: AuthService,
     public dialogRef: MatDialogRef<NewEventComponent>,
     public dialog: MatDialog,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private router: Router, 
   ) {
     this.user$ = this.userService.getUserByID(this.authService.afAuth.auth.currentUser.uid);
 
@@ -93,6 +97,7 @@ export class NewEventComponent implements OnInit {
         this.eventService.insertEvent(e).then((thenableRef) => {
           let key = thenableRef.path.pieces_[1];
           this.wallService.insertWall({ fk_event: key, posts: {} });
+          this.onEventCreated.emit(key);
         });
         // this.userService.updateUser({numberOfEventsHosted: userSnapshot.numberOfEventsHosted + 1}, this.authService.afAuth.auth.currentUser.uid).then( () => {
         //   observer.unsubscribe();
@@ -165,11 +170,15 @@ export class NewEventComponent implements OnInit {
 
   fillDetails(): void {
     this.dialogRef.close();
-    this.dialog.open(CreateNewEventComponent, {
+    const dialogRef = this.dialog.open(CreateNewEventComponent, {
       width: screen.width / 1.25 + "px",
       height: screen.height / 1.75 + "px",
-      data: this.formDataToModel()
+      data: {event: this.formDataToModel(), stepIndex: 1}
       // disableClose: true
+    });
+
+    dialogRef.componentInstance.onEventCreated.subscribe(resultsKey => {
+      this.router.navigate(['/view-event'], {queryParams: {"key": resultsKey}})
     });
   }
 
