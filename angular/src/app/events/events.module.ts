@@ -17,7 +17,8 @@ import { MatFormFieldModule,
          MatButtonModule, 
          MatGridListModule, 
          MatCheckboxModule, 
-         MatTooltipModule
+         MatTooltipModule,
+         MatDatepickerModule
         } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -50,6 +51,7 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
     MatButtonModule,
     MatGridListModule,
     MatCheckboxModule,
+    MatDatepickerModule,
     MatTooltipModule,
     AngularFontAwesomeModule,
     TranslateModule,

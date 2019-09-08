@@ -120,7 +120,6 @@ export class CreateNewEventComponent implements OnInit {
       eventGender: [event.genderRatio || 'any', Validators.required],
       eventQueue: [event.queue || 'no', Validators.required]
     });
-    console.log('date', new Date(event.dateStart))
     this.thirdFormGroup = this._formBuilder.group({
       eventDate: [new Date(event.dateStart) || this.eventDate, Validators.required],
       eventStartTime: [event.timeStart || '13:59', Validators.required],

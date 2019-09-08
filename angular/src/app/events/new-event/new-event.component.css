@@ -1,8 +1,87 @@
+:host {
+  display: grid;
+  grid-template-columns: 4fr 6fr;
+  grid-column-gap: 20px;
+  color: #1d0138;
+}
+
+::ng-deep .mat-dialog-container {
+  padding: 10px;
+  border-radius: 6px;
+}
+
+::ng-deep .mat-grid-list {
+}
+
+::ng-deep .mat-grid-tile {
+  padding: 10px;
+  background: #fffcf8;
+  border-radius: 6px;
+  border: 1px solid #f5b951;
+}
+
+::ng-deep .mat-grid-tile .mat-figure {
+  position: unset;
+}
+
+h2 {
+  padding-top: 20px;
+  padding-bottom: 80px;
+}
+
+.step-guide {
+  background: #f2e5ff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #b66dff;
+}
+
+.normalized-height {
+  line-height: 1.5;
+}
+
+.presenter {
+  height: 100%;
+  background-image: url('/assets/images/guide.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding-left: 35%;
+  text-align: justify;
+}
+
+.step-guide img {
+  height: 300px;
+}
+
 form {
-  top: 0;
-  width: 60%;
-  margin-left: auto;
-  display: block;
+  width: 100%;
+}
+
+.header {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.two-columns{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.checkbox-container {
+  text-align: right;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+::ng-deep .mat-checkbox-inner-container {
+  width: 14px;
+  height: 14px;
+}
+
+.header fa {
+  margin-right: 5px;
 }
 
 .mat-card-image {
@@ -24,9 +103,9 @@ h2 {
 }
 
 
-/deep/ .new-event-panel .mat-dialog-container {
-  background: url(/assets/images/event_placeholder.jpg);
-  background-color: #fff;
+::ng-deep .new-event-panel .mat-dialog-container {
+  /* background: url(/assets/images/event_placeholder.jpg); */
+  /* background-color: rgb(255, 252, 240); */
   background-repeat: no-repeat;
   background-size: 38% 100%;
 }

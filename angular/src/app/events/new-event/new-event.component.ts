@@ -46,6 +46,7 @@ export class NewEventComponent implements OnInit {
   categories: any;
   errorMessages
   user$: any;
+  eventDate = new Date();
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -72,14 +73,18 @@ export class NewEventComponent implements OnInit {
   // @ViewChild('title') nameInput: MatInput;
 
   ngOnInit() {
+  let dateNow = new Date();
+  this.eventDate.setDate(dateNow.getDate() + 7);
 
     this.newEventFormGroup = this._formBuilder.group({
       eventName: ['', [Validators.required, Validators.maxLength(50)]],
-      eventDescription: ['', Validators.required],
       eventLocationStreet: ['', Validators.required],
       eventLocationCity: [''],
       eventLocationZip: ['', Validators.required],
-      eventCategory: ['', Validators.required]
+      eventCategory: ['', Validators.required],
+      eventDate: [this.eventDate, Validators.required],
+      eventStartTime: ['13:59', Validators.required],
+      eventEndTime: ['14:53', Validators.required],
     });
     //  this.nameInput.focus();
   }
