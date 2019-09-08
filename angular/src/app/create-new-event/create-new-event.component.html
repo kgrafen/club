@@ -49,7 +49,8 @@
           </mat-grid-tile>
         </mat-grid-list>
 
-        <edit-event-controls [isValid]="firstFormGroup.valid" [isFirst]="true" (cancel)="onNoClick()" (submit)="onSubmitEvent()"></edit-event-controls>
+        <edit-event-controls [isValid]="firstFormGroup.valid" [isFirst]="true" (cancel)="onNoClick()"
+          (submit)="onSubmitEvent()"></edit-event-controls>
 
       </form>
     </mat-step>
@@ -115,7 +116,8 @@
           </mat-radio-group>
         </div>
 
-        <edit-event-controls [isValid]="secondFormGroup.valid" (cancel)="onNoClick()" (submit)="onSubmitEvent()"></edit-event-controls>
+        <edit-event-controls [isValid]="secondFormGroup.valid" (cancel)="onNoClick()" (submit)="onSubmitEvent()">
+        </edit-event-controls>
 
       </form>
     </mat-step>
@@ -152,7 +154,7 @@
           </mat-grid-list>
 
           <label>Tilmeldingsfrist</label>
-          
+
           <mat-form-field>
             <input [min]="minDate" [max]="maxRegistrationDate" matTooltip="Klik på kalendar-ikonet for at vælge dato"
               matInput [matDatepicker]="picker2" formControlName="eventDeadlineDate" placeholder="DD/MM/YYYY">
@@ -161,7 +163,7 @@
           </mat-form-field>
 
           <label>Tilmeldingsfrist</label>
-          
+
           <mat-form-field>
             <mat-label>Tid</mat-label>
             <input matInput type="time" formControlName="eventDeadlineTime" required>
@@ -169,7 +171,8 @@
 
         </div>
 
-        <edit-event-controls [isValid]="thirdFormGroup.valid" (cancel)="onNoClick()" (submit)="onSubmitEvent()"></edit-event-controls>
+        <edit-event-controls [isValid]="thirdFormGroup.valid" (cancel)="onNoClick()" (submit)="onSubmitEvent()">
+        </edit-event-controls>
 
       </form>
     </mat-step>
@@ -182,7 +185,7 @@
             matInput placeholder="DKK,-" formControlName="eventPrice">
         </mat-form-field>
 
-        <mat-form-field *ngIf="hasPrice">
+        <mat-form-field *ngIf="fourthFormGroup.value.eventPrice">
           <mat-label>
             <fa name="tag"></fa> Betalingsform
           </mat-label>
@@ -194,38 +197,48 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field *ngIf="hasPrice && isTransferingMoney">
-          <mat-label>
-            <fa name="tag"></fa> Hvornår betales der
-          </mat-label>
-          <mat-select (selectionChange)="onWhenPayChange($event.value)" name="eventPaymentDue"
-            formControlName="eventPaymentDue" placeholder="Vælg emne">
-            <mat-option value="Efter en gæst tilmelder sig">Efter en gæst tilmelder sig</mat-option>
-            <mat-option hidden value="Kontant ved ankomst på dagen">Kontant ved ankomst på dagen</mat-option>
-            <mat-option value="Dato">Dato</mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div class="transfer-payment"
+          *ngIf="fourthFormGroup.value.eventPrice && fourthFormGroup.value.eventPaymentOption && fourthFormGroup.value.eventPaymentOption != 'Kontant'">
+          <mat-form-field>
+            <mat-label>
+              <fa name="tag"></fa> Hvornår betales der
+            </mat-label>
+            <mat-select (selectionChange)="onWhenPayChange($event.value)" name="eventPaymentDue"
+              formControlName="eventPaymentDue" placeholder="Vælg emne">
+              <mat-option value="Efter en gæst tilmelder sig">Efter en gæst tilmelder sig</mat-option>
+              <mat-option hidden value="Kontant ved ankomst på dagen">Kontant ved ankomst på dagen</mat-option>
+              <mat-option value="Dato">Dato</mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <label *ngIf="displayMobilePayInput">Mobilepay</label> <br>
-        <mat-form-field *ngIf="displayMobilePayInput">
-          <input (change)="phoneValidation($event.target.value)" matInput formControlName="eventMobilePayNumber"
-            pattern="[0-9]*" placeholder="Mobilnummer">
-        </mat-form-field>
+          <label
+            *ngIf="fourthFormGroup.value.eventPaymentOption == 'Mobilepay'">Mobilepay</label>
+          <br>
+          <mat-form-field
+            *ngIf="fourthFormGroup.value.eventPaymentOption == 'Mobilepay'">
+            <input (change)="phoneValidation($event.target.value)" matInput formControlName="eventMobilePayNumber"
+              pattern="[0-9]*" placeholder="Mobilnummer">
+          </mat-form-field>
 
-        <label *ngIf="displayAccountNumberInput">Kontonummer</label> <br>
-        <mat-form-field *ngIf="displayAccountNumberInput">
-          <input (change)="accountNumberValidation($event.target.value)" matInput formControlName="eventAccountNumber"
-            pattern="[0-9]" placeholder="Kontonummer">
-        </mat-form-field>
+          <label
+            *ngIf="fourthFormGroup.value.eventPaymentOption == 'Bankoverførelse'">Kontonummer</label>
+          <br>
+          <mat-form-field
+            *ngIf="fourthFormGroup.value.eventPaymentOption == 'Bankoverførelse'">
+            <input (change)="accountNumberValidation($event.target.value)" matInput formControlName="eventAccountNumber"
+              pattern="[0-9]" placeholder="Kontonummer">
+          </mat-form-field>
 
-        <label *ngIf="isPaymentDeadlineDate">Dato for betaling</label> <br>
-        <mat-form-field *ngIf="isPaymentDeadlineDate">
-          <input matInput [matDatepicker]="picker" formControlName="eventPaymentDate" placeholder="DD/MM/YYYY">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+          <label *ngIf="fourthFormGroup.value.eventPaymentDue == 'Dato'">Dato for betaling</label> <br>
+          <mat-form-field *ngIf="fourthFormGroup.value.eventPaymentDue == 'Dato'">
+            <input [min]="minDate" [max]="maxRegistrationDate" matInput [matDatepicker]="picker" formControlName="eventPaymentDate" placeholder="DD/MM/YYYY">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
 
-        <edit-event-controls [isValid]="fourthFormGroup.valid" (cancel)="onNoClick()" (submit)="onSubmitEvent()"></edit-event-controls>
+        <edit-event-controls [isValid]="fourthFormGroup.valid" (cancel)="onNoClick()" (submit)="onSubmitEvent()">
+        </edit-event-controls>
       </form>
     </mat-step>
 
@@ -249,7 +262,8 @@
           <p>{{preview.body}}</p>
         </div>
       </mat-card>
-      <edit-event-controls [isValid]="true" [isLast]="true" (cancel)="onNoClick()" (submit)="onSubmitEvent()"></edit-event-controls>
+      <edit-event-controls [isValid]="true" [isLast]="true" (cancel)="onNoClick()" (submit)="onSubmitEvent()">
+      </edit-event-controls>
     </mat-step>
   </mat-horizontal-stepper>
 

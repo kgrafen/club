@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class EditEventControlsComponent implements OnInit {
   @Output() submit = new EventEmitter();
 
   constructor() {}
-
+  
   ngOnInit() {
 
   }

@@ -203,8 +203,6 @@ export class ViewEventComponent implements OnInit {
       //   }
       // });
 
-      console.log('eventt', this.selectedEvent)
-
       this.getHostNameFromUID(this.selectedEvent.host).then( (value:string) => {
         this.hostName = value;
       });

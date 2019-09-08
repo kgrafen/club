@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Optional, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, Optional, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { $ } from 'protractor';
 import { EventEmitter } from '@angular/core';
@@ -77,8 +77,9 @@ export class CreateNewEventComponent implements OnInit {
     private _formBuilder: FormBuilder, private geoAPI: GeoCodingApiService,
     private ws: WallService, private toast: ToastrService,
     private translateService: TranslateService,
-    ) {
-    
+    private cdRef: ChangeDetectorRef
+  ) {
+
     this.translateService.get("COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.CATEGORIES").subscribe(values => {
       this.categories = nameValueDictionaryFromObject(values);
     });
@@ -131,7 +132,7 @@ export class CreateNewEventComponent implements OnInit {
       eventPrice: [event.price || '', Validators.required],
       eventPaymentOption: [event.paymentOption || ''],
       eventPaymentDue: [event.paymentDue || ''],
-      eventPaymentDate: [event.paymentDate || ''],
+      eventPaymentDate: [new Date(event.paymentDate) || ''],
       eventMobilePayNumber: [event.mobilePayNumber || ''],
       eventAccountNumber: [event.accountNumber || '']
     });
@@ -139,6 +140,9 @@ export class CreateNewEventComponent implements OnInit {
       eventFile: ['', Validators.required],
     });
     this.stepper.selectedIndex = this.data.stepIndex;
+
+    this.cdRef.detectChanges();
+
   }
 
   onNextStep(event) {
@@ -191,7 +195,7 @@ export class CreateNewEventComponent implements OnInit {
           this.onEventCreated.emit(key)
         });
       } else {
-        this.efbs.updateEvent(this.data.eventKey, e).then(()=> this.onEventSaved.emit(e));
+        this.efbs.updateEvent(this.data.eventKey, e).then(() => this.onEventSaved.emit(e));
       }
     });
   }
@@ -237,7 +241,7 @@ export class CreateNewEventComponent implements OnInit {
       this.eventData.hostRating = 0;
     }
 
-    if (!this.isTransferingMoney) {
+    if (this.eventData.paymentOption == "Kontant") {
       this.eventData.paymentDue = "Kontant ved ankomst på dagen";
     }
 
@@ -286,7 +290,7 @@ export class CreateNewEventComponent implements OnInit {
       event.hostRating = 0;
     }
 
-    if (!this.isTransferingMoney) {
+    if (this.eventData.paymentOption == "Kontant") {
       event.paymentDue = "Kontant ved ankomst på dagen";
     }
     this.onNoClick();
