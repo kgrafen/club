@@ -10,17 +10,14 @@
   border-radius: 6px;
 }
 
-::ng-deep .mat-grid-list {
-}
-
-::ng-deep .mat-grid-tile {
+::ng-deep .mat-dialog-container .mat-grid-tile {
   padding: 10px;
   background: #fffcf8;
   border-radius: 6px;
   border: 1px solid #f5b951;
 }
 
-::ng-deep .mat-grid-tile .mat-figure {
+::ng-deep .mat-dialog-container .mat-grid-tile .mat-figure {
   position: unset;
 }
 

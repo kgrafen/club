@@ -1,23 +1,25 @@
 <mat-card>
-  <mat-horizontal-stepper [linear]="isLinear" #stepper  (selectionChange)="onNextStep($event)">
+  <mat-horizontal-stepper [linear]="isLinear" #stepper (selectionChange)="onNextStep($event)">
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Hvad & Hvor</ng-template>
-        <mat-form-field>
-          <input matInput placeholder="Titel" formControlName="eventName" required>
-        </mat-form-field>
+        <div class="title-and-category">
+          <mat-form-field>
+            <input matInput placeholder="Titel" formControlName="eventName" required>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>
+              <fa name="tag"></fa> Kategori
+            </mat-label>
+            <mat-select formControlName="eventCategory" name="eventCategory" placeholder="Vælg emne" required>
+              <mat-option *ngFor="let category of categories" [value]="category.value">{{category.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
         <mat-form-field>
           <textarea formControlName="eventDescription" matInput placeholder="Beskrivelse" rows="3"
             matTooltip="Du kan trække nede i højre hjørne for at forstørre tekstfeltet"
-            aria-label="Button that displays a tooltip when focused or hovered over" required></textarea>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>
-            <fa name="tag"></fa> Kategori
-          </mat-label>
-          <mat-select formControlName="eventCategory" name="eventCategory" placeholder="Vælg emne" required>
-            <mat-option *ngFor="let category of categories" [value]="category.value">{{category.name}}</mat-option>
-          </mat-select>
+            aria-label="Button that displays a tooltip when focused or hovered over"></textarea>
         </mat-form-field>
 
         <mat-label>
@@ -55,57 +57,64 @@
     <mat-step [stepControl]="secondFormGroup">
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Målgruppe</ng-template>
-        <mat-label>Kønsfordeling</mat-label> <br>
-        <mat-radio-group formControlName="eventGender">
-          <mat-radio-button *ngFor="let option of genderOptions" name="eventGender" [value]="option.value">{{option.name}}</mat-radio-button>
-        </mat-radio-group>
+        <div class="form-table">
 
-        <br>
-        <mat-label>Børn</mat-label> <br>
-        <mat-radio-group formControlName="eventTargetGroup">
-          <mat-radio-button *ngFor="let option of childrenOptions" name="eventTargetGroup" [value]="option.value">{{option.name}}</mat-radio-button>
-        </mat-radio-group>
+          <mat-label>Kønsfordeling</mat-label>
 
+          <mat-radio-group formControlName="eventGender">
+            <mat-radio-button *ngFor="let option of genderOptions" name="eventGender" [value]="option.value">
+              {{option.name}}</mat-radio-button>
+          </mat-radio-group>
 
-        <br> <label>Aldersgruppe</label>
+          <mat-label>Børn</mat-label>
 
-        <mat-grid-list cols="2" rowHeight=70px>
-          <mat-grid-tile>
-            <mat-form-field>
-              <mat-label>Fra</mat-label>
-              <input matInput type="number" min="18" max="98" formControlName="eventMinAge" placeholder="18">
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field>
-              <mat-label>Til</mat-label>
-              <input matInput type="number" min="18" max="99" formControlName="eventMaxAge" placeholder="99" required>
-            </mat-form-field>
-          </mat-grid-tile>
-        </mat-grid-list>
+          <mat-radio-group formControlName="eventTargetGroup">
+            <mat-radio-button *ngFor="let option of childrenOptions" name="eventTargetGroup" [value]="option.value">
+              {{option.name}}</mat-radio-button>
+          </mat-radio-group>
 
-        <label>Antal Gæster</label>
+          <label>Aldersgruppe</label>
+          <mat-grid-list cols="2" rowHeight=70px>
+            <mat-grid-tile>
+              <mat-form-field>
+                <mat-label>Fra</mat-label>
+                <input matInput type="number" min="18" max="98" formControlName="eventMinAge" placeholder="18">
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <mat-label>Til</mat-label>
+                <input matInput type="number" min="18" max="99" formControlName="eventMaxAge" placeholder="99" required>
+              </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
 
-        <mat-grid-list cols="2" rowHeight=70px>
-          <mat-grid-tile>
-            <mat-form-field>
-              <mat-label>Min</mat-label>
-              <input matInput type="number" min="2" max="499" formControlName="eventMinGuests" placeholder="2" required>
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field>
-              <mat-label>Max</mat-label>
-              <input matInput type="number" min="2" max="499" formControlName="eventMaxGuests" placeholder="499"
-                required>
-            </mat-form-field>
-          </mat-grid-tile>
-        </mat-grid-list>
+          <label>Antal Gæster</label>
 
-        <mat-label>Tving på venteliste?</mat-label> <br>
-        <mat-radio-group formControlName="eventQueue">
-          <mat-radio-button *ngFor="let option of waitingListOptions" name="eventQueue" [value]="option.value">{{option.name}}</mat-radio-button>
-        </mat-radio-group>
+          <mat-grid-list cols="2" rowHeight=70px>
+            <mat-grid-tile>
+              <mat-form-field>
+                <mat-label>Min</mat-label>
+                <input matInput type="number" min="2" max="499" formControlName="eventMinGuests" placeholder="2"
+                  required>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <mat-label>Max</mat-label>
+                <input matInput type="number" min="2" max="499" formControlName="eventMaxGuests" placeholder="499"
+                  required>
+              </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
+
+          <mat-label>Tving på venteliste?</mat-label>
+
+          <mat-radio-group formControlName="eventQueue">
+            <mat-radio-button *ngFor="let option of waitingListOptions" name="eventQueue" [value]="option.value">
+              {{option.name}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
 
         <div>
           <button mat-button matStepperPrevious>Tilbage</button>
@@ -115,46 +124,53 @@
     </mat-step>
     <mat-step [stepControl]="thirdFormGroup">
       <form [formGroup]="thirdFormGroup">
+
         <ng-template matStepLabel>Tidspunkt</ng-template>
-        <label>Dato for eventet</label> <br>
-        <mat-form-field>
-          <input [min]="minDate" [max]="maxDate"
-            matTooltip="Klik på kalendar-ikonet for at vælge dato" matInput [matDatepicker]="picker"
-            formControlName="eventDate" placeholder="DD/MM/YYYY">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
 
-        <br> <label>Tidspunkt for eventet</label> <br>
-        <mat-grid-list cols="2" rowHeight=70px>
-          <mat-grid-tile>
-            <mat-form-field>
-              <mat-label>Start</mat-label>
-              <input matInput type="time" formControlName="eventStartTime" required>
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field>
-              <mat-label>Slut</mat-label>
-              <input matInput type="time" formControlName="eventEndTime" required>
-            </mat-form-field>
-          </mat-grid-tile>
-        </mat-grid-list>
+        <div class="form-table">
 
-        <label>Tilmeldingsfrist</label> <br>
-        <mat-form-field>
-          <input [min]="minDate" [max]="maxRegistrationDate" matTooltip="Klik på kalendar-ikonet for at vælge dato"
-            matInput [matDatepicker]="picker2" formControlName="eventDeadlineDate" placeholder="DD/MM/YYYY">
-          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-          <mat-datepicker #picker2></mat-datepicker>
-        </mat-form-field>
+          <label>Dato for eventet</label>
+          <mat-form-field>
+            <input [min]="minDate" [max]="maxDate" matTooltip="Klik på kalendar-ikonet for at vælge dato" matInput
+              [matDatepicker]="picker" formControlName="eventDate" placeholder="DD/MM/YYYY">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
 
-        <br> <label>Tilmeldingsfrist</label> <br>
-        <mat-form-field>
-          <mat-label>Tid</mat-label>
-          <input matInput type="time" formControlName="eventDeadlineTime" required>
-        </mat-form-field>
+          <label>Tidspunkt for eventet</label>
 
+          <mat-grid-list cols="2" rowHeight=70px>
+            <mat-grid-tile>
+              <mat-form-field>
+                <mat-label>Start</mat-label>
+                <input matInput type="time" formControlName="eventStartTime" required>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field>
+                <mat-label>Slut</mat-label>
+                <input matInput type="time" formControlName="eventEndTime" required>
+              </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
+
+          <label>Tilmeldingsfrist</label>
+          
+          <mat-form-field>
+            <input [min]="minDate" [max]="maxRegistrationDate" matTooltip="Klik på kalendar-ikonet for at vælge dato"
+              matInput [matDatepicker]="picker2" formControlName="eventDeadlineDate" placeholder="DD/MM/YYYY">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+
+          <label>Tilmeldingsfrist</label>
+          
+          <mat-form-field>
+            <mat-label>Tid</mat-label>
+            <input matInput type="time" formControlName="eventDeadlineTime" required>
+          </mat-form-field>
+
+        </div>
 
         <div>
           <button mat-button matStepperPrevious>Tilbage</button>
@@ -167,8 +183,8 @@
         <ng-template matStepLabel>Pris & Betaling</ng-template>
         <mat-form-field>
           <mat-label>Pris</mat-label>
-          <input (keyup)="onPriceEnter($event.target.value)" (change)="onPriceEnter($event.target.value)" type="number" matInput placeholder="DKK,-"
-            formControlName="eventPrice">
+          <input (keyup)="onPriceEnter($event.target.value)" (change)="onPriceEnter($event.target.value)" type="number"
+            matInput placeholder="DKK,-" formControlName="eventPrice">
         </mat-form-field>
 
         <mat-form-field *ngIf="hasPrice">
@@ -232,7 +248,8 @@
 
       <div>
         <button mat-button matStepperPrevious>Tilbage</button>
-        <button (click)="displayPreview()" mat-raised-button color="primary" matStepperNext [disabled]="!fifthFormGroup.valid">Næste</button>
+        <button (click)="displayPreview()" mat-raised-button color="primary" matStepperNext
+          [disabled]="!fifthFormGroup.valid">Næste</button>
       </div>
     </mat-step>
 

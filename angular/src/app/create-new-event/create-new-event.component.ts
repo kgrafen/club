@@ -104,7 +104,7 @@ export class CreateNewEventComponent implements OnInit {
 
     this.firstFormGroup = this._formBuilder.group({
       eventName: [event.name, Validators.required],
-      eventDescription: [event.description, Validators.required],
+      eventDescription: [event.description],
       eventLocationStreet: [event.address.street, Validators.required],
       eventLocationCity: [event.address.city, Validators.required],
       eventLocationZip: [event.address.zip, Validators.required],

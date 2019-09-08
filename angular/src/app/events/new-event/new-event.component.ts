@@ -133,7 +133,6 @@ export class NewEventComponent implements OnInit {
     event.address = new EventAddress(this.newEventFormGroup.value.eventLocationStreet,
       this.apiZipValue, this.newEventFormGroup.value.eventLocationZip);
     event.category = this.newEventFormGroup.value.eventCategory;
-    event.description = this.newEventFormGroup.value.eventDescription;
 
     event.geoCoord = this.geoCoord;
 
@@ -177,7 +176,6 @@ export class NewEventComponent implements OnInit {
     this.dialogRef.close();
     const dialogRef = this.dialog.open(CreateNewEventComponent, {
       width: screen.width / 1.25 + "px",
-      height: screen.height / 1.75 + "px",
       data: {event: this.formDataToModel(), stepIndex: 1}
       // disableClose: true
     });

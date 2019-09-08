@@ -20,7 +20,7 @@ export function setDateFromNow(daysFromNow) {
 export class Event {
     key: string;
     name: string;
-    description: string;
+    description: string = '';
     dateStart: string = setDateFromNow(7);
     timeStart: number;
     timeEnd: number;
