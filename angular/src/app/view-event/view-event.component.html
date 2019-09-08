@@ -20,8 +20,8 @@
       
                     <p><strong>Adresse:</strong><br> {{selectedEvent.address.street}} , {{selectedEvent.address.city}} , {{selectedEvent.address.zip}}</p>
                     <p><strong>Dato</strong><br> {{selectedEvent.dateStart | date:'dd/MM/yyyy' }} </p>
-                    <p><strong>Kønsfordeling</strong><br> {{selectedEvent.genderRatio}}</p>
-                    <p><strong>Børn</strong><br> {{selectedEvent.targetGroup}}</p>
+                    <p><strong>Kønsfordeling</strong><br> {{'COMPONENTS.NEW_EVENT.AUDIENCE_STEP.GENDER_OPTIONS.' + selectedEvent.genderRatio | uppercase | translate}}</p>
+                    <p><strong>Børn</strong><br> {{'COMPONENTS.NEW_EVENT.AUDIENCE_STEP.CHILDREN_OPTIONS.' + selectedEvent.targetGroup | uppercase | translate}}</p>
                     <p><strong>Alder fra og til</strong><br> {{selectedEvent.minAge}} til {{selectedEvent.maxAge}}</p>
                     <p><strong>Minimum/maksimum deltagerantal</strong><br> {{selectedEvent.minGuests}} til {{selectedEvent.maxGuests}}</p>
                     <p><strong>Pris</strong><br> {{selectedEvent.price}} DKK</p>
