@@ -49,9 +49,8 @@
           </mat-grid-tile>
         </mat-grid-list>
 
-        <div>
-          <button mat-raised-button color="primary" matStepperNext [disabled]="!firstFormGroup.valid">Næste</button>
-        </div>
+        <edit-event-controls [isValid]="firstFormGroup.valid" [isFirst]="true" (cancel)="onNoClick()" (submit)="onSubmitEvent()"></edit-event-controls>
+
       </form>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
@@ -116,10 +115,8 @@
           </mat-radio-group>
         </div>
 
-        <div>
-          <button mat-button matStepperPrevious>Tilbage</button>
-          <button mat-raised-button color="primary" matStepperNext [disabled]="!secondFormGroup.valid">Næste</button>
-        </div>
+        <edit-event-controls [isValid]="secondFormGroup.valid" (cancel)="onNoClick()" (submit)="onSubmitEvent()"></edit-event-controls>
+
       </form>
     </mat-step>
     <mat-step [stepControl]="thirdFormGroup">
@@ -172,10 +169,8 @@
 
         </div>
 
-        <div>
-          <button mat-button matStepperPrevious>Tilbage</button>
-          <button mat-raised-button color="primary" matStepperNext [disabled]="!thirdFormGroup.valid">Næste</button>
-        </div>
+        <edit-event-controls [isValid]="thirdFormGroup.valid" (cancel)="onNoClick()" (submit)="onSubmitEvent()"></edit-event-controls>
+
       </form>
     </mat-step>
     <mat-step [stepControl]="fourthFormGroup">
@@ -230,10 +225,7 @@
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
-        <div>
-          <button mat-button matStepperPrevious>Tilbage</button>
-          <button mat-raised-button color="primary" matStepperNext [disabled]="!fourthFormGroup.valid">Næste</button>
-        </div>
+        <edit-event-controls [isValid]="fourthFormGroup.valid" (cancel)="onNoClick()" (submit)="onSubmitEvent()"></edit-event-controls>
       </form>
     </mat-step>
 
@@ -246,11 +238,6 @@
         </mat-card>
       </form>
 
-      <div>
-        <button mat-button matStepperPrevious>Tilbage</button>
-        <button (click)="displayPreview()" mat-raised-button color="primary" matStepperNext
-          [disabled]="!fifthFormGroup.valid">Næste</button>
-      </div>
     </mat-step>
 
     <mat-step>
@@ -262,11 +249,7 @@
           <p>{{preview.body}}</p>
         </div>
       </mat-card>
-      <div>
-        <button mat-button matStepperPrevious>Tilbage</button>
-        <button mat-button color="warn" (click)="stepper.reset()">Start forfra</button>
-        <button (click)="onSubmitEvent()" mat-raised-button color="primary">Opret event</button>
-      </div>
+      <edit-event-controls [isValid]="true" [isLast]="true" (cancel)="onNoClick()" (submit)="onSubmitEvent()"></edit-event-controls>
     </mat-step>
   </mat-horizontal-stepper>
 
