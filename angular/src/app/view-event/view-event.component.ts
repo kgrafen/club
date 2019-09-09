@@ -264,7 +264,6 @@ export class ViewEventComponent implements OnInit {
   editEvent() {
     const dialogRef = this.dialog.open(CreateNewEventComponent, {
       width: screen.width / 1.25 + "px",
-      panelClass: "new-event-panel",
       data: {event: this.selectedEvent, stepIndex: 0, eventKey: this.key}
     });
 

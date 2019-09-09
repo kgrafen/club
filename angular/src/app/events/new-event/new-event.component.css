@@ -5,19 +5,19 @@
   color: #1d0138;
 }
 
-::ng-deep .mat-dialog-container {
+::ng-deep .new-event-panel .mat-dialog-container {
   padding: 10px;
   border-radius: 6px;
 }
 
-::ng-deep .mat-dialog-container .mat-grid-tile {
+::ng-deep .new-event-panel .mat-dialog-container .mat-grid-tile {
   padding: 10px;
   background: #fffcf8;
   border-radius: 6px;
   border: 1px solid #f5b951;
 }
 
-::ng-deep .mat-dialog-container .mat-grid-tile .mat-figure {
+::ng-deep .new-event-panel .mat-dialog-container .mat-grid-tile .mat-figure {
   position: unset;
 }
 
