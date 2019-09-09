@@ -1,0 +1,18 @@
+.controls {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 20px;
+  margin-top: 20px;
+}
+
+.controls button { 
+  width: 120px;
+}
+
+.controls button.prev, .controls button.save{ 
+  margin-right: auto;
+}
+
+.controls button.canc, .controls button.next{ 
+  margin-left: auto;
+}

@@ -20,8 +20,8 @@ export function setDateFromNow(daysFromNow) {
 export class Event {
     key: string;
     name: string;
-    description: string;
-    dateStart: string = setDateFromNow(10);
+    description: string = '';
+    dateStart: string = setDateFromNow(7);
     timeStart: number;
     timeEnd: number;
     category: string;
@@ -37,7 +37,7 @@ export class Event {
     queue: boolean;
     inQueue: {};
     address: EventAddress;
-    deadlineDate: string;
+    deadlineDate: string = setDateFromNow(4);;
     deadlineTime: number;
     price: number;
     paymentOption: string;
@@ -52,10 +52,6 @@ export class Event {
 
     constructor(obj) {
         obj && Object.assign(this, obj);
-
-
     }
-
-    
 
 }

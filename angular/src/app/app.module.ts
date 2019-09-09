@@ -128,6 +128,7 @@ import { VerifyEmailComponent } from './pages/verify-email/verify-email.componen
 import { EventsModule } from './events/events.module';
 import { LibModule } from './lib/lib.module';
 import { HaversineService } from "ng2-haversine";
+import { EditEventControlsComponent } from './edit-event-controls/edit-event-controls.component';
 
 // Translate loader factory
 export function HttpLoaderFactory(http: HttpClient) {
@@ -175,6 +176,7 @@ export class AppDateAdapter extends NativeDateAdapter {
     LandingPageHeaderComponent,
     CreateAccountFormComponent,
     CreateNewEventComponent,
+    EditEventControlsComponent,
     MyProfileComponent,
     ImageUploadComponent,
     UserImageGalleryComponent,

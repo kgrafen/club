@@ -4,4 +4,8 @@
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
-  }
+}
+  
+::ng-deep .cdk-overlay-container {
+  z-index: 1100;
+}

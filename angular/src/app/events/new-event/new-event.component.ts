@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
 import { MatInput, MatDialogRef, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { GeoCodingApiService } from 'src/app/geo-coding-api.service';
@@ -11,6 +11,7 @@ import { EventAddress } from 'src/app/entity/helper/EventAddress';
 import { CreateNewEventComponent } from 'src/app/create-new-event/create-new-event.component';
 import { GeoCoord } from 'ng2-haversine';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 export const errorMessages: { [key: string]: string } = {
   eventName: 'Titel må ikke være mere end 50 tegn',
@@ -33,6 +34,8 @@ export function nameValueDictionaryFromObject(values: any): any {
 })
 export class NewEventComponent implements OnInit {
 
+  onEventCreated: EventEmitter<string> = new EventEmitter<string>();
+
   newEventFormGroup: FormGroup;
   apiZipValue;
   event: Event;
@@ -43,6 +46,7 @@ export class NewEventComponent implements OnInit {
   categories: any;
   errorMessages
   user$: any;
+  eventDate = new Date();
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -53,7 +57,8 @@ export class NewEventComponent implements OnInit {
     private authService: AuthService,
     public dialogRef: MatDialogRef<NewEventComponent>,
     public dialog: MatDialog,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private router: Router, 
   ) {
     this.user$ = this.userService.getUserByID(this.authService.afAuth.auth.currentUser.uid);
 
@@ -68,14 +73,18 @@ export class NewEventComponent implements OnInit {
   // @ViewChild('title') nameInput: MatInput;
 
   ngOnInit() {
+  let dateNow = new Date();
+  this.eventDate.setDate(dateNow.getDate() + 7);
 
     this.newEventFormGroup = this._formBuilder.group({
       eventName: ['', [Validators.required, Validators.maxLength(50)]],
-      eventDescription: ['', Validators.required],
       eventLocationStreet: ['', Validators.required],
       eventLocationCity: [''],
       eventLocationZip: ['', Validators.required],
-      eventCategory: ['', Validators.required]
+      eventCategory: ['', Validators.required],
+      eventDate: [this.eventDate, Validators.required],
+      eventStartTime: ['13:59', Validators.required],
+      eventEndTime: ['14:53', Validators.required],
     });
     //  this.nameInput.focus();
   }
@@ -93,6 +102,7 @@ export class NewEventComponent implements OnInit {
         this.eventService.insertEvent(e).then((thenableRef) => {
           let key = thenableRef.path.pieces_[1];
           this.wallService.insertWall({ fk_event: key, posts: {} });
+          this.onEventCreated.emit(key);
         });
         // this.userService.updateUser({numberOfEventsHosted: userSnapshot.numberOfEventsHosted + 1}, this.authService.afAuth.auth.currentUser.uid).then( () => {
         //   observer.unsubscribe();
@@ -123,7 +133,6 @@ export class NewEventComponent implements OnInit {
     event.address = new EventAddress(this.newEventFormGroup.value.eventLocationStreet,
       this.apiZipValue, this.newEventFormGroup.value.eventLocationZip);
     event.category = this.newEventFormGroup.value.eventCategory;
-    event.description = this.newEventFormGroup.value.eventDescription;
 
     event.geoCoord = this.geoCoord;
 
@@ -165,11 +174,14 @@ export class NewEventComponent implements OnInit {
 
   fillDetails(): void {
     this.dialogRef.close();
-    this.dialog.open(CreateNewEventComponent, {
+    const dialogRef = this.dialog.open(CreateNewEventComponent, {
       width: screen.width / 1.25 + "px",
-      height: screen.height / 1.75 + "px",
-      data: this.formDataToModel()
+      data: {event: this.formDataToModel(), stepIndex: 1}
       // disableClose: true
+    });
+
+    dialogRef.componentInstance.onEventCreated.subscribe(resultsKey => {
+      this.router.navigate(['/view-event'], {queryParams: {"key": resultsKey}})
     });
   }
 

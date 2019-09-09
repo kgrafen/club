@@ -253,6 +253,7 @@
     "NEW_EVENT": {
       "WHAT_AND_WHERE_STEP": {
         "TITLE": "Opret nyt event",
+        "DESCRIPTION": "Du må oprette en event med <b>3 enkle trin</b> og fortælle dine gæster, hvad er eventen om, hvornår og hvor den vil bliveafholdt.<br><br>Du kan udfylde alle detaljer nu eller oprette eventen og vende tilbage for at udfylde resten af detaljerne.",
         "NAME_LABEL": "Titel",
         "DESCRIPTION_LABEL": "Beskrivelse",
         "DESCRIPTION_TOOLTIP": "Du kan trække nede i højre hjørne for at forstørre tekstfeltet",
@@ -272,6 +273,9 @@
           "SPORT_EVENT": "Sport"
         },
         "ADDRESS_LABEL": "Adresse",
+        "WHAT_LABEL": "Hvad er din event om?",
+        "WHEN_LABEL": "Hvornår er din event?",
+        "WHERE_LABEL": "Hvor er din event?",
         "STREET_LABEL": "Vej",
         "ZIP_LABEL": "Post Nr.",
         "CITY_LABEL": "By",

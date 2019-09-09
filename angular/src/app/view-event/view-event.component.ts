@@ -14,6 +14,8 @@ import { Wall } from '../entity/wall/wall.model';
 import { WallPost } from '../entity/wall/wall-post.model';
 import { CreateWallPostComponent } from '../create-wall-post/create-wall-post.component';
 import { ToastrService } from 'ngx-toastr';
+import { NewEventComponent } from '../events/new-event/new-event.component';
+import { CreateNewEventComponent } from '../create-new-event/create-new-event.component';
 
 export interface DialogData {
   fk_wall: string;
@@ -33,6 +35,7 @@ export class ViewEventComponent implements OnInit {
   isMobile = false;
   hasOptions = true;
   isParticipating = false;
+  isHost = false;
 
   selectedEvent = new Event({});
   key;
@@ -57,7 +60,8 @@ export class ViewEventComponent implements OnInit {
   constructor(private route: ActivatedRoute, private efbs: EventFirebaseService, 
     private ufbs: UserFirebaseService, private router: Router, 
     private md: MobileDetectorService, private authService: AuthService, 
-    private ws: WallService, public dialog: MatDialog, private toast: ToastrService) { 
+    private ws: WallService, public dialog: MatDialog, private toast: ToastrService,
+    ) { 
 
       let observer = this.route.queryParams.subscribe(params => {
       let key = params['key'];
@@ -76,7 +80,7 @@ export class ViewEventComponent implements OnInit {
     return new Promise(async (resolve, reject) => {
       for (let i = 0; i < this.participantsData.length; i++) {
         const observerSeven = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe((userSnapshot:any) => {
-          if (this.participantsData[i].username ===  userSnapshot.username || this.queueData[i].username === userSnapshot.username) {
+        if (this.participantsData[i].username ===  userSnapshot.username || this.queueData[i].username === userSnapshot.username) {
             isDone = true;
             resolve(userSnapshot.username);
           } 
@@ -190,18 +194,21 @@ export class ViewEventComponent implements OnInit {
       this.renderParticipantsIntoView(then);
       this.renderParticipantsInQueueIntoView(then);
       /* Participation limited to one signup. */
-      this.getParticipantKey().then(resolved => {
+      // this.getParticipantKey().then(resolved => {
         
-        if (resolved !== "Not Found") {
-          this.isParticipating = true;
-        } else {
-          this.isParticipating = false;
-        }
-      });
+      //   if (resolved !== "Not Found") {
+      //     this.isParticipating = true;
+      //   } else {
+      //     this.isParticipating = false;
+      //   }
+      // });
 
       this.getHostNameFromUID(this.selectedEvent.host).then( (value:string) => {
         this.hostName = value;
       });
+      
+      this.isHost = this.authService.afAuth.auth.currentUser.uid == this.selectedEvent.host;
+
       observerTwo.unsubscribe();
       
       if (this.selectedEvent.host === this.authService.afAuth.auth.currentUser.uid) {
@@ -252,5 +259,16 @@ export class ViewEventComponent implements OnInit {
           this.queueData.push({key: property, username: this.selectedEvent.inQueue[property][value]});
       }
     }
+  }
+
+  editEvent() {
+    const dialogRef = this.dialog.open(CreateNewEventComponent, {
+      width: screen.width / 1.25 + "px",
+      data: {event: this.selectedEvent, stepIndex: 0, eventKey: this.key}
+    });
+
+    dialogRef.componentInstance.onEventSaved.subscribe(results => {
+      this.selectedEvent = results;
+    });
   }
 }
