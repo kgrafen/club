@@ -102,6 +102,7 @@ export class CreateNewEventComponent implements OnInit {
 
   ngOnInit() {
     const event: Event = this.data.event;
+    console.log({event})
 
     this.firstFormGroup = this._formBuilder.group({
       eventName: [event.name, Validators.required],
@@ -114,17 +115,17 @@ export class CreateNewEventComponent implements OnInit {
     });
     this.secondFormGroup = this._formBuilder.group({
       eventTargetGroup: [event.targetGroup || 'any', Validators.required],
-      eventMinAge: [event.minAge || '18', Validators.required],
-      eventMaxAge: [event.maxAge || '100', Validators.required],
-      eventMinGuests: [event.minGuests || '2', Validators.required],
-      eventMaxGuests: [event.maxGuests || '8', Validators.required],
+      eventMinAge: [event.minAge || '18', [Validators.required, Validators.min(1), Validators.max(98)]],
+      eventMaxAge: [event.maxAge || '100', [Validators.required, Validators.min(1), Validators.max(98)]],
+      eventMinGuests: [event.minGuests || '2', [Validators.required, Validators.min(1), Validators.max(98)]],
+      eventMaxGuests: [event.maxGuests || '8', [Validators.required, Validators.min(1), Validators.max(1000)]],
       eventGender: [event.genderRatio || 'any', Validators.required],
       eventQueue: [event.queue || 'no', Validators.required]
     });
     this.thirdFormGroup = this._formBuilder.group({
       eventDate: [new Date(event.dateStart) || this.eventDate, Validators.required],
-      eventStartTime: [event.timeStart || '13:59', Validators.required],
-      eventEndTime: [event.timeEnd || '14:53', Validators.required],
+      eventStartTime: [event.timeStart || '18:00', Validators.required],
+      eventEndTime: [event.timeEnd || '22:00', Validators.required],
       eventDeadlineDate: [new Date(event.deadlineDate) || this.maxRegistrationDate, Validators.required],
       eventDeadlineTime: [event.deadlineTime || '00:00', Validators.required]
     });
@@ -201,6 +202,8 @@ export class CreateNewEventComponent implements OnInit {
   }
 
   updateEventData(newData) {
+
+    console.log({newData})
 
     this.eventData.name = (newData.eventName !== undefined) ? newData.eventName : this.eventData.name;
     this.eventData.address = new EventAddress(newData.eventLocationStreet,
