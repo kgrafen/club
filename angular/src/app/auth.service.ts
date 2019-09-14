@@ -13,6 +13,7 @@ import { UserFirebaseService } from './user-firebase.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { User } from './entity/user/user';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateHelperService } from './services/translate.service';
 
 
 @Injectable({
@@ -24,9 +25,15 @@ export class AuthService {
   isDeletingUser = false;
   //public userInfo: Observable<firebase.User>;
 
-  constructor(public afAuth: AngularFireAuth, private router: Router, 
-    private session: SessionStorageService, private ufbs: UserFirebaseService, 
-    private spinner: NgxSpinnerService, private toast: ToastrService) {
+  constructor(
+    public afAuth: AngularFireAuth, 
+    private router: Router, 
+    private session: SessionStorageService, 
+    private ufbs: UserFirebaseService, 
+    private spinner: NgxSpinnerService, 
+    private toast: ToastrService,
+    private translate: TranslateHelperService,
+    ) {
       // To apply the default browser preference instead of explicitly setting it.
       // firebase.auth().useDeviceLanguage();
       
@@ -68,7 +75,10 @@ export class AuthService {
         //this.loginRedirect();
         return user.user;
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        this.translate.translateFirebaseErrorMessage(error.code).subscribe(message => this.toast.error(message));
+        console.log(error);
+      });
   }
 
 

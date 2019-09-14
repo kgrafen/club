@@ -330,6 +330,7 @@
   "FIREBASE": {
     "ERRORS": {
       "auth/invalid-email": "Forkert e-mailadresse",
+      "auth/wrong-password": "Adgangskoden er ugyldig, eller brugeren har ikke en adgangskode.",
       "auth/weak-password": "Adgangskoden skal være 6 tegn lang eller mere.",
       "auth/email-already-in-use": "Denne e-mail er allerede i brug.",
       "auth/argument-error": "Adgangskoden matcher ikke den første."
