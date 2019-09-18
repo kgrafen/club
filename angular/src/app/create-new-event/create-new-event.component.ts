@@ -115,9 +115,9 @@ export class CreateNewEventComponent implements OnInit {
     });
     this.secondFormGroup = this._formBuilder.group({
       eventTargetGroup: [event.targetGroup || 'any', Validators.required],
-      eventMinAge: [event.minAge || '18', [Validators.required, Validators.min(1), Validators.max(98)]],
-      eventMaxAge: [event.maxAge || '100', [Validators.required, Validators.min(1), Validators.max(98)]],
-      eventMinGuests: [event.minGuests || '2', [Validators.required, Validators.min(1), Validators.max(98)]],
+      eventMinAge: [event.minAge || '18', [Validators.required, Validators.min(1), Validators.max(100)]],
+      eventMaxAge: [event.maxAge || '100', [Validators.required, Validators.min(1), Validators.max(100)]],
+      eventMinGuests: [event.minGuests || '2', [Validators.required, Validators.min(1), Validators.max(100)]],
       eventMaxGuests: [event.maxGuests || '8', [Validators.required, Validators.min(1), Validators.max(1000)]],
       eventGender: [event.genderRatio || 'any', Validators.required],
       eventQueue: [event.queue || 'no', Validators.required]
