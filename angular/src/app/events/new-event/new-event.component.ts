@@ -83,8 +83,8 @@ export class NewEventComponent implements OnInit {
       eventLocationZip: ['', Validators.required],
       eventCategory: ['', Validators.required],
       eventDate: [this.eventDate, Validators.required],
-      eventStartTime: ['13:59', Validators.required],
-      eventEndTime: ['14:53', Validators.required],
+      eventStartTime: ['18:00', Validators.required],
+      eventEndTime: ['22:00', Validators.required],
     });
     //  this.nameInput.focus();
   }
@@ -176,7 +176,7 @@ export class NewEventComponent implements OnInit {
     this.dialogRef.close();
     const dialogRef = this.dialog.open(CreateNewEventComponent, {
       width: screen.width / 1.25 + "px",
-      data: {event: this.formDataToModel(), stepIndex: 1}
+      data: {event: this.formDataToModel(), stepIndex: 0}
       // disableClose: true
     });
 

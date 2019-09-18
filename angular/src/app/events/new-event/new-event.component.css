@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 4fr 6fr;
   grid-column-gap: 20px;
-  color: #1d0138;
+  color: #011b38;
 }
 
 ::ng-deep .new-event-panel .mat-dialog-container {
@@ -27,10 +27,10 @@ h2 {
 }
 
 .step-guide {
-  background: #f2e5ff;
+  background: #daedff;
   border-radius: 12px;
   padding: 20px;
-  border: 1px solid #b66dff;
+  border: 1px solid #369efc;
 }
 
 .normalized-height {
@@ -39,7 +39,7 @@ h2 {
 
 .presenter {
   height: 100%;
-  background-image: url('/assets/images/guide.png');
+  background-image: url('/assets/images/guide2.png');
   background-size: contain;
   background-repeat: no-repeat;
   padding-left: 35%;
