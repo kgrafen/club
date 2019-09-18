@@ -160,6 +160,9 @@ public userForm = new FormGroup({
       if (this.user.numberOfChildren) {
         this.childrenForm.get('numberOfChildren').setValue(this.user.numberOfChildren);
       }
+      if (this.user.username) {
+        this.userForm.get('username').setValue(this.user.username);
+      }
     
       let childCount = 0;
       if (this.user.children.childOne) {
