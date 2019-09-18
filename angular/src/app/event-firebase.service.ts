@@ -135,10 +135,10 @@ export class EventFirebaseService {
         
         switch(genCriteria) {
           case 'only_men':
-            message  = user.gender.toString() === "Mand" ? '' : 'Dette event ever kun for mænd';
+            message  = user.gender.toString() === "Mand" ? '' : 'Dette event er kun for mænd';
             break;
           case 'only_women':
-            message  = user.gender.toString() === "Kvinde" ? '' : 'Dette event ever kun for kvinder';
+            message  = user.gender.toString() === "Kvinde" ? '' : 'Dette event er kun for kvinder';
             break;
           case 'equal':
             let userList = [];
@@ -162,7 +162,7 @@ export class EventFirebaseService {
         if (!message) {
           switch(childCriteria) {
             case 'only_with_children':
-              message = user.numberOfChildren > 0 ? '' : 'This event is only for people with children';
+              message = user.numberOfChildren > 0 ? '' : 'Dette event er kun for medlemmere med børn';
               break;
             default:
               message = '';
