@@ -131,16 +131,16 @@ export class EventFirebaseService {
         /* Availability check */
         const availResult: boolean = participants < max ? true : false;
         /* Criteria check */
-        let genResult: boolean;
+        let message : string;
         
         switch(genCriteria) {
-          case 'Kun for mænd':
-            genResult = user.gender.toString() === "Mand" ? true : false;
+          case 'only_men':
+            message  = user.gender.toString() === "Mand" ? '' : 'Dette event ever kun for mænd';
             break;
-          case 'Kun for kvinder':
-            genResult = user.gender.toString() === "Kvinde" ? true : false;
+          case 'only_women':
+            message  = user.gender.toString() === "Kvinde" ? '' : 'Dette event ever kun for kvinder';
             break;
-          case '50/50':
+          case 'equal':
             let userList = [];
             Object.keys(payload.participants).forEach(p => {
               const observerTwo = this.ufbs.getUserByID(payload.participants[p].fk_id).subscribe( userSnapshot => {
@@ -149,46 +149,37 @@ export class EventFirebaseService {
               observerTwo.unsubscribe();
             });
             const dist = this.ufbs.userDistribution(userList);
-            if (user.gender === Gender.MALE) {
-              genResult = dist.male < dist.female ? true : false;
+            if (user.gender.toString() === "Mand") {
+              message = dist.male < dist.female ? '' : 'There is already too many men signed up for this event';
             } else {
-              genResult = dist.female < dist.male ? true : false;
+              message = dist.female < dist.male ? '' : 'There is already too many women signed up for this event';
             }
             break;
           default:
-            genResult = true;
+            message = '';
             break;
         }
-        let childResult: boolean;
-        switch(childCriteria) {
-          case 'Kun med børn':
-            childResult = user.numberOfChildren > 0 ? true : false;
-            break;
-          default:
-            childResult = true;
-            break;
+        if (!message) {
+          switch(childCriteria) {
+            case 'only_with_children':
+              message = user.numberOfChildren > 0 ? '' : 'This event is only for people with children';
+              break;
+            default:
+              message = '';
+              break;
+          }
         }
         let activatedResult: boolean = user.isActivated === true ? true : false;
         /* Do */
-        if (genResult && childResult && availResult && activatedResult) {
+        if (!message && availResult && user.isActivated) {
           this.joinEvent(key, this.afAuth.auth.currentUser.uid, user.username);
           resolve(true);
         } else {
-          let criteria: string = "";
-          
-          if (!genResult) {
-            criteria += genCriteria + ", ";
-          } 
-          if (!childResult) {
-            criteria += childCriteria + ", ";
-          }
-          if (!activatedResult) {
-            criteria += activatedResult + ", ";
-          }
+
   
           if (availResult) {
-            this.toast.warning('Du opfylder ikke kriterierne: ' + criteria,'Hov!');
-          } else if (activatedResult) {
+            this.toast.warning(message, 'Hov!');
+          } else if (user.isActivated) {
             this.joinQueue(key, this.afAuth.auth.currentUser.uid, user.username);
             this.toast.info('Alle pladser er optaget, så du er landet på ventelisten','Info');
             resolve(true);
