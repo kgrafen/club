@@ -9,7 +9,7 @@
       <mat-form-field>
         <mat-select formControlName="selection" (selectionChange)="onChildrenChange($event.value)" placeholder="Børn">
           <mat-option *ngFor="let cOption of childrenOptions" [value]="cOption.value">
-            {{cOption.displayValue}}
+            {{cOption.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -24,7 +24,7 @@
           placeholder="Fordeling">
           <!-- <mat-option>Ingen</mat-option> -->
           <mat-option *ngFor="let option of options" [value]="option.value">
-            {{option.displayValue}}
+            {{option.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -36,7 +36,7 @@
         <mat-select formControlName="selection" (selectionChange)="onCategoryChange($event.value)"
           placeholder="Kategori">
           <mat-option *ngFor="let category of categories" [value]="category.value">
-            {{category.displayValue}}
+            {{category.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>

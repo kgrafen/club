@@ -2,10 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { TableFilterService } from '../../table-filter.service';
 import { NgModel, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatSelect } from '@angular/material';
+import { TranslateService } from '@ngx-translate/core';
+import { nameValueDictionaryFromObject } from '../new-event/new-event.component';
 
 export interface Selector {
   value: string;
-  displayValue: string;
+  name: string;
 }
 
 @Component({
@@ -18,34 +20,11 @@ export class EventFilterComponent implements OnInit {
   public slider1Val: Number = 100;
   public kidsAllowed: boolean = false;
 
-  public options: Selector[] = [
-    { value: '', displayValue: '' },
-    { value: 'Kun for mænd', displayValue: 'Kun for mænd' },
-    { value: 'Kun for kvinder', displayValue: 'Kun for kvinder' },
-    { value: '50/50', displayValue: '50/50' },
-    { value: 'Først til mølle', displayValue: 'Først til mølle' }];
+  public options: Selector[];
 
+  public categories: Selector[];
 
-  public categories: Selector[] = [
-    { value: '', displayValue: '' },
-    { value: 'Hjemmehygge', displayValue: 'Hjemmehygge' },
-    { value: 'Fest i privathjem', displayValue: 'Fest i privathjem' },
-    { value: 'Fest uden for privaten', displayValue: 'Fest uden for privaten' },
-    { value: 'For børn', displayValue: 'For børn' },
-    { value: 'Spis sammen på restuarant', displayValue: 'Spis sammen på restuarant' },
-    { value: 'Biograf', displayValue: 'Biograf' },
-    { value: 'Naturoplevelse', displayValue: 'Naturoplevelse' },
-    { value: 'Ferie', displayValue: 'Ferie' },
-    { value: 'Koncert', displayValue: 'Koncert' },
-    { value: 'Kultur', displayValue: 'Kultur' },
-    { value: 'Sport', displayValue: 'Sport' },
-    { value: 'Andet', displayValue: 'Andet' },]
-
-  public childrenOptions: Selector[] = [
-    { value: '', displayValue: '' },
-    { value: 'Kun uden børn', displayValue: 'Kun uden børn' },
-    { value: 'Kun med børn', displayValue: 'Kun med børn' },
-    { value: 'Børn velkomne', displayValue: 'Børn velkomne' }];
+  public childrenOptions: Selector[];
 
   childrenForm = new FormGroup({
     selection: new FormControl('')
@@ -57,9 +36,26 @@ export class EventFilterComponent implements OnInit {
     selection: new FormControl('')
   });
 
-  constructor(private tbs: TableFilterService) { }
+  constructor(
+    private tbs: TableFilterService,
+    private translateService: TranslateService,
+    ) { }
 
   ngOnInit() {
+    this.translateService.get("COMPONENTS.NEW_EVENT.AUDIENCE_STEP.CHILDREN_OPTIONS").subscribe(values => {
+      this.childrenOptions = nameValueDictionaryFromObject(values);
+      this.childrenOptions.unshift({ value: '', name: '' })
+    });
+    
+    this.translateService.get("COMPONENTS.NEW_EVENT.AUDIENCE_STEP.GENDER_OPTIONS").subscribe(values => {
+      this.options = nameValueDictionaryFromObject(values);
+      this.options.unshift({ value: '', name: '' })
+    });
+    
+    this.translateService.get("COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.CATEGORIES").subscribe(values => {
+      this.categories = nameValueDictionaryFromObject(values);
+      this.categories.unshift({ value: '', name: '' })
+    });
 
   }
 
