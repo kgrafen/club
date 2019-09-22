@@ -115,6 +115,8 @@ export class EventListComponent implements OnInit {
   updateEventList(events) {
 
     if (this.events.length > 0) {
+      this.paginator.firstPage();
+
       this.dataSource = new MatTableDataSource(events);
       this.dataSource.filterPredicate = this.customFilterPredicate();
       this.dataSource.paginator = this.paginator;
@@ -129,10 +131,19 @@ export class EventListComponent implements OnInit {
     }
   }
 
+  
+  showAllEvents(showMyEvents: boolean) {
+    this.updateEventList(this.currentEvents);
+
+  }
+
   showOnlyMyEvents(showMyEvents: boolean) {
     let myEvents;
+    const userId = this.authService.afAuth.auth.currentUser.uid;
     if (showMyEvents) {
-      myEvents = this.currentEvents.filter((event: Event) => event.host == this.authService.afAuth.auth.currentUser.uid);
+      myEvents = this.currentEvents.filter((event: Event) => 
+        event.host == userId || event.participants[userId] !== undefined
+      );
     } else {
       myEvents = this.currentEvents;
     }
@@ -142,13 +153,33 @@ export class EventListComponent implements OnInit {
 
   showPastEvents(isPastShown: boolean) {
     let myEvents;
+    const userId = this.authService.afAuth.auth.currentUser.uid;
     if (isPastShown) {
-      myEvents = this.events.filter( event => Date.parse(event.dateStart) <= Date.now() );
+      myEvents = this.events.filter( event => 
+        Date.parse(event.dateStart) <= Date.now()
+        && (event.host == userId || event.participants[userId] !== undefined)
+      );
     } else {
       myEvents = this.currentEvents;
     }
     this.updateEventList(myEvents);
 
+  }
+
+  showJoinedEvents(isJoinedShown: boolean) {
+    let myEvents;
+    if (isJoinedShown) {
+      myEvents = this.events.filter( event => {
+        if ( Date.parse(event.dateStart) > Date.now() && event.participants) {
+          return event.participants[this.authService.afAuth.auth.currentUser.uid] !== undefined;
+        } else {
+          return false;
+        }
+      });
+    } else {
+      myEvents = this.currentEvents;
+    }
+    this.updateEventList(myEvents);
   }
 
   ngOnInit() {

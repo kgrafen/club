@@ -3,8 +3,10 @@
 <div *ngIf="!isMobile" class="row desktop">
   <div class="col-4">
     <event-control-menu 
+      (showAllEvents)="showAllEvents($event)"
       (showMyEvents)="showMyEvents($event)"
       (showPastEvents)="showPastEvents($event)"
+      (showJoinedEvents)="showJoinedEvents($event)"
     ></event-control-menu>
     <event-filter></event-filter>
   </div>

@@ -2,22 +2,37 @@
   <button (click)="openDialog()" mat-raised-button color="primary">Nyt Event</button>
 
   <button 
+    (click)="displayAllEvents()" 
+    matTooltip="Alle events" 
+    routerLink="/my-events" 
+    [color]="allEventsShown ? 'primary' : ''"
+    mat-raised-button>
+    Alle Events
+  </button>
+
+  <button 
     (click)="displayMyEventsOnly()" 
     matTooltip="Events som du arrangerer" 
     routerLink="/my-events" 
-    mat-raised-button color="accent">
-      {{myEventsShown ? 'Alle eventer' : 'Mine Eventer'}} 
+    [color]="myEventsShown ? 'primary' : ''"
+    mat-raised-button>
+    Mine Events
   </button>
 
-  <button class="lesserBtn" matTooltip="Events, som du har deltaget i" routerLink="/attending-events"
-    mat-raised-button>Tidligere Events
-  </button>
+  <!-- <button
+    (click)="displayJoinedEvents()"
+    class="lesserBtn" matTooltip="Events, som du har deltaget i" routerLink="/attending-events"
+    [color]="joinedEventsShown ? 'primary' : ''"
+    mat-raised-button>
+    Tilmeldte Events
+  </button> -->
 
   <button
     (click)="displayPastEvents()"
     class="lesserBtn" matTooltip="En liste af de events, som du er tilmeldt" routerLink="/attended-events"
+    [color]="pastEventsShown ? 'primary' : ''"
     mat-raised-button>
-     {{ pastEventsShown ? 'Nuværende' : 'Tidligere Eventer'}} 
+    Tidligere Events
   </button>
 
 </mat-card>

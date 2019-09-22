@@ -35,12 +35,20 @@ export class EventsComponent implements OnInit {
     this.newUserRoutine();
   }
 
+  showAllEvents(isJoinedShown: boolean) {
+    this.eventsList.showAllEvents(isJoinedShown);
+  }
+
   showMyEvents(showMyEvents: boolean) {
     this.eventsList.showOnlyMyEvents(showMyEvents);
   }
 
   showPastEvents(isPastShown: boolean) {
     this.eventsList.showPastEvents(isPastShown);
+  }
+
+  showJoinedEvents(isJoinedShown: boolean) {
+    this.eventsList.showJoinedEvents(isJoinedShown);
   }
 
   newUserRoutine() {

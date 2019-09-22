@@ -13,13 +13,17 @@ import { Router } from '@angular/router';
 })
 export class EventControlMenuComponent implements OnInit {
 
+  @Output() showAllEvents = new EventEmitter();
   @Output() showMyEvents = new EventEmitter();
   @Output() showPastEvents = new EventEmitter();
+  @Output() showJoinedEvents = new EventEmitter();
 
   dialogWidth = screen.width / 1.25 + "px";
   dialogHeight = screen.height / 1.75 + "px";
+  allEventsShown: boolean = true;
   myEventsShown: boolean = false;
   pastEventsShown: boolean = false;
+  joinedEventsShown: boolean = false;
 
   constructor(
     public dialog: MatDialog, 
@@ -41,14 +45,35 @@ export class EventControlMenuComponent implements OnInit {
     });
   }
 
+  clearAll() {
+    this.allEventsShown = false;
+    this.myEventsShown = false;
+    this.pastEventsShown = false;
+    this.joinedEventsShown = false;
+  }
+
+  displayAllEvents() {
+    this.clearAll();
+    this.allEventsShown = true;
+    this.showAllEvents.emit(this.allEventsShown);
+  }
+
   displayMyEventsOnly() {
-    this.myEventsShown = !this.myEventsShown;
+    this.clearAll();
+    this.myEventsShown = true;
     this.showMyEvents.emit(this.myEventsShown);
   }
 
   displayPastEvents() {
-    this.pastEventsShown = !this.pastEventsShown;
+    this.clearAll();
+    this.pastEventsShown = true;
     this.showPastEvents.emit(this.pastEventsShown);
+  }
+
+  displayJoinedEvents() {
+    this.clearAll();
+    this.joinedEventsShown = true;
+    this.showJoinedEvents.emit(this.joinedEventsShown);
   }
 
 }
