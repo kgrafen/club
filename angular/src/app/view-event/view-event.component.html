@@ -12,7 +12,7 @@
                       <mat-chip color="primary" selected><mat-icon>person</mat-icon> {{hostName}}</mat-chip>
                     </mat-chip-list>
                   </mat-card-title>
-                  <mat-card-subtitle><fa name="tag"></fa> <span style="font-style:italic">{{  selectedEvent.category }} </span><br><br>
+                  <mat-card-subtitle><fa name="tag"></fa> <span style="font-style:italic"> {{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.CATEGORIES.' + selectedEvent.category | uppercase | translate}} </span><br><br>
                     <p style="white-space: pre-line">{{selectedEvent.description}}</p>
                   </mat-card-subtitle>
                   <img src="/assets/images/event_placeholder.jpg" mat-card-image>
@@ -91,7 +91,7 @@
 <div *ngIf="isMobile">
   <mat-card class="mobileContainer">
           <mat-card-title>{{selectedEvent.name}}</mat-card-title>
-          <mat-card-subtitle><fa name="tag"></fa> {{  selectedEvent.category }} <br><br>
+          <mat-card-subtitle><fa name="tag"></fa> {{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.CATEGORIES.' + selectedEvent.category | uppercase | translate}} <br><br>
             {{selectedEvent.description}}
           </mat-card-subtitle>
           <img src="../../singlenetwork/assets/images/event_placeholder.jpg" mat-card-image>
