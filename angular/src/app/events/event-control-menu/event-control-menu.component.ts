@@ -14,10 +14,12 @@ import { Router } from '@angular/router';
 export class EventControlMenuComponent implements OnInit {
 
   @Output() showMyEvents = new EventEmitter();
+  @Output() showPastEvents = new EventEmitter();
 
   dialogWidth = screen.width / 1.25 + "px";
   dialogHeight = screen.height / 1.75 + "px";
   myEventsShown: boolean = false;
+  pastEventsShown: boolean = false;
 
   constructor(
     public dialog: MatDialog, 
@@ -42,6 +44,11 @@ export class EventControlMenuComponent implements OnInit {
   displayMyEventsOnly() {
     this.myEventsShown = !this.myEventsShown;
     this.showMyEvents.emit(this.myEventsShown);
+  }
+
+  displayPastEvents() {
+    this.pastEventsShown = !this.pastEventsShown;
+    this.showPastEvents.emit(this.pastEventsShown);
   }
 
 }

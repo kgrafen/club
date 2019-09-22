@@ -47,6 +47,7 @@ export class NewEventComponent implements OnInit {
   errorMessages
   user$: any;
   eventDate = new Date();
+  minDate = new Date();
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -129,11 +130,15 @@ export class NewEventComponent implements OnInit {
 
     const event = new Event({});
 
+    console.log(this.newEventFormGroup.value)
+
     event.name = this.newEventFormGroup.value.eventName;
     event.address = new EventAddress(this.newEventFormGroup.value.eventLocationStreet,
       this.apiZipValue, this.newEventFormGroup.value.eventLocationZip);
     event.category = this.newEventFormGroup.value.eventCategory;
-
+    event.dateStart = this.newEventFormGroup.value.eventDate.toString();
+    event.timeStart = this.newEventFormGroup.value.eventStartTime;
+    event.timeEnd = this.newEventFormGroup.value.eventEndTime;
     event.geoCoord = this.geoCoord;
 
     if (userSnapshot) event.participants = [{ username: userSnapshot.username }];
@@ -148,6 +153,7 @@ export class NewEventComponent implements OnInit {
     //   event.paymentDue = "Kontant ved ankomst på dagen";
     // }
     this.onNoClick();
+    console.log({event})
     return event;
   }
 

@@ -280,7 +280,8 @@
         "ZIP_LABEL": "Post Nr.",
         "CITY_LABEL": "By",
         "CITY_TOOLTIP": "Dette felt udfyldes automatisk",
-        "HOME_ADDRESS_CHECKBOX": "Vælg din hjemmeadresse"
+        "HOME_ADDRESS_CHECKBOX": "Vælg din hjemmeadresse",
+        "START_DATE": "Date"
       },
       "AUDIENCE_STEP": {
         "TITLE": "Opret nyt event",

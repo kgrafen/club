@@ -9,9 +9,15 @@
       {{myEventsShown ? 'Alle eventer' : 'Mine Eventer'}} 
   </button>
 
-  <button class="lesserBtn" matTooltip="En liste af de events, som du er tilmeldt" routerLink="/attending-events"
-    mat-raised-button>Tilmeldte Events</button>
+  <button class="lesserBtn" matTooltip="Events, som du har deltaget i" routerLink="/attending-events"
+    mat-raised-button>Tidligere Events
+  </button>
 
-  <button class="lesserBtn" matTooltip="Events, som du har deltaget i" routerLink="/attended-events"
-    mat-raised-button>Tidligere Events</button>
+  <button
+    (click)="displayPastEvents()"
+    class="lesserBtn" matTooltip="En liste af de events, som du er tilmeldt" routerLink="/attended-events"
+    mat-raised-button>
+     {{ pastEventsShown ? 'Nuværende' : 'Tidligere Eventer'}} 
+  </button>
+
 </mat-card>

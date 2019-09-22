@@ -56,9 +56,9 @@
   <mat-grid-list cols="3" rowHeight="80px" [gutterSize]="'10px'">
     <mat-grid-tile>
       <mat-form-field class="normalized-height">
-        <mat-label>{{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.STREET_LABEL' | translate}}</mat-label>
+        <mat-label>{{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.START_DATE' | translate}}</mat-label>
         <input [min]="minDate" [max]="maxDate" matTooltip="Klik på kalendar-ikonet for at vælge dato" matInput
-          [matDatepicker]="picker" formControlName="eventDate" placeholder="DD/MM/YYYY">
+          [matDatepicker]="picker" formControlName="eventDate" placeholder="DD/MM/YYYY" required>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>

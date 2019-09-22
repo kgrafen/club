@@ -39,6 +39,10 @@ export class EventsComponent implements OnInit {
     this.eventsList.showOnlyMyEvents(showMyEvents);
   }
 
+  showPastEvents(isPastShown: boolean) {
+    this.eventsList.showPastEvents(isPastShown);
+  }
+
   newUserRoutine() {
     const firebaseUser = this.authService.afAuth.auth.currentUser;
     let userExists = false;

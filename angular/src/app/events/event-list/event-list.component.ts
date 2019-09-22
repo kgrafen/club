@@ -54,6 +54,7 @@ export class EventListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   events = [];
+  currentEvents = [];
 
   subscription: Subscription;
   filterValue: any;
@@ -75,6 +76,8 @@ export class EventListComponent implements OnInit {
         this.events[event] = { ...this.events[event], participantCount: Object.keys(this.events[event].participants).length };
       });
 
+      this.events = this.matCompareTo(this.events)
+
       this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(userSnapshot => {
         let user = new User(userSnapshot);
         user.address.zip;
@@ -92,8 +95,10 @@ export class EventListComponent implements OnInit {
               event.distance = (meters / 1000).toFixed(1);
             }
           });
+          
+          this.currentEvents = this.events.filter( event => Date.parse(event.dateStart) > Date.now() );
 
-          this.updateEventList(this.events);
+          this.updateEventList(this.currentEvents);
 
         });
 
@@ -104,6 +109,7 @@ export class EventListComponent implements OnInit {
     });
 
     this.subscription = this.tfs.getEvent().subscribe(filter => { this.applyFilter(filter) });
+
   }
 
   updateEventList(events) {
@@ -126,11 +132,23 @@ export class EventListComponent implements OnInit {
   showOnlyMyEvents(showMyEvents: boolean) {
     let myEvents;
     if (showMyEvents) {
-      myEvents = this.events.filter((event: Event) => event.host == this.authService.afAuth.auth.currentUser.uid);
+      myEvents = this.currentEvents.filter((event: Event) => event.host == this.authService.afAuth.auth.currentUser.uid);
     } else {
-      myEvents = this.events;
+      myEvents = this.currentEvents;
     }
     this.updateEventList(myEvents);
+
+  }
+
+  showPastEvents(isPastShown: boolean) {
+    let myEvents;
+    if (isPastShown) {
+      myEvents = this.events.filter( event => Date.parse(event.dateStart) <= Date.now() );
+    } else {
+      myEvents = this.currentEvents;
+    }
+    this.updateEventList(myEvents);
+
   }
 
   ngOnInit() {
@@ -139,7 +157,7 @@ export class EventListComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.sortData = this.matCompareTo;
+    // this.dataSource.sortData = this.matCompareTo;
     setTimeout(() => {
       if (this.events.length < 1) {
         this.spinner.hide();
@@ -151,7 +169,7 @@ export class EventListComponent implements OnInit {
   applyFilter(filterValue) {
     
     this.dataSource.filter = JSON.stringify(filterValue);
-    
+
     // let obj = {category: strArr[1], genderRatio: strArr[2], targetGroup: strArr[3]};
     
     // this.dataSource.filter = JSON.stringify(obj);
@@ -197,7 +215,7 @@ export class EventListComponent implements OnInit {
     this.router.navigate(['/view-event'], navigationExtras);
   }
 
-  matCompareTo(data: EventData[], sort: MatSort): EventData[] {
+  matCompareTo(data: EventData[], isDesc?: boolean): EventData[] {
     return data.sort((a, b) => {
       let dateA = new Date(a.dateStart);
       let dateB = new Date(b.dateStart);
