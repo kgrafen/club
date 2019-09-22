@@ -230,10 +230,10 @@ export class EventListComponent implements OnInit {
     // this.dataSource.filter = filterValue.trim().toLowerCase();
     // this.dataSourceMobile.filter = filterValue.trim().toLowerCase();
 
-    // if (this.dataSource.paginator) {
-    //   this.dataSource.paginator.firstPage();
-    //   this.dataSourceMobile.paginator.firstPage();
-    // }
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+      this.dataSourceMobile.paginator.firstPage();
+    }
   }
 
   onViewClick(element) {
