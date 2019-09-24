@@ -44,17 +44,17 @@ export class EventFilterComponent implements OnInit {
   ngOnInit() {
     this.translateService.get("COMPONENTS.NEW_EVENT.AUDIENCE_STEP.CHILDREN_OPTIONS").subscribe(values => {
       this.childrenOptions = nameValueDictionaryFromObject(values);
-      this.childrenOptions.unshift({ value: '', name: '' })
+      this.childrenOptions.unshift({ value: '', name: 'Alle' })
     });
     
     this.translateService.get("COMPONENTS.NEW_EVENT.AUDIENCE_STEP.GENDER_OPTIONS").subscribe(values => {
       this.options = nameValueDictionaryFromObject(values);
-      this.options.unshift({ value: '', name: '' })
+      this.options.unshift({ value: '', name: 'Alle' })
     });
     
     this.translateService.get("COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.CATEGORIES").subscribe(values => {
       this.categories = nameValueDictionaryFromObject(values);
-      this.categories.unshift({ value: '', name: '' })
+      this.categories.unshift({ value: '', name: 'Alle' })
     });
 
   }
