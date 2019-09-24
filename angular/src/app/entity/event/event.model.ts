@@ -37,7 +37,7 @@ export class Event {
     queue: boolean;
     inQueue: {};
     address: EventAddress;
-    deadlineDate: string = setDateFromNow(4);;
+    deadlineDate: string = setDateFromNow(4);
     deadlineTime: number;
     price: number;
     paymentOption: string;
@@ -49,6 +49,7 @@ export class Event {
     mobilePayNumber: number;
     timestamp: string;
     distance: string;
+    creationDate: string = setDateFromNow(0);
 
     constructor(obj) {
         obj && Object.assign(this, obj);

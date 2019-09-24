@@ -44,9 +44,10 @@ export class EventListComponent implements OnInit {
 
   /* Sorting */
   sortAscending = true;
+  sortCreationAscending = true;
 
   dataSource = new MatTableDataSource<EventData>();
-  displayedColumns = ['name', 'address', 'category', 'distance', 'genderRatio', 'targetGroup', 'available', 'dateStart'];
+  displayedColumns = ['name', 'address', 'category', 'distance', 'available', 'dateStart', 'creationDate'];
   dataSourceMobile = new MatTableDataSource<EventDataMobile>();
   displayedColumnsMobile = ['name', 'address', 'available', 'dateStart'];
 
@@ -294,6 +295,34 @@ export class EventListComponent implements OnInit {
     } else {
       // this.toast.info('Sorteret efter senestkommende events','Info');
       this.events.sort(this.compareToDescending);
+      this.dataSource = new MatTableDataSource(this.events);
+    }
+  }
+
+
+  compareCreationToAscending(a: Event, b: Event): number {
+    let dateA = a.creationDate;
+    let dateB = b.creationDate;
+    return (dateA > dateB) ? 1 : (dateA < dateB) ? -1 : 0;
+  }
+
+  compareCreationToDescending(a: Event, b: Event): number {
+    let dateA = a.creationDate;
+    let dateB = b.creationDate;
+    return (dateA > dateB) ? -1 : (dateA < dateB) ? 1 : 0;
+  }
+
+  
+  sortByCreationDate() {
+    this.sortCreationAscending = !this.sortCreationAscending;
+    this.toast.toastrConfig.timeOut = 2000;
+    if (this.sortCreationAscending) {
+      // this.toast.info('Sorteret efter førstkommende events','Info');
+      this.events.sort(this.compareCreationToAscending);
+      this.dataSource = new MatTableDataSource(this.events);
+    } else {
+      // this.toast.info('Sorteret efter senestkommende events','Info');
+      this.events.sort(this.compareCreationToDescending);
       this.dataSource = new MatTableDataSource(this.events);
     }
   }
