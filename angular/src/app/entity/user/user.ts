@@ -33,7 +33,7 @@ export class User {
     friendlist: string[];
 
     //Account status
-    isActivated: boolean = false;
+    isActivated: boolean = true;
     subscribed_until: Date;
     fk_user_role: string;
 
