@@ -42,10 +42,6 @@ export class EventListComponent implements OnInit {
 
   isMobile = false;
 
-  /* Sorting */
-  sortAscending = true;
-  sortCreationAscending = true;
-
   dataSource = new MatTableDataSource<EventData>();
   displayedColumns = ['name', 'address', 'category', 'distance', 'available', 'dateStart', 'creationDate'];
   dataSourceMobile = new MatTableDataSource<EventDataMobile>();
@@ -77,7 +73,6 @@ export class EventListComponent implements OnInit {
         this.events[event] = { ...this.events[event], participantCount: Object.keys(this.events[event].participants).length };
       });
 
-      // this.events = this.matCompareTo(this.events)
 
       this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(userSnapshot => {
         let user = new User(userSnapshot);
@@ -244,86 +239,6 @@ export class EventListComponent implements OnInit {
       }
     }
     this.router.navigate(['/view-event'], navigationExtras);
-  }
-
-  matCompareTo(data: EventData[], isDesc?: boolean): EventData[] {
-    return data.sort((a, b) => {
-      let dateA = new Date(a.dateStart);
-      let dateB = new Date(b.dateStart);
-      if (dateA > dateB) {
-        return 1;
-      }
-      if (dateA < dateB) {
-        return -1;
-      }
-      return 0;
-    });
-  }
-
-  compareToAscending(a, b): number {
-    let dateA = a.dateStart;
-    let dateB = b.dateStart;
-    if (dateA > dateB) {
-      return 1;
-    }
-    if (dateA < dateB) {
-      return -1;
-    }
-    return 0;
-  }
-
-  compareToDescending(a, b): number {
-    let dateA = new Date(a.dateStart);
-    let dateB = new Date(b.dateStart);
-    if (dateA > dateB) {
-      return -1;
-    }
-    if (dateA < dateB) {
-      return 1;
-    }
-    return 0;
-  }
-
-  compareTo() {
-    this.sortAscending = !this.sortAscending;
-    this.toast.toastrConfig.timeOut = 2000;
-    if (this.sortAscending) {
-      // this.toast.info('Sorteret efter førstkommende events','Info');
-      this.events.sort(this.compareToAscending);
-      this.dataSource = new MatTableDataSource(this.events);
-    } else {
-      // this.toast.info('Sorteret efter senestkommende events','Info');
-      this.events.sort(this.compareToDescending);
-      this.dataSource = new MatTableDataSource(this.events);
-    }
-  }
-
-
-  compareCreationToAscending(a: Event, b: Event): number {
-    let dateA = a.creationDate;
-    let dateB = b.creationDate;
-    return (dateA > dateB) ? 1 : (dateA < dateB) ? -1 : 0;
-  }
-
-  compareCreationToDescending(a: Event, b: Event): number {
-    let dateA = a.creationDate;
-    let dateB = b.creationDate;
-    return (dateA > dateB) ? -1 : (dateA < dateB) ? 1 : 0;
-  }
-
-  
-  sortByCreationDate() {
-    this.sortCreationAscending = !this.sortCreationAscending;
-    this.toast.toastrConfig.timeOut = 2000;
-    if (this.sortCreationAscending) {
-      // this.toast.info('Sorteret efter førstkommende events','Info');
-      this.events.sort(this.compareCreationToAscending);
-      this.dataSource = new MatTableDataSource(this.events);
-    } else {
-      // this.toast.info('Sorteret efter senestkommende events','Info');
-      this.events.sort(this.compareCreationToDescending);
-      this.dataSource = new MatTableDataSource(this.events);
-    }
   }
 
   customFilterPredicate() {
