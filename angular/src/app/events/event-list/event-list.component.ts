@@ -77,7 +77,7 @@ export class EventListComponent implements OnInit {
         this.events[event] = { ...this.events[event], participantCount: Object.keys(this.events[event].participants).length };
       });
 
-      this.events = this.matCompareTo(this.events)
+      // this.events = this.matCompareTo(this.events)
 
       this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(userSnapshot => {
         let user = new User(userSnapshot);
@@ -189,7 +189,6 @@ export class EventListComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    // this.dataSource.sortData = this.matCompareTo;
     setTimeout(() => {
       if (this.events.length < 1) {
         this.spinner.hide();
