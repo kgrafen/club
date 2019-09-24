@@ -18,7 +18,8 @@ import { MatFormFieldModule,
          MatGridListModule, 
          MatCheckboxModule, 
          MatTooltipModule,
-         MatDatepickerModule
+         MatDatepickerModule,
+         MatSortModule
         } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -43,6 +44,7 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
     MatFormFieldModule,
     MatTableModule,
     MatPaginatorModule,
+    MatSortModule,
     MatOptionModule,
     MatSelectModule,
     MatSliderModule,

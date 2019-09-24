@@ -60,7 +60,7 @@
     </ng-container>
 
     <ng-container matColumnDef="creationDate">
-      <th id="dateSorter" mat-header-cell *matHeaderCellDef>Oprettelsesdato</th>
+      <th id="dateSorter" mat-header-cell mat-sort-header *matHeaderCellDef>Oprettelsesdato</th>
       <td mat-cell *matCellDef="let element">{{element.creationDate | date:'dd/MM/yyyy'}}</td>
     </ng-container>
 
