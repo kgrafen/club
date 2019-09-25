@@ -54,13 +54,11 @@ export class EventFirebaseService {
   }
 
   insertEvent(event: Event) {
-    const timestamp = {timestamp: new Date().toString()};
-    let merged: Event = {...event, ...timestamp};
-    return this.db.list(this.dbPath).push(merged);
+    event.creationDate  = {timestamp: new Date().getTime()};
+    return this.db.list(this.dbPath).push(event);
   }
 
   updateEvent(key: string, e: Event) {
-    
     const eventsRef = this.db.object(this.dbPath+key);
     return eventsRef.update(e);
   }

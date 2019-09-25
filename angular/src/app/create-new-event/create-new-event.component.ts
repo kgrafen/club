@@ -261,13 +261,13 @@ export class CreateNewEventComponent implements OnInit {
     event.description = this.firstFormGroup.value.eventDescription;
     event.geoCoord = this.firstFormGroup.value.geoCoord;
 
-    event.dateStart = this.thirdFormGroup.value.eventDate.toString();
-    event.deadlineDate = this.thirdFormGroup.value.eventDeadlineDate.toString();
+    event.dateStart = this.thirdFormGroup.value.eventDate.getTime();
+    event.deadlineDate = this.thirdFormGroup.value.eventDeadlineDate.getTime();
     event.deadlineTime = this.thirdFormGroup.value.eventDeadlineTime;
     event.timeEnd = this.thirdFormGroup.value.eventEndTime;
     event.timeStart = this.thirdFormGroup.value.eventStartTime;
 
-    event.paymentDate = this.fourthFormGroup.value.eventPaymentDate.toString();
+    event.paymentDate = this.fourthFormGroup.value.eventPaymentDate.getTime() || this.thirdFormGroup.value.eventDate.getTime();
     event.paymentDue = this.fourthFormGroup.value.eventPaymentDue;
     event.paymentOption = this.fourthFormGroup.value.eventPaymentOption;
     event.price = this.fourthFormGroup.value.eventPrice;
@@ -296,6 +296,8 @@ export class CreateNewEventComponent implements OnInit {
     if (this.eventData.paymentOption == "Kontant") {
       event.paymentDue = "Kontant ved ankomst på dagen";
     }
+
+    console.log({event})
     this.onNoClick();
     return event;
   }

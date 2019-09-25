@@ -50,7 +50,7 @@ export class EventListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  events = [];
+  events: Event[] = [];
   currentEvents = [];
 
   subscription: Subscription;
@@ -69,10 +69,17 @@ export class EventListComponent implements OnInit {
 
     this.efbs.getList().subscribe(eventSnapshots => {
       this.events = eventSnapshots;
-      Object.keys(this.events).forEach((event: any) => {
-        this.events[event] = { ...this.events[event], participantCount: Object.keys(this.events[event].participants).length };
+      Object.keys(this.events).forEach((index: any) => {
+        // this.events[event] = { ...this.events[index], participantCount: Object.keys(this.events[index].participants).length };
       });
 
+      // this.events.forEach(event => {
+      //   event.dateStart = new Date(event.dateStart).getTime() || 1567987200000;
+      //   event.deadlineDate = new Date(event.deadlineDate).getTime() || 1567987200000;
+      //   event.creationDate = new Date(event.creationDate).getTime() || 1567987200000;
+      // })
+      console.log(this.events)
+     
 
       this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(userSnapshot => {
         let user = new User(userSnapshot);
@@ -92,7 +99,7 @@ export class EventListComponent implements OnInit {
             }
           });
           
-          this.currentEvents = this.events.filter( event => Date.parse(event.dateStart) > Date.now() );
+          this.currentEvents = this.events.filter( event => event.dateStart > Date.now());
 
           this.updateEventList(this.currentEvents);
 
@@ -129,7 +136,12 @@ export class EventListComponent implements OnInit {
 
   
   showAllEvents(showMyEvents: boolean) {
-    this.updateEventList(this.currentEvents);
+
+    this.events.forEach(event=> {
+      this.efbs.updateEvent(event.key, event);
+    })
+
+    this.updateEventList(this.events);
 
   }
 

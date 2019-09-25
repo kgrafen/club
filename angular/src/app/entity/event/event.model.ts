@@ -21,7 +21,7 @@ export class Event {
     key: string;
     name: string;
     description: string = '';
-    dateStart: string = setDateFromNow(7);
+    dateStart: any; // = setDateFromNow(7);
     timeStart: number;
     timeEnd: number;
     category: string;
@@ -37,19 +37,19 @@ export class Event {
     queue: boolean;
     inQueue: {};
     address: EventAddress;
-    deadlineDate: string = setDateFromNow(4);
+    deadlineDate: any;//string = setDateFromNow(4);
     deadlineTime: number;
     price: number;
     paymentOption: string;
     paymentDue: string;
-    paymentDate: string;
+    paymentDate: any;//string;
     participants: {};
     host: string;
     accountNumber: number;
     mobilePayNumber: number;
     timestamp: string;
     distance: string;
-    creationDate: string = setDateFromNow(0);
+    creationDate: any;//string = setDateFromNow(0);
 
     constructor(obj) {
         obj && Object.assign(this, obj);

@@ -136,7 +136,7 @@ export class NewEventComponent implements OnInit {
     event.address = new EventAddress(this.newEventFormGroup.value.eventLocationStreet,
       this.apiZipValue, this.newEventFormGroup.value.eventLocationZip);
     event.category = this.newEventFormGroup.value.eventCategory;
-    event.dateStart = this.newEventFormGroup.value.eventDate.toString();
+    event.dateStart = this.newEventFormGroup.value.eventDate.getTime();
     event.timeStart = this.newEventFormGroup.value.eventStartTime;
     event.timeEnd = this.newEventFormGroup.value.eventEndTime;
     event.geoCoord = this.geoCoord;
