@@ -54,7 +54,7 @@ export class EventFirebaseService {
   }
 
   insertEvent(event: Event) {
-    event.creationDate  = {timestamp: new Date().getTime()};
+    event.creationDate = new Date().getTime();
     return this.db.list(this.dbPath).push(event);
   }
 
