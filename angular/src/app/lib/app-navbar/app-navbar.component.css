@@ -1,13 +1,6 @@
-.pusher {
-    margin-bottom: 100px;
-}
-
-matTooltip {
-    
-}
 
 .menu-logo {
-    max-width:5%;
+    max-width: 40px;
 }
 
 .rating-shield {
@@ -28,6 +21,10 @@ matTooltip {
     padding: 10px;
     text-align: center;
     position: fixed;
+}
+
+.navbar-nav button {
+  margin-right: 10px;
 }
 
 @media only screen and (max-width: 600px) {

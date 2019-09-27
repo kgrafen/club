@@ -16,3 +16,7 @@ event-filter {
 .btnLabel {
     width: 100%;
 }
+
+.row {
+  margin: 20px auto;
+}

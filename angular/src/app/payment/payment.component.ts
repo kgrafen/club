@@ -28,7 +28,6 @@ export class PaymentComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
 
-  title = "Betaling";
   selection = "";
   card = "";
   checked = false;

@@ -10,9 +10,21 @@
     
     
     <div *ngIf="!isMobile" class="navbar-nav ml-auto">
-      <button *ngFor="let field of menuFields" routerLink='{{field.link}}'  mat-button>{{field.displayName | uppercase}}</button>
+      <button 
+        *ngFor="let field of menuFields" 
+        routerLink='{{field.link}}' 
+        [color]="field.selected ? 'primary' : ''" 
+        mat-raised-button
+      >
+        {{field.displayName | uppercase}}
+      </button>
       
-      <button *ngIf="!isIE" routerLink='/my-profile' color="primary" mat-button> 
+      <button 
+        *ngIf="!isIE" 
+        routerLink='/my-profile' 
+        [color]="profileSelected ? 'primary' : ''" 
+        mat-raised-button
+      >
         <mat-icon>person</mat-icon> {{username | uppercase}}
         <img class="rating-shield" src="{{metal}}">
         {{rating}}<mat-icon>star</mat-icon>

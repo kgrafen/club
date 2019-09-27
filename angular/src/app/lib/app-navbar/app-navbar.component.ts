@@ -7,6 +7,7 @@ import { EventFirebaseService } from '../../event-firebase.service';
 import { User } from '../../entity/user/user';
 import { RatingService } from '../../rating.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -22,24 +23,33 @@ export class AppNavbarComponent implements OnInit {
   public isMobile: boolean = false;
   metal = "";
   isIE;
+  profileSelected: boolean = false;
 
   menuFields = [
-                {'displayName' : "events", 'link' : "/events", 'description': "Listen over bruger arrangementer. Find dit næste event!"},
-                // {'displayName' : "min profil", 'link' : "/my-profile", 'description': "Opdater din profil og se status"},
-                {'displayName' : "betaling", 'link' : "/payment", 'description': "Til betalingsgateway hvor du kan styre dit abonnement"},
-                {'displayName' : "Min oversigt", 'link' : "/loggedin-dashboard", 'description': "Se hvad der bevæger sig og få et overblik"},
-              ];
+    {'displayName' : "events", 'link' : "/events", 'description': "Listen over bruger arrangementer. Find dit næste event!", "selected": false},
+    // {'displayName' : "min profil", 'link' : "/my-profile", 'description': "Opdater din profil og se status"},
+    {'displayName' : "betaling", 'link' : "/payment", 'description': "Til betalingsgateway hvor du kan styre dit abonnement", "selected": false},
+    {'displayName' : "Min oversigt", 'link' : "/loggedin-dashboard", 'description': "Se hvad der bevæger sig og få et overblik", "selected": false},
+  ];
 
   public loginForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')
 });
 
-  constructor(private authService: AuthService, private ufbs: UserFirebaseService, 
-              private efbs: EventFirebaseService, private rs: RatingService,
-              private toast: ToastrService) { }
+  constructor(
+    private authService: AuthService, 
+    private ufbs: UserFirebaseService, 
+    private efbs: EventFirebaseService, 
+    private rs: RatingService,
+    private toast: ToastrService,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+    this.menuFields.forEach(field => field.selected = field.link == this.router.url);
+    this.profileSelected = this.router.url == "/my-profile";
+
     if (window.screen.width <= 600) {
         this.isMobile = true;
     }
