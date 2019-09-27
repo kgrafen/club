@@ -83,27 +83,30 @@ export class EventListComponent implements OnInit {
 
       this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(userSnapshot => {
         let user = new User(userSnapshot);
-        user.address.zip;
+        
+        if (user.address) {
 
-        this.geoAPI.getZipFromCity(user.address.zip.toString()).map(response => response.json()).subscribe(result => {
+          user.address.zip;
 
-          this.events.map((event: Event) => {
-            let userGeo: GeoCoord = {
-              latitude: result.visueltcenter[1],
-              longitude: result.visueltcenter[0]
-            };
+          this.geoAPI.getZipFromCity(user.address.zip.toString()).map(response => response.json()).subscribe(result => {
 
-          if (event.geoCoord) {
-              let meters = this.haversineService.getDistanceInMeters(event.geoCoord, userGeo);
-              event.distance = (meters / 1000).toFixed(1);
-            }
-          });
+            this.events.map((event: Event) => {
+              let userGeo: GeoCoord = {
+                latitude: result.visueltcenter[1],
+                longitude: result.visueltcenter[0]
+              };
+
+            if (event.geoCoord) {
+                let meters = this.haversineService.getDistanceInMeters(event.geoCoord, userGeo);
+                event.distance = (meters / 1000).toFixed(1);
+              }
+            });
           
-          this.currentEvents = this.events.filter( event => event.dateStart > Date.now());
 
-          this.updateEventList(this.currentEvents);
-
-        });
+          });
+        }
+        this.currentEvents = this.events.filter( event => event.dateStart > Date.now());
+        this.updateEventList(this.currentEvents);
 
       });
 

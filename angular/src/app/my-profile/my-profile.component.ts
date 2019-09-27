@@ -361,7 +361,7 @@ public userForm = new FormGroup({
 
   activateAccount() {
     this.userIsDeactivatingAccount = false;
-    this.accountProgress(this.user) >= 100 ? 
+    true || this.accountProgress(this.user) >= 100 ? 
       this.ufbs.updateUser({isActivated:true}, this.authService.afAuth.auth.currentUser.uid) : 
       this.ufbs.updateUser({isActivated:false}, this.authService.afAuth.auth.currentUser.uid);
   }

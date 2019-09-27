@@ -69,7 +69,6 @@ export class EventsComponent implements OnInit {
         const date = new Date();
         date.setUTCFullYear(2019, 0, 1);
         userEntity.subscribed_until = date;
-        userEntity.isActivated = false;
         this.ufbs.insertUser(userEntity, firebaseUser.uid);
       } else {
         
