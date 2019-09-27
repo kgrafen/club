@@ -4,7 +4,7 @@
         <div class="col left">
             <a [routerLink]="['/landing-page']"><img class="header-logo" src="./assets/images/Logo_white.png"></a>
         </div>
-        <div *ngIf="!isMobile && !isLoggedOn" class="col right">
+        <div *ngIf="isLoggedOut" class="col right">
 
             <div class="buttons">
                 <form [formGroup]="loginForm">
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div *ngIf="!isMobile && isLoggedOn" class="col right">
+        <div *ngIf="!isLoggedOut" class="col right">
             <button matTooltip="Logget på som {{username}}" class="singleton" routerLink="/events" mat-raised-button>
               Til Events
             </button>
@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    <div class="login-signup" *ngIf="!isLoggedOn">
+    <div class="login-signup" *ngIf="isLoggedOut">
         <button class="mobileBtn" mat-raised-button (click)="openDialog()">{{'COMPONENTS.LOGIN.EMAIL_LOGIN_BUTTON'|
             translate}}</button>
         <button 
@@ -84,7 +84,7 @@
     </div>
 
 
-    <div *ngIf="isLoggedOn">
+    <div *ngIf="!isLoggedOut">
         <button class="mobileBtn" matTooltip="Logget på som {{username}}" routerLink="/loggedin-dashboard"
             mat-raised-button>Til Dashboard</button>
     </div>
