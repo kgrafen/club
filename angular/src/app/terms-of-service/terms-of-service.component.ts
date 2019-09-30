@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { AuthService } from '../auth.service';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'terms-of-service',
@@ -11,12 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TermsOfServiceComponent implements OnInit {
 
-    displayNavbar = false;
-
-    constructor(
-        private http: HttpClient,
-        private authService: AuthService
-    ) { }
+    constructor() { }
 
     inputHTML;
     rules;
@@ -34,11 +26,6 @@ export class TermsOfServiceComponent implements OnInit {
             return rulesObject;
         });
 
-        this.authService.afAuth.auth.onAuthStateChanged(user => {
-            if (user) {
-                this.displayNavbar = true;
-            }
-        });
     }
 
 

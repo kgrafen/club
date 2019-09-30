@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MobileDetectorService } from '../mobile-detector.service';
-import { AuthService } from '../auth.service';
 import { TransactionalEmailService } from '../transactional-email.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -15,7 +14,6 @@ export class FeedbackComponent implements OnInit {
   isMobile = false;
   isProposal = false;
   btnText = "Del min historie";
-  displayNavbar = false;
   isSendingMsg = false;
 
 public feedbackForm = new FormGroup({
@@ -26,16 +24,14 @@ public feedbackForm = new FormGroup({
     details: new FormControl('')
 });
 
-  constructor(private mds: MobileDetectorService, private authService: AuthService,
-    private tes: TransactionalEmailService, private toast: ToastrService) { }
+  constructor(
+    private mds: MobileDetectorService,
+    private tes: TransactionalEmailService, 
+    private toast: ToastrService
+  ) { }
 
   ngOnInit() {
     this.isMobile = this.mds.check();
-    this.authService.afAuth.auth.onAuthStateChanged(user => {
-      if (user) {
-        this.displayNavbar = true;
-      }
-    });
   }
 
   onItemChange(value) {

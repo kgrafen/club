@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PlatformLocation, Location } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,15 +10,25 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'app';
+  displayNavbar = false;
 
   constructor(
     private translationService: TranslateService,
+    private authService: AuthService,
   ){
     this.translationService.setDefaultLang('dk');
     translationService.use('dk');
   }
 
   ngOnInit() {
+    this.authService.afAuth.auth.onAuthStateChanged(user => {
+      if (user) {
+        this.displayNavbar = true;
+      } else {
+        this.displayNavbar = false;
+      }
+    });
+
     const appRoot = document.getElementsByTagName('app-root')[0];
     const body = document.getElementsByTagName('body')[0];
 

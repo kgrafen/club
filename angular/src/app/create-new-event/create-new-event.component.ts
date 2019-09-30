@@ -102,7 +102,6 @@ export class CreateNewEventComponent implements OnInit {
 
   ngOnInit() {
     const event: Event = this.data.event;
-    console.log({event})
 
     this.firstFormGroup = this._formBuilder.group({
       eventName: [event.name, Validators.required],
@@ -203,8 +202,6 @@ export class CreateNewEventComponent implements OnInit {
 
   updateEventData(newData) {
 
-    console.log({newData})
-
     this.eventData.name = (newData.eventName !== undefined) ? newData.eventName : this.eventData.name;
     this.eventData.address = new EventAddress(newData.eventLocationStreet,
       this.apiZipValue, newData.eventLocationZip);
@@ -297,7 +294,6 @@ export class CreateNewEventComponent implements OnInit {
       event.paymentDue = "Kontant ved ankomst på dagen";
     }
 
-    console.log({event})
     this.onNoClick();
     return event;
   }

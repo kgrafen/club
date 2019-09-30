@@ -16,12 +16,14 @@ export class FooterComponent implements OnInit {
 
   isMobile = false;
   isDevelopmentBuild = true;
+  isLoggedIn;
 
   constructor(private mds: MobileDetectorService, private urs: UserRoleService, 
     private authService: AuthService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.isMobile = this.mds.check();
+    this.authService.afAuth.auth.onAuthStateChanged(user => this.isLoggedIn = !!user);
   }
 
   authorize() {

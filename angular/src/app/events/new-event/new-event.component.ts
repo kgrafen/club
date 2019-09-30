@@ -153,7 +153,6 @@ export class NewEventComponent implements OnInit {
     //   event.paymentDue = "Kontant ved ankomst på dagen";
     // }
     this.onNoClick();
-    console.log({event})
     return event;
   }
 

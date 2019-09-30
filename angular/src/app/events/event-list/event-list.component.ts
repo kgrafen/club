@@ -78,7 +78,6 @@ export class EventListComponent implements OnInit {
       //   event.deadlineDate = new Date(event.deadlineDate).getTime() || 1567987200000;
       //   event.creationDate = new Date(event.creationDate).getTime() || 1567987200000;
       // })
-      console.log(this.events)
      
 
       this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(userSnapshot => {

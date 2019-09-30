@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
-import { $ } from 'protractor';
 import { UserFirebaseService } from '../../user-firebase.service';
-import { EventFirebaseService } from '../../event-firebase.service';
 import { User } from '../../entity/user/user';
-import { RatingService } from '../../rating.service';
-import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 
 @Component({
@@ -40,9 +36,6 @@ export class AppNavbarComponent implements OnInit {
   constructor(
     private authService: AuthService, 
     private ufbs: UserFirebaseService, 
-    private efbs: EventFirebaseService, 
-    private rs: RatingService,
-    private toast: ToastrService,
     private router: Router,
   ) { }
 
@@ -57,8 +50,8 @@ export class AppNavbarComponent implements OnInit {
     // this.isIEOrEdge = /msie\s|trident\/|edge\//i.test(window.navigator.userAgent);
     this.isIE = /msie\s|trident\//i.test(window.navigator.userAgent);
 
-    let observer = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(value => {
-      let user: User = new User(value);
+    let observer = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(u => {
+      let user: User = new User(u);
       if (user.username) {
         this.username = user.username;
       } else {

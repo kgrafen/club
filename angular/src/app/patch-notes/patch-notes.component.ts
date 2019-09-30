@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-patch-notes',
@@ -8,16 +7,10 @@ import { AuthService } from '../auth.service';
 })
 export class PatchNotesComponent implements OnInit {
 
-  displayNavbar = false;
 
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.authService.afAuth.auth.onAuthStateChanged(user => {
-      if (user) {
-        this.displayNavbar = true;
-      }
-    });
   }
 
 }

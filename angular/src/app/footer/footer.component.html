@@ -5,7 +5,7 @@
             <mat-toolbar-row>
                 <h4>Hurtige links</h4>
                 <ul class="cl-effect-1 list-unstyled quick-links">
-                  <li><a [routerLink]="['/landing-page']"> Forside </a></li>
+                  <li><a [routerLink]="isLoggedIn ? ['/events'] : ['/']"> Forside </a></li>
                   <li><a [routerLink]="['/about']"> Om </a></li>
                   <li *ngIf="isDevelopmentBuild"><a [routerLink]="['/patch-notes']">Patch Notes</a></li>
                   <li><a (click)="authorize()" [routerLink]="['/admin']">Admin</a></li>
@@ -37,7 +37,7 @@
       </mat-grid-list>
 
       <mat-list *ngIf="isMobile">
-        <mat-icon [routerLink]="['/']">home</mat-icon>
+        <mat-icon [routerLink]="isLoggedIn ? ['/events'] : ['/']">home</mat-icon>
         <mat-icon [routerLink]="['/about']">info</mat-icon>
         <mat-icon [routerLink]="['/contact']">email</mat-icon>
         <mat-icon [routerLink]="['/feedback']">border_color</mat-icon>
