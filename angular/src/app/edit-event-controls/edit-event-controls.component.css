@@ -1,7 +1,6 @@
 .controls {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 20px;
+  display: flex;
+  justify-content: space-between;
   margin-top: 20px;
 }
 
@@ -15,4 +14,12 @@
 
 .controls button.canc, .controls button.next{ 
   margin-left: auto;
+}
+
+.controls button.canc{ 
+  margin-right: 10px;
+}
+
+.controls button.save{ 
+  margin-left: 10px;
 }

@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<form [formGroup]="newEventFormGroup" *ngIf="(user$ | async) as user">
+<form class="new-event-form" [formGroup]="newEventFormGroup" *ngIf="(user$ | async) as user">
 
   <mat-label class="header">
     1. {{'COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.WHAT_LABEL' | translate}}

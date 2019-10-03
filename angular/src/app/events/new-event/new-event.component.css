@@ -1,8 +1,12 @@
 :host {
-  display: grid;
-  grid-template-columns: 4fr 6fr;
-  grid-column-gap: 20px;
+  display: flex;
   color: #011b38;
+}
+
+.step-guide {
+  width: 400px;
+  flex: 0 0 400px;
+  margin-right: 20px;
 }
 
 ::ng-deep .new-event-panel .mat-dialog-container {
@@ -11,11 +15,16 @@
 }
 
 ::ng-deep .new-event-panel .mat-dialog-container .mat-grid-tile {
-  padding: 10px;
   background: #fffcf8;
   border-radius: 6px;
   border: 1px solid #f5b951;
 }
+
+::ng-deep .new-event-panel .mat-dialog-container .mat-figure {
+  margin: 0 10px;
+}
+
+
 
 ::ng-deep .new-event-panel .mat-dialog-container .mat-grid-tile .mat-figure {
   position: unset;
@@ -62,8 +71,8 @@ form {
 }
 
 .two-columns{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  justify-content: space-between;
 }
 
 .checkbox-container {

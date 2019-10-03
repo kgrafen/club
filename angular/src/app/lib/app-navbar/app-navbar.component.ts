@@ -25,7 +25,7 @@ export class AppNavbarComponent implements OnInit {
     {'displayName' : "events", 'link' : "/events", 'description': "Listen over bruger arrangementer. Find dit næste event!", "selected": false},
     // {'displayName' : "min profil", 'link' : "/my-profile", 'description': "Opdater din profil og se status"},
     {'displayName' : "betaling", 'link' : "/payment", 'description': "Til betalingsgateway hvor du kan styre dit abonnement", "selected": false},
-    {'displayName' : "Min oversigt", 'link' : "/loggedin-dashboard", 'description': "Se hvad der bevæger sig og få et overblik", "selected": false},
+    // {'displayName' : "Min oversigt", 'link' : "/loggedin-dashboard", 'description': "Se hvad der bevæger sig og få et overblik", "selected": false},
   ];
 
   public loginForm = new FormGroup({

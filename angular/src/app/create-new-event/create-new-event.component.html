@@ -59,22 +59,22 @@
         <ng-template matStepLabel>Målgruppe</ng-template>
         <div class="form-table">
 
-          <mat-label>Kønsfordeling</mat-label>
+          <mat-label class="label">Kønsfordeling</mat-label>
 
-          <mat-radio-group formControlName="eventGender">
+          <mat-radio-group class="field" formControlName="eventGender">
             <mat-radio-button *ngFor="let option of genderOptions" name="eventGender" [value]="option.value">
               {{option.name}}</mat-radio-button>
           </mat-radio-group>
 
-          <mat-label>Børn</mat-label>
+          <mat-label class="label">Børn</mat-label>
 
-          <mat-radio-group formControlName="eventTargetGroup">
+          <mat-radio-group class="field" formControlName="eventTargetGroup">
             <mat-radio-button *ngFor="let option of childrenOptions" name="eventTargetGroup" [value]="option.value">
               {{option.name}}</mat-radio-button>
           </mat-radio-group>
 
-          <label>Aldersgruppe</label>
-          <mat-grid-list cols="2" rowHeight=70px>
+          <label class="label">Aldersgruppe</label>
+          <mat-grid-list class="field" cols="2" rowHeight=70px>
             <mat-grid-tile>
               <mat-form-field>
                 <mat-label>Fra</mat-label>
@@ -84,14 +84,14 @@
             <mat-grid-tile>
               <mat-form-field>
                 <mat-label>Til</mat-label>
-                <input matInput type="number" min="1" max="100" formControlName="eventMaxAge" placeholder="99" required>
+                <input matInput type="number" min="1" max="100" formControlName="eventMaxAge" placeholder="100" required>
               </mat-form-field>
             </mat-grid-tile>
           </mat-grid-list>
 
-          <label>Antal Gæster</label>
+          <label class="label">Antal Gæster</label>
 
-          <mat-grid-list cols="2" rowHeight=70px>
+          <mat-grid-list class="field" cols="2" rowHeight=70px>
             <mat-grid-tile>
               <mat-form-field>
                 <mat-label>Min</mat-label>
@@ -102,15 +102,15 @@
             <mat-grid-tile>
               <mat-form-field>
                 <mat-label>Max</mat-label>
-                <input matInput type="number" min="1" max="1000" formControlName="eventMaxGuests" placeholder="499"
+                <input matInput type="number" min="1" max="1000" formControlName="eventMaxGuests" placeholder="500"
                   required>
               </mat-form-field>
             </mat-grid-tile>
           </mat-grid-list>
 
-          <mat-label>Tving på venteliste?</mat-label>
+          <mat-label class="label">Tving på venteliste?</mat-label>
 
-          <mat-radio-group formControlName="eventQueue">
+          <mat-radio-group class="field" formControlName="eventQueue">
             <mat-radio-button *ngFor="let option of waitingListOptions" name="eventQueue" [value]="option.value">
               {{option.name}}</mat-radio-button>
           </mat-radio-group>
@@ -128,17 +128,17 @@
 
         <div class="form-table">
 
-          <label>Dato for eventet</label>
-          <mat-form-field>
+          <label class="label">Dato for eventet</label>
+          <mat-form-field class="field">
             <input [min]="minDate" [max]="maxDate" matTooltip="Klik på kalendar-ikonet for at vælge dato" matInput
               [matDatepicker]="picker" formControlName="eventDate" placeholder="DD/MM/YYYY">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
 
-          <label>Tidspunkt for eventet</label>
+          <label class="label">Tidspunkt for eventet</label>
 
-          <mat-grid-list cols="2" rowHeight=70px>
+          <mat-grid-list class="field" cols="2" rowHeight=70px>
             <mat-grid-tile>
               <mat-form-field>
                 <mat-label>Start</mat-label>
@@ -153,18 +153,18 @@
             </mat-grid-tile>
           </mat-grid-list>
 
-          <label>Tilmeldingsfrist</label>
+          <label class="label">Tilmeldingsfrist</label>
 
-          <mat-form-field>
+          <mat-form-field class="field">
             <input [min]="minDate" [max]="maxRegistrationDate" matTooltip="Klik på kalendar-ikonet for at vælge dato"
               matInput [matDatepicker]="picker2" formControlName="eventDeadlineDate" placeholder="DD/MM/YYYY">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
 
-          <label>Tilmeldingsfrist</label>
+          <label class="label">Tilmeldingsfrist</label>
 
-          <mat-form-field>
+          <mat-form-field class="field">
             <mat-label>Tid</mat-label>
             <input matInput type="time" formControlName="eventDeadlineTime" required>
           </mat-form-field>
@@ -348,7 +348,7 @@
                       </div>
                       <div class="form-group col-md-4">
                           <label class="form-check-label" for="maxAge">Til</label>
-                          <input formControlName="eventMaxAge" type="number" id="maxAge" name="maxage" placeholder="99"/>
+                          <input formControlName="eventMaxAge" type="number" id="maxAge" name="maxage" placeholder="100"/>
                       </div>
                       <div class="form-group col-md-1">
                           
@@ -375,7 +375,7 @@
                       </div>
                       <div class="form-group col-md-4">
                           <label class="form-check-label" for="maxGuests">Max</label>
-                          <input formControlName="eventMaxGuests" type="number" id="maxGuests" name="maxguests" placeholder="499"/>
+                          <input formControlName="eventMaxGuests" type="number" id="maxGuests" name="maxguests" placeholder="500"/>
                       </div>
                       <div class="form-group col-md-1">
                           

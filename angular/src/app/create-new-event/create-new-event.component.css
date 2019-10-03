@@ -15,11 +15,17 @@ form {
 }
 
 .form-table {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  grid-column-gap: 20px;
-  grid-row-gap: 5px;
+  display: flex;
+  flex-flow: wrap;
   align-items: center;
+}
+
+.label {
+  flex: 0 0 20%;
+}
+
+.field {
+  flex: 0 0 80%;
 }
 
 .title-and-category {
