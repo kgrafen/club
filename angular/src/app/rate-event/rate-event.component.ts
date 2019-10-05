@@ -23,30 +23,34 @@ export class RateEventComponent implements OnInit {
   event: Event;
   hasRated = false;
 
-  constructor(private ufbs: UserFirebaseService, private efbs: EventFirebaseService, 
-    private route: ActivatedRoute, private rs: RatingService, private authService: AuthService, 
+  constructor(private ufbs: UserFirebaseService, private efbs: EventFirebaseService,
+    private route: ActivatedRoute, private rs: RatingService, private authService: AuthService,
     private toast: ToastrService, private router: Router) {
-      let observerTwo = this.route.queryParams.subscribe(params => {
-        this.efbs.getEventByKey(params['key']).snapshotChanges().subscribe(res => {
-          this.event = Object.assign(res.payload.val());
-          this.event.key = res.key;
-        });
-        observerTwo.unsubscribe();
+    console.log('rate')
+    let observerTwo = this.route.queryParams.subscribe(params => {
+      console.log({ params })
+      this.efbs.getEventByKey(params['key']).snapshotChanges().subscribe(res => {
+        console.log({ res })
+        this.event = Object.assign(res.payload.val());
+        this.event.key = res.key;
       });
-     }
+      // observerTwo.unsubscribe();
+    });
+  }
 
   ngOnInit() {
   }
 
   rate(scoreValueFromForm, feedbackValueFromForm: string) {
-    let observer = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe( (userSnapshot:any) => {
+    console.log({scoreValueFromForm, feedbackValueFromForm})
+    let observer = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe((userSnapshot: any) => {
       let r = new Rating();
       r.byUser = userSnapshot.username;
       r.feedback = feedbackValueFromForm;
       r.score = scoreValueFromForm;
       r.fk_event = this.event.key;
       r.fk_host = this.event.host;
-      this.rs.updateRating(r, r.byUser+r.fk_event).then( () => {
+      this.rs.updateRating(r, r.byUser + r.fk_event).then(() => {
         this.hasRated = true;
         window.history.back();
         observer.unsubscribe();

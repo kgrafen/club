@@ -43,7 +43,7 @@ export class EventListComponent implements OnInit {
   isMobile = false;
 
   dataSource = new MatTableDataSource<EventData>();
-  displayedColumns = ['name', 'address', 'category', 'distance', 'available', 'dateStart', 'creationDate'];
+  displayedColumns = ['name', 'address', 'category', 'distance', 'available', 'dateStart', 'creationDate', 'rate'];
   dataSourceMobile = new MatTableDataSource<EventDataMobile>();
   displayedColumnsMobile = ['name', 'address', 'available', 'dateStart'];
 
@@ -117,6 +117,15 @@ export class EventListComponent implements OnInit {
 
   }
 
+  rate(e: Event ) {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "key": e.key
+      }
+    }
+    this.router.navigate(['/rate-event'], navigationExtras);
+  }
+
   updateEventList(events) {
 
     if (this.events.length > 0) {
@@ -138,13 +147,7 @@ export class EventListComponent implements OnInit {
 
   
   showAllEvents(showMyEvents: boolean) {
-
-    this.events.forEach(event=> {
-      this.efbs.updateEvent(event.key, event);
-    })
-
-    this.updateEventList(this.events);
-
+    this.updateEventList(this.currentEvents);
   }
 
   showOnlyMyEvents(showMyEvents: boolean) {
@@ -165,10 +168,10 @@ export class EventListComponent implements OnInit {
     let myEvents;
     const userId = this.authService.afAuth.auth.currentUser.uid;
     if (isPastShown) {
-      myEvents = this.events.filter( event => 
-        Date.parse(event.dateStart) <= Date.now()
+      myEvents = this.events.filter( event => {
+        return event.dateStart <= Date.now()
         && (event.host == userId || event.participants[userId] !== undefined)
-      );
+      });
     } else {
       myEvents = this.currentEvents;
     }
@@ -176,11 +179,16 @@ export class EventListComponent implements OnInit {
 
   }
 
+  wasParticipant(event: Event) {
+    const userId = this.authService.afAuth.auth.currentUser.uid;
+    return event.dateStart <= Date.now() && event.participants[userId] !== undefined;
+  }
+
   showJoinedEvents(isJoinedShown: boolean) {
     let myEvents;
     if (isJoinedShown) {
       myEvents = this.events.filter( event => {
-        if ( Date.parse(event.dateStart) > Date.now() && event.participants) {
+        if ( event.dateStart > Date.now() && event.participants) {
           return event.participants[this.authService.afAuth.auth.currentUser.uid] !== undefined;
         } else {
           return false;
