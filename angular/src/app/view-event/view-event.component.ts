@@ -38,6 +38,7 @@ export class ViewEventComponent implements OnInit {
   isParticipating = false;
   isHost = false;
   eventRating = 0;
+  eventRatingRemainderPercent = 0;
   comments = [];
   scoreCount = 0;
 
@@ -173,8 +174,16 @@ export class ViewEventComponent implements OnInit {
         }
       });
       this.eventRating = eventScore / this.scoreCount;
+      this.eventRatingRemainderPercent = (this.eventRating % 1) * 100;
       observerTwo.unsubscribe();
     });
+  }
+
+  getStarPercentage() {
+    return {
+      'background': `linear-gradient(90deg, rgba(255,122,0,1) ${this.eventRatingRemainderPercent}%, 
+        rgba(128,128,128,1) ${this.eventRatingRemainderPercent}%)`
+    }
   }
 
   createWallPost(formData) {

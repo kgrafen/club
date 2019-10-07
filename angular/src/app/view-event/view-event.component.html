@@ -42,12 +42,12 @@
               <mat-card class="rating">
                   <mat-card-title><h3>Bedømmelse</h3></mat-card-title>
                   <div class="average_score">
-                    <span class="rating-text">{{eventRating}}</span>
-                    <span class="stars">
+                    <span class="stars" matTooltip="{{eventRating.toFixed(1)}}">
                       <mat-icon  
                         class="rating-text star" 
                         *ngFor="let item of arrayOne(5); let i = index;"
-                        [ngClass]="{'filled': i < eventRating-2}"
+                        [ngClass]="{'filled': i <= eventRating-1, 'clipped': i > eventRating-1 && i < eventRating}"
+                        [ngStyle]=" (i > eventRating-1 && i < eventRating) ? getStarPercentage() : ''"
                       >star</mat-icon>
                     </span>
                   </div>
@@ -59,9 +59,14 @@
                   </div>
                   <div class="reviews" *ngIf="showComments && isHost">
                       <div class="comment" *ngFor="let comment of comments">
-                        <span>{{comment.score}}</span> 
-                        <mat-icon class="rating-text star">star</mat-icon>
-                        <span>{{comment.feedback}}</span> 
+                        <span matTooltip="{{comment.score}}">
+                          <mat-icon  
+                            class="rating-text star" 
+                            *ngFor="let item of arrayOne(5); let i = index;"
+                            [ngClass]="{'filled': i <= comment.score-1}"
+                          >star</mat-icon>
+                        </span>
+                        <span class="feedback">"{{comment.feedback}}"</span> 
                       </div>
                   </div>
               </mat-card>

@@ -39,12 +39,21 @@
   color: #ff7a00;
 }
 
-.stars {
-
+.comment .rating-text.star {
+  font-size: 16px;
 }
 
-.comment .star {
-  margin-right: 10px;
+.comment .feedback {
+  font-style: italic;
+  font-size: 14px;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+.clipped {
+  background-clip: text!important;
+  -webkit-background-clip: text!important;
+  -webkit-text-fill-color: transparent;
 }
 
 .show-comments {
