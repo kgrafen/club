@@ -30,7 +30,7 @@ export interface DialogData {
 })
 
 export class CreateNewEventComponent implements OnInit {
-  @ViewChild('stepper') stepper: MatStepper;
+  @ViewChild('stepper', {static: false}) stepper: MatStepper;
 
   onEventSaved: EventEmitter<Event> = new EventEmitter<Event>();
   onEventCreated: EventEmitter<string> = new EventEmitter<string>();

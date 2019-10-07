@@ -71,7 +71,7 @@ export class NewEventComponent implements OnInit {
     this.apiZipValue = this.translateService.instant("COMPONENTS.NEW_EVENT.WHAT_AND_WHERE_STEP.CITY_LABEL");
   }
 
-  // @ViewChild('title') nameInput: MatInput;
+  // @ViewChild('title', {static: false}) nameInput: MatInput;
 
   ngOnInit() {
   let dateNow = new Date();

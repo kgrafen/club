@@ -12,7 +12,7 @@ import { EventListComponent } from './event-list/event-list.component';
 })
 export class EventsComponent implements OnInit {
 
-  @ViewChild(EventListComponent) eventsList: EventListComponent;
+  @ViewChild(EventListComponent, {static: false}) eventsList: EventListComponent;
 
   messages = [
     {msg: "Her kan du finde alle events som brugerne er arrangøre af netop nu!", title: "Tip"},
