@@ -15,7 +15,6 @@ import { WallService } from '../wall.service';
 import { ToastrService } from 'ngx-toastr';
 import { GeoCoord } from 'ng2-haversine';
 import { TranslateService } from '@ngx-translate/core';
-import { nameValueDictionaryFromObject } from '../events/new-event/new-event.component';
 import { Router } from '@angular/router';
 
 export interface DialogData {
@@ -28,6 +27,15 @@ export interface DialogData {
   templateUrl: './create-new-event.component.html',
   styleUrls: ['./create-new-event.component.css']
 })
+
+export function nameValueDictionaryFromObject(values: any): any {
+  return Object.keys(values).map(function(key) {
+    return Object.create({
+      value: key.toLowerCase(),
+      name: values[key]
+    })
+  });
+}
 
 export class CreateNewEventComponent implements OnInit {
   @ViewChild('stepper', {static: false}) stepper: MatStepper;

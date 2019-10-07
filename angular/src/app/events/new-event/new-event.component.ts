@@ -8,7 +8,7 @@ import { UserFirebaseService } from 'src/app/user-firebase.service';
 import { AuthService } from 'src/app/auth.service';
 import { Event } from 'src/app/entity/event/event.model';
 import { EventAddress } from 'src/app/entity/helper/EventAddress';
-import { CreateNewEventComponent } from 'src/app/create-new-event/create-new-event.component';
+import { CreateNewEventComponent, nameValueDictionaryFromObject } from 'src/app/create-new-event/create-new-event.component';
 import { GeoCoord } from 'ng2-haversine';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
@@ -17,15 +17,6 @@ export const errorMessages: { [key: string]: string } = {
   eventName: 'Titel må ikke være mere end 50 tegn',
   required: 'Dette felt er obligatorisk',
 };
-
-export function nameValueDictionaryFromObject(values: any): any {
-  return Object.keys(values).map(function(key) {
-    return Object.create({
-      value: key.toLowerCase(),
-      name: values[key]
-    })
-  });
-}
 
 @Component({
   selector: 'app-new-event',

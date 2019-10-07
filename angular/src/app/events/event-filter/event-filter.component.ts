@@ -3,7 +3,7 @@ import { TableFilterService } from '../../table-filter.service';
 import { NgModel, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatSelect } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
-import { nameValueDictionaryFromObject } from '../new-event/new-event.component';
+import { nameValueDictionaryFromObject } from 'src/app/create-new-event/create-new-event.component';
 
 export interface Selector {
   value: string;
