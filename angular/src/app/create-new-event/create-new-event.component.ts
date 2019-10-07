@@ -1,21 +1,18 @@
-import { Component, OnInit, Inject, Optional, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { $ } from 'protractor';
+import { Component, OnInit, Inject, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
 import { Event } from '../entity/event/event.model';
 import { EventAddress } from '../entity/helper/EventAddress';
 import { EventFirebaseService } from '../event-firebase.service';
 import { AuthService } from '../auth.service';
 import { UserFirebaseService } from '../user-firebase.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatStepper } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatStepper } from '@angular/material';
 import { GeoCodingApiService } from '../geo-coding-api.service';
-import { Observable } from 'rxjs';
 import { User } from '../entity/user/user';
 import { WallService } from '../wall.service';
 import { ToastrService } from 'ngx-toastr';
 import { GeoCoord } from 'ng2-haversine';
 import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
 
 export interface DialogData {
   animal: string;
