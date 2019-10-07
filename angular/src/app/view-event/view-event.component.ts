@@ -16,6 +16,7 @@ import { CreateWallPostComponent } from '../create-wall-post/create-wall-post.co
 import { ToastrService } from 'ngx-toastr';
 import { NewEventComponent } from '../events/new-event/new-event.component';
 import { CreateNewEventComponent } from '../create-new-event/create-new-event.component';
+import { RatingService } from '../rating.service';
 
 export interface DialogData {
   fk_wall: string;
@@ -36,6 +37,9 @@ export class ViewEventComponent implements OnInit {
   hasOptions = true;
   isParticipating = false;
   isHost = false;
+  eventRating = 0;
+  comments = [];
+  scoreCount = 0;
 
   selectedEvent = new Event({});
   key;
@@ -61,6 +65,7 @@ export class ViewEventComponent implements OnInit {
     private ufbs: UserFirebaseService, private router: Router, 
     private md: MobileDetectorService, private authService: AuthService, 
     private ws: WallService, public dialog: MatDialog, private toast: ToastrService,
+    private ratingService: RatingService,
     ) { 
 
       let observer = this.route.queryParams.subscribe(params => {
@@ -68,6 +73,7 @@ export class ViewEventComponent implements OnInit {
       this.key = key;
       this.getDisplayData();
       this.getWall();
+      this.showEventRating();
     });
   }
 
@@ -144,6 +150,30 @@ export class ViewEventComponent implements OnInit {
         this.toast.warning('Du kan ikke rate et event, som du ikke har deltaget i','Hov!')
       }
       observerFive.unsubscribe();
+    });
+  }
+
+  arrayOne(n: number): any[] {
+    return Array(n);
+  }
+
+  showEventRating() {
+    let observerTwo = this.ratingService.getRatings().subscribe(snapshots => {
+      let eventScore = 0;
+        snapshots.forEach(snapshot => {
+        console.log({snap: snapshot.payload.val()})
+
+        if(snapshot.payload.val().fk_event === this.key) {
+          console.log({score: snapshot.payload.val().score})
+          if (snapshot.payload.val().feedback) {
+            this.comments.push({score: snapshot.payload.val().score, feedback: snapshot.payload.val().feedback})
+          }
+          eventScore += Number(snapshot.payload.val().score);
+          this.scoreCount++;
+        }
+      });
+      this.eventRating = eventScore / this.scoreCount;
+      observerTwo.unsubscribe();
     });
   }
 

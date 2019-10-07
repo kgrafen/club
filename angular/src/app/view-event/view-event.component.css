@@ -12,6 +12,46 @@
     margin: 10px;
 }
 
+.rating-text {
+  display: inline;
+  vertical-align: middle;
+  font-size: 22px;
+}
+
+.rating-text.star {
+  color: grey;
+}
+
+.average_score {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.comments {
+  display: inline-block;
+}
+
+.comment {
+  margin: 10px 0;
+}
+
+.rating-text.star.filled {
+  color: #ff7a00;
+}
+
+.stars {
+
+}
+
+.comment .star {
+  margin-right: 10px;
+}
+
+.show-comments {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .round {
     -webkit-border-top-left-radius: 1px;
     -webkit-border-top-right-radius: 2px;
