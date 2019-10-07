@@ -22,12 +22,6 @@ export interface DialogData {
   name: string;
 }
 
-@Component({
-  selector: 'create-new-event',
-  templateUrl: './create-new-event.component.html',
-  styleUrls: ['./create-new-event.component.css']
-})
-
 export function nameValueDictionaryFromObject(values: any): any {
   return Object.keys(values).map(function(key) {
     return Object.create({
@@ -36,6 +30,12 @@ export function nameValueDictionaryFromObject(values: any): any {
     })
   });
 }
+
+@Component({
+  selector: 'create-new-event',
+  templateUrl: './create-new-event.component.html',
+  styleUrls: ['./create-new-event.component.css']
+})
 
 export class CreateNewEventComponent implements OnInit {
   @ViewChild('stepper', {static: false}) stepper: MatStepper;
