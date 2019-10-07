@@ -45,8 +45,8 @@ export class MyEventsComponent implements OnInit {
 
   events = [];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   constructor(private efbs: EventFirebaseService, private mds: MobileDetectorService,
     private spinner: NgxSpinnerService, private ufbs: UserFirebaseService,

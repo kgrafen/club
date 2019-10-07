@@ -47,8 +47,8 @@ export class EventListComponent implements OnInit {
   dataSourceMobile = new MatTableDataSource<EventDataMobile>();
   displayedColumnsMobile = ['name', 'address', 'available', 'dateStart'];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   events: Event[] = [];
   currentEvents = [];
