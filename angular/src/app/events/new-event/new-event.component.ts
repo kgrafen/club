@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
-import { MatInput, MatDialogRef, MatDialog } from '@angular/material';
+import { Component, OnInit, EventEmitter } from '@angular/core';
+import {  MatDialogRef, MatDialog } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { GeoCodingApiService } from 'src/app/geo-coding-api.service';
 import { EventFirebaseService } from 'src/app/event-firebase.service';
