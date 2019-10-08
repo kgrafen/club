@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TableFilterService } from '../../table-filter.service';
-import { NgModel, FormGroup, Validators, FormControl } from '@angular/forms';
-import { MatSelect } from '@angular/material';
+import { FormGroup, FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { nameValueDictionaryFromObject } from 'src/app/create-new-event/create-new-event.component';
 
