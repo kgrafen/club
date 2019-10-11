@@ -15,6 +15,7 @@ import { AuthService } from '../../auth.service';
 import { User } from '../../entity/user/user';
 import { GeoCodingApiService } from '../../geo-coding-api.service';
 import { userInfo } from 'os';
+import { RatingService } from 'src/app/rating.service';
 
 export interface EventData {
   name: string;
@@ -52,6 +53,8 @@ export class EventListComponent implements OnInit {
 
   events: Event[] = [];
   currentEvents = [];
+  ratings;
+  username;
 
   subscription: Subscription;
   filterValue: any;
@@ -65,7 +68,16 @@ export class EventListComponent implements OnInit {
     private toast: ToastrService,
     private geoAPI: GeoCodingApiService,
     private haversineService: HaversineService,
+    private rs: RatingService, 
   ) {
+
+    this.rs.getRatings().subscribe(ratings => {
+      this.ratings = ratings;
+    });
+
+    this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe( (userSnapshot:any) => {
+      this.username = userSnapshot.username;
+    });
 
     this.efbs.getList().subscribe(eventSnapshots => {
       this.events = eventSnapshots;
@@ -180,8 +192,9 @@ export class EventListComponent implements OnInit {
   }
 
   wasParticipant(event: Event) {
+    let hasAlreadyRated = this.ratings.find(rating => rating.key == this.username + event.key);
     const userId = this.authService.afAuth.auth.currentUser.uid;
-    return event.dateStart <= Date.now() && event.participants[userId] !== undefined;
+    return event.dateStart <= Date.now() && event.participants[userId] !== undefined && !hasAlreadyRated;
   }
 
   showJoinedEvents(isJoinedShown: boolean) {

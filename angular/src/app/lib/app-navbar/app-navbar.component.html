@@ -5,7 +5,7 @@
 
     <button *ngIf="isMobile" routerLink='/my-profile' color="primary" mat-button> 
       <img class="rating-shield" src="{{metal}}">
-      {{rating}}<mat-icon style="color: #ff7a00">star</mat-icon>
+      {{rating.toFixed(1)}}<mat-icon style="color: #ff7a00">star</mat-icon>
     </button>
     
     
@@ -27,7 +27,7 @@
       >
         <mat-icon>person</mat-icon> {{username | uppercase}}
         <img class="rating-shield" src="{{metal}}">
-        {{rating}}<mat-icon style="color: #ff7a00">star</mat-icon>
+        {{rating.toFixed(1)}}<mat-icon style="color: #ff7a00">star</mat-icon>
       </button>
 
       <button *ngIf="isIE" routerLink="/my-profile" color="primary" mat-button>

@@ -36,8 +36,11 @@ export class ViewEventComponent implements OnInit {
   isHost = false;
   eventRating = 0;
   eventRatingRemainderPercent = 0;
+  hasRatedEvent = false;
   comments = [];
   scoreCount = 0;
+  username;
+  isPastEvent: boolean = false;
 
   selectedEvent = new Event({});
   key;
@@ -59,19 +62,28 @@ export class ViewEventComponent implements OnInit {
   hostName = "...HENTER VÆRTSNAVN...";
 
 
-  constructor(private route: ActivatedRoute, private efbs: EventFirebaseService, 
-    private ufbs: UserFirebaseService, private router: Router, 
-    private md: MobileDetectorService, private authService: AuthService, 
-    private ws: WallService, public dialog: MatDialog, private toast: ToastrService,
+  constructor(
+    private route: ActivatedRoute, 
+    private efbs: EventFirebaseService, 
+    private ufbs: UserFirebaseService, 
+    private router: Router, 
+    private md: MobileDetectorService, 
+    private authService: AuthService, 
+    private ws: WallService, 
+    public dialog: MatDialog, 
+    private toast: ToastrService,
     private ratingService: RatingService,
-    ) { 
+  ) { 
+    this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe( (userSnapshot:any) => {
+      this.username = userSnapshot.username;
 
-      let observer = this.route.queryParams.subscribe(params => {
-      let key = params['key'];
-      this.key = key;
-      this.getDisplayData();
-      this.getWall();
-      this.showEventRating();
+      this.route.queryParams.subscribe(params => {
+        let key = params['key'];
+        this.key = key;
+        this.getDisplayData();
+        this.getWall();
+        this.showEventRating();
+      });
     });
   }
 
@@ -156,24 +168,34 @@ export class ViewEventComponent implements OnInit {
   }
 
   showEventRating() {
-    let observerTwo = this.ratingService.getRatings().subscribe(snapshots => {
+    let observerTwo = this.ratingService.getRatings().subscribe(ratings => {
       let eventScore = 0;
-        snapshots.forEach(snapshot => {
-        console.log({snap: snapshot.payload.val()})
+        ratings.forEach(rating => {
 
-        if(snapshot.payload.val().fk_event === this.key) {
-          console.log({score: snapshot.payload.val().score})
-          if (snapshot.payload.val().feedback) {
-            this.comments.push({score: snapshot.payload.val().score, feedback: snapshot.payload.val().feedback})
+
+        if(rating.payload.val().fk_event === this.key) {
+          if (rating.payload.val().feedback) {
+            this.comments.push({score: rating.payload.val().score, feedback: rating.payload.val().feedback})
           }
-          eventScore += Number(snapshot.payload.val().score);
+          this.hasRatedEvent = (this.username == rating.payload.val().byUser) ? true : this.hasRatedEvent;
+          eventScore += Number(rating.payload.val().score);
           this.scoreCount++;
         }
       });
-      this.eventRating = eventScore / this.scoreCount;
+      
+      this.eventRating = (this.scoreCount) ? eventScore / this.scoreCount : 0;
       this.eventRatingRemainderPercent = (this.eventRating % 1) * 100;
       observerTwo.unsubscribe();
     });
+  }
+
+  rate() {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "key": this.key
+      }
+    }
+    this.router.navigate(['/rate-event'], navigationExtras);
   }
 
   getStarPercentage() {
@@ -275,6 +297,8 @@ export class ViewEventComponent implements OnInit {
 
   renderParticipantsIntoView(then) {
     this.selectedEvent = new Event(then.payload.val());
+    console.log({cd: this.selectedEvent.creationDate, now: Date.now(), diff: this.selectedEvent.creationDate < Date.now()})
+    this.isPastEvent = this.selectedEvent.dateStart < Date.now();
     this.participantsData = [];
     this.participantsDisplayNames = [];
     for (let property in this.selectedEvent.participants) {
