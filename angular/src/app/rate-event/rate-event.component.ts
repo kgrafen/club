@@ -26,15 +26,11 @@ export class RateEventComponent implements OnInit {
   constructor(private ufbs: UserFirebaseService, private efbs: EventFirebaseService,
     private route: ActivatedRoute, private rs: RatingService, private authService: AuthService,
     private toast: ToastrService, private router: Router) {
-    console.log('rate')
-    let observerTwo = this.route.queryParams.subscribe(params => {
-      console.log({ params })
+    this.route.queryParams.subscribe(params => {
       this.efbs.getEventByKey(params['key']).snapshotChanges().subscribe(res => {
-        console.log({ res })
         this.event = Object.assign(res.payload.val());
         this.event.key = res.key;
       });
-      // observerTwo.unsubscribe();
     });
   }
 
@@ -42,7 +38,6 @@ export class RateEventComponent implements OnInit {
   }
 
   rate(scoreValueFromForm, feedbackValueFromForm: string) {
-    console.log({scoreValueFromForm, feedbackValueFromForm})
     let observer = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe((userSnapshot: any) => {
       let r = new Rating();
       r.byUser = userSnapshot.username;

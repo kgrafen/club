@@ -53,7 +53,7 @@
         <mat-card class="rating" *ngIf="isPastEvent">
           <div class="topRow">
             <span class="card-title">Bedømmelse</span>
-            <span class="rate" *ngIf="!hasRatedEvent && !isHost" (click)="rate()">rate</span>
+            <button *ngIf="!hasRatedEvent && !isHost" (click)="rate()" mat-raised-button color="primary">Bedøm dette event</button>
             <span class="average_score" *ngIf="isHost || hasRatedEvent">
               <span class="stars" matTooltip="{{eventRating.toFixed(1)}}">
                 <mat-icon 

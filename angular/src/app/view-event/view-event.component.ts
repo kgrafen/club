@@ -297,7 +297,6 @@ export class ViewEventComponent implements OnInit {
 
   renderParticipantsIntoView(then) {
     this.selectedEvent = new Event(then.payload.val());
-    console.log({cd: this.selectedEvent.creationDate, now: Date.now(), diff: this.selectedEvent.creationDate < Date.now()})
     this.isPastEvent = this.selectedEvent.dateStart < Date.now();
     this.participantsData = [];
     this.participantsDisplayNames = [];
