@@ -1,5 +1,5 @@
-import { EventAddress } from '../helper/EventAddress';
 import { GeoCoord } from 'ng2-haversine';
+import { EventAddress } from '../user/user';
 
 // eventQueue: ['no', Validators.required]
 // });
