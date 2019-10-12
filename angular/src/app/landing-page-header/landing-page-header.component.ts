@@ -43,7 +43,8 @@ export class LandingPageHeaderComponent implements OnInit {
 
     this.isMobile = this.mds.check();
     this.authService.afAuth.auth.onAuthStateChanged(user => {
-      if (user !== null && user.emailVerified && this.router.url === '/landing-page') {
+      if (user !== null && user.emailVerified && 
+        (this.router.url === '/landing-page' || this.router.url === '/')) {
         this.router.navigate(['/events']);
       } else {
         this.isLoggedOut = true;
