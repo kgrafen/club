@@ -194,7 +194,7 @@ export class EventListComponent implements OnInit {
   wasParticipant(event: Event) {
     let hasAlreadyRated = this.ratings.find(rating => rating.key == this.username + event.key);
     const userId = this.authService.afAuth.auth.currentUser.uid;
-    return event.dateStart <= Date.now() && event.participants[userId] !== undefined && !hasAlreadyRated;
+    return event.dateStart <= Date.now() && event.participants[userId] !== undefined && !hasAlreadyRated && event.host != userId;
   }
 
   showJoinedEvents(isJoinedShown: boolean) {
