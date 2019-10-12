@@ -1,4 +1,3 @@
-import { EventAddress } from '../helper/EventAddress';
 import { Child } from '../helper/child';
 import { NewsletterSetting } from '../helper/newsletterSetting';
 
@@ -44,4 +43,16 @@ export class User {
 
 export enum Gender {
     MALE, FEMALE
+}
+
+export class EventAddress {
+  street: string;
+  city: string;
+  zip: number;
+
+  constructor(street: string, city: string, zip:number) {
+      this.street = street;
+      this.city = city;
+      this.zip = zip;
+  }
 }

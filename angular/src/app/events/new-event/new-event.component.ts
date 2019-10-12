@@ -7,11 +7,11 @@ import { WallService } from 'src/app/wall.service';
 import { UserFirebaseService } from 'src/app/user-firebase.service';
 import { AuthService } from 'src/app/auth.service';
 import { Event } from 'src/app/entity/event/event.model';
-import { EventAddress } from 'src/app/entity/helper/EventAddress';
 import { CreateNewEventComponent, nameValueDictionaryFromObject } from 'src/app/create-new-event/create-new-event.component';
 import { GeoCoord } from 'ng2-haversine';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { EventAddress } from 'src/app/entity/user/user';
 
 export const errorMessages: { [key: string]: string } = {
   eventName: 'Titel må ikke være mere end 50 tegn',

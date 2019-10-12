@@ -2,13 +2,12 @@ import { Component, OnInit, Inject, ViewChild, ChangeDetectorRef } from '@angula
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
 import { Event } from '../entity/event/event.model';
-import { EventAddress } from '../entity/helper/EventAddress';
 import { EventFirebaseService } from '../event-firebase.service';
 import { AuthService } from '../auth.service';
 import { UserFirebaseService } from '../user-firebase.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatStepper } from '@angular/material';
 import { GeoCodingApiService } from '../geo-coding-api.service';
-import { User } from '../entity/user/user';
+import { User, EventAddress } from '../entity/user/user';
 import { WallService } from '../wall.service';
 import { ToastrService } from 'ngx-toastr';
 import { GeoCoord } from 'ng2-haversine';
