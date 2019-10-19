@@ -61,7 +61,18 @@
       </mat-menu>
       
     <button (click)="signout()" mat-raised-button color="warn">Log ud</button>
-      
+    
+    <div 
+        #tooltip="matTooltip" 
+        (click)="redirectToLink('https://myaccount.google.com/permissions')" 
+        matTooltip="If you logged in using google account login and want to fully log out
+        from the application (f.ex, if you are using public computer
+        or want to log in using different google account), then click on this button,
+        find 'SingleNetværket' and click 'Remove access'" 
+        class="social-media-button google">
+        <img src="./assets/images/social/google.png" alt="">
+    </div>
+
   </nav>
 
   <!-- Pusher -->
