@@ -81,4 +81,8 @@ export class AppNavbarComponent implements OnInit {
     this.authService.doSignout();
   }
 
+  redirectToLink(link) {
+    window.open(link,'_blank');
+  }
+
 }
