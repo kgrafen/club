@@ -279,18 +279,21 @@ export class ViewEventComponent implements OnInit {
   getWall() {
     /* Wall */
     let observerThree = this.ws.getWallByKey(this.key).subscribe(wallSnapshot => {
-      if (wallSnapshot[0].posts) {
-        Object.keys(wallSnapshot[0].posts).forEach(key => {
-          const wallPostObj = wallSnapshot[0].posts[key];
-          let observerFour = this.ufbs.getUserByID(wallPostObj.fk_id).subscribe( (userSnapshot:any) => {
-            let mergedObj = {...wallPostObj, ...{username: userSnapshot.username}};
-            
-            this.wall.posts.push(mergedObj);
-            // observerFour.unsubscribe();
+      this.wall.posts = [];
+      if (wallSnapshot.length > 0) {
+        let wall = wallSnapshot[0];
+        this.wallKey = wall.key;
+        if (wall.posts) {
+          Object.keys(wall.posts).forEach(key => {
+            const wallPostObj = wall.posts[key];
+            let observerFour = this.ufbs.getUserByID(wallPostObj.fk_id).subscribe( (userSnapshot:any) => {
+              let mergedObj = {...wallPostObj, ...{username: userSnapshot.username, key}};
+              
+              this.wall.posts.push(mergedObj);
+            });
           });
-        });
-        // observerThree.unsubscribe();
-        this.wallIsEmpty = false;
+          this.wallIsEmpty = false;
+        }
       } 
     });
   }
