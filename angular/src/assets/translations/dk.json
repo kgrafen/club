@@ -1,6 +1,6 @@
 {
   "COMPANY_DETAILS": {
-    "NAME": "SingleNetværket IVS",
+    "NAME": "Holopedia Club IVS",
     "CVR": {
       "TEXT": "CVR",
       "VALUE": "39557150"
@@ -23,8 +23,8 @@
   "PAGES": {
     "HOME": {
       "TITLE": "Holopedia Club",
-      "SUBTITLE": "Sammen er det sjovere",
-      "JOIN_SITE": "Join SingleNetværket"
+      "SUBTITLE": "Quantum Holopedia",
+      "JOIN_SITE": "Join Holopedia Club"
     },
     "MY_PROIFLE": {
       "TITLE": "Min Profil",
@@ -342,14 +342,14 @@
     },
     "USER_INFO": {
       "EMAIL": "Email",
-      "PASSWORD": "Adgangskode",
-      "USERNAME": "Brugernavn",
-      "CREATE_USER": "Opret bruger"
+      "PASSWORD": "Password",
+      "USERNAME": "Username",
+      "CREATE_USER": "Create a user"
     },
     "SIGNUP": {
-      "TITLE": "SingleNetværket",
-      "CONFIRM_BUTTON": "Opret bruger",
-      "REPEAT_PASSWORD": "Gentag adgangskode"
+      "TITLE": "Holopedia Club",
+      "CONFIRM_BUTTON": "Create a user",
+      "REPEAT_PASSWORD": "Repeat Password"
     },
     "LOGIN": {
       "EMAIL_LOGIN_BUTTON": "Login",
