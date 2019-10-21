@@ -2,9 +2,9 @@
 <div>
 
     <div class="join-container" *ngIf="!isMobile">
-        <video autoplay muted loop id="myVideo">
-            <source src="assets/videos/header_video.mp4" type="video/mp4">
-        </video>
+
+        <app-youtube-video></app-youtube-video>
+
         <div class="join-content">
             <h1>{{'PAGES.HOME.TITLE' | translate}}</h1>
             <h3>{{'PAGES.HOME.SUBTITLE' | translate}}</h3>
