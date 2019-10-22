@@ -15,7 +15,7 @@ export class YoutubeVideoComponent implements OnInit {
   ngOnInit() {
     (<any>window).onYouTubeIframeAPIReady= () => {
       this.player = new (<any>window).YT.Player('player', {
-        videoId: 'AtAN0hqI0-U',
+        videoId: 'jrOESc_vBh4',
         events: {
           'onReady': this.onPlayerReady,
           'onStateChange': this.onPlayerStateChange
