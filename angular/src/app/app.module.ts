@@ -158,11 +158,16 @@ export class AppDateAdapter extends NativeDateAdapter {
           const month = date.getMonth() + 1;
           const year = date.getFullYear();
 
-          return `${day}/${month}/${year}`;
+          return `${day}.${month}.${year}`;
       }
 
       return date.toDateString();
   }
+  
+  getFirstDayOfWeek(): number {
+    return 1;
+  }
+
 }
 
 @NgModule({
