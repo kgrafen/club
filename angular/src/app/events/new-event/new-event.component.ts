@@ -39,6 +39,7 @@ export class NewEventComponent implements OnInit {
   user$: any;
   eventDate = new Date();
   minDate = new Date();
+  maxDate = new Date();
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -67,6 +68,7 @@ export class NewEventComponent implements OnInit {
   ngOnInit() {
   let dateNow = new Date();
   this.eventDate.setDate(dateNow.getDate() + 7);
+  this.maxDate.setDate(dateNow.getDate() + 365);
 
     this.newEventFormGroup = this._formBuilder.group({
       eventName: ['', [Validators.required, Validators.maxLength(50)]],
