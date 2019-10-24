@@ -130,6 +130,7 @@ export class NewEventComponent implements OnInit {
       this.apiZipValue, this.newEventFormGroup.value.eventLocationZip);
     event.category = this.newEventFormGroup.value.eventCategory;
     event.dateStart = this.newEventFormGroup.value.eventDate.getTime();
+    event.deadlineDate = this.newEventFormGroup.value.eventDate.getTime();
     event.timeStart = this.newEventFormGroup.value.eventStartTime;
     event.timeEnd = this.newEventFormGroup.value.eventEndTime;
     event.geoCoord = this.geoCoord;

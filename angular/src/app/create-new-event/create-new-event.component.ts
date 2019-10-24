@@ -106,6 +106,7 @@ export class CreateNewEventComponent implements OnInit {
 
   ngOnInit() {
     const event: Event = this.data.event;
+    this.apiZipValue = event.address.city;
 
     this.firstFormGroup = this._formBuilder.group({
       eventName: [event.name, Validators.required],
@@ -143,7 +144,7 @@ export class CreateNewEventComponent implements OnInit {
     this.fifthFormGroup = this._formBuilder.group({
       eventFile: ['', Validators.required],
     });
-    this.stepper.selectedIndex = this.data.stepIndex;
+    // this.stepper.selectedIndex = this.data.stepIndex;
 
     this.cdRef.detectChanges();
 
