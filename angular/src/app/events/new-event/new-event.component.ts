@@ -93,7 +93,7 @@ export class NewEventComponent implements OnInit {
 
       this.user$.subscribe((userSnapshot: any) => {
         const e = this.formDataToModel(userSnapshot);
-        this.eventService.insertEvent(e).then((thenableRef) => {
+        this.eventService.insertEvent(e).then((thenableRef: any) => {
           let key = thenableRef.path.pieces_[1];
           this.wallService.insertWall({ fk_event: key, posts: {} });
           this.onEventCreated.emit(key);

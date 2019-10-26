@@ -186,7 +186,7 @@ export class MyProfileComponent implements OnInit {
       let observerTwo = this.rs.getRatings().subscribe(snapshots => {
         let userScore = 0;
         let count = 0;
-        snapshots.forEach(snapshot => {
+        snapshots.forEach((snapshot: any) => {
           if (snapshot.payload.val().fk_host === this.authService.afAuth.auth.currentUser.uid) {
             userScore += Number(snapshot.payload.val().score);
             count++;
@@ -219,7 +219,7 @@ export class MyProfileComponent implements OnInit {
       });
 
       this.efbs.getList().subscribe(eventSnapshots => {
-        eventSnapshots.forEach(eventSnapshot => {
+        eventSnapshots.forEach((eventSnapshot: any) => {
           if (eventSnapshot.participants !== undefined) {
             Object.values(eventSnapshot.participants).forEach((value: any) => {
               if (value.username === this.user.username) {
@@ -285,7 +285,7 @@ export class MyProfileComponent implements OnInit {
     let updatesObj = { username: formData.username };
     let isSearching = true;
     const observerEight = this.ufbs.getList().subscribe(userSnapshots => {
-      userSnapshots.forEach(userSnapshot => {
+      userSnapshots.forEach((userSnapshot: any) => {
         if (userSnapshot.payload.val().username === formData.username) {
           result = "unavailable";
         }

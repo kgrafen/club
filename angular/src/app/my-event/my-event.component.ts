@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { ParticipantListActionsComponent } from '../participant-list-actions/participant-list-actions.component';
+import 'rxjs/add/operator/map'
 
 export interface ActionData {
   uid: string;

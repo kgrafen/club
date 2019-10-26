@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 import { Observable } from '../../node_modules/rxjs';
-import { AngularFireDatabase, AngularFireList  } from '../../node_modules/angularfire2/database';
+import { AngularFireDatabase, AngularFireList  } from '../../node_modules/@angular/fire/database';
 import { Role } from './entity/user/role.model';
 
 

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
-import { MatIconModule, MatButtonModule, MatMenuModule, MatTooltipModule } from '@angular/material';
+import { MatIconModule, MatButtonModule, MatMenuModule, MatTooltipModule, MatFormFieldModule, MatDialogModule, MatInputModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ProfileImageDialogComponent } from './dialogs/profile-image-dialog/profile-image-dialog.component';
@@ -20,6 +20,9 @@ import { ProfileImageDialogComponent } from './dialogs/profile-image-dialog/prof
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatInputModule,
     RouterModule
   ],
   exports: [

@@ -172,13 +172,15 @@ export class ViewEventComponent implements OnInit {
       let eventScore = 0;
         ratings.forEach(rating => {
 
+          let payloadValue: any = rating.payload.val();
 
-        if(rating.payload.val().fk_event === this.key) {
-          if (rating.payload.val().feedback) {
-            this.comments.push({score: rating.payload.val().score, feedback: rating.payload.val().feedback})
+
+        if(payloadValue.fk_event === this.key) {
+          if (payloadValue.feedback) {
+            this.comments.push({score: payloadValue.score, feedback: payloadValue.feedback})
           }
-          this.hasRatedEvent = (this.username == rating.payload.val().byUser) ? true : this.hasRatedEvent;
-          eventScore += Number(rating.payload.val().score);
+          this.hasRatedEvent = (this.username == payloadValue.byUser) ? true : this.hasRatedEvent;
+          eventScore += Number(payloadValue.score);
           this.scoreCount++;
         }
       });
@@ -281,7 +283,7 @@ export class ViewEventComponent implements OnInit {
     let observerThree = this.ws.getWallByKey(this.key).subscribe(wallSnapshot => {
       this.wall.posts = [];
       if (wallSnapshot.length > 0) {
-        let wall = wallSnapshot[0];
+        let wall: any = wallSnapshot[0];
         this.wallKey = wall.key;
         if (wall.posts) {
           Object.keys(wall.posts).forEach(key => {

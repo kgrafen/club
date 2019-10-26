@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileImageDialogComponent implements OnInit {
 
+  pictureUrl: string = '';
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onNoClick(): void {
+    // this.dialogRef.close();
   }
 
 }
