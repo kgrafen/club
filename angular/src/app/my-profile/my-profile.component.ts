@@ -433,11 +433,14 @@ export class MyProfileComponent implements OnInit {
 
   openUrlDialog() {
       const dialogRef = this.dialog.open(ProfileImageDialogComponent, {
-        width: '250px',
+        width: '600px',
+        data: {pictureUrl: this.user.pictureUrl}
       });
   
-      dialogRef.afterClosed().subscribe(result => {
-        this.user.pictureUrl = result;
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result !== undefined)  {
+          this.user.pictureUrl = result;
+        }
       });
   }
 
