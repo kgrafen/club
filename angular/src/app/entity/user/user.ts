@@ -9,6 +9,7 @@ export class User {
     lastName: string;
     birthday: Date;
     gender: Gender;
+    pictureUrl: string;
 
     // Contact
     phone: number;

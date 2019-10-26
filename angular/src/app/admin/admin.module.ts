@@ -31,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireAuthModule
   ],
   exports: [
     AdminNavbarComponent,

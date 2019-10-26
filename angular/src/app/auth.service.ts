@@ -61,7 +61,7 @@ export class AuthService {
     return this.afAuth.auth
       .signInWithEmailAndPassword(formData.email, formData.password)
       .then(user => {
-
+        console.log({user})
         if (user !== null) {
             this.user = user;
             if (user.emailVerified) {

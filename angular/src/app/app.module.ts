@@ -108,6 +108,7 @@ import { ActiveBlockedPipe } from './pipes/active-blocked.pipe';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AdminModule } from './admin/admin.module';
 import { AuthGuard } from './core/auth.guard';
+import { AuthService } from './auth.service';
 
 // Toaster
 import { ToastrModule } from 'ngx-toastr';
@@ -272,6 +273,7 @@ export class AppDateAdapter extends NativeDateAdapter {
   exports: [HttpClientModule, HttpModule],
   providers: [
     AuthGuard,
+    AuthService,
     HttpClientModule,
     HttpModule,
     HaversineService,
