@@ -39,6 +39,7 @@ export class NewEventComponent implements OnInit {
   user$: any;
   eventDate = new Date();
   minDate = new Date();
+  maxDate = new Date();
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -67,6 +68,7 @@ export class NewEventComponent implements OnInit {
   ngOnInit() {
   let dateNow = new Date();
   this.eventDate.setDate(dateNow.getDate() + 7);
+  this.maxDate.setDate(dateNow.getDate() + 365);
 
     this.newEventFormGroup = this._formBuilder.group({
       eventName: ['', [Validators.required, Validators.maxLength(50)]],
@@ -91,7 +93,7 @@ export class NewEventComponent implements OnInit {
 
       this.user$.subscribe((userSnapshot: any) => {
         const e = this.formDataToModel(userSnapshot);
-        this.eventService.insertEvent(e).then((thenableRef) => {
+        this.eventService.insertEvent(e).then((thenableRef: any) => {
           let key = thenableRef.path.pieces_[1];
           this.wallService.insertWall({ fk_event: key, posts: {} });
           this.onEventCreated.emit(key);
@@ -128,6 +130,7 @@ export class NewEventComponent implements OnInit {
       this.apiZipValue, this.newEventFormGroup.value.eventLocationZip);
     event.category = this.newEventFormGroup.value.eventCategory;
     event.dateStart = this.newEventFormGroup.value.eventDate.getTime();
+    event.deadlineDate = this.newEventFormGroup.value.eventDate.getTime();
     event.timeStart = this.newEventFormGroup.value.eventStartTime;
     event.timeEnd = this.newEventFormGroup.value.eventEndTime;
     event.geoCoord = this.geoCoord;

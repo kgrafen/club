@@ -38,7 +38,7 @@ export class AttendingEventsComponent implements OnInit {
       this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe( userSnapshot => {
         const u = new User(userSnapshot);
         this.efbs.getList().subscribe( eventSnapshots => {
-          eventSnapshots.forEach( eventSnapshot => {
+          eventSnapshots.forEach( (eventSnapshot: any) => {
             if (eventSnapshot.participants !== undefined) {
               Object.values(eventSnapshot.participants).forEach( (value:any) => {
                 if (value.username === u.username) {

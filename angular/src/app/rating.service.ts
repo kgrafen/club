@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from '../../node_modules/rxjs';
-import { AngularFireDatabase, AngularFireList, loadedSnapshotChanges  } from '../../node_modules/angularfire2/database';
+import { AngularFireDatabase } from '../../node_modules/@angular/fire/database';
 import { JsonConverter } from './entity/helper/json-converter';
 import { Rating } from './entity/rating/rating.model';
 import { User } from './entity/user/user';
@@ -54,7 +54,7 @@ export class RatingService {
     let observer = this.getRatings().subscribe(snapshots => {
       let userScore = 0;
       let count = 0;
-      snapshots.forEach(snapshot => {
+      snapshots.forEach((snapshot: any) => {
         if(snapshot.payload.val().fk_host === uid) {
           userScore += Number(snapshot.payload.val().score);
           count++;

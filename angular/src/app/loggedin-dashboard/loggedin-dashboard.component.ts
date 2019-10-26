@@ -49,7 +49,7 @@ export class LoggedinDashboardComponent implements OnInit {
 
       let observerTwo = this.efbs.getList().subscribe(snapshots => {
         this.recommendationTiles = [];
-        snapshots.forEach(snapshot => {
+        snapshots.forEach((snapshot: any) => {
           if (snapshot.participants != undefined) {
             this.recommendationTiles.push({name: snapshot.name, pCount: snapshot.participants.length, key: snapshot.key});
           } else {

@@ -6,7 +6,7 @@ import { MatExpansionModule, MatCardModule } from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 describe('AboutComponent', () => {
   let component: AboutComponent;

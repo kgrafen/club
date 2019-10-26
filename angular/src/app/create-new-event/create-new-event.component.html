@@ -42,9 +42,9 @@
           </mat-grid-tile>
           <mat-grid-tile>
             <mat-form-field>
-              <mat-label>{{apiZipValue}}</mat-label>
+              <mat-label>By</mat-label>
               <input matInput formControlName="eventLocationCity" placeholder="By" readonly
-                matTooltip="Dette felt udfyldes automatisk">
+                matTooltip="Dette felt udfyldes automatisk" [(ngModel)]="apiZipValue">
             </mat-form-field>
           </mat-grid-tile>
         </mat-grid-list>

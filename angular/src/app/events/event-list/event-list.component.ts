@@ -79,7 +79,7 @@ export class EventListComponent implements OnInit {
       this.username = userSnapshot.username;
     });
 
-    this.efbs.getList().subscribe(eventSnapshots => {
+    this.efbs.getList().subscribe((eventSnapshots: any) => {
       this.events = eventSnapshots;
       Object.keys(this.events).forEach((index: any) => {
         // this.events[event] = { ...this.events[index], participantCount: Object.keys(this.events[index].participants).length };
