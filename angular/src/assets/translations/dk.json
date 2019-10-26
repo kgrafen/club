@@ -27,11 +27,11 @@
       "JOIN_SITE": "Join Graphene Club"
     },
     "MY_PROIFLE": {
-      "TITLE": "Min Profil",
+      "TITLE": "My Profile",
       "WELCOME_MESSAGE": "Tak for din bekræftelse af din tilmelding til SingleNetværket. Vi vil anstrenge os for at du får en god oplevelse hos os. Det betyder faktisk rigtigt meget for os, så derfor stiller vi os også til rådighed for spørgsmål eller forslag til at gøre vores endnu bedre. For at give dig de bedste muligheder for at bruge vores netværk bedst muligt, så vil vi sende dig videre til din profil, hvor du vil kunne indtaste lidt personlig information, så vi kan give dig mest muligt relevant indhold når du besøger siden. Vi håber du får stor glæde af vores netværk."
     },
     "VERIFY_EMAIL": {
-      "TITLE": "Du er næsten der!",
+      "TITLE": "You are almost there!",
       "DESCRIPTION": "En bekræftelses e-mail er sendt til <b>{{email}}</b>. Klik på bekræftelseslinket i emailen for at aktivere din konto og reload denne side.",
       "SHOW_HINTS": "Hvis du ikke kan se e-mailen med verifikation, ",
       "HINTS": {
@@ -246,20 +246,20 @@
   "COMPONENTS": {
     "FORM_VALIDATION": {
       "ERROR_MESSAGES": {
-        "EVENT_NAME": "Titel må ikke være mere end 50 tegn",
-        "REQUIRED": "Dette felt er obligatorisk"
+        "EVENT_NAME": "Title cannot be longer than 50 characters",
+        "REQUIRED": "This fields is required"
       }
     },
     "NEW_EVENT": {
       "WHAT_AND_WHERE_STEP": {
-        "TITLE": "Opret nyt event",
+        "TITLE": "Create a new event",
         "DESCRIPTION": "Du må oprette en event med <b>3 enkle trin</b> og fortælle dine gæster, hvad er eventen om, hvornår og hvor den vil bliveafholdt.<br><br>Du kan udfylde alle detaljer nu eller oprette eventen og vende tilbage for at udfylde resten af detaljerne.",
-        "NAME_LABEL": "Titel",
-        "DESCRIPTION_LABEL": "Beskrivelse",
+        "NAME_LABEL": "Title",
+        "DESCRIPTION_LABEL": "Description",
         "DESCRIPTION_TOOLTIP": "Du kan trække nede i højre hjørne for at forstørre tekstfeltet",
-        "CATEGORY_LABEL": "Kategori",
+        "CATEGORY_LABEL": "Category",
         "CATEGORIES": {
-          "OTHER": "Andet",
+          "OTHER": "Other",
           "HOME": "Hjemmehygge",
           "PRIVATE_PARTY": "Fest i privathjem",
           "OUTDOOR_PARTY": "Fest uden for privaten",
@@ -272,21 +272,21 @@
           "CULTURE_EVENT": "Kultur",
           "SPORT_EVENT": "Sport"
         },
-        "ADDRESS_LABEL": "Adresse",
-        "WHAT_LABEL": "Hvad er din event om?",
-        "WHEN_LABEL": "Hvornår er din event?",
-        "WHERE_LABEL": "Hvor er din event?",
-        "STREET_LABEL": "Vej",
+        "ADDRESS_LABEL": "Address",
+        "WHAT_LABEL": "What is your event about?",
+        "WHEN_LABEL": "When is your event?",
+        "WHERE_LABEL": "Where is your event?",
+        "STREET_LABEL": "Street",
         "ZIP_LABEL": "Post Nr.",
-        "CITY_LABEL": "By",
-        "CITY_TOOLTIP": "Dette felt udfyldes automatisk",
-        "HOME_ADDRESS_CHECKBOX": "Vælg din hjemmeadresse",
+        "CITY_LABEL": "City",
+        "CITY_TOOLTIP": "This filed updates automatically",
+        "HOME_ADDRESS_CHECKBOX": "Choose your home address",
         "START_DATE": "Date"
       },
       "AUDIENCE_STEP": {
-        "TITLE": "Opret nyt event",
-        "NAME_LABEL": "Titel",
-        "DESCRIPTION_LABEL": "Beskrivelse",
+        "TITLE": "Create a new event",
+        "NAME_LABEL": "Title",
+        "DESCRIPTION_LABEL": "Description",
         "DESCRIPTION_TOOLTIP": "Du kan trække nede i højre hjørne for at forstørre tekstfeltet",
         "CATEGORY_LABEL": "Kategori",
         "CATEGORIES": {
@@ -318,21 +318,21 @@
           "ANDET": "Andet"
         },
         "GENDER_OPTIONS": {
-          "ONLY_MEN": "Kun for mænd",
-          "ONLY_WOMEN": "Kun for kvinder",
+          "ONLY_MEN": "Only for men",
+          "ONLY_WOMEN": "Only for women",
           "EQUAL": "50/50",
-          "ANY": "Først til mølle"
+          "ANY": "First to sign up"
         },
         "CHILDREN_OPTIONS": {
-          "ONLY_WITH_CHILDREN": "Kun med børn",
-          "ONLY_WITHOUT_CHILDREN": "Kun uden børn",
-          "ANY": "Børn velkomne"
+          "ONLY_WITH_CHILDREN": "Only with children",
+          "ONLY_WITHOUT_CHILDREN": "Onlu without children",
+          "ANY": "Chilrden welcome"
         },
         "WAITING_LIST_OPTIONS": {
-          "YES": "Ja",
-          "NO": "Nej"
+          "YES": "Yes",
+          "NO": "No"
         },
-        "ADDRESS_LABEL": "Adresse",
+        "ADDRESS_LABEL": "Address",
         "STREET_LABEL": "Vej",
         "ZIP_LABEL": "Post Nr.",
         "CITY_LABEL": "By",
