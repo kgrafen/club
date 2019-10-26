@@ -277,7 +277,7 @@ export class MyProfileComponent implements OnInit {
   }
 
   updatePersonData(formData) {
-    this.updateProfile(formData);
+    this.updateProfile({formData, pictureUrl: this.user.pictureUrl});
   }
 
   updateUser(formData) {
@@ -437,7 +437,7 @@ export class MyProfileComponent implements OnInit {
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed', result);
+        this.user.pictureUrl = result;
       });
   }
 
