@@ -172,13 +172,15 @@ export class ViewEventComponent implements OnInit {
       let eventScore = 0;
         ratings.forEach(rating => {
 
+          let payloadValue: any = rating.payload.val();
 
-        if(rating.payload.val().fk_event === this.key) {
-          if (rating.payload.val().feedback) {
-            this.comments.push({score: rating.payload.val().score, feedback: rating.payload.val().feedback})
+
+        if(payloadValue.fk_event === this.key) {
+          if (payloadValue.feedback) {
+            this.comments.push({score: payloadValue.score, feedback: payloadValue.feedback})
           }
-          this.hasRatedEvent = (this.username == rating.payload.val().byUser) ? true : this.hasRatedEvent;
-          eventScore += Number(rating.payload.val().score);
+          this.hasRatedEvent = (this.username == payloadValue.byUser) ? true : this.hasRatedEvent;
+          eventScore += Number(payloadValue.score);
           this.scoreCount++;
         }
       });
@@ -279,18 +281,21 @@ export class ViewEventComponent implements OnInit {
   getWall() {
     /* Wall */
     let observerThree = this.ws.getWallByKey(this.key).subscribe(wallSnapshot => {
-      if (wallSnapshot[0].posts) {
-        Object.keys(wallSnapshot[0].posts).forEach(key => {
-          const wallPostObj = wallSnapshot[0].posts[key];
-          let observerFour = this.ufbs.getUserByID(wallPostObj.fk_id).subscribe( (userSnapshot:any) => {
-            let mergedObj = {...wallPostObj, ...{username: userSnapshot.username}};
-            
-            this.wall.posts.push(mergedObj);
-            // observerFour.unsubscribe();
+      this.wall.posts = [];
+      if (wallSnapshot.length > 0) {
+        let wall: any = wallSnapshot[0];
+        this.wallKey = wall.key;
+        if (wall.posts) {
+          Object.keys(wall.posts).forEach(key => {
+            const wallPostObj = wall.posts[key];
+            let observerFour = this.ufbs.getUserByID(wallPostObj.fk_id).subscribe( (userSnapshot:any) => {
+              let mergedObj = {...wallPostObj, ...{username: userSnapshot.username, key}};
+              
+              this.wall.posts.push(mergedObj);
+            });
           });
-        });
-        // observerThree.unsubscribe();
-        this.wallIsEmpty = false;
+          this.wallIsEmpty = false;
+        }
       } 
     });
   }

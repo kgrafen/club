@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 
 import { Observable } from '../../node_modules/rxjs';
-import { AngularFireDatabase, AngularFireList  } from '../../node_modules/angularfire2/database';
+import { AngularFireDatabase, AngularFireList  } from '../../node_modules/@angular/fire/database';
 import { Time } from '@angular/common';
 import { timestamp } from 'rxjs/internal/operators/timestamp';
 

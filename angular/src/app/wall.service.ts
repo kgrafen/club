@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 import { Observable } from '../../node_modules/rxjs';
-import { AngularFireDatabase, AngularFireList, AngularFireObject  } from '../../node_modules/angularfire2/database';
+import { AngularFireDatabase, AngularFireList, AngularFireObject  } from '../../node_modules/@angular/fire/database';
 import { Wall } from './entity/wall/wall.model';
 import { WallPost } from './entity/wall/wall-post.model';
 

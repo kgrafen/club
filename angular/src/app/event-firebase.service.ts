@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 
 import { Observable } from '../../node_modules/rxjs';
-import { AngularFireDatabase, AngularFireList, AngularFireObject  } from '../../node_modules/angularfire2/database';
+import { AngularFireDatabase, AngularFireList, AngularFireObject  } from '../../node_modules/@angular/fire/database';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Time } from '@angular/common';
 import { timestamp } from 'rxjs/internal/operators/timestamp';
 
@@ -68,7 +69,7 @@ export class EventFirebaseService {
     itemsRef.update(key, {deleted: reason});
     itemsRef.remove(key).then( () => {
       let observer = this.ws.getWallByKey(key).subscribe(snapshots => {
-        snapshots.forEach(snapshot => {
+        snapshots.forEach((snapshot: any) => {
           this.ws.deleteWall(snapshot.key);
           observer.unsubscribe();
         });
@@ -121,7 +122,7 @@ export class EventFirebaseService {
       
       let observer = this.db.object(this.dbPath+key).snapshotChanges().subscribe( eventSnapshot => {
         
-        const payload = eventSnapshot.payload.val();
+        const payload: any = eventSnapshot.payload.val();
         const participants = Object.keys(payload.participants).length;
         const max = payload.maxGuests;
         const genCriteria = payload.genderRatio;

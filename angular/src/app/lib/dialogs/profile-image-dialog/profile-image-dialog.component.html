@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Profile picture</h1>
+<div mat-dialog-content>
+  <p>Provide image url for your picture</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="pictureUrl">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="pictureUrl" cdkFocusInitial>Ok</button>
+</div>

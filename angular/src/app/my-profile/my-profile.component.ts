@@ -11,6 +11,8 @@ import { EventFirebaseService } from '../event-firebase.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MatDialog } from '@angular/material';
+import { ProfileImageDialogComponent } from '../lib/dialogs/profile-image-dialog/profile-image-dialog.component';
 
 @Component({
   selector: 'app-my-profile',
@@ -39,7 +41,7 @@ export class MyProfileComponent implements OnInit {
   // Birthday
   today: Date = new Date();
   min = new Date(1930, 0, 1);
-  max = new Date( (this.today.getFullYear() - 18), 0, 1);
+  max = new Date((this.today.getFullYear() - 18), 0, 1);
   childMin;
   childMax = new Date();
 
@@ -72,50 +74,39 @@ export class MyProfileComponent implements OnInit {
   metalName = "Bronze";
   paidUntil;
 
+  user$
+
   // Button logic
   isUpdating = false;
 
-  constructor(private ufbs: UserFirebaseService, private authService: AuthService, 
-    private mds: MobileDetectorService, private toast: ToastrService, 
-    private geoAPI : GeoCodingApiService, private rs: RatingService, 
-    private efbs: EventFirebaseService, private router: Router, 
-    private spinner: NgxSpinnerService) { }
+  constructor(private ufbs: UserFirebaseService, private authService: AuthService,
+    private mds: MobileDetectorService, private toast: ToastrService,
+    private geoAPI: GeoCodingApiService, private rs: RatingService,
+    private efbs: EventFirebaseService, private router: Router,
+    private spinner: NgxSpinnerService,
+    public dialog: MatDialog,
+    ) { }
 
   state: boolean;
   hasImages: boolean;
 
   public personDataForm = new FormGroup({
-    firstName: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-    lastName: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-    birthday: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-    gender: new FormControl('', {validators: Validators.required, updateOn: 'blur'})
-});
-
-public contactForm = new FormGroup({
-    phone: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-    street: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-    city: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-    zip: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-});
-
-public childrenForm = new FormGroup({
-  numberOfChildren: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-  birthdayChild1: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-  birthdayChild2: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-  birthdayChild3: new FormControl('', {validators: Validators.required, updateOn: 'blur'})
-});
-
-public settingsForm = new FormGroup({
-    notifications: new FormControl('', {validators: Validators.required, updateOn: 'blur'})
-});
-
-public accountDeletionForm = new FormGroup ({
-  confirmationText: new FormControl('', {validators: Validators.required, updateOn: 'blur'})
-})
-
-public userForm = new FormGroup({
-  username: new FormControl('', {validators: Validators.required, updateOn: 'blur'})
-});
+    firstName: new FormControl('', { validators: Validators.required, updateOn: 'blur' }),
+    lastName: new FormControl('', { validators: Validators.required, updateOn: 'blur' }),
+    birthday: new FormControl('', { validators: Validators.required, updateOn: 'blur' }),
+    gender: new FormControl('', { validators: Validators.required, updateOn: 'blur' }),
+    phone: new FormControl('', { validators: Validators.required, updateOn: 'blur' }),
+    street: new FormControl('', { validators: Validators.required, updateOn: 'blur' }),
+    city: new FormControl('', { validators: Validators.required, updateOn: 'blur' }),
+    zip: new FormControl('', { validators: Validators.required, updateOn: 'blur' }),
+    numberOfChildren: new FormControl('', { validators: Validators.required, updateOn: 'blur' }),
+    birthdayChild1: new FormControl('', { validators: Validators.required, updateOn: 'blur' }),
+    birthdayChild2: new FormControl('', { validators: Validators.required, updateOn: 'blur' }),
+    birthdayChild3: new FormControl('', { validators: Validators.required, updateOn: 'blur' }),
+    notifications: new FormControl('', { validators: Validators.required, updateOn: 'blur' }),
+    confirmationText: new FormControl('', { validators: Validators.required, updateOn: 'blur' }),
+    username: new FormControl('', { validators: Validators.required, updateOn: 'blur' })
+  });
 
   ngOnInit() {
     this.spinner.show();
@@ -129,7 +120,8 @@ public userForm = new FormGroup({
   }
 
   getDisplayData() {
-    let observer = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe(value => {
+    this.user$ = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid)
+    let observer = this.user$.subscribe(value => {
       this.user = new User(value);
       if (this.user.firstName) {
         this.personDataForm.get('firstName').setValue(this.user.firstName);
@@ -144,58 +136,58 @@ public userForm = new FormGroup({
         this.personDataForm.get('birthday').setValue(this.user.birthday);
       }
       if (this.user.phone) {
-        this.contactForm.get('phone').setValue(this.user.phone);
+        this.personDataForm.get('phone').setValue(this.user.phone);
       }
       if (this.user.address) {
         if (this.user.address.city) {
-          this.contactForm.get('city').setValue(this.user.address.city);
+          this.personDataForm.get('city').setValue(this.user.address.city);
         }
         if (this.user.address.zip) {
-          this.contactForm.get('zip').setValue(this.user.address.zip);
+          this.personDataForm.get('zip').setValue(this.user.address.zip);
         }
         if (this.user.address.street) {
-          this.contactForm.get('street').setValue(this.user.address.street);
+          this.personDataForm.get('street').setValue(this.user.address.street);
         }
       }
       if (this.user.numberOfChildren) {
-        this.childrenForm.get('numberOfChildren').setValue(this.user.numberOfChildren);
+        this.personDataForm.get('numberOfChildren').setValue(this.user.numberOfChildren);
       }
       if (this.user.username) {
-        this.userForm.get('username').setValue(this.user.username);
+        this.personDataForm.get('username').setValue(this.user.username);
       }
-    
+
       let childCount = 0;
       if (this.user.children.childOne) {
-        this.childrenForm.get('birthdayChild1').setValue(this.user.children.childOne);
+        this.personDataForm.get('birthdayChild1').setValue(this.user.children.childOne);
         childCount++;
       }
       if (this.user.children.childTwo) {
-        this.childrenForm.get('birthdayChild2').setValue(this.user.children.childTwo);
+        this.personDataForm.get('birthdayChild2').setValue(this.user.children.childTwo);
         childCount++;
       }
       if (this.user.children.childThree) {
-        this.childrenForm.get('birthdayChild3').setValue(this.user.children.childThree);
+        this.personDataForm.get('birthdayChild3').setValue(this.user.children.childThree);
         childCount++;
       }
 
       this.displayBirthdayInput(childCount);
 
       if (this.user.notifications) {
-        this.settingsForm.get('notifications').setValue(this.user.notifications);
+        this.personDataForm.get('notifications').setValue(this.user.notifications);
         this.selected = this.user.notifications;
       }
-   
+
       if (this.user.subscribed_until) {
         this.paidUntil = new Date(this.user.subscribed_until);
       } else {
         this.paidUntil = "Ikke betalt";
       }
-    
+
       let observerTwo = this.rs.getRatings().subscribe(snapshots => {
         let userScore = 0;
         let count = 0;
-        snapshots.forEach(snapshot => {
-          if(snapshot.payload.val().fk_host === this.authService.afAuth.auth.currentUser.uid) {
+        snapshots.forEach((snapshot: any) => {
+          if (snapshot.payload.val().fk_host === this.authService.afAuth.auth.currentUser.uid) {
             userScore += Number(snapshot.payload.val().score);
             count++;
           }
@@ -226,10 +218,10 @@ public userForm = new FormGroup({
         observerThree.unsubscribe();
       });
 
-      this.efbs.getList().subscribe( eventSnapshots => {
-        eventSnapshots.forEach( eventSnapshot => {
+      this.efbs.getList().subscribe(eventSnapshots => {
+        eventSnapshots.forEach((eventSnapshot: any) => {
           if (eventSnapshot.participants !== undefined) {
-            Object.values(eventSnapshot.participants).forEach( (value:any) => {
+            Object.values(eventSnapshot.participants).forEach((value: any) => {
               if (value.username === this.user.username) {
                 this.eventsAttended++;
               }
@@ -247,7 +239,7 @@ public userForm = new FormGroup({
     });
 
     //Deactivation
-    this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe( (userSnapshot:any) => {
+    this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe((userSnapshot: any) => {
       this.isActivated = userSnapshot.isActivated;
     });
 
@@ -258,25 +250,29 @@ public userForm = new FormGroup({
   }
 
   updateContact(formData) {
-    let mergedObj = { phone: formData.phone, address: {street: formData.street, city: formData.city, zip: formData.zip} };
+    let mergedObj = { phone: formData.phone, address: { street: formData.street, city: formData.city, zip: formData.zip } };
     this.updateProfile(mergedObj);
   }
 
   updateChildren(formData) {
-    let updatesObj = {numberOfChildren: formData.numberOfChildren};
+    let updatesObj = { numberOfChildren: formData.numberOfChildren };
     let appendObj = {};
     if (formData.numberOfChildren > 0) {
-      appendObj = {children: {childOne: formData.birthdayChild1, childTwo: formData.birthdayChild2, 
-        childThree: formData.birthdayChild3}};
+      appendObj = {
+        children: {
+          childOne: formData.birthdayChild1, childTwo: formData.birthdayChild2,
+          childThree: formData.birthdayChild3
+        }
+      };
     } else {
-      appendObj = {children: 'ingen'};
+      appendObj = { children: 'ingen' };
     }
     let mergedObj = Object.assign(updatesObj, appendObj);
     this.updateProfile(mergedObj);
   }
 
   updateSettings(formData) {
-    let updatesObj = {notifications: formData.notifications}
+    let updatesObj = { notifications: formData.notifications }
     this.updateProfile(updatesObj);
   }
 
@@ -286,10 +282,10 @@ public userForm = new FormGroup({
 
   updateUser(formData) {
     let result = "available";
-    let updatesObj = {username: formData.username};
+    let updatesObj = { username: formData.username };
     let isSearching = true;
     const observerEight = this.ufbs.getList().subscribe(userSnapshots => {
-      userSnapshots.forEach(userSnapshot => {
+      userSnapshots.forEach((userSnapshot: any) => {
         if (userSnapshot.payload.val().username === formData.username) {
           result = "unavailable";
         }
@@ -299,7 +295,7 @@ public userForm = new FormGroup({
         this.updateUsernameInParticipantsAndInQueues(formData);
       } else {
         this.toast.toastrConfig.timeOut = 5000;
-        this.toast.warning('Dette brugernavn er desværre allerede taget.','Hov!');
+        this.toast.warning('Dette brugernavn er desværre allerede taget.', 'Hov!');
       }
       observerEight.unsubscribe();
     });
@@ -307,13 +303,13 @@ public userForm = new FormGroup({
 
   updateUsernameInParticipantsAndInQueues(formData) {
     const observerNine = this.efbs.getList().subscribe(eventSnapshots => {
-      eventSnapshots.forEach( (eventSnapshot:any) => {
-        const observerTen = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe( (userSnapshot:any) => {
+      eventSnapshots.forEach((eventSnapshot: any) => {
+        const observerTen = this.ufbs.getUserByID(this.authService.afAuth.auth.currentUser.uid).subscribe((userSnapshot: any) => {
           if (eventSnapshot.participants) {
             Object.keys(eventSnapshot.participants).forEach(p => {
-              
+
               if (eventSnapshot.participants[p].username === userSnapshot.username) {
-                
+
                 this.efbs.leaveEvent(eventSnapshot.key, this.authService.afAuth.auth.currentUser.uid);
                 this.efbs.joinEvent(eventSnapshot.key, this.authService.afAuth.auth.currentUser.uid, formData.username);
               }
@@ -321,15 +317,15 @@ public userForm = new FormGroup({
           }
           if (eventSnapshot.inQueue) {
             Object.keys(eventSnapshot.inQueue).forEach(qP => {
-              
+
               if (eventSnapshot.inQueue[qP].username === userSnapshot.username) {
-                
+
                 this.efbs.leaveQueue(eventSnapshot.key, this.authService.afAuth.auth.currentUser.uid);
                 this.efbs.joinQueue(eventSnapshot.key, this.authService.afAuth.auth.currentUser.uid, formData.username);
               }
             });
           }
-          this.ufbs.updateUser({username: formData.username}, this.authService.afAuth.auth.currentUser.uid);
+          this.ufbs.updateUser({ username: formData.username }, this.authService.afAuth.auth.currentUser.uid);
           observerTen.unsubscribe();
         });
       });
@@ -341,7 +337,7 @@ public userForm = new FormGroup({
     let point = 100 / 8;
     let filled = 0;
     let missingProperties = this.fieldsMissing();
-    filled = point * (8-missingProperties.length);
+    filled = point * (8 - missingProperties.length);
     this.isProfileFilled = (filled >= 100);
     // if (filled < 100) {
 
@@ -357,24 +353,24 @@ public userForm = new FormGroup({
 
 
 
-}
+  }
 
   activateAccount() {
     this.userIsDeactivatingAccount = false;
-    true || this.accountProgress(this.user) >= 100 ? 
-      this.ufbs.updateUser({isActivated:true}, this.authService.afAuth.auth.currentUser.uid) : 
-      this.ufbs.updateUser({isActivated:false}, this.authService.afAuth.auth.currentUser.uid);
+    true || this.accountProgress(this.user) >= 100 ?
+      this.ufbs.updateUser({ isActivated: true }, this.authService.afAuth.auth.currentUser.uid) :
+      this.ufbs.updateUser({ isActivated: false }, this.authService.afAuth.auth.currentUser.uid);
   }
 
   deactivateAccount() {
     this.userIsDeactivatingAccount = true;
-    this.ufbs.updateUser({isActivated: false}, this.authService.afAuth.auth.currentUser.uid);
+    this.ufbs.updateUser({ isActivated: false }, this.authService.afAuth.auth.currentUser.uid);
   }
 
   deleteAccount() {
     window.confirm('Er du sikker? (Sidste advarsel)');
     this.authService.isDeletingUser = true;
-    this.ufbs.deleteUser(this.authService.afAuth.auth.currentUser.uid).then( () => {
+    this.ufbs.deleteUser(this.authService.afAuth.auth.currentUser.uid).then(() => {
       this.authService.afAuth.auth.currentUser.delete().then(() => {
         this.authService.doSignout();
       });
@@ -390,17 +386,17 @@ public userForm = new FormGroup({
       this.numberOfChildren = eventTargetValue;
       this.frontEndModellerChildren = [];
       for (let i = 0; i < this.maxChildren; i++) {
-        this.frontEndModellerChildren.push({id: "kidBirthday" + (1+i), formControlName: "birthdayChild" + (1+i), matDatePicker: "pickerChild" + (1+i), view: "Fødselsdag for barn"});
+        this.frontEndModellerChildren.push({ id: "kidBirthday" + (1 + i), formControlName: "birthdayChild" + (1 + i), matDatePicker: "pickerChild" + (1 + i), view: "Fødselsdag for barn" });
       }
       if (eventTargetValue > 3) {
         this.toast.toastrConfig.positionClass = 'toast-bottom-center';
-        this.toast.info('Eftersom at du har mere end 3 børn, angiv kun fødselsdagen for de 3 yngste','Info')
+        this.toast.info('Eftersom at du har mere end 3 børn, angiv kun fødselsdagen for de 3 yngste', 'Info')
         this.toast.toastrConfig.positionClass = 'toast-top-right';
       }
     } else {
       this.frontEndModellerChildren = [];
     }
-  
+
   }
 
   changedNewsEvent() {
@@ -422,17 +418,27 @@ public userForm = new FormGroup({
   }
 
   lookUpCity(eventTargetValue) {
-    if ( (eventTargetValue as string).length > 3 ) {
-      this.geoAPI.getZipFromCity(eventTargetValue).map(response => response.json()).subscribe(result => this.contactForm.get('city').setValue(result.navn));
+    if ((eventTargetValue as string).length > 3) {
+      this.geoAPI.getZipFromCity(eventTargetValue).map(response => response.json()).subscribe(result => this.personDataForm.get('city').setValue(result.navn));
     }
   }
 
   onUpdateClick() {
     this.isUpdating = true;
     this.toast.toastrConfig.timeOut = 2000;
-    this.toast.info('Din profil opdaterer','Info').onHidden.subscribe(() => {
+    this.toast.info('Din profil opdaterer', 'Info').onHidden.subscribe(() => {
       this.isUpdating = false;
     });
+  }
+
+  openUrlDialog() {
+      const dialogRef = this.dialog.open(ProfileImageDialogComponent, {
+        width: '250px',
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed', result);
+      });
   }
 
   fieldsMissing() {

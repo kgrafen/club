@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 
 // Routing
@@ -51,7 +51,7 @@ export class AuthService {
         const date = new Date();
         date.setUTCFullYear(2019, 0, 1);
         user.subscribed_until = date;
-        this.ufbs.insertUser(user, res.uid);
+        this.ufbs.insertUser(user, res.user.uid);
         this.doLogin({email: formData.email, password: formData.password});
       }, err => reject(err))
     })
@@ -60,8 +60,9 @@ export class AuthService {
   doLogin(formData) {
     return this.afAuth.auth
       .signInWithEmailAndPassword(formData.email, formData.password)
-      .then(user => {
-
+      .then(res => {
+        const user = res.user
+        console.log({user})
         if (user !== null) {
             this.user = user;
             if (user.emailVerified) {
@@ -73,7 +74,7 @@ export class AuthService {
       
       this.user = this.afAuth.auth.currentUser;
         //this.loginRedirect();
-        return user.user;
+        return user;
       })
       .catch(error => {
         this.translate.translateFirebaseErrorMessage(error.code).subscribe(message => this.toast.error(message));
@@ -96,7 +97,6 @@ export class AuthService {
     this.afAuth.auth.useDeviceLanguage();
     return this.afAuth.auth.signInWithPopup(provider).then(function(result) {
       // This gives you a Google Access Token. You can use it to access the Google API.
-      let token = result.credential.accessToken;
     }).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;

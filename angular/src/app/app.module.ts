@@ -5,9 +5,9 @@ import { AppComponent } from './app.component';
 
 
 //Firebase
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 //Environment
 import { environment } from '../environments/environment';
@@ -108,6 +108,7 @@ import { ActiveBlockedPipe } from './pipes/active-blocked.pipe';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AdminModule } from './admin/admin.module';
 import { AuthGuard } from './core/auth.guard';
+import { AuthService } from './auth.service';
 
 // Toaster
 import { ToastrModule } from 'ngx-toastr';
@@ -163,6 +164,11 @@ export class AppDateAdapter extends NativeDateAdapter {
 
       return date.toDateString();
   }
+  
+  getFirstDayOfWeek(): number {
+    return 1;
+  }
+
 }
 
 @NgModule({
@@ -267,6 +273,7 @@ export class AppDateAdapter extends NativeDateAdapter {
   exports: [HttpClientModule, HttpModule],
   providers: [
     AuthGuard,
+    AuthService,
     HttpClientModule,
     HttpModule,
     HaversineService,

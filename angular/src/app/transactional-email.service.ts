@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFireDatabase, AngularFireList  } from '../../node_modules/angularfire2/database';
+import { AngularFireDatabase, AngularFireList  } from '../../node_modules/@angular/fire/database';
 import 'rxjs/add/operator/toPromise';
 import { HttpClient } from '@angular/common/http';
 
